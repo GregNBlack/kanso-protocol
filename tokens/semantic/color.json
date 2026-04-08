@@ -83,6 +83,25 @@
       "danger":      { "$value": "{color.red.600}", "$type": "color", "$description": "Error, destructive actions" },
       "success":     { "$value": "{color.green.600}", "$type": "color", "$description": "Success, confirmation" },
       "warning":     { "$value": "{color.amber.500}", "$type": "color", "$description": "Warning, attention needed" }
+    },
+
+    "form": {
+      "label": {
+        "default":  { "$value": "{color.gray.700}", "$type": "color" },
+        "disabled": { "$value": "{color.gray.400}", "$type": "color" },
+        "error":    { "$value": "{color.red.600}", "$type": "color" }
+      },
+      "helper": {
+        "default":  { "$value": "{color.gray.500}", "$type": "color" },
+        "disabled": { "$value": "{color.gray.400}", "$type": "color" },
+        "error":    { "$value": "{color.red.500}", "$type": "color" }
+      },
+      "floating-label": {
+        "rest":     { "$value": "{color.gray.500}", "$type": "color" },
+        "focus":    { "$value": "{color.blue.600}", "$type": "color" },
+        "error":    { "$value": "{color.red.500}", "$type": "color" },
+        "disabled": { "$value": "{color.gray.400}", "$type": "color" }
+      }
     }
   }
 }
