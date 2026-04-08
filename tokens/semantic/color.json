@@ -87,20 +87,43 @@
 
     "form": {
       "label": {
-        "default":  { "$value": "{color.gray.700}", "$type": "color" },
-        "disabled": { "$value": "{color.gray.400}", "$type": "color" },
-        "error":    { "$value": "{color.red.600}", "$type": "color" }
+        "default":  { "$value": "{color.gray.700}", "$type": "color", "$description": "Default label color" },
+        "disabled": { "$value": "{color.gray.400}", "$type": "color", "$description": "Disabled label" },
+        "error":    { "$value": "{color.red.600}", "$type": "color", "$description": "Error label" }
       },
       "helper": {
-        "default":  { "$value": "{color.gray.500}", "$type": "color" },
-        "disabled": { "$value": "{color.gray.400}", "$type": "color" },
-        "error":    { "$value": "{color.red.500}", "$type": "color" }
+        "default":  { "$value": "{color.gray.500}", "$type": "color", "$description": "Default helper text" },
+        "disabled": { "$value": "{color.gray.400}", "$type": "color", "$description": "Disabled helper text" },
+        "error":    { "$value": "{color.red.500}", "$type": "color", "$description": "Error helper text" }
       },
       "floating-label": {
-        "rest":     { "$value": "{color.gray.500}", "$type": "color" },
-        "focus":    { "$value": "{color.blue.600}", "$type": "color" },
-        "error":    { "$value": "{color.red.500}", "$type": "color" },
+        "rest":     { "$value": "{color.gray.500}", "$type": "color", "$description": "Floating label at rest" },
+        "focus":    { "$value": "{color.blue.600}", "$type": "color", "$description": "Floating label on focus" },
+        "error":    { "$value": "{color.red.500}", "$type": "color", "$description": "Floating label on error" },
+        "disabled": { "$value": "{color.gray.400}", "$type": "color", "$description": "Floating label disabled" }
+      }
+    },
+
+    "input": {
+      "bg": {
+        "default":  { "$value": "{color.white}", "$type": "color" },
+        "filled":   { "$value": "{color.gray.100}", "$type": "color" },
+        "disabled": { "$value": "{color.gray.50}", "$type": "color" }
+      },
+      "fg": {
+        "default":  { "$value": "{color.gray.900}", "$type": "color" },
         "disabled": { "$value": "{color.gray.400}", "$type": "color" }
+      },
+      "border": {
+        "rest":     { "$value": "{color.gray.300}", "$type": "color" },
+        "hover":    { "$value": "{color.gray.400}", "$type": "color" },
+        "focus":    { "$value": "{color.blue.600}", "$type": "color" },
+        "disabled": { "$value": "{color.gray.200}", "$type": "color" },
+        "error":    { "$value": "{color.red.500}", "$type": "color" }
+      },
+      "placeholder": {
+        "default":  { "$value": "{color.gray.400}", "$type": "color" },
+        "disabled": { "$value": "{color.gray.300}", "$type": "color" }
       }
     }
   }
