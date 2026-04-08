@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "declaration": false,
+    "types": ["node"]
+  },
+  "include": [
+    "../packages/**/*.ts",
+    "../packages/**/*.stories.ts"
+  ],
+  "exclude": [
+    "../node_modules"
+  ]
+}

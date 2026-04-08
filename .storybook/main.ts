@@ -11,6 +11,7 @@ const config: StorybookConfig = {
     name: '@storybook/angular',
     options: {},
   },
+  docs: {},
   staticDirs: [
     { from: '../packages/core/styles', to: '/styles' },
   ],
