@@ -73,6 +73,16 @@
 
     "focus": {
       "ring": { "$value": "{color.blue.400}", "$description": "Focus ring — 2px offset outline for all focusable elements" }
+    },
+
+    "icon": {
+      "primary":     { "$value": "{color.gray.700}", "$type": "color", "$description": "Default icon color on light backgrounds — navigation, lists, labels" },
+      "secondary":   { "$value": "{color.gray.400}", "$type": "color", "$description": "Decorative icons, placeholders, hints" },
+      "disabled":    { "$value": "{color.gray.300}", "$type": "color", "$description": "Disabled/inactive icons" },
+      "interactive": { "$value": "{color.blue.600}", "$type": "color", "$description": "Clickable icon-links" },
+      "danger":      { "$value": "{color.red.600}", "$type": "color", "$description": "Error, destructive actions" },
+      "success":     { "$value": "{color.green.600}", "$type": "color", "$description": "Success, confirmation" },
+      "warning":     { "$value": "{color.amber.500}", "$type": "color", "$description": "Warning, attention needed" }
     }
   }
 }
