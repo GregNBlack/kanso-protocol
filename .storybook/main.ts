@@ -5,13 +5,15 @@ const config: StorybookConfig = {
   stories: [
     '../packages/components/**/stories/*.stories.@(ts|tsx)',
   ],
-  addons: [getAbsolutePath("@storybook/addon-essentials"), "@chromatic-com/storybook"],
+  addons: [getAbsolutePath("@storybook/addon-essentials")],
   framework: {
     name: getAbsolutePath("@storybook/angular"),
-    options: {},
+    options: {
+      browserTarget: 'kanso-protocol:build',
+    },
   },
   docs: {
-    autodocs: true
+    autodocs: true,
   },
   staticDirs: [
     { from: '../packages/core/styles', to: '/styles' },
