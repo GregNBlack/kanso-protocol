@@ -22,7 +22,7 @@ jobs:
       - name: Build tokens
         run: npm run build:tokens
       - name: Build Storybook
-        run: npx storybook build -o storybook-static
+        run: npx ng run kanso-protocol:build-storybook
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
         with:

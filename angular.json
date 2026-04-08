@@ -15,6 +15,22 @@
             "browser": ".storybook/main-entry.ts",
             "tsConfig": ".storybook/tsconfig.json"
           }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": ".storybook",
+            "browserTarget": "kanso-protocol:build",
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": ".storybook",
+            "browserTarget": "kanso-protocol:build",
+            "outputDir": "storybook-static"
+          }
         }
       }
     }
