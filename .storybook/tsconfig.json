@@ -6,7 +6,8 @@
   },
   "include": [
     "../packages/**/*.ts",
-    "../packages/**/*.stories.ts"
+    "../packages/**/*.stories.ts",
+    "./*.ts"
   ],
   "exclude": [
     "../node_modules"
