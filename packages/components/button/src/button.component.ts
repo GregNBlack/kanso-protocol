@@ -6,7 +6,7 @@ import {
   ElementRef,
   inject,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { KpSize, KpVariant, KpColorRole } from '@kanso-protocol/core';
 
 /**
@@ -20,49 +20,54 @@ import { KpSize, KpVariant, KpColorRole } from '@kanso-protocol/core';
  * <kp-button size="lg" variant="outline" color="danger" [loading]="true">Delete</kp-button>
  */
 @Component({
-  selector: 'kp-button',
-  standalone: true,
-  imports: [CommonModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[class]': 'hostClasses',
-    '[attr.aria-busy]': 'loading || null',
-    '[attr.aria-disabled]': 'disabled || null',
-    '(click)': 'handleClick($event)',
-  },
-  template: `
+    selector: 'kp-button',
+    imports: [],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        '[class]': 'hostClasses',
+        '[attr.aria-busy]': 'loading || null',
+        '[attr.aria-disabled]': 'disabled || null',
+        '(click)': 'handleClick($event)',
+    },
+    template: `
     <!-- Container → Content → Elements -->
     <span class="kp-button__content">
       <!-- Loading spinner replaces icon-left -->
-      <span class="kp-button__spinner" *ngIf="loading" aria-hidden="true">
-        <svg
-          [attr.width]="iconSizeMap[size]"
-          [attr.height]="iconSizeMap[size]"
-          viewBox="0 0 24 24"
-          fill="none"
-        >
-          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" opacity="0.25"/>
-          <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-        </svg>
-      </span>
-
+      @if (loading) {
+        <span class="kp-button__spinner" aria-hidden="true">
+          <svg
+            [attr.width]="iconSizeMap[size]"
+            [attr.height]="iconSizeMap[size]"
+            viewBox="0 0 24 24"
+            fill="none"
+            >
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" opacity="0.25"/>
+            <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </span>
+      }
+    
       <!-- Icon left (hidden during loading) -->
-      <span class="kp-button__icon" *ngIf="!loading" aria-hidden="true">
-        <ng-content select="[kpButtonIconLeft]"/>
-      </span>
-
+      @if (!loading) {
+        <span class="kp-button__icon" aria-hidden="true">
+          <ng-content select="[kpButtonIconLeft]"/>
+        </span>
+      }
+    
       <!-- Label -->
       <span class="kp-button__label" [class.kp-button__label--hidden]="loading">
         <ng-content/>
       </span>
-
+    
       <!-- Icon right (hidden during loading) -->
-      <span class="kp-button__icon" *ngIf="!loading" aria-hidden="true">
-        <ng-content select="[kpButtonIconRight]"/>
-      </span>
+      @if (!loading) {
+        <span class="kp-button__icon" aria-hidden="true">
+          <ng-content select="[kpButtonIconRight]"/>
+        </span>
+      }
     </span>
-  `,
-  styles: [`
+    `,
+    styles: [`
     :host {
       /* === Container === */
       display: inline-flex;
@@ -344,7 +349,7 @@ import { KpSize, KpVariant, KpColorRole } from '@kanso-protocol/core';
       --kp-button-fg: #3F3F46; --kp-button-fg-hover: #27272A; --kp-button-fg-active: #18181B;
       --kp-button-border: transparent; --kp-button-border-hover: transparent; --kp-button-border-active: transparent;
     }
-  `],
+  `]
 })
 export class KpButtonComponent {
   @Input() size: KpSize = 'md';
