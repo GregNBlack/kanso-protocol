@@ -1,0 +1,24 @@
+node_modules/
+dist/
+.nx/
+.angular/
+tmp/
+storybook-static/
+
+# Build artifacts
+packages/core/styles/
+packages/core/src/_generated/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local

@@ -1,0 +1,22 @@
+{
+  "font": {
+    "family": {
+      "base": { "$type": "fontFamily", "$value": "Onest, system-ui, sans-serif" }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "regular":  { "$value": 400 },
+      "medium":   { "$value": 500 },
+      "semibold": { "$value": 600 },
+      "bold":     { "$value": 700 }
+    }
+  },
+  "text": {
+    "xs":  { "size": { "$type": "dimension", "$value": "12px" }, "lineHeight": { "$type": "number", "$value": 1.334 } },
+    "sm":  { "size": { "$type": "dimension", "$value": "14px" }, "lineHeight": { "$type": "number", "$value": 1.428 } },
+    "md":  { "size": { "$type": "dimension", "$value": "16px" }, "lineHeight": { "$type": "number", "$value": 1.5 } },
+    "lg":  { "size": { "$type": "dimension", "$value": "20px" }, "lineHeight": { "$type": "number", "$value": 1.4 } },
+    "xl":  { "size": { "$type": "dimension", "$value": "24px" }, "lineHeight": { "$type": "number", "$value": 1.334 } },
+    "2xl": { "size": { "$type": "dimension", "$value": "32px" }, "lineHeight": { "$type": "number", "$value": 1.25 } }
+  }
+}

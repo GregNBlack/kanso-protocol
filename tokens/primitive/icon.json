@@ -1,0 +1,9 @@
+{
+  "icon": {
+    "$type": "dimension",
+    "xs": { "$value": "16px" },
+    "sm": { "$value": "20px" },
+    "md": { "$value": "24px" },
+    "lg": { "$value": "32px" }
+  }
+}
