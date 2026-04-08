@@ -11,7 +11,7 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist",
-            "browser": "packages/core/src/index.ts",
+            "browser": ".storybook/main-entry.ts",
             "tsConfig": ".storybook/tsconfig.json"
           }
         }
