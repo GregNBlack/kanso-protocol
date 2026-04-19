@@ -58,10 +58,7 @@ export type KpTextareaResize = 'vertical' | 'none';
       flex-direction: column;
       box-sizing: border-box;
       width: 320px;
-      padding-top: var(--kp-textarea-pad-y);
-      padding-left: var(--kp-textarea-pad-x);
-      padding-right: calc(var(--kp-textarea-pad-x) / 2);
-      padding-bottom: calc(var(--kp-textarea-pad-y) / 2);
+      padding: 0;
       border: 1px solid var(--kp-input-border, #D4D4D8);
       border-radius: var(--kp-textarea-radius);
       background: var(--kp-input-bg, #FFFFFF);
@@ -96,13 +93,14 @@ export type KpTextareaResize = 'vertical' | 'none';
       font: inherit;
       font-size: var(--kp-textarea-fs);
       line-height: var(--kp-textarea-lh);
-      padding: 0;
+      padding: var(--kp-textarea-pad-y) var(--kp-textarea-pad-x);
       margin: 0;
       resize: vertical;
+      border-radius: inherit;
     }
     :host(.kp-textarea--no-resize) .kp-textarea__field { resize: none; }
-    /* Reserve bottom space for counter so the resize grip doesn't collide */
-    :host(.kp-textarea--has-counter) .kp-textarea__field { padding-bottom: 16px; }
+    /* When counter is shown, add extra bottom padding so text doesn't overlap */
+    :host(.kp-textarea--has-counter) .kp-textarea__field { padding-bottom: 22px; }
 
     .kp-textarea__field::placeholder { color: var(--kp-input-placeholder, #A1A1AA); }
     .kp-textarea__field:disabled { color: var(--kp-input-fg-disabled, #A1A1AA); cursor: not-allowed; }
@@ -117,8 +115,8 @@ export type KpTextareaResize = 'vertical' | 'none';
 
     .kp-textarea__counter {
       position: absolute;
-      right: calc(var(--kp-textarea-pad-x) / 2 + 14px);
-      bottom: calc(var(--kp-textarea-pad-y) / 2);
+      right: 18px;
+      bottom: 4px;
       font-size: 12px;
       line-height: 16px;
       color: #A1A1AA;
