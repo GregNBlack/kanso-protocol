@@ -1,9 +1,20 @@
 {
   "icon": {
-    "$type": "dimension",
-    "xs": { "$value": "16px" },
-    "sm": { "$value": "20px" },
-    "md": { "$value": "24px" },
-    "lg": { "$value": "32px" }
+    "size": {
+      "$type": "dimension",
+      "xs": { "$value": "14px", "$description": "Icon for XS components (24px button)" },
+      "sm": { "$value": "16px", "$description": "Icon for SM components (28px button)" },
+      "md": { "$value": "18px", "$description": "Icon for MD components (36px button)" },
+      "lg": { "$value": "22px", "$description": "Icon for LG components (44px button)" },
+      "xl": { "$value": "24px", "$description": "Icon for XL components (52px button)" }
+    },
+    "stroke": {
+      "$type": "dimension",
+      "xs": { "$value": "1.25px", "$description": "Stroke width for 14px icons — optical compensation" },
+      "sm": { "$value": "1.35px", "$description": "Stroke width for 16px icons" },
+      "md": { "$value": "1.5px",  "$description": "Stroke width for 18px icons" },
+      "lg": { "$value": "1.75px", "$description": "Stroke width for 22px icons" },
+      "xl": { "$value": "2px",    "$description": "Stroke width for 24px icons — standard Tabler default" }
+    }
   }
 }
