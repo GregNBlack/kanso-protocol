@@ -98,18 +98,19 @@ W3C Design Token Community Group (DTCG) — JSON.
 ### 5.1. Шрифт
 
 **Onest** (Google Fonts, кириллица).
-Токен `font.family.base` — позволяет заменить на уровне темы.
+Токен `font.family.sans` — позволяет заменить на уровне темы. Для кода используется `font.family.mono`.
 
 ### 5.2. Шкала (компактная)
 
-| Token        | Size  | Line-height | Computed LH | Weight        |
-|--------------|-------|-------------|-------------|---------------|
-| `text.xs`    | 12px  | 1.334       | 16px (≈4×4) | 400           |
-| `text.sm`    | 14px  | 1.428       | 20px (≈4×5) | 400           |
-| `text.md`    | 16px  | 1.5         | 24px (≈4×6) | 400           |
-| `text.lg`    | 20px  | 1.4         | 28px (≈4×7) | 500           |
-| `text.xl`    | 24px  | 1.334       | 32px (≈4×8) | 600           |
-| `text.2xl`   | 32px  | 1.25        | 40px (≈4×10)| 600           |
+| Token              | Size  | Line-height | Computed LH | Weight        |
+|--------------------|-------|-------------|-------------|---------------|
+| `font.size.2xs`    | 11px  | 1.455       | 16px (≈4×4) | 500           |
+| `font.size.xs`     | 12px  | 1.333       | 16px (≈4×4) | 400           |
+| `font.size.sm`     | 14px  | 1.428       | 20px (≈4×5) | 400           |
+| `font.size.md`     | 16px  | 1.5         | 24px (≈4×6) | 400           |
+| `font.size.lg`     | 20px  | 1.4         | 28px (≈4×7) | 500           |
+| `font.size.xl`     | 24px  | 1.333       | 32px (≈4×8) | 600           |
+| `font.size.2xl`    | 32px  | 1.25        | 40px (≈4×10)| 600           |
 
 > Все computed line-height кратны 4px для соблюдения вертикального ритма.
 

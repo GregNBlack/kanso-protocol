@@ -71,7 +71,7 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       height: var(--kp-button-height);
       min-width: var(--kp-button-height);
       padding: 0 var(--kp-button-padding);
-      font-family: var(--kp-font-family-base, 'Onest', system-ui, sans-serif);
+      font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       font-weight: 500;
       font-size: var(--kp-button-font-size);
       line-height: var(--kp-button-line-height);
