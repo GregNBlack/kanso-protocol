@@ -11,7 +11,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
 /**
  * Kanso Protocol — Input Component
  *
- * Anatomy: Container → Content → Elements (icon-left, label/value, icon-right)
+ * Anatomy: Container → Content → Elements (icon-left, input, icon-right)
  * Supports: 5 sizes × 7 states (rest/hover/active/focus/disabled/loading/error)
  * Floating Label: available for lg and xl sizes
  *
@@ -36,27 +36,28 @@ import { KpSize, KpState } from '@kanso-protocol/core';
         '[attr.aria-disabled]': 'disabled || null',
     },
     template: `
-    @if (floatingLabel && supportsFloatingLabel && (hasValue() || forceState === 'focus' || forceState === 'active' || forceState === 'error')) {
-      <span class="kp-input__label-small">{{ label }}</span>
-    }
-
     <span class="kp-input__icon kp-input__icon--left" aria-hidden="true">
       <ng-content select="[kpInputIconLeft]"/>
     </span>
 
-    @if (floatingLabel && supportsFloatingLabel && !hasValue() && forceState !== 'focus' && forceState !== 'active') {
-      <span class="kp-input__label-large">{{ label }}</span>
-    } @else {
+    <span class="kp-input__field-wrap">
       <input
+        #inputEl
         class="kp-input__field"
         [type]="type"
-        [placeholder]="placeholder"
+        [placeholder]="resolvedPlaceholder"
         [disabled]="disabled"
         [value]="value ?? ''"
+        (focus)="isFocused = true"
+        (blur)="isFocused = false; onTouched()"
         (input)="onInputChange($event)"
-        (blur)="onTouched()"
       />
-    }
+      @if (showFloatingLabel()) {
+        <span class="kp-input__label" [class.kp-input__label--floated]="isLabelFloated()">
+          {{ label }}
+        </span>
+      }
+    </span>
 
     <span class="kp-input__icon kp-input__icon--right" aria-hidden="true">
       <ng-content select="[kpInputIconRight]"/>
@@ -65,7 +66,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
     styles: [`
     :host {
       display: inline-flex;
-      align-items: center;
+      align-items: stretch;
       box-sizing: border-box;
       width: 280px;
       border: 1px solid var(--kp-input-border, #D4D4D8);
@@ -76,20 +77,24 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       gap: var(--kp-input-gap);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       transition:
-        border-color var(--kp-motion-duration-fast, 100ms) var(--kp-motion-ease-in-out, cubic-bezier(0.4, 0, 0.2, 1)),
-        background var(--kp-motion-duration-fast, 100ms) var(--kp-motion-ease-in-out, cubic-bezier(0.4, 0, 0.2, 1));
-      position: relative;
+        border-color var(--kp-motion-duration-fast, 100ms) ease,
+        background var(--kp-motion-duration-fast, 100ms) ease;
     }
 
-    :host(:hover:not(.kp-input--disabled)),
+    /* --- Interactive states --- */
+    :host(:hover:not(.kp-input--disabled):not(.kp-input--error)),
     :host(.kp-input--hover) {
       border-color: var(--kp-input-border-hover, #A1A1AA);
     }
 
-    :host(:focus-within:not(.kp-input--disabled)),
+    :host(:focus-within:not(.kp-input--disabled):not(.kp-input--error)),
     :host(.kp-input--focus) {
       border-color: var(--kp-input-border-focus, #2563EB);
       outline: none;
+    }
+
+    :host(.kp-input--active) {
+      border-color: var(--kp-input-border-active, #71717A);
     }
 
     :host(.kp-input--disabled) {
@@ -102,7 +107,16 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       border-color: var(--kp-input-border-error, #EF4444);
     }
 
-    /* --- Field (real <input>) --- */
+    /* --- Field wrap with overlay label --- */
+    .kp-input__field-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    /* --- The real input --- */
     .kp-input__field {
       flex: 1;
       min-width: 0;
@@ -115,6 +129,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       line-height: var(--kp-input-line-height);
       font-weight: var(--kp-input-font-weight, 400);
       padding: 0;
+      width: 100%;
     }
 
     .kp-input__field::placeholder {
@@ -137,30 +152,47 @@ import { KpSize, KpState } from '@kanso-protocol/core';
     .kp-input__icon:empty { display: none; }
 
     /* --- Floating Label --- */
-    .kp-input__label-large {
-      flex: 1;
+    /* Resting state: label is positioned inside the field, same size as placeholder */
+    .kp-input__label {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
       color: var(--kp-input-placeholder, #A1A1AA);
       font-size: var(--kp-input-font-size);
       line-height: var(--kp-input-line-height);
-      font-weight: var(--kp-input-label-weight, 400);
+      font-weight: var(--kp-input-font-weight, 400);
+      pointer-events: none;
+      transition:
+        top var(--kp-motion-duration-fast, 150ms) ease,
+        transform var(--kp-motion-duration-fast, 150ms) ease,
+        font-size var(--kp-motion-duration-fast, 150ms) ease,
+        color var(--kp-motion-duration-fast, 150ms) ease;
     }
 
-    .kp-input__label-small {
-      position: absolute;
+    /* Floated state: label moves to top, shrinks */
+    .kp-input__label--floated {
       top: 2px;
-      left: var(--kp-input-padding-x);
+      transform: translateY(0);
       font-size: var(--kp-input-label-small-size, 10px);
       font-weight: 500;
-      color: var(--kp-input-floating-label, #52525B);
-      pointer-events: none;
+      color: var(--kp-floating-label, #52525B);
     }
 
-    :host(.kp-input--focus) .kp-input__label-small {
-      color: var(--kp-input-floating-label-focus, #2563EB);
+    :host(.kp-input--focus) .kp-input__label--floated,
+    :host(:focus-within) .kp-input__label--floated {
+      color: var(--kp-floating-label-focus, #2563EB);
     }
 
-    :host(.kp-input--error) .kp-input__label-small {
-      color: var(--kp-input-floating-label-error, #EF4444);
+    :host(.kp-input--error) .kp-input__label--floated {
+      color: var(--kp-floating-label-error, #EF4444);
+    }
+
+    /* When floating label is floated (at top), input text needs to leave room */
+    :host(.kp-input--floating) .kp-input__field-wrap {
+      align-items: flex-end;
+      padding-top: 14px;
+      padding-bottom: 2px;
     }
 
     /* === SIZE TOKENS === synced from Figma Input master component */
@@ -188,7 +220,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
     :host(.kp-input--xl) {
       --kp-input-height: 52px; --kp-input-radius: 16px; --kp-input-padding-x: 16px;
       --kp-input-font-size: 20px; --kp-input-line-height: 1.4;
-      --kp-input-font-weight: 500; --kp-input-label-weight: 500;
+      --kp-input-font-weight: 500;
       --kp-input-label-small-size: 11px;
       --kp-input-gap: 8px;
     }
@@ -205,18 +237,40 @@ export class KpInputComponent implements ControlValueAccessor {
   @Input() forceState: KpState | null = null;
 
   value: string | null = null;
+  isFocused = false;
 
   get supportsFloatingLabel(): boolean {
     return this.size === 'lg' || this.size === 'xl';
+  }
+
+  showFloatingLabel(): boolean {
+    return this.floatingLabel && this.supportsFloatingLabel && !!this.label;
   }
 
   hasValue(): boolean {
     return this.value !== null && this.value !== '';
   }
 
+  /** Label floats when focused, filled, or in a showcase active/error state */
+  isLabelFloated(): boolean {
+    return this.hasValue()
+      || this.isFocused
+      || this.forceState === 'focus'
+      || this.forceState === 'active'
+      || this.forceState === 'error';
+  }
+
+  /** Hide placeholder while floating label is resting inside the field */
+  get resolvedPlaceholder(): string {
+    if (this.showFloatingLabel() && !this.isLabelFloated()) {
+      return '';
+    }
+    return this.placeholder;
+  }
+
   get hostClasses(): string {
     const classes = ['kp-input', `kp-input--${this.size}`];
-    if (this.floatingLabel && this.supportsFloatingLabel) classes.push('kp-input--floating');
+    if (this.showFloatingLabel()) classes.push('kp-input--floating');
     if (this.forceState) {
       classes.push(`kp-input--${this.forceState}`);
     } else if (this.disabled) {
