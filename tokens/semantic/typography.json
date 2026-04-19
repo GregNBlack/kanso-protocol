@@ -1,0 +1,74 @@
+{
+  "text": {
+    "2xs": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": "{font.size.2xs}",
+        "fontWeight": "{font.weight.medium}",
+        "lineHeight": "{font.lineHeight.2xs}"
+      },
+      "$description": "Micro text — badges, captions, legal"
+    },
+    "xs": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": "{font.size.xs}",
+        "fontWeight": "{font.weight.regular}",
+        "lineHeight": "{font.lineHeight.xs}"
+      },
+      "$description": "Small body — helper text, metadata"
+    },
+    "sm": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": "{font.size.sm}",
+        "fontWeight": "{font.weight.regular}",
+        "lineHeight": "{font.lineHeight.sm}"
+      },
+      "$description": "Default UI body"
+    },
+    "md": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": "{font.size.md}",
+        "fontWeight": "{font.weight.regular}",
+        "lineHeight": "{font.lineHeight.md}"
+      },
+      "$description": "Comfortable body — reading content"
+    },
+    "lg": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": "{font.size.lg}",
+        "fontWeight": "{font.weight.medium}",
+        "lineHeight": "{font.lineHeight.lg}"
+      },
+      "$description": "Section label, small heading"
+    },
+    "xl": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": "{font.size.xl}",
+        "fontWeight": "{font.weight.semibold}",
+        "lineHeight": "{font.lineHeight.xl}"
+      },
+      "$description": "Heading"
+    },
+    "2xl": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": "{font.size.2xl}",
+        "fontWeight": "{font.weight.semibold}",
+        "lineHeight": "{font.lineHeight.2xl}"
+      },
+      "$description": "Large heading, hero"
+    }
+  }
+}
