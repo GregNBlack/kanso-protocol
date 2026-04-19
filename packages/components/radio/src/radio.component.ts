@@ -4,10 +4,16 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  OnInit,
+  OnDestroy,
+  Optional,
+  SkipSelf,
   forwardRef,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { KpState } from '@kanso-protocol/core';
+import { KpRadioGroupComponent } from './radio-group.component';
 
 export type KpRadioSize = 'sm' | 'md' | 'lg';
 export type KpRadioColor = 'primary' | 'danger';
@@ -15,11 +21,17 @@ export type KpRadioColor = 'primary' | 'danger';
 /**
  * Kanso Protocol — Radio Component
  *
+ * When placed inside <kp-radio-group>, clicking a radio updates the group's
+ * value and deselects siblings. Outside a group, it behaves as a standalone
+ * two-state control with its own CVA.
+ *
  * Outer circle stays white when checked; only the border and inner dot become colored.
- * Visually distinct from checkbox where the whole fill becomes colored.
  *
  * @example
- * <kp-radio [(checked)]="value" size="md">Option A</kp-radio>
+ * <kp-radio-group [(value)]="selected">
+ *   <kp-radio value="a">Option A</kp-radio>
+ *   <kp-radio value="b">Option B</kp-radio>
+ * </kp-radio-group>
  */
 @Component({
   selector: 'kp-radio',
@@ -36,8 +48,8 @@ export type KpRadioColor = 'primary' | 'danger';
     '[class]': 'hostClasses',
     '[attr.role]': '"radio"',
     '[attr.aria-checked]': 'checked',
-    '[attr.aria-disabled]': 'disabled || null',
-    '[attr.tabindex]': 'disabled ? -1 : 0',
+    '[attr.aria-disabled]': 'isDisabled || null',
+    '[attr.tabindex]': 'isDisabled ? -1 : 0',
     '(click)': 'select()',
     '(keydown.space)': 'onSpace($event)',
   },
@@ -99,7 +111,6 @@ export type KpRadioColor = 'primary' | 'danger';
     }
     :host(.kp-radio--error) { --kp-radio-border: #EF4444; }
 
-    /* Checked — only border and dot become colored, outer fill stays white */
     :host(.kp-radio--checked) {
       --kp-radio-border: #2563EB;
       --kp-radio-dot-bg: #2563EB;
@@ -123,43 +134,77 @@ export type KpRadioColor = 'primary' | 'danger';
       --kp-radio-dot-bg: #DC2626;
     }
 
-    /* Sizes */
     :host(.kp-radio--sm) { --kp-radio-size: 16px; --kp-radio-border-width: 1px;   --kp-radio-dot-size: 6px; }
     :host(.kp-radio--md) { --kp-radio-size: 20px; --kp-radio-border-width: 1.5px; --kp-radio-dot-size: 8px; }
     :host(.kp-radio--lg) { --kp-radio-size: 24px; --kp-radio-border-width: 1.5px; --kp-radio-dot-size: 10px; }
 
-    .kp-radio__label {
-      font-size: 14px;
-      color: #3F3F46;
-    }
+    .kp-radio__label { font-size: 14px; color: #3F3F46; }
   `]
 })
-export class KpRadioComponent implements ControlValueAccessor {
+export class KpRadioComponent implements OnInit, OnDestroy, ControlValueAccessor {
   @Input() size: KpRadioSize = 'md';
   @Input() color: KpRadioColor = 'primary';
+  @Input() value: unknown = null;
   @Input() checked = false;
   @Input() disabled = false;
   @Input() forceState: KpState | null = null;
   @Input() hasLabel = true;
   @Output() checkedChange = new EventEmitter<boolean>();
 
+  private registration: { value: unknown; setChecked: (c: boolean) => void } | null = null;
+
+  constructor(
+    private cdr: ChangeDetectorRef,
+    @Optional() @SkipSelf() public group: KpRadioGroupComponent | null,
+  ) {}
+
+  ngOnInit(): void {
+    if (this.group) {
+      this.registration = {
+        value: this.value,
+        setChecked: (c: boolean) => {
+          if (this.checked !== c) {
+            this.checked = c;
+            this.cdr.markForCheck();
+          }
+        },
+      };
+      this.group.register(this.registration);
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.group && this.registration) {
+      this.group.unregister(this.registration);
+    }
+  }
+
+  get isDisabled(): boolean {
+    return this.disabled || !!(this.group && this.group.disabled);
+  }
+
   get hostClasses(): string {
     const classes = ['kp-radio', `kp-radio--${this.size}`, `kp-radio--${this.color}`];
     if (this.checked) classes.push('kp-radio--checked');
     if (this.forceState) {
       classes.push(`kp-radio--${this.forceState}`);
-    } else if (this.disabled) {
+    } else if (this.isDisabled) {
       classes.push('kp-radio--disabled');
     }
     return classes.join(' ');
   }
 
   select(): void {
-    if (this.disabled || this.checked) return;
-    this.checked = true;
-    this.onChange(true);
-    this.checkedChange.emit(true);
-    this.onTouched();
+    if (this.isDisabled) return;
+    if (this.group) {
+      this.group.select(this.value);
+    } else {
+      if (this.checked) return;
+      this.checked = true;
+      this.onChange(true);
+      this.checkedChange.emit(true);
+      this.onTouched();
+    }
   }
 
   onSpace(event: Event): void {

@@ -1,10 +1,14 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { KpRadioComponent } from '../src/radio.component';
+import { KpRadioGroupComponent } from '../src/radio-group.component';
 
 const meta: Meta<KpRadioComponent> = {
   title: 'Components/Radio',
   component: KpRadioComponent,
   tags: ['autodocs'],
+  decorators: [
+    moduleMetadata({ imports: [KpRadioGroupComponent] }),
+  ],
   argTypes: {
     size: { control: 'select', options: ['sm','md','lg'] },
     color: { control: 'select', options: ['primary','danger'] },
@@ -49,12 +53,31 @@ export const States: Story = {
 };
 
 export const Group: Story = {
+  name: 'Group (single-select)',
   render: () => ({
+    props: { selected: 'b' },
     template: `
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <kp-radio>Option A</kp-radio>
-        <kp-radio [checked]="true">Option B</kp-radio>
-        <kp-radio>Option C</kp-radio>
+      <kp-radio-group [(value)]="selected">
+        <kp-radio value="a">Option A</kp-radio>
+        <kp-radio value="b">Option B</kp-radio>
+        <kp-radio value="c">Option C</kp-radio>
+      </kp-radio-group>
+
+      <div style="margin-top:20px;font-size:12px;color:#71717A;font-family:monospace">
+        Selected: <strong>{{ selected }}</strong>
       </div>`,
+  }),
+};
+
+export const HorizontalGroup: Story = {
+  name: 'Group (horizontal)',
+  render: () => ({
+    props: { selected: 'monthly' },
+    template: `
+      <kp-radio-group [(value)]="selected" orientation="horizontal">
+        <kp-radio value="monthly">Monthly</kp-radio>
+        <kp-radio value="yearly">Yearly</kp-radio>
+        <kp-radio value="lifetime">Lifetime</kp-radio>
+      </kp-radio-group>`,
   }),
 };
