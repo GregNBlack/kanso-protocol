@@ -58,7 +58,10 @@ export type KpTextareaResize = 'vertical' | 'none';
       flex-direction: column;
       box-sizing: border-box;
       width: 320px;
-      padding: var(--kp-textarea-pad-y) var(--kp-textarea-pad-x);
+      padding-top: var(--kp-textarea-pad-y);
+      padding-left: var(--kp-textarea-pad-x);
+      padding-right: calc(var(--kp-textarea-pad-x) / 2);
+      padding-bottom: calc(var(--kp-textarea-pad-y) / 2);
       border: 1px solid var(--kp-input-border, #D4D4D8);
       border-radius: var(--kp-textarea-radius);
       background: var(--kp-input-bg, #FFFFFF);
@@ -114,8 +117,8 @@ export type KpTextareaResize = 'vertical' | 'none';
 
     .kp-textarea__counter {
       position: absolute;
-      right: calc(var(--kp-textarea-pad-x) + 16px);
-      bottom: var(--kp-textarea-pad-y);
+      right: calc(var(--kp-textarea-pad-x) / 2 + 14px);
+      bottom: calc(var(--kp-textarea-pad-y) / 2);
       font-size: 12px;
       line-height: 16px;
       color: #A1A1AA;
