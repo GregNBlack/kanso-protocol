@@ -13,7 +13,7 @@ export type KpTextareaResize = 'vertical' | 'none';
 /**
  * Kanso Protocol — Textarea Component
  *
- * Multi-line text input. Shares Input's size/state grammar; adds resize handle
+ * Multi-line text input. Shares Input's size/state grammar; adds a resize handle
  * and optional character counter for length-constrained fields.
  *
  * @example
@@ -54,13 +54,11 @@ export type KpTextareaResize = 'vertical' | 'none';
   styles: [`
     :host {
       position: relative;
-      display: inline-block;
+      display: inline-flex;
+      flex-direction: column;
       box-sizing: border-box;
       width: 320px;
-      padding-top: var(--kp-textarea-pad-t);
-      padding-bottom: var(--kp-textarea-pad-b);
-      padding-left: var(--kp-textarea-pad-x);
-      padding-right: var(--kp-textarea-pad-x);
+      padding: var(--kp-textarea-pad-y) var(--kp-textarea-pad-x);
       border: 1px solid var(--kp-input-border, #D4D4D8);
       border-radius: var(--kp-textarea-radius);
       background: var(--kp-input-bg, #FFFFFF);
@@ -85,6 +83,7 @@ export type KpTextareaResize = 'vertical' | 'none';
 
     .kp-textarea__field {
       display: block;
+      flex: 1 1 auto;
       width: 100%;
       min-height: var(--kp-textarea-min-h);
       border: none;
@@ -95,9 +94,13 @@ export type KpTextareaResize = 'vertical' | 'none';
       font-size: var(--kp-textarea-fs);
       line-height: var(--kp-textarea-lh);
       padding: 0;
+      margin: 0;
       resize: vertical;
     }
     :host(.kp-textarea--no-resize) .kp-textarea__field { resize: none; }
+    /* Reserve bottom space for counter so the resize grip doesn't collide */
+    :host(.kp-textarea--has-counter) .kp-textarea__field { padding-bottom: 16px; }
+
     .kp-textarea__field::placeholder { color: var(--kp-input-placeholder, #A1A1AA); }
     .kp-textarea__field:disabled { color: var(--kp-input-fg-disabled, #A1A1AA); cursor: not-allowed; }
 
@@ -111,30 +114,33 @@ export type KpTextareaResize = 'vertical' | 'none';
 
     .kp-textarea__counter {
       position: absolute;
-      right: var(--kp-textarea-pad-x);
-      bottom: 6px;
+      right: calc(var(--kp-textarea-pad-x) + 16px);
+      bottom: var(--kp-textarea-pad-y);
       font-size: 12px;
       line-height: 16px;
       color: #A1A1AA;
       font-variant-numeric: tabular-nums;
       pointer-events: none;
+      background: var(--kp-input-bg, #FFFFFF);
+      padding-left: 4px;
     }
+    :host(.kp-textarea--filled) .kp-textarea__counter { background: #F4F4F5; }
 
     /* Sizes */
     :host(.kp-textarea--sm) {
-      --kp-textarea-pad-x: 8px; --kp-textarea-pad-t: 6px; --kp-textarea-pad-b: 22px;
+      --kp-textarea-pad-x: 8px; --kp-textarea-pad-y: 6px;
       --kp-textarea-radius: 10px; --kp-textarea-fs: 12px; --kp-textarea-lh: 16px;
-      --kp-textarea-min-h: 48px;
-    }
-    :host(.kp-textarea--md) {
-      --kp-textarea-pad-x: 12px; --kp-textarea-pad-t: 8px; --kp-textarea-pad-b: 22px;
-      --kp-textarea-radius: 12px; --kp-textarea-fs: 14px; --kp-textarea-lh: 20px;
       --kp-textarea-min-h: 60px;
     }
-    :host(.kp-textarea--lg) {
-      --kp-textarea-pad-x: 14px; --kp-textarea-pad-t: 10px; --kp-textarea-pad-b: 22px;
-      --kp-textarea-radius: 14px; --kp-textarea-fs: 16px; --kp-textarea-lh: 24px;
+    :host(.kp-textarea--md) {
+      --kp-textarea-pad-x: 12px; --kp-textarea-pad-y: 8px;
+      --kp-textarea-radius: 12px; --kp-textarea-fs: 14px; --kp-textarea-lh: 20px;
       --kp-textarea-min-h: 72px;
+    }
+    :host(.kp-textarea--lg) {
+      --kp-textarea-pad-x: 14px; --kp-textarea-pad-y: 10px;
+      --kp-textarea-radius: 14px; --kp-textarea-fs: 16px; --kp-textarea-lh: 24px;
+      --kp-textarea-min-h: 88px;
     }
   `]
 })
@@ -159,6 +165,7 @@ export class KpTextareaComponent implements ControlValueAccessor {
     const c = ['kp-textarea', `kp-textarea--${this.size}`];
     if (this.filled) c.push('kp-textarea--filled');
     if (this.resize === 'none') c.push('kp-textarea--no-resize');
+    if (this.showCounter) c.push('kp-textarea--has-counter');
     if (this.forceState) {
       c.push(`kp-textarea--${this.forceState}`);
     } else if (this.disabled) {
