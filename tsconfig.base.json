@@ -22,7 +22,8 @@
       "@kanso-protocol/input": ["packages/components/input/src/index.ts"],
       "@kanso-protocol/checkbox": ["packages/components/checkbox/src/index.ts"],
       "@kanso-protocol/radio": ["packages/components/radio/src/index.ts"],
-      "@kanso-protocol/toggle": ["packages/components/toggle/src/index.ts"]
+      "@kanso-protocol/toggle": ["packages/components/toggle/src/index.ts"],
+      "@kanso-protocol/form-field": ["packages/components/form-field/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]
