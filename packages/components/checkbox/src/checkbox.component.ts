@@ -41,13 +41,10 @@ export type KpCheckboxColor = 'primary' | 'danger';
   },
   template: `
     <span class="kp-checkbox__box">
-      @if (indeterminate) {
-        <span class="kp-checkbox__minus" aria-hidden="true"></span>
-      } @else if (checked) {
-        <svg class="kp-checkbox__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      }
+      <svg class="kp-checkbox__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="kp-checkbox__minus" aria-hidden="true"></span>
     </span>
     @if (hasLabel) {
       <span class="kp-checkbox__label"><ng-content/></span>
@@ -67,6 +64,7 @@ export type KpCheckboxColor = 'primary' | 'danger';
     :host(.kp-checkbox--disabled) { cursor: not-allowed; }
 
     .kp-checkbox__box {
+      position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -82,14 +80,24 @@ export type KpCheckboxColor = 'primary' | 'danger';
         border-color var(--kp-motion-duration-fast, 100ms) ease;
     }
 
-    .kp-checkbox__icon { width: 75%; height: 75%; color: var(--kp-checkbox-fg, #FFFFFF); }
+    .kp-checkbox__icon {
+      position: absolute;
+      width: 75%; height: 75%;
+      color: var(--kp-checkbox-fg, #FFFFFF);
+      opacity: 0;
+      transition: opacity var(--kp-motion-duration-fast, 100ms) ease;
+    }
     .kp-checkbox__minus {
-      display: block;
+      position: absolute;
       background: var(--kp-checkbox-fg, #FFFFFF);
       border-radius: 1px;
       width: 50%;
       height: var(--kp-checkbox-minus-h, 2px);
+      opacity: 0;
+      transition: opacity var(--kp-motion-duration-fast, 100ms) ease;
     }
+    :host(.kp-checkbox--checked) .kp-checkbox__icon { opacity: 1; }
+    :host(.kp-checkbox--indeterminate) .kp-checkbox__minus { opacity: 1; }
 
     :host(:hover:not(.kp-checkbox--disabled)),
     :host(.kp-checkbox--hover) {

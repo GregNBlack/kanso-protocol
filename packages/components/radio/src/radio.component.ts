@@ -55,9 +55,7 @@ export type KpRadioColor = 'primary' | 'danger';
   },
   template: `
     <span class="kp-radio__box">
-      @if (checked) {
-        <span class="kp-radio__dot" aria-hidden="true"></span>
-      }
+      <span class="kp-radio__dot" aria-hidden="true"></span>
     </span>
     @if (hasLabel) {
       <span class="kp-radio__label"><ng-content/></span>
@@ -95,7 +93,10 @@ export type KpRadioColor = 'primary' | 'danger';
       height: var(--kp-radio-dot-size);
       border-radius: 50%;
       background: var(--kp-radio-dot-bg, #2563EB);
+      opacity: 0;
+      transition: opacity var(--kp-motion-duration-fast, 100ms) ease;
     }
+    :host(.kp-radio--checked) .kp-radio__dot { opacity: 1; }
 
     :host(:hover:not(.kp-radio--disabled)),
     :host(.kp-radio--hover) {
