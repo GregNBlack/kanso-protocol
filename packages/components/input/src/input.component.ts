@@ -294,7 +294,7 @@ export class KpInputComponent implements ControlValueAccessor {
   private cvaDisabled = false;
 
   get isDisabled(): boolean {
-    return this.disabled || this.cvaDisabled;
+    return this.disabled || this.cvaDisabled || this.forceState === 'disabled';
   }
 
   get supportsFloatingLabel(): boolean {
