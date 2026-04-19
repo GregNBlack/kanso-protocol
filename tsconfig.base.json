@@ -24,7 +24,8 @@
       "@kanso-protocol/radio": ["packages/components/radio/src/index.ts"],
       "@kanso-protocol/toggle": ["packages/components/toggle/src/index.ts"],
       "@kanso-protocol/form-field": ["packages/components/form-field/src/index.ts"],
-      "@kanso-protocol/menu": ["packages/components/menu/src/index.ts"]
+      "@kanso-protocol/menu": ["packages/components/menu/src/index.ts"],
+      "@kanso-protocol/textarea": ["packages/components/textarea/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]

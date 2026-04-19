@@ -2,8 +2,6 @@
 
 > Multi-line text entry for longer free-form input.
 
-> **Status**: Contract defined; Figma and Angular implementations planned. Document written first per the contract-first rule.
-
 ## Contract
 
 Textarea captures multi-line text — descriptions, messages, long-form fields. It shares Input's size/state grammar so an Input and Textarea with the same size sit flush in a form column. It adds two features Input lacks: a resize handle (by default, vertical-only) and a character counter for length-constrained fields.
@@ -94,9 +92,9 @@ None — Textarea is a leaf component.
 
 ## References
 
-- **Figma component**: `[figma-link]` — not yet created
-- **Storybook**: `[planned]`
-- **Source**: `[planned]` `packages/components/textarea/src/textarea.component.ts`
+- **Figma component**: [`Textarea` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3092-729)
+- **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-textarea
+- **Source**: `packages/components/textarea/src/textarea.component.ts`
 - **Tokens used**:
   - `input/bg`, `input/fg`, `input/border`, `input/placeholder` (State collection) — shared with Input
   - `input/variant-bg`, `input/variant-border` (Input Variant collection)
@@ -104,4 +102,4 @@ None — Textarea is a leaf component.
 
 ## Changelog
 
-- `0.0.0` — Contract written; implementation pending
+- `0.1.0` — Initial component with 3 sizes, vertical resize, optional counter, CVA integration
