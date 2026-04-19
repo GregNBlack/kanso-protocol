@@ -1,0 +1,12 @@
+{
+  "name": "@kanso-protocol/checkbox",
+  "version": "0.0.1",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/core": "^18.0.0",
+    "@angular/common": "^18.0.0",
+    "@angular/forms": "^18.0.0",
+    "@kanso-protocol/core": "^0.0.1"
+  },
+  "ngPackage": { "lib": { "entryFile": "src/index.ts" } }
+}

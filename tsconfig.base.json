@@ -19,7 +19,10 @@
     "paths": {
       "@kanso-protocol/core": ["packages/core/src/index.ts"],
       "@kanso-protocol/button": ["packages/components/button/src/index.ts"],
-      "@kanso-protocol/input": ["packages/components/input/src/index.ts"]
+      "@kanso-protocol/input": ["packages/components/input/src/index.ts"],
+      "@kanso-protocol/checkbox": ["packages/components/checkbox/src/index.ts"],
+      "@kanso-protocol/radio": ["packages/components/radio/src/index.ts"],
+      "@kanso-protocol/toggle": ["packages/components/toggle/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]
