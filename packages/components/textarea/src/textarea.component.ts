@@ -8,7 +8,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { KpState } from '@kanso-protocol/core';
 
 export type KpTextareaSize = 'sm' | 'md' | 'lg';
-export type KpTextareaResize = 'vertical' | 'none';
+export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
 
 /**
  * Kanso Protocol — Textarea Component
@@ -50,7 +50,7 @@ export type KpTextareaResize = 'vertical' | 'none';
     @if (showCounter) {
       <span class="kp-textarea__counter">{{ currentLength }}/{{ maxLength }}</span>
     }
-    @if (resize === 'vertical' && !disabled) {
+    @if (resize !== 'none' && !disabled) {
       <span class="kp-textarea__grip" aria-hidden="true">
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
           <path d="M 9 1 L 1 9" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
@@ -107,10 +107,12 @@ export type KpTextareaResize = 'vertical' | 'none';
       padding-bottom: 22px; /* reserve space for counter + resize grip — matches Figma */
       padding-left: var(--kp-textarea-pad-x);
       margin: 0;
-      resize: vertical;
+      resize: both;
       border-radius: inherit;
     }
     :host(.kp-textarea--no-resize) .kp-textarea__field { resize: none; }
+    :host(.kp-textarea--resize-vertical) .kp-textarea__field { resize: vertical; }
+    :host(.kp-textarea--resize-horizontal) .kp-textarea__field { resize: horizontal; }
 
     .kp-textarea__field::placeholder { color: var(--kp-input-placeholder, #A1A1AA); }
     .kp-textarea__field:disabled { color: var(--kp-input-fg-disabled, #A1A1AA); cursor: not-allowed; }
@@ -204,7 +206,7 @@ export class KpTextareaComponent implements ControlValueAccessor {
   @Input() rows = 3;
   @Input() maxLength: number | null = null;
   @Input() showCounter = false;
-  @Input() resize: KpTextareaResize = 'vertical';
+  @Input() resize: KpTextareaResize = 'both';
   @Input() filled = false;
   @Input() disabled = false;
   @Input() forceState: KpState | null = null;
@@ -219,6 +221,8 @@ export class KpTextareaComponent implements ControlValueAccessor {
     const c = ['kp-textarea', `kp-textarea--${this.size}`];
     if (this.filled) c.push('kp-textarea--filled');
     if (this.resize === 'none') c.push('kp-textarea--no-resize');
+    else if (this.resize === 'vertical') c.push('kp-textarea--resize-vertical');
+    else if (this.resize === 'horizontal') c.push('kp-textarea--resize-horizontal');
     if (this.showCounter) c.push('kp-textarea--has-counter');
     if (this.forceState) {
       c.push(`kp-textarea--${this.forceState}`);

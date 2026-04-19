@@ -12,7 +12,7 @@ const meta: Meta<KpTextareaComponent> = {
   ],
   argTypes: {
     size: { control: 'select', options: ['sm','md','lg'] },
-    resize: { control: 'select', options: ['vertical','none'] },
+    resize: { control: 'select', options: ['both','vertical','horizontal','none'] },
     maxLength: { control: 'number' },
     showCounter: { control: 'boolean' },
     filled: { control: 'boolean' },
