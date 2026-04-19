@@ -461,7 +461,21 @@ kanso-protocol/
 
 ---
 
-## 15. Guiding Principles
+## 15. Component documentation
+
+Every new component requires three artifacts in one PR:
+
+1. **Implementation** — Angular component in `packages/components/{name}/`
+2. **Figma component** — published in the Design System file
+3. **API contract** — markdown file in `docs/components/{name}.md` following `docs/components/_template.md`
+
+A PR adding a component without all three is not merged.
+
+The API contract is the source of truth for component behavior. Figma and Angular implementations must match it. When they diverge, the contract is updated first, then implementations follow.
+
+---
+
+## 16. Guiding Principles
 
 1. **Explicit over implicit.** Никаких магических значений — всё через токены.
 2. **Architecture over agreements.** Правила зашиты в структуру, а не в README.

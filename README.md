@@ -105,6 +105,24 @@ Six explicit states for every interactive component:
 
 **Loading ≠ Disabled.** Loading preserves focus and announces state to screen readers.
 
+## Component API contracts
+
+Every component has a formal API contract in `docs/components/`. Read the contract before using a component — it describes the API, variants, states, accessibility requirements, and usage rules.
+
+- [Button](docs/components/button.md)
+- [Input](docs/components/input.md)
+- [Icon](docs/components/icon.md)
+- [Spinner](docs/components/spinner.md)
+- [Checkbox](docs/components/checkbox.md)
+- [Radio](docs/components/radio.md)
+- [Toggle](docs/components/toggle.md)
+- [FormField](docs/components/form-field.md)
+- [MenuItem](docs/components/menu-item.md)
+- [DropdownMenu](docs/components/dropdown-menu.md)
+- [Textarea](docs/components/textarea.md)
+
+Template for new components: [`docs/components/_template.md`](docs/components/_template.md)
+
 ## Usage
 
 ```typescript
