@@ -33,7 +33,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
     host: {
         '[class]': 'hostClasses',
         '[attr.aria-invalid]': 'forceState === "error" || null',
-        '[attr.aria-disabled]': 'disabled || null',
+        '[attr.aria-disabled]': 'isDisabled || null',
     },
     template: `
     <span class="kp-input__icon kp-input__icon--left" aria-hidden="true">
@@ -46,7 +46,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
         class="kp-input__field"
         [type]="type"
         [placeholder]="resolvedPlaceholder"
-        [disabled]="disabled"
+        [disabled]="isDisabled"
         [value]="value ?? ''"
         (focus)="isFocused = true"
         (blur)="isFocused = false; onTouched()"
@@ -59,7 +59,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       }
     </span>
 
-    @if (showClear && hasValue() && !disabled) {
+    @if (showClear && hasValue() && !isDisabled) {
       <button
         type="button"
         class="kp-input__clear"
@@ -290,6 +290,12 @@ export class KpInputComponent implements ControlValueAccessor {
 
   value: string | null = null;
   isFocused = false;
+  /** Set independently by Angular forms via setDisabledState (FormControl.disable()) */
+  private cvaDisabled = false;
+
+  get isDisabled(): boolean {
+    return this.disabled || this.cvaDisabled;
+  }
 
   get supportsFloatingLabel(): boolean {
     return this.size === 'lg' || this.size === 'xl';
@@ -325,7 +331,7 @@ export class KpInputComponent implements ControlValueAccessor {
     if (this.showFloatingLabel()) classes.push('kp-input--floating');
     if (this.forceState) {
       classes.push(`kp-input--${this.forceState}`);
-    } else if (this.disabled) {
+    } else if (this.isDisabled) {
       classes.push('kp-input--disabled');
     }
     return classes.join(' ');
@@ -342,7 +348,7 @@ export class KpInputComponent implements ControlValueAccessor {
   }
 
   clear(): void {
-    if (this.disabled) return;
+    if (this.isDisabled) return;
     this.value = '';
     this.onChange('');
   }
@@ -360,6 +366,6 @@ export class KpInputComponent implements ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this.cvaDisabled = isDisabled;
   }
 }
