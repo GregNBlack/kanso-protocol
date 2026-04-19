@@ -59,6 +59,19 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       }
     </span>
 
+    @if (showClear && hasValue() && !disabled) {
+      <button
+        type="button"
+        class="kp-input__clear"
+        aria-label="Clear input"
+        (click)="clear()"
+        (mousedown)="$event.preventDefault()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    }
+
     <span class="kp-input__icon kp-input__icon--right" aria-hidden="true">
       <ng-content select="[kpInputIconRight]"/>
     </span>
@@ -141,6 +154,38 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       cursor: not-allowed;
     }
 
+    /* --- Clear button --- */
+    .kp-input__clear {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: var(--kp-input-clear-size, 20px);
+      height: var(--kp-input-clear-size, 20px);
+      padding: 2px;
+      border: none;
+      border-radius: 4px;
+      background: transparent;
+      color: #71717A;
+      cursor: pointer;
+      transition:
+        background var(--kp-motion-duration-fast, 100ms) ease,
+        color var(--kp-motion-duration-fast, 100ms) ease;
+    }
+    .kp-input__clear:hover {
+      background: #F4F4F5;
+      color: #3F3F46;
+    }
+    .kp-input__clear:active {
+      background: #E4E4E7;
+      color: #18181B;
+    }
+    .kp-input__clear svg {
+      width: var(--kp-input-clear-icon, 14px);
+      height: var(--kp-input-clear-icon, 14px);
+    }
+    :host(.kp-input--error) .kp-input__clear { color: #DC2626; }
+
     /* --- Icons --- */
     .kp-input__icon {
       display: inline-flex;
@@ -200,22 +245,26 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       --kp-input-height: 24px; --kp-input-radius: 8px; --kp-input-padding-x: 6px;
       --kp-input-font-size: 12px; --kp-input-line-height: 1.333;
       --kp-input-gap: 4px;
+      --kp-input-clear-size: 16px; --kp-input-clear-icon: 12px;
     }
     :host(.kp-input--sm) {
       --kp-input-height: 28px; --kp-input-radius: 10px; --kp-input-padding-x: 8px;
       --kp-input-font-size: 14px; --kp-input-line-height: 1.428;
       --kp-input-gap: 5px;
+      --kp-input-clear-size: 16px; --kp-input-clear-icon: 12px;
     }
     :host(.kp-input--md) {
       --kp-input-height: 36px; --kp-input-radius: 12px; --kp-input-padding-x: 12px;
       --kp-input-font-size: 16px; --kp-input-line-height: 1.5;
       --kp-input-gap: 6px;
+      --kp-input-clear-size: 20px; --kp-input-clear-icon: 14px;
     }
     :host(.kp-input--lg) {
       --kp-input-height: 44px; --kp-input-radius: 14px; --kp-input-padding-x: 14px;
       --kp-input-font-size: 16px; --kp-input-line-height: 1.5;
       --kp-input-label-small-size: 10px;
       --kp-input-gap: 8px;
+      --kp-input-clear-size: 24px; --kp-input-clear-icon: 16px;
     }
     :host(.kp-input--xl) {
       --kp-input-height: 52px; --kp-input-radius: 16px; --kp-input-padding-x: 16px;
@@ -223,6 +272,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       --kp-input-font-weight: 500;
       --kp-input-label-small-size: 11px;
       --kp-input-gap: 8px;
+      --kp-input-clear-size: 24px; --kp-input-clear-icon: 16px;
     }
   `]
 })
@@ -232,6 +282,7 @@ export class KpInputComponent implements ControlValueAccessor {
   @Input() placeholder = '';
   @Input() label = '';
   @Input() floatingLabel = false;
+  @Input() showClear = false;
   @Input() disabled = false;
   /** Force a visual state for showcase/documentation purposes */
   @Input() forceState: KpState | null = null;
@@ -287,6 +338,12 @@ export class KpInputComponent implements ControlValueAccessor {
     const target = event.target as HTMLInputElement;
     this.value = target.value;
     this.onChange(target.value);
+  }
+
+  clear(): void {
+    if (this.disabled) return;
+    this.value = '';
+    this.onChange('');
   }
 
   writeValue(value: string | null): void {

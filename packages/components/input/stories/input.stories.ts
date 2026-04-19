@@ -1,10 +1,12 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { FormsModule } from '@angular/forms';
 import { KpInputComponent } from '../src/input.component';
 
 const meta: Meta<KpInputComponent> = {
   title: 'Components/Input',
   component: KpInputComponent,
   tags: ['autodocs'],
+  decorators: [moduleMetadata({ imports: [FormsModule] })],
   argTypes: {
     size: {
       control: 'select',
@@ -20,6 +22,7 @@ const meta: Meta<KpInputComponent> = {
     placeholder: { control: 'text', table: { defaultValue: { summary: '' } } },
     label: { control: 'text', description: 'Floating label text (lg/xl only)' },
     floatingLabel: { control: 'boolean', table: { defaultValue: { summary: 'false' } } },
+    showClear: { control: 'boolean', description: 'Show clear (X) button when input has a value', table: { defaultValue: { summary: 'false' } } },
     disabled: { control: 'boolean', table: { defaultValue: { summary: 'false' } } },
     forceState: {
       control: 'select',
@@ -100,6 +103,33 @@ export const FloatingLabel: Story = {
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
           <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase;letter-spacing:.06em">XL · Filled (with value)</span>
           <kp-input size="xl" [floatingLabel]="true" label="Name" placeholder="Your name" forceState="active"></kp-input>
+        </div>
+      </div>`,
+  }),
+};
+
+export const ClearButton: Story = {
+  name: 'Clear Button',
+  render: () => ({
+    props: {
+      v1: 'Hello world',
+      v2: 'search term',
+      v3: 'Focus me',
+      v4: 'Disabled value',
+    },
+    template: `
+      <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <kp-input [(ngModel)]="v1" [showClear]="true" placeholder="Type to see clear icon"></kp-input>
+          <span style="font-size:11px;color:#A1A1AA">Show Clear</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <kp-input [(ngModel)]="v3" [showClear]="true" placeholder="Focus state" forceState="focus"></kp-input>
+          <span style="font-size:11px;color:#A1A1AA">Focus</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <kp-input [(ngModel)]="v4" [showClear]="true" placeholder="Disabled" [disabled]="true"></kp-input>
+          <span style="font-size:11px;color:#A1A1AA">Disabled (hidden)</span>
         </div>
       </div>`,
   }),

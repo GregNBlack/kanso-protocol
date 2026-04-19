@@ -15,6 +15,7 @@ Container
    ├─ Floating Label (lg, xl only)
    ├─ Placeholder
    ├─ Value (hidden by default)
+   ├─ Clear Button (optional — shows when value is present and not disabled)
    └─ Icon Right (optional)
 ```
 
@@ -24,6 +25,7 @@ Container
 - **Floating Label** — small label above value on lg/xl when floated; sits inline at placeholder size when resting
 - **Placeholder** — visible when empty, color `input/placeholder`
 - **Value** — typed text, color `input/fg`
+- **Clear Button** — sits before Icon Right; 16/20/24 square hit-area, 12/14/16 icon (Tabler `x`); background uses `input/clear-bg` (transparent → gray.100 on hover → gray.200 on active); icon uses `input/clear-icon` (gray.500 → gray.700 → gray.900). Hidden when disabled.
 
 ## API
 
@@ -36,6 +38,7 @@ Container
 | `placeholder` | `string` | `''` | Placeholder text |
 | `label` | `string` | `''` | Floating label text (lg/xl only) |
 | `floatingLabel` | `boolean` | `false` | Enable floating label pattern |
+| `showClear` | `boolean` | `false` | Show clear (X) button when input has a value and isn't disabled |
 | `disabled` | `boolean` | `false` | Non-interactive |
 | `forceState` | `KpState \| null` | `null` | Force visual state — Storybook / docs only |
 
@@ -107,6 +110,7 @@ Floating Label is a boolean property available on lg and xl only — on smaller 
 - **Tokens used**:
   - `input/bg`, `input/fg`, `input/border`, `input/placeholder` (State collection)
   - `input/variant-bg`, `input/variant-border` (Input Variant collection)
+  - `input/clear-bg`, `input/clear-icon` (State collection — for the clear button)
   - `form/floating-label` for the floated label
   - `primitive.sizing.{xs|sm|md|lg|xl}`, `primitive.radius.comp.{xs|sm|md|lg|xl}`
   - `font.family.sans`, `font.size.*`, `font.lineHeight.*`
@@ -114,3 +118,4 @@ Floating Label is a boolean property available on lg and xl only — on smaller 
 ## Changelog
 
 - `0.1.0` — Initial component with 5 sizes, floating label on lg/xl, CVA integration
+- `0.2.0` — Add optional Clear Button (`showClear`) with hover-highlight; resets value on click and auto-hides when disabled
