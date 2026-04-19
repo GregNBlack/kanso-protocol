@@ -57,6 +57,8 @@ export type KpCheckboxColor = 'primary' | 'danger';
     :host {
       display: inline-flex;
       align-items: center;
+      vertical-align: middle;
+      line-height: 1;
       gap: 8px;
       cursor: pointer;
       user-select: none;
