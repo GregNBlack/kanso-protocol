@@ -159,6 +159,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      align-self: center;
       flex-shrink: 0;
       width: var(--kp-input-clear-size, 20px);
       height: var(--kp-input-clear-size, 20px);
@@ -282,7 +283,7 @@ export class KpInputComponent implements ControlValueAccessor {
   @Input() placeholder = '';
   @Input() label = '';
   @Input() floatingLabel = false;
-  @Input() showClear = false;
+  @Input() showClear = true;
   @Input() disabled = false;
   /** Force a visual state for showcase/documentation purposes */
   @Input() forceState: KpState | null = null;

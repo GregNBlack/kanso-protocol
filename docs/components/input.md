@@ -38,7 +38,7 @@ Container
 | `placeholder` | `string` | `''` | Placeholder text |
 | `label` | `string` | `''` | Floating label text (lg/xl only) |
 | `floatingLabel` | `boolean` | `false` | Enable floating label pattern |
-| `showClear` | `boolean` | `false` | Show clear (X) button when input has a value and isn't disabled |
+| `showClear` | `boolean` | `true` | Show clear (X) button whenever input has a value (disable to suppress) |
 | `disabled` | `boolean` | `false` | Non-interactive |
 | `forceState` | `KpState \| null` | `null` | Force visual state — Storybook / docs only |
 
@@ -119,3 +119,4 @@ Floating Label is a boolean property available on lg and xl only — on smaller 
 
 - `0.1.0` — Initial component with 5 sizes, floating label on lg/xl, CVA integration
 - `0.2.0` — Add optional Clear Button (`showClear`) with hover-highlight; resets value on click and auto-hides when disabled
+- `0.2.1` — Clear button defaults to enabled (`showClear=true`); vertical center fix
