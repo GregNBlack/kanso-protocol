@@ -50,6 +50,14 @@ export type KpTextareaResize = 'vertical' | 'none';
     @if (showCounter) {
       <span class="kp-textarea__counter">{{ currentLength }}/{{ maxLength }}</span>
     }
+    @if (resize === 'vertical' && !disabled) {
+      <span class="kp-textarea__grip" aria-hidden="true">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+          <path d="M 9 1 L 1 9" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+          <path d="M 9 5 L 5 9" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+        </svg>
+      </span>
+    }
   `,
   styles: [`
     :host {
@@ -83,6 +91,7 @@ export type KpTextareaResize = 'vertical' | 'none';
 
     .kp-textarea__field {
       display: block;
+      box-sizing: border-box;
       flex: 1 1 auto;
       width: 100%;
       min-height: var(--kp-textarea-min-h);
@@ -93,29 +102,71 @@ export type KpTextareaResize = 'vertical' | 'none';
       font: inherit;
       font-size: var(--kp-textarea-fs);
       line-height: var(--kp-textarea-lh);
-      padding: var(--kp-textarea-pad-y) var(--kp-textarea-pad-x);
+      padding-top: var(--kp-textarea-pad-y);
+      padding-right: var(--kp-textarea-pad-x);
+      padding-bottom: 22px; /* reserve space for counter + resize grip — matches Figma */
+      padding-left: var(--kp-textarea-pad-x);
       margin: 0;
       resize: vertical;
       border-radius: inherit;
     }
     :host(.kp-textarea--no-resize) .kp-textarea__field { resize: none; }
-    /* When counter is shown, add extra bottom padding so text doesn't overlap */
-    :host(.kp-textarea--has-counter) .kp-textarea__field { padding-bottom: 22px; }
 
     .kp-textarea__field::placeholder { color: var(--kp-input-placeholder, #A1A1AA); }
     .kp-textarea__field:disabled { color: var(--kp-input-fg-disabled, #A1A1AA); cursor: not-allowed; }
 
     /* Custom thin scrollbar on the textarea itself */
-    .kp-textarea__field::-webkit-scrollbar { width: 4px; background: transparent; }
+    .kp-textarea__field::-webkit-scrollbar {
+      width: 6px;
+      background: transparent;
+    }
+    .kp-textarea__field::-webkit-scrollbar-track { background: transparent; }
     .kp-textarea__field::-webkit-scrollbar-thumb {
       background: #D4D4D8;
-      border-radius: 2px;
+      border-radius: 3px;
+      border-right: 2px solid transparent;
+      background-clip: padding-box;
     }
-    .kp-textarea__field::-webkit-scrollbar-thumb:hover { background: #A1A1AA; }
+    .kp-textarea__field::-webkit-scrollbar-thumb:hover { background: #A1A1AA; background-clip: padding-box; }
+
+    /* Hide native resize grip; we draw our own below */
+    .kp-textarea__field::-webkit-resizer { background: transparent; }
+
+    .kp-textarea__grip {
+      position: absolute;
+      right: 4px;
+      bottom: 4px;
+      width: 10px;
+      height: 10px;
+      color: #A1A1AA;
+      pointer-events: none; /* native resize drag still fires on textarea below */
+      z-index: 2;
+    }
+    .kp-textarea__grip svg { display: block; }
+    /* Transparent buttons at top/bottom shorten the scrollbar track, keeping it
+       within the straight part of the rounded border and clear of the resize grip */
+    .kp-textarea__field::-webkit-scrollbar-button:vertical:decrement,
+    .kp-textarea__field::-webkit-scrollbar-button:vertical:increment {
+      display: block;
+      background: transparent;
+      border: none;
+    }
+    :host(.kp-textarea--sm) .kp-textarea__field::-webkit-scrollbar-button:vertical:decrement,
+    :host(.kp-textarea--sm) .kp-textarea__field::-webkit-scrollbar-button:vertical:increment {
+      height: 10px;
+    }
+    :host(.kp-textarea--md) .kp-textarea__field::-webkit-scrollbar-button:vertical:decrement,
+    :host(.kp-textarea--md) .kp-textarea__field::-webkit-scrollbar-button:vertical:increment {
+      height: 12px;
+    }
+    :host(.kp-textarea--lg) .kp-textarea__field::-webkit-scrollbar-button:vertical:decrement,
+    :host(.kp-textarea--lg) .kp-textarea__field::-webkit-scrollbar-button:vertical:increment {
+      height: 14px;
+    }
 
     .kp-textarea__counter {
       position: absolute;
-      right: 18px;
+      right: 20px;
       bottom: 4px;
       font-size: 12px;
       line-height: 16px;
@@ -126,6 +177,8 @@ export type KpTextareaResize = 'vertical' | 'none';
       padding-left: 4px;
     }
     :host(.kp-textarea--filled) .kp-textarea__counter { background: #F4F4F5; }
+    /* When the custom grip is hidden, align counter to the same inset as the bottom */
+    :host(.kp-textarea--no-resize) .kp-textarea__counter { right: 6px; }
 
     /* Sizes */
     :host(.kp-textarea--sm) {
