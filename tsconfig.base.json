@@ -18,7 +18,8 @@
     "forceConsistentCasingInFileNames": true,
     "paths": {
       "@kanso-protocol/core": ["packages/core/src/index.ts"],
-      "@kanso-protocol/button": ["packages/components/button/src/index.ts"]
+      "@kanso-protocol/button": ["packages/components/button/src/index.ts"],
+      "@kanso-protocol/input": ["packages/components/input/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]

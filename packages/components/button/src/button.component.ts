@@ -72,7 +72,7 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       min-width: var(--kp-button-height);
       padding: 0 var(--kp-button-padding);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
-      font-weight: 500;
+      font-weight: var(--kp-button-font-weight, 400);
       font-size: var(--kp-button-font-size);
       line-height: var(--kp-button-line-height);
       cursor: pointer;
@@ -148,26 +148,31 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
 
     @keyframes kp-spin { to { transform: rotate(360deg); } }
 
-    /* === SIZE TOKENS === */
+    /* === SIZE TOKENS === synced from Figma Button master component */
     :host(.kp-button--xs) {
       --kp-button-height: 24px; --kp-button-radius: 8px; --kp-button-padding: 6px;
-      --kp-button-font-size: 12px; --kp-button-line-height: 1.334; --kp-button-gap: 4px;
+      --kp-button-font-size: 12px; --kp-button-line-height: 1.333;
+      --kp-button-font-weight: 400; --kp-button-gap: 4px;
     }
     :host(.kp-button--sm) {
       --kp-button-height: 28px; --kp-button-radius: 10px; --kp-button-padding: 8px;
-      --kp-button-font-size: 13px; --kp-button-line-height: 1.384; --kp-button-gap: 5px;
+      --kp-button-font-size: 14px; --kp-button-line-height: 1.428;
+      --kp-button-font-weight: 400; --kp-button-gap: 5px;
     }
     :host(.kp-button--md) {
       --kp-button-height: 36px; --kp-button-radius: 12px; --kp-button-padding: 12px;
-      --kp-button-font-size: 14px; --kp-button-line-height: 1.428; --kp-button-gap: 6px;
+      --kp-button-font-size: 16px; --kp-button-line-height: 1.5;
+      --kp-button-font-weight: 400; --kp-button-gap: 6px;
     }
     :host(.kp-button--lg) {
       --kp-button-height: 44px; --kp-button-radius: 14px; --kp-button-padding: 14px;
-      --kp-button-font-size: 16px; --kp-button-line-height: 1.5; --kp-button-gap: 8px;
+      --kp-button-font-size: 16px; --kp-button-line-height: 1.5;
+      --kp-button-font-weight: 400; --kp-button-gap: 8px;
     }
     :host(.kp-button--xl) {
       --kp-button-height: 52px; --kp-button-radius: 16px; --kp-button-padding: 16px;
-      --kp-button-font-size: 18px; --kp-button-line-height: 1.334; --kp-button-gap: 8px;
+      --kp-button-font-size: 20px; --kp-button-line-height: 1.4;
+      --kp-button-font-weight: 500; --kp-button-gap: 8px;
     }
 
     /* === PRIMARY DEFAULT === */

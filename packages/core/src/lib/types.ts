@@ -15,7 +15,7 @@ export type KpVariant = 'default' | 'subtle' | 'outline' | 'ghost';
 export type KpColorRole = 'primary' | 'secondary' | 'danger' | 'warning' | 'success' | 'info' | 'neutral';
 
 /** Interactive component states (for documentation/testing) */
-export type KpState = 'rest' | 'hover' | 'active' | 'focus' | 'disabled' | 'loading';
+export type KpState = 'rest' | 'hover' | 'active' | 'focus' | 'disabled' | 'loading' | 'error';
 
 /** Size-to-value mappings */
 export const KP_SIZES: Record<KpSize, number> = {
@@ -35,9 +35,9 @@ export const KP_RADII: Record<KpSize, number> = {
 };
 
 export const KP_ICON_SIZES: Record<KpSize, number> = {
-  xs: 16,
+  xs: 14,
   sm: 16,
-  md: 20,
-  lg: 24,
+  md: 18,
+  lg: 22,
   xl: 24,
 };
