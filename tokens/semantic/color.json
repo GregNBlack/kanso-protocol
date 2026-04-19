@@ -101,6 +101,10 @@
         "focus":    { "$value": "{color.blue.600}", "$type": "color", "$description": "Floating label on focus" },
         "error":    { "$value": "{color.red.500}", "$type": "color", "$description": "Floating label on error" },
         "disabled": { "$value": "{color.gray.400}", "$type": "color", "$description": "Floating label disabled" }
+      },
+      "required": {
+        "marker":   { "$value": "{color.red.600}", "$type": "color", "$description": "Required field asterisk color" },
+        "optional": { "$value": "{color.gray.500}", "$type": "color", "$description": "Optional field label color" }
       }
     },
 
