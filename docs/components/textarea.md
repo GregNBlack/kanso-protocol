@@ -4,22 +4,21 @@
 
 ## Contract
 
-Textarea captures multi-line text — descriptions, messages, long-form fields. It shares Input's size/state grammar so an Input and Textarea with the same size sit flush in a form column. It adds two features Input lacks: a resize handle (by default, vertical-only) and a character counter for length-constrained fields.
+Textarea captures multi-line text — descriptions, messages, long-form fields. It shares Input's size/state grammar so an Input and Textarea with the same size sit flush in a form column. It adds two features Input lacks: a resize handle (both axes by default) and a character counter for length-constrained fields.
 
 ### Anatomy
 
 ```
-Container
-└─ Content
-   ├─ Textarea field (multi-line native <textarea>)
-   ├─ Resize handle (bottom-right)
-   └─ Counter (bottom-right when maxLength is set)
+Container (host)
+├─ Textarea field (native <textarea>, fills host; flex 1)
+├─ Counter (absolute bottom-right, when showCounter is true)
+└─ Grip (absolute bottom-right, custom SVG — shown when resize !== 'none')
 ```
 
-- **Container** — min-height tied to `size`, border, radius, padding
-- **Textarea field** — native `<textarea>`, font and colors inherited
-- **Resize handle** — vertical drag affordance at bottom-right corner
-- **Counter** — "N / maxLength" text at bottom-right, red when approaching limit
+- **Container / host** — border, radius, background; hosts the textarea and absolute overlays
+- **Textarea field** — native `<textarea>` with transparent background, its own padding (pad-y/pad-x + 22px bottom to reserve space for counter/grip), thin custom scrollbar (4px visible + 2px inset)
+- **Counter** — "N/maxLength" text, absolute bottom-right, color gray/400, has the host's background color so it reads cleanly over text
+- **Grip** — 10×10 SVG with two diagonal strokes, absolute bottom-right, `pointer-events: none` so the native resize drag still fires through it (the native `::-webkit-resizer` is visually hidden)
 
 ## API
 
@@ -29,17 +28,17 @@ Container
 |------|------|---------|-------------|
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Component size — matches Input sm/md/lg |
 | `placeholder` | `string` | `''` | Placeholder text |
-| `rows` | `number` | `3` | Default visible rows before resize |
-| `minRows` | `number` | `2` | Minimum rows the user can resize to |
-| `maxRows` | `number` | `null` | Maximum rows; `null` = unlimited |
-| `maxLength` | `number \| null` | `null` | Character limit; shows counter when set |
-| `resize` | `'vertical' \| 'none'` | `'vertical'` | Enable or disable the resize handle |
+| `rows` | `number` | `3` | Default visible rows |
+| `maxLength` | `number \| null` | `null` | Character limit (shown by counter) |
+| `showCounter` | `boolean` | `false` | Show the "N/maxLength" counter |
+| `resize` | `'both' \| 'vertical' \| 'horizontal' \| 'none'` | `'both'` | Direction the user can drag to resize |
+| `filled` | `boolean` | `false` | Filled variant (gray bg, no border) |
 | `disabled` | `boolean` | `false` | Non-interactive |
 | `forceState` | `KpState \| null` | `null` | Force visual state — Storybook only |
 
 ### Outputs
 
-Implements `ControlValueAccessor` — use `[(ngModel)]`. No custom outputs.
+Implements `ControlValueAccessor` — use `[(ngModel)]` or reactive-form bindings. No custom outputs.
 
 ### Content projection
 
@@ -49,9 +48,10 @@ None — Textarea is a leaf component.
 
 | Dimension | Values |
 |-----------|--------|
-| Size | sm (min-height 64), md (min-height 88), lg (min-height 112) |
-| Variant | default (bordered), filled (gray bg) — same as Input |
+| Size | sm (min-height 60), md (min-height 72), lg (min-height 88) |
+| Variant | default (white + border), filled (gray bg, transparent border) |
 | State | rest, hover, active, focus, disabled, error |
+| Resize | both (default), vertical, horizontal, none |
 
 ## States
 
@@ -61,8 +61,8 @@ None — Textarea is a leaf component.
 | hover | Border darkens |
 | active | Border darkens further — while typing |
 | focus | Border turns primary blue |
-| disabled | Gray bg, muted text, counter also muted, `aria-disabled="true"` |
-| error | Red border, red counter text when near limit |
+| disabled | Gray bg, muted text, `aria-disabled="true"` |
+| error | Red border |
 
 ## Accessibility
 
@@ -72,23 +72,24 @@ None — Textarea is a leaf component.
   - `aria-invalid="true"` when in error state
   - `aria-disabled="true"` when disabled
   - `aria-label` required for standalone use; otherwise labeled by surrounding FormField
-  - When `maxLength` is set: `aria-describedby` references the counter for screen-reader context
-- **Screen reader**: announces label, role "multiline edit", current value, remaining characters when near limit
+  - When `maxLength` is set: `aria-describedby` should reference the counter for screen-reader context
+- **Screen reader**: announces label, role "multiline edit", current value; counter read as context when focused near the limit
 
 ## Do / Don't
 
 ### Do
 - Wrap in FormField for label + helper + error messaging
-- Use `maxLength` with a visible counter for length-limited content (tweets, SMS, summaries)
-- Set `minRows` and `maxRows` to prevent the field from becoming too small or jumbotron-sized
+- Use `maxLength` with `showCounter` for length-limited content (tweets, SMS, summaries)
 - Match Textarea size with Input size in the same form column
+- Leave `resize='both'` in most form contexts — users usually want vertical, occasionally horizontal
+- Switch to `resize='vertical'` in narrow columns where widening would break the layout
 
 ### Don't
 - Don't use Textarea for single-line input — use Input
 - Don't hide the counter when `maxLength` is set — users need to know the constraint
-- Don't allow horizontal resize by default — breaks layout in narrow columns
-- Don't disable the resize handle entirely unless design explicitly requires a fixed height
+- Don't disable resize entirely unless the surrounding layout strictly requires a fixed height
 - Don't set `maxLength` arbitrarily low — it's a real constraint, not a style choice
+- Don't override counter / grip positioning via custom CSS — use component props
 
 ## References
 
@@ -98,8 +99,10 @@ None — Textarea is a leaf component.
 - **Tokens used**:
   - `input/bg`, `input/fg`, `input/border`, `input/placeholder` (State collection) — shared with Input
   - `input/variant-bg`, `input/variant-border` (Input Variant collection)
-  - Counter red: `form/helper.error`
+  - Counter color: `gray.400`; background inherits from host for legibility over text
 
 ## Changelog
 
 - `0.1.0` — Initial component with 3 sizes, vertical resize, optional counter, CVA integration
+- `0.2.0` — Replace native resize grip with custom 10×10 SVG grip; thin custom scrollbar (4px + 2px inset)
+- `0.3.0` — Resize defaults to 'both'; add 'horizontal' option alongside 'vertical' and 'none'
