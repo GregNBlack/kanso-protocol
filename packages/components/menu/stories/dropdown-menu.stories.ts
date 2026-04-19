@@ -144,6 +144,66 @@ export const Sections: Story = {
   }),
 };
 
+export const WithSearch: Story = {
+  name: 'With Search',
+  render: () => ({
+    template: `
+      <kp-dropdown-menu [hasSearch]="true" searchPlaceholder="Search actions...">
+        <kp-menu-item label="New file"></kp-menu-item>
+        <kp-menu-item label="New folder"></kp-menu-item>
+        <kp-menu-item label="Upload"></kp-menu-item>
+        <kp-menu-divider></kp-menu-divider>
+        <kp-menu-item label="Move to trash" [danger]="true"></kp-menu-item>
+      </kp-dropdown-menu>`,
+  }),
+};
+
+export const WithFooter: Story = {
+  name: 'With Footer',
+  render: () => ({
+    template: `
+      <div style="display:flex;gap:24px;align-items:flex-start">
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:center">
+          <kp-dropdown-menu [hasFooter]="true" [showCancel]="true" primaryLabel="Apply" cancelLabel="Cancel">
+            <kp-menu-section-label label="Filters"></kp-menu-section-label>
+            <kp-menu-item label="All items"></kp-menu-item>
+            <kp-menu-item label="Recent" [selected]="true"></kp-menu-item>
+            <kp-menu-item label="Starred"></kp-menu-item>
+          </kp-dropdown-menu>
+          <span style="font-size:11px;color:#A1A1AA">2 buttons (Cancel + Apply)</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:center">
+          <kp-dropdown-menu [hasFooter]="true" [showCancel]="false" primaryLabel="Done">
+            <kp-menu-item label="Option A"></kp-menu-item>
+            <kp-menu-item label="Option B"></kp-menu-item>
+            <kp-menu-item label="Option C"></kp-menu-item>
+          </kp-dropdown-menu>
+          <span style="font-size:11px;color:#A1A1AA">1 button only</span>
+        </div>
+      </div>`,
+  }),
+};
+
+export const SearchAndFooter: Story = {
+  name: 'Search + Footer (full chrome)',
+  render: () => ({
+    template: `
+      <kp-dropdown-menu
+        [hasSearch]="true"
+        [hasFooter]="true"
+        [showCancel]="true"
+        searchPlaceholder="Find a member..."
+        primaryLabel="Invite"
+        cancelLabel="Cancel">
+        <kp-menu-section-label label="Team members"></kp-menu-section-label>
+        <kp-menu-item label="Alice Johnson"></kp-menu-item>
+        <kp-menu-item label="Bob Smith" [selected]="true"></kp-menu-item>
+        <kp-menu-item label="Charlie Brown"></kp-menu-item>
+        <kp-menu-item label="Diana Prince"></kp-menu-item>
+      </kp-dropdown-menu>`,
+  }),
+};
+
 export const CheckboxesAndRadios: Story = {
   name: 'Checkboxes & Radios',
   render: () => ({

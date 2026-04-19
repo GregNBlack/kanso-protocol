@@ -1,4 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { KpInputComponent } from '@kanso-protocol/input';
+import { KpButtonComponent } from '@kanso-protocol/button';
 
 /**
  * Kanso Protocol — DropdownMenu
@@ -6,28 +8,54 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
  * Floating panel container for menu items. Projects any menu content:
  * MenuItem, MenuDivider, MenuSectionLabel.
  *
+ * Optional Search at the top and Footer with 1–2 full-width buttons at the bottom.
+ *
  * @example
- * <kp-dropdown-menu>
- *   <kp-menu-section-label label="Actions"/>
- *   <kp-menu-item label="Edit" shortcut="⌘E"/>
- *   <kp-menu-divider/>
- *   <kp-menu-item label="Delete" [danger]="true"/>
+ * <kp-dropdown-menu
+ *   [hasSearch]="true"
+ *   [hasFooter]="true"
+ *   [showCancel]="true"
+ *   primaryLabel="Apply"
+ *   cancelLabel="Cancel"
+ *   (primary)="apply()"
+ *   (cancel)="close()">
+ *   <kp-menu-item label="Profile"/>
  * </kp-dropdown-menu>
  */
 @Component({
   selector: 'kp-dropdown-menu',
-  imports: [],
+  imports: [KpInputComponent, KpButtonComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[attr.role]': '"menu"' },
-  template: `<ng-content/>`,
+  template: `
+    @if (hasSearch) {
+      <div class="kp-dropdown-menu__search">
+        <kp-input size="sm" [placeholder]="searchPlaceholder" [value]="searchValue" (input)="onSearchInput($event)"></kp-input>
+        <div class="kp-dropdown-menu__divider"></div>
+      </div>
+    }
+    <div class="kp-dropdown-menu__body">
+      <ng-content/>
+    </div>
+    @if (hasFooter) {
+      <div class="kp-dropdown-menu__footer">
+        <div class="kp-dropdown-menu__divider"></div>
+        <div class="kp-dropdown-menu__buttons">
+          @if (showCancel) {
+            <kp-button size="sm" variant="outline" color="neutral" style="flex:1" (click)="cancel.emit()">{{ cancelLabel }}</kp-button>
+          }
+          <kp-button size="sm" variant="default" color="primary" style="flex:1" (click)="primary.emit()">{{ primaryLabel }}</kp-button>
+        </div>
+      </div>
+    }
+  `,
   styles: [`
     :host {
       display: inline-flex;
       flex-direction: column;
-      gap: 2px;
       min-width: 220px;
       max-width: 320px;
-      max-height: 320px;
+      max-height: 480px;
       padding: 4px;
       background: #FFFFFF;
       border: 1px solid #E4E4E7;
@@ -37,8 +65,55 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
         0 10px 15px rgba(0, 0, 0, 0.10);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       box-sizing: border-box;
+    }
+    .kp-dropdown-menu__search {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 4px;
+    }
+    .kp-dropdown-menu__body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
       overflow-y: auto;
+      flex: 1 1 auto;
+    }
+    .kp-dropdown-menu__footer {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .kp-dropdown-menu__buttons {
+      display: flex;
+      gap: 8px;
+      padding: 4px;
+    }
+    .kp-dropdown-menu__divider {
+      height: 1px;
+      background: #F4F4F5;
+      margin: 4px 0;
+    }
+    .kp-dropdown-menu__search kp-input {
+      width: 100%;
     }
   `]
 })
-export class KpDropdownMenuComponent {}
+export class KpDropdownMenuComponent {
+  @Input() hasSearch = false;
+  @Input() hasFooter = false;
+  @Input() showCancel = true;
+  @Input() primaryLabel = 'Confirm';
+  @Input() cancelLabel = 'Cancel';
+  @Input() searchPlaceholder = 'Search...';
+  @Input() searchValue = '';
+  @Output() searchChange = new EventEmitter<string>();
+  @Output() primary = new EventEmitter<void>();
+  @Output() cancel = new EventEmitter<void>();
+
+  onSearchInput(event: Event): void {
+    const v = (event.target as HTMLInputElement).value;
+    this.searchValue = v;
+    this.searchChange.emit(v);
+  }
+}
