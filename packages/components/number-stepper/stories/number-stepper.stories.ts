@@ -82,20 +82,25 @@ export const States: Story = {
 export const AtLimits: Story = {
   name: 'At Limits',
   render: () => ({
-    props: { vMin: 0, vMid: 5, vMax: 100 },
+    props: {
+      vMin: 0,
+      vMid: 5,
+      vMax: 100,
+      label: (v: number) => v <= 0 ? 'At minimum' : v >= 100 ? 'At maximum' : 'In range',
+    },
     template: `
       <div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap">
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-number-stepper [(ngModel)]="vMin" [min]="0" [max]="100"></kp-number-stepper>
-          <span style="font-size:11px;color:#A1A1AA">At minimum (0)</span>
+          <span style="font-size:11px;color:#A1A1AA">{{ label(vMin) }}</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-number-stepper [(ngModel)]="vMid" [min]="0" [max]="100"></kp-number-stepper>
-          <span style="font-size:11px;color:#A1A1AA">In range (5)</span>
+          <span style="font-size:11px;color:#A1A1AA">{{ label(vMid) }}</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-number-stepper [(ngModel)]="vMax" [min]="0" [max]="100"></kp-number-stepper>
-          <span style="font-size:11px;color:#A1A1AA">At maximum (100)</span>
+          <span style="font-size:11px;color:#A1A1AA">{{ label(vMax) }}</span>
         </div>
       </div>`,
   }),
