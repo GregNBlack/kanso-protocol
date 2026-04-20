@@ -54,7 +54,7 @@ None — NumberStepper is a leaf component. Affixes are passed via `prefix` / `s
 | Size | xs (24px), sm (28px), md (36px), lg (44px), xl (52px) |
 | State | rest, hover, active, focus, disabled, error |
 
-The container hugs its content — total width = 2 × button-size + input-area-width. The input area is a hug-flex layout with a per-size minimum width on the input field so a single digit stays comfortably centered:
+The container hugs its content — total width = 2 × button-size + input-area-width. The input field auto-resizes to its value: it stays at the per-size minimum width while the value fits, and grows once the typed value exceeds it (e.g. typing `1234567` widens the field and the entire stepper). Achieved with a CSS-grid sizer (`::after { content: attr(data-value) }`), so resizing happens on every keystroke without JavaScript measurement.
 
 | Size | Button (sq) | Input pad-x | Input min-width | Default outer width |
 |------|-------------|-------------|-----------------|---------------------|
@@ -124,3 +124,4 @@ Container border, background, and the inherited Button states are managed throug
 
 - `0.1.0` — Initial component using Button (`iconOnly`) for − / + controls, CVA integration, prefix/suffix, derived at-min / at-max disabled states
 - `0.1.1` — Hug-sized container (no implicit 280px width); per-size min-width on the input field (24/26/28/32/34) and tightened input-area paddings (4/6/8/10/12) to match Figma
+- `0.1.2` — Input field now auto-grows once the value exceeds the min-width (CSS-grid sizer, no JS); typing no longer clamps mid-keystroke — clamping only happens on blur so the user can type freely

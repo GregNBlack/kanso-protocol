@@ -56,17 +56,19 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       @if (prefix) {
         <span class="kp-number-stepper__affix">{{ prefix }}</span>
       }
-      <input
-        #inputEl
-        class="kp-number-stepper__input"
-        type="text"
-        inputmode="numeric"
-        [value]="displayValue"
-        [disabled]="isDisabled"
-        [attr.aria-label]="ariaLabel || null"
-        (input)="onInputChange($event)"
-        (blur)="onBlur()"
-      />
+      <span class="kp-number-stepper__input-wrap" [attr.data-value]="displayValue || ''">
+        <input
+          #inputEl
+          class="kp-number-stepper__input"
+          type="text"
+          inputmode="numeric"
+          [value]="displayValue"
+          [disabled]="isDisabled"
+          [attr.aria-label]="ariaLabel || null"
+          (input)="onInputChange($event)"
+          (blur)="onBlur()"
+        />
+      </span>
       @if (suffix) {
         <span class="kp-number-stepper__affix">{{ suffix }}</span>
       }
@@ -146,18 +148,36 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       font-variant-numeric: tabular-nums;
     }
 
-    .kp-number-stepper__input {
-      width: var(--kp-stepper-input-min-w);
+    /* Auto-sizing input wrap: ::after sizer mirrors the value (invisible) and
+       sits in the same grid cell as the input. The cell — and therefore the
+       input — hugs to the wider of (min-width, value width). */
+    .kp-number-stepper__input-wrap {
+      display: inline-grid;
+      align-items: center;
       min-width: var(--kp-stepper-input-min-w);
+    }
+    .kp-number-stepper__input-wrap::after,
+    .kp-number-stepper__input {
+      grid-area: 1 / 1;
+      width: 100%;
+      min-width: 0;
+      font: inherit;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+      text-align: center;
+      padding: 0;
+    }
+    .kp-number-stepper__input-wrap::after {
+      content: attr(data-value);
+      visibility: hidden;
+      white-space: pre;
+      pointer-events: none;
+    }
+    .kp-number-stepper__input {
       border: none;
       outline: none;
       background: transparent;
       color: inherit;
-      font: inherit;
-      text-align: center;
-      font-weight: 500;
-      font-variant-numeric: tabular-nums;
-      padding: 0;
     }
     .kp-number-stepper__input:disabled {
       color: var(--kp-input-fg-disabled, #A1A1AA);
@@ -262,10 +282,14 @@ export class KpNumberStepperComponent implements ControlValueAccessor {
     }
     const parsed = Number(raw);
     if (Number.isNaN(parsed)) return;
-    this.commit(parsed);
+    // Do NOT clamp during typing — the container grows to fit, and clamping
+    // would make e.g. "10" → "1" → "10" feel like the input is fighting the user.
+    this.value = parsed;
+    this.onChange(parsed);
   }
 
   onBlur(): void {
+    // Clamp on blur so the committed value always respects min/max.
     if (this.value !== null) this.commit(this.value);
     this.onTouched();
   }
