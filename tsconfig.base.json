@@ -32,7 +32,8 @@
       "@kanso-protocol/badge": ["packages/components/badge/src/index.ts"],
       "@kanso-protocol/alert": ["packages/components/alert/src/index.ts"],
       "@kanso-protocol/tooltip": ["packages/components/tooltip/src/index.ts"],
-      "@kanso-protocol/popover": ["packages/components/popover/src/index.ts"]
+      "@kanso-protocol/popover": ["packages/components/popover/src/index.ts"],
+      "@kanso-protocol/progress": ["packages/components/progress/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]
