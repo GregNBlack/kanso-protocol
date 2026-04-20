@@ -176,6 +176,27 @@
         "disabled": { "$value": "{color.gray.300}", "$type": "color" },
         "error":    { "$value": "{color.red.500}", "$type": "color" }
       }
+    },
+
+    "stepper": {
+      "button": {
+        "bg": {
+          "rest":     { "$value": "{color.white}", "$type": "color" },
+          "hover":    { "$value": "{color.gray.50}", "$type": "color" },
+          "active":   { "$value": "{color.gray.100}", "$type": "color" },
+          "disabled": { "$value": "{color.gray.50}", "$type": "color" }
+        },
+        "icon": {
+          "rest":     { "$value": "{color.gray.700}", "$type": "color" },
+          "hover":    { "$value": "{color.gray.900}", "$type": "color" },
+          "active":   { "$value": "{color.gray.900}", "$type": "color" },
+          "disabled": { "$value": "{color.gray.300}", "$type": "color" }
+        },
+        "divider":  { "$value": "{color.gray.200}", "$type": "color" }
+      },
+      "affix": {
+        "color":    { "$value": "{color.gray.500}", "$type": "color", "$description": "Prefix and suffix text color" }
+      }
     }
   }
 }
