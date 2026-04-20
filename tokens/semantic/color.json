@@ -302,6 +302,15 @@
       "fg":       { "$value": "{color.white}",    "$type": "color", "$description": "Tooltip label color" },
       "shortcut": { "$value": "{color.gray.400}", "$type": "color", "$description": "Keyboard shortcut text color" },
       "border":   { "$value": "{color.gray.800}", "$type": "color", "$description": "Subtle tooltip border for contrast" }
+    },
+
+    "popover": {
+      "bg":       { "$value": "{color.white}",    "$type": "color", "$description": "Popover background" },
+      "border":   { "$value": "{color.gray.200}", "$type": "color", "$description": "Popover border" },
+      "fg-title": { "$value": "{color.gray.900}", "$type": "color", "$description": "Popover title" },
+      "fg-desc":  { "$value": "{color.gray.600}", "$type": "color", "$description": "Popover description" },
+      "fg-body":  { "$value": "{color.gray.700}", "$type": "color", "$description": "Popover body text" },
+      "divider":  { "$value": "{color.gray.100}", "$type": "color", "$description": "Divider between header/body/footer" }
     }
   }
 }
