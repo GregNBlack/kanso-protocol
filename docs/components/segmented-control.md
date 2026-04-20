@@ -22,6 +22,12 @@ Track (host)
 
 The selected segment gets `0 1px 2px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.08)` box-shadow — the subtle lift that signals the "active pill" above the track.
 
+### Animation
+
+The pill is a **single** absolutely-positioned element that lives behind all segments (z-index 0, segments at z-index 1). When the value changes, its `transform: translateX(…)` and `width` update to the next segment's position and width, animated with `240ms cubic-bezier(0.32, 0.72, 0, 1)` — an ease-out curve that matches the iOS "tab switcher" feel. Segments stay transparent; only their text color changes when selected, also transitioned over 240ms so the color swap resolves in step with the pill sliding.
+
+The pill is fade-in invisible on first paint and the transition class is applied two RAF frames later, so the pill never animates from `(0, 0)` on initial render. A `ResizeObserver` re-measures whenever the host or a segment changes size (font loads, label edits, responsive layout).
+
 ## API
 
 ### Inputs
@@ -131,3 +137,4 @@ Per-size sizing:
 ## Changelog
 
 - `0.1.0` — Initial component. Options-driven API (2–5 segments), `text` / `icon` / `icon-text` display modes, full CVA integration, roving-tabindex keyboard nav (arrows + home/end), palette-aligned typography.
+- `0.1.1` — Animate the selection: single absolutely-positioned pill slides between segments with a 240ms ease-out transform/width transition, synchronized with a 240ms text-color cross-fade on the old/new segments. ResizeObserver keeps the pill aligned when labels or viewport size change.

@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   Input,
   Output,
@@ -6,7 +7,9 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   ElementRef,
+  OnDestroy,
   forwardRef,
+  ViewChild,
   ViewChildren,
   QueryList,
 } from '@angular/core';
@@ -27,9 +30,9 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
 /**
  * Kanso Protocol — SegmentedControl
  *
- * Pill-style switcher: a gray track holding 2–5 segments, where the selected
- * segment is a white "pill" lifted above the track with a soft drop-shadow.
- * Options-driven so form integration works through a single string value.
+ * Pill-style switcher. One white "pill" lives behind the segments and slides
+ * horizontally to the selected segment's position. Segments have transparent
+ * background; they only change text color when selected.
  *
  * @example
  * <kp-segmented-control
@@ -54,6 +57,8 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
     '[attr.aria-disabled]': 'isDisabled || null',
   },
   template: `
+    <span #pill class="kp-segmented-control__pill" aria-hidden="true"></span>
+
     @for (opt of options; track opt.value; let i = $index) {
       <button
         #seg
@@ -91,6 +96,7 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
   `,
   styles: [`
     :host {
+      position: relative;
       display: inline-flex;
       align-items: stretch;
       box-sizing: border-box;
@@ -105,7 +111,34 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
       pointer-events: none;
     }
 
+    /* The one-and-only pill. Starts hidden; positions via --kp-pill-x/w
+       set imperatively so the transition smoothly animates when they change. */
+    .kp-segmented-control__pill {
+      position: absolute;
+      top: 2px;
+      left: 0;
+      width: var(--kp-pill-w, 0);
+      height: calc(100% - 4px);
+      border-radius: var(--kp-segmented-segment-radius);
+      background: var(--kp-color-segmented-segment-bg-selected, #FFFFFF);
+      box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.06),
+        0 1px 3px rgba(0, 0, 0, 0.08);
+      transform: translateX(var(--kp-pill-x, 0));
+      opacity: var(--kp-pill-opacity, 0);
+      pointer-events: none;
+      z-index: 0;
+    }
+    :host(.kp-segmented-control--ready) .kp-segmented-control__pill {
+      transition:
+        transform 240ms cubic-bezier(0.32, 0.72, 0, 1),
+        width     240ms cubic-bezier(0.32, 0.72, 0, 1),
+        opacity   160ms ease;
+    }
+
     .kp-segmented-control__segment {
+      position: relative;
+      z-index: 1;
       flex: 0 0 auto;
       display: inline-flex;
       align-items: center;
@@ -124,14 +157,10 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
       cursor: pointer;
       user-select: none;
       white-space: nowrap;
-      transition:
-        background var(--kp-motion-duration-fast, 120ms) ease,
-        color var(--kp-motion-duration-fast, 120ms) ease,
-        box-shadow var(--kp-motion-duration-fast, 120ms) ease;
+      transition: color 240ms cubic-bezier(0.32, 0.72, 0, 1);
     }
 
     .kp-segmented-control__segment:hover:not(.kp-segmented-control__segment--selected):not(:disabled) {
-      background: var(--kp-color-segmented-segment-bg-unselected-hover, #E4E4E7);
       color: var(--kp-color-segmented-segment-fg-unselected-hover, #18181B);
     }
     .kp-segmented-control__segment:focus-visible {
@@ -142,24 +171,14 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
       color: var(--kp-color-segmented-segment-fg-disabled, #A1A1AA);
       cursor: not-allowed;
     }
-
     .kp-segmented-control__segment--selected {
-      background: var(--kp-color-segmented-segment-bg-selected, #FFFFFF);
       color: var(--kp-color-segmented-segment-fg-selected, #18181B);
-      box-shadow:
-        0 1px 2px rgba(0, 0, 0, 0.06),
-        0 1px 3px rgba(0, 0, 0, 0.08);
     }
 
-    .kp-segmented-control__icon {
-      flex-shrink: 0;
-      display: block;
-    }
-    .kp-segmented-control__label {
-      display: inline-block;
-    }
+    .kp-segmented-control__icon { flex-shrink: 0; display: block; }
+    .kp-segmented-control__label { display: inline-block; }
 
-    /* === Sizes — segment height + track padding = Input size === */
+    /* === Sizes === */
     :host(.kp-segmented-control--xs) {
       --kp-segmented-radius: 8px;
       --kp-segmented-segment-h: 20px; --kp-segmented-segment-radius: 6px;
@@ -192,10 +211,10 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
     }
   `],
 })
-export class KpSegmentedControlComponent implements ControlValueAccessor {
+export class KpSegmentedControlComponent
+  implements ControlValueAccessor, AfterViewInit, OnDestroy {
   @Input() size: KpSize = 'md';
   @Input() options: KpSegmentOption[] = [];
-  /** What to render inside each segment: text only, icon only, or both */
   @Input() display: KpSegmentedDisplay = 'text';
   @Input() disabled = false;
 
@@ -203,33 +222,49 @@ export class KpSegmentedControlComponent implements ControlValueAccessor {
 
   value: string | null = null;
   private cvaDisabled = false;
+  private ready = false;
+  private ro: ResizeObserver | null = null;
 
   @ViewChildren('seg') private segEls!: QueryList<ElementRef<HTMLButtonElement>>;
 
   readonly iconSizeMap: Record<KpSize, number> = { xs: 14, sm: 16, md: 18, lg: 22, xl: 24 };
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(
+    private host: ElementRef<HTMLElement>,
+    private cdr: ChangeDetectorRef,
+  ) {}
 
-  get isDisabled(): boolean {
-    return this.disabled || this.cvaDisabled;
-  }
-
-  get showIcon(): boolean {
-    return this.display === 'icon' || this.display === 'icon-text';
-  }
-
-  get showLabel(): boolean {
-    return this.display === 'text' || this.display === 'icon-text';
-  }
-
-  get iconSize(): number {
-    return this.iconSizeMap[this.size];
-  }
+  get isDisabled(): boolean { return this.disabled || this.cvaDisabled; }
+  get showIcon(): boolean { return this.display === 'icon' || this.display === 'icon-text'; }
+  get showLabel(): boolean { return this.display === 'text' || this.display === 'icon-text'; }
+  get iconSize(): number { return this.iconSizeMap[this.size]; }
 
   get hostClasses(): string {
     const c = ['kp-segmented-control', `kp-segmented-control--${this.size}`];
     if (this.isDisabled) c.push('kp-segmented-control--disabled');
+    if (this.ready) c.push('kp-segmented-control--ready');
     return c.join(' ');
+  }
+
+  ngAfterViewInit(): void {
+    // Place the pill at the currently-selected segment BEFORE enabling
+    // transitions, so the initial render doesn't animate a slide from 0,0.
+    this.updatePill();
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => {
+        this.ready = true;
+        this.cdr.markForCheck();
+      }),
+    );
+    // Re-measure if anything resizes (window, font load, responsive label change)
+    this.ro = new ResizeObserver(() => this.updatePill());
+    this.ro.observe(this.host.nativeElement);
+    // Also recompute when options change after init
+    this.segEls.changes.subscribe(() => queueMicrotask(() => this.updatePill()));
+  }
+
+  ngOnDestroy(): void {
+    this.ro?.disconnect();
   }
 
   select(opt: KpSegmentOption): void {
@@ -238,6 +273,8 @@ export class KpSegmentedControlComponent implements ControlValueAccessor {
     this.onChange(opt.value);
     this.valueChange.emit(opt.value);
     this.onTouched();
+    this.cdr.markForCheck();
+    queueMicrotask(() => this.updatePill());
   }
 
   onKey(event: KeyboardEvent, index: number): void {
@@ -258,11 +295,25 @@ export class KpSegmentedControlComponent implements ControlValueAccessor {
     event.preventDefault();
     const { o, i } = enabled[nextPos];
     this.select(o);
-    // Move focus to the newly-selected segment
-    queueMicrotask(() => {
-      const el = this.segEls.get(i)?.nativeElement;
-      el?.focus();
-    });
+    queueMicrotask(() => this.segEls.get(i)?.nativeElement.focus());
+  }
+
+  private updatePill(): void {
+    if (!this.segEls) return;
+    const host = this.host.nativeElement;
+    const idx = this.options.findIndex(o => o.value === this.value);
+    if (idx < 0) {
+      host.style.setProperty('--kp-pill-opacity', '0');
+      return;
+    }
+    const seg = this.segEls.get(idx)?.nativeElement;
+    if (!seg) {
+      host.style.setProperty('--kp-pill-opacity', '0');
+      return;
+    }
+    host.style.setProperty('--kp-pill-x', `${seg.offsetLeft}px`);
+    host.style.setProperty('--kp-pill-w', `${seg.offsetWidth}px`);
+    host.style.setProperty('--kp-pill-opacity', '1');
   }
 
   // ControlValueAccessor
@@ -272,6 +323,7 @@ export class KpSegmentedControlComponent implements ControlValueAccessor {
   writeValue(v: string | null): void {
     this.value = typeof v === 'string' ? v : null;
     this.cdr.markForCheck();
+    queueMicrotask(() => this.updatePill());
   }
   registerOnChange(fn: (v: string | null) => void): void { this.onChange = fn; }
   registerOnTouched(fn: () => void): void { this.onTouched = fn; }
