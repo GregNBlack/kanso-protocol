@@ -311,6 +311,17 @@
       "fg-desc":  { "$value": "{color.gray.600}", "$type": "color", "$description": "Popover description" },
       "fg-body":  { "$value": "{color.gray.700}", "$type": "color", "$description": "Popover body text" },
       "divider":  { "$value": "{color.gray.100}", "$type": "color", "$description": "Divider between header/body/footer" }
+    },
+
+    "progress": {
+      "track":   { "$value": "{color.gray.100}", "$type": "color", "$description": "Empty track background" },
+      "label":   { "$value": "{color.gray.700}", "$type": "color", "$description": "Progress label text" },
+      "value":   { "$value": "{color.gray.900}", "$type": "color", "$description": "Progress percentage text" },
+      "primary": { "fill": { "$value": "{color.blue.600}",  "$type": "color" } },
+      "success": { "fill": { "$value": "{color.green.600}", "$type": "color" } },
+      "danger":  { "fill": { "$value": "{color.red.600}",   "$type": "color" } },
+      "warning": { "fill": { "$value": "{color.amber.500}", "$type": "color" } },
+      "neutral": { "fill": { "$value": "{color.gray.700}",  "$type": "color" } }
     }
   }
 }
