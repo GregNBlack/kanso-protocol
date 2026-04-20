@@ -28,7 +28,8 @@
       "@kanso-protocol/textarea": ["packages/components/textarea/src/index.ts"],
       "@kanso-protocol/select": ["packages/components/select/src/index.ts"],
       "@kanso-protocol/number-stepper": ["packages/components/number-stepper/src/index.ts"],
-      "@kanso-protocol/segmented-control": ["packages/components/segmented-control/src/index.ts"]
+      "@kanso-protocol/segmented-control": ["packages/components/segmented-control/src/index.ts"],
+      "@kanso-protocol/badge": ["packages/components/badge/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]
