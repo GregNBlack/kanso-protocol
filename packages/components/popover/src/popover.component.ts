@@ -203,7 +203,7 @@ export type KpPopoverArrowPosition =
     :host(.kp-popover--arrow-top-center)   .kp-popover__arrow { top: 0; left: 50%; transform: translate(-50%, -100%); }
     :host(.kp-popover--arrow-top-end)      .kp-popover__arrow { top: 0; right: 16px; transform: translateY(-100%); }
     :host(.kp-popover--arrow-bottom-start) .kp-popover__arrow { bottom: 0; left: 16px; transform: translateY(100%); }
-    :host(.kp-popover--arrow-bottom-center).kp-popover__arrow { bottom: 0; left: 50%; transform: translate(-50%, 100%); }
+    :host(.kp-popover--arrow-bottom-center) .kp-popover__arrow { bottom: 0; left: 50%; transform: translate(-50%, 100%); }
     :host(.kp-popover--arrow-bottom-end)   .kp-popover__arrow { bottom: 0; right: 16px; transform: translateY(100%); }
     :host(.kp-popover--arrow-left-start)   .kp-popover__arrow { left: 0; top: 16px; transform: translateX(-100%); }
     :host(.kp-popover--arrow-left-center)  .kp-popover__arrow { left: 0; top: 50%; transform: translate(-100%, -50%); }
