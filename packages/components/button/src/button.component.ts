@@ -305,12 +305,9 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
        Placed AFTER all color × variant rules so they win on cascade for any
        combo without an explicit .{color}.{variant}.disabled rule (e.g.
        neutral.ghost, used by NumberStepper for its + / − buttons).
-       Higher-specificity 3-class rules above continue to win where defined. */
-    :host(.kp-button--disabled) {
-      --kp-button-fg: #A1A1AA;
-      --kp-button-fg-hover: #A1A1AA;
-      --kp-button-fg-active: #A1A1AA;
-    }
+       Higher-specificity 3-class rules above continue to win where defined.
+       fg is repeated on every 2-class rule so it beats the rest-color
+       rest-state rules (which are also 2-class and would otherwise win). */
     :host(.kp-button--disabled.kp-button--default) {
       --kp-button-bg: #E4E4E7;
       --kp-button-bg-hover: #E4E4E7;
@@ -318,11 +315,17 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       --kp-button-border: #E4E4E7;
       --kp-button-border-hover: #E4E4E7;
       --kp-button-border-active: #E4E4E7;
+      --kp-button-fg: #A1A1AA;
+      --kp-button-fg-hover: #A1A1AA;
+      --kp-button-fg-active: #A1A1AA;
     }
     :host(.kp-button--disabled.kp-button--subtle) {
       --kp-button-bg: #F4F4F5;
       --kp-button-bg-hover: #F4F4F5;
       --kp-button-bg-active: #F4F4F5;
+      --kp-button-fg: #A1A1AA;
+      --kp-button-fg-hover: #A1A1AA;
+      --kp-button-fg-active: #A1A1AA;
     }
     :host(.kp-button--disabled.kp-button--outline) {
       --kp-button-bg: transparent;
@@ -331,11 +334,17 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       --kp-button-border: #E4E4E7;
       --kp-button-border-hover: #E4E4E7;
       --kp-button-border-active: #E4E4E7;
+      --kp-button-fg: #A1A1AA;
+      --kp-button-fg-hover: #A1A1AA;
+      --kp-button-fg-active: #A1A1AA;
     }
     :host(.kp-button--disabled.kp-button--ghost) {
       --kp-button-bg: transparent;
       --kp-button-bg-hover: transparent;
       --kp-button-bg-active: transparent;
+      --kp-button-fg: #A1A1AA;
+      --kp-button-fg-hover: #A1A1AA;
+      --kp-button-fg-active: #A1A1AA;
     }
   `]
 })
