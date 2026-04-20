@@ -168,7 +168,7 @@ export type KpBadgeColor =
       --kp-badge-bg: var(--kp-color-badge-primary-filled-bg, #2563EB);
       --kp-badge-fg: var(--kp-color-badge-primary-filled-fg, #FFFFFF);
       --kp-badge-border: var(--kp-color-badge-primary-filled-border, #2563EB);
-      --kp-badge-dot: var(--kp-color-badge-primary-filled-dot, #2563EB);
+      --kp-badge-dot: var(--kp-color-badge-primary-filled-dot, #FFFFFF);
     }
     :host(.kp-badge--primary.kp-badge--subtle) {
       --kp-badge-bg: var(--kp-color-badge-primary-subtle-bg, #EFF6FF);
@@ -193,7 +193,7 @@ export type KpBadgeColor =
       --kp-badge-bg: var(--kp-color-badge-danger-filled-bg, #DC2626);
       --kp-badge-fg: var(--kp-color-badge-danger-filled-fg, #FFFFFF);
       --kp-badge-border: var(--kp-color-badge-danger-filled-border, #DC2626);
-      --kp-badge-dot: var(--kp-color-badge-danger-filled-dot, #DC2626);
+      --kp-badge-dot: var(--kp-color-badge-danger-filled-dot, #FFFFFF);
     }
     :host(.kp-badge--danger.kp-badge--subtle) {
       --kp-badge-bg: var(--kp-color-badge-danger-subtle-bg, #FEF2F2);
@@ -218,7 +218,7 @@ export type KpBadgeColor =
       --kp-badge-bg: var(--kp-color-badge-success-filled-bg, #16A34A);
       --kp-badge-fg: var(--kp-color-badge-success-filled-fg, #FFFFFF);
       --kp-badge-border: var(--kp-color-badge-success-filled-border, #16A34A);
-      --kp-badge-dot: var(--kp-color-badge-success-filled-dot, #16A34A);
+      --kp-badge-dot: var(--kp-color-badge-success-filled-dot, #FFFFFF);
     }
     :host(.kp-badge--success.kp-badge--subtle) {
       --kp-badge-bg: var(--kp-color-badge-success-subtle-bg, #F0FDF4);
@@ -243,7 +243,7 @@ export type KpBadgeColor =
       --kp-badge-bg: var(--kp-color-badge-warning-filled-bg, #F59E0B);
       --kp-badge-fg: var(--kp-color-badge-warning-filled-fg, #18181B);
       --kp-badge-border: var(--kp-color-badge-warning-filled-border, #F59E0B);
-      --kp-badge-dot: var(--kp-color-badge-warning-filled-dot, #F59E0B);
+      --kp-badge-dot: var(--kp-color-badge-warning-filled-dot, #18181B);
     }
     :host(.kp-badge--warning.kp-badge--subtle) {
       --kp-badge-bg: var(--kp-color-badge-warning-subtle-bg, #FFFBEB);
@@ -268,7 +268,7 @@ export type KpBadgeColor =
       --kp-badge-bg: var(--kp-color-badge-info-filled-bg, #0891B2);
       --kp-badge-fg: var(--kp-color-badge-info-filled-fg, #FFFFFF);
       --kp-badge-border: var(--kp-color-badge-info-filled-border, #0891B2);
-      --kp-badge-dot: var(--kp-color-badge-info-filled-dot, #0891B2);
+      --kp-badge-dot: var(--kp-color-badge-info-filled-dot, #FFFFFF);
     }
     :host(.kp-badge--info.kp-badge--subtle) {
       --kp-badge-bg: var(--kp-color-badge-info-subtle-bg, #ECFEFF);
@@ -293,7 +293,7 @@ export type KpBadgeColor =
       --kp-badge-bg: var(--kp-color-badge-neutral-filled-bg, #18181B);
       --kp-badge-fg: var(--kp-color-badge-neutral-filled-fg, #FFFFFF);
       --kp-badge-border: var(--kp-color-badge-neutral-filled-border, #18181B);
-      --kp-badge-dot: var(--kp-color-badge-neutral-filled-dot, #71717A);
+      --kp-badge-dot: var(--kp-color-badge-neutral-filled-dot, #FFFFFF);
     }
     :host(.kp-badge--neutral.kp-badge--subtle) {
       --kp-badge-bg: var(--kp-color-badge-neutral-subtle-bg, #F4F4F5);

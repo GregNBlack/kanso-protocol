@@ -221,37 +221,37 @@
 
     "badge": {
       "primary": {
-        "filled":  { "bg": { "$value": "{color.blue.600}", "$type": "color" }, "fg": { "$value": "{color.white}", "$type": "color" },       "border": { "$value": "{color.blue.600}", "$type": "color" }, "dot": { "$value": "{color.blue.600}", "$type": "color" } },
+        "filled":  { "bg": { "$value": "{color.blue.600}", "$type": "color" }, "fg": { "$value": "{color.white}", "$type": "color" },       "border": { "$value": "{color.blue.600}", "$type": "color" }, "dot": { "$value": "{color.white}", "$type": "color" } },
         "subtle":  { "bg": { "$value": "{color.blue.50}", "$type": "color" },  "fg": { "$value": "{color.blue.700}", "$type": "color" },    "border": { "$value": "transparent", "$type": "color" },      "dot": { "$value": "{color.blue.600}", "$type": "color" } },
         "outline": { "bg": { "$value": "transparent", "$type": "color" },      "fg": { "$value": "{color.blue.700}", "$type": "color" },    "border": { "$value": "{color.blue.300}", "$type": "color" }, "dot": { "$value": "{color.blue.600}", "$type": "color" } },
         "dot":     { "bg": { "$value": "transparent", "$type": "color" },      "fg": { "$value": "{color.gray.700}", "$type": "color" },    "border": { "$value": "transparent", "$type": "color" },      "dot": { "$value": "{color.blue.600}", "$type": "color" } }
       },
       "danger": {
-        "filled":  { "bg": { "$value": "{color.red.600}", "$type": "color" },  "fg": { "$value": "{color.white}", "$type": "color" },       "border": { "$value": "{color.red.600}", "$type": "color" },  "dot": { "$value": "{color.red.600}", "$type": "color" } },
+        "filled":  { "bg": { "$value": "{color.red.600}", "$type": "color" },  "fg": { "$value": "{color.white}", "$type": "color" },       "border": { "$value": "{color.red.600}", "$type": "color" },  "dot": { "$value": "{color.white}", "$type": "color" } },
         "subtle":  { "bg": { "$value": "{color.red.50}", "$type": "color" },   "fg": { "$value": "{color.red.700}", "$type": "color" },     "border": { "$value": "transparent", "$type": "color" },      "dot": { "$value": "{color.red.600}", "$type": "color" } },
         "outline": { "bg": { "$value": "transparent", "$type": "color" },      "fg": { "$value": "{color.red.700}", "$type": "color" },     "border": { "$value": "{color.red.300}", "$type": "color" },  "dot": { "$value": "{color.red.600}", "$type": "color" } },
         "dot":     { "bg": { "$value": "transparent", "$type": "color" },      "fg": { "$value": "{color.gray.700}", "$type": "color" },    "border": { "$value": "transparent", "$type": "color" },      "dot": { "$value": "{color.red.600}", "$type": "color" } }
       },
       "success": {
-        "filled":  { "bg": { "$value": "{color.green.600}", "$type": "color" }, "fg": { "$value": "{color.white}", "$type": "color" },      "border": { "$value": "{color.green.600}", "$type": "color" }, "dot": { "$value": "{color.green.600}", "$type": "color" } },
+        "filled":  { "bg": { "$value": "{color.green.600}", "$type": "color" }, "fg": { "$value": "{color.white}", "$type": "color" },      "border": { "$value": "{color.green.600}", "$type": "color" }, "dot": { "$value": "{color.white}", "$type": "color" } },
         "subtle":  { "bg": { "$value": "{color.green.50}", "$type": "color" },  "fg": { "$value": "{color.green.700}", "$type": "color" },  "border": { "$value": "transparent", "$type": "color" },        "dot": { "$value": "{color.green.600}", "$type": "color" } },
         "outline": { "bg": { "$value": "transparent", "$type": "color" },       "fg": { "$value": "{color.green.700}", "$type": "color" },  "border": { "$value": "{color.green.300}", "$type": "color" }, "dot": { "$value": "{color.green.600}", "$type": "color" } },
         "dot":     { "bg": { "$value": "transparent", "$type": "color" },       "fg": { "$value": "{color.gray.700}", "$type": "color" },   "border": { "$value": "transparent", "$type": "color" },        "dot": { "$value": "{color.green.600}", "$type": "color" } }
       },
       "warning": {
-        "filled":  { "bg": { "$value": "{color.amber.500}", "$type": "color" }, "fg": { "$value": "{color.gray.900}", "$type": "color" },   "border": { "$value": "{color.amber.500}", "$type": "color" }, "dot": { "$value": "{color.amber.500}", "$type": "color" } },
+        "filled":  { "bg": { "$value": "{color.amber.500}", "$type": "color" }, "fg": { "$value": "{color.gray.900}", "$type": "color" },   "border": { "$value": "{color.amber.500}", "$type": "color" }, "dot": { "$value": "{color.gray.900}", "$type": "color" } },
         "subtle":  { "bg": { "$value": "{color.amber.50}", "$type": "color" },  "fg": { "$value": "{color.amber.700}", "$type": "color" },  "border": { "$value": "transparent", "$type": "color" },        "dot": { "$value": "{color.amber.500}", "$type": "color" } },
         "outline": { "bg": { "$value": "transparent", "$type": "color" },       "fg": { "$value": "{color.amber.700}", "$type": "color" },  "border": { "$value": "{color.amber.400}", "$type": "color" }, "dot": { "$value": "{color.amber.500}", "$type": "color" } },
         "dot":     { "bg": { "$value": "transparent", "$type": "color" },       "fg": { "$value": "{color.gray.700}", "$type": "color" },   "border": { "$value": "transparent", "$type": "color" },        "dot": { "$value": "{color.amber.500}", "$type": "color" } }
       },
       "info": {
-        "filled":  { "bg": { "$value": "{color.cyan.600}", "$type": "color" },  "fg": { "$value": "{color.white}", "$type": "color" },      "border": { "$value": "{color.cyan.600}", "$type": "color" },  "dot": { "$value": "{color.cyan.600}", "$type": "color" } },
+        "filled":  { "bg": { "$value": "{color.cyan.600}", "$type": "color" },  "fg": { "$value": "{color.white}", "$type": "color" },      "border": { "$value": "{color.cyan.600}", "$type": "color" },  "dot": { "$value": "{color.white}", "$type": "color" } },
         "subtle":  { "bg": { "$value": "{color.cyan.50}", "$type": "color" },   "fg": { "$value": "{color.cyan.700}", "$type": "color" },   "border": { "$value": "transparent", "$type": "color" },        "dot": { "$value": "{color.cyan.600}", "$type": "color" } },
         "outline": { "bg": { "$value": "transparent", "$type": "color" },       "fg": { "$value": "{color.cyan.700}", "$type": "color" },   "border": { "$value": "{color.cyan.300}", "$type": "color" },  "dot": { "$value": "{color.cyan.600}", "$type": "color" } },
         "dot":     { "bg": { "$value": "transparent", "$type": "color" },       "fg": { "$value": "{color.gray.700}", "$type": "color" },   "border": { "$value": "transparent", "$type": "color" },        "dot": { "$value": "{color.cyan.600}", "$type": "color" } }
       },
       "neutral": {
-        "filled":  { "bg": { "$value": "{color.gray.900}", "$type": "color" },  "fg": { "$value": "{color.white}", "$type": "color" },      "border": { "$value": "{color.gray.900}", "$type": "color" },  "dot": { "$value": "{color.gray.500}", "$type": "color" } },
+        "filled":  { "bg": { "$value": "{color.gray.900}", "$type": "color" },  "fg": { "$value": "{color.white}", "$type": "color" },      "border": { "$value": "{color.gray.900}", "$type": "color" },  "dot": { "$value": "{color.white}", "$type": "color" } },
         "subtle":  { "bg": { "$value": "{color.gray.100}", "$type": "color" },  "fg": { "$value": "{color.gray.700}", "$type": "color" },   "border": { "$value": "transparent", "$type": "color" },        "dot": { "$value": "{color.gray.500}", "$type": "color" } },
         "outline": { "bg": { "$value": "transparent", "$type": "color" },       "fg": { "$value": "{color.gray.700}", "$type": "color" },   "border": { "$value": "{color.gray.300}", "$type": "color" },  "dot": { "$value": "{color.gray.500}", "$type": "color" } },
         "dot":     { "bg": { "$value": "transparent", "$type": "color" },       "fg": { "$value": "{color.gray.700}", "$type": "color" },   "border": { "$value": "transparent", "$type": "color" },        "dot": { "$value": "{color.gray.500}", "$type": "color" } }
