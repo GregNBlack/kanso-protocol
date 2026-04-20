@@ -1,0 +1,179 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
+
+export type KpTabSize = 'sm' | 'md' | 'lg';
+
+/**
+ * Kanso Protocol — Tab (atom)
+ *
+ * Single tab for use inside `<kp-tabs>`. Projects an optional leading icon
+ * and an optional trailing badge. The `selected` / `disabled` inputs drive
+ * the visual state; hover is handled in CSS and focus via `:focus-visible`
+ * on the underlying button.
+ *
+ * @example
+ * <kp-tab label="Inbox" [selected]="current === 'inbox'" (click)="current='inbox'">
+ *   <svg kpTabIcon .../>
+ *   <kp-badge kpTabBadge>12</kp-badge>
+ * </kp-tab>
+ */
+@Component({
+  selector: 'kp-tab',
+  imports: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class]': 'hostClasses',
+    '[attr.role]': '"tab"',
+    '[attr.aria-selected]': 'selected',
+    '[attr.aria-disabled]': 'disabled || null',
+    '[attr.tabindex]': 'disabled ? -1 : (selected ? 0 : -1)',
+  },
+  template: `
+    <button type="button" class="kp-tab__btn" [disabled]="disabled" (click)="handleClick($event)">
+      <span class="kp-tab__icon" aria-hidden="true">
+        <ng-content select="[kpTabIcon]"/>
+      </span>
+      <span class="kp-tab__label">{{ label }}</span>
+      <span class="kp-tab__badge">
+        <ng-content select="[kpTabBadge]"/>
+      </span>
+    </button>
+  `,
+  styles: [`
+    :host {
+      display: inline-flex;
+      box-sizing: border-box;
+      height: var(--kp-tab-h);
+      border-bottom: 2px solid var(--kp-color-tabs-tab-underline-rest, transparent);
+      font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
+      transition: border-color 120ms ease, color 120ms ease;
+    }
+    :host(.kp-tab--full-width) { flex: 1 1 0; }
+
+    .kp-tab__btn {
+      all: unset;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--kp-tab-gap);
+      padding: 0 var(--kp-tab-pad-x);
+      height: 100%;
+      width: 100%;
+      color: var(--kp-color-tabs-tab-fg-rest, #52525B);
+      cursor: pointer;
+      font-size: var(--kp-tab-font-size);
+      line-height: var(--kp-tab-line-height);
+      font-weight: 500;
+    }
+    .kp-tab__btn:focus-visible {
+      outline: 2px solid var(--kp-color-focus-ring, #60A5FA);
+      outline-offset: -2px;
+    }
+
+    .kp-tab__icon {
+      display: inline-flex;
+      align-items: center;
+      color: var(--kp-color-tabs-tab-icon-rest, #71717A);
+    }
+    .kp-tab__icon:empty { display: none; }
+    .kp-tab__icon ::ng-deep svg {
+      width: var(--kp-tab-icon-size);
+      height: var(--kp-tab-icon-size);
+    }
+
+    .kp-tab__badge { display: inline-flex; }
+    .kp-tab__badge:empty { display: none; }
+
+    /* Hover (rest only — disabled / selected handled explicitly) */
+    :host(:not(.kp-tab--selected):not(.kp-tab--disabled):hover) {
+      border-bottom-color: var(--kp-color-tabs-tab-underline-hover, #D4D4D8);
+    }
+    :host(:not(.kp-tab--selected):not(.kp-tab--disabled):hover) .kp-tab__btn {
+      color: var(--kp-color-tabs-tab-fg-hover, #18181B);
+    }
+    :host(:not(.kp-tab--selected):not(.kp-tab--disabled):hover) .kp-tab__icon {
+      color: var(--kp-color-tabs-tab-icon-hover, #3F3F46);
+    }
+
+    /* Selected */
+    :host(.kp-tab--selected) {
+      border-bottom-color: var(--kp-color-tabs-tab-underline-selected, #2563EB);
+    }
+    :host(.kp-tab--selected) .kp-tab__btn {
+      color: var(--kp-color-tabs-tab-fg-selected, #2563EB);
+    }
+    :host(.kp-tab--selected) .kp-tab__icon {
+      color: var(--kp-color-tabs-tab-icon-selected, #2563EB);
+    }
+
+    /* Disabled */
+    :host(.kp-tab--disabled) {
+      border-bottom-color: var(--kp-color-tabs-tab-underline-disabled, transparent);
+    }
+    :host(.kp-tab--disabled) .kp-tab__btn {
+      color: var(--kp-color-tabs-tab-fg-disabled, #D4D4D8);
+      cursor: not-allowed;
+    }
+    :host(.kp-tab--disabled) .kp-tab__icon {
+      color: var(--kp-color-tabs-tab-icon-disabled, #D4D4D8);
+    }
+
+    /* Sizes */
+    :host(.kp-tab--sm) {
+      --kp-tab-h: 32px;
+      --kp-tab-pad-x: 12px;
+      --kp-tab-gap: 6px;
+      --kp-tab-font-size: 14px;
+      --kp-tab-line-height: 20px;
+      --kp-tab-icon-size: 14px;
+    }
+    :host(.kp-tab--md) {
+      --kp-tab-h: 40px;
+      --kp-tab-pad-x: 16px;
+      --kp-tab-gap: 8px;
+      --kp-tab-font-size: 14px;
+      --kp-tab-line-height: 20px;
+      --kp-tab-icon-size: 16px;
+    }
+    :host(.kp-tab--lg) {
+      --kp-tab-h: 48px;
+      --kp-tab-pad-x: 20px;
+      --kp-tab-gap: 8px;
+      --kp-tab-font-size: 16px;
+      --kp-tab-line-height: 24px;
+      --kp-tab-icon-size: 16px;
+    }
+  `],
+})
+export class KpTabComponent {
+  @Input() size: KpTabSize = 'md';
+  @Input() label = '';
+  @Input() selected = false;
+  @Input() disabled = false;
+  /** Set by the parent `<kp-tabs>` when `fullWidth` is enabled on the container */
+  @Input() fullWidth = false;
+
+  @Output() selectedChange = new EventEmitter<boolean>();
+
+  get hostClasses(): string {
+    const c = ['kp-tab', `kp-tab--${this.size}`];
+    if (this.selected) c.push('kp-tab--selected');
+    if (this.disabled) c.push('kp-tab--disabled');
+    if (this.fullWidth) c.push('kp-tab--full-width');
+    return c.join(' ');
+  }
+
+  handleClick(event: MouseEvent): void {
+    if (this.disabled) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+    this.selectedChange.emit(true);
+  }
+}
