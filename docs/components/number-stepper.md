@@ -125,3 +125,4 @@ Container border, background, and the inherited Button states are managed throug
 - `0.1.0` — Initial component using Button (`iconOnly`) for − / + controls, CVA integration, prefix/suffix, derived at-min / at-max disabled states
 - `0.1.1` — Hug-sized container (no implicit 280px width); per-size min-width on the input field (24/26/28/32/34) and tightened input-area paddings (4/6/8/10/12) to match Figma
 - `0.1.2` — Input field now auto-grows once the value exceeds the min-width (CSS-grid sizer, no JS); typing no longer clamps mid-keystroke — clamping only happens on blur so the user can type freely
+- `0.1.3` — Actually ship the auto-grow: native `<input>` defaults to `size=20` which forced a ~20ch-wide grid track. Now sets `size="1"` and uses `width: auto` + per-size `min-width`, so the `::after` sizer (mirroring the current value) genuinely drives the cell width. Cell hugs back to min-width when the value shrinks.

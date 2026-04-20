@@ -56,12 +56,13 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       @if (prefix) {
         <span class="kp-number-stepper__affix">{{ prefix }}</span>
       }
-      <span class="kp-number-stepper__input-wrap" [attr.data-value]="displayValue || ''">
+      <span class="kp-number-stepper__input-wrap" [attr.data-value]="displayValue">
         <input
           #inputEl
           class="kp-number-stepper__input"
           type="text"
           inputmode="numeric"
+          size="1"
           [value]="displayValue"
           [disabled]="isDisabled"
           [attr.aria-label]="ariaLabel || null"
@@ -150,25 +151,31 @@ import { KpButtonComponent } from '@kanso-protocol/button';
 
     /* Auto-sizing input wrap: ::after sizer mirrors the value (invisible) and
        sits in the same grid cell as the input. The cell — and therefore the
-       input — hugs to the wider of (min-width, value width). */
+       input — sizes to the wider of (min-width, value text width).
+       Critical: input must have size="1" attribute so its intrinsic width
+       doesn't override the ::after sizer (default size=20 would force a
+       ~20ch-wide grid cell). And NOT width: 100% — that breaks intrinsic
+       sizing of the grid track. */
     .kp-number-stepper__input-wrap {
       display: inline-grid;
       align-items: center;
-      min-width: var(--kp-stepper-input-min-w);
+      justify-items: center;
     }
     .kp-number-stepper__input-wrap::after,
     .kp-number-stepper__input {
       grid-area: 1 / 1;
-      width: 100%;
-      min-width: 0;
+      width: auto;
+      min-width: var(--kp-stepper-input-min-w);
       font: inherit;
       font-weight: 500;
       font-variant-numeric: tabular-nums;
       text-align: center;
       padding: 0;
+      box-sizing: content-box;
     }
     .kp-number-stepper__input-wrap::after {
-      content: attr(data-value);
+      /* trailing space so the cursor has room when value ends at the edge */
+      content: attr(data-value) " ";
       visibility: hidden;
       white-space: pre;
       pointer-events: none;
