@@ -107,7 +107,7 @@ export const PrefixAndSuffix: Story = {
           <span style="font-size:11px;color:#A1A1AA">Unit</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
-          <kp-number-stepper [(ngModel)]="v4" prefix="€" suffix=".00" style="width:160px"></kp-number-stepper>
+          <kp-number-stepper [(ngModel)]="v4" prefix="€" suffix=".00"></kp-number-stepper>
           <span style="font-size:11px;color:#A1A1AA">Both affixes</span>
         </div>
       </div>`,

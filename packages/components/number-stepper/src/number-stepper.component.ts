@@ -128,8 +128,6 @@ import { KpButtonComponent } from '@kanso-protocol/button';
     }
 
     .kp-number-stepper__field {
-      flex: 1;
-      min-width: 0;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -149,9 +147,8 @@ import { KpButtonComponent } from '@kanso-protocol/button';
     }
 
     .kp-number-stepper__input {
-      flex: 1;
-      min-width: 0;
-      width: 100%;
+      width: var(--kp-stepper-input-min-w);
+      min-width: var(--kp-stepper-input-min-w);
       border: none;
       outline: none;
       background: transparent;
@@ -169,24 +166,29 @@ import { KpButtonComponent } from '@kanso-protocol/button';
 
     /* === Sizes — synced with Figma NumberStepper === */
     :host(.kp-number-stepper--xs) {
-      --kp-stepper-height: 24px; --kp-stepper-radius: 8px; --kp-stepper-pad-x: 6px;
+      --kp-stepper-height: 24px; --kp-stepper-radius: 8px; --kp-stepper-pad-x: 4px;
       --kp-stepper-fs: 12px; --kp-stepper-lh: 16px;
+      --kp-stepper-input-min-w: 24px;
     }
     :host(.kp-number-stepper--sm) {
-      --kp-stepper-height: 28px; --kp-stepper-radius: 10px; --kp-stepper-pad-x: 8px;
+      --kp-stepper-height: 28px; --kp-stepper-radius: 10px; --kp-stepper-pad-x: 6px;
       --kp-stepper-fs: 13px; --kp-stepper-lh: 18px;
+      --kp-stepper-input-min-w: 26px;
     }
     :host(.kp-number-stepper--md) {
-      --kp-stepper-height: 36px; --kp-stepper-radius: 12px; --kp-stepper-pad-x: 12px;
+      --kp-stepper-height: 36px; --kp-stepper-radius: 12px; --kp-stepper-pad-x: 8px;
       --kp-stepper-fs: 14px; --kp-stepper-lh: 20px;
+      --kp-stepper-input-min-w: 28px;
     }
     :host(.kp-number-stepper--lg) {
-      --kp-stepper-height: 44px; --kp-stepper-radius: 14px; --kp-stepper-pad-x: 14px;
+      --kp-stepper-height: 44px; --kp-stepper-radius: 14px; --kp-stepper-pad-x: 10px;
       --kp-stepper-fs: 16px; --kp-stepper-lh: 24px;
+      --kp-stepper-input-min-w: 32px;
     }
     :host(.kp-number-stepper--xl) {
-      --kp-stepper-height: 52px; --kp-stepper-radius: 16px; --kp-stepper-pad-x: 16px;
+      --kp-stepper-height: 52px; --kp-stepper-radius: 16px; --kp-stepper-pad-x: 12px;
       --kp-stepper-fs: 18px; --kp-stepper-lh: 24px;
+      --kp-stepper-input-min-w: 34px;
     }
   `],
 })

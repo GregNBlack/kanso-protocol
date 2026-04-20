@@ -54,6 +54,16 @@ None — NumberStepper is a leaf component. Affixes are passed via `prefix` / `s
 | Size | xs (24px), sm (28px), md (36px), lg (44px), xl (52px) |
 | State | rest, hover, active, focus, disabled, error |
 
+The container hugs its content — total width = 2 × button-size + input-area-width. The input area is a hug-flex layout with a per-size minimum width on the input field so a single digit stays comfortably centered:
+
+| Size | Button (sq) | Input pad-x | Input min-width | Default outer width |
+|------|-------------|-------------|-----------------|---------------------|
+| xs   | 24          | 4           | 24              | 80                  |
+| sm   | 28          | 6           | 26              | 94                  |
+| md   | 36          | 8           | 28              | 116                 |
+| lg   | 44          | 10          | 32              | 140                 |
+| xl   | 52          | 12          | 34              | 162                 |
+
 Container border, background, and the inherited Button states are managed through the `State` Variable Mode in Figma (same coordinate system as Input).
 
 ## States
@@ -113,3 +123,4 @@ Container border, background, and the inherited Button states are managed throug
 ## Changelog
 
 - `0.1.0` — Initial component using Button (`iconOnly`) for − / + controls, CVA integration, prefix/suffix, derived at-min / at-max disabled states
+- `0.1.1` — Hug-sized container (no implicit 280px width); per-size min-width on the input field (24/26/28/32/34) and tightened input-area paddings (4/6/8/10/12) to match Figma
