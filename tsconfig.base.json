@@ -30,7 +30,8 @@
       "@kanso-protocol/number-stepper": ["packages/components/number-stepper/src/index.ts"],
       "@kanso-protocol/segmented-control": ["packages/components/segmented-control/src/index.ts"],
       "@kanso-protocol/badge": ["packages/components/badge/src/index.ts"],
-      "@kanso-protocol/alert": ["packages/components/alert/src/index.ts"]
+      "@kanso-protocol/alert": ["packages/components/alert/src/index.ts"],
+      "@kanso-protocol/tooltip": ["packages/components/tooltip/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]
