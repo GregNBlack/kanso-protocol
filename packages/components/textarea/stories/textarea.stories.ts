@@ -3,6 +3,13 @@ import { FormsModule } from '@angular/forms';
 import { KpTextareaComponent } from '../src/textarea.component';
 import { KpFormFieldComponent } from '@kanso-protocol/form-field';
 
+// Wrapper: vertical stack with generous row spacing so when the user drags the
+// native resize handle, the textarea grows into free space instead of overlapping
+// neighboring cells. `overflow: visible` keeps the docs canvas from clipping.
+const STACK = 'display:flex;flex-direction:column;align-items:flex-start;gap:32px;overflow:visible;padding:8px 0';
+const ITEM = 'display:flex;flex-direction:column;align-items:flex-start;gap:8px';
+const CAPTION = 'font-size:11px;color:#A1A1AA';
+
 const meta: Meta<KpTextareaComponent> = {
   title: 'Components/Textarea',
   component: KpTextareaComponent,
@@ -40,18 +47,18 @@ export const Default: Story = {
 export const Sizes: Story = {
   render: () => ({
     template: `
-      <div style="display:flex;gap:24px;align-items:flex-start">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+      <div style="${STACK}">
+        <div style="${ITEM}">
           <kp-textarea size="sm" placeholder="Small textarea" [maxLength]="500" [showCounter]="true"></kp-textarea>
-          <span style="font-size:11px;color:#A1A1AA">sm / min 72px</span>
+          <span style="${CAPTION}">sm / min 72px</span>
         </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <div style="${ITEM}">
           <kp-textarea size="md" placeholder="Medium textarea" [maxLength]="500" [showCounter]="true"></kp-textarea>
-          <span style="font-size:11px;color:#A1A1AA">md / min 88px</span>
+          <span style="${CAPTION}">md / min 88px</span>
         </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <div style="${ITEM}">
           <kp-textarea size="lg" placeholder="Large textarea" [maxLength]="500" [showCounter]="true"></kp-textarea>
-          <span style="font-size:11px;color:#A1A1AA">lg / min 108px</span>
+          <span style="${CAPTION}">lg / min 108px</span>
         </div>
       </div>`,
   }),
@@ -60,12 +67,12 @@ export const Sizes: Story = {
 export const States: Story = {
   render: () => ({
     template: `
-      <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-textarea placeholder="Rest" forceState="rest"></kp-textarea><span style="font-size:11px;color:#A1A1AA">rest</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-textarea placeholder="Hover" forceState="hover"></kp-textarea><span style="font-size:11px;color:#A1A1AA">hover</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-textarea placeholder="Focus" forceState="focus"></kp-textarea><span style="font-size:11px;color:#A1A1AA">focus</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-textarea placeholder="Disabled" forceState="disabled"></kp-textarea><span style="font-size:11px;color:#A1A1AA">disabled</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-textarea placeholder="Error" forceState="error"></kp-textarea><span style="font-size:11px;color:#A1A1AA">error</span></div>
+      <div style="${STACK}">
+        <div style="${ITEM}"><kp-textarea placeholder="Rest" forceState="rest"></kp-textarea><span style="${CAPTION}">rest</span></div>
+        <div style="${ITEM}"><kp-textarea placeholder="Hover" forceState="hover"></kp-textarea><span style="${CAPTION}">hover</span></div>
+        <div style="${ITEM}"><kp-textarea placeholder="Focus" forceState="focus"></kp-textarea><span style="${CAPTION}">focus</span></div>
+        <div style="${ITEM}"><kp-textarea placeholder="Disabled" forceState="disabled"></kp-textarea><span style="${CAPTION}">disabled</span></div>
+        <div style="${ITEM}"><kp-textarea placeholder="Error" forceState="error"></kp-textarea><span style="${CAPTION}">error</span></div>
       </div>`,
   }),
 };
@@ -73,9 +80,9 @@ export const States: Story = {
 export const Variants: Story = {
   render: () => ({
     template: `
-      <div style="display:flex;gap:24px;align-items:flex-start">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-textarea placeholder="Default variant"></kp-textarea><span style="font-size:11px;color:#A1A1AA">Default</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-textarea placeholder="Filled variant" [filled]="true"></kp-textarea><span style="font-size:11px;color:#A1A1AA">Filled</span></div>
+      <div style="${STACK}">
+        <div style="${ITEM}"><kp-textarea placeholder="Default variant"></kp-textarea><span style="${CAPTION}">Default</span></div>
+        <div style="${ITEM}"><kp-textarea placeholder="Filled variant" [filled]="true"></kp-textarea><span style="${CAPTION}">Filled</span></div>
       </div>`,
   }),
 };
@@ -83,22 +90,22 @@ export const Variants: Story = {
 export const Features: Story = {
   render: () => ({
     template: `
-      <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+      <div style="${STACK}">
+        <div style="${ITEM}">
           <kp-textarea placeholder="Plain" resize="none"></kp-textarea>
-          <span style="font-size:11px;color:#A1A1AA">Plain</span>
+          <span style="${CAPTION}">Plain</span>
         </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <div style="${ITEM}">
           <kp-textarea placeholder="Resizable"></kp-textarea>
-          <span style="font-size:11px;color:#A1A1AA">Resizable</span>
+          <span style="${CAPTION}">Resizable</span>
         </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <div style="${ITEM}">
           <kp-textarea placeholder="With counter" [maxLength]="500" [showCounter]="true" resize="none"></kp-textarea>
-          <span style="font-size:11px;color:#A1A1AA">With counter</span>
+          <span style="${CAPTION}">With counter</span>
         </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <div style="${ITEM}">
           <kp-textarea placeholder="Full features" [maxLength]="500" [showCounter]="true"></kp-textarea>
-          <span style="font-size:11px;color:#A1A1AA">Full features</span>
+          <span style="${CAPTION}">Full features</span>
         </div>
       </div>`,
   }),
@@ -113,18 +120,18 @@ export const WithValue: Story = {
       v3: "Longer comment with more space. Large size gives room to breathe — use it when the content matters and the form has room for it.",
     },
     template: `
-      <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+      <div style="${STACK}">
+        <div style="${ITEM}">
           <kp-textarea [(ngModel)]="v1" [maxLength]="500" [showCounter]="true"></kp-textarea>
-          <span style="font-size:11px;color:#A1A1AA">Filled (value + counter)</span>
+          <span style="${CAPTION}">Filled (value + counter)</span>
         </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <div style="${ITEM}">
           <kp-textarea [(ngModel)]="v2" [maxLength]="500" [showCounter]="true"></kp-textarea>
-          <span style="font-size:11px;color:#A1A1AA">Typing in progress</span>
+          <span style="${CAPTION}">Typing in progress</span>
         </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <div style="${ITEM}">
           <kp-textarea size="lg" [(ngModel)]="v3" [maxLength]="500" [showCounter]="true"></kp-textarea>
-          <span style="font-size:11px;color:#A1A1AA">lg with value + counter</span>
+          <span style="${CAPTION}">lg with value + counter</span>
         </div>
       </div>`,
   }),
@@ -134,7 +141,7 @@ export const InFormField: Story = {
   name: 'In FormField',
   render: () => ({
     template: `
-      <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="${STACK}">
         <kp-form-field label="Bio" helper="Tell us about yourself" style="width:320px">
           <kp-textarea placeholder="Say a little about yourself..."></kp-textarea>
         </kp-form-field>
