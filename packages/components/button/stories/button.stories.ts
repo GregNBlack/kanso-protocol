@@ -26,6 +26,7 @@ const meta: Meta<KpButtonComponent> = {
     },
     disabled: { control: 'boolean', table: { defaultValue: { summary: 'false' } } },
     loading: { control: 'boolean', table: { defaultValue: { summary: 'false' } } },
+    iconOnly: { control: 'boolean', description: 'Hide label and make button square (height × height)', table: { defaultValue: { summary: 'false' } } },
     forceState: {
       control: 'select',
       options: [null, 'rest', 'hover', 'active', 'focus', 'disabled', 'loading'],
@@ -252,6 +253,36 @@ export const DangerStates: Story = {
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Loading</span><kp-button color="danger" variant="outline" forceState="loading">Button</kp-button></div>
           </div>
         </div>
+      </div>`,
+  }),
+};
+
+export const IconOnly: Story = {
+  name: 'Icon Only',
+  render: () => ({
+    template: `
+      <div style="display:flex;align-items:center;gap:12px">
+        <kp-button size="xs" [iconOnly]="true" aria-label="Add">
+          <svg kpButtonIconLeft width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </kp-button>
+        <kp-button size="sm" [iconOnly]="true" aria-label="Add">
+          <svg kpButtonIconLeft width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </kp-button>
+        <kp-button size="md" [iconOnly]="true" aria-label="Add">
+          <svg kpButtonIconLeft width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </kp-button>
+        <kp-button size="lg" [iconOnly]="true" aria-label="Add">
+          <svg kpButtonIconLeft width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </kp-button>
+        <kp-button size="xl" [iconOnly]="true" aria-label="Add">
+          <svg kpButtonIconLeft width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </kp-button>
+        <kp-button size="md" variant="outline" color="neutral" [iconOnly]="true" aria-label="Add">
+          <svg kpButtonIconLeft width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </kp-button>
+        <kp-button size="md" variant="ghost" color="neutral" [iconOnly]="true" aria-label="Add">
+          <svg kpButtonIconLeft width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </kp-button>
       </div>`,
   }),
 };

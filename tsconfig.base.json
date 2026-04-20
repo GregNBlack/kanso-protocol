@@ -26,7 +26,8 @@
       "@kanso-protocol/form-field": ["packages/components/form-field/src/index.ts"],
       "@kanso-protocol/menu": ["packages/components/menu/src/index.ts"],
       "@kanso-protocol/textarea": ["packages/components/textarea/src/index.ts"],
-      "@kanso-protocol/select": ["packages/components/select/src/index.ts"]
+      "@kanso-protocol/select": ["packages/components/select/src/index.ts"],
+      "@kanso-protocol/number-stepper": ["packages/components/number-stepper/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]

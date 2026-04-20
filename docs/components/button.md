@@ -33,6 +33,7 @@ Container
 | `color` | `'primary' \| 'danger' \| 'neutral'` | `'primary'` | Semantic color role |
 | `disabled` | `boolean` | `false` | Non-interactive with reduced contrast |
 | `loading` | `boolean` | `false` | Shows spinner, preserves focus, disables pointer events |
+| `iconOnly` | `boolean` | `false` | Hide label, make button square (height × height); pair with an icon and `aria-label` |
 | `forceState` | `KpState \| null` | `null` | Force a visual state — for Storybook / docs only |
 
 ### Outputs
@@ -116,3 +117,4 @@ Total visual combinations: 5 × 4 × 3 × 6 = **360**. Managed in Figma via Vari
 
 - `0.1.0` — Initial component with 5 sizes × 4 variants × 3 colors × 6 states
 - `0.1.1` — Added `forceState` input for Storybook documentation
+- `0.2.0` — Added `iconOnly` mode (matches Figma `label` boolean) — square hit-area for icon-only buttons used in compositions like NumberStepper

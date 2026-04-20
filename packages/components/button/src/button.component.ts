@@ -47,9 +47,11 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
         </span>
       }
 
-      <span class="kp-button__label" [class.kp-button__label--hidden]="loading || forceState === 'loading'">
-        <ng-content/>
-      </span>
+      @if (!iconOnly) {
+        <span class="kp-button__label" [class.kp-button__label--hidden]="loading || forceState === 'loading'">
+          <ng-content/>
+        </span>
+      }
 
       @if (!loading && forceState !== 'loading') {
         <span class="kp-button__icon" aria-hidden="true">
@@ -173,6 +175,13 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       --kp-button-height: 52px; --kp-button-radius: 16px; --kp-button-padding: 16px;
       --kp-button-font-size: 20px; --kp-button-line-height: 1.4;
       --kp-button-font-weight: 500; --kp-button-gap: 8px;
+    }
+
+    /* Icon-only: square hit-area, symmetric padding, no label */
+    :host(.kp-button--icon-only) {
+      width: var(--kp-button-height);
+      min-width: var(--kp-button-height);
+      padding: 0;
     }
 
     /* === PRIMARY DEFAULT === */
@@ -299,6 +308,8 @@ export class KpButtonComponent {
   @Input() color: KpColorRole = 'primary';
   @Input() disabled = false;
   @Input() loading = false;
+  /** Hides the label and makes the button square (height × height) — pair with an icon and `aria-label` */
+  @Input() iconOnly = false;
   /** Force a visual state for showcase/documentation purposes */
   @Input() forceState: KpState | null = null;
 
@@ -313,6 +324,7 @@ export class KpButtonComponent {
       `kp-button--${this.variant}`,
       `kp-button--${this.color}`,
     ];
+    if (this.iconOnly) classes.push('kp-button--icon-only');
     if (this.forceState) {
       classes.push(`kp-button--${this.forceState}`);
     } else {
