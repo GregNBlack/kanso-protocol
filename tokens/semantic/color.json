@@ -197,6 +197,26 @@
       "affix": {
         "color":    { "$value": "{color.gray.500}", "$type": "color", "$description": "Prefix and suffix text color" }
       }
+    },
+
+    "segmented": {
+      "track": {
+        "bg": { "$value": "{color.gray.100}", "$type": "color", "$description": "Outer container background" }
+      },
+      "segment": {
+        "bg": {
+          "selected":         { "$value": "{color.white}", "$type": "color" },
+          "unselected-rest":  { "$value": "transparent", "$type": "color" },
+          "unselected-hover": { "$value": "{color.gray.200}", "$type": "color" },
+          "disabled":         { "$value": "transparent", "$type": "color" }
+        },
+        "fg": {
+          "selected":         { "$value": "{color.gray.900}", "$type": "color" },
+          "unselected-rest":  { "$value": "{color.gray.600}", "$type": "color" },
+          "unselected-hover": { "$value": "{color.gray.900}", "$type": "color" },
+          "disabled":         { "$value": "{color.gray.400}", "$type": "color" }
+        }
+      }
     }
   }
 }
