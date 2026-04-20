@@ -21,6 +21,9 @@ const tags: KpSelectOption[] = [
   { value: 'ops', label: 'Operations' },
 ];
 
+// Reserves vertical room in Storybook docs canvas so the dropdown isn't clipped
+const ROOM = 'min-height:440px;padding:8px 0';
+
 const meta: Meta<KpSelectComponent> = {
   title: 'Components/Select',
   component: KpSelectComponent,
@@ -53,7 +56,10 @@ export const Default: Story = {
   args: { size: 'md', placeholder: 'Select a country', options: countries },
   render: (args) => ({
     props: args,
-    template: `<kp-select [size]="size" [placeholder]="placeholder" [options]="options" [multiple]="multiple" [showClear]="showClear" [disabled]="disabled" [floatingLabel]="floatingLabel" [label]="label" [forceState]="forceState"></kp-select>`,
+    template: `
+      <div style="${ROOM}">
+        <kp-select [size]="size" [placeholder]="placeholder" [options]="options" [multiple]="multiple" [showClear]="showClear" [disabled]="disabled" [floatingLabel]="floatingLabel" [label]="label" [forceState]="forceState"></kp-select>
+      </div>`,
   }),
 };
 
@@ -61,7 +67,7 @@ export const Sizes: Story = {
   render: () => ({
     props: { options: countries },
     template: `
-      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:12px">
+      <div style="${ROOM};display:flex;flex-direction:column;align-items:flex-start;gap:12px">
         <kp-select size="xs" placeholder="XS · 24px" [options]="options"></kp-select>
         <kp-select size="sm" placeholder="SM · 28px" [options]="options"></kp-select>
         <kp-select size="md" placeholder="MD · 36px" [options]="options"></kp-select>
@@ -75,7 +81,7 @@ export const States: Story = {
   render: () => ({
     props: { options: countries },
     template: `
-      <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="${ROOM};display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
           <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase;letter-spacing:.06em">Rest</span>
           <kp-select forceState="rest" placeholder="Placeholder" [options]="options"></kp-select>
@@ -105,7 +111,7 @@ export const SingleVsMulti: Story = {
   render: () => ({
     props: { options: tags, single: null, multi: [] },
     template: `
-      <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="${ROOM};display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-select [(ngModel)]="single" placeholder="Pick one tag" [options]="options"></kp-select>
           <span style="font-size:11px;color:#A1A1AA">Single · value: {{ single ?? '—' }}</span>
@@ -123,7 +129,7 @@ export const WithValue: Story = {
   render: () => ({
     props: { options: countries, v1: 'jp', v2: ['design', 'engineering'], tags },
     template: `
-      <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="${ROOM};display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-select [(ngModel)]="v1" [options]="options" placeholder="Pick a country"></kp-select>
           <span style="font-size:11px;color:#A1A1AA">Single w/ value + clear</span>
@@ -139,17 +145,37 @@ export const WithValue: Story = {
 export const FloatingLabel: Story = {
   name: 'Floating Label',
   render: () => ({
-    props: { options: countries, v: null },
+    props: {
+      options: countries,
+      tags,
+      vSingleEmpty: null,
+      vSingleFilled: 'jp',
+      vMultiEmpty: [],
+      vMultiFilled: ['design', 'engineering', 'product'],
+    },
     template: `
-      <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="${ROOM};display:flex;flex-direction:column;gap:32px">
+
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase;letter-spacing:.06em">LG · Rest (label inside)</span>
-          <kp-select size="lg" [floatingLabel]="true" label="Country" [options]="options"></kp-select>
+          <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase;letter-spacing:.06em">LG · Single · Rest (label inside)</span>
+          <kp-select size="lg" [floatingLabel]="true" label="Country" [options]="options" [(ngModel)]="vSingleEmpty"></kp-select>
         </div>
+
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase;letter-spacing:.06em">XL · With value (label floated)</span>
-          <kp-select size="xl" [floatingLabel]="true" label="Country" [options]="options" [(ngModel)]="v" forceState="active"></kp-select>
+          <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase;letter-spacing:.06em">LG · Single · With value (label floated)</span>
+          <kp-select size="lg" [floatingLabel]="true" label="Country" [options]="options" [(ngModel)]="vSingleFilled"></kp-select>
         </div>
+
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
+          <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase;letter-spacing:.06em">XL · Multi · Rest (label inside)</span>
+          <kp-select size="xl" [floatingLabel]="true" [multiple]="true" label="Tags" [options]="tags" [(ngModel)]="vMultiEmpty"></kp-select>
+        </div>
+
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
+          <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase;letter-spacing:.06em">XL · Multi · With values (label floated, "Selected N out of M")</span>
+          <kp-select size="xl" [floatingLabel]="true" [multiple]="true" label="Tags" [options]="tags" [(ngModel)]="vMultiFilled"></kp-select>
+        </div>
+
       </div>`,
   }),
 };
@@ -159,7 +185,7 @@ export const InFormField: Story = {
   render: () => ({
     props: { options: countries, tags, v1: null, v2: [] },
     template: `
-      <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+      <div style="${ROOM};display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
         <kp-form-field label="Country" helper="Required for shipping" style="width:320px">
           <kp-select [(ngModel)]="v1" placeholder="Select a country" [options]="options"></kp-select>
         </kp-form-field>
