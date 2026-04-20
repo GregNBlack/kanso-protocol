@@ -39,12 +39,42 @@ const meta: Meta<KpButtonComponent> = {
 export default meta;
 type Story = StoryObj<KpButtonComponent>;
 
+const ICON_SIZE: Record<string, number> = { xs: 14, sm: 16, md: 18, lg: 22, xl: 24 };
+
 export const Default: Story = {
-  args: { size: 'md', variant: 'default', color: 'primary', disabled: false, loading: false },
-  render: (args) => ({
-    props: args,
-    template: `<kp-button [size]="size" [variant]="variant" [color]="color" [disabled]="disabled" [loading]="loading">Button</kp-button>`,
-  }),
+  argTypes: {
+    icon: {
+      control: { type: 'inline-radio' },
+      options: ['none', 'left', 'right', 'only'],
+      description: 'Icon placement (Storybook demo only — real API uses [kpButtonIconLeft] / [kpButtonIconRight] projection slots)',
+      table: { defaultValue: { summary: 'none' } },
+    },
+    iconOnly: { table: { disable: true } },
+  } as any,
+  args: {
+    size: 'md',
+    variant: 'default',
+    color: 'primary',
+    disabled: false,
+    loading: false,
+    forceState: null,
+    icon: 'none',
+  } as any,
+  render: (args: any) => {
+    const s = ICON_SIZE[args.size] ?? 18;
+    const plus = `<svg kpButtonIconLeft width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+    const arrow = `<svg kpButtonIconRight width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    const inner =
+      args.icon === 'only' ? plus :
+      args.icon === 'left' ? `${plus}Button` :
+      args.icon === 'right' ? `Button${arrow}` :
+      'Button';
+    const ariaLabel = args.icon === 'only' ? ' aria-label="Action"' : '';
+    return {
+      props: args,
+      template: `<kp-button [size]="size" [variant]="variant" [color]="color" [disabled]="disabled" [loading]="loading" [forceState]="forceState" [iconOnly]="icon === 'only'"${ariaLabel}>${inner}</kp-button>`,
+    };
+  },
 };
 
 export const AllSizes: Story = {

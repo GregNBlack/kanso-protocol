@@ -14,8 +14,8 @@
     "build:core": "nx build core",
     "build:button": "nx build button",
     "build": "npm run build:tokens && nx run-many --target=build --all",
-    "storybook": "nx run docs:storybook",
-    "build-storybook": "nx run docs:build-storybook",
+    "storybook": "nx run kanso-protocol:storybook",
+    "build-storybook": "nx run kanso-protocol:build-storybook",
     "lint": "nx run-many --target=lint --all",
     "test": "nx run-many --target=test --all"
   },
