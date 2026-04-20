@@ -62,10 +62,8 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
   styles: [`
     :host {
       position: relative;
-      display: inline-flex;
-      flex-direction: column;
+      display: inline-block;
       box-sizing: border-box;
-      width: 320px;
       padding: 0;
       border: 1px solid var(--kp-input-border, #D4D4D8);
       border-radius: var(--kp-textarea-radius);
@@ -92,8 +90,7 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
     .kp-textarea__field {
       display: block;
       box-sizing: border-box;
-      flex: 1 1 auto;
-      width: 100%;
+      width: 320px;
       min-height: var(--kp-textarea-min-h);
       border: none;
       outline: none;
