@@ -257,6 +257,57 @@ export const DangerStates: Story = {
   }),
 };
 
+export const WithIcon: Story = {
+  name: 'With Icon',
+  render: () => ({
+    template: `
+      <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+        <div style="display:flex;align-items:center;gap:12px">
+          <kp-button size="xs">
+            <svg kpButtonIconLeft width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Add item
+          </kp-button>
+          <kp-button size="sm">
+            <svg kpButtonIconLeft width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Add item
+          </kp-button>
+          <kp-button size="md">
+            <svg kpButtonIconLeft width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Add item
+          </kp-button>
+          <kp-button size="lg">
+            <svg kpButtonIconLeft width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Add item
+          </kp-button>
+          <kp-button size="xl">
+            <svg kpButtonIconLeft width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Add item
+          </kp-button>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:12px">
+          <kp-button variant="outline" color="neutral">
+            Continue
+            <svg kpButtonIconRight width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </kp-button>
+          <kp-button variant="ghost" color="neutral">
+            <svg kpButtonIconLeft width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Back
+          </kp-button>
+          <kp-button color="danger">
+            <svg kpButtonIconLeft width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Delete
+          </kp-button>
+          <kp-button>
+            <svg kpButtonIconLeft width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Save
+            <svg kpButtonIconRight width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </kp-button>
+        </div>
+      </div>`,
+  }),
+};
+
 export const IconOnly: Story = {
   name: 'Icon Only',
   render: () => ({
