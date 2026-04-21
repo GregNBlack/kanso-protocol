@@ -163,11 +163,13 @@ export type KpBadgeColor =
     :host(.kp-badge--pill.kp-badge--sm) { --kp-badge-radius: 11px; }
     :host(.kp-badge--pill.kp-badge--md) { --kp-badge-radius: 13px; }
 
-    /* Counter pill behaviour: min-width = height so 1–2 chars stay
-       visually circular, and the badge grows into a pill only once the
-       content is wider than the height. */
+    /* Counter pill behaviour: min-width = height AND horizontal padding
+       drops to 2px so 1–2 chars stay visually circular. The badge grows
+       into a pill only once content is wide enough to push past the
+       height (3+ chars, or words like "Design"). */
     :host(.kp-badge--pill) {
       min-width: var(--kp-badge-h);
+      padding-inline: 2px;
       justify-content: center;
     }
 
