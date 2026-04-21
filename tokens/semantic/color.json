@@ -363,8 +363,9 @@
           "disabled":   { "$value": "{color.gray.300}", "$type": "color" }
         }
       },
-      "separator": { "$value": "{color.gray.400}", "$type": "color", "$description": "Separator between items (chevron/slash/dot)" },
-      "ellipsis":  { "$value": "{color.gray.600}", "$type": "color", "$description": "Ellipsis (…) color for collapsed middle levels" }
+      "separator":     { "$value": "{color.gray.400}", "$type": "color", "$description": "Separator between items (chevron/slash)" },
+      "separator-dot": { "$value": "{color.blue.600}", "$type": "color", "$description": "Dot separator — accent color, used as a 3×3 shape instead of the middot glyph" },
+      "ellipsis":      { "$value": "{color.gray.600}", "$type": "color", "$description": "Ellipsis (…) color for collapsed middle levels" }
     }
   }
 }
