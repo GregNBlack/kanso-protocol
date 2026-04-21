@@ -48,10 +48,6 @@ type RangeCell = { kind: 'page'; page: number } | { kind: 'ellipsis'; key: strin
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses', role: 'navigation', '[attr.aria-label]': 'ariaLabel' },
   template: `
-    @if (showItemsInfo) {
-      <span class="kp-pg__info" aria-live="polite">{{ infoText() }}</span>
-    }
-
     <div class="kp-pg__controls">
       @if (showPrevNext) {
         <kp-pagination-item
@@ -90,17 +86,25 @@ type RangeCell = { kind: 'page'; page: number } | { kind: 'ellipsis'; key: strin
       }
     </div>
 
-    @if (showItemsPerPage) {
-      <div class="kp-pg__per-page">
-        <span class="kp-pg__per-page-label">{{ itemsPerPageLabel }}</span>
-        <kp-select
-          class="kp-pg__per-page-select"
-          [size]="size"
-          [options]="perPageOptions()"
-          [ngModel]="itemsPerPage.toString()"
-          [showClear]="false"
-          (ngModelChange)="onPerPageChange($event)"
-        />
+    @if (showItemsPerPage || showItemsInfo) {
+      <div class="kp-pg__trailing">
+        @if (showItemsPerPage) {
+          <div class="kp-pg__per-page">
+            <span class="kp-pg__per-page-label">{{ itemsPerPageLabel }}</span>
+            <div class="kp-pg__per-page-select-wrap">
+              <kp-select
+                [size]="size"
+                [options]="perPageOptions()"
+                [ngModel]="itemsPerPage.toString()"
+                [showClear]="false"
+                (ngModelChange)="onPerPageChange($event)"
+              />
+            </div>
+          </div>
+        }
+        @if (showItemsInfo) {
+          <span class="kp-pg__info" aria-live="polite">{{ infoText() }}</span>
+        }
       </div>
     }
   `,
@@ -126,11 +130,19 @@ type RangeCell = { kind: 'page'; page: number } | { kind: 'ellipsis'; key: strin
       gap: var(--kp-pg-ctrl-gap);
     }
 
+    .kp-pg__trailing {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--kp-pg-gap);
+      margin-left: auto;
+      flex: 0 0 auto;
+    }
+
     .kp-pg__per-page {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-left: auto;
+      flex: 0 0 auto;
     }
     .kp-pg__per-page-label {
       color: var(--kp-color-pagination-info, #52525B);
@@ -138,7 +150,20 @@ type RangeCell = { kind: 'page'; page: number } | { kind: 'ellipsis'; key: strin
       line-height: var(--kp-pg-line-height);
       white-space: nowrap;
     }
-    .kp-pg__per-page-select { min-width: 80px; }
+    .kp-pg__per-page-select-wrap {
+      display: inline-flex;
+      width: var(--kp-pg-select-w);
+      flex: 0 0 auto;
+    }
+    .kp-pg__per-page-select-wrap > kp-select {
+      width: 100%;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    :host(.kp-pg--sm) { --kp-pg-select-w: 88px; }
+    :host(.kp-pg--md) { --kp-pg-select-w: 96px; }
+    :host(.kp-pg--lg) { --kp-pg-select-w: 104px; }
 
     :host(.kp-pg--sm) {
       --kp-pg-gap: 12px;
