@@ -11,3 +11,7 @@ export {
   KpBreadcrumbsComponent,
   KpBreadcrumbsSize,
 } from './breadcrumbs.component';
+export {
+  KpBreadcrumbsAutoComponent,
+  KpBreadcrumbLabel,
+} from './breadcrumbs-auto.component';

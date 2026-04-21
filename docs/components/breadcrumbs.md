@@ -1,6 +1,6 @@
 # Breadcrumbs
 
-> Navigation path — a container (`<kp-breadcrumbs>`) plus two atoms (`<kp-breadcrumb-item>` and `<kp-breadcrumb-separator>`). Fully composable; size cascades from the container.
+> Navigation path — a container (`<kp-breadcrumbs>`) plus two atoms (`<kp-breadcrumb-item>` and `<kp-breadcrumb-separator>`), or the router-driven `<kp-breadcrumbs-auto>` that builds the trail from `Routes` metadata. Fully composable; size cascades from the container.
 
 ## Contract
 
@@ -66,6 +66,71 @@ Breadcrumbs are a three-part component: `<kp-breadcrumbs>` is the strip (the `<n
 - **`[kpBreadcrumbIcon]`** — leading icon. Use an SVG with `stroke="currentColor"` so it picks up the state-driven `--kp-color-breadcrumbs-item-icon-*` colors.
 - **Default** — projected content goes after the icon, same visual slot as `label`. Use either `[label]` for plain strings or default projection for rich content.
 
+## API — `<kp-breadcrumbs-auto>`
+
+> Router-driven wrapper around the manual API. Walks the current `ActivatedRouteSnapshot` tree from root to leaf, picks every route that defines `data.breadcrumb`, and renders the trail automatically — updating on every `NavigationEnd`.
+
+### When to reach for Auto
+
+Auto is the right choice when (a) your routing config already reflects the information hierarchy you want to show, and (b) each crumb is just a label + URL. If you need per-item icons, badges, ellipsis collapsing, or bespoke interaction, use the composable atoms instead — Auto is intentionally minimal.
+
+### Route data shape
+
+```ts
+import { Routes, ActivatedRouteSnapshot } from '@angular/router';
+
+export const routes: Routes = [
+  {
+    path: '',
+    data: { breadcrumb: 'Home' },
+    children: [
+      {
+        path: 'projects',
+        data: { breadcrumb: 'Projects' },
+        children: [
+          {
+            path: ':id',
+            // Dynamic label — receives the matched snapshot so you can
+            // pull params, queryParams, or resolver results.
+            data: {
+              breadcrumb: (route: ActivatedRouteSnapshot) =>
+                route.paramMap.get('id') ?? 'Detail',
+            },
+          },
+        ],
+      },
+    ],
+  },
+];
+```
+
+- `data.breadcrumb` can be a **string** (used verbatim) or a **`(route) => string`** function (evaluated on every navigation).
+- Routes **without** `data.breadcrumb` are skipped entirely — that's how you mark pure layout / wrapper routes that shouldn't appear in the trail.
+- The last route with a `breadcrumb` becomes `type="current"`; everything before it renders as `type="link"` with an `href` built from the accumulated URL segments.
+
+### Usage
+
+```html
+<kp-breadcrumbs-auto size="md" separator="chevron"/>
+```
+
+Drop it anywhere inside a routed component. No inputs are required in the common case.
+
+### Inputs
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'sm' \| 'md'` | `'md'` | Cascades to the internal `<kp-breadcrumbs>` and all generated items/separators |
+| `separator` | `'chevron' \| 'slash' \| 'dot'` | `'chevron'` | Separator variant used between generated items |
+| `ariaLabel` | `string` | `'Breadcrumb'` | Forwarded to the inner `<kp-breadcrumbs>`'s `<nav aria-label>` |
+
+### Limitations (by design)
+
+- **No icons.** Each crumb is label + URL. If you need a home icon on the first crumb, fall back to the manual `<kp-breadcrumbs>` composition.
+- **No overflow/ellipsis.** The trail renders in full; for deep routes use a visual cue in your nav or override to the manual API.
+- **Primary outlet only.** Auxiliary router outlets are not walked.
+- **Requires `@angular/router`.** Peer-dependency.
+
 ## API — `<kp-breadcrumb-separator>`
 
 ### Inputs
@@ -121,4 +186,5 @@ Focus is handled via `:focus-visible` with the standard focus ring on any intera
 
 ## Changelog
 
+- `0.2.0` — Added `<kp-breadcrumbs-auto>` — router-driven auto-generation from `Routes.data.breadcrumb` (string or `(route) => string`). Added `@angular/router` as a peer dependency.
 - `0.1.0` — Initial release. `<kp-breadcrumbs>` container with `size` + `ariaLabel` cascade. `<kp-breadcrumb-item>` atom with `link` / `current` / `ellipsis` types, optional `href`, `disabled`, and `[kpBreadcrumbIcon]` slot. `<kp-breadcrumb-separator>` with `chevron` / `slash` / `dot` types — dot is a 3×3 shape in the accent color rather than the middot glyph.

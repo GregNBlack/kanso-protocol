@@ -1,14 +1,41 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { applicationConfig, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { provideRouter, Router } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
 import { KpBreadcrumbsComponent } from '../src/breadcrumbs.component';
 import { KpBreadcrumbItemComponent } from '../src/breadcrumb-item.component';
 import { KpBreadcrumbSeparatorComponent } from '../src/breadcrumb-separator.component';
+import { KpBreadcrumbsAutoComponent } from '../src/breadcrumbs-auto.component';
+
+@Component({
+  selector: 'kp-breadcrumbs-auto-demo',
+  imports: [KpBreadcrumbsAutoComponent],
+  template: `
+    <kp-breadcrumbs-auto size="md" separator="chevron"/>
+    <p style="font-size:11px;color:#A1A1AA;margin:12px 0 0">
+      Router state is driven by <code>provideRouter(...)</code> in this story's <code>applicationConfig</code>.
+      In a real app, drop <code>&lt;kp-breadcrumbs-auto/&gt;</code> inside any routed component and the trail
+      rebuilds on every <code>NavigationEnd</code>.
+    </p>`,
+})
+class BreadcrumbsAutoDemoComponent implements OnInit {
+  private readonly router = inject(Router);
+  ngOnInit(): void {
+    void this.router.navigateByUrl('/projects/design-system/button');
+  }
+}
 
 const meta: Meta<KpBreadcrumbsComponent> = {
   title: 'Components/Breadcrumbs',
   component: KpBreadcrumbsComponent,
   tags: ['autodocs'],
   decorators: [
-    moduleMetadata({ imports: [KpBreadcrumbItemComponent, KpBreadcrumbSeparatorComponent] }),
+    moduleMetadata({
+      imports: [
+        KpBreadcrumbItemComponent,
+        KpBreadcrumbSeparatorComponent,
+        KpBreadcrumbsAutoComponent,
+      ],
+    }),
   ],
   argTypes: {
     size: { control: 'inline-radio', options: ['sm', 'md'], table: { defaultValue: { summary: 'md' } } },
@@ -227,6 +254,44 @@ export const States: Story = {
         <kp-breadcrumb-item type="current" label="Current"/>
       </kp-breadcrumbs>
       <p style="font-size:11px;color:#A1A1AA;margin:8px 0 0">Hover + focus states are interactive — move the mouse over "Rest" or tab into it.</p>`,
+  }),
+};
+
+export const Auto: Story = {
+  name: 'Auto (router-driven)',
+  decorators: [
+    applicationConfig({
+      providers: [
+        provideRouter([
+          {
+            path: '',
+            data: { breadcrumb: 'Home' },
+            children: [
+              {
+                path: 'projects',
+                data: { breadcrumb: 'Projects' },
+                children: [
+                  {
+                    path: 'design-system',
+                    data: { breadcrumb: 'Design System' },
+                    children: [
+                      {
+                        path: 'button',
+                        data: { breadcrumb: (route: any) => route.paramMap.get('id') ?? 'Button' },
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ]),
+      ],
+    }),
+  ],
+  render: () => ({
+    moduleMetadata: { imports: [BreadcrumbsAutoDemoComponent] },
+    template: `<kp-breadcrumbs-auto-demo/>`,
   }),
 };
 
