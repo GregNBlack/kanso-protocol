@@ -346,6 +346,25 @@
         }
       },
       "track-border": { "$value": "{color.gray.200}", "$type": "color", "$description": "Bottom border under the whole tabs strip" }
+    },
+
+    "breadcrumbs": {
+      "item": {
+        "fg": {
+          "link-rest":  { "$value": "{color.gray.600}", "$type": "color", "$description": "Link item at rest" },
+          "link-hover": { "$value": "{color.gray.900}", "$type": "color", "$description": "Link item on hover" },
+          "current":    { "$value": "{color.gray.900}", "$type": "color", "$description": "Current (last) item — non-interactive" },
+          "disabled":   { "$value": "{color.gray.400}", "$type": "color", "$description": "Disabled link item" }
+        },
+        "icon": {
+          "link-rest":  { "$value": "{color.gray.500}", "$type": "color" },
+          "link-hover": { "$value": "{color.gray.700}", "$type": "color" },
+          "current":    { "$value": "{color.gray.700}", "$type": "color" },
+          "disabled":   { "$value": "{color.gray.300}", "$type": "color" }
+        }
+      },
+      "separator": { "$value": "{color.gray.400}", "$type": "color", "$description": "Separator between items (chevron/slash/dot)" },
+      "ellipsis":  { "$value": "{color.gray.600}", "$type": "color", "$description": "Ellipsis (…) color for collapsed middle levels" }
     }
   }
 }
