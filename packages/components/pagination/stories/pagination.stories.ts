@@ -206,11 +206,10 @@ export const UseCases: Story = {
           <kp-pagination
             size="lg"
             [currentPage]="cat"
-            [totalPages]="77"
+            [totalPages]="37"
             [showItemsInfo]="true"
             [showItemsPerPage]="true"
             [itemsPerPage]="pp"
-            [itemsPerPageOptions]="[12, 24, 48, 96]"
             [itemsTotal]="1847"
             (pageChange)="cat = $event"
             (itemsPerPageChange)="pp = $event"

@@ -134,7 +134,6 @@ type RangeCell = { kind: 'page'; page: number } | { kind: 'ellipsis'; key: strin
       display: inline-flex;
       align-items: center;
       gap: var(--kp-pg-gap);
-      margin-left: auto;
       flex: 0 0 auto;
     }
 
