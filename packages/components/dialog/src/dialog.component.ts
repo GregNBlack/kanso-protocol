@@ -62,33 +62,32 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
           tabindex="-1"
         >
           @if (showHeader) {
-            <header class="kp-dialog__header">
+            <header class="kp-dialog__header" [class.kp-dialog__header--has-close]="showClose">
               @if (showHeroIcon) {
                 <div class="kp-dialog__hero">
                   <ng-content select="[kpDialogHeroIcon]"/>
                 </div>
               }
-              <div class="kp-dialog__head-row">
-                <div class="kp-dialog__text-group">
-                  <h2 class="kp-dialog__title" [id]="titleId">{{ title }}</h2>
-                  @if (showDescription) {
-                    <p class="kp-dialog__desc" [id]="descId">{{ description }}</p>
-                  }
-                </div>
-                @if (showClose) {
-                  <button
-                    type="button"
-                    class="kp-dialog__close"
-                    aria-label="Close dialog"
-                    (click)="close()"
-                  >
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M18 6 L6 18 M6 6 L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                  </button>
+              <div class="kp-dialog__text-group">
+                <h2 class="kp-dialog__title" [id]="titleId">{{ title }}</h2>
+                @if (showDescription) {
+                  <p class="kp-dialog__desc" [id]="descId">{{ description }}</p>
                 }
               </div>
             </header>
+          }
+
+          @if (showClose) {
+            <button
+              type="button"
+              class="kp-dialog__close"
+              aria-label="Close dialog"
+              (click)="close()"
+            >
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M18 6 L6 18 M6 6 L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
           }
 
           @if (showHeader && showHeaderDivider) { <div class="kp-dialog__divider"></div> }
@@ -155,9 +154,15 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
 
     .kp-dialog__header {
       display: flex;
-      flex-direction: column;
-      gap: var(--kp-dialog-head-gap);
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 12px;
       padding: var(--kp-dialog-pad);
+    }
+    /* Leave room for the absolutely-positioned close button so long titles
+       don't tuck under it. */
+    .kp-dialog__header--has-close {
+      padding-right: calc(var(--kp-dialog-pad) + var(--kp-dialog-close-btn) + 8px);
     }
     .kp-dialog__hero {
       display: inline-flex;
@@ -173,11 +178,6 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
     .kp-dialog__hero ::ng-deep svg {
       width: var(--kp-dialog-hero-icon);
       height: var(--kp-dialog-hero-icon);
-    }
-    .kp-dialog__head-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
     }
     .kp-dialog__text-group {
       flex: 1 1 auto;
@@ -201,16 +201,19 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
     }
     .kp-dialog__close {
       all: unset;
+      position: absolute;
+      top: var(--kp-dialog-pad);
+      right: var(--kp-dialog-pad);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      flex: 0 0 auto;
       width: var(--kp-dialog-close-btn);
       height: var(--kp-dialog-close-btn);
       border-radius: var(--kp-dialog-close-radius);
       color: var(--kp-color-dialog-fg-desc, #52525B);
       cursor: pointer;
       transition: background 120ms ease;
+      z-index: 1;
     }
     .kp-dialog__close:hover { background: var(--kp-color-gray-100, #F4F4F5); }
     .kp-dialog__close:focus-visible {

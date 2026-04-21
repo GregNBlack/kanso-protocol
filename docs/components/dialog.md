@@ -12,19 +12,23 @@ Dialog is a single component (`<kp-dialog>`) that renders a modal panel centered
 <kp-dialog [(open)]="show" size="md">
   ├─ .kp-dialog__backdrop            (50% black overlay, click to close)
   └─ [role="dialog" aria-modal="true"]
+     ├─ .kp-dialog__close            (× button — absolutely positioned, Show Close = true)
      ├─ .kp-dialog__header           (Show Header = true)
-     │   ├─ .kp-dialog__hero         (Show Hero Icon = true)
+     │   ├─ .kp-dialog__hero         (Show Hero Icon = true, rendered LEFT of text)
      │   │   └─ [kpDialogHeroIcon]   (slot — SVG with stroke="currentColor")
-     │   └─ .kp-dialog__head-row
-     │       ├─ .kp-dialog__title  + .kp-dialog__desc   (optional)
-     │       └─ .kp-dialog__close  (× button, Show Close = true)
-     ├─ .kp-dialog__divider         (Show Header Divider = true)
+     │   └─ .kp-dialog__text-group
+     │       ├─ .kp-dialog__title
+     │       └─ .kp-dialog__desc    (Show Description = true)
+     ├─ .kp-dialog__divider          (Show Header Divider = true)
      ├─ .kp-dialog__body
-     │   └─ [kpDialogBody]          (slot — any content)
-     ├─ .kp-dialog__divider         (Show Footer Divider = true)
-     └─ .kp-dialog__footer          (Show Footer = true)
-         └─ [kpDialogFooter]        (slot — typically Buttons)
+     │   └─ [kpDialogBody]           (slot — any content)
+     ├─ .kp-dialog__divider          (Show Footer Divider = true)
+     └─ .kp-dialog__footer           (Show Footer = true)
+         └─ [kpDialogFooter]         (slot — typically Buttons)
 ```
+
+- **Hero icon** sits **to the left** of the title/description when `showHeroIcon=true`. Both header axes are on the same baseline — enabling the hero doesn't push the title or the close button down.
+- **Close button** is `position: absolute` pinned to the panel's top-right corner, so it stays put regardless of whether the hero, description, or dividers are present. The header reserves extra right-padding when `showClose=true` so long titles never tuck under it.
 
 - **Backdrop** is a `<div>` with `position: absolute; inset: 0` and the `--kp-color-dialog-backdrop` fill. Clicking it emits `close` (opt-out via `[closeOnBackdrop]="false"`).
 - **Panel** sits above the backdrop via CSS stacking; it owns the `role="dialog"` + `aria-modal="true"` + `aria-labelledby` that points at the title id.
