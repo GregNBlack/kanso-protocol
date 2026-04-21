@@ -36,7 +36,8 @@
       "@kanso-protocol/progress": ["packages/components/progress/src/index.ts"],
       "@kanso-protocol/tabs": ["packages/components/tabs/src/index.ts"],
       "@kanso-protocol/breadcrumbs": ["packages/components/breadcrumbs/src/index.ts"],
-      "@kanso-protocol/pagination": ["packages/components/pagination/src/index.ts"]
+      "@kanso-protocol/pagination": ["packages/components/pagination/src/index.ts"],
+      "@kanso-protocol/dialog": ["packages/components/dialog/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]
