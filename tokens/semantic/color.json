@@ -433,6 +433,18 @@
         "pending":   { "$value": "{color.gray.200}", "$type": "color" },
         "completed": { "$value": "{color.blue.600}", "$type": "color" }
       }
+    },
+
+    "dialog": {
+      "backdrop": { "$value": "rgba(0, 0, 0, 0.5)", "$type": "color", "$description": "Semi-transparent overlay behind dialog" },
+      "panel": {
+        "bg":     { "$value": "{color.white}", "$type": "color" },
+        "border": { "$value": "{color.gray.200}", "$type": "color" }
+      },
+      "fg-title": { "$value": "{color.gray.900}", "$type": "color", "$description": "Dialog title" },
+      "fg-desc":  { "$value": "{color.gray.600}", "$type": "color", "$description": "Dialog description (under title) + close icon" },
+      "fg-body":  { "$value": "{color.gray.700}", "$type": "color", "$description": "Dialog body copy" },
+      "divider":  { "$value": "{color.gray.100}", "$type": "color", "$description": "Optional divider between header/body/footer" }
     }
   }
 }
