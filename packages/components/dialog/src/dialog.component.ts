@@ -49,7 +49,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
   },
   template: `
     @if (open) {
-      <div #root class="kp-dialog__root">
+      <div #root class="kp-dialog__root" [class]="rootClasses">
         <div class="kp-dialog__backdrop" (click)="onBackdropClick()"></div>
         <div
           #panel
@@ -247,7 +247,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
     .kp-dialog__footer--stacked { flex-direction: column; align-items: stretch; }
 
     /* Sizes */
-    :host(.kp-dialog--xs) {
+    .kp-dialog__root.kp-dialog--xs {
       --kp-dialog-w: 320px;
       --kp-dialog-pad: 16px;
       --kp-dialog-head-gap: 4px;
@@ -265,7 +265,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       --kp-dialog-body-lh: 20px;
       --kp-dialog-footer-gap: 8px;
     }
-    :host(.kp-dialog--sm) {
+    .kp-dialog__root.kp-dialog--sm {
       --kp-dialog-w: 400px;
       --kp-dialog-pad: 16px;
       --kp-dialog-head-gap: 4px;
@@ -283,7 +283,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       --kp-dialog-body-lh: 20px;
       --kp-dialog-footer-gap: 8px;
     }
-    :host(.kp-dialog--md) {
+    .kp-dialog__root.kp-dialog--md {
       --kp-dialog-w: 560px;
       --kp-dialog-pad: 20px;
       --kp-dialog-head-gap: 6px;
@@ -301,7 +301,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       --kp-dialog-body-lh: 24px;
       --kp-dialog-footer-gap: 12px;
     }
-    :host(.kp-dialog--lg) {
+    .kp-dialog__root.kp-dialog--lg {
       --kp-dialog-w: 720px;
       --kp-dialog-pad: 24px;
       --kp-dialog-head-gap: 6px;
@@ -319,7 +319,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       --kp-dialog-body-lh: 24px;
       --kp-dialog-footer-gap: 12px;
     }
-    :host(.kp-dialog--xl) {
+    .kp-dialog__root.kp-dialog--xl {
       --kp-dialog-w: 960px;
       --kp-dialog-pad: 32px;
       --kp-dialog-head-gap: 8px;
@@ -378,6 +378,9 @@ export class KpDialogComponent implements AfterViewInit, AfterViewChecked, OnDes
 
   get hostClasses(): string {
     return `kp-dialog kp-dialog--${this.size}`;
+  }
+  get rootClasses(): string {
+    return `kp-dialog__root kp-dialog--${this.size}`;
   }
   get footerLayoutClass(): string {
     return `kp-dialog__footer--${this.footerLayout}`;
