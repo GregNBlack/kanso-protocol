@@ -43,9 +43,12 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
   selector: 'kp-dialog',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class]': 'hostClasses',
+  },
   template: `
     @if (open) {
-      <div class="kp-dialog__root" [class]="rootClasses">
+      <div class="kp-dialog__root">
         <div class="kp-dialog__backdrop" (click)="onBackdropClick()"></div>
         <div
           #panel
@@ -371,7 +374,7 @@ export class KpDialogComponent implements AfterViewInit, OnDestroy {
   readonly titleId = `kp-dialog-title-${this.uid}`;
   readonly descId  = `kp-dialog-desc-${this.uid}`;
 
-  get rootClasses(): string {
+  get hostClasses(): string {
     return `kp-dialog kp-dialog--${this.size}`;
   }
   get footerLayoutClass(): string {
