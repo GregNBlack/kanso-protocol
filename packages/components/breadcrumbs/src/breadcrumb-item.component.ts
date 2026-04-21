@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -12,8 +13,9 @@ export type KpBreadcrumbItemType = 'link' | 'current' | 'ellipsis';
 /**
  * Kanso Protocol — BreadcrumbItem (atom)
  *
- * Single breadcrumb cell. Renders as an `<a>` for `type="link"`, a plain
- * `<span>` for `type="current"`, or a `<button>` for `type="ellipsis"`
+ * Single breadcrumb cell. Renders as an `<a>` for `type="link"` with an
+ * `href`, a `<button>` for `type="link"` without one, a plain `<span>`
+ * for `type="current"`, or a `<button>` for `type="ellipsis"`
  * (clickable — callers typically open a Popover / DropdownMenu from it).
  *
  * Projects a leading icon via `[kpBreadcrumbIcon]`. Size is usually set
@@ -27,53 +29,57 @@ export type KpBreadcrumbItemType = 'link' | 'current' | 'ellipsis';
  */
 @Component({
   selector: 'kp-breadcrumb-item',
-  imports: [],
+  imports: [NgTemplateOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class]': 'hostClasses',
     '[attr.role]': '"listitem"',
   },
   template: `
-    @if (type === 'current') {
-      <span class="kp-bc-item__content" aria-current="page">
-        <span class="kp-bc-item__icon" aria-hidden="true"><ng-content select="[kpBreadcrumbIcon]"/></span>
-        @if (label) { <span class="kp-bc-item__label">{{ label }}</span> }
-        <ng-content/>
-      </span>
-    } @else if (type === 'ellipsis') {
-      <button
-        type="button"
-        class="kp-bc-item__content kp-bc-item__ellipsis"
-        [disabled]="disabled"
-        [attr.aria-label]="ariaLabel || 'Show hidden breadcrumbs'"
-        (click)="handleClick($event)"
-      >…</button>
-    } @else {
-      @if (href) {
-        <a
-          class="kp-bc-item__content"
-          [attr.href]="disabled ? null : href"
-          [attr.aria-disabled]="disabled || null"
-          [attr.tabindex]="disabled ? -1 : null"
-          (click)="handleClick($event)"
-        >
-          <span class="kp-bc-item__icon" aria-hidden="true"><ng-content select="[kpBreadcrumbIcon]"/></span>
-          @if (label) { <span class="kp-bc-item__label">{{ label }}</span> }
-          <ng-content/>
-        </a>
-      } @else {
+    @switch (type) {
+      @case ('ellipsis') {
         <button
           type="button"
-          class="kp-bc-item__content"
+          class="kp-bc-item__content kp-bc-item__ellipsis"
           [disabled]="disabled"
+          [attr.aria-label]="ariaLabel || 'Show hidden breadcrumbs'"
           (click)="handleClick($event)"
-        >
-          <span class="kp-bc-item__icon" aria-hidden="true"><ng-content select="[kpBreadcrumbIcon]"/></span>
-          @if (label) { <span class="kp-bc-item__label">{{ label }}</span> }
-          <ng-content/>
-        </button>
+        >…</button>
+      }
+      @case ('current') {
+        <span class="kp-bc-item__content" aria-current="page">
+          <ng-container *ngTemplateOutlet="body"/>
+        </span>
+      }
+      @default {
+        @if (href) {
+          <a
+            class="kp-bc-item__content"
+            [attr.href]="disabled ? null : href"
+            [attr.aria-disabled]="disabled || null"
+            [attr.tabindex]="disabled ? -1 : null"
+            (click)="handleClick($event)"
+          >
+            <ng-container *ngTemplateOutlet="body"/>
+          </a>
+        } @else {
+          <button
+            type="button"
+            class="kp-bc-item__content"
+            [disabled]="disabled"
+            (click)="handleClick($event)"
+          >
+            <ng-container *ngTemplateOutlet="body"/>
+          </button>
+        }
       }
     }
+
+    <ng-template #body>
+      <span class="kp-bc-item__icon" aria-hidden="true"><ng-content select="[kpBreadcrumbIcon]"/></span>
+      @if (label) { <span class="kp-bc-item__label">{{ label }}</span> }
+      <ng-content/>
+    </ng-template>
   `,
   styles: [`
     :host {
