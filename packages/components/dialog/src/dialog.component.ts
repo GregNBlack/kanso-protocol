@@ -1,4 +1,5 @@
 import {
+  AfterViewChecked,
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
@@ -48,7 +49,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
   },
   template: `
     @if (open) {
-      <div class="kp-dialog__root">
+      <div #root class="kp-dialog__root">
         <div class="kp-dialog__backdrop" (click)="onBackdropClick()"></div>
         <div
           #panel
@@ -338,7 +339,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
     }
   `],
 })
-export class KpDialogComponent implements AfterViewInit, OnDestroy {
+export class KpDialogComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
   private static idCounter = 0;
   private readonly uid = ++KpDialogComponent.idCounter;
 
@@ -365,6 +366,7 @@ export class KpDialogComponent implements AfterViewInit, OnDestroy {
   @Output() readonly closed = new EventEmitter<void>();
 
   @ViewChild('panel') panel?: ElementRef<HTMLElement>;
+  @ViewChild('root')  root?: ElementRef<HTMLElement>;
 
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly doc = inject(DOCUMENT);
@@ -383,6 +385,16 @@ export class KpDialogComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     if (this.open) this.onOpened();
+  }
+
+  ngAfterViewChecked(): void {
+    // Portal: ensure the open dialog's root lives at <body>, not
+    // inside some transformed / clipped ancestor (common in Storybook
+    // story previews and modals-inside-CSS-grid layouts).
+    const el = this.root?.nativeElement;
+    if (el && this.doc?.body && el.parentElement !== this.doc.body) {
+      this.doc.body.appendChild(el);
+    }
   }
 
   ngOnDestroy(): void {
