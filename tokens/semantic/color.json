@@ -394,6 +394,45 @@
       },
       "ellipsis": { "$value": "{color.gray.500}", "$type": "color", "$description": "Ellipsis (…) color between page ranges" },
       "info":     { "$value": "{color.gray.600}", "$type": "color", "$description": "'Showing X of Y' info text + 'Per page' label" }
+    },
+
+    "stepper": {
+      "indicator": {
+        "bg": {
+          "pending":   { "$value": "{color.white}",    "$type": "color" },
+          "active":    { "$value": "{color.blue.600}", "$type": "color" },
+          "completed": { "$value": "{color.blue.600}", "$type": "color" },
+          "error":     { "$value": "{color.red.600}",  "$type": "color" }
+        },
+        "border": {
+          "pending":   { "$value": "{color.gray.300}", "$type": "color" },
+          "active":    { "$value": "{color.blue.600}", "$type": "color" },
+          "completed": { "$value": "{color.blue.600}", "$type": "color" },
+          "error":     { "$value": "{color.red.600}",  "$type": "color" }
+        },
+        "fg": {
+          "pending":   { "$value": "{color.gray.500}", "$type": "color" },
+          "active":    { "$value": "{color.white}",    "$type": "color" },
+          "completed": { "$value": "{color.white}",    "$type": "color" },
+          "error":     { "$value": "{color.white}",    "$type": "color" }
+        }
+      },
+      "label": {
+        "pending":   { "$value": "{color.gray.500}", "$type": "color" },
+        "active":    { "$value": "{color.gray.900}", "$type": "color" },
+        "completed": { "$value": "{color.gray.700}", "$type": "color" },
+        "error":     { "$value": "{color.red.700}",  "$type": "color" }
+      },
+      "description": {
+        "pending":   { "$value": "{color.gray.400}", "$type": "color" },
+        "active":    { "$value": "{color.gray.600}", "$type": "color" },
+        "completed": { "$value": "{color.gray.500}", "$type": "color" },
+        "error":     { "$value": "{color.red.600}",  "$type": "color" }
+      },
+      "connector": {
+        "pending":   { "$value": "{color.gray.200}", "$type": "color" },
+        "completed": { "$value": "{color.blue.600}", "$type": "color" }
+      }
     }
   }
 }
