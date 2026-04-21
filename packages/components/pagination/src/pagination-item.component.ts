@@ -53,7 +53,7 @@ export type KpPaginationNavDirection = 'prev' | 'next';
             </span>
           }
           @if (navMode !== 'icon') {
-            <span class="kp-pi__label">{{ navLabel }}</span>
+            <span class="kp-pi__label">{{ effectiveNavLabel }}</span>
           }
           @if (navMode !== 'text' && navDirection === 'next') {
             <span class="kp-pi__icon" aria-hidden="true">
@@ -217,6 +217,11 @@ export class KpPaginationItemComponent {
 
   get isIconOnly(): boolean {
     return this.type === 'nav' && this.navMode === 'icon';
+  }
+
+  get effectiveNavLabel(): string {
+    if (this.navLabel) return this.navLabel;
+    return this.navDirection === 'next' ? 'Next' : 'Previous';
   }
 
   get effectiveAriaLabel(): string | null {
