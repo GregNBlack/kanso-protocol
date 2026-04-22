@@ -47,7 +47,7 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
           [attr.aria-label]="!showHeader ? ariaLabel : null"
           tabindex="-1"
         >
-          @if ((side === 'top' || side === 'bottom') && showResizeHandle) {
+          @if ((renderedSide === 'top' || renderedSide === 'bottom') && showResizeHandle) {
             <div class="kp-drawer__handle" aria-hidden="true"><span></span></div>
           }
 
@@ -282,6 +282,11 @@ export class KpDrawerComponent implements AfterViewChecked, OnDestroy {
     this._open = value;
     if (value) {
       if (this.closeTimer != null) { clearTimeout(this.closeTimer); this.closeTimer = undefined; }
+      // Snapshot side+size on the open transition so the exit animation
+      // still knows which edge to slide back to, even if the parent
+      // rebinds those inputs the moment close is requested.
+      this.renderedSide = this.side;
+      this.renderedSize = this.size;
       this.rendered = true;
       this.closing = false;
       this.onOpened();
@@ -294,6 +299,11 @@ export class KpDrawerComponent implements AfterViewChecked, OnDestroy {
 
   /** @internal — keeps the DOM mounted while the exit animation plays. */
   rendered = false;
+  /** @internal — frozen side while the panel is mounted, so exit
+   *  animation stays in the direction it entered from. */
+  renderedSide: KpDrawerSide = 'right';
+  /** @internal — frozen size for the same reason. */
+  renderedSize: KpDrawerSize = 'md';
   /** @internal — flips on for the duration of the exit animation. */
   closing = false;
   private closeTimer?: ReturnType<typeof setTimeout>;
@@ -315,7 +325,7 @@ export class KpDrawerComponent implements AfterViewChecked, OnDestroy {
     return `kp-drawer kp-drawer--${this.size} kp-drawer--${this.side}`;
   }
   get rootClasses(): string {
-    let s = `kp-drawer__root kp-drawer--${this.size} kp-drawer--${this.side}`;
+    let s = `kp-drawer__root kp-drawer--${this.renderedSize} kp-drawer--${this.renderedSide}`;
     if (this.closing) s += ' kp-drawer__root--closing';
     return s;
   }
