@@ -1,0 +1,223 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
+
+export type KpCardSize = 'sm' | 'md' | 'lg';
+export type KpCardAppearance = 'default' | 'muted' | 'elevated' | 'outline';
+
+/**
+ * Kanso Protocol — Card
+ *
+ * Universal container with optional header (title + description +
+ * action), body, and footer. Each section toggles via boolean inputs;
+ * dividers can be added between sections for visual grouping.
+ *
+ * Set `appearance="elevated"` for a shadowed surface, `"muted"` for a
+ * gray background, or `"outline"` for a transparent panel with just a
+ * border. Setting `[clickable]="true"` adds a hover state and emits
+ * `(cardClick)` — wire it to navigate, expand, or run any action.
+ */
+@Component({
+  selector: 'kp-card',
+  imports: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class]': 'hostClasses',
+    '[attr.role]': 'clickable ? "button" : null',
+    '[attr.tabindex]': 'clickable ? 0 : null',
+    '(click)': 'handleClick($event)',
+    '(keydown.enter)': 'handleClick($event)',
+    '(keydown.space)': 'handleClick($event)',
+  },
+  template: `
+    @if (showHeader) {
+      <header class="kp-card__header">
+        <div class="kp-card__text-group">
+          <h3 class="kp-card__title">{{ title }}</h3>
+          @if (showDescription) {
+            <p class="kp-card__desc">{{ description }}</p>
+          }
+        </div>
+        @if (showHeaderAction) {
+          <div class="kp-card__action">
+            <ng-content select="[kpCardHeaderAction]"/>
+          </div>
+        }
+      </header>
+    }
+
+    @if (showHeader && showHeaderDivider) { <div class="kp-card__divider"></div> }
+
+    <div class="kp-card__body">
+      <ng-content select="[kpCardBody]"/>
+      <ng-content/>
+    </div>
+
+    @if (showFooter && showFooterDivider) { <div class="kp-card__divider"></div> }
+
+    @if (showFooter) {
+      <footer class="kp-card__footer">
+        <ng-content select="[kpCardFooter]"/>
+      </footer>
+    }
+  `,
+  styles: [`
+    :host {
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      width: var(--kp-card-w);
+      border-radius: var(--kp-card-radius);
+      background: var(--kp-card-bg);
+      border: 1px solid var(--kp-card-border);
+      font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
+      transition: background 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+    }
+    :host(.kp-card--clickable) { cursor: pointer; }
+    :host(.kp-card--clickable:hover) { background: var(--kp-color-card-bg-muted, #FAFAFA); }
+    :host(.kp-card--clickable:focus-visible) {
+      outline: 2px solid var(--kp-color-focus-ring, #60A5FA);
+      outline-offset: 2px;
+    }
+
+    .kp-card__header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: var(--kp-card-pad);
+    }
+    .kp-card__text-group {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--kp-card-head-gap);
+      min-width: 0;
+    }
+    .kp-card__title {
+      margin: 0;
+      font-size: var(--kp-card-title-size);
+      line-height: var(--kp-card-title-lh);
+      font-weight: 500;
+      color: var(--kp-color-card-fg-title, #18181B);
+    }
+    .kp-card__desc {
+      margin: 0;
+      font-size: var(--kp-card-desc-size);
+      line-height: var(--kp-card-desc-lh);
+      color: var(--kp-color-card-fg-desc, #52525B);
+    }
+    .kp-card__action { flex: 0 0 auto; }
+    .kp-card__action:empty { display: none; }
+
+    .kp-card__divider {
+      height: 1px;
+      background: var(--kp-color-card-divider, #F4F4F5);
+    }
+
+    .kp-card__body {
+      padding: 0 var(--kp-card-pad);
+      color: var(--kp-color-card-fg-body, #3F3F46);
+      font-size: var(--kp-card-body-size);
+      line-height: var(--kp-card-body-lh);
+    }
+    .kp-card__body:empty { display: none; }
+
+    .kp-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: var(--kp-card-footer-gap);
+      padding: var(--kp-card-pad);
+    }
+
+    /* Sizes */
+    :host(.kp-card--sm) {
+      --kp-card-w: 280px;
+      --kp-card-pad: 12px;
+      --kp-card-head-gap: 2px;
+      --kp-card-radius: 10px;
+      --kp-card-title-size: 14px;
+      --kp-card-title-lh: 20px;
+      --kp-card-desc-size: 12px;
+      --kp-card-desc-lh: 16px;
+      --kp-card-body-size: 14px;
+      --kp-card-body-lh: 20px;
+      --kp-card-footer-gap: 8px;
+    }
+    :host(.kp-card--md) {
+      --kp-card-w: 360px;
+      --kp-card-pad: 16px;
+      --kp-card-head-gap: 4px;
+      --kp-card-radius: 12px;
+      --kp-card-title-size: 16px;
+      --kp-card-title-lh: 24px;
+      --kp-card-desc-size: 14px;
+      --kp-card-desc-lh: 20px;
+      --kp-card-body-size: 14px;
+      --kp-card-body-lh: 20px;
+      --kp-card-footer-gap: 12px;
+    }
+    :host(.kp-card--lg) {
+      --kp-card-w: 480px;
+      --kp-card-pad: 24px;
+      --kp-card-head-gap: 4px;
+      --kp-card-radius: 16px;
+      --kp-card-title-size: 18px;
+      --kp-card-title-lh: 28px;
+      --kp-card-desc-size: 16px;
+      --kp-card-desc-lh: 24px;
+      --kp-card-body-size: 16px;
+      --kp-card-body-lh: 24px;
+      --kp-card-footer-gap: 12px;
+    }
+
+    /* Appearances */
+    :host(.kp-card--default) {
+      --kp-card-bg: var(--kp-color-card-bg, #FFFFFF);
+      --kp-card-border: var(--kp-color-card-border, #E4E4E7);
+    }
+    :host(.kp-card--muted) {
+      --kp-card-bg: var(--kp-color-card-bg-muted, #FAFAFA);
+      --kp-card-border: var(--kp-color-card-border, #E4E4E7);
+    }
+    :host(.kp-card--elevated) {
+      --kp-card-bg: var(--kp-color-card-bg, #FFFFFF);
+      --kp-card-border: transparent;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.06);
+    }
+    :host(.kp-card--outline) {
+      --kp-card-bg: transparent;
+      --kp-card-border: var(--kp-color-card-border, #E4E4E7);
+    }
+  `],
+})
+export class KpCardComponent {
+  @Input() size: KpCardSize = 'md';
+  @Input() appearance: KpCardAppearance = 'default';
+  @Input() title = '';
+  @Input() description = '';
+
+  @Input() showHeader = true;
+  @Input() showDescription = false;
+  @Input() showHeaderAction = false;
+  @Input() showFooter = false;
+  @Input() showHeaderDivider = false;
+  @Input() showFooterDivider = false;
+  @Input() clickable = false;
+
+  @Output() readonly cardClick = new EventEmitter<Event>();
+
+  get hostClasses(): string {
+    const c = ['kp-card', `kp-card--${this.size}`, `kp-card--${this.appearance}`];
+    if (this.clickable) c.push('kp-card--clickable');
+    return c.join(' ');
+  }
+
+  handleClick(event: Event): void {
+    if (this.clickable) this.cardClick.emit(event);
+  }
+}
