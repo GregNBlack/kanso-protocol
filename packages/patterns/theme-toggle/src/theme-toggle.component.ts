@@ -209,7 +209,6 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       position: fixed;
       display: flex;
       flex-direction: column;
-      width: max-content;
       padding: 4px;
       border-radius: 10px;
       background: var(--kp-color-white, #FFFFFF);
@@ -323,6 +322,7 @@ export class KpThemeToggleComponent implements AfterViewChecked, OnDestroy {
     menu.style.top = `${rect.bottom + 6}px`;
     menu.style.left = `${rect.left}px`;
     menu.style.right = 'auto';
+    menu.style.width = `${rect.width}px`;
   }
 
   @HostListener('document:click', ['$event'])
