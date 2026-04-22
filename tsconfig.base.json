@@ -61,7 +61,8 @@
       "@kanso-protocol/nav-item": ["packages/patterns/nav-item/src/index.ts"],
       "@kanso-protocol/sidebar": ["packages/patterns/sidebar/src/index.ts"],
       "@kanso-protocol/page-header": ["packages/patterns/page-header/src/index.ts"],
-      "@kanso-protocol/user-menu": ["packages/patterns/user-menu/src/index.ts"]
+      "@kanso-protocol/user-menu": ["packages/patterns/user-menu/src/index.ts"],
+      "@kanso-protocol/theme-toggle": ["packages/patterns/theme-toggle/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]
