@@ -449,6 +449,21 @@
       "bg-highlight": { "$value": "{color.gray.200}", "$type": "color", "$description": "Animated shimmer highlight" }
     },
 
+    "slider": {
+      "track": {
+        "empty":  { "$value": "{color.gray.200}", "$type": "color" },
+        "filled": { "$value": "{color.blue.600}", "$type": "color" }
+      },
+      "thumb": {
+        "bg":         { "$value": "{color.white}", "$type": "color" },
+        "border":     { "$value": "{color.blue.600}", "$type": "color" },
+        "ring-focus": { "$value": "{color.blue.100}", "$type": "color" }
+      },
+      "tick":  { "$value": "{color.gray.400}", "$type": "color", "$description": "Step ticks on track" },
+      "label": { "$value": "{color.gray.600}", "$type": "color" },
+      "value": { "$value": "{color.gray.900}", "$type": "color" }
+    },
+
     "accordion": {
       "trigger": {
         "bg": {
