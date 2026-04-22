@@ -5,6 +5,7 @@ import {
   Input,
   Output,
 } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
 
 export type KpThemeToggleVariant = 'icon' | 'segmented' | 'dropdown';
 export type KpThemeToggleSize = 'sm' | 'md' | 'lg';
@@ -34,10 +35,24 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
  */
 @Component({
   selector: 'kp-theme-toggle',
-  imports: [],
+  imports: [NgTemplateOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses' },
   template: `
+    <ng-template #glyph let-t>
+      @switch (t) {
+        @case ('light') {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        }
+        @case ('dark') {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        }
+        @default {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+        }
+      }
+    </ng-template>
+
     @if (variant === 'icon') {
       <button
         type="button"
@@ -45,7 +60,9 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
         [attr.aria-label]="'Toggle theme (current: ' + currentTheme + ')'"
         (click)="cycle()"
       >
-        <span class="kp-theme-toggle__glyph" aria-hidden="true" [innerHTML]="iconFor(currentTheme)"></span>
+        <span class="kp-theme-toggle__glyph">
+          <ng-container *ngTemplateOutlet="glyph; context: { $implicit: currentTheme }"/>
+        </span>
       </button>
     } @else if (variant === 'segmented') {
       @if (showLabel) {
@@ -62,7 +79,9 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
             [attr.aria-label]="t"
             (click)="select(t)"
           >
-            <span class="kp-theme-toggle__glyph" aria-hidden="true" [innerHTML]="iconFor(t)"></span>
+            <span class="kp-theme-toggle__glyph">
+              <ng-container *ngTemplateOutlet="glyph; context: { $implicit: t }"/>
+            </span>
           </button>
         }
       </div>
@@ -76,10 +95,12 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
         [attr.aria-haspopup]="'listbox'"
         (click)="dropdownClick.emit()"
       >
-        <span class="kp-theme-toggle__glyph" aria-hidden="true" [innerHTML]="iconFor(currentTheme)"></span>
+        <span class="kp-theme-toggle__glyph">
+          <ng-container *ngTemplateOutlet="glyph; context: { $implicit: currentTheme }"/>
+        </span>
         <span class="kp-theme-toggle__dropdown-label">{{ themeLabel(currentTheme) }}</span>
-        <span class="kp-theme-toggle__glyph kp-theme-toggle__glyph--chevron" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        <span class="kp-theme-toggle__glyph kp-theme-toggle__glyph--chevron">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
         </span>
       </button>
     }
@@ -217,14 +238,4 @@ export class KpThemeToggleComponent {
   themeLabel(t: KpThemeValue): string {
     return t === 'light' ? 'Light' : t === 'dark' ? 'Dark' : 'System';
   }
-
-  iconFor(t: KpThemeValue): string {
-    if (t === 'light') return SUN_SVG;
-    if (t === 'dark') return MOON_SVG;
-    return MONITOR_SVG;
-  }
 }
-
-const SUN_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>`;
-const MOON_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
-const MONITOR_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>`;
