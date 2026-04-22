@@ -8,11 +8,13 @@ permissions:
   id-token: write
 # GitHub Pages only accepts one deployment at a time per environment.
 # Without this block, back-to-back pushes queue parallel workflow runs
-# that race for the same slot and fail each other. Serialize by group
-# and cancel the older queued run so only the newest commit deploys.
+# that race for the same slot and fail each other.
+# cancel-in-progress: false — let each run finish cleanly (Pages'
+# recommended pattern; cancelling mid-deploy leaves the environment
+# stuck on the cancelled run and fails the next one).
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   deploy:
     runs-on: ubuntu-latest
