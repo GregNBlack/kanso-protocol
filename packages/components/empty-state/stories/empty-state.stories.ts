@@ -26,7 +26,7 @@ const alertIcon = `<svg kpEmptyStateIcon viewBox="0 0 24 24" fill="none" stroke=
   <path d="M12 3 L22 20 L2 20 Z"/><path d="M12 10 V14"/><circle cx="12" cy="17" r="0.5"/>
 </svg>`;
 
-const cap = `font-size:11px;color:#A1A1AA;margin-top:8px;display:inline-block`;
+const cap = `font-size:11px;color:#A1A1AA;margin-top:8px;display:block`;
 const btn = (label: string, primary = true) =>
   `<button style="all:unset;padding:8px 16px;border-radius:8px;font-family:Onest,system-ui;font-size:14px;font-weight:500;cursor:pointer;${primary ? 'background:#2563EB;color:#fff' : 'color:#3F3F46'}">${label}</button>`;
 

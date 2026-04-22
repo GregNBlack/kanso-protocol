@@ -22,7 +22,7 @@ const meta: Meta<KpPaginationComponent> = {
 export default meta;
 type Story = StoryObj<KpPaginationComponent>;
 
-const caption = `font-size:11px;color:#A1A1AA;margin-top:6px;display:inline-block`;
+const caption = `font-size:11px;color:#A1A1AA;margin-top:6px;display:block`;
 
 export const Default: Story = {
   args: { size: 'md', navMode: 'icon', currentPage: 3, totalPages: 20 },

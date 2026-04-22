@@ -56,7 +56,7 @@ const file = `<svg kpBreadcrumbIcon viewBox="0 0 24 24" fill="none" stroke="curr
   <path d="M14 2 H6 V22 H18 V6 Z"/><path d="M14 2 V6 H18"/>
 </svg>`;
 
-const caption = `font-size:11px;color:#A1A1AA;margin-top:6px;display:inline-block`;
+const caption = `font-size:11px;color:#A1A1AA;margin-top:6px;display:block`;
 
 export const Default: Story = {
   args: { size: 'md' },

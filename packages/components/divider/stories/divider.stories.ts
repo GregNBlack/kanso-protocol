@@ -14,7 +14,7 @@ const meta: Meta<KpDividerComponent> = {
 export default meta;
 type Story = StoryObj<KpDividerComponent>;
 
-const caption = `font-size:11px;color:#A1A1AA;margin-top:6px;display:inline-block`;
+const caption = `font-size:11px;color:#A1A1AA;margin-top:6px;display:block`;
 
 export const Default: Story = {
   args: { orientation: 'horizontal', label: 'Or', labelPosition: 'center' },

@@ -44,7 +44,7 @@ export const Sizes: Story = {
             <kp-tab label="Activity" [selected]="tab === 'activity'" (selectedChange)="tab = 'activity'"/>
             <kp-tab label="Settings" [selected]="tab === 'settings'" (selectedChange)="tab = 'settings'"/>
           </kp-tabs>
-          <span style="font-size:11px;color:#A1A1AA;margin-top:8px;display:inline-block">Small</span>
+          <span style="font-size:11px;color:#A1A1AA;margin-top:8px;display:block">Small</span>
         </div>
         <div>
           <kp-tabs size="md">
@@ -52,7 +52,7 @@ export const Sizes: Story = {
             <kp-tab label="Activity" [selected]="tab === 'activity'" (selectedChange)="tab = 'activity'"/>
             <kp-tab label="Settings" [selected]="tab === 'settings'" (selectedChange)="tab = 'settings'"/>
           </kp-tabs>
-          <span style="font-size:11px;color:#A1A1AA;margin-top:8px;display:inline-block">Medium (default)</span>
+          <span style="font-size:11px;color:#A1A1AA;margin-top:8px;display:block">Medium (default)</span>
         </div>
         <div>
           <kp-tabs size="lg">
@@ -60,7 +60,7 @@ export const Sizes: Story = {
             <kp-tab label="Activity" [selected]="tab === 'activity'" (selectedChange)="tab = 'activity'"/>
             <kp-tab label="Settings" [selected]="tab === 'settings'" (selectedChange)="tab = 'settings'"/>
           </kp-tabs>
-          <span style="font-size:11px;color:#A1A1AA;margin-top:8px;display:inline-block">Large</span>
+          <span style="font-size:11px;color:#A1A1AA;margin-top:8px;display:block">Large</span>
         </div>
       </div>`,
   }),

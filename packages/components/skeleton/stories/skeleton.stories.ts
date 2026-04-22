@@ -14,7 +14,7 @@ const meta: Meta<KpSkeletonComponent> = {
 export default meta;
 type Story = StoryObj<KpSkeletonComponent>;
 
-const cap = `font-size:11px;color:#A1A1AA;margin-top:8px;display:inline-block`;
+const cap = `font-size:11px;color:#A1A1AA;margin-top:8px;display:block`;
 
 export const Default: Story = {
   args: { shape: 'line', size: 'md', width: '320px' },
