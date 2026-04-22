@@ -45,7 +45,8 @@
       "@kanso-protocol/accordion": ["packages/components/accordion/src/index.ts"],
       "@kanso-protocol/skeleton": ["packages/components/skeleton/src/index.ts"],
       "@kanso-protocol/slider": ["packages/components/slider/src/index.ts"],
-      "@kanso-protocol/combobox": ["packages/components/combobox/src/index.ts"]
+      "@kanso-protocol/combobox": ["packages/components/combobox/src/index.ts"],
+      "@kanso-protocol/datepicker": ["packages/components/datepicker/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]
