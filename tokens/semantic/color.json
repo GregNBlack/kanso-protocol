@@ -468,6 +468,39 @@
       "highlight": { "$value": "{color.blue.50}", "$type": "color", "$description": "Background behind query-matching substrings in options" }
     },
 
+    "datepicker": {
+      "panel": {
+        "bg":     { "$value": "{color.white}", "$type": "color" },
+        "border": { "$value": "{color.gray.200}", "$type": "color" }
+      },
+      "header": {
+        "fg":     { "$value": "{color.gray.900}", "$type": "color" },
+        "nav-fg": { "$value": "{color.gray.600}", "$type": "color" }
+      },
+      "weekday": { "$value": "{color.gray.500}", "$type": "color" },
+      "day": {
+        "bg": {
+          "rest":       { "$value": "transparent",       "$type": "color" },
+          "hover":      { "$value": "{color.gray.100}",  "$type": "color" },
+          "selected":   { "$value": "{color.blue.600}",  "$type": "color" },
+          "today":      { "$value": "transparent",       "$type": "color" },
+          "in-range":   { "$value": "{color.blue.50}",   "$type": "color" },
+          "range-edge": { "$value": "{color.blue.600}",  "$type": "color" }
+        },
+        "fg": {
+          "rest":       { "$value": "{color.gray.900}",  "$type": "color" },
+          "hover":      { "$value": "{color.gray.900}",  "$type": "color" },
+          "selected":   { "$value": "{color.white}",     "$type": "color" },
+          "today":      { "$value": "{color.blue.600}",  "$type": "color" },
+          "in-range":   { "$value": "{color.blue.700}",  "$type": "color" },
+          "range-edge": { "$value": "{color.white}",     "$type": "color" },
+          "outside":    { "$value": "{color.gray.400}",  "$type": "color" },
+          "disabled":   { "$value": "{color.gray.300}",  "$type": "color" }
+        },
+        "today-ring": { "$value": "{color.blue.600}", "$type": "color", "$description": "Ring around today's date" }
+      }
+    },
+
     "accordion": {
       "trigger": {
         "bg": {
