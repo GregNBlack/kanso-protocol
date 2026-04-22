@@ -444,6 +444,11 @@
       "resize-handle": { "$value": "{color.gray.300}", "$type": "color", "$description": "Drag handle on bottom/top sheets" }
     },
 
+    "skeleton": {
+      "bg-base":      { "$value": "{color.gray.100}", "$type": "color" },
+      "bg-highlight": { "$value": "{color.gray.200}", "$type": "color", "$description": "Animated shimmer highlight" }
+    },
+
     "accordion": {
       "trigger": {
         "bg": {
