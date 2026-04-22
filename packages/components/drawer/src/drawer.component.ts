@@ -124,28 +124,28 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
     @keyframes kp-drawer-slide-bottom { from { transform: translateY(100%); } to { transform: translateY(0); } }
 
     /* Side anchoring + radius (only on edge facing into the screen) */
-    :host(.kp-drawer--right) .kp-drawer__panel {
+    .kp-drawer__root.kp-drawer--right .kp-drawer__panel {
       top: 0; right: 0; height: 100vh;
       width: var(--kp-drawer-w);
       border-radius: 16px 0 0 16px;
       border-right: none;
       animation: kp-drawer-slide-right 220ms cubic-bezier(0.2, 1, 0.4, 1);
     }
-    :host(.kp-drawer--left) .kp-drawer__panel {
+    .kp-drawer__root.kp-drawer--left .kp-drawer__panel {
       top: 0; left: 0; height: 100vh;
       width: var(--kp-drawer-w);
       border-radius: 0 16px 16px 0;
       border-left: none;
       animation: kp-drawer-slide-left 220ms cubic-bezier(0.2, 1, 0.4, 1);
     }
-    :host(.kp-drawer--top) .kp-drawer__panel {
+    .kp-drawer__root.kp-drawer--top .kp-drawer__panel {
       top: 0; left: 0; width: 100vw;
       height: var(--kp-drawer-h);
       border-radius: 0 0 16px 16px;
       border-top: none;
       animation: kp-drawer-slide-top 220ms cubic-bezier(0.2, 1, 0.4, 1);
     }
-    :host(.kp-drawer--bottom) .kp-drawer__panel {
+    .kp-drawer__root.kp-drawer--bottom .kp-drawer__panel {
       bottom: 0; left: 0; width: 100vw;
       height: var(--kp-drawer-h);
       border-radius: 16px 16px 0 0;
@@ -158,7 +158,7 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       display: flex; justify-content: center;
       padding: 12px 0 0;
     }
-    :host(.kp-drawer--top) .kp-drawer__handle { order: 99; padding: 0 0 12px; }
+    .kp-drawer__root.kp-drawer--top .kp-drawer__handle { order: 99; padding: 0 0 12px; }
     .kp-drawer__handle span {
       display: block;
       width: 40px;
@@ -236,10 +236,10 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
     }
 
     /* Sizes — width for right/left, height for top/bottom */
-    :host(.kp-drawer--sm) { --kp-drawer-w: 320px; --kp-drawer-h: 240px; }
-    :host(.kp-drawer--md) { --kp-drawer-w: 480px; --kp-drawer-h: 400px; }
-    :host(.kp-drawer--lg) { --kp-drawer-w: 640px; --kp-drawer-h: 560px; }
-    :host(.kp-drawer--xl) { --kp-drawer-w: 800px; --kp-drawer-h: 720px; }
+    .kp-drawer__root.kp-drawer--sm { --kp-drawer-w: 320px; --kp-drawer-h: 240px; }
+    .kp-drawer__root.kp-drawer--md { --kp-drawer-w: 480px; --kp-drawer-h: 400px; }
+    .kp-drawer__root.kp-drawer--lg { --kp-drawer-w: 640px; --kp-drawer-h: 560px; }
+    .kp-drawer__root.kp-drawer--xl { --kp-drawer-w: 800px; --kp-drawer-h: 720px; }
   `],
 })
 export class KpDrawerComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
