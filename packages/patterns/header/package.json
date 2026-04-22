@@ -7,8 +7,7 @@
     "@angular/common": "^18.0.0",
     "@kanso-protocol/core": "^0.0.1",
     "@kanso-protocol/avatar": "^0.1.0",
-    "@kanso-protocol/badge": "^0.1.0",
-    "@kanso-protocol/button": "^0.1.0"
+    "@kanso-protocol/badge": "^0.1.0"
   },
   "ngPackage": { "lib": { "entryFile": "src/index.ts" } }
 }

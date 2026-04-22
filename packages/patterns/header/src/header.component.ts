@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { KpAvatarComponent } from '@kanso-protocol/avatar';
+import { KpBadgeComponent } from '@kanso-protocol/badge';
 
 export type KpHeaderSize = 'sm' | 'md' | 'lg';
 export type KpHeaderAppearance = 'light' | 'dark';
@@ -45,7 +46,7 @@ export interface KpHeaderNavItem {
  */
 @Component({
   selector: 'kp-header',
-  imports: [NgTemplateOutlet, KpAvatarComponent],
+  imports: [NgTemplateOutlet, KpAvatarComponent, KpBadgeComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses', role: 'banner' },
   template: `
@@ -102,8 +103,10 @@ export interface KpHeaderNavItem {
       @if (showNotifications) {
         <button type="button" class="kp-header__icon-btn kp-header__icon-btn--notif" aria-label="Notifications" (click)="notificationsClick.emit()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21a2 2 0 0 0 4 0"/></svg>
-          @if (notificationsCount) {
-            <span class="kp-header__notif-badge" aria-live="polite">{{ notificationsCount }}</span>
+          @if (notificationsCount != null && notificationsCount !== '') {
+            <span class="kp-header__notif-badge" aria-live="polite">
+              <kp-badge size="xs" color="danger" appearance="filled" [pill]="true">{{ notificationsCount }}</kp-badge>
+            </span>
           }
         </button>
       }
@@ -279,18 +282,9 @@ export interface KpHeaderNavItem {
 
     .kp-header__notif-badge {
       position: absolute;
-      top: 2px;
-      right: 2px;
-      min-width: 16px;
-      height: 16px;
-      padding: 0 4px;
-      border-radius: 999px;
-      background: var(--kp-color-red-500, #EF4444);
-      color: #fff;
-      font-size: 10px;
-      font-weight: 600;
-      line-height: 16px;
-      text-align: center;
+      top: -2px;
+      right: -2px;
+      display: inline-flex;
     }
 
     .kp-header__cta {
