@@ -39,7 +39,8 @@
       "@kanso-protocol/pagination": ["packages/components/pagination/src/index.ts"],
       "@kanso-protocol/dialog": ["packages/components/dialog/src/index.ts"],
       "@kanso-protocol/divider": ["packages/components/divider/src/index.ts"],
-      "@kanso-protocol/card": ["packages/components/card/src/index.ts"]
+      "@kanso-protocol/card": ["packages/components/card/src/index.ts"],
+      "@kanso-protocol/empty-state": ["packages/components/empty-state/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]
