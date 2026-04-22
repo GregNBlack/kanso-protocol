@@ -1,5 +1,4 @@
 import type { Preview } from '@storybook/angular';
-import '@tabler/icons-webfont/dist/tabler-icons.min.css';
 
 const preview: Preview = {
   parameters: {
