@@ -100,7 +100,10 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       position: absolute;
       inset: 0;
       background: var(--kp-color-dialog-backdrop, rgba(0, 0, 0, 0.5));
-      animation: kp-drawer-fade 160ms ease;
+      animation: kp-drawer-fade-in 160ms ease;
+    }
+    .kp-drawer__root--closing .kp-drawer__backdrop {
+      animation: kp-drawer-fade-out 200ms ease forwards;
     }
 
     .kp-drawer__panel {
@@ -117,11 +120,16 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       max-height: 100vh;
     }
 
-    @keyframes kp-drawer-fade { from { opacity: 0 } to { opacity: 1 } }
+    @keyframes kp-drawer-fade-in   { from { opacity: 0 } to { opacity: 1 } }
+    @keyframes kp-drawer-fade-out  { from { opacity: 1 } to { opacity: 0 } }
     @keyframes kp-drawer-slide-right { from { transform: translateX(100%); } to { transform: translateX(0); } }
     @keyframes kp-drawer-slide-left  { from { transform: translateX(-100%); } to { transform: translateX(0); } }
     @keyframes kp-drawer-slide-top   { from { transform: translateY(-100%); } to { transform: translateY(0); } }
     @keyframes kp-drawer-slide-bottom { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    @keyframes kp-drawer-out-right  { from { transform: translateX(0); } to { transform: translateX(100%); } }
+    @keyframes kp-drawer-out-left   { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+    @keyframes kp-drawer-out-top    { from { transform: translateY(0); } to { transform: translateY(-100%); } }
+    @keyframes kp-drawer-out-bottom { from { transform: translateY(0); } to { transform: translateY(100%); } }
 
     /* Side anchoring + radius (only on edge facing into the screen) */
     .kp-drawer__root.kp-drawer--right .kp-drawer__panel {
@@ -152,6 +160,13 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       border-bottom: none;
       animation: kp-drawer-slide-bottom 220ms cubic-bezier(0.2, 1, 0.4, 1);
     }
+
+    /* Exit animations — same easing, reversed direction. forwards keeps the
+       panel at its off-screen end position until the timeout unmounts it. */
+    .kp-drawer__root--closing.kp-drawer--right  .kp-drawer__panel { animation: kp-drawer-out-right  220ms cubic-bezier(0.2, 1, 0.4, 1) forwards; }
+    .kp-drawer__root--closing.kp-drawer--left   .kp-drawer__panel { animation: kp-drawer-out-left   220ms cubic-bezier(0.2, 1, 0.4, 1) forwards; }
+    .kp-drawer__root--closing.kp-drawer--top    .kp-drawer__panel { animation: kp-drawer-out-top    220ms cubic-bezier(0.2, 1, 0.4, 1) forwards; }
+    .kp-drawer__root--closing.kp-drawer--bottom .kp-drawer__panel { animation: kp-drawer-out-bottom 220ms cubic-bezier(0.2, 1, 0.4, 1) forwards; }
 
     /* Resize handle (top/bottom only) */
     .kp-drawer__handle {
@@ -262,6 +277,9 @@ export class KpDrawerComponent implements AfterViewInit, AfterViewChecked, OnDes
   @Input() closeOnEsc = true;
 
   @Input() open = false;
+  /** @internal — flips on for the duration of the exit animation. */
+  closing = false;
+  private closeTimer?: number;
 
   @Output() readonly openChange = new EventEmitter<boolean>();
   @Output() readonly closed = new EventEmitter<void>();
@@ -279,7 +297,9 @@ export class KpDrawerComponent implements AfterViewInit, AfterViewChecked, OnDes
     return `kp-drawer kp-drawer--${this.size} kp-drawer--${this.side}`;
   }
   get rootClasses(): string {
-    return `kp-drawer__root kp-drawer--${this.size} kp-drawer--${this.side}`;
+    let s = `kp-drawer__root kp-drawer--${this.size} kp-drawer--${this.side}`;
+    if (this.closing) s += ' kp-drawer__root--closing';
+    return s;
   }
 
   ngAfterViewInit(): void { if (this.open) this.onOpened(); }
@@ -289,7 +309,10 @@ export class KpDrawerComponent implements AfterViewInit, AfterViewChecked, OnDes
       this.doc.body.appendChild(el);
     }
   }
-  ngOnDestroy(): void { if (this.open) this.restoreBodyScroll(); }
+  ngOnDestroy(): void {
+    if (this.closeTimer != null) clearTimeout(this.closeTimer);
+    if (this.open) this.restoreBodyScroll();
+  }
   ngOnChanges(): void {
     if (this.open) this.onOpened();
     else this.restoreBodyScroll();
@@ -317,11 +340,16 @@ export class KpDrawerComponent implements AfterViewInit, AfterViewChecked, OnDes
   }
 
   close(): void {
-    if (!this.open) return;
-    this.open = false;
-    this.openChange.emit(false);
-    this.closed.emit();
-    this.restoreBodyScroll();
+    if (!this.open || this.closing) return;
+    this.closing = true;
+    // Keep the DOM mounted while the reverse animation plays, then unmount.
+    this.closeTimer = (typeof window !== 'undefined' ? window : globalThis).setTimeout(() => {
+      this.open = false;
+      this.closing = false;
+      this.openChange.emit(false);
+      this.closed.emit();
+      this.restoreBodyScroll();
+    }, 220);
   }
   onBackdropClick(): void { if (this.closeOnBackdrop) this.close(); }
 
