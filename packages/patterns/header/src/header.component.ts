@@ -170,6 +170,7 @@ export interface KpHeaderNavItem {
       align-items: center;
       justify-content: center;
       min-width: 0;
+      overflow: hidden;
     }
 
     .kp-header__logo {
@@ -224,10 +225,13 @@ export interface KpHeaderNavItem {
     :host(.kp-header--dark) .kp-header__nav-item--active { color: #60A5FA; }
 
     .kp-header__search-placeholder {
+      box-sizing: border-box;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      width: min(100%, 420px);
+      width: 100%;
+      max-width: 420px;
+      min-width: 0;
       padding: 8px 12px;
       border: 1px solid var(--kp-color-gray-200, #E4E4E7);
       border-radius: 8px;
@@ -236,7 +240,15 @@ export interface KpHeaderNavItem {
       background: var(--kp-color-gray-50, #FAFAFA);
     }
     .kp-header__search-placeholder svg { width: 16px; height: 16px; flex: 0 0 auto; }
-    .kp-header__search-placeholder span { flex: 1 1 auto; text-align: left; }
+    .kp-header__search-placeholder span {
+      flex: 1 1 auto;
+      min-width: 0;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .kp-header__search-placeholder kbd { flex: 0 0 auto; }
     .kp-header__search-placeholder kbd {
       font-family: inherit;
       font-size: 11px;
