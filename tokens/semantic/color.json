@@ -505,6 +505,46 @@
       "close": { "$value": "{color.gray.400}", "$type": "color", "$description": "Toast close button icon color" }
     },
 
+    "table": {
+      "header": {
+        "bg":           { "$value": "{color.gray.50}",  "$type": "color" },
+        "fg":           { "$value": "{color.gray.700}", "$type": "color" },
+        "sort-icon":    { "$value": "{color.gray.500}", "$type": "color" },
+        "sort-active":  { "$value": "{color.blue.600}", "$type": "color" }
+      },
+      "row": {
+        "bg": {
+          "rest":     { "$value": "{color.white}",     "$type": "color" },
+          "hover":    { "$value": "{color.gray.50}",   "$type": "color" },
+          "selected": { "$value": "{color.blue.50}",   "$type": "color" }
+        },
+        "fg": { "$value": "{color.gray.900}", "$type": "color" }
+      },
+      "border":      { "$value": "{color.gray.200}", "$type": "color" },
+      "border-soft": { "$value": "{color.gray.100}", "$type": "color" }
+    },
+
+    "tree": {
+      "node": {
+        "bg": {
+          "rest":     { "$value": "transparent",       "$type": "color" },
+          "hover":    { "$value": "{color.gray.50}",   "$type": "color" },
+          "selected": { "$value": "{color.blue.50}",   "$type": "color" }
+        },
+        "fg": {
+          "rest":     { "$value": "{color.gray.900}",  "$type": "color" },
+          "selected": { "$value": "{color.blue.700}",  "$type": "color" },
+          "disabled": { "$value": "{color.gray.400}",  "$type": "color" }
+        },
+        "icon": {
+          "rest":     { "$value": "{color.gray.600}",  "$type": "color" },
+          "selected": { "$value": "{color.blue.600}",  "$type": "color" }
+        },
+        "chevron":    { "$value": "{color.gray.500}",  "$type": "color" }
+      },
+      "indent-line": { "$value": "{color.gray.200}", "$type": "color", "$description": "Vertical line showing nesting level" }
+    },
+
     "accordion": {
       "trigger": {
         "bg": {
