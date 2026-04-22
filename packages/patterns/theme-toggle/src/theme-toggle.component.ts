@@ -207,7 +207,7 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
     }
     .kp-theme-toggle__menu {
       position: fixed;
-      min-width: 180px;
+      width: max-content;
       padding: 4px;
       border-radius: 10px;
       background: var(--kp-color-white, #FFFFFF);
@@ -319,8 +319,8 @@ export class KpThemeToggleComponent implements AfterViewChecked, OnDestroy {
     if (!menu || !trigger) return;
     const rect = trigger.getBoundingClientRect();
     menu.style.top = `${rect.bottom + 6}px`;
-    menu.style.right = `${window.innerWidth - rect.right}px`;
-    menu.style.left = 'auto';
+    menu.style.left = `${rect.left}px`;
+    menu.style.right = 'auto';
   }
 
   @HostListener('document:click', ['$event'])
