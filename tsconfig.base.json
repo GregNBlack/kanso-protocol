@@ -47,7 +47,8 @@
       "@kanso-protocol/slider": ["packages/components/slider/src/index.ts"],
       "@kanso-protocol/combobox": ["packages/components/combobox/src/index.ts"],
       "@kanso-protocol/datepicker": ["packages/components/datepicker/src/index.ts"],
-      "@kanso-protocol/timepicker": ["packages/components/timepicker/src/index.ts"]
+      "@kanso-protocol/timepicker": ["packages/components/timepicker/src/index.ts"],
+      "@kanso-protocol/toast": ["packages/components/toast/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]
