@@ -383,6 +383,23 @@
       }
     },
 
+    "header": {
+      "bg":        { "$value": "{color.white}",    "$type": "color" },
+      "bg-dark":   { "$value": "{color.gray.900}", "$type": "color", "$description": "Dark-mode / intentional dark header" },
+      "border":    { "$value": "{color.gray.200}", "$type": "color" },
+      "divider":   { "$value": "{color.gray.200}", "$type": "color" },
+      "fg":        { "$value": "{color.gray.900}", "$type": "color" },
+      "fg-dark":   { "$value": "{color.white}",    "$type": "color" },
+      "nav-item": {
+        "fg": {
+          "rest":   { "$value": "{color.gray.700}", "$type": "color" },
+          "hover":  { "$value": "{color.gray.900}", "$type": "color" },
+          "active": { "$value": "{color.blue.600}", "$type": "color" }
+        },
+        "bg-hover": { "$value": "{color.gray.50}",  "$type": "color" }
+      }
+    },
+
     "breadcrumbs": {
       "item": {
         "fg": {

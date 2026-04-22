@@ -1,0 +1,122 @@
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { KpHeaderComponent, KpHeaderNavItem } from '../src/header.component';
+import { KpAvatarComponent } from '@kanso-protocol/avatar';
+
+const NAV: KpHeaderNavItem[] = [
+  { label: 'Dashboard', href: '#', active: true },
+  { label: 'Projects',  href: '#' },
+  { label: 'Team',      href: '#' },
+  { label: 'Documents', href: '#' },
+];
+
+const meta: Meta<KpHeaderComponent> = {
+  title: 'Patterns/Header',
+  component: KpHeaderComponent,
+  decorators: [moduleMetadata({ imports: [KpAvatarComponent] })],
+  tags: ['autodocs'],
+  argTypes: {
+    size:       { control: 'inline-radio', options: ['sm','md','lg'], table: { defaultValue: { summary: 'md' } } },
+    appearance: { control: 'inline-radio', options: ['light','dark'], table: { defaultValue: { summary: 'light' } } },
+  },
+  parameters: {
+    layout: 'fullscreen',
+  },
+};
+export default meta;
+type Story = StoryObj<KpHeaderComponent>;
+
+export const Playground: Story = {
+  args: {
+    size: 'md',
+    appearance: 'light',
+    navItems: NAV,
+    showSearch: true,
+    showNotifications: true,
+    notificationsCount: '3',
+    showUserMenu: true,
+    userName: 'Greg Black',
+    userInitials: 'GB',
+    userRole: 'Admin',
+  },
+};
+
+export const Sizes: Story = {
+  render: () => ({
+    props: { nav: NAV },
+    template: `
+      <div style="background:#F4F4F5;display:flex;flex-direction:column;gap:24px;padding:24px">
+        <kp-header size="sm" [navItems]="nav" userName="Greg" userInitials="GB"/>
+        <kp-header size="md" [navItems]="nav" userName="Greg Black" userRole="Admin" userInitials="GB" [showSearch]="true" notificationsCount="3"/>
+        <kp-header size="lg" [navItems]="nav" userName="Greg Black" userRole="Admin" userInitials="GB" [showSearch]="true" notificationsCount="3"/>
+      </div>
+    `,
+  }),
+};
+
+export const Appearances: Story = {
+  render: () => ({
+    props: { nav: NAV },
+    template: `
+      <div style="display:flex;flex-direction:column;gap:24px">
+        <kp-header appearance="light" [navItems]="nav" userName="Greg Black" userRole="Admin" userInitials="GB" [showSearch]="true" notificationsCount="3"/>
+        <kp-header appearance="dark"  [navItems]="nav" userName="Greg Black" userRole="Admin" userInitials="GB" [showSearch]="true" notificationsCount="3"/>
+      </div>
+    `,
+  }),
+};
+
+export const Minimal: Story = {
+  args: { showMainNav: false, showNotifications: false, showSearch: false, userName: 'GB', userInitials: 'GB' },
+};
+
+export const WithCTA: Story = {
+  render: () => ({
+    props: { nav: [
+      { label: 'Product',  href: '#' },
+      { label: 'Pricing',  href: '#' },
+      { label: 'Docs',     href: '#' },
+      { label: 'Blog',     href: '#' },
+    ] },
+    template: `
+      <kp-header
+        size="lg"
+        [navItems]="nav"
+        [showSearch]="false"
+        [showNotifications]="false"
+        [showUserMenu]="false"
+        [showCta]="true"
+        ctaLabel="Get started"
+      />
+    `,
+  }),
+};
+
+export const SaaSApp: Story = {
+  args: {
+    size: 'md',
+    navItems: NAV,
+    showSearch: true,
+    showThemeToggle: true,
+    showNotifications: true,
+    notificationsCount: '5',
+    showUserMenu: true,
+    userName: 'Greg Black',
+    userInitials: 'GB',
+    userRole: 'Admin',
+    showUserStatus: true,
+  },
+};
+
+export const AdminPanel: Story = {
+  args: {
+    size: 'md',
+    navItems: NAV,
+    showSearch: false,
+    showNotifications: true,
+    notificationsCount: '12',
+    showUserMenu: true,
+    userName: 'Greg Black',
+    userInitials: 'GB',
+    userRole: 'Admin',
+  },
+};
