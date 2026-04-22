@@ -1,9 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   EventEmitter,
+  HostListener,
   Input,
   Output,
+  inject,
+  signal,
 } from '@angular/core';
 
 export type KpThemeToggleVariant = 'icon' | 'segmented' | 'dropdown';
@@ -70,16 +74,40 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       @if (showLabel) {
         <span class="kp-theme-toggle__label">Theme</span>
       }
-      <button
-        type="button"
-        class="kp-theme-toggle__dropdown"
-        [attr.aria-haspopup]="'listbox'"
-        (click)="dropdownClick.emit()"
-      >
-        <i [class]="'ti ti-' + iconName(currentTheme)" aria-hidden="true"></i>
-        <span class="kp-theme-toggle__dropdown-label">{{ themeLabel(currentTheme) }}</span>
-        <i class="ti ti-chevron-down kp-theme-toggle__chevron" aria-hidden="true"></i>
-      </button>
+      <div class="kp-theme-toggle__dropdown-wrap">
+        <button
+          type="button"
+          class="kp-theme-toggle__dropdown"
+          [class.kp-theme-toggle__dropdown--open]="isOpen()"
+          [attr.aria-haspopup]="'listbox'"
+          [attr.aria-expanded]="isOpen()"
+          (click)="toggleOpen()"
+        >
+          <i [class]="'ti ti-' + iconName(currentTheme)" aria-hidden="true"></i>
+          <span class="kp-theme-toggle__dropdown-label">{{ themeLabel(currentTheme) }}</span>
+          <i class="ti ti-chevron-down kp-theme-toggle__chevron" aria-hidden="true"></i>
+        </button>
+        @if (isOpen()) {
+          <div class="kp-theme-toggle__menu" role="listbox" aria-label="Theme">
+            @for (t of themes; track t) {
+              <button
+                type="button"
+                role="option"
+                class="kp-theme-toggle__option"
+                [class.kp-theme-toggle__option--selected]="currentTheme === t"
+                [attr.aria-selected]="currentTheme === t"
+                (click)="selectFromMenu(t)"
+              >
+                <i [class]="'ti ti-' + iconName(t)" aria-hidden="true"></i>
+                <span>{{ themeLabel(t) }}</span>
+                @if (currentTheme === t) {
+                  <i class="ti ti-check kp-theme-toggle__option-check" aria-hidden="true"></i>
+                }
+              </button>
+            }
+          </div>
+        }
+      </div>
     }
   `,
   styles: [`
@@ -162,8 +190,55 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       cursor: pointer;
       transition: background 120ms ease, color 120ms ease;
     }
-    .kp-theme-toggle__dropdown:hover { background: var(--kp-color-gray-100, #F4F4F5); color: var(--kp-color-gray-900, #18181B); }
+    .kp-theme-toggle__dropdown:hover,
+    .kp-theme-toggle__dropdown--open {
+      background: var(--kp-color-gray-100, #F4F4F5);
+      color: var(--kp-color-gray-900, #18181B);
+    }
     .kp-theme-toggle__dropdown-label { min-width: 44px; text-align: left; }
+
+    .kp-theme-toggle__dropdown-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    .kp-theme-toggle__menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      min-width: 180px;
+      padding: 4px;
+      border-radius: 10px;
+      background: var(--kp-color-white, #FFFFFF);
+      border: 1px solid var(--kp-color-gray-200, #E4E4E7);
+      box-shadow: 0 8px 24px -4px rgba(0,0,0,0.08), 0 4px 8px -4px rgba(0,0,0,0.04);
+      z-index: 10;
+    }
+    .kp-theme-toggle__option {
+      all: unset;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: var(--kp-color-gray-700, #3F3F46);
+      cursor: pointer;
+      transition: background 120ms ease, color 120ms ease;
+    }
+    .kp-theme-toggle__option:hover {
+      background: var(--kp-color-gray-100, #F4F4F5);
+      color: var(--kp-color-gray-900, #18181B);
+    }
+    .kp-theme-toggle__option--selected {
+      color: var(--kp-color-gray-900, #18181B);
+      font-weight: 500;
+    }
+    .kp-theme-toggle__option-check {
+      margin-left: auto;
+      color: var(--kp-color-blue-600, #2563EB);
+      font-size: 14px;
+    }
+    :host .ti.kp-theme-toggle__option-check { font-size: 14px; }
 
     /* Sizes */
     :host(.kp-theme-toggle--sm) {
@@ -193,6 +268,34 @@ export class KpThemeToggleComponent {
   @Output() dropdownClick = new EventEmitter<void>();
 
   readonly themes = THEMES;
+  readonly isOpen = signal(false);
+
+  private readonly hostRef = inject(ElementRef<HTMLElement>);
+
+  @HostListener('document:click', ['$event'])
+  onDocClick(event: MouseEvent): void {
+    if (!this.isOpen()) return;
+    const el = this.hostRef.nativeElement;
+    if (el && !el.contains(event.target as Node)) {
+      this.isOpen.set(false);
+    }
+  }
+
+  @HostListener('document:keydown.escape')
+  onEsc(): void {
+    if (this.isOpen()) this.isOpen.set(false);
+  }
+
+  toggleOpen(): void {
+    const next = !this.isOpen();
+    this.isOpen.set(next);
+    if (next) this.dropdownClick.emit();
+  }
+
+  selectFromMenu(t: KpThemeValue): void {
+    this.select(t);
+    this.isOpen.set(false);
+  }
 
   get hostClasses(): string {
     return `kp-theme-toggle kp-theme-toggle--${this.variant} kp-theme-toggle--${this.size}`;
