@@ -1,7 +1,7 @@
 import {
   AfterViewChecked,
-  AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -35,7 +35,7 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses' },
   template: `
-    @if (open) {
+    @if (rendered) {
       <div #root class="kp-drawer__root" [class]="rootClasses">
         <div class="kp-drawer__backdrop" (click)="onBackdropClick()"></div>
         <div
@@ -257,7 +257,7 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
     .kp-drawer__root.kp-drawer--xl { --kp-drawer-w: 800px; --kp-drawer-h: 720px; }
   `],
 })
-export class KpDrawerComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
+export class KpDrawerComponent implements AfterViewChecked, OnDestroy {
   private static idCounter = 0;
   private readonly uid = ++KpDrawerComponent.idCounter;
 
@@ -276,7 +276,24 @@ export class KpDrawerComponent implements AfterViewInit, AfterViewChecked, OnDes
   @Input() closeOnBackdrop = true;
   @Input() closeOnEsc = true;
 
-  @Input() open = false;
+  @Input()
+  set open(value: boolean) {
+    if (value === this._open) return;
+    this._open = value;
+    if (value) {
+      if (this.closeTimer != null) { clearTimeout(this.closeTimer); this.closeTimer = undefined; }
+      this.rendered = true;
+      this.closing = false;
+      this.onOpened();
+    } else if (this.rendered) {
+      this.startExit();
+    }
+  }
+  get open(): boolean { return this._open; }
+  private _open = false;
+
+  /** @internal — keeps the DOM mounted while the exit animation plays. */
+  rendered = false;
   /** @internal — flips on for the duration of the exit animation. */
   closing = false;
   private closeTimer?: ReturnType<typeof setTimeout>;
@@ -288,6 +305,7 @@ export class KpDrawerComponent implements AfterViewInit, AfterViewChecked, OnDes
   @ViewChild('root')  root?: ElementRef<HTMLElement>;
 
   private readonly doc = inject(DOCUMENT);
+  private readonly cdr = inject(ChangeDetectorRef);
   private prevBodyOverflow = '';
   private prevFocused: Element | null = null;
 
@@ -302,7 +320,6 @@ export class KpDrawerComponent implements AfterViewInit, AfterViewChecked, OnDes
     return s;
   }
 
-  ngAfterViewInit(): void { if (this.open) this.onOpened(); }
   ngAfterViewChecked(): void {
     const el = this.root?.nativeElement;
     if (el && this.doc?.body && el.parentElement !== this.doc.body) {
@@ -311,11 +328,7 @@ export class KpDrawerComponent implements AfterViewInit, AfterViewChecked, OnDes
   }
   ngOnDestroy(): void {
     if (this.closeTimer != null) clearTimeout(this.closeTimer);
-    if (this.open) this.restoreBodyScroll();
-  }
-  ngOnChanges(): void {
-    if (this.open) this.onOpened();
-    else this.restoreBodyScroll();
+    if (this.rendered) this.restoreBodyScroll();
   }
 
   private onOpened(): void {
@@ -339,22 +352,30 @@ export class KpDrawerComponent implements AfterViewInit, AfterViewChecked, OnDes
     (focusable ?? panel).focus();
   }
 
-  close(): void {
-    if (!this.open || this.closing) return;
+  private startExit(): void {
+    if (this.closing) return;
     this.closing = true;
-    // Keep the DOM mounted while the reverse animation plays, then unmount.
+    this.cdr.markForCheck();
     this.closeTimer = setTimeout(() => {
-      this.open = false;
+      this.closeTimer = undefined;
+      this.rendered = false;
       this.closing = false;
-      this.openChange.emit(false);
       this.closed.emit();
       this.restoreBodyScroll();
+      this.cdr.markForCheck();
     }, 220);
+  }
+
+  close(): void {
+    if (!this._open || this.closing) return;
+    this._open = false;
+    this.openChange.emit(false);
+    this.startExit();
   }
   onBackdropClick(): void { if (this.closeOnBackdrop) this.close(); }
 
   @HostListener('document:keydown.escape', ['$event'])
   onEscape(event: KeyboardEvent): void {
-    if (this.open && this.closeOnEsc) { event.stopPropagation(); this.close(); }
+    if (this._open && this.closeOnEsc) { event.stopPropagation(); this.close(); }
   }
 }
