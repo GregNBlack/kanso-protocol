@@ -1,0 +1,12 @@
+{
+  "name": "@kanso-protocol/user-menu",
+  "version": "0.1.0",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/core": "^18.0.0",
+    "@angular/common": "^18.0.0",
+    "@kanso-protocol/core": "^0.0.1",
+    "@kanso-protocol/avatar": "^0.1.0"
+  },
+  "ngPackage": { "lib": { "entryFile": "src/index.ts" } }
+}
