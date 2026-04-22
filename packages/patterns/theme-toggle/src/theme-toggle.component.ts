@@ -240,9 +240,15 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
     .kp-theme-toggle__option-check {
       margin-left: auto;
       color: var(--kp-color-blue-600, #2563EB);
-      font-size: 14px;
     }
-    :host .ti.kp-theme-toggle__option-check { font-size: 14px; }
+
+    /* Menu icons — match trigger size. Scoped by size class instead of :host
+       because the menu is portaled to <body> and escapes the host context. */
+    .kp-theme-toggle__menu .ti { font-size: 18px; line-height: 1; }
+    .kp-theme-toggle__menu--sm .ti { font-size: 16px; }
+    .kp-theme-toggle__menu--md .ti { font-size: 18px; }
+    .kp-theme-toggle__menu--lg .ti { font-size: 20px; }
+    .kp-theme-toggle__menu .ti.kp-theme-toggle__option-check { font-size: 14px; }
 
     /* Sizes */
     :host(.kp-theme-toggle--sm) {
@@ -285,6 +291,8 @@ export class KpThemeToggleComponent implements AfterViewChecked, OnDestroy {
     const menu = this.menuEl?.nativeElement;
     // Portal menu to <body> so transformed/clipped ancestors can't clip it.
     if (menu && this.doc?.body && menu.parentElement !== this.doc.body) {
+      // Tag the menu with the current size so size-scoped CSS applies after portal
+      menu.classList.add(`kp-theme-toggle__menu--${this.size}`);
       this.doc.body.appendChild(menu);
       this.portaledMenu = menu;
       window.addEventListener('scroll', this.reposition, true);
