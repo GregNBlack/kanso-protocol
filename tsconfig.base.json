@@ -59,7 +59,8 @@
       "@kanso-protocol/grid": ["packages/patterns/grid/src/index.ts"],
       "@kanso-protocol/header": ["packages/patterns/header/src/index.ts"],
       "@kanso-protocol/nav-item": ["packages/patterns/nav-item/src/index.ts"],
-      "@kanso-protocol/sidebar": ["packages/patterns/sidebar/src/index.ts"]
+      "@kanso-protocol/sidebar": ["packages/patterns/sidebar/src/index.ts"],
+      "@kanso-protocol/page-header": ["packages/patterns/page-header/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]
