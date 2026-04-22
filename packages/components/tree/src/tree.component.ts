@@ -8,6 +8,7 @@ import {
   inject,
 } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
+import { KpCheckboxComponent } from '@kanso-protocol/checkbox';
 
 export type KpTreeSize = 'sm' | 'md';
 
@@ -43,7 +44,7 @@ export interface KpTreeNode {
  */
 @Component({
   selector: 'kp-tree',
-  imports: [NgTemplateOutlet],
+  imports: [NgTemplateOutlet, KpCheckboxComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses' },
   template: `
@@ -82,16 +83,16 @@ export interface KpTreeNode {
           }
 
           @if (showCheckboxes) {
-            <input
-              type="checkbox"
-              class="kp-tree__checkbox"
-              [checked]="checkState(node) === 'checked'"
-              [indeterminate]="checkState(node) === 'indeterminate'"
-              [disabled]="node.disabled"
-              [attr.aria-label]="'Select ' + node.label"
-              (click)="$event.stopPropagation()"
-              (change)="toggleChecked(node)"
-            />
+            <span class="kp-tree__checkbox" (click)="$event.stopPropagation()">
+              <kp-checkbox
+                size="sm"
+                [hasLabel]="false"
+                [checked]="checkState(node) === 'checked'"
+                [indeterminate]="checkState(node) === 'indeterminate'"
+                [disabled]="node.disabled"
+                (checkedChange)="toggleChecked(node)"
+              />
+            </span>
           }
 
           @if (showIcons) {
@@ -200,10 +201,7 @@ export interface KpTreeNode {
     .kp-tree__chevron--placeholder { cursor: default; }
 
     .kp-tree__checkbox {
-      width: 14px;
-      height: 14px;
-      margin: 0;
-      accent-color: var(--kp-color-blue-600, #2563EB);
+      display: inline-flex;
       flex: 0 0 auto;
     }
 

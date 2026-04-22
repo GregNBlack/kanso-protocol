@@ -10,6 +10,7 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
+import { KpCheckboxComponent } from '@kanso-protocol/checkbox';
 
 export type KpTableSize = 'sm' | 'md' | 'lg';
 export type KpTableSortDirection = 'asc' | 'desc';
@@ -66,7 +67,7 @@ export class KpTableHeaderDirective {
  */
 @Component({
   selector: 'kp-table',
-  imports: [NgTemplateOutlet],
+  imports: [NgTemplateOutlet, KpCheckboxComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses' },
   template: `
@@ -75,13 +76,12 @@ export class KpTableHeaderDirective {
         <tr class="kp-table__head-row">
           @if (selectable) {
             <th class="kp-table__cell kp-table__cell--checkbox" scope="col">
-              <input
-                type="checkbox"
-                class="kp-table__checkbox"
-                aria-label="Select all"
+              <kp-checkbox
+                size="sm"
+                [hasLabel]="false"
                 [checked]="allSelected()"
                 [indeterminate]="someSelected() && !allSelected()"
-                (change)="toggleAll($event)"
+                (checkedChange)="toggleAll($event)"
               />
             </th>
           }
@@ -133,14 +133,12 @@ export class KpTableHeaderDirective {
             (click)="onRowClick(row, $event)"
           >
             @if (selectable) {
-              <td class="kp-table__cell kp-table__cell--checkbox">
-                <input
-                  type="checkbox"
-                  class="kp-table__checkbox"
-                  [attr.aria-label]="'Select row ' + (i + 1)"
+              <td class="kp-table__cell kp-table__cell--checkbox" (click)="$event.stopPropagation()">
+                <kp-checkbox
+                  size="sm"
+                  [hasLabel]="false"
                   [checked]="isSelected(row)"
-                  (change)="toggleRow(row)"
-                  (click)="$event.stopPropagation()"
+                  (checkedChange)="toggleRow(row)"
                 />
               </td>
             }
@@ -265,13 +263,8 @@ export class KpTableHeaderDirective {
       font-size: 13px;
     }
 
-    .kp-table__checkbox {
-      width: 16px;
-      height: 16px;
-      margin: 0;
-      cursor: pointer;
-      accent-color: var(--kp-color-blue-600, #2563EB);
-    }
+    /* Checkbox cell centers the KpCheckbox inside a fixed column width. */
+    .kp-table__cell--checkbox kp-checkbox { display: inline-flex; }
   `],
 })
 export class KpTableComponent<T = unknown> {
@@ -335,8 +328,7 @@ export class KpTableComponent<T = unknown> {
     this.selectedChange.emit(next);
   }
 
-  toggleAll(event: Event): void {
-    const checked = (event.target as HTMLInputElement).checked;
+  toggleAll(checked: boolean): void {
     const next = checked ? [...this.data] : [];
     this.selected = next;
     this.selectedChange.emit(next);
