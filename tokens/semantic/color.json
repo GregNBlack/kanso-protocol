@@ -464,6 +464,10 @@
       "value": { "$value": "{color.gray.900}", "$type": "color" }
     },
 
+    "combobox": {
+      "highlight": { "$value": "{color.blue.50}", "$type": "color", "$description": "Background behind query-matching substrings in options" }
+    },
+
     "accordion": {
       "trigger": {
         "bg": {
