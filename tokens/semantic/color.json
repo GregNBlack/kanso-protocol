@@ -444,6 +444,27 @@
       "resize-handle": { "$value": "{color.gray.300}", "$type": "color", "$description": "Drag handle on bottom/top sheets" }
     },
 
+    "accordion": {
+      "trigger": {
+        "bg": {
+          "rest":     { "$value": "transparent", "$type": "color" },
+          "hover":    { "$value": "{color.gray.50}", "$type": "color" },
+          "expanded": { "$value": "transparent", "$type": "color" }
+        },
+        "fg": {
+          "rest":     { "$value": "{color.gray.900}", "$type": "color" },
+          "expanded": { "$value": "{color.gray.900}", "$type": "color" },
+          "disabled": { "$value": "{color.gray.400}", "$type": "color" }
+        },
+        "icon": {
+          "rest":     { "$value": "{color.gray.500}", "$type": "color" },
+          "expanded": { "$value": "{color.blue.600}", "$type": "color" }
+        }
+      },
+      "content": { "$value": "{color.gray.700}", "$type": "color" },
+      "border":  { "$value": "{color.gray.200}", "$type": "color" }
+    },
+
     "empty-state": {
       "illustration-bg":   { "$value": "{color.gray.100}", "$type": "color" },
       "illustration-icon": { "$value": "{color.gray.500}", "$type": "color" },
