@@ -1,4 +1,5 @@
 import {
+  AfterViewChecked,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -6,6 +7,7 @@ import {
   EventEmitter,
   HostListener,
   Input,
+  OnDestroy,
   Output,
   ViewChild,
   forwardRef,
@@ -97,7 +99,7 @@ export interface KpComboboxOption {
     </div>
 
     @if (isOpen && !isDisabled) {
-      <div class="kp-cb__dropdown" role="listbox" [id]="listboxId" [attr.aria-multiselectable]="multiple || null">
+      <div #dropdown class="kp-cb__dropdown" role="listbox" [id]="listboxId" [attr.aria-multiselectable]="multiple || null">
         @for (opt of filteredOptions; track opt.value; let i = $index) {
           <div
             class="kp-cb__option"
@@ -247,14 +249,12 @@ export interface KpComboboxOption {
     :host(.kp-cb--error) .kp-cb__chevron { color: #EF4444; }
 
     .kp-cb__dropdown {
-      position: absolute;
-      top: calc(100% + 4px);
+      position: fixed;
+      top: 0;
       left: 0;
-      right: 0;
-      z-index: 50;
+      z-index: 1000;
       display: flex;
       flex-direction: column;
-      min-width: 100%;
       max-height: 280px;
       padding: 4px;
       background: #FFFFFF;
@@ -371,7 +371,7 @@ export interface KpComboboxOption {
     }
   `],
 })
-export class KpComboboxComponent implements ControlValueAccessor {
+export class KpComboboxComponent implements ControlValueAccessor, AfterViewChecked, OnDestroy {
   private static idCounter = 0;
   private readonly uid = ++KpComboboxComponent.idCounter;
 
@@ -390,6 +390,7 @@ export class KpComboboxComponent implements ControlValueAccessor {
   @Output() readonly queryChange = new EventEmitter<string>();
 
   @ViewChild('input') inputEl?: ElementRef<HTMLInputElement>;
+  @ViewChild('dropdown') dropdownEl?: ElementRef<HTMLElement>;
 
   /** @internal */ isOpen = false;
   /** @internal */ query = '';
@@ -594,8 +595,36 @@ export class KpComboboxComponent implements ControlValueAccessor {
     this.isOpen = open;
     if (!open) this.query = '';
     else this.activeIndex = Math.max(0, this.findFirstEnabledIndex());
+    if (open) {
+      window.addEventListener('scroll', this.reposition, true);
+      window.addEventListener('resize', this.reposition);
+    } else {
+      window.removeEventListener('scroll', this.reposition, true);
+      window.removeEventListener('resize', this.reposition);
+    }
     this.openChange.emit(open);
     this.cdr.markForCheck();
+  }
+
+  ngAfterViewChecked(): void {
+    if (this.isOpen) this.positionDropdown();
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('scroll', this.reposition, true);
+    window.removeEventListener('resize', this.reposition);
+  }
+
+  private readonly reposition = () => this.positionDropdown();
+
+  private positionDropdown(): void {
+    const dd = this.dropdownEl?.nativeElement;
+    const trigger = this.host.nativeElement.querySelector('.kp-cb__trigger') as HTMLElement | null;
+    if (!dd || !trigger) return;
+    const rect = trigger.getBoundingClientRect();
+    dd.style.top = `${rect.bottom + 4}px`;
+    dd.style.left = `${rect.left}px`;
+    dd.style.width = `${rect.width}px`;
   }
 
   private findFirstEnabledIndex(): number {
