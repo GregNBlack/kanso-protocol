@@ -348,6 +348,41 @@
       "track-border": { "$value": "{color.gray.200}", "$type": "color", "$description": "Bottom border under the whole tabs strip" }
     },
 
+    "avatar": {
+      "bg": {
+        "default": { "$value": "{color.gray.200}",  "$type": "color" },
+        "primary": { "$value": "{color.blue.100}",  "$type": "color" },
+        "success": { "$value": "{color.green.100}", "$type": "color" },
+        "warning": { "$value": "{color.amber.100}", "$type": "color" },
+        "danger":  { "$value": "{color.red.100}",   "$type": "color" },
+        "info":    { "$value": "{color.cyan.100}",  "$type": "color" },
+        "neutral": { "$value": "{color.gray.900}",  "$type": "color" }
+      },
+      "fg": {
+        "default": { "$value": "{color.gray.700}",  "$type": "color" },
+        "primary": { "$value": "{color.blue.700}",  "$type": "color" },
+        "success": { "$value": "{color.green.700}", "$type": "color" },
+        "warning": { "$value": "{color.amber.700}", "$type": "color" },
+        "danger":  { "$value": "{color.red.700}",   "$type": "color" },
+        "info":    { "$value": "{color.cyan.700}",  "$type": "color" },
+        "neutral": { "$value": "{color.white}",     "$type": "color" }
+      },
+      "ring":    { "$value": "{color.white}",       "$type": "color", "$description": "Border ring around avatars in stacks" },
+      "status": {
+        "online":  { "$value": "{color.green.500}", "$type": "color" },
+        "offline": { "$value": "{color.gray.400}",  "$type": "color" },
+        "busy":    { "$value": "{color.red.500}",   "$type": "color" },
+        "away":    { "$value": "{color.amber.500}", "$type": "color" }
+      }
+    },
+
+    "avatar-group": {
+      "count": {
+        "bg": { "$value": "{color.gray.200}", "$type": "color" },
+        "fg": { "$value": "{color.gray.700}", "$type": "color" }
+      }
+    },
+
     "breadcrumbs": {
       "item": {
         "fg": {
