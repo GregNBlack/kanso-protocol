@@ -50,7 +50,9 @@
       "@kanso-protocol/timepicker": ["packages/components/timepicker/src/index.ts"],
       "@kanso-protocol/toast": ["packages/components/toast/src/index.ts"],
       "@kanso-protocol/table": ["packages/components/table/src/index.ts"],
-      "@kanso-protocol/tree": ["packages/components/tree/src/index.ts"]
+      "@kanso-protocol/tree": ["packages/components/tree/src/index.ts"],
+      "@kanso-protocol/avatar": ["packages/components/avatar/src/index.ts"],
+      "@kanso-protocol/avatar-group": ["packages/components/avatar-group/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]
