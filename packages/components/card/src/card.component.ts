@@ -125,6 +125,11 @@ export type KpCardAppearance = 'default' | 'muted' | 'elevated' | 'outline';
       line-height: var(--kp-card-body-lh);
     }
     .kp-card__body:empty { display: none; }
+    /* When the body is the topmost or bottommost section, give it
+       breathing room equivalent to what the missing header/footer
+       would have provided. */
+    :host(.kp-card--no-header) .kp-card__body { padding-top: 24px; }
+    :host(.kp-card--no-footer) .kp-card__body { padding-bottom: 24px; }
 
     .kp-card__footer {
       display: flex;
@@ -214,6 +219,8 @@ export class KpCardComponent {
   get hostClasses(): string {
     const c = ['kp-card', `kp-card--${this.size}`, `kp-card--${this.appearance}`];
     if (this.clickable) c.push('kp-card--clickable');
+    if (!this.showHeader) c.push('kp-card--no-header');
+    if (!this.showFooter) c.push('kp-card--no-footer');
     return c.join(' ');
   }
 
