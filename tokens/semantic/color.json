@@ -435,6 +435,11 @@
       }
     },
 
+    "divider": {
+      "line":  { "$value": "{color.gray.200}", "$type": "color", "$description": "Divider line color" },
+      "label": { "$value": "{color.gray.500}", "$type": "color", "$description": "Divider center label color" }
+    },
+
     "dialog": {
       "backdrop": { "$value": "rgba(0, 0, 0, 0.5)", "$type": "color", "$description": "Semi-transparent overlay behind dialog" },
       "panel": {
