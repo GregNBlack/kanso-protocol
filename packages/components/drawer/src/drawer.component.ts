@@ -279,7 +279,7 @@ export class KpDrawerComponent implements AfterViewInit, AfterViewChecked, OnDes
   @Input() open = false;
   /** @internal — flips on for the duration of the exit animation. */
   closing = false;
-  private closeTimer?: number;
+  private closeTimer?: ReturnType<typeof setTimeout>;
 
   @Output() readonly openChange = new EventEmitter<boolean>();
   @Output() readonly closed = new EventEmitter<void>();
@@ -343,7 +343,7 @@ export class KpDrawerComponent implements AfterViewInit, AfterViewChecked, OnDes
     if (!this.open || this.closing) return;
     this.closing = true;
     // Keep the DOM mounted while the reverse animation plays, then unmount.
-    this.closeTimer = (typeof window !== 'undefined' ? window : globalThis).setTimeout(() => {
+    this.closeTimer = setTimeout(() => {
       this.open = false;
       this.closing = false;
       this.openChange.emit(false);
