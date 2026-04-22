@@ -1,14 +1,18 @@
 import {
+  AfterViewChecked,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
   HostListener,
   Input,
+  OnDestroy,
   Output,
+  ViewChild,
   inject,
   signal,
 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 export type KpThemeToggleVariant = 'icon' | 'segmented' | 'dropdown';
 export type KpThemeToggleSize = 'sm' | 'md' | 'lg';
@@ -88,7 +92,7 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
           <i class="ti ti-chevron-down kp-theme-toggle__chevron" aria-hidden="true"></i>
         </button>
         @if (isOpen()) {
-          <div class="kp-theme-toggle__menu" role="listbox" aria-label="Theme">
+          <div #menu class="kp-theme-toggle__menu" role="listbox" aria-label="Theme">
             @for (t of themes; track t) {
               <button
                 type="button"
@@ -202,16 +206,15 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       display: inline-block;
     }
     .kp-theme-toggle__menu {
-      position: absolute;
-      top: calc(100% + 6px);
-      right: 0;
+      position: fixed;
       min-width: 180px;
       padding: 4px;
       border-radius: 10px;
       background: var(--kp-color-white, #FFFFFF);
       border: 1px solid var(--kp-color-gray-200, #E4E4E7);
       box-shadow: 0 8px 24px -4px rgba(0,0,0,0.08), 0 4px 8px -4px rgba(0,0,0,0.04);
-      z-index: 10;
+      z-index: 1000;
+      font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
     .kp-theme-toggle__option {
       all: unset;
@@ -258,7 +261,7 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
     }
   `],
 })
-export class KpThemeToggleComponent {
+export class KpThemeToggleComponent implements AfterViewChecked, OnDestroy {
   @Input() variant: KpThemeToggleVariant = 'icon';
   @Input() size: KpThemeToggleSize = 'md';
   @Input() currentTheme: KpThemeValue = 'light';
@@ -270,31 +273,84 @@ export class KpThemeToggleComponent {
   readonly themes = THEMES;
   readonly isOpen = signal(false);
 
+  @ViewChild('menu') menuEl?: ElementRef<HTMLElement>;
+
   private readonly hostRef = inject(ElementRef<HTMLElement>);
+  private readonly doc = inject(DOCUMENT);
+  private portaledMenu: HTMLElement | null = null;
+
+  ngAfterViewChecked(): void {
+    if (!this.isOpen()) return;
+    const menu = this.menuEl?.nativeElement;
+    // Portal menu to <body> so transformed/clipped ancestors can't clip it.
+    if (menu && this.doc?.body && menu.parentElement !== this.doc.body) {
+      this.doc.body.appendChild(menu);
+      this.portaledMenu = menu;
+      window.addEventListener('scroll', this.reposition, true);
+      window.addEventListener('resize', this.reposition);
+    }
+    this.positionMenu();
+  }
+
+  ngOnDestroy(): void {
+    this.cleanupMenu();
+  }
+
+  private cleanupMenu(): void {
+    window.removeEventListener('scroll', this.reposition, true);
+    window.removeEventListener('resize', this.reposition);
+    if (this.portaledMenu && this.portaledMenu.parentElement === this.doc?.body) {
+      this.portaledMenu.remove();
+    }
+    this.portaledMenu = null;
+  }
+
+  private closeMenu(): void {
+    if (!this.isOpen()) return;
+    this.cleanupMenu();
+    this.isOpen.set(false);
+  }
+
+  private readonly reposition = () => this.positionMenu();
+
+  private positionMenu(): void {
+    const menu = this.menuEl?.nativeElement;
+    const trigger = this.hostRef.nativeElement.querySelector('.kp-theme-toggle__dropdown') as HTMLElement | null;
+    if (!menu || !trigger) return;
+    const rect = trigger.getBoundingClientRect();
+    menu.style.top = `${rect.bottom + 6}px`;
+    menu.style.right = `${window.innerWidth - rect.right}px`;
+    menu.style.left = 'auto';
+  }
 
   @HostListener('document:click', ['$event'])
   onDocClick(event: MouseEvent): void {
     if (!this.isOpen()) return;
-    const el = this.hostRef.nativeElement;
-    if (el && !el.contains(event.target as Node)) {
-      this.isOpen.set(false);
-    }
+    const target = event.target as Node;
+    const host = this.hostRef.nativeElement;
+    const portaled = this.portaledMenu;
+    const insideHost = host && host.contains(target);
+    const insideMenu = portaled && portaled.contains(target);
+    if (!insideHost && !insideMenu) this.closeMenu();
   }
 
   @HostListener('document:keydown.escape')
   onEsc(): void {
-    if (this.isOpen()) this.isOpen.set(false);
+    this.closeMenu();
   }
 
   toggleOpen(): void {
-    const next = !this.isOpen();
-    this.isOpen.set(next);
-    if (next) this.dropdownClick.emit();
+    if (this.isOpen()) {
+      this.closeMenu();
+    } else {
+      this.isOpen.set(true);
+      this.dropdownClick.emit();
+    }
   }
 
   selectFromMenu(t: KpThemeValue): void {
     this.select(t);
-    this.isOpen.set(false);
+    this.closeMenu();
   }
 
   get hostClasses(): string {
