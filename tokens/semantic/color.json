@@ -383,6 +383,33 @@
       }
     },
 
+    "sidebar": {
+      "bg":            { "$value": "{color.white}",    "$type": "color" },
+      "bg-dark":       { "$value": "{color.gray.900}", "$type": "color" },
+      "border":        { "$value": "{color.gray.200}", "$type": "color" },
+      "section-label": { "$value": "{color.gray.500}", "$type": "color" }
+    },
+
+    "nav-item": {
+      "bg": {
+        "rest":   { "$value": "transparent",      "$type": "color" },
+        "hover":  { "$value": "{color.gray.100}", "$type": "color" },
+        "active": { "$value": "{color.blue.50}",  "$type": "color" }
+      },
+      "fg": {
+        "rest":     { "$value": "{color.gray.700}", "$type": "color" },
+        "hover":    { "$value": "{color.gray.900}", "$type": "color" },
+        "active":   { "$value": "{color.blue.700}", "$type": "color" },
+        "disabled": { "$value": "{color.gray.400}", "$type": "color" }
+      },
+      "icon": {
+        "rest":   { "$value": "{color.gray.500}", "$type": "color" },
+        "hover":  { "$value": "{color.gray.700}", "$type": "color" },
+        "active": { "$value": "{color.blue.600}", "$type": "color" }
+      },
+      "active-indicator": { "$value": "{color.blue.600}", "$type": "color", "$description": "Left accent bar on active nav item" }
+    },
+
     "header": {
       "bg":        { "$value": "{color.white}",    "$type": "color" },
       "bg-dark":   { "$value": "{color.gray.900}", "$type": "color", "$description": "Dark-mode / intentional dark header" },
