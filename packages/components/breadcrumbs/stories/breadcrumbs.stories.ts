@@ -24,6 +24,13 @@ class BreadcrumbsAutoDemoComponent implements OnInit {
   }
 }
 
+// Placeholder component so router config is valid (Angular 16+ requires every
+// route to declare one of component / redirectTo / children / loadChildren /
+// loadComponent — the story only cares about matching for the breadcrumb
+// data, so an empty template is enough).
+@Component({ selector: 'kp-route-blank', standalone: true, template: '' })
+class RouteBlank {}
+
 const meta: Meta<KpBreadcrumbsComponent> = {
   title: 'Components/Breadcrumbs',
   component: KpBreadcrumbsComponent,
@@ -277,6 +284,7 @@ export const Auto: Story = {
                     children: [
                       {
                         path: 'button',
+                        component: RouteBlank,
                         data: { breadcrumb: (route: any) => route.paramMap.get('id') ?? 'Button' },
                       },
                     ],
