@@ -769,8 +769,35 @@ export class KpDatePickerComponent implements ControlValueAccessor, AfterViewChe
     const trigger = this.triggerEl?.nativeElement;
     if (!pan || !trigger) return;
     const rect = trigger.getBoundingClientRect();
-    pan.style.top = `${rect.bottom + 4}px`;
-    pan.style.left = `${rect.left}px`;
+    const panelRect = pan.getBoundingClientRect();
+    const viewportH = window.innerHeight;
+    const viewportW = window.innerWidth;
+    const gap = 4;
+    const edge = 8;
+
+    // Vertical: prefer below the trigger; flip above if the panel doesn't
+    // fit. If neither side fits fully, pin to whichever has more room.
+    const spaceBelow = viewportH - rect.bottom;
+    const spaceAbove = rect.top;
+    let top: number;
+    if (spaceBelow >= panelRect.height + gap) {
+      top = rect.bottom + gap;
+    } else if (spaceAbove >= panelRect.height + gap) {
+      top = rect.top - panelRect.height - gap;
+    } else {
+      top = spaceAbove > spaceBelow
+        ? Math.max(edge, rect.top - panelRect.height - gap)
+        : Math.min(rect.bottom + gap, viewportH - panelRect.height - edge);
+    }
+
+    // Horizontal: align with the trigger's left, but clamp so the panel
+    // stays inside the viewport on both sides.
+    let left = rect.left;
+    if (left + panelRect.width > viewportW - edge) left = viewportW - panelRect.width - edge;
+    if (left < edge) left = edge;
+
+    pan.style.top = `${top}px`;
+    pan.style.left = `${left}px`;
   }
 
   // ControlValueAccessor
