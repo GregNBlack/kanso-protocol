@@ -1,9 +1,11 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
   Output,
+  inject,
 } from '@angular/core';
 
 export type KpAccordionItemSize = 'sm' | 'md' | 'lg';
@@ -216,6 +218,8 @@ export class KpAccordionItemComponent {
   readonly triggerId = `kp-ai-trigger-${this.uid}`;
   readonly panelId   = `kp-ai-panel-${this.uid}`;
 
+  private readonly cdr = inject(ChangeDetectorRef);
+
   get hostClasses(): string {
     const c = ['kp-ai', `kp-ai--${this.size}`];
     if (this.expanded) c.push('kp-ai--expanded');
@@ -223,9 +227,18 @@ export class KpAccordionItemComponent {
     return c.join(' ');
   }
 
+  /** Programmatic setter used by `<kp-accordion>` to collapse siblings.
+   *  Goes through markForCheck so the host chevron + content stay in sync
+   *  with the new state under OnPush. */
+  setExpanded(value: boolean): void {
+    if (this.expanded === value) return;
+    this.expanded = value;
+    this.expandedChange.emit(value);
+    this.cdr.markForCheck();
+  }
+
   toggle(): void {
     if (this.disabled) return;
-    this.expanded = !this.expanded;
-    this.expandedChange.emit(this.expanded);
+    this.setExpanded(!this.expanded);
   }
 }

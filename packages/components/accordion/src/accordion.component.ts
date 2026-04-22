@@ -69,10 +69,7 @@ export class KpAccordionComponent implements AfterContentInit {
   private onItemToggle(changed: KpAccordionItemComponent): void {
     if (this.mode === 'multi' || !changed.expanded) return;
     this.items.forEach((it) => {
-      if (it !== changed && it.expanded) {
-        it.expanded = false;
-        it.expandedChange.emit(false);
-      }
+      if (it !== changed && it.expanded) it.setExpanded(false);
     });
   }
 
