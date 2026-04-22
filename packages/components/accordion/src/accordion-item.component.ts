@@ -1,0 +1,231 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
+
+export type KpAccordionItemSize = 'sm' | 'md' | 'lg';
+
+/**
+ * Kanso Protocol — AccordionItem (atom)
+ *
+ * Expandable row: a clickable trigger with title / optional description /
+ * chevron, and a content panel that renders when `[expanded]` is true.
+ * Drive `[expanded]` from a parent — either manually or via
+ * `<kp-accordion>` which coordinates single/multi behavior.
+ */
+@Component({
+  selector: 'kp-accordion-item',
+  imports: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { '[class]': 'hostClasses' },
+  template: `
+    <button
+      type="button"
+      class="kp-ai__trigger"
+      [disabled]="disabled"
+      [attr.aria-expanded]="expanded"
+      [attr.aria-controls]="panelId"
+      [id]="triggerId"
+      (click)="toggle()"
+    >
+      @if (showIconLeft) {
+        <span class="kp-ai__icon-left" aria-hidden="true">
+          <ng-content select="[kpAccordionItemIcon]"/>
+        </span>
+      }
+      <span class="kp-ai__text">
+        <span class="kp-ai__title">{{ title }}</span>
+        @if (showDescription) { <span class="kp-ai__desc">{{ description }}</span> }
+      </span>
+      <span class="kp-ai__chevron" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M6 9 L12 15 L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </button>
+
+    @if (expanded) {
+      <div
+        class="kp-ai__content"
+        role="region"
+        [id]="panelId"
+        [attr.aria-labelledby]="triggerId"
+      >
+        <ng-content select="[kpAccordionItemContent]"/>
+        <ng-content/>
+      </div>
+    }
+  `,
+  styles: [`
+    :host {
+      display: block;
+      border-bottom: 1px solid var(--kp-color-accordion-border, #E4E4E7);
+      font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
+    }
+    :host(.kp-ai--last-in-group) { border-bottom: none; }
+
+    .kp-ai__trigger {
+      all: unset;
+      display: flex;
+      width: 100%;
+      box-sizing: border-box;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      height: var(--kp-ai-tr-h);
+      padding: 0 var(--kp-ai-tr-pad);
+      border-radius: 8px;
+      background: var(--kp-color-accordion-trigger-bg-rest, transparent);
+      color: var(--kp-color-accordion-trigger-fg-rest, #18181B);
+      cursor: pointer;
+      transition: background 120ms ease;
+    }
+    .kp-ai__trigger:hover:not([disabled]) { background: var(--kp-color-accordion-trigger-bg-hover, #FAFAFA); }
+    .kp-ai__trigger:focus-visible {
+      outline: 2px solid var(--kp-color-focus-ring, #60A5FA);
+      outline-offset: -2px;
+    }
+    .kp-ai__trigger[disabled] {
+      color: var(--kp-color-accordion-trigger-fg-disabled, #A1A1AA);
+      cursor: not-allowed;
+    }
+
+    .kp-ai__icon-left {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      color: var(--kp-color-accordion-trigger-icon-rest, #71717A);
+    }
+    .kp-ai__icon-left ::ng-deep svg {
+      width: var(--kp-ai-icon-l);
+      height: var(--kp-ai-icon-l);
+    }
+    .kp-ai__icon-left:empty { display: none; }
+
+    .kp-ai__text {
+      flex: 1 1 auto;
+      min-width: 0;
+      display: inline-flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: left;
+    }
+    .kp-ai__title {
+      font-size: var(--kp-ai-title-size);
+      line-height: var(--kp-ai-title-lh);
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .kp-ai__desc {
+      font-size: var(--kp-ai-desc-size);
+      line-height: var(--kp-ai-desc-lh);
+      color: var(--kp-color-gray-500, #71717A);
+    }
+
+    .kp-ai__chevron {
+      flex: 0 0 auto;
+      display: inline-flex;
+      width: var(--kp-ai-chev);
+      height: var(--kp-ai-chev);
+      color: var(--kp-color-accordion-trigger-icon-rest, #71717A);
+      transition: transform 180ms ease, color 120ms ease;
+    }
+    .kp-ai__chevron svg { width: 100%; height: 100%; }
+    :host(.kp-ai--expanded) .kp-ai__chevron {
+      transform: rotate(180deg);
+      color: var(--kp-color-accordion-trigger-icon-expanded, #2563EB);
+    }
+
+    .kp-ai__content {
+      padding: var(--kp-ai-ct-pad-top) var(--kp-ai-ct-pad) var(--kp-ai-ct-pad);
+      color: var(--kp-color-accordion-content, #3F3F46);
+      font-size: var(--kp-ai-ct-size);
+      line-height: var(--kp-ai-ct-lh);
+      animation: kp-ai-in 180ms ease;
+    }
+    @keyframes kp-ai-in {
+      from { opacity: 0; transform: translateY(-4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    :host(.kp-ai--sm) {
+      --kp-ai-tr-h: 40px;
+      --kp-ai-tr-pad: 12px;
+      --kp-ai-chev: 14px;
+      --kp-ai-icon-l: 16px;
+      --kp-ai-ct-pad: 12px;
+      --kp-ai-ct-pad-top: 8px;
+      --kp-ai-title-size: 14px;
+      --kp-ai-title-lh: 20px;
+      --kp-ai-desc-size: 12px;
+      --kp-ai-desc-lh: 16px;
+      --kp-ai-ct-size: 14px;
+      --kp-ai-ct-lh: 20px;
+    }
+    :host(.kp-ai--md) {
+      --kp-ai-tr-h: 48px;
+      --kp-ai-tr-pad: 16px;
+      --kp-ai-chev: 16px;
+      --kp-ai-icon-l: 18px;
+      --kp-ai-ct-pad: 16px;
+      --kp-ai-ct-pad-top: 12px;
+      --kp-ai-title-size: 16px;
+      --kp-ai-title-lh: 24px;
+      --kp-ai-desc-size: 14px;
+      --kp-ai-desc-lh: 20px;
+      --kp-ai-ct-size: 14px;
+      --kp-ai-ct-lh: 20px;
+    }
+    :host(.kp-ai--lg) {
+      --kp-ai-tr-h: 56px;
+      --kp-ai-tr-pad: 20px;
+      --kp-ai-chev: 18px;
+      --kp-ai-icon-l: 20px;
+      --kp-ai-ct-pad: 20px;
+      --kp-ai-ct-pad-top: 12px;
+      --kp-ai-title-size: 18px;
+      --kp-ai-title-lh: 28px;
+      --kp-ai-desc-size: 16px;
+      --kp-ai-desc-lh: 24px;
+      --kp-ai-ct-size: 16px;
+      --kp-ai-ct-lh: 24px;
+    }
+  `],
+})
+export class KpAccordionItemComponent {
+  private static idCounter = 0;
+  private readonly uid = ++KpAccordionItemComponent.idCounter;
+
+  @Input() size: KpAccordionItemSize = 'md';
+  @Input() title = '';
+  @Input() description = '';
+  @Input() showDescription = false;
+  @Input() showIconLeft = false;
+  @Input() disabled = false;
+  @Input() expanded = false;
+  /** @internal — set by parent `<kp-accordion>` on the last visible child so the trailing border hides. */
+  @Input() lastInGroup = false;
+
+  @Output() readonly expandedChange = new EventEmitter<boolean>();
+
+  readonly triggerId = `kp-ai-trigger-${this.uid}`;
+  readonly panelId   = `kp-ai-panel-${this.uid}`;
+
+  get hostClasses(): string {
+    const c = ['kp-ai', `kp-ai--${this.size}`];
+    if (this.expanded) c.push('kp-ai--expanded');
+    if (this.lastInGroup) c.push('kp-ai--last-in-group');
+    return c.join(' ');
+  }
+
+  toggle(): void {
+    if (this.disabled) return;
+    this.expanded = !this.expanded;
+    this.expandedChange.emit(this.expanded);
+  }
+}
