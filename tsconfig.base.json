@@ -43,7 +43,8 @@
       "@kanso-protocol/empty-state": ["packages/components/empty-state/src/index.ts"],
       "@kanso-protocol/drawer": ["packages/components/drawer/src/index.ts"],
       "@kanso-protocol/accordion": ["packages/components/accordion/src/index.ts"],
-      "@kanso-protocol/skeleton": ["packages/components/skeleton/src/index.ts"]
+      "@kanso-protocol/skeleton": ["packages/components/skeleton/src/index.ts"],
+      "@kanso-protocol/slider": ["packages/components/slider/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]
