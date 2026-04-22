@@ -440,6 +440,10 @@
       "label": { "$value": "{color.gray.500}", "$type": "color", "$description": "Divider center label color" }
     },
 
+    "drawer": {
+      "resize-handle": { "$value": "{color.gray.300}", "$type": "color", "$description": "Drag handle on bottom/top sheets" }
+    },
+
     "empty-state": {
       "illustration-bg":   { "$value": "{color.gray.100}", "$type": "color" },
       "illustration-icon": { "$value": "{color.gray.500}", "$type": "color" },
