@@ -53,7 +53,9 @@
       "@kanso-protocol/tree": ["packages/components/tree/src/index.ts"],
       "@kanso-protocol/avatar": ["packages/components/avatar/src/index.ts"],
       "@kanso-protocol/avatar-group": ["packages/components/avatar-group/src/index.ts"],
-      "@kanso-protocol/container": ["packages/patterns/container/src/index.ts"]
+      "@kanso-protocol/container": ["packages/patterns/container/src/index.ts"],
+      "@kanso-protocol/stack": ["packages/patterns/stack/src/index.ts"],
+      "@kanso-protocol/row": ["packages/patterns/row/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]
