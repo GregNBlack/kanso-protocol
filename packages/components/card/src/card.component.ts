@@ -127,9 +127,9 @@ export type KpCardAppearance = 'default' | 'muted' | 'elevated' | 'outline';
     .kp-card__body:empty { display: none; }
     /* When the body is the topmost or bottommost section, give it
        breathing room equivalent to what the missing header/footer
-       would have provided. */
-    :host(.kp-card--no-header) .kp-card__body { padding-top: 24px; }
-    :host(.kp-card--no-footer) .kp-card__body { padding-bottom: 24px; }
+       would have provided — sized per card variant. */
+    :host(.kp-card--no-header) .kp-card__body { padding-top: var(--kp-card-body-pad-v); }
+    :host(.kp-card--no-footer) .kp-card__body { padding-bottom: var(--kp-card-body-pad-v); }
 
     .kp-card__footer {
       display: flex;
@@ -143,6 +143,7 @@ export type KpCardAppearance = 'default' | 'muted' | 'elevated' | 'outline';
     :host(.kp-card--sm) {
       --kp-card-w: 280px;
       --kp-card-pad: 12px;
+      --kp-card-body-pad-v: 12px;
       --kp-card-head-gap: 2px;
       --kp-card-radius: 10px;
       --kp-card-title-size: 14px;
@@ -156,6 +157,7 @@ export type KpCardAppearance = 'default' | 'muted' | 'elevated' | 'outline';
     :host(.kp-card--md) {
       --kp-card-w: 360px;
       --kp-card-pad: 16px;
+      --kp-card-body-pad-v: 16px;
       --kp-card-head-gap: 4px;
       --kp-card-radius: 12px;
       --kp-card-title-size: 16px;
@@ -169,6 +171,7 @@ export type KpCardAppearance = 'default' | 'muted' | 'elevated' | 'outline';
     :host(.kp-card--lg) {
       --kp-card-w: 480px;
       --kp-card-pad: 24px;
+      --kp-card-body-pad-v: 24px;
       --kp-card-head-gap: 4px;
       --kp-card-radius: 16px;
       --kp-card-title-size: 18px;
