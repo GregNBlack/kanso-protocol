@@ -440,6 +440,13 @@
       "label": { "$value": "{color.gray.500}", "$type": "color", "$description": "Divider center label color" }
     },
 
+    "empty-state": {
+      "illustration-bg":   { "$value": "{color.gray.100}", "$type": "color" },
+      "illustration-icon": { "$value": "{color.gray.500}", "$type": "color" },
+      "fg-title":          { "$value": "{color.gray.900}", "$type": "color" },
+      "fg-description":    { "$value": "{color.gray.600}", "$type": "color" }
+    },
+
     "card": {
       "bg":       { "$value": "{color.white}", "$type": "color" },
       "bg-muted": { "$value": "{color.gray.50}", "$type": "color", "$description": "Alternative muted background" },
