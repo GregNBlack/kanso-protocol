@@ -207,6 +207,8 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
     }
     .kp-theme-toggle__menu {
       position: fixed;
+      display: flex;
+      flex-direction: column;
       width: max-content;
       padding: 4px;
       border-radius: 10px;
