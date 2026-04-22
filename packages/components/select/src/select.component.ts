@@ -1,4 +1,5 @@
 import {
+  AfterViewChecked,
   Component,
   Input,
   Output,
@@ -7,9 +8,13 @@ import {
   ChangeDetectorRef,
   ElementRef,
   HostListener,
+  OnDestroy,
+  ViewChild,
   forwardRef,
+  inject,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { DOCUMENT } from '@angular/common';
 
 import { KpSize, KpState } from '@kanso-protocol/core';
 
@@ -88,7 +93,7 @@ export interface KpSelectOption {
     </button>
 
     @if (isOpen && !isDisabled) {
-      <div class="kp-select__dropdown" role="listbox" [attr.aria-multiselectable]="multiple || null">
+      <div #dropdown class="kp-select__dropdown" role="listbox" [attr.aria-multiselectable]="multiple || null">
         @for (opt of options; track opt.value) {
           <div
             class="kp-select__option"
@@ -280,16 +285,18 @@ export interface KpSelectOption {
       color: var(--kp-select-chevron-error, #EF4444);
     }
 
-    /* --- Dropdown panel (mirrors DropdownMenu) --- */
+    /* --- Dropdown panel (mirrors DropdownMenu) ---
+       position:fixed + JS-set top/left/width so the dropdown escapes any
+       ancestor overflow:hidden. It also gets physically portaled to <body>
+       in ngAfterViewChecked so transformed ancestors don't reroot its
+       containing block. */
     .kp-select__dropdown {
-      position: absolute;
-      top: calc(100% + 4px);
+      position: fixed;
+      top: 0;
       left: 0;
-      right: 0;
-      z-index: 50;
+      z-index: 1000;
       display: flex;
       flex-direction: column;
-      min-width: 100%;
       max-height: 280px;
       padding: 4px;
       background: #FFFFFF;
@@ -401,7 +408,7 @@ export interface KpSelectOption {
     }
   `]
 })
-export class KpSelectComponent implements ControlValueAccessor {
+export class KpSelectComponent implements ControlValueAccessor, AfterViewChecked, OnDestroy {
   @Input() size: KpSize = 'md';
   @Input() placeholder = '';
   @Input() label = '';
@@ -420,7 +427,42 @@ export class KpSelectComponent implements ControlValueAccessor {
   private singleValue: string | null = null;
   private multiValue: string[] = [];
 
+  @ViewChild('dropdown') dropdownEl?: ElementRef<HTMLElement>;
+
+  private readonly doc = inject(DOCUMENT);
+
   constructor(private host: ElementRef<HTMLElement>, private cdr: ChangeDetectorRef) {}
+
+  ngAfterViewChecked(): void {
+    if (!this.isOpen) return;
+    const dd = this.dropdownEl?.nativeElement;
+    // Portal to <body> so transformed / clipped ancestors can't catch the
+    // dropdown. Fixed-positioning alone isn't enough — an ancestor with
+    // `transform` re-roots the containing block for fixed descendants.
+    if (dd && this.doc?.body && dd.parentElement !== this.doc.body) {
+      this.doc.body.appendChild(dd);
+    }
+    this.positionDropdown();
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('scroll', this.reposition, true);
+    window.removeEventListener('resize', this.reposition);
+    const dd = this.dropdownEl?.nativeElement;
+    if (dd && dd.parentElement === this.doc?.body) dd.remove();
+  }
+
+  private readonly reposition = () => this.positionDropdown();
+
+  private positionDropdown(): void {
+    const dd = this.dropdownEl?.nativeElement;
+    const trigger = this.host.nativeElement.querySelector('.kp-select__trigger') as HTMLElement | null;
+    if (!dd || !trigger) return;
+    const rect = trigger.getBoundingClientRect();
+    dd.style.top = `${rect.bottom + 4}px`;
+    dd.style.left = `${rect.left}px`;
+    dd.style.width = `${rect.width}px`;
+  }
 
   get isDisabled(): boolean {
     return this.disabled || this.cvaDisabled || this.forceState === 'disabled';
@@ -480,6 +522,13 @@ export class KpSelectComponent implements ControlValueAccessor {
   private setOpen(open: boolean): void {
     if (this.isOpen === open) return;
     this.isOpen = open;
+    if (open) {
+      window.addEventListener('scroll', this.reposition, true);
+      window.addEventListener('resize', this.reposition);
+    } else {
+      window.removeEventListener('scroll', this.reposition, true);
+      window.removeEventListener('resize', this.reposition);
+    }
     this.openChange.emit(open);
     this.cdr.markForCheck();
   }
@@ -528,9 +577,11 @@ export class KpSelectComponent implements ControlValueAccessor {
   @HostListener('document:click', ['$event'])
   onDocClick(event: MouseEvent): void {
     if (!this.isOpen) return;
-    if (!this.host.nativeElement.contains(event.target as Node)) {
-      this.setOpen(false);
-    }
+    const target = event.target as Node;
+    const inHost = this.host.nativeElement.contains(target);
+    const dd = this.dropdownEl?.nativeElement;
+    const inDropdown = dd ? dd.contains(target) : false;
+    if (!inHost && !inDropdown) this.setOpen(false);
   }
 
   @HostListener('document:keydown.escape')

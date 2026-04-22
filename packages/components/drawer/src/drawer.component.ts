@@ -7,8 +7,10 @@ import {
   EventEmitter,
   HostListener,
   Input,
+  OnChanges,
   OnDestroy,
   Output,
+  SimpleChanges,
   ViewChild,
   inject,
 } from '@angular/core';
@@ -257,7 +259,7 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
     .kp-drawer__root.kp-drawer--xl { --kp-drawer-w: 800px; --kp-drawer-h: 720px; }
   `],
 })
-export class KpDrawerComponent implements AfterViewChecked, OnDestroy {
+export class KpDrawerComponent implements AfterViewChecked, OnChanges, OnDestroy {
   private static idCounter = 0;
   private readonly uid = ++KpDrawerComponent.idCounter;
 
@@ -276,26 +278,7 @@ export class KpDrawerComponent implements AfterViewChecked, OnDestroy {
   @Input() closeOnBackdrop = true;
   @Input() closeOnEsc = true;
 
-  @Input()
-  set open(value: boolean) {
-    if (value === this._open) return;
-    this._open = value;
-    if (value) {
-      if (this.closeTimer != null) { clearTimeout(this.closeTimer); this.closeTimer = undefined; }
-      // Snapshot side+size on the open transition so the exit animation
-      // still knows which edge to slide back to, even if the parent
-      // rebinds those inputs the moment close is requested.
-      this.renderedSide = this.side;
-      this.renderedSize = this.size;
-      this.rendered = true;
-      this.closing = false;
-      this.onOpened();
-    } else if (this.rendered) {
-      this.startExit();
-    }
-  }
-  get open(): boolean { return this._open; }
-  private _open = false;
+  @Input() open = false;
 
   /** @internal — keeps the DOM mounted while the exit animation plays. */
   rendered = false;
@@ -330,6 +313,15 @@ export class KpDrawerComponent implements AfterViewChecked, OnDestroy {
     return s;
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    const c = changes['open'];
+    if (!c) return;
+    const now = !!c.currentValue;
+    const prev = c.firstChange ? false : !!c.previousValue;
+    if (now === prev) return;
+    if (now) this.handleOpen();
+    else if (this.rendered) this.startExit();
+  }
   ngAfterViewChecked(): void {
     const el = this.root?.nativeElement;
     if (el && this.doc?.body && el.parentElement !== this.doc.body) {
@@ -339,6 +331,19 @@ export class KpDrawerComponent implements AfterViewChecked, OnDestroy {
   ngOnDestroy(): void {
     if (this.closeTimer != null) clearTimeout(this.closeTimer);
     if (this.rendered) this.restoreBodyScroll();
+  }
+
+  private handleOpen(): void {
+    if (this.closeTimer != null) { clearTimeout(this.closeTimer); this.closeTimer = undefined; }
+    // Snapshot side+size here (after Angular has synced ALL inputs for this
+    // change cycle) so exit animation still slides back to the edge the
+    // panel entered from, even if the parent rebinds those inputs while the
+    // drawer is closing.
+    this.renderedSide = this.side;
+    this.renderedSize = this.size;
+    this.rendered = true;
+    this.closing = false;
+    this.onOpened();
   }
 
   private onOpened(): void {
@@ -377,8 +382,8 @@ export class KpDrawerComponent implements AfterViewChecked, OnDestroy {
   }
 
   close(): void {
-    if (!this._open || this.closing) return;
-    this._open = false;
+    if (!this.open || this.closing) return;
+    this.open = false;
     this.openChange.emit(false);
     this.startExit();
   }
@@ -386,6 +391,6 @@ export class KpDrawerComponent implements AfterViewChecked, OnDestroy {
 
   @HostListener('document:keydown.escape', ['$event'])
   onEscape(event: KeyboardEvent): void {
-    if (this._open && this.closeOnEsc) { event.stopPropagation(); this.close(); }
+    if (this.open && this.closeOnEsc) { event.stopPropagation(); this.close(); }
   }
 }

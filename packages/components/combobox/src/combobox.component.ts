@@ -14,6 +14,7 @@ import {
   inject,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { DOCUMENT } from '@angular/common';
 
 import { KpSize, KpState } from '@kanso-protocol/core';
 
@@ -403,6 +404,7 @@ export class KpComboboxComponent implements ControlValueAccessor, AfterViewCheck
   private cvaDisabled = false;
   private readonly host = inject(ElementRef) as ElementRef<HTMLElement>;
   private readonly cdr = inject(ChangeDetectorRef);
+  private readonly doc = inject(DOCUMENT);
 
   get isDisabled(): boolean {
     return this.disabled || this.cvaDisabled || this.forceState === 'disabled';
@@ -607,12 +609,23 @@ export class KpComboboxComponent implements ControlValueAccessor, AfterViewCheck
   }
 
   ngAfterViewChecked(): void {
-    if (this.isOpen) this.positionDropdown();
+    if (!this.isOpen) return;
+    const dd = this.dropdownEl?.nativeElement;
+    // Portal the dropdown to <body> so it escapes any transformed / clipped
+    // ancestor (Storybook docs containers, modal panels, etc.). Fixed
+    // positioning alone isn't enough — an ancestor with `transform` reroots
+    // the containing block for fixed-positioned descendants.
+    if (dd && this.doc?.body && dd.parentElement !== this.doc.body) {
+      this.doc.body.appendChild(dd);
+    }
+    this.positionDropdown();
   }
 
   ngOnDestroy(): void {
     window.removeEventListener('scroll', this.reposition, true);
     window.removeEventListener('resize', this.reposition);
+    const dd = this.dropdownEl?.nativeElement;
+    if (dd && dd.parentElement === this.doc?.body) dd.remove();
   }
 
   private readonly reposition = () => this.positionDropdown();
@@ -634,7 +647,11 @@ export class KpComboboxComponent implements ControlValueAccessor, AfterViewCheck
   @HostListener('document:click', ['$event'])
   onDocClick(event: MouseEvent): void {
     if (!this.isOpen) return;
-    if (!this.host.nativeElement.contains(event.target as Node)) this.setOpen(false);
+    const target = event.target as Node;
+    const inHost = this.host.nativeElement.contains(target);
+    const dd = this.dropdownEl?.nativeElement;
+    const inDropdown = dd ? dd.contains(target) : false;
+    if (!inHost && !inDropdown) this.setOpen(false);
   }
 
   // ControlValueAccessor
