@@ -501,6 +501,10 @@
       }
     },
 
+    "toast": {
+      "close": { "$value": "{color.gray.400}", "$type": "color", "$description": "Toast close button icon color" }
+    },
+
     "accordion": {
       "trigger": {
         "bg": {
