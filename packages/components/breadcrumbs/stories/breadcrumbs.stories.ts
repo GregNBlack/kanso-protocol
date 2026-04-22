@@ -20,7 +20,10 @@ import { KpBreadcrumbsAutoComponent } from '../src/breadcrumbs-auto.component';
 class BreadcrumbsAutoDemoComponent implements OnInit {
   private readonly router = inject(Router);
   ngOnInit(): void {
-    void this.router.navigateByUrl('/projects/design-system/button');
+    // skipLocationChange — NavigationEnd still fires so breadcrumbs rebuild,
+    // but window.location stays put. Otherwise the URL rewrite breaks Storybook's
+    // relative chunk loading for any story the user visits afterwards.
+    void this.router.navigateByUrl('/projects/design-system/button', { skipLocationChange: true });
   }
 }
 
