@@ -1,0 +1,18 @@
+{
+  "layout": {
+    "container": {
+      "max-width": {
+        "narrow": { "$value": "640px",  "$type": "dimension" },
+        "medium": { "$value": "960px",  "$type": "dimension" },
+        "wide":   { "$value": "1280px", "$type": "dimension" },
+        "full":   { "$value": "100%",   "$type": "dimension" }
+      },
+      "padding": {
+        "none": { "$value": "0",    "$type": "dimension" },
+        "sm":   { "$value": "16px", "$type": "dimension" },
+        "md":   { "$value": "24px", "$type": "dimension" },
+        "lg":   { "$value": "32px", "$type": "dimension" }
+      }
+    }
+  }
+}
