@@ -1,0 +1,134 @@
+/**
+ * Kanso Protocol — dark theme overrides.
+ *
+ * Approach: invert the primitive gray ramp under `[data-theme="dark"]`
+ * and remap `color/white` to a dark surface. Every semantic token
+ * (text, border, card, sidebar, header, input, etc.) already references
+ * the primitives, so they cascade automatically.
+ *
+ * The brand ramps (blue/red/green/amber/cyan/violet/orange) flip too,
+ * so subtle backgrounds (e.g. blue-50) become deep tinted surfaces in
+ * dark mode while the action shades (blue-600 etc.) stay bright. Use
+ * with `data-theme="dark"` on `<html>` or `<body>`.
+ *
+ * NOT auto-generated yet — extend the Style Dictionary build to emit
+ * this block once the dark palette is signed off in design.
+ */
+
+[data-theme="dark"] {
+  /* Surfaces and base ink */
+  --kp-color-white: #18181B;     /* the new "white" — top elevation surface */
+  --kp-color-black: #FAFAFA;     /* the new "black" — primary text on dark */
+
+  /* Inverted gray ramp.
+     gray-50 was lightest; in dark it becomes the darkest plane.
+     gray-950 was darkest; in dark it becomes the brightest body text.
+     gray-500 stays — it's the perceptual pivot. */
+  --kp-color-gray-50:  #09090B;
+  --kp-color-gray-100: #18181B;
+  --kp-color-gray-200: #27272A;
+  --kp-color-gray-300: #3F3F46;
+  --kp-color-gray-400: #52525B;
+  --kp-color-gray-500: #71717A;
+  --kp-color-gray-600: #A1A1AA;
+  --kp-color-gray-700: #D4D4D8;
+  --kp-color-gray-800: #E4E4E7;
+  --kp-color-gray-900: #F4F4F5;
+  --kp-color-gray-950: #FAFAFA;
+
+  /* Brand: blue. Subtle tints invert; action shades stay bright. */
+  --kp-color-blue-50:  #172554;
+  --kp-color-blue-100: #1E3A8A;
+  --kp-color-blue-200: #1E40AF;
+  --kp-color-blue-300: #1D4ED8;
+  --kp-color-blue-400: #2563EB;
+  --kp-color-blue-500: #3B82F6;
+  --kp-color-blue-600: #60A5FA;
+  --kp-color-blue-700: #93C5FD;
+  --kp-color-blue-800: #BFDBFE;
+  --kp-color-blue-900: #DBEAFE;
+  --kp-color-blue-950: #EFF6FF;
+
+  /* Danger: red. */
+  --kp-color-red-50:  #450A0A;
+  --kp-color-red-100: #7F1D1D;
+  --kp-color-red-200: #991B1B;
+  --kp-color-red-300: #B91C1C;
+  --kp-color-red-400: #DC2626;
+  --kp-color-red-500: #EF4444;
+  --kp-color-red-600: #F87171;
+  --kp-color-red-700: #FCA5A5;
+  --kp-color-red-800: #FECACA;
+  --kp-color-red-900: #FEE2E2;
+  --kp-color-red-950: #FEF2F2;
+
+  /* Success: green. */
+  --kp-color-green-50:  #052E16;
+  --kp-color-green-100: #14532D;
+  --kp-color-green-200: #166534;
+  --kp-color-green-300: #15803D;
+  --kp-color-green-400: #16A34A;
+  --kp-color-green-500: #22C55E;
+  --kp-color-green-600: #4ADE80;
+  --kp-color-green-700: #86EFAC;
+  --kp-color-green-800: #BBF7D0;
+  --kp-color-green-900: #DCFCE7;
+  --kp-color-green-950: #F0FDF4;
+
+  /* Warning: amber. */
+  --kp-color-amber-50:  #451A03;
+  --kp-color-amber-100: #78350F;
+  --kp-color-amber-200: #92400E;
+  --kp-color-amber-300: #B45309;
+  --kp-color-amber-400: #D97706;
+  --kp-color-amber-500: #F59E0B;
+  --kp-color-amber-600: #FBBF24;
+  --kp-color-amber-700: #FCD34D;
+  --kp-color-amber-800: #FDE68A;
+  --kp-color-amber-900: #FEF3C7;
+  --kp-color-amber-950: #FFFBEB;
+
+  /* Info: cyan. */
+  --kp-color-cyan-50:  #083344;
+  --kp-color-cyan-100: #164E63;
+  --kp-color-cyan-200: #155E75;
+  --kp-color-cyan-300: #0E7490;
+  --kp-color-cyan-400: #0891B2;
+  --kp-color-cyan-500: #06B6D4;
+  --kp-color-cyan-600: #22D3EE;
+  --kp-color-cyan-700: #67E8F9;
+  --kp-color-cyan-800: #A5F3FC;
+  --kp-color-cyan-900: #CFFAFE;
+  --kp-color-cyan-950: #ECFEFF;
+
+  /* Optional: orange + violet, if used by alerts / progress. */
+  --kp-color-orange-50:  #431407;
+  --kp-color-orange-100: #7C2D12;
+  --kp-color-orange-200: #9A3412;
+  --kp-color-orange-300: #C2410C;
+  --kp-color-orange-400: #EA580C;
+  --kp-color-orange-500: #F97316;
+  --kp-color-orange-600: #FB923C;
+  --kp-color-orange-700: #FDBA74;
+  --kp-color-orange-800: #FED7AA;
+  --kp-color-orange-900: #FFEDD5;
+  --kp-color-orange-950: #FFF7ED;
+
+  --kp-color-violet-50:  #2E1065;
+  --kp-color-violet-100: #4C1D95;
+  --kp-color-violet-200: #5B21B6;
+  --kp-color-violet-300: #6D28D9;
+  --kp-color-violet-400: #7C3AED;
+  --kp-color-violet-500: #8B5CF6;
+  --kp-color-violet-600: #A78BFA;
+  --kp-color-violet-700: #C4B5FD;
+  --kp-color-violet-800: #DDD6FE;
+  --kp-color-violet-900: #EDE9FE;
+  --kp-color-violet-950: #F5F3FF;
+
+  /* Page-level background — slightly lower than card surface so
+     elevated cards still read as "floating" against the canvas. */
+  color-scheme: dark;
+  background-color: #09090B;
+  color: #FAFAFA;
+}
