@@ -1,10 +1,19 @@
 import {
+  AfterViewChecked,
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   EventEmitter,
+  HostListener,
   Input,
+  OnDestroy,
   Output,
+  ViewChild,
+  inject,
+  signal,
 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { KpTooltipComponent } from '@kanso-protocol/tooltip';
 
 export type KpNavItemSize = 'sm' | 'md' | 'lg';
 export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
@@ -27,7 +36,7 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
  */
 @Component({
   selector: 'kp-nav-item',
-  imports: [],
+  imports: [KpTooltipComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class]': 'hostClasses',
@@ -42,8 +51,11 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
       type="button"
       class="kp-nav-item__content"
       [disabled]="disabled"
-      [attr.title]="collapsed ? label : null"
       (click)="handleClick($event)"
+      (mouseenter)="onMouseEnter()"
+      (mouseleave)="onMouseLeave()"
+      (focus)="onMouseEnter()"
+      (blur)="onMouseLeave()"
     >
       @if (showIcon) {
         <span class="kp-nav-item__icon" aria-hidden="true">
@@ -62,6 +74,10 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
         </span>
       }
     </button>
+
+    @if (isTooltipOpen()) {
+      <kp-tooltip #tooltip class="kp-nav-item__tooltip" size="sm" arrowPosition="left" [label]="label"/>
+    }
   `,
   styles: [`
     :host {
@@ -196,7 +212,7 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
     }
   `],
 })
-export class KpNavItemComponent {
+export class KpNavItemComponent implements AfterViewChecked, OnDestroy {
   @Input() size: KpNavItemSize = 'md';
   @Input() depth: number = 0;
   @Input() label = 'Navigation item';
@@ -215,6 +231,57 @@ export class KpNavItemComponent {
   @Input() collapsed = false;
 
   @Output() click$ = new EventEmitter<MouseEvent>();
+
+  readonly isTooltipOpen = signal(false);
+
+  @ViewChild('tooltip', { read: ElementRef }) tooltipEl?: ElementRef<HTMLElement>;
+
+  private readonly hostRef = inject(ElementRef<HTMLElement>);
+  private readonly doc = inject(DOCUMENT);
+  private portaledTooltip: HTMLElement | null = null;
+
+  onMouseEnter(): void {
+    if (this.collapsed && this.label && !this.disabled) this.isTooltipOpen.set(true);
+  }
+
+  onMouseLeave(): void {
+    if (!this.isTooltipOpen()) return;
+    this.cleanupTooltip();
+    this.isTooltipOpen.set(false);
+  }
+
+  ngAfterViewChecked(): void {
+    if (!this.isTooltipOpen()) return;
+    const tt = this.tooltipEl?.nativeElement;
+    if (tt && this.doc?.body && tt.parentElement !== this.doc.body) {
+      this.doc.body.appendChild(tt);
+      this.portaledTooltip = tt;
+    }
+    this.positionTooltip();
+  }
+
+  ngOnDestroy(): void {
+    this.cleanupTooltip();
+  }
+
+  private cleanupTooltip(): void {
+    if (this.portaledTooltip && this.portaledTooltip.parentElement === this.doc?.body) {
+      this.portaledTooltip.remove();
+    }
+    this.portaledTooltip = null;
+  }
+
+  private positionTooltip(): void {
+    const tt = this.portaledTooltip;
+    if (!tt) return;
+    const rect = this.hostRef.nativeElement.getBoundingClientRect();
+    tt.style.position = 'fixed';
+    tt.style.top = `${rect.top + rect.height / 2}px`;
+    tt.style.left = `${rect.right + 10}px`;
+    tt.style.transform = 'translateY(-50%)';
+    tt.style.zIndex = '1000';
+    tt.style.pointerEvents = 'none';
+  }
 
   get hostClasses(): string {
     const c = [
