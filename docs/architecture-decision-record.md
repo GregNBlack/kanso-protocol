@@ -482,3 +482,62 @@ The API contract is the source of truth for component behavior. Figma and Angula
 3. **Predictability over flexibility.** Лучше ограниченный, но предсказуемый API, чем гибкий, но хаотичный.
 4. **Single source of truth.** Токены → Figma Variables + Code. Одно изменение — одно место.
 5. **Every component is equal.** Единая анатомия, единый API-контракт, без исключений без ADR.
+
+---
+
+## 17. Three-layer architecture (Phase 7)
+
+Kanso Protocol is organized in three layers, each with its own folder
+in the repo and its own page in Figma:
+
+1. **Components** (🧩) — atomic building blocks. Generic, unopinionated,
+   reusable. Each one does one thing and exposes a tight API. They are
+   the bricks; they don't know about pages or workflows.
+   - In code: `packages/components/*` (one ng-package per component).
+   - In Figma: `🧩 Components` page, one Component Set per atom.
+   - Examples: Button, Input, Icon, Badge, Avatar, Checkbox, Toggle,
+     Select, Tabs, Card, Divider, Pagination, Table.
+
+2. **Patterns** (📐) — compositions of components for specific UI use
+   cases. Opinionated about layout and arrangement, but still flexible
+   via inputs and projection slots. They never reach down past the
+   token graph — they reuse atom instances rather than redrawing them.
+   - In code: `packages/patterns/*`.
+   - In Figma: `📐 Patterns` page, one Component Set per pattern.
+   - Examples: Header, Sidebar, NavItem, UserMenu, ThemeToggle,
+     SearchBar, AppShell, Banner, PageHeader, PageError,
+     NotificationCenter, StatCard, TableToolbar, FilterBar,
+     FormSection, SettingsPanel, plus the layout primitives
+     Container / Stack / Row / Grid.
+
+3. **Example Pages** (🖼️) — full-page showcases that demonstrate
+   components and patterns working together. These are reference
+   implementations, **not** reusable components. They act as the
+   integration test for the system: if a real page can be built
+   without forking any atom, the system holds together.
+   - In code: `packages/examples/*` (Storybook-only — not published
+     to npm).
+   - In Figma: `🖼️ Example Pages` page, one frame per example.
+   - Five canonical pages: Login, Dashboard, Settings, List View
+     (team members), Detail View (project record).
+
+### Direction of dependence
+
+```
+Example Pages → Patterns → Components → Tokens
+       ▲             ▲              ▲          ▲
+       │             │              │          │
+       └─ may import everything below; never the other way around.
+```
+
+A pattern can import any component but never another pattern's
+internals. An example page imports patterns and components freely,
+because it represents a consumer — the same situation as a real app.
+
+### When does a page become a pattern?
+
+If you find yourself building the same page composition three times
+in different examples, lift the shared piece to a pattern. If you
+find yourself building the same atom three times across patterns,
+lift it to a component. The default is to **not** lift — premature
+abstraction is more expensive than copy-paste.

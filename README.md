@@ -145,6 +145,48 @@ export class MyComponent {
 }
 ```
 
+## Patterns
+
+Patterns are opinionated compositions of components for specific UI use cases.
+They live in `packages/patterns/` and are imported the same way as components.
+
+| Pattern | What it is | Docs |
+|---|---|---|
+| AppShell | Page chrome — Header + Sidebar + main slot | [docs/patterns/app-shell.md](docs/patterns/app-shell.md) |
+| Banner | Full-width announcement strip | [docs/patterns/banner.md](docs/patterns/banner.md) |
+| Container | Page max-width + padding | [docs/patterns/container.md](docs/patterns/container.md) |
+| FilterBar | Active filter chips + add/save/clear | [docs/patterns/filter-bar.md](docs/patterns/filter-bar.md) |
+| FormSection | Titled block of form fields (inline / stacked) | [docs/patterns/form-section.md](docs/patterns/form-section.md) |
+| Grid | Equal-column responsive grid | [docs/patterns/grid.md](docs/patterns/grid.md) |
+| Header | Top app bar with logo, nav, search, user | [docs/patterns/header.md](docs/patterns/header.md) |
+| NavItem | Single sidebar / nav link with icon and badge | [docs/patterns/nav-item.md](docs/patterns/nav-item.md) |
+| NotificationCenter | Bell-anchored notification panel | [docs/patterns/notification-center.md](docs/patterns/notification-center.md) |
+| PageError | 404 / 500 / generic error page layout | [docs/patterns/page-error.md](docs/patterns/page-error.md) |
+| PageHeader | Title + breadcrumbs + actions + tabs | [docs/patterns/page-header.md](docs/patterns/page-header.md) |
+| Row | Horizontal flex row primitive | [docs/patterns/row.md](docs/patterns/row.md) |
+| SearchBar | Inline + command-palette search | [docs/patterns/search-bar.md](docs/patterns/search-bar.md) |
+| SettingsPanel | Card of settings rows with controls | [docs/patterns/settings-panel.md](docs/patterns/settings-panel.md) |
+| Sidebar | Expanded / collapsed app sidebar | [docs/patterns/sidebar.md](docs/patterns/sidebar.md) |
+| Stack | Vertical flex stack primitive | [docs/patterns/stack.md](docs/patterns/stack.md) |
+| StatCard | Single-metric tile for dashboards | [docs/patterns/stat-card.md](docs/patterns/stat-card.md) |
+| TableToolbar | Search / filter / actions bar above a table | [docs/patterns/table-toolbar.md](docs/patterns/table-toolbar.md) |
+| ThemeToggle | Light / dark / system switcher | [docs/patterns/theme-toggle.md](docs/patterns/theme-toggle.md) |
+| UserMenu | Avatar + popover with profile + logout | [docs/patterns/user-menu.md](docs/patterns/user-menu.md) |
+
+## Example Pages
+
+Reference page compositions, built only from Kanso components and patterns —
+no forks, no hand-drawn parts. They live in `packages/examples/` (Storybook
+only, not published to npm) and serve as the integration test for the system.
+
+| Page | What it shows | Docs |
+|---|---|---|
+| Login | Centered auth card with form, divider, social buttons | [docs/examples/login.md](docs/examples/login.md) |
+| Dashboard | Full app shell: KPIs, charts, recent activity | [docs/examples/dashboard.md](docs/examples/dashboard.md) |
+| Settings | Tabs + stack of SettingsPanels (Profile / Preferences / Danger zone) | [docs/examples/settings.md](docs/examples/settings.md) |
+| List View | Team members table — toolbar, filters, paginated table | [docs/examples/list-view.md](docs/examples/list-view.md) |
+| Detail View | Project record — rich PageHeader + 2/1 grid of cards | [docs/examples/detail-view.md](docs/examples/detail-view.md) |
+
 ## Figma Integration
 
 Kanso Protocol syncs with Figma via [Tokens Studio](https://tokens.studio):
