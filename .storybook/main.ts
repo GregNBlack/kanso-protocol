@@ -7,10 +7,7 @@ const config: StorybookConfig = {
     '../packages/patterns/**/stories/*.stories.@(ts|tsx)',
     '../packages/core/stories/*.stories.@(ts|tsx)',
   ],
-  addons: [
-    getAbsolutePath("@storybook/addon-essentials"),
-    getAbsolutePath("@storybook/addon-themes"),
-  ],
+  addons: [getAbsolutePath("@storybook/addon-essentials")],
   framework: {
     name: getAbsolutePath("@storybook/angular"),
     options: {
