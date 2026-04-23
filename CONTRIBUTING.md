@@ -152,6 +152,50 @@ Variable collections:
 
 When you change a token or component in code, apply the same change in Figma manually (Tokens Studio paid Push is required for automated sync, currently not set up).
 
+## Building & publishing packages
+
+Every library (core + each component + each pattern) is published as its own npm package under the `@kanso-protocol/*` scope.
+
+### Build all
+
+```bash
+npm run build:tokens   # regenerate CSS/SCSS/TS from DTCG sources
+npm run build:libs     # ng-packagr → dist/packages/**/
+```
+
+`build:libs` does three things:
+
+1. **Scaffolds** `ng-package.json` + `tsconfig.lib.json` for any package that lacks them (idempotent — safe to re-run).
+2. **Topologically sorts** packages by their `@kanso-protocol/*` imports, then builds in dependency order.
+3. **Re-points** `node_modules/@kanso-protocol/<pkg>` symlinks at the built `dist/**/` output, so downstream packages resolve the compiled FESM bundle rather than the raw TS source.
+
+Artifacts land in `dist/packages/{core,components,patterns}/<name>/` with `fesm2022/`, `types/`, `styles/` (core only), and a fully-formed `package.json` (exports map, `module`, `typings`, peer deps).
+
+### Build one
+
+```bash
+npm run build:lib core          # or: button, pagination, stat-card, ...
+```
+
+Accepts the short folder name. If the target imports other workspace packages, build them first.
+
+### Publish
+
+Packages are not published automatically. When releasing:
+
+```bash
+npm run build:libs
+# bump version in all package.json files to the new version (manual, or via changesets in the future)
+# then for each built package:
+npm publish dist/packages/core --access public
+npm publish dist/packages/components/button --access public
+# ... etc.
+```
+
+First release requires the scope `@kanso-protocol` to be created on npm (`npm login` → `npm org create kanso-protocol` if applicable), and that the publishing user has access.
+
+Automation via [changesets](https://github.com/changesets/changesets) or `semantic-release` is planned but not yet wired.
+
 ## Reporting bugs / requesting features
 
 Open an issue with:

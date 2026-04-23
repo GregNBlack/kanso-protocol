@@ -390,7 +390,7 @@ export class KpDrawerComponent implements AfterViewChecked, OnChanges, OnDestroy
   onBackdropClick(): void { if (this.closeOnBackdrop) this.close(); }
 
   @HostListener('document:keydown.escape', ['$event'])
-  onEscape(event: KeyboardEvent): void {
+  onEscape(event: Event): void {
     if (this.open && this.closeOnEsc) { event.stopPropagation(); this.close(); }
   }
 }

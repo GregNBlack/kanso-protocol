@@ -8,5 +8,20 @@
     "@kanso-protocol/core": "^0.0.1",
     "@kanso-protocol/button": "^0.1.0"
   },
-  "ngPackage": { "lib": { "entryFile": "src/index.ts" } }
+  "description": "Kanso Protocol — banner (pattern).",
+  "author": "GregNBlack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GregNBlack/kanso-protocol.git",
+    "directory": "packages/patterns/banner"
+  },
+  "homepage": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-banner--docs",
+  "bugs": "https://github.com/GregNBlack/kanso-protocol/issues",
+  "keywords": [
+    "design-system",
+    "angular",
+    "kanso",
+    "banner"
+  ],
+  "sideEffects": false
 }

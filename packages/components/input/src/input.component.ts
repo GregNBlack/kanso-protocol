@@ -287,8 +287,7 @@ export class KpInputComponent implements ControlValueAccessor {
   @Input() disabled = false;
   /** Force a visual state for showcase/documentation purposes */
   @Input() forceState: KpState | null = null;
-
-  value: string | null = null;
+  @Input() value: string | null = null;
   isFocused = false;
   /** Set independently by Angular forms via setDisabledState (FormControl.disable()) */
   private cvaDisabled = false;

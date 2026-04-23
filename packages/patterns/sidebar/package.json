@@ -9,5 +9,20 @@
     "@kanso-protocol/avatar": "^0.1.0",
     "@kanso-protocol/nav-item": "^0.1.0"
   },
-  "ngPackage": { "lib": { "entryFile": "src/index.ts" } }
+  "description": "Kanso Protocol — sidebar (pattern).",
+  "author": "GregNBlack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GregNBlack/kanso-protocol.git",
+    "directory": "packages/patterns/sidebar"
+  },
+  "homepage": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-sidebar--docs",
+  "bugs": "https://github.com/GregNBlack/kanso-protocol/issues",
+  "keywords": [
+    "design-system",
+    "angular",
+    "kanso",
+    "sidebar"
+  ],
+  "sideEffects": false
 }

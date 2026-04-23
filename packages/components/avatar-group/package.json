@@ -8,5 +8,20 @@
     "@kanso-protocol/core": "^0.0.1",
     "@kanso-protocol/avatar": "^0.1.0"
   },
-  "ngPackage": { "lib": { "entryFile": "src/index.ts" } }
+  "description": "Kanso Protocol — avatar-group (component).",
+  "author": "GregNBlack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GregNBlack/kanso-protocol.git",
+    "directory": "packages/components/avatar-group"
+  },
+  "homepage": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-avatargroup--docs",
+  "bugs": "https://github.com/GregNBlack/kanso-protocol/issues",
+  "keywords": [
+    "design-system",
+    "angular",
+    "kanso",
+    "avatar-group"
+  ],
+  "sideEffects": false
 }

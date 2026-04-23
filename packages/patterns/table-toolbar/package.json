@@ -10,5 +10,20 @@
     "@kanso-protocol/badge": "^0.1.0",
     "@kanso-protocol/search-bar": "^0.1.0"
   },
-  "ngPackage": { "lib": { "entryFile": "src/index.ts" } }
+  "description": "Kanso Protocol — table-toolbar (pattern).",
+  "author": "GregNBlack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GregNBlack/kanso-protocol.git",
+    "directory": "packages/patterns/table-toolbar"
+  },
+  "homepage": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-tabletoolbar--docs",
+  "bugs": "https://github.com/GregNBlack/kanso-protocol/issues",
+  "keywords": [
+    "design-system",
+    "angular",
+    "kanso",
+    "table-toolbar"
+  ],
+  "sideEffects": false
 }

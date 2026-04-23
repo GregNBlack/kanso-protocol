@@ -9,5 +9,20 @@
     "@kanso-protocol/core": "^0.0.1",
     "@kanso-protocol/button": "^0.0.1"
   },
-  "ngPackage": { "lib": { "entryFile": "src/index.ts" } }
+  "description": "Kanso Protocol — number-stepper (component).",
+  "author": "GregNBlack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GregNBlack/kanso-protocol.git",
+    "directory": "packages/components/number-stepper"
+  },
+  "homepage": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-numberstepper--docs",
+  "bugs": "https://github.com/GregNBlack/kanso-protocol/issues",
+  "keywords": [
+    "design-system",
+    "angular",
+    "kanso",
+    "number-stepper"
+  ],
+  "sideEffects": false
 }

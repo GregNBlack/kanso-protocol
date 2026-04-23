@@ -450,7 +450,7 @@ export class KpDialogComponent implements AfterViewInit, AfterViewChecked, OnDes
   }
 
   @HostListener('document:keydown.escape', ['$event'])
-  onEscape(event: KeyboardEvent): void {
+  onEscape(event: Event): void {
     if (this.open && this.closeOnEsc) {
       event.stopPropagation();
       this.close();

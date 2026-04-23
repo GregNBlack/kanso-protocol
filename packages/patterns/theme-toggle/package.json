@@ -7,5 +7,20 @@
     "@angular/common": "^18.0.0",
     "@kanso-protocol/core": "^0.0.1"
   },
-  "ngPackage": { "lib": { "entryFile": "src/index.ts" } }
+  "description": "Kanso Protocol — theme-toggle (pattern).",
+  "author": "GregNBlack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GregNBlack/kanso-protocol.git",
+    "directory": "packages/patterns/theme-toggle"
+  },
+  "homepage": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-themetoggle--docs",
+  "bugs": "https://github.com/GregNBlack/kanso-protocol/issues",
+  "keywords": [
+    "design-system",
+    "angular",
+    "kanso",
+    "theme-toggle"
+  ],
+  "sideEffects": false
 }

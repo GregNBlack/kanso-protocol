@@ -9,5 +9,20 @@
     "@kanso-protocol/avatar": "^0.1.0",
     "@kanso-protocol/button": "^0.1.0"
   },
-  "ngPackage": { "lib": { "entryFile": "src/index.ts" } }
+  "description": "Kanso Protocol — notification-center (pattern).",
+  "author": "GregNBlack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GregNBlack/kanso-protocol.git",
+    "directory": "packages/patterns/notification-center"
+  },
+  "homepage": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-notificationcenter--docs",
+  "bugs": "https://github.com/GregNBlack/kanso-protocol/issues",
+  "keywords": [
+    "design-system",
+    "angular",
+    "kanso",
+    "notification-center"
+  ],
+  "sideEffects": false
 }

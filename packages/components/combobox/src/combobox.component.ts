@@ -645,7 +645,7 @@ export class KpComboboxComponent implements ControlValueAccessor, AfterViewCheck
   }
 
   @HostListener('document:click', ['$event'])
-  onDocClick(event: MouseEvent): void {
+  onDocClick(event: Event): void {
     if (!this.isOpen) return;
     const target = event.target as Node;
     const inHost = this.host.nativeElement.contains(target);

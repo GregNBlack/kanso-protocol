@@ -1,0 +1,17 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/packages/components/button",
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSources": true,
+    "types": [],
+    "paths": {
+      "@kanso-protocol/core": ["../../../dist/packages/core"]
+    }
+  },
+  "exclude": [
+    "stories/**/*",
+    "**/*.spec.ts"
+  ]
+}

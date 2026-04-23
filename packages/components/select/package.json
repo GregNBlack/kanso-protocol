@@ -11,5 +11,20 @@
     "@kanso-protocol/menu": "^0.0.1",
     "@kanso-protocol/checkbox": "^0.0.1"
   },
-  "ngPackage": { "lib": { "entryFile": "src/index.ts" } }
+  "description": "Kanso Protocol — select (component).",
+  "author": "GregNBlack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GregNBlack/kanso-protocol.git",
+    "directory": "packages/components/select"
+  },
+  "homepage": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-select--docs",
+  "bugs": "https://github.com/GregNBlack/kanso-protocol/issues",
+  "keywords": [
+    "design-system",
+    "angular",
+    "kanso",
+    "select"
+  ],
+  "sideEffects": false
 }

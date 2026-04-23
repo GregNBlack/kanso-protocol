@@ -334,7 +334,7 @@ export class KpThemeToggleComponent implements AfterViewChecked, OnDestroy {
   }
 
   @HostListener('document:click', ['$event'])
-  onDocClick(event: MouseEvent): void {
+  onDocClick(event: Event): void {
     if (!this.isOpen()) return;
     const target = event.target as Node;
     const host = this.hostRef.nativeElement;

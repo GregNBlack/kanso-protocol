@@ -11,9 +11,10 @@
   },
   "scripts": {
     "build:tokens": "style-dictionary build --config style-dictionary.config.js",
-    "build:core": "nx build core",
-    "build:button": "nx build button",
-    "build": "npm run build:tokens && nx run-many --target=build --all",
+    "build:libs": "node scripts/build-libs.js",
+    "build:lib": "node scripts/build-libs.js --only",
+    "prebuild:libs": "npm run build:tokens",
+    "build": "npm run build:tokens && npm run build:libs",
     "storybook": "nx run kanso-protocol:storybook",
     "build-storybook": "nx run kanso-protocol:build-storybook",
     "lint": "nx run-many --target=lint --all",
@@ -52,7 +53,7 @@
     "nx": "^22.6.4",
     "storybook": "^8.3.0",
     "style-dictionary": "^4.1.0",
-    "typescript": "~5.8.0"
+    "typescript": "~5.9"
   },
   "workspaces": [
     "packages/*",
