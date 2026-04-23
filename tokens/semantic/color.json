@@ -383,6 +383,16 @@
       }
     },
 
+    "search": {
+      "palette": {
+        "bg":          { "$value": "{color.white}",    "$type": "color" },
+        "border":      { "$value": "{color.gray.200}", "$type": "color" },
+        "shortcut-bg": { "$value": "{color.gray.100}", "$type": "color" },
+        "shortcut-fg": { "$value": "{color.gray.600}", "$type": "color" },
+        "group-label": { "$value": "{color.gray.500}", "$type": "color" }
+      }
+    },
+
     "sidebar": {
       "bg":            { "$value": "{color.white}",    "$type": "color" },
       "bg-dark":       { "$value": "{color.gray.900}", "$type": "color" },
