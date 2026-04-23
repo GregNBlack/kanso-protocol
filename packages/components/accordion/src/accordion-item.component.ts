@@ -85,7 +85,7 @@ export type KpAccordionItemSize = 'sm' | 'md' | 'lg';
       cursor: pointer;
       transition: background 120ms ease;
     }
-    .kp-ai__trigger:hover:not([disabled]) { background: var(--kp-color-accordion-trigger-bg-hover, var(--kp-color-gray-50)); }
+    .kp-ai__trigger:hover:not([disabled]) { background: var(--kp-color-accordion-trigger-bg-hover, var(--kp-color-gray-100)); }
     .kp-ai__trigger:focus-visible {
       outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
       outline-offset: -2px;

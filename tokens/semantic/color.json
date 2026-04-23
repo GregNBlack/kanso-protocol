@@ -638,7 +638,7 @@
       "trigger": {
         "bg": {
           "rest":     { "$value": "transparent", "$type": "color" },
-          "hover":    { "$value": "{color.gray.50}", "$type": "color" },
+          "hover":    { "$value": "{color.gray.100}", "$type": "color" },
           "expanded": { "$value": "transparent", "$type": "color" }
         },
         "fg": {
