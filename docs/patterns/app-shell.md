@@ -42,7 +42,8 @@ The shell owns **placement**, not **content**. Persisting sidebar expand state, 
 ## Do / Don't
 
 ### Do
-- **Wire Header `toggle` output to `layout`** switching between `sidebar-left` and `sidebar-collapsed` if you want a collapse button.
+- **Wire the Sidebar `toggle` output to `layout`** switching between `sidebar-left` and `sidebar-collapsed` (and persist) if you want a stable collapse state.
+- **Disable duplicated chrome inside the Sidebar** when the Header already carries it: `[showLogo]="false"` + `[showUserFooter]="false"`. The Sidebar collapses its top/footer frames accordingly.
 - **Use `kpAppShellBanner` for ephemeral system messages** (trial expiring, maintenance). Not for navigation.
 - **Keep the body scrollable** — the shell's grid does this for you. Don't wrap body content in `overflow: hidden` containers.
 

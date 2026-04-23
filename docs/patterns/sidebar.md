@@ -4,7 +4,11 @@
 
 ## Contract
 
-`<kp-sidebar>` renders a vertical nav rail. Content is data-driven via `[sections]` — each section has an optional label and a list of `KpSidebarNavItem` rows. The sidebar owns the expanded/collapsed width switch; the toggle button emits `toggle` so the parent app can persist the state.
+`<kp-sidebar>` renders a vertical nav rail. Content is data-driven via `[sections]` — each section has an optional label and a list of `KpSidebarNavItem` rows.
+
+The sidebar is **self-controlled**: clicking the toggle mutates `widthState` internally and emits `toggle` with the new value for persistence. If the consumer drives `widthState` as an Input, subsequent changes override the internal state.
+
+In **collapsed + `showLogo=true`** state, the logo is visible by default and the toggle fades in on hover (they share the same slot). In all other states, both elements stay where they are.
 
 ## API
 
@@ -14,11 +18,11 @@
 |------|------|---------|-------------|
 | `widthState` | `'expanded' \| 'collapsed'` | `'expanded'` | 240px vs 64px |
 | `appearance` | `'light' \| 'dark'` | `'light'` | Surface color |
-| `showLogo` | `boolean` | `true` | |
+| `showLogo` | `boolean` | `true` | Hide when the app Header already renders the brand (e.g. inside AppShell) |
 | `logoText` | `string` | `'Kanso Protocol'` | |
 | `showSearch` | `boolean` | `false` | Reveal the search slot |
 | `showSectionLabels` | `boolean` | `true` | Uppercase labels above each section |
-| `showUserFooter` | `boolean` | `true` | Bottom user block |
+| `showUserFooter` | `boolean` | `true` | Bottom user block — hide when Header already has a user menu |
 | `sections` | `KpSidebarSection[]` | `[]` | Data-driven sections |
 | `userName`, `userEmail`, `userInitials` | `string \| null` | `null` | Footer user data |
 
@@ -26,7 +30,7 @@
 
 | Name | Payload | Fires when |
 |------|---------|------------|
-| `toggle` | `void` | Expand/collapse button clicked |
+| `toggle` | `KpSidebarWidth` (`'expanded' \| 'collapsed'`) | Toggle clicked — payload is the new state |
 | `itemClick` | `KpSidebarNavItem` | Any nav item clicked |
 | `userMenuClick` | `void` | Footer menu dots clicked |
 
@@ -42,6 +46,7 @@
 ```ts
 interface KpSidebarNavItem {
   label: string;
+  /** Tabler icon name without the `ti-` prefix, e.g. `'layout-dashboard'` */
   icon?: string;
   href?: string;
   active?: boolean;
@@ -85,4 +90,5 @@ interface KpSidebarNavItem {
 
 ## Changelog
 
+- `0.1.1` — Toggle button is interactive (mutates `widthState` + emits new value); in collapsed + `showLogo=true` the toggle swaps in on hover; `showLogo` and `showUserFooter` can now be disabled when the Header already carries them (AppShell composition).
 - `0.1.0` — Initial release. 2 widths × 2 appearances, data-driven sections, user footer with Avatar.
