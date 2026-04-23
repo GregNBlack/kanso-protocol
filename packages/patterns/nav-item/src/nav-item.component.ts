@@ -42,6 +42,7 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
       type="button"
       class="kp-nav-item__content"
       [disabled]="disabled"
+      [attr.title]="collapsed ? label : null"
       (click)="handleClick($event)"
     >
       @if (showIcon) {
