@@ -638,7 +638,7 @@
       "trigger": {
         "bg": {
           "rest":     { "$value": "transparent", "$type": "color" },
-          "hover":    { "$value": "{color.gray.100}", "$type": "color" },
+          "hover":    { "$value": "{color.gray.50}", "$type": "color" },
           "expanded": { "$value": "transparent", "$type": "color" }
         },
         "fg": {
@@ -652,7 +652,8 @@
         }
       },
       "content": { "$value": "{color.gray.700}", "$type": "color" },
-      "border":  { "$value": "{color.gray.200}", "$type": "color" }
+      "border":  { "$value": "{color.gray.200}", "$type": "color" },
+      "bg":      { "$value": "{color.white}",    "$type": "color" }
     },
 
     "empty-state": {
