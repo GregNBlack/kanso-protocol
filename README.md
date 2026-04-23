@@ -15,21 +15,61 @@ Most design systems break consistency through convention drift — developers an
 - **Every state is explicit.** No opacity overlays — clean, predictable colors.
 - **One source of truth.** Change a token in one place — it updates in Figma and code.
 
-## Quick Start
+## Live Preview
+
+**Storybook:** [gregnblack.github.io/kanso-protocol](https://gregnblack.github.io/kanso-protocol)
+
+Every component, pattern and example page is published there with autodocs, live controls, and a light/dark theme toggle.
+
+## Install & Use
+
+Install the pieces you need — each component is its own package. Zero transitive dependencies between components, so you only ship what you import.
 
 ```bash
-# Clone
+npm install @kanso-protocol/core @kanso-protocol/button
+```
+
+Load the CSS tokens once in your app bootstrap (e.g. `styles.scss` or `main.ts`):
+
+```ts
+import '@kanso-protocol/core/styles/tokens.css';
+import '@kanso-protocol/core/styles/dark.css';   // optional — enables [data-theme="dark"]
+```
+
+Use the component as a standalone Angular import:
+
+```ts
+import { Component } from '@angular/core';
+import { KpButtonComponent } from '@kanso-protocol/button';
+
+@Component({
+  standalone: true,
+  imports: [KpButtonComponent],
+  template: `<kp-button color="primary" (click)="save()">Save</kp-button>`,
+})
+export class MyFeatureComponent { save() { /* ... */ } }
+```
+
+Switch themes by toggling `data-theme` on `<html>` or `<body>`:
+
+```html
+<html data-theme="dark">   <!-- or "light" / omit for light -->
+```
+
+See the [Storybook](https://gregnblack.github.io/kanso-protocol) for the full API of every component — props, slots, variants, states, a11y notes.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for dev-environment setup, coding conventions, how to add a component, and the token workflow.
+
+## Development
+
+```bash
 git clone https://github.com/GregNBlack/kanso-protocol.git
 cd kanso-protocol
-
-# Install
 npm install
-
-# Build tokens (DTCG JSON → CSS/SCSS/TS)
-npm run build:tokens
-
-# Run Storybook
-npm run storybook
+npm run build:tokens    # DTCG JSON → CSS / SCSS / TS
+npm run storybook       # localhost:6006
 ```
 
 ## Architecture
