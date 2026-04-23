@@ -157,6 +157,16 @@ import { KpNotificationItemComponent } from '@kanso-protocol/notification-center
       gap: 16px;
     }
 
+    /* Cards inside the dashboard grow with their grid track instead
+       of holding their per-size fixed width. Override the kp-card
+       width custom property locally — leave the component default
+       intact for everyone else. */
+    .charts-row > kp-card,
+    .main > kp-card {
+      --kp-card-w: 100%;
+      width: 100%;
+    }
+
     .chart-placeholder {
       height: 220px;
       border-radius: 8px;
