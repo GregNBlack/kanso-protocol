@@ -57,8 +57,8 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       max-width: 320px;
       max-height: 480px;
       padding: 4px;
-      background: #FFFFFF;
-      border: 1px solid #E4E4E7;
+      background: var(--kp-color-white);
+      border: 1px solid var(--kp-color-gray-200);
       border-radius: 12px;
       box-shadow:
         0 4px 6px rgba(0, 0, 0, 0.05),
@@ -91,7 +91,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
     }
     .kp-dropdown-menu__divider {
       height: 1px;
-      background: #F4F4F5;
+      background: var(--kp-color-gray-100);
       margin: 4px 0;
     }
     .kp-dropdown-menu__search kp-input {

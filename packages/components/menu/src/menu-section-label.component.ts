@@ -19,7 +19,7 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: #71717A;
+      color: var(--kp-color-gray-500);
     }
   `]
 })

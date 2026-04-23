@@ -49,7 +49,7 @@ export type KpSettingsRowSize = 'sm' | 'md' | 'lg';
     }
 
     :host(.kp-sr--with-divider) {
-      border-bottom: 1px solid var(--kp-color-gray-100, #F4F4F5);
+      border-bottom: 1px solid var(--kp-color-gray-100, var(--kp-color-gray-100));
     }
 
     :host(.kp-sr--sm) { --kp-sr-gap: 16px; --kp-sr-pad: 12px 16px; --kp-sr-title-size: 13px; --kp-sr-desc-size: 12px; }
@@ -67,11 +67,11 @@ export type KpSettingsRowSize = 'sm' | 'md' | 'lg';
     .kp-sr__title {
       font-size: var(--kp-sr-title-size, 14px);
       font-weight: 500;
-      color: var(--kp-color-gray-900, #18181B);
+      color: var(--kp-color-gray-900, var(--kp-color-gray-900));
     }
     .kp-sr__description {
       font-size: var(--kp-sr-desc-size, 13px);
-      color: var(--kp-color-gray-600, #52525B);
+      color: var(--kp-color-gray-600, var(--kp-color-gray-600));
       line-height: 1.45;
     }
 

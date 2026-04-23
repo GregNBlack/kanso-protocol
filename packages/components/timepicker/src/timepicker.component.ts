@@ -188,29 +188,29 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       height: var(--kp-input-height);
       padding: 0 var(--kp-input-padding-x);
       gap: var(--kp-input-gap);
-      border: 1px solid var(--kp-input-border, #D4D4D8);
+      border: 1px solid var(--kp-input-border, var(--kp-color-gray-300));
       border-radius: var(--kp-input-radius);
-      background: var(--kp-input-bg, #FFFFFF);
-      color: var(--kp-input-fg, #18181B);
+      background: var(--kp-input-bg, var(--kp-color-white));
+      color: var(--kp-input-fg, var(--kp-color-gray-900));
       cursor: pointer;
       transition: border-color 120ms ease, background 120ms ease;
     }
     :host(:not(.kp-tp--disabled):not(.kp-tp--error)) .kp-tp__trigger:hover,
     :host(.kp-tp--hover) .kp-tp__trigger {
-      border-color: var(--kp-input-border-hover, #A1A1AA);
+      border-color: var(--kp-input-border-hover, var(--kp-color-gray-400));
     }
     :host(.kp-tp--open) .kp-tp__trigger,
     :host(.kp-tp--focus) .kp-tp__trigger,
     :host(:not(.kp-tp--disabled):not(.kp-tp--error)) .kp-tp__trigger:focus-visible {
-      border-color: var(--kp-input-border-focus, #2563EB);
+      border-color: var(--kp-input-border-focus, var(--kp-color-blue-600));
     }
     :host(.kp-tp--disabled) .kp-tp__trigger {
-      background: var(--kp-input-bg-disabled, #FAFAFA);
-      border-color: var(--kp-input-border-disabled, #E4E4E7);
+      background: var(--kp-input-bg-disabled, var(--kp-color-gray-50));
+      border-color: var(--kp-input-border-disabled, var(--kp-color-gray-200));
       cursor: not-allowed;
     }
     :host(.kp-tp--error) .kp-tp__trigger {
-      border-color: var(--kp-input-border-error, #EF4444);
+      border-color: var(--kp-input-border-error, var(--kp-color-red-500));
     }
 
     .kp-tp__value {
@@ -224,7 +224,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       font-variant-numeric: tabular-nums;
       text-align: left;
     }
-    .kp-tp__value--placeholder { color: var(--kp-input-placeholder, #A1A1AA); }
+    .kp-tp__value--placeholder { color: var(--kp-input-placeholder, var(--kp-color-gray-400)); }
 
     .kp-tp__clear {
       display: inline-flex;
@@ -235,14 +235,14 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       height: var(--kp-input-clear-size, 20px);
       padding: 2px;
       border-radius: 4px;
-      color: #71717A;
+      color: var(--kp-color-gray-500);
       cursor: pointer;
       transition: background 120ms ease, color 120ms ease;
     }
-    .kp-tp__clear:hover { background: #F4F4F5; color: #3F3F46; }
+    .kp-tp__clear:hover { background: var(--kp-color-gray-100); color: var(--kp-color-gray-700); }
     .kp-tp__clear svg { width: var(--kp-input-clear-icon, 14px); height: var(--kp-input-clear-icon, 14px); }
 
-    .kp-tp__icon { display: inline-flex; color: #71717A; flex-shrink: 0; }
+    .kp-tp__icon { display: inline-flex; color: var(--kp-color-gray-500); flex-shrink: 0; }
 
     .kp-tp__panel {
       position: fixed;
@@ -253,8 +253,8 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       flex-direction: column;
       gap: 12px;
       padding: 16px;
-      background: var(--kp-color-datepicker-panel-bg, #FFFFFF);
-      border: 1px solid var(--kp-color-datepicker-panel-border, #E4E4E7);
+      background: var(--kp-color-datepicker-panel-bg, var(--kp-color-white));
+      border: 1px solid var(--kp-color-datepicker-panel-border, var(--kp-color-gray-200));
       border-radius: 12px;
       box-shadow:
         0 4px 6px rgba(0, 0, 0, 0.05),
@@ -276,7 +276,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
     .kp-tp__col-label {
       font-size: 10px;
       font-weight: 500;
-      color: var(--kp-color-datepicker-weekday, #71717A);
+      color: var(--kp-color-datepicker-weekday, var(--kp-color-gray-500));
       text-transform: uppercase;
       letter-spacing: 0.06em;
       text-align: center;
@@ -288,7 +288,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       height: 160px;
       width: 56px;
       padding: 4px;
-      border: 1px solid var(--kp-color-datepicker-panel-border, #E4E4E7);
+      border: 1px solid var(--kp-color-datepicker-panel-border, var(--kp-color-gray-200));
       border-radius: 8px;
       overflow-y: auto;
       scroll-behavior: smooth;
@@ -299,7 +299,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       justify-content: center;
     }
     .kp-tp__col-list::-webkit-scrollbar { width: 4px; }
-    .kp-tp__col-list::-webkit-scrollbar-thumb { background: #D4D4D8; border-radius: 2px; }
+    .kp-tp__col-list::-webkit-scrollbar-thumb { background: var(--kp-color-gray-300); border-radius: 2px; }
 
     .kp-tp__sep {
       display: inline-flex;
@@ -307,7 +307,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       padding-top: 22px;
       font-size: 18px;
       font-weight: 600;
-      color: #A1A1AA;
+      color: var(--kp-color-gray-400);
     }
 
     .kp-tp__item {
@@ -319,17 +319,17 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       border-radius: 6px;
       font-size: 14px;
       font-variant-numeric: tabular-nums;
-      color: var(--kp-color-datepicker-day-fg-rest, #18181B);
+      color: var(--kp-color-datepicker-day-fg-rest, var(--kp-color-gray-900));
       cursor: pointer;
       transition: background 100ms ease, color 100ms ease;
       flex-shrink: 0;
     }
     .kp-tp__item:hover:not(.kp-tp__item--selected) {
-      background: var(--kp-color-datepicker-day-bg-hover, #F4F4F5);
+      background: var(--kp-color-datepicker-day-bg-hover, var(--kp-color-gray-100));
     }
     .kp-tp__item--selected {
-      background: var(--kp-color-datepicker-day-bg-selected, #2563EB);
-      color: var(--kp-color-datepicker-day-fg-selected, #FFFFFF);
+      background: var(--kp-color-datepicker-day-bg-selected, var(--kp-color-blue-600));
+      color: var(--kp-color-datepicker-day-fg-selected, var(--kp-color-white));
       font-weight: 500;
     }
 
@@ -339,7 +339,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       justify-content: space-between;
       gap: 8px;
       padding-top: 8px;
-      border-top: 1px solid var(--kp-color-datepicker-panel-border, #E4E4E7);
+      border-top: 1px solid var(--kp-color-datepicker-panel-border, var(--kp-color-gray-200));
     }
     .kp-tp__footer-right { display: flex; gap: 6px; }
 

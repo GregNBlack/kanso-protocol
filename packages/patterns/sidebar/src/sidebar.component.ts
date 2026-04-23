@@ -151,8 +151,8 @@ export interface KpSidebarSection {
       width: var(--kp-sidebar-w, 240px);
       height: 100%;
       min-height: 100vh;
-      background: var(--kp-color-sidebar-bg, #FFFFFF);
-      border-right: 1px solid var(--kp-color-sidebar-border, #E4E4E7);
+      background: var(--kp-color-sidebar-bg, var(--kp-color-white));
+      border-right: 1px solid var(--kp-color-sidebar-border, var(--kp-color-gray-200));
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       transition: width 160ms ease;
     }
@@ -160,9 +160,9 @@ export interface KpSidebarSection {
     :host(.kp-sidebar--collapsed) { --kp-sidebar-w: 64px; }
 
     :host(.kp-sidebar--dark) {
-      background: var(--kp-color-sidebar-bg-dark, #18181B);
+      background: var(--kp-color-sidebar-bg-dark, var(--kp-color-gray-900));
       color: rgba(255,255,255,0.92);
-      border-right-color: #27272A;
+      border-right-color: var(--kp-color-gray-800);
     }
 
     .kp-sidebar__top {
@@ -213,7 +213,7 @@ export interface KpSidebarSection {
       width: 32px;
       height: 32px;
       border-radius: 8px;
-      background: var(--kp-color-blue-600, #2563EB);
+      background: var(--kp-color-blue-600, var(--kp-color-blue-600));
       color: #fff;
       flex: 0 0 auto;
     }
@@ -234,19 +234,19 @@ export interface KpSidebarSection {
       width: 28px;
       height: 28px;
       border-radius: 6px;
-      color: var(--kp-color-gray-500, #71717A);
+      color: var(--kp-color-gray-500, var(--kp-color-gray-500));
       cursor: pointer;
       transition: background 120ms ease, color 120ms ease;
     }
     .kp-sidebar__toggle:hover {
-      background: var(--kp-color-gray-100, #F4F4F5);
-      color: var(--kp-color-gray-900, #18181B);
+      background: var(--kp-color-gray-100, var(--kp-color-gray-100));
+      color: var(--kp-color-gray-900, var(--kp-color-gray-900));
     }
     .kp-sidebar__toggle svg { width: 16px; height: 16px; }
     :host(.kp-sidebar--dark) .kp-sidebar__toggle { color: rgba(255,255,255,0.7); }
     :host(.kp-sidebar--dark) .kp-sidebar__toggle:hover {
-      background: #27272A;
-      color: #FFFFFF;
+      background: var(--kp-color-gray-800);
+      color: var(--kp-color-white);
     }
 
     :host(.kp-sidebar--collapsed) .kp-sidebar__logo { justify-content: center; }
@@ -270,7 +270,7 @@ export interface KpSidebarSection {
       font-weight: 600;
       letter-spacing: 0.5px;
       text-transform: uppercase;
-      color: var(--kp-color-sidebar-section-label, #71717A);
+      color: var(--kp-color-sidebar-section-label, var(--kp-color-gray-500));
     }
 
     .kp-sidebar__badge {
@@ -280,8 +280,8 @@ export interface KpSidebarSection {
       padding: 1px 8px;
       height: 20px;
       border-radius: 999px;
-      background: var(--kp-color-gray-100, #F4F4F5);
-      color: var(--kp-color-gray-700, #3F3F46);
+      background: var(--kp-color-gray-100, var(--kp-color-gray-100));
+      color: var(--kp-color-gray-700, var(--kp-color-gray-700));
       font-size: 11px;
       font-weight: 500;
     }
@@ -291,9 +291,9 @@ export interface KpSidebarSection {
       align-items: center;
       gap: 12px;
       padding: 16px;
-      border-top: 1px solid var(--kp-color-sidebar-border, #E4E4E7);
+      border-top: 1px solid var(--kp-color-sidebar-border, var(--kp-color-gray-200));
     }
-    :host(.kp-sidebar--dark) .kp-sidebar__footer { border-top-color: #27272A; }
+    :host(.kp-sidebar--dark) .kp-sidebar__footer { border-top-color: var(--kp-color-gray-800); }
     .kp-sidebar__footer-text {
       display: flex;
       flex-direction: column;
@@ -304,7 +304,7 @@ export interface KpSidebarSection {
     .kp-sidebar__footer-name {
       font-size: 13px;
       font-weight: 500;
-      color: var(--kp-color-gray-900, #18181B);
+      color: var(--kp-color-gray-900, var(--kp-color-gray-900));
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
@@ -312,7 +312,7 @@ export interface KpSidebarSection {
     :host(.kp-sidebar--dark) .kp-sidebar__footer-name { color: #fff; }
     .kp-sidebar__footer-email {
       font-size: 11px;
-      color: var(--kp-color-gray-500, #71717A);
+      color: var(--kp-color-gray-500, var(--kp-color-gray-500));
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
@@ -325,10 +325,10 @@ export interface KpSidebarSection {
       width: 28px;
       height: 28px;
       border-radius: 4px;
-      color: var(--kp-color-gray-500, #71717A);
+      color: var(--kp-color-gray-500, var(--kp-color-gray-500));
       cursor: pointer;
     }
-    .kp-sidebar__footer-menu:hover { color: var(--kp-color-gray-900, #18181B); background: var(--kp-color-gray-100, #F4F4F5); }
+    .kp-sidebar__footer-menu:hover { color: var(--kp-color-gray-900, var(--kp-color-gray-900)); background: var(--kp-color-gray-100, var(--kp-color-gray-100)); }
     .kp-sidebar__footer-menu svg { width: 18px; height: 18px; }
 
     :host(.kp-sidebar--collapsed) .kp-sidebar__footer { justify-content: center; padding-inline: 0; }

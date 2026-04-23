@@ -112,8 +112,8 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       position: absolute;
       display: flex;
       flex-direction: column;
-      background: var(--kp-color-dialog-panel-bg, #FFFFFF);
-      border: 1px solid var(--kp-color-dialog-panel-border, #E4E4E7);
+      background: var(--kp-color-dialog-panel-bg, var(--kp-color-white));
+      border: 1px solid var(--kp-color-dialog-panel-border, var(--kp-color-gray-200));
       box-shadow:
         0 10px 15px rgba(0, 0, 0, 0.10),
         0 20px 25px rgba(0, 0, 0, 0.12);
@@ -181,7 +181,7 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       width: 40px;
       height: 4px;
       border-radius: 2px;
-      background: var(--kp-color-drawer-resize-handle, #D4D4D8);
+      background: var(--kp-color-drawer-resize-handle, var(--kp-color-gray-300));
     }
 
     .kp-drawer__header {
@@ -202,13 +202,13 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       font-size: 18px;
       line-height: 28px;
       font-weight: 500;
-      color: var(--kp-color-dialog-fg-title, #18181B);
+      color: var(--kp-color-dialog-fg-title, var(--kp-color-gray-900));
     }
     .kp-drawer__desc {
       margin: 0;
       font-size: 16px;
       line-height: 24px;
-      color: var(--kp-color-dialog-fg-desc, #52525B);
+      color: var(--kp-color-dialog-fg-desc, var(--kp-color-gray-600));
     }
     .kp-drawer__close {
       all: unset;
@@ -218,28 +218,28 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       width: 28px;
       height: 28px;
       border-radius: 8px;
-      color: var(--kp-color-dialog-fg-desc, #52525B);
+      color: var(--kp-color-dialog-fg-desc, var(--kp-color-gray-600));
       cursor: pointer;
       transition: background 120ms ease;
       flex: 0 0 auto;
     }
-    .kp-drawer__close:hover { background: var(--kp-color-gray-100, #F4F4F5); }
+    .kp-drawer__close:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); }
     .kp-drawer__close:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring, #60A5FA);
+      outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
       outline-offset: 2px;
     }
     .kp-drawer__close svg { width: 18px; height: 18px; }
 
     .kp-drawer__divider {
       height: 1px;
-      background: var(--kp-color-dialog-divider, #F4F4F5);
+      background: var(--kp-color-dialog-divider, var(--kp-color-gray-100));
     }
 
     .kp-drawer__body {
       flex: 1 1 auto;
       padding: 0 20px;
       overflow-y: auto;
-      color: var(--kp-color-dialog-fg-body, #3F3F46);
+      color: var(--kp-color-dialog-fg-body, var(--kp-color-gray-700));
       font-size: 16px;
       line-height: 24px;
     }

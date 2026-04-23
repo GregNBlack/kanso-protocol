@@ -131,7 +131,7 @@ export type KpSliderValue = number | readonly [number, number];
       font-size: 12px;
       line-height: 16px;
       font-weight: 500;
-      color: var(--kp-color-slider-value, #18181B);
+      color: var(--kp-color-slider-value, var(--kp-color-gray-900));
       font-variant-numeric: tabular-nums;
       white-space: nowrap;
       pointer-events: none;
@@ -148,13 +148,13 @@ export type KpSliderValue = number | readonly [number, number];
       position: absolute;
       left: 0; right: 0;
       height: var(--kp-sl-track-h);
-      background: var(--kp-color-slider-track-empty, #E4E4E7);
+      background: var(--kp-color-slider-track-empty, var(--kp-color-gray-200));
       border-radius: calc(var(--kp-sl-track-h) / 2);
     }
     .kp-sl__track-fill {
       position: absolute;
       height: var(--kp-sl-track-h);
-      background: var(--kp-color-slider-track-filled, #2563EB);
+      background: var(--kp-color-slider-track-filled, var(--kp-color-blue-600));
       border-radius: calc(var(--kp-sl-track-h) / 2);
     }
     .kp-sl__tick {
@@ -162,7 +162,7 @@ export type KpSliderValue = number | readonly [number, number];
       width: 4px;
       height: 4px;
       border-radius: 50%;
-      background: var(--kp-color-slider-tick, #A1A1AA);
+      background: var(--kp-color-slider-tick, var(--kp-color-gray-400));
       transform: translateX(-50%);
       pointer-events: none;
     }
@@ -173,8 +173,8 @@ export type KpSliderValue = number | readonly [number, number];
       width: var(--kp-sl-thumb-d);
       height: var(--kp-sl-thumb-d);
       border-radius: 50%;
-      background: var(--kp-color-slider-thumb-bg, #FFFFFF);
-      border: 2px solid var(--kp-color-slider-thumb-border, #2563EB);
+      background: var(--kp-color-slider-thumb-bg, var(--kp-color-white));
+      border: 2px solid var(--kp-color-slider-thumb-border, var(--kp-color-blue-600));
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
       cursor: grab;
       transform: translateX(-50%);
@@ -183,22 +183,22 @@ export type KpSliderValue = number | readonly [number, number];
       touch-action: none;
     }
     .kp-sl__thumb:active { cursor: grabbing; }
-    .kp-sl__thumb:hover { border-color: var(--kp-color-blue-700, #1D4ED8); }
+    .kp-sl__thumb:hover { border-color: var(--kp-color-blue-700, var(--kp-color-blue-700)); }
     .kp-sl__thumb:focus-visible {
-      box-shadow: 0 0 0 4px var(--kp-color-slider-thumb-ring-focus, #DBEAFE), 0 2px 4px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 0 0 4px var(--kp-color-slider-thumb-ring-focus, var(--kp-color-blue-100)), 0 2px 4px rgba(0, 0, 0, 0.08);
     }
     .kp-sl__thumb[disabled] {
       cursor: not-allowed;
-      background: var(--kp-color-gray-100, #F4F4F5);
-      border-color: var(--kp-color-gray-400, #A1A1AA);
+      background: var(--kp-color-gray-100, var(--kp-color-gray-100));
+      border-color: var(--kp-color-gray-400, var(--kp-color-gray-400));
       box-shadow: none;
     }
 
     :host(.kp-sl--disabled) .kp-sl__track-fill {
-      background: var(--kp-color-gray-400, #A1A1AA);
+      background: var(--kp-color-gray-400, var(--kp-color-gray-400));
     }
     :host(.kp-sl--disabled) .kp-sl__track {
-      background: var(--kp-color-gray-100, #F4F4F5);
+      background: var(--kp-color-gray-100, var(--kp-color-gray-100));
     }
 
     .kp-sl__labels {
@@ -207,7 +207,7 @@ export type KpSliderValue = number | readonly [number, number];
       margin-top: 8px;
       font-size: 12px;
       line-height: 16px;
-      color: var(--kp-color-slider-label, #52525B);
+      color: var(--kp-color-slider-label, var(--kp-color-gray-600));
       font-variant-numeric: tabular-nums;
     }
   `],

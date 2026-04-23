@@ -92,9 +92,9 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       display: inline-flex;
       align-items: stretch;
       box-sizing: border-box;
-      border: 1px solid var(--kp-input-border, #D4D4D8);
+      border: 1px solid var(--kp-input-border, var(--kp-color-gray-300));
       border-radius: var(--kp-stepper-radius);
-      background: var(--kp-input-bg, #FFFFFF);
+      background: var(--kp-input-bg, var(--kp-color-white));
       height: var(--kp-stepper-height);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       overflow: hidden;
@@ -103,19 +103,19 @@ import { KpButtonComponent } from '@kanso-protocol/button';
 
     :host(:hover:not(.kp-number-stepper--disabled):not(.kp-number-stepper--error)),
     :host(.kp-number-stepper--hover) {
-      border-color: var(--kp-input-border-hover, #A1A1AA);
+      border-color: var(--kp-input-border-hover, var(--kp-color-gray-400));
     }
     :host(:focus-within:not(.kp-number-stepper--disabled):not(.kp-number-stepper--error)),
     :host(.kp-number-stepper--focus) {
-      border-color: var(--kp-input-border-focus, #2563EB);
+      border-color: var(--kp-input-border-focus, var(--kp-color-blue-600));
     }
     :host(.kp-number-stepper--disabled) {
-      background: var(--kp-input-bg-disabled, #FAFAFA);
-      border-color: var(--kp-input-border-disabled, #E4E4E7);
+      background: var(--kp-input-bg-disabled, var(--kp-color-gray-50));
+      border-color: var(--kp-input-border-disabled, var(--kp-color-gray-200));
       cursor: not-allowed;
     }
     :host(.kp-number-stepper--error) {
-      border-color: var(--kp-input-border-error, #EF4444);
+      border-color: var(--kp-input-border-error, var(--kp-color-red-500));
     }
 
     /* Buttons fit the host height — neutralise the Button's own border so it sits flush */
@@ -134,7 +134,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       justify-content: center;
       gap: 4px;
       padding: 0 var(--kp-stepper-pad-x);
-      color: var(--kp-input-fg, #18181B);
+      color: var(--kp-input-fg, var(--kp-color-gray-900));
       font-size: var(--kp-stepper-fs);
       line-height: var(--kp-stepper-lh);
       font-variant-numeric: tabular-nums;
@@ -142,7 +142,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
 
     .kp-number-stepper__affix {
       flex-shrink: 0;
-      color: var(--kp-color-stepper-affix-color, #71717A);
+      color: var(--kp-color-stepper-affix-color, var(--kp-color-gray-500));
       font-weight: 400;
       font-variant-numeric: tabular-nums;
     }
@@ -168,7 +168,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       padding: 0 2px;
     }
     .kp-number-stepper__input:disabled {
-      color: var(--kp-input-fg-disabled, #A1A1AA);
+      color: var(--kp-input-fg-disabled, var(--kp-color-gray-400));
       cursor: not-allowed;
     }
 

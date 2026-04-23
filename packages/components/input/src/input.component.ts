@@ -82,9 +82,9 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       align-items: stretch;
       box-sizing: border-box;
       width: 280px;
-      border: 1px solid var(--kp-input-border, #D4D4D8);
+      border: 1px solid var(--kp-input-border, var(--kp-color-gray-300));
       border-radius: var(--kp-input-radius);
-      background: var(--kp-input-bg, #FFFFFF);
+      background: var(--kp-input-bg, var(--kp-color-white));
       height: var(--kp-input-height);
       padding: 0 var(--kp-input-padding-x);
       gap: var(--kp-input-gap);
@@ -97,27 +97,27 @@ import { KpSize, KpState } from '@kanso-protocol/core';
     /* --- Interactive states --- */
     :host(:hover:not(.kp-input--disabled):not(.kp-input--error)),
     :host(.kp-input--hover) {
-      border-color: var(--kp-input-border-hover, #A1A1AA);
+      border-color: var(--kp-input-border-hover, var(--kp-color-gray-400));
     }
 
     :host(:focus-within:not(.kp-input--disabled):not(.kp-input--error)),
     :host(.kp-input--focus) {
-      border-color: var(--kp-input-border-focus, #2563EB);
+      border-color: var(--kp-input-border-focus, var(--kp-color-blue-600));
       outline: none;
     }
 
     :host(.kp-input--active) {
-      border-color: var(--kp-input-border-active, #71717A);
+      border-color: var(--kp-input-border-active, var(--kp-color-gray-500));
     }
 
     :host(.kp-input--disabled) {
-      background: var(--kp-input-bg-disabled, #FAFAFA);
-      border-color: var(--kp-input-border-disabled, #E4E4E7);
+      background: var(--kp-input-bg-disabled, var(--kp-color-gray-50));
+      border-color: var(--kp-input-border-disabled, var(--kp-color-gray-200));
       cursor: not-allowed;
     }
 
     :host(.kp-input--error) {
-      border-color: var(--kp-input-border-error, #EF4444);
+      border-color: var(--kp-input-border-error, var(--kp-color-red-500));
     }
 
     /* --- Field wrap with overlay label --- */
@@ -136,7 +136,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       border: none;
       outline: none;
       background: transparent;
-      color: var(--kp-input-fg, #18181B);
+      color: var(--kp-input-fg, var(--kp-color-gray-900));
       font: inherit;
       font-size: var(--kp-input-font-size);
       line-height: var(--kp-input-line-height);
@@ -146,11 +146,11 @@ import { KpSize, KpState } from '@kanso-protocol/core';
     }
 
     .kp-input__field::placeholder {
-      color: var(--kp-input-placeholder, #A1A1AA);
+      color: var(--kp-input-placeholder, var(--kp-color-gray-400));
     }
 
     .kp-input__field:disabled {
-      color: var(--kp-input-fg-disabled, #A1A1AA);
+      color: var(--kp-input-fg-disabled, var(--kp-color-gray-400));
       cursor: not-allowed;
     }
 
@@ -167,25 +167,25 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       border: none;
       border-radius: 4px;
       background: transparent;
-      color: #71717A;
+      color: var(--kp-color-gray-500);
       cursor: pointer;
       transition:
         background var(--kp-motion-duration-fast, 100ms) ease,
         color var(--kp-motion-duration-fast, 100ms) ease;
     }
     .kp-input__clear:hover {
-      background: #F4F4F5;
-      color: #3F3F46;
+      background: var(--kp-color-gray-100);
+      color: var(--kp-color-gray-700);
     }
     .kp-input__clear:active {
-      background: #E4E4E7;
-      color: #18181B;
+      background: var(--kp-color-gray-200);
+      color: var(--kp-color-gray-900);
     }
     .kp-input__clear svg {
       width: var(--kp-input-clear-icon, 14px);
       height: var(--kp-input-clear-icon, 14px);
     }
-    :host(.kp-input--error) .kp-input__clear { color: #DC2626; }
+    :host(.kp-input--error) .kp-input__clear { color: var(--kp-color-red-600); }
 
     /* --- Icons --- */
     .kp-input__icon {
@@ -193,7 +193,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      color: var(--kp-input-placeholder, #A1A1AA);
+      color: var(--kp-input-placeholder, var(--kp-color-gray-400));
     }
     .kp-input__icon:empty { display: none; }
 
@@ -204,7 +204,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       left: 0;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--kp-input-placeholder, #A1A1AA);
+      color: var(--kp-input-placeholder, var(--kp-color-gray-400));
       font-size: var(--kp-input-font-size);
       line-height: var(--kp-input-line-height);
       font-weight: var(--kp-input-font-weight, 400);
@@ -222,16 +222,16 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       transform: translateY(0);
       font-size: var(--kp-input-label-small-size, 10px);
       font-weight: 500;
-      color: var(--kp-floating-label, #52525B);
+      color: var(--kp-floating-label, var(--kp-color-gray-600));
     }
 
     :host(.kp-input--focus) .kp-input__label--floated,
     :host(:focus-within) .kp-input__label--floated {
-      color: var(--kp-floating-label-focus, #2563EB);
+      color: var(--kp-floating-label-focus, var(--kp-color-blue-600));
     }
 
     :host(.kp-input--error) .kp-input__label--floated {
-      color: var(--kp-floating-label-error, #EF4444);
+      color: var(--kp-floating-label-error, var(--kp-color-red-500));
     }
 
     /* When floating label is floated (at top), input text needs to leave room */

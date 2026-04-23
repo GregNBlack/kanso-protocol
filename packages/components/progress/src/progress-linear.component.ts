@@ -71,13 +71,13 @@ export type KpProgressColor = 'primary' | 'success' | 'danger' | 'warning' | 'ne
     }
 
     .kp-progress-linear__label {
-      color: var(--kp-color-progress-label, #3F3F46);
+      color: var(--kp-color-progress-label, var(--kp-color-gray-700));
       font-weight: 400;
       font-size: 14px;
       line-height: 20px;
     }
     .kp-progress-linear__value {
-      color: var(--kp-color-progress-value, #18181B);
+      color: var(--kp-color-progress-value, var(--kp-color-gray-900));
       font-weight: 500;
       font-size: 14px;
       line-height: 20px;
@@ -89,7 +89,7 @@ export type KpProgressColor = 'primary' | 'success' | 'danger' | 'warning' | 'ne
       position: relative;
       flex: 1 1 auto;
       height: var(--kp-progress-h);
-      background: var(--kp-color-progress-track, #F4F4F5);
+      background: var(--kp-color-progress-track, var(--kp-color-gray-100));
       border-radius: calc(var(--kp-progress-h) / 2);
       overflow: hidden;
     }
@@ -121,11 +121,11 @@ export type KpProgressColor = 'primary' | 'success' | 'danger' | 'warning' | 'ne
     :host(.kp-progress-linear--lg) { --kp-progress-h: 8px; }
 
     /* Color roles */
-    :host(.kp-progress-linear--primary) { --kp-progress-fill: var(--kp-color-progress-primary-fill, #2563EB); }
-    :host(.kp-progress-linear--success) { --kp-progress-fill: var(--kp-color-progress-success-fill, #16A34A); }
-    :host(.kp-progress-linear--danger)  { --kp-progress-fill: var(--kp-color-progress-danger-fill,  #DC2626); }
-    :host(.kp-progress-linear--warning) { --kp-progress-fill: var(--kp-color-progress-warning-fill, #F59E0B); }
-    :host(.kp-progress-linear--neutral) { --kp-progress-fill: var(--kp-color-progress-neutral-fill, #3F3F46); }
+    :host(.kp-progress-linear--primary) { --kp-progress-fill: var(--kp-color-progress-primary-fill, var(--kp-color-blue-600)); }
+    :host(.kp-progress-linear--success) { --kp-progress-fill: var(--kp-color-progress-success-fill, var(--kp-color-green-600)); }
+    :host(.kp-progress-linear--danger)  { --kp-progress-fill: var(--kp-color-progress-danger-fill,  var(--kp-color-red-600)); }
+    :host(.kp-progress-linear--warning) { --kp-progress-fill: var(--kp-color-progress-warning-fill, var(--kp-color-amber-500)); }
+    :host(.kp-progress-linear--neutral) { --kp-progress-fill: var(--kp-color-progress-neutral-fill, var(--kp-color-gray-700)); }
   `],
 })
 export class KpProgressLinearComponent {

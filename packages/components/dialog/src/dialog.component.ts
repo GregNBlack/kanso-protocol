@@ -133,8 +133,8 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       width: var(--kp-dialog-w);
       max-width: calc(100vw - 32px);
       max-height: calc(100vh - 48px);
-      background: var(--kp-color-dialog-panel-bg, #FFFFFF);
-      border: 1px solid var(--kp-color-dialog-panel-border, #E4E4E7);
+      background: var(--kp-color-dialog-panel-bg, var(--kp-color-white));
+      border: 1px solid var(--kp-color-dialog-panel-border, var(--kp-color-gray-200));
       border-radius: var(--kp-dialog-radius);
       box-shadow:
         0 10px 15px rgba(0, 0, 0, 0.08),
@@ -172,8 +172,8 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       width: var(--kp-dialog-hero-container);
       height: var(--kp-dialog-hero-container);
       border-radius: 50%;
-      background: var(--kp-color-gray-100, #F4F4F5);
-      color: var(--kp-color-dialog-fg-title, #18181B);
+      background: var(--kp-color-gray-100, var(--kp-color-gray-100));
+      color: var(--kp-color-dialog-fg-title, var(--kp-color-gray-900));
     }
     .kp-dialog__hero ::ng-deep svg {
       width: var(--kp-dialog-hero-icon);
@@ -191,13 +191,13 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       font-size: var(--kp-dialog-title-size);
       line-height: var(--kp-dialog-title-lh);
       font-weight: 500;
-      color: var(--kp-color-dialog-fg-title, #18181B);
+      color: var(--kp-color-dialog-fg-title, var(--kp-color-gray-900));
     }
     .kp-dialog__desc {
       margin: 0;
       font-size: var(--kp-dialog-desc-size);
       line-height: var(--kp-dialog-desc-lh);
-      color: var(--kp-color-dialog-fg-desc, #52525B);
+      color: var(--kp-color-dialog-fg-desc, var(--kp-color-gray-600));
     }
     .kp-dialog__close {
       all: unset;
@@ -210,14 +210,14 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       width: var(--kp-dialog-close-btn);
       height: var(--kp-dialog-close-btn);
       border-radius: var(--kp-dialog-close-radius);
-      color: var(--kp-color-dialog-fg-desc, #52525B);
+      color: var(--kp-color-dialog-fg-desc, var(--kp-color-gray-600));
       cursor: pointer;
       transition: background 120ms ease;
       z-index: 1;
     }
-    .kp-dialog__close:hover { background: var(--kp-color-gray-100, #F4F4F5); }
+    .kp-dialog__close:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); }
     .kp-dialog__close:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring, #60A5FA);
+      outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
       outline-offset: 2px;
     }
     .kp-dialog__close svg {
@@ -227,12 +227,12 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
 
     .kp-dialog__divider {
       height: 1px;
-      background: var(--kp-color-dialog-divider, #F4F4F5);
+      background: var(--kp-color-dialog-divider, var(--kp-color-gray-100));
     }
 
     .kp-dialog__body {
       padding: 0 var(--kp-dialog-pad);
-      color: var(--kp-color-dialog-fg-body, #3F3F46);
+      color: var(--kp-color-dialog-fg-body, var(--kp-color-gray-700));
       font-size: var(--kp-dialog-body-size);
       line-height: var(--kp-dialog-body-lh);
       overflow: auto;

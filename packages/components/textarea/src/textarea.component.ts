@@ -65,9 +65,9 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
       display: inline-block;
       box-sizing: border-box;
       padding: 0;
-      border: 1px solid var(--kp-input-border, #D4D4D8);
+      border: 1px solid var(--kp-input-border, var(--kp-color-gray-300));
       border-radius: var(--kp-textarea-radius);
-      background: var(--kp-input-bg, #FFFFFF);
+      background: var(--kp-input-bg, var(--kp-color-white));
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       transition:
         border-color var(--kp-motion-duration-fast, 100ms) ease,
@@ -75,17 +75,17 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
     }
 
     :host(:hover:not(.kp-textarea--disabled):not(.kp-textarea--error)),
-    :host(.kp-textarea--hover) { border-color: var(--kp-input-border-hover, #A1A1AA); }
+    :host(.kp-textarea--hover) { border-color: var(--kp-input-border-hover, var(--kp-color-gray-400)); }
     :host(:focus-within:not(.kp-textarea--disabled):not(.kp-textarea--error)),
-    :host(.kp-textarea--focus) { border-color: var(--kp-input-border-focus, #2563EB); }
-    :host(.kp-textarea--active) { border-color: var(--kp-input-border-active, #71717A); }
+    :host(.kp-textarea--focus) { border-color: var(--kp-input-border-focus, var(--kp-color-blue-600)); }
+    :host(.kp-textarea--active) { border-color: var(--kp-input-border-active, var(--kp-color-gray-500)); }
     :host(.kp-textarea--disabled) {
-      background: var(--kp-input-bg-disabled, #FAFAFA);
-      border-color: var(--kp-input-border-disabled, #E4E4E7);
+      background: var(--kp-input-bg-disabled, var(--kp-color-gray-50));
+      border-color: var(--kp-input-border-disabled, var(--kp-color-gray-200));
       cursor: not-allowed;
     }
-    :host(.kp-textarea--error) { border-color: var(--kp-input-border-error, #EF4444); }
-    :host(.kp-textarea--filled) { background: #F4F4F5; border-color: transparent; }
+    :host(.kp-textarea--error) { border-color: var(--kp-input-border-error, var(--kp-color-red-500)); }
+    :host(.kp-textarea--filled) { background: var(--kp-color-gray-100); border-color: transparent; }
 
     .kp-textarea__field {
       display: block;
@@ -95,7 +95,7 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
       border: none;
       outline: none;
       background: transparent;
-      color: var(--kp-input-fg, #18181B);
+      color: var(--kp-input-fg, var(--kp-color-gray-900));
       font: inherit;
       font-size: var(--kp-textarea-fs);
       line-height: var(--kp-textarea-lh);
@@ -111,8 +111,8 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
     :host(.kp-textarea--resize-vertical) .kp-textarea__field { resize: vertical; }
     :host(.kp-textarea--resize-horizontal) .kp-textarea__field { resize: horizontal; }
 
-    .kp-textarea__field::placeholder { color: var(--kp-input-placeholder, #A1A1AA); }
-    .kp-textarea__field:disabled { color: var(--kp-input-fg-disabled, #A1A1AA); cursor: not-allowed; }
+    .kp-textarea__field::placeholder { color: var(--kp-input-placeholder, var(--kp-color-gray-400)); }
+    .kp-textarea__field:disabled { color: var(--kp-input-fg-disabled, var(--kp-color-gray-400)); cursor: not-allowed; }
 
     /* Custom thin scrollbar on the textarea itself */
     .kp-textarea__field::-webkit-scrollbar {
@@ -121,12 +121,12 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
     }
     .kp-textarea__field::-webkit-scrollbar-track { background: transparent; }
     .kp-textarea__field::-webkit-scrollbar-thumb {
-      background: #D4D4D8;
+      background: var(--kp-color-gray-300);
       border-radius: 3px;
       border-right: 2px solid transparent;
       background-clip: padding-box;
     }
-    .kp-textarea__field::-webkit-scrollbar-thumb:hover { background: #A1A1AA; background-clip: padding-box; }
+    .kp-textarea__field::-webkit-scrollbar-thumb:hover { background: var(--kp-color-gray-400); background-clip: padding-box; }
 
     /* Hide native resize grip; we draw our own below */
     .kp-textarea__field::-webkit-resizer { background: transparent; }
@@ -137,7 +137,7 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
       bottom: 4px;
       width: 10px;
       height: 10px;
-      color: #A1A1AA;
+      color: var(--kp-color-gray-400);
       pointer-events: none; /* native resize drag still fires on textarea below */
       z-index: 2;
     }
@@ -169,13 +169,13 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
       bottom: 4px;
       font-size: 12px;
       line-height: 16px;
-      color: #A1A1AA;
+      color: var(--kp-color-gray-400);
       font-variant-numeric: tabular-nums;
       pointer-events: none;
-      background: var(--kp-input-bg, #FFFFFF);
+      background: var(--kp-input-bg, var(--kp-color-white));
       padding-left: 4px;
     }
-    :host(.kp-textarea--filled) .kp-textarea__counter { background: #F4F4F5; }
+    :host(.kp-textarea--filled) .kp-textarea__counter { background: var(--kp-color-gray-100); }
     /* When the custom grip is hidden, align counter to the same inset as the bottom */
     :host(.kp-textarea--no-resize) .kp-textarea__counter { right: 6px; }
 

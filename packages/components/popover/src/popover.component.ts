@@ -107,7 +107,7 @@ export type KpPopoverArrowPosition =
       flex-direction: column;
       gap: var(--kp-popover-gap);
       padding: var(--kp-popover-pad) 0;
-      background: var(--kp-color-popover-bg, #FFFFFF);
+      background: var(--kp-color-popover-bg, var(--kp-color-white));
       border-radius: var(--kp-popover-radius);
     }
 
@@ -127,14 +127,14 @@ export type KpPopoverArrowPosition =
     }
 
     .kp-popover__title {
-      color: var(--kp-color-popover-fg-title, #18181B);
+      color: var(--kp-color-popover-fg-title, var(--kp-color-gray-900));
       font-weight: 500;
       font-size: var(--kp-popover-title-size);
       line-height: var(--kp-popover-title-lh);
     }
 
     .kp-popover__description {
-      color: var(--kp-color-popover-fg-desc, #52525B);
+      color: var(--kp-color-popover-fg-desc, var(--kp-color-gray-600));
       font-weight: 400;
       font-size: var(--kp-popover-desc-size);
       line-height: var(--kp-popover-desc-lh);
@@ -149,21 +149,21 @@ export type KpPopoverArrowPosition =
       width: var(--kp-popover-close-size);
       height: var(--kp-popover-close-size);
       border-radius: var(--kp-popover-close-radius);
-      color: var(--kp-color-popover-fg-desc, #52525B);
+      color: var(--kp-color-popover-fg-desc, var(--kp-color-gray-600));
       cursor: pointer;
       opacity: 0.75;
       transition: opacity 120ms ease, background 120ms ease;
     }
     .kp-popover__close:hover { opacity: 1; background: rgba(0, 0, 0, 0.04); }
     .kp-popover__close:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring, #60A5FA);
+      outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
       outline-offset: 1px;
       opacity: 1;
     }
 
     .kp-popover__content {
       padding: 0 var(--kp-popover-pad);
-      color: var(--kp-color-popover-fg-body, #3F3F46);
+      color: var(--kp-color-popover-fg-body, var(--kp-color-gray-700));
       font-weight: 400;
       font-size: var(--kp-popover-body-size);
       line-height: var(--kp-popover-body-lh);
@@ -187,14 +187,14 @@ export type KpPopoverArrowPosition =
       display: block;
       height: 1px;
       width: 100%;
-      background: var(--kp-color-popover-divider, #F4F4F5);
+      background: var(--kp-color-popover-divider, var(--kp-color-gray-100));
     }
 
     /* Arrow */
     .kp-popover__arrow {
       position: absolute;
       display: block;
-      color: var(--kp-color-popover-bg, #FFFFFF);
+      color: var(--kp-color-popover-bg, var(--kp-color-white));
     }
     .kp-popover__arrow path { fill: currentColor; }
 

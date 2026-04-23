@@ -119,46 +119,46 @@ export type KpBannerColor =
 
     /* Colors — reuse alert-*-subtle tokens */
     :host(.kp-banner--primary) {
-      --kp-banner-bg: var(--kp-color-alert-primary-subtle-bg, #EFF6FF);
-      --kp-banner-border: var(--kp-color-alert-primary-subtle-border, #BFDBFE);
-      --kp-banner-fg: var(--kp-color-alert-primary-subtle-fg-title, #1E3A8A);
-      --kp-banner-fg-desc: var(--kp-color-alert-primary-subtle-fg-desc, #1E40AF);
-      --kp-banner-icon-color: var(--kp-color-alert-primary-subtle-icon, #2563EB);
+      --kp-banner-bg: var(--kp-color-alert-primary-subtle-bg, var(--kp-color-blue-50));
+      --kp-banner-border: var(--kp-color-alert-primary-subtle-border, var(--kp-color-blue-200));
+      --kp-banner-fg: var(--kp-color-alert-primary-subtle-fg-title, var(--kp-color-blue-900));
+      --kp-banner-fg-desc: var(--kp-color-alert-primary-subtle-fg-desc, var(--kp-color-blue-800));
+      --kp-banner-icon-color: var(--kp-color-alert-primary-subtle-icon, var(--kp-color-blue-600));
     }
     :host(.kp-banner--success) {
-      --kp-banner-bg: var(--kp-color-alert-success-subtle-bg, #F0FDF4);
-      --kp-banner-border: var(--kp-color-alert-success-subtle-border, #BBF7D0);
-      --kp-banner-fg: var(--kp-color-alert-success-subtle-fg-title, #14532D);
-      --kp-banner-fg-desc: var(--kp-color-alert-success-subtle-fg-desc, #166534);
-      --kp-banner-icon-color: var(--kp-color-alert-success-subtle-icon, #16A34A);
+      --kp-banner-bg: var(--kp-color-alert-success-subtle-bg, var(--kp-color-green-50));
+      --kp-banner-border: var(--kp-color-alert-success-subtle-border, var(--kp-color-green-200));
+      --kp-banner-fg: var(--kp-color-alert-success-subtle-fg-title, var(--kp-color-green-900));
+      --kp-banner-fg-desc: var(--kp-color-alert-success-subtle-fg-desc, var(--kp-color-green-800));
+      --kp-banner-icon-color: var(--kp-color-alert-success-subtle-icon, var(--kp-color-green-600));
     }
     :host(.kp-banner--warning) {
-      --kp-banner-bg: var(--kp-color-alert-warning-subtle-bg, #FFFBEB);
-      --kp-banner-border: var(--kp-color-alert-warning-subtle-border, #FCD34D);
-      --kp-banner-fg: var(--kp-color-alert-warning-subtle-fg-title, #78350F);
-      --kp-banner-fg-desc: var(--kp-color-alert-warning-subtle-fg-desc, #92400E);
-      --kp-banner-icon-color: var(--kp-color-alert-warning-subtle-icon, #D97706);
+      --kp-banner-bg: var(--kp-color-alert-warning-subtle-bg, var(--kp-color-amber-50));
+      --kp-banner-border: var(--kp-color-alert-warning-subtle-border, var(--kp-color-amber-300));
+      --kp-banner-fg: var(--kp-color-alert-warning-subtle-fg-title, var(--kp-color-amber-900));
+      --kp-banner-fg-desc: var(--kp-color-alert-warning-subtle-fg-desc, var(--kp-color-amber-800));
+      --kp-banner-icon-color: var(--kp-color-alert-warning-subtle-icon, var(--kp-color-amber-600));
     }
     :host(.kp-banner--danger) {
-      --kp-banner-bg: var(--kp-color-alert-danger-subtle-bg, #FEF2F2);
-      --kp-banner-border: var(--kp-color-alert-danger-subtle-border, #FECACA);
-      --kp-banner-fg: var(--kp-color-alert-danger-subtle-fg-title, #7F1D1D);
-      --kp-banner-fg-desc: var(--kp-color-alert-danger-subtle-fg-desc, #991B1B);
-      --kp-banner-icon-color: var(--kp-color-alert-danger-subtle-icon, #DC2626);
+      --kp-banner-bg: var(--kp-color-alert-danger-subtle-bg, var(--kp-color-red-50));
+      --kp-banner-border: var(--kp-color-alert-danger-subtle-border, var(--kp-color-red-200));
+      --kp-banner-fg: var(--kp-color-alert-danger-subtle-fg-title, var(--kp-color-red-900));
+      --kp-banner-fg-desc: var(--kp-color-alert-danger-subtle-fg-desc, var(--kp-color-red-800));
+      --kp-banner-icon-color: var(--kp-color-alert-danger-subtle-icon, var(--kp-color-red-600));
     }
     :host(.kp-banner--info) {
-      --kp-banner-bg: var(--kp-color-alert-info-subtle-bg, #ECFEFF);
-      --kp-banner-border: var(--kp-color-alert-info-subtle-border, #A5F3FC);
-      --kp-banner-fg: var(--kp-color-alert-info-subtle-fg-title, #164E63);
-      --kp-banner-fg-desc: var(--kp-color-alert-info-subtle-fg-desc, #155E75);
-      --kp-banner-icon-color: var(--kp-color-alert-info-subtle-icon, #0891B2);
+      --kp-banner-bg: var(--kp-color-alert-info-subtle-bg, var(--kp-color-cyan-50));
+      --kp-banner-border: var(--kp-color-alert-info-subtle-border, var(--kp-color-cyan-200));
+      --kp-banner-fg: var(--kp-color-alert-info-subtle-fg-title, var(--kp-color-cyan-900));
+      --kp-banner-fg-desc: var(--kp-color-alert-info-subtle-fg-desc, var(--kp-color-cyan-800));
+      --kp-banner-icon-color: var(--kp-color-alert-info-subtle-icon, var(--kp-color-cyan-600));
     }
     :host(.kp-banner--neutral) {
-      --kp-banner-bg: var(--kp-color-alert-neutral-subtle-bg, #FAFAFA);
-      --kp-banner-border: var(--kp-color-alert-neutral-subtle-border, #E4E4E7);
-      --kp-banner-fg: var(--kp-color-alert-neutral-subtle-fg-title, #18181B);
-      --kp-banner-fg-desc: var(--kp-color-alert-neutral-subtle-fg-desc, #3F3F46);
-      --kp-banner-icon-color: var(--kp-color-alert-neutral-subtle-icon, #52525B);
+      --kp-banner-bg: var(--kp-color-alert-neutral-subtle-bg, var(--kp-color-gray-50));
+      --kp-banner-border: var(--kp-color-alert-neutral-subtle-border, var(--kp-color-gray-200));
+      --kp-banner-fg: var(--kp-color-alert-neutral-subtle-fg-title, var(--kp-color-gray-900));
+      --kp-banner-fg-desc: var(--kp-color-alert-neutral-subtle-fg-desc, var(--kp-color-gray-700));
+      --kp-banner-icon-color: var(--kp-color-alert-neutral-subtle-icon, var(--kp-color-gray-600));
     }
   `],
 })

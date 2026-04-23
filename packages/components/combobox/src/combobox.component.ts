@@ -161,9 +161,9 @@ export interface KpComboboxOption {
       align-items: center;
       box-sizing: border-box;
       width: 100%;
-      border: 1px solid var(--kp-input-border, #D4D4D8);
+      border: 1px solid var(--kp-input-border, var(--kp-color-gray-300));
       border-radius: var(--kp-input-radius);
-      background: var(--kp-input-bg, #FFFFFF);
+      background: var(--kp-input-bg, var(--kp-color-white));
       height: var(--kp-input-height);
       padding: 0 var(--kp-input-padding-x);
       gap: var(--kp-input-gap);
@@ -174,21 +174,21 @@ export interface KpComboboxOption {
     }
     :host(:not(.kp-cb--disabled):not(.kp-cb--error)) .kp-cb__trigger:hover,
     :host(.kp-cb--hover) .kp-cb__trigger {
-      border-color: var(--kp-input-border-hover, #A1A1AA);
+      border-color: var(--kp-input-border-hover, var(--kp-color-gray-400));
     }
     :host(.kp-cb--open) .kp-cb__trigger,
     :host(.kp-cb--active) .kp-cb__trigger,
     :host(.kp-cb--focus) .kp-cb__trigger,
     :host(:not(.kp-cb--disabled):not(.kp-cb--error)) .kp-cb__trigger:focus-within {
-      border-color: var(--kp-input-border-focus, #2563EB);
+      border-color: var(--kp-input-border-focus, var(--kp-color-blue-600));
     }
     :host(.kp-cb--disabled) .kp-cb__trigger {
-      background: var(--kp-input-bg-disabled, #FAFAFA);
-      border-color: var(--kp-input-border-disabled, #E4E4E7);
+      background: var(--kp-input-bg-disabled, var(--kp-color-gray-50));
+      border-color: var(--kp-input-border-disabled, var(--kp-color-gray-200));
       cursor: not-allowed;
     }
     :host(.kp-cb--error) .kp-cb__trigger {
-      border-color: var(--kp-input-border-error, #EF4444);
+      border-color: var(--kp-input-border-error, var(--kp-color-red-500));
     }
 
     .kp-cb__input {
@@ -201,17 +201,17 @@ export interface KpComboboxOption {
       font-size: var(--kp-input-font-size);
       line-height: var(--kp-input-line-height);
       font-weight: var(--kp-input-font-weight, 400);
-      color: var(--kp-input-fg, #18181B);
+      color: var(--kp-input-fg, var(--kp-color-gray-900));
       padding: 0;
     }
-    .kp-cb__input::placeholder { color: var(--kp-input-placeholder, #A1A1AA); }
-    .kp-cb__input:disabled { color: var(--kp-input-fg-disabled, #A1A1AA); cursor: not-allowed; }
+    .kp-cb__input::placeholder { color: var(--kp-input-placeholder, var(--kp-color-gray-400)); }
+    .kp-cb__input:disabled { color: var(--kp-input-fg-disabled, var(--kp-color-gray-400)); cursor: not-allowed; }
 
     .kp-cb__summary {
       flex-shrink: 0;
       font-size: var(--kp-input-font-size);
       font-weight: 500;
-      color: var(--kp-input-fg, #18181B);
+      color: var(--kp-input-fg, var(--kp-color-gray-900));
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -227,11 +227,11 @@ export interface KpComboboxOption {
       height: var(--kp-input-clear-size, 20px);
       padding: 2px;
       border-radius: 4px;
-      color: #71717A;
+      color: var(--kp-color-gray-500);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast, 100ms) ease, color var(--kp-motion-duration-fast, 100ms) ease;
     }
-    .kp-cb__clear:hover { background: #F4F4F5; color: #3F3F46; }
+    .kp-cb__clear:hover { background: var(--kp-color-gray-100); color: var(--kp-color-gray-700); }
     .kp-cb__clear svg { width: var(--kp-input-clear-icon, 14px); height: var(--kp-input-clear-icon, 14px); }
 
     .kp-cb__chevron {
@@ -239,15 +239,15 @@ export interface KpComboboxOption {
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      color: #71717A;
+      color: var(--kp-color-gray-500);
       transition: transform var(--kp-motion-duration-fast, 150ms) ease, color var(--kp-motion-duration-fast, 150ms) ease;
     }
     :host(.kp-cb--open) .kp-cb__chevron {
       transform: rotate(180deg);
-      color: var(--kp-input-border-focus, #2563EB);
+      color: var(--kp-input-border-focus, var(--kp-color-blue-600));
     }
-    :host(.kp-cb--disabled) .kp-cb__chevron { color: #D4D4D8; }
-    :host(.kp-cb--error) .kp-cb__chevron { color: #EF4444; }
+    :host(.kp-cb--disabled) .kp-cb__chevron { color: var(--kp-color-gray-300); }
+    :host(.kp-cb--error) .kp-cb__chevron { color: var(--kp-color-red-500); }
 
     .kp-cb__dropdown {
       position: fixed;
@@ -258,8 +258,8 @@ export interface KpComboboxOption {
       flex-direction: column;
       max-height: 280px;
       padding: 4px;
-      background: #FFFFFF;
-      border: 1px solid #E4E4E7;
+      background: var(--kp-color-white);
+      border: 1px solid var(--kp-color-gray-200);
       border-radius: 12px;
       box-shadow:
         0 4px 6px rgba(0, 0, 0, 0.05),
@@ -278,25 +278,25 @@ export interface KpComboboxOption {
       border-radius: 6px;
       font-size: 14px;
       font-weight: 500;
-      color: #18181B;
+      color: var(--kp-color-gray-900);
       cursor: pointer;
       user-select: none;
       transition: background var(--kp-motion-duration-fast, 100ms) ease;
     }
     .kp-cb__option--active:not(.kp-cb__option--disabled) {
-      background: #FAFAFA;
+      background: var(--kp-color-gray-50);
     }
     .kp-cb__option--selected {
-      background: #EFF6FF;
-      color: #1D4ED8;
+      background: var(--kp-color-blue-50);
+      color: var(--kp-color-blue-700);
     }
-    .kp-cb__option--selected .kp-cb__check-single { color: #2563EB; }
+    .kp-cb__option--selected .kp-cb__check-single { color: var(--kp-color-blue-600); }
     .kp-cb__option--disabled {
-      color: #A1A1AA;
+      color: var(--kp-color-gray-400);
       cursor: not-allowed;
     }
     .kp-cb__option mark {
-      background: var(--kp-color-combobox-highlight, #EFF6FF);
+      background: var(--kp-color-combobox-highlight, var(--kp-color-blue-50));
       color: inherit;
       border-radius: 2px;
       padding: 0 1px;
@@ -316,25 +316,25 @@ export interface KpComboboxOption {
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      color: #2563EB;
+      color: var(--kp-color-blue-600);
     }
     .kp-cb__check {
       width: 16px;
       height: 16px;
-      border: 1.5px solid #D4D4D8;
+      border: 1.5px solid var(--kp-color-gray-300);
       border-radius: 4px;
-      background: #FFFFFF;
+      background: var(--kp-color-white);
     }
     .kp-cb__option--selected .kp-cb__check {
-      background: #2563EB;
-      border-color: #2563EB;
-      color: #FFFFFF;
+      background: var(--kp-color-blue-600);
+      border-color: var(--kp-color-blue-600);
+      color: var(--kp-color-white);
     }
 
     .kp-cb__empty {
       padding: 12px;
       font-size: 13px;
-      color: #A1A1AA;
+      color: var(--kp-color-gray-400);
       text-align: center;
     }
 

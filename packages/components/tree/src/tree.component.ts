@@ -167,21 +167,21 @@ export interface KpTreeNode {
       padding-right: var(--kp-tree-pad-x);
       border-radius: 6px;
       font-size: var(--kp-tree-fs);
-      color: var(--kp-color-tree-node-fg-rest, #18181B);
+      color: var(--kp-color-tree-node-fg-rest, var(--kp-color-gray-900));
       cursor: pointer;
       user-select: none;
       transition: background 80ms ease;
     }
     .kp-tree__row:hover:not(.kp-tree__row--selected):not(.kp-tree__row--disabled) {
-      background: var(--kp-color-tree-node-bg-hover, #FAFAFA);
+      background: var(--kp-color-tree-node-bg-hover, var(--kp-color-gray-50));
     }
     .kp-tree__row--selected {
-      background: var(--kp-color-tree-node-bg-selected, #EFF6FF);
-      color: var(--kp-color-tree-node-fg-selected, #1D4ED8);
+      background: var(--kp-color-tree-node-bg-selected, var(--kp-color-blue-50));
+      color: var(--kp-color-tree-node-fg-selected, var(--kp-color-blue-700));
       font-weight: 500;
     }
     .kp-tree__row--disabled {
-      color: var(--kp-color-tree-node-fg-disabled, #A1A1AA);
+      color: var(--kp-color-tree-node-fg-disabled, var(--kp-color-gray-400));
       cursor: not-allowed;
     }
 
@@ -192,7 +192,7 @@ export interface KpTreeNode {
       justify-content: center;
       width: 16px;
       height: 16px;
-      color: var(--kp-color-tree-node-chevron, #71717A);
+      color: var(--kp-color-tree-node-chevron, var(--kp-color-gray-500));
       cursor: pointer;
       transition: transform 120ms ease;
       flex: 0 0 auto;
@@ -207,11 +207,11 @@ export interface KpTreeNode {
 
     .kp-tree__icon {
       display: inline-flex;
-      color: var(--kp-color-tree-node-icon-rest, #52525B);
+      color: var(--kp-color-tree-node-icon-rest, var(--kp-color-gray-600));
       flex: 0 0 auto;
     }
     .kp-tree__row--selected .kp-tree__icon {
-      color: var(--kp-color-tree-node-icon-selected, #2563EB);
+      color: var(--kp-color-tree-node-icon-selected, var(--kp-color-blue-600));
     }
 
     .kp-tree__label {
@@ -228,8 +228,8 @@ export interface KpTreeNode {
       border-radius: 999px;
       font-size: 11px;
       font-weight: 500;
-      background: var(--kp-color-gray-100, #F4F4F5);
-      color: var(--kp-color-gray-700, #3F3F46);
+      background: var(--kp-color-gray-100, var(--kp-color-gray-100));
+      color: var(--kp-color-gray-700, var(--kp-color-gray-700));
     }
   `],
 })

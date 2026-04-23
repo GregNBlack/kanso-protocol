@@ -72,11 +72,11 @@ export interface KpAvatarGroupItem {
       width: var(--kp-avatar-group-count-size);
       height: var(--kp-avatar-group-count-size);
       border-radius: 50%;
-      background: var(--kp-color-avatar-group-count-bg, #E4E4E7);
-      color: var(--kp-color-avatar-group-count-fg, #3F3F46);
+      background: var(--kp-color-avatar-group-count-bg, var(--kp-color-gray-200));
+      color: var(--kp-color-avatar-group-count-fg, var(--kp-color-gray-700));
       font-size: var(--kp-avatar-group-count-font);
       font-weight: 600;
-      box-shadow: 0 0 0 var(--kp-avatar-group-ring-w) var(--kp-color-avatar-ring, #FFFFFF);
+      box-shadow: 0 0 0 var(--kp-avatar-group-ring-w) var(--kp-color-avatar-ring, var(--kp-color-white));
     }
 
     /* Size (drives count chip dimensions and base overlap) */

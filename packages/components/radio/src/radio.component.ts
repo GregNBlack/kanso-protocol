@@ -83,8 +83,8 @@ export type KpRadioColor = 'primary' | 'danger';
       width: var(--kp-radio-size);
       height: var(--kp-radio-size);
       border-radius: 50%;
-      border: var(--kp-radio-border-width) solid var(--kp-radio-border, #D4D4D8);
-      background: var(--kp-radio-bg, #FFFFFF);
+      border: var(--kp-radio-border-width) solid var(--kp-radio-border, var(--kp-color-gray-300));
+      background: var(--kp-radio-bg, var(--kp-color-white));
       transition: border-color var(--kp-motion-duration-fast, 100ms) ease;
     }
 
@@ -92,7 +92,7 @@ export type KpRadioColor = 'primary' | 'danger';
       width: var(--kp-radio-dot-size);
       height: var(--kp-radio-dot-size);
       border-radius: 50%;
-      background: var(--kp-radio-dot-bg, #2563EB);
+      background: var(--kp-radio-dot-bg, var(--kp-color-blue-600));
       opacity: 0;
       transition: opacity var(--kp-motion-duration-fast, 100ms) ease;
     }
@@ -100,48 +100,48 @@ export type KpRadioColor = 'primary' | 'danger';
 
     :host(:hover:not(.kp-radio--disabled)),
     :host(.kp-radio--hover) {
-      --kp-radio-border: #A1A1AA;
+      --kp-radio-border: var(--kp-color-gray-400);
     }
-    :host(.kp-radio--active) { --kp-radio-border: #71717A; }
+    :host(.kp-radio--active) { --kp-radio-border: var(--kp-color-gray-500); }
     :host(:focus-visible),
     :host(.kp-radio--focus) {
-      outline: 2px solid var(--kp-color-focus-ring, #60A5FA);
+      outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
       outline-offset: 2px;
     }
     :host(.kp-radio--disabled) {
-      --kp-radio-bg: #FAFAFA;
-      --kp-radio-border: #E4E4E7;
+      --kp-radio-bg: var(--kp-color-gray-50);
+      --kp-radio-border: var(--kp-color-gray-200);
     }
-    :host(.kp-radio--error) { --kp-radio-border: #EF4444; }
+    :host(.kp-radio--error) { --kp-radio-border: var(--kp-color-red-500); }
 
     :host(.kp-radio--checked) {
-      --kp-radio-border: #2563EB;
-      --kp-radio-dot-bg: #2563EB;
+      --kp-radio-border: var(--kp-color-blue-600);
+      --kp-radio-dot-bg: var(--kp-color-blue-600);
     }
     :host(.kp-radio--checked:hover:not(.kp-radio--disabled)),
     :host(.kp-radio--checked.kp-radio--hover) {
-      --kp-radio-border: #1D4ED8;
-      --kp-radio-dot-bg: #1D4ED8;
+      --kp-radio-border: var(--kp-color-blue-700);
+      --kp-radio-dot-bg: var(--kp-color-blue-700);
     }
     :host(.kp-radio--checked.kp-radio--disabled) {
-      --kp-radio-border: #A1A1AA;
-      --kp-radio-dot-bg: #A1A1AA;
+      --kp-radio-border: var(--kp-color-gray-400);
+      --kp-radio-dot-bg: var(--kp-color-gray-400);
     }
     :host(.kp-radio--checked.kp-radio--error) {
-      --kp-radio-border: #EF4444;
-      --kp-radio-dot-bg: #EF4444;
+      --kp-radio-border: var(--kp-color-red-500);
+      --kp-radio-dot-bg: var(--kp-color-red-500);
     }
 
     :host(.kp-radio--danger.kp-radio--checked) {
-      --kp-radio-border: #DC2626;
-      --kp-radio-dot-bg: #DC2626;
+      --kp-radio-border: var(--kp-color-red-600);
+      --kp-radio-dot-bg: var(--kp-color-red-600);
     }
 
     :host(.kp-radio--sm) { --kp-radio-size: 16px; --kp-radio-border-width: 1px;   --kp-radio-dot-size: 6px; }
     :host(.kp-radio--md) { --kp-radio-size: 20px; --kp-radio-border-width: 1.5px; --kp-radio-dot-size: 8px; }
     :host(.kp-radio--lg) { --kp-radio-size: 24px; --kp-radio-border-width: 1.5px; --kp-radio-dot-size: 10px; }
 
-    .kp-radio__label { font-size: 14px; color: #3F3F46; }
+    .kp-radio__label { font-size: 14px; color: var(--kp-color-gray-700); }
   `]
 })
 export class KpRadioComponent implements OnInit, OnDestroy, ControlValueAccessor {

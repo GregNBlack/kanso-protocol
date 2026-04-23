@@ -80,7 +80,7 @@ const SIZE_CFG: Record<KpProgressCircularSize, { d: number; s: number; valueFont
     }
 
     .kp-progress-circular__track {
-      stroke: var(--kp-color-progress-track, #F4F4F5);
+      stroke: var(--kp-color-progress-track, var(--kp-color-gray-100));
     }
     .kp-progress-circular__arc {
       stroke: var(--kp-progress-fill);
@@ -100,18 +100,18 @@ const SIZE_CFG: Record<KpProgressCircularSize, { d: number; s: number; valueFont
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: var(--kp-color-progress-value, #18181B);
+      color: var(--kp-color-progress-value, var(--kp-color-gray-900));
       font-weight: 600;
       font-variant-numeric: tabular-nums;
       line-height: 1;
     }
 
     /* Color roles */
-    :host(.kp-progress-circular--primary) { --kp-progress-fill: var(--kp-color-progress-primary-fill, #2563EB); }
-    :host(.kp-progress-circular--success) { --kp-progress-fill: var(--kp-color-progress-success-fill, #16A34A); }
-    :host(.kp-progress-circular--danger)  { --kp-progress-fill: var(--kp-color-progress-danger-fill,  #DC2626); }
-    :host(.kp-progress-circular--warning) { --kp-progress-fill: var(--kp-color-progress-warning-fill, #F59E0B); }
-    :host(.kp-progress-circular--neutral) { --kp-progress-fill: var(--kp-color-progress-neutral-fill, #3F3F46); }
+    :host(.kp-progress-circular--primary) { --kp-progress-fill: var(--kp-color-progress-primary-fill, var(--kp-color-blue-600)); }
+    :host(.kp-progress-circular--success) { --kp-progress-fill: var(--kp-color-progress-success-fill, var(--kp-color-green-600)); }
+    :host(.kp-progress-circular--danger)  { --kp-progress-fill: var(--kp-color-progress-danger-fill,  var(--kp-color-red-600)); }
+    :host(.kp-progress-circular--warning) { --kp-progress-fill: var(--kp-color-progress-warning-fill, var(--kp-color-amber-500)); }
+    :host(.kp-progress-circular--neutral) { --kp-progress-fill: var(--kp-color-progress-neutral-fill, var(--kp-color-gray-700)); }
   `],
 })
 export class KpProgressCircularComponent {

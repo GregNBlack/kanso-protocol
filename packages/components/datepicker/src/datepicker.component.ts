@@ -232,29 +232,29 @@ interface DayCell {
       height: var(--kp-input-height);
       padding: 0 var(--kp-input-padding-x);
       gap: var(--kp-input-gap);
-      border: 1px solid var(--kp-input-border, #D4D4D8);
+      border: 1px solid var(--kp-input-border, var(--kp-color-gray-300));
       border-radius: var(--kp-input-radius);
-      background: var(--kp-input-bg, #FFFFFF);
-      color: var(--kp-input-fg, #18181B);
+      background: var(--kp-input-bg, var(--kp-color-white));
+      color: var(--kp-input-fg, var(--kp-color-gray-900));
       cursor: pointer;
       transition: border-color 120ms ease, background 120ms ease;
     }
     :host(:not(.kp-dp--disabled):not(.kp-dp--error)) .kp-dp__trigger:hover,
     :host(.kp-dp--hover) .kp-dp__trigger {
-      border-color: var(--kp-input-border-hover, #A1A1AA);
+      border-color: var(--kp-input-border-hover, var(--kp-color-gray-400));
     }
     :host(.kp-dp--open) .kp-dp__trigger,
     :host(.kp-dp--focus) .kp-dp__trigger,
     :host(:not(.kp-dp--disabled):not(.kp-dp--error)) .kp-dp__trigger:focus-visible {
-      border-color: var(--kp-input-border-focus, #2563EB);
+      border-color: var(--kp-input-border-focus, var(--kp-color-blue-600));
     }
     :host(.kp-dp--disabled) .kp-dp__trigger {
-      background: var(--kp-input-bg-disabled, #FAFAFA);
-      border-color: var(--kp-input-border-disabled, #E4E4E7);
+      background: var(--kp-input-bg-disabled, var(--kp-color-gray-50));
+      border-color: var(--kp-input-border-disabled, var(--kp-color-gray-200));
       cursor: not-allowed;
     }
     :host(.kp-dp--error) .kp-dp__trigger {
-      border-color: var(--kp-input-border-error, #EF4444);
+      border-color: var(--kp-input-border-error, var(--kp-color-red-500));
     }
 
     .kp-dp__value {
@@ -267,7 +267,7 @@ interface DayCell {
       line-height: var(--kp-input-line-height);
       text-align: left;
     }
-    .kp-dp__value--placeholder { color: var(--kp-input-placeholder, #A1A1AA); }
+    .kp-dp__value--placeholder { color: var(--kp-input-placeholder, var(--kp-color-gray-400)); }
 
     .kp-dp__clear {
       display: inline-flex;
@@ -278,14 +278,14 @@ interface DayCell {
       height: var(--kp-input-clear-size, 20px);
       padding: 2px;
       border-radius: 4px;
-      color: #71717A;
+      color: var(--kp-color-gray-500);
       cursor: pointer;
       transition: background 120ms ease, color 120ms ease;
     }
-    .kp-dp__clear:hover { background: #F4F4F5; color: #3F3F46; }
+    .kp-dp__clear:hover { background: var(--kp-color-gray-100); color: var(--kp-color-gray-700); }
     .kp-dp__clear svg { width: var(--kp-input-clear-icon, 14px); height: var(--kp-input-clear-icon, 14px); }
 
-    .kp-dp__icon { display: inline-flex; color: #71717A; flex-shrink: 0; }
+    .kp-dp__icon { display: inline-flex; color: var(--kp-color-gray-500); flex-shrink: 0; }
 
     .kp-dp__panel {
       position: fixed;
@@ -293,8 +293,8 @@ interface DayCell {
       left: 0;
       z-index: 1000;
       display: flex;
-      background: var(--kp-color-datepicker-panel-bg, #FFFFFF);
-      border: 1px solid var(--kp-color-datepicker-panel-border, #E4E4E7);
+      background: var(--kp-color-datepicker-panel-bg, var(--kp-color-white));
+      border: 1px solid var(--kp-color-datepicker-panel-border, var(--kp-color-gray-200));
       border-radius: 12px;
       box-shadow:
         0 4px 6px rgba(0, 0, 0, 0.05),
@@ -308,8 +308,8 @@ interface DayCell {
       gap: 2px;
       width: 160px;
       padding: 12px 8px;
-      border-right: 1px solid var(--kp-color-datepicker-panel-border, #E4E4E7);
-      background: #FAFAFA;
+      border-right: 1px solid var(--kp-color-datepicker-panel-border, var(--kp-color-gray-200));
+      background: var(--kp-color-gray-50);
     }
     .kp-dp__preset {
       all: unset;
@@ -317,11 +317,11 @@ interface DayCell {
       padding: 8px 12px;
       border-radius: 6px;
       font-size: 13px;
-      color: #3F3F46;
+      color: var(--kp-color-gray-700);
       cursor: pointer;
       transition: background 120ms ease;
     }
-    .kp-dp__preset:hover { background: #F4F4F5; }
+    .kp-dp__preset:hover { background: var(--kp-color-gray-100); }
 
     .kp-dp__calendar {
       display: flex;
@@ -346,11 +346,11 @@ interface DayCell {
       width: 28px;
       height: 28px;
       border-radius: 6px;
-      color: var(--kp-color-datepicker-header-nav-fg, #52525B);
+      color: var(--kp-color-datepicker-header-nav-fg, var(--kp-color-gray-600));
       cursor: pointer;
       transition: background 120ms ease;
     }
-    .kp-dp__nav:hover { background: #F4F4F5; }
+    .kp-dp__nav:hover { background: var(--kp-color-gray-100); }
     .kp-dp__title {
       all: unset;
       flex: 1;
@@ -359,11 +359,11 @@ interface DayCell {
       border-radius: 6px;
       font-size: 15px;
       font-weight: 500;
-      color: var(--kp-color-datepicker-header-fg, #18181B);
+      color: var(--kp-color-datepicker-header-fg, var(--kp-color-gray-900));
       cursor: pointer;
       transition: background 120ms ease;
     }
-    .kp-dp__title:hover { background: #F4F4F5; }
+    .kp-dp__title:hover { background: var(--kp-color-gray-100); }
 
     .kp-dp__weekdays {
       display: grid;
@@ -374,7 +374,7 @@ interface DayCell {
       text-align: center;
       font-size: 11px;
       font-weight: 500;
-      color: var(--kp-color-datepicker-weekday, #71717A);
+      color: var(--kp-color-datepicker-weekday, var(--kp-color-gray-500));
       text-transform: uppercase;
       letter-spacing: 0.04em;
       padding-bottom: 4px;
@@ -395,33 +395,33 @@ interface DayCell {
       border-radius: 8px;
       font-size: 13px;
       font-variant-numeric: tabular-nums;
-      color: var(--kp-color-datepicker-day-fg-rest, #18181B);
+      color: var(--kp-color-datepicker-day-fg-rest, var(--kp-color-gray-900));
       cursor: pointer;
       box-sizing: border-box;
       transition: background 100ms ease, color 100ms ease;
     }
     .kp-dp__day:hover:not([disabled]):not(.kp-dp__day--selected):not(.kp-dp__day--range-start):not(.kp-dp__day--range-end) {
-      background: var(--kp-color-datepicker-day-bg-hover, #F4F4F5);
-      color: var(--kp-color-datepicker-day-fg-hover, #18181B);
+      background: var(--kp-color-datepicker-day-bg-hover, var(--kp-color-gray-100));
+      color: var(--kp-color-datepicker-day-fg-hover, var(--kp-color-gray-900));
     }
     .kp-dp__day--outside {
-      color: var(--kp-color-datepicker-day-fg-outside, #A1A1AA);
+      color: var(--kp-color-datepicker-day-fg-outside, var(--kp-color-gray-400));
     }
     .kp-dp__day--today {
-      box-shadow: inset 0 0 0 1.5px var(--kp-color-datepicker-day-today-ring, #2563EB);
-      color: var(--kp-color-datepicker-day-fg-today, #2563EB);
+      box-shadow: inset 0 0 0 1.5px var(--kp-color-datepicker-day-today-ring, var(--kp-color-blue-600));
+      color: var(--kp-color-datepicker-day-fg-today, var(--kp-color-blue-600));
       font-weight: 600;
     }
     .kp-dp__day--in-range {
-      background: var(--kp-color-datepicker-day-bg-in-range, #EFF6FF);
-      color: var(--kp-color-datepicker-day-fg-in-range, #1D4ED8);
+      background: var(--kp-color-datepicker-day-bg-in-range, var(--kp-color-blue-50));
+      color: var(--kp-color-datepicker-day-fg-in-range, var(--kp-color-blue-700));
       border-radius: 0;
     }
     .kp-dp__day--selected,
     .kp-dp__day--range-start,
     .kp-dp__day--range-end {
-      background: var(--kp-color-datepicker-day-bg-selected, #2563EB);
-      color: var(--kp-color-datepicker-day-fg-selected, #FFFFFF);
+      background: var(--kp-color-datepicker-day-bg-selected, var(--kp-color-blue-600));
+      color: var(--kp-color-datepicker-day-fg-selected, var(--kp-color-white));
       font-weight: 500;
       box-shadow: none;
     }
@@ -429,7 +429,7 @@ interface DayCell {
     .kp-dp__day--range-end   { border-radius: 0 8px 8px 0; }
     .kp-dp__day--range-start.kp-dp__day--range-end { border-radius: 8px; }
     .kp-dp__day[disabled] {
-      color: var(--kp-color-datepicker-day-fg-disabled, #D4D4D8);
+      color: var(--kp-color-datepicker-day-fg-disabled, var(--kp-color-gray-300));
       cursor: not-allowed;
     }
 
@@ -450,18 +450,18 @@ interface DayCell {
       height: 40px;
       border-radius: 8px;
       font-size: 13px;
-      color: #3F3F46;
+      color: var(--kp-color-gray-700);
       cursor: pointer;
       transition: background 100ms ease, color 100ms ease;
     }
     .kp-dp__month:hover,
     .kp-dp__year:hover {
-      background: var(--kp-color-datepicker-day-bg-hover, #F4F4F5);
+      background: var(--kp-color-datepicker-day-bg-hover, var(--kp-color-gray-100));
     }
     .kp-dp__month--selected,
     .kp-dp__year--selected {
-      background: var(--kp-color-datepicker-day-bg-selected, #2563EB);
-      color: var(--kp-color-datepicker-day-fg-selected, #FFFFFF);
+      background: var(--kp-color-datepicker-day-bg-selected, var(--kp-color-blue-600));
+      color: var(--kp-color-datepicker-day-fg-selected, var(--kp-color-white));
       font-weight: 500;
     }
 

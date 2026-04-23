@@ -74,7 +74,7 @@ export type KpAppShellLayout =
       flex-direction: column;
       width: 100%;
       min-height: 100vh;
-      background: var(--kp-color-gray-50, #FAFAFA);
+      background: var(--kp-color-gray-50, var(--kp-color-gray-50));
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
 
@@ -101,8 +101,8 @@ export type KpAppShellLayout =
     }
 
     .kp-app-shell__footer {
-      border-top: 1px solid var(--kp-color-gray-200, #E4E4E7);
-      background: var(--kp-color-white, #FFFFFF);
+      border-top: 1px solid var(--kp-color-gray-200, var(--kp-color-gray-200));
+      background: var(--kp-color-white, var(--kp-color-white));
     }
 
     /* Sidebar right: flip the body row */

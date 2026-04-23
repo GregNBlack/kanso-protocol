@@ -47,16 +47,16 @@ export type KpSkeletonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
     :host {
       display: inline-block;
-      background: var(--kp-color-skeleton-bg-base, #F4F4F5);
+      background: var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100));
       border-radius: 4px;
       vertical-align: middle;
     }
     :host(.kp-sk--animated) {
       background-image: linear-gradient(
         90deg,
-        var(--kp-color-skeleton-bg-base, #F4F4F5) 0%,
-        var(--kp-color-skeleton-bg-highlight, #E4E4E7) 50%,
-        var(--kp-color-skeleton-bg-base, #F4F4F5) 100%
+        var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100)) 0%,
+        var(--kp-color-skeleton-bg-highlight, var(--kp-color-gray-200)) 50%,
+        var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100)) 100%
       );
       background-size: 200% 100%;
       animation: kp-sk-shimmer 1.4s ease-in-out infinite;
@@ -106,14 +106,14 @@ export type KpSkeletonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: var(--kp-color-skeleton-bg-base, #F4F4F5);
+      background: var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100));
     }
     .kp-sk__avatar-text { display: inline-flex; flex-direction: column; gap: 6px; }
     .kp-sk__line-80, .kp-sk__line-120 {
       display: block;
       height: 12px;
       border-radius: 4px;
-      background: var(--kp-color-skeleton-bg-base, #F4F4F5);
+      background: var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100));
     }
     .kp-sk__line-80  { width: 80px;  }
     .kp-sk__line-120 { width: 120px; height: 14px; }
@@ -123,9 +123,9 @@ export type KpSkeletonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
     :host(.kp-sk--avatar.kp-sk--animated) .kp-sk__line-120 {
       background-image: linear-gradient(
         90deg,
-        var(--kp-color-skeleton-bg-base, #F4F4F5) 0%,
-        var(--kp-color-skeleton-bg-highlight, #E4E4E7) 50%,
-        var(--kp-color-skeleton-bg-base, #F4F4F5) 100%
+        var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100)) 0%,
+        var(--kp-color-skeleton-bg-highlight, var(--kp-color-gray-200)) 50%,
+        var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100)) 100%
       );
       background-size: 200% 100%;
       animation: kp-sk-shimmer 1.4s ease-in-out infinite;
@@ -142,15 +142,15 @@ export type KpSkeletonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
     }
     .kp-sk__card-img {
       display: block; width: 100%; height: 180px; border-radius: 8px;
-      background: var(--kp-color-skeleton-bg-base, #F4F4F5);
+      background: var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100));
     }
     .kp-sk__card-title {
       display: block; width: 70%; height: 16px; border-radius: 4px;
-      background: var(--kp-color-skeleton-bg-base, #F4F4F5);
+      background: var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100));
     }
     .kp-sk__card-line {
       display: block; width: 100%; height: 12px; border-radius: 4px;
-      background: var(--kp-color-skeleton-bg-base, #F4F4F5);
+      background: var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100));
     }
     .kp-sk__card-line-2 { width: 85%; }
 
@@ -159,9 +159,9 @@ export type KpSkeletonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
     :host(.kp-sk--card.kp-sk--animated) .kp-sk__card-line {
       background-image: linear-gradient(
         90deg,
-        var(--kp-color-skeleton-bg-base, #F4F4F5) 0%,
-        var(--kp-color-skeleton-bg-highlight, #E4E4E7) 50%,
-        var(--kp-color-skeleton-bg-base, #F4F4F5) 100%
+        var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100)) 0%,
+        var(--kp-color-skeleton-bg-highlight, var(--kp-color-gray-200)) 50%,
+        var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100)) 100%
       );
       background-size: 200% 100%;
       animation: kp-sk-shimmer 1.4s ease-in-out infinite;

@@ -167,8 +167,8 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
       gap: 12px;
       row-gap: 8px;
       padding: 12px 16px;
-      background: var(--kp-color-white, #FFFFFF);
-      border-bottom: 1px solid var(--kp-color-gray-200, #E4E4E7);
+      background: var(--kp-color-white, var(--kp-color-white));
+      border-bottom: 1px solid var(--kp-color-gray-200, var(--kp-color-gray-200));
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
 
@@ -210,16 +210,16 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
     .kp-tt__divider {
       width: 1px;
       height: 24px;
-      background: var(--kp-color-gray-200, #E4E4E7);
+      background: var(--kp-color-gray-200, var(--kp-color-gray-200));
       margin: 0 4px;
     }
 
     .kp-tt__selected {
       font-size: 13px;
-      color: var(--kp-color-gray-700, #3F3F46);
+      color: var(--kp-color-gray-700, var(--kp-color-gray-700));
     }
     .kp-tt__selected strong {
-      color: var(--kp-color-gray-900, #18181B);
+      color: var(--kp-color-gray-900, var(--kp-color-gray-900));
       font-weight: 600;
     }
 
@@ -227,9 +227,9 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
     .kp-tt__density {
       display: inline-flex;
       padding: 2px;
-      border: 1px solid var(--kp-color-gray-200, #E4E4E7);
+      border: 1px solid var(--kp-color-gray-200, var(--kp-color-gray-200));
       border-radius: 6px;
-      background: var(--kp-color-gray-50, #FAFAFA);
+      background: var(--kp-color-gray-50, var(--kp-color-gray-50));
     }
     .kp-tt__density-btn {
       display: inline-flex;
@@ -241,14 +241,14 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
       border: none;
       background: transparent;
       border-radius: 4px;
-      color: var(--kp-color-gray-600, #52525B);
+      color: var(--kp-color-gray-600, var(--kp-color-gray-600));
       cursor: pointer;
       font: inherit;
     }
-    .kp-tt__density-btn:hover { color: var(--kp-color-gray-900, #18181B); }
+    .kp-tt__density-btn:hover { color: var(--kp-color-gray-900, var(--kp-color-gray-900)); }
     .kp-tt__density-btn--active {
-      background: var(--kp-color-white, #FFFFFF);
-      color: var(--kp-color-gray-900, #18181B);
+      background: var(--kp-color-white, var(--kp-color-white));
+      color: var(--kp-color-gray-900, var(--kp-color-gray-900));
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     }
     .kp-tt__density-btn .ti { font-size: 14px; line-height: 1; }

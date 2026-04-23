@@ -100,9 +100,9 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
       width: var(--kp-toast-w, 400px);
       max-width: calc(100vw - 32px);
       box-sizing: border-box;
-      border: 1px solid var(--kp-toast-border, #E4E4E7);
-      background: var(--kp-toast-bg, #FFFFFF);
-      color: var(--kp-toast-fg-body, #3F3F46);
+      border: 1px solid var(--kp-toast-border, var(--kp-color-gray-200));
+      background: var(--kp-toast-bg, var(--kp-color-white));
+      color: var(--kp-toast-fg-body, var(--kp-color-gray-700));
       box-shadow:
         0 4px 8px rgba(0, 0, 0, 0.08),
         0 10px 20px rgba(0, 0, 0, 0.10),
@@ -129,7 +129,7 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
       justify-content: center;
       width: 20px;
       height: 20px;
-      color: var(--kp-toast-icon, #71717A);
+      color: var(--kp-toast-icon, var(--kp-color-gray-500));
     }
 
     .kp-th__content { flex: 1 1 auto; min-width: 0; }
@@ -137,13 +137,13 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
       font-size: 15px;
       line-height: 22px;
       font-weight: 500;
-      color: var(--kp-toast-fg-title, #18181B);
+      color: var(--kp-toast-fg-title, var(--kp-color-gray-900));
     }
     .kp-th__desc {
       margin-top: 4px;
       font-size: 13px;
       line-height: 18px;
-      color: var(--kp-toast-fg-desc, #52525B);
+      color: var(--kp-toast-fg-desc, var(--kp-color-gray-600));
     }
     .kp-th__action {
       all: unset;
@@ -153,13 +153,13 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
       border-radius: 8px;
       font-size: 13px;
       font-weight: 500;
-      color: var(--kp-toast-action, #2563EB);
+      color: var(--kp-toast-action, var(--kp-color-blue-600));
       cursor: pointer;
       transition: background 120ms ease;
     }
     .kp-th__action:hover { background: rgba(37, 99, 235, 0.08); }
     .kp-th__action:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring, #60A5FA);
+      outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
       outline-offset: 2px;
     }
 
@@ -172,21 +172,21 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
       width: 20px;
       height: 20px;
       border-radius: 4px;
-      color: var(--kp-color-toast-close, #A1A1AA);
+      color: var(--kp-color-toast-close, var(--kp-color-gray-400));
       cursor: pointer;
       transition: background 120ms ease, color 120ms ease;
     }
-    .kp-th__close:hover { background: #F4F4F5; color: #3F3F46; }
+    .kp-th__close:hover { background: var(--kp-color-gray-100); color: var(--kp-color-gray-700); }
 
     /* Appearance tokens — shared with Alert */
     .kp-th__toast--primary {
-      --kp-toast-bg:       var(--kp-color-alert-primary-subtle-bg, #EFF6FF);
-      --kp-toast-border:   var(--kp-color-alert-primary-subtle-border, #BFDBFE);
-      --kp-toast-fg-title: var(--kp-color-alert-primary-subtle-fg-title, #1E3A8A);
-      --kp-toast-fg-desc:  var(--kp-color-alert-primary-subtle-fg-desc, #1D4ED8);
-      --kp-toast-fg-body:  var(--kp-color-alert-primary-subtle-fg-desc, #1D4ED8);
-      --kp-toast-icon:     var(--kp-color-alert-primary-subtle-icon, #2563EB);
-      --kp-toast-action:   var(--kp-color-alert-primary-subtle-icon, #2563EB);
+      --kp-toast-bg:       var(--kp-color-alert-primary-subtle-bg, var(--kp-color-blue-50));
+      --kp-toast-border:   var(--kp-color-alert-primary-subtle-border, var(--kp-color-blue-200));
+      --kp-toast-fg-title: var(--kp-color-alert-primary-subtle-fg-title, var(--kp-color-blue-900));
+      --kp-toast-fg-desc:  var(--kp-color-alert-primary-subtle-fg-desc, var(--kp-color-blue-700));
+      --kp-toast-fg-body:  var(--kp-color-alert-primary-subtle-fg-desc, var(--kp-color-blue-700));
+      --kp-toast-icon:     var(--kp-color-alert-primary-subtle-icon, var(--kp-color-blue-600));
+      --kp-toast-action:   var(--kp-color-alert-primary-subtle-icon, var(--kp-color-blue-600));
     }
     .kp-th__toast--success {
       --kp-toast-bg:       var(--kp-color-alert-success-subtle-bg, #ECFDF5);
@@ -198,40 +198,40 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
       --kp-toast-action:   var(--kp-color-alert-success-subtle-icon, #059669);
     }
     .kp-th__toast--danger {
-      --kp-toast-bg:       var(--kp-color-alert-danger-subtle-bg, #FEF2F2);
-      --kp-toast-border:   var(--kp-color-alert-danger-subtle-border, #FCA5A5);
-      --kp-toast-fg-title: var(--kp-color-alert-danger-subtle-fg-title, #7F1D1D);
-      --kp-toast-fg-desc:  var(--kp-color-alert-danger-subtle-fg-desc, #B91C1C);
-      --kp-toast-fg-body:  var(--kp-color-alert-danger-subtle-fg-desc, #B91C1C);
-      --kp-toast-icon:     var(--kp-color-alert-danger-subtle-icon, #DC2626);
-      --kp-toast-action:   var(--kp-color-alert-danger-subtle-icon, #DC2626);
+      --kp-toast-bg:       var(--kp-color-alert-danger-subtle-bg, var(--kp-color-red-50));
+      --kp-toast-border:   var(--kp-color-alert-danger-subtle-border, var(--kp-color-red-300));
+      --kp-toast-fg-title: var(--kp-color-alert-danger-subtle-fg-title, var(--kp-color-red-900));
+      --kp-toast-fg-desc:  var(--kp-color-alert-danger-subtle-fg-desc, var(--kp-color-red-700));
+      --kp-toast-fg-body:  var(--kp-color-alert-danger-subtle-fg-desc, var(--kp-color-red-700));
+      --kp-toast-icon:     var(--kp-color-alert-danger-subtle-icon, var(--kp-color-red-600));
+      --kp-toast-action:   var(--kp-color-alert-danger-subtle-icon, var(--kp-color-red-600));
     }
     .kp-th__toast--warning {
-      --kp-toast-bg:       var(--kp-color-alert-warning-subtle-bg, #FFFBEB);
-      --kp-toast-border:   var(--kp-color-alert-warning-subtle-border, #FCD34D);
-      --kp-toast-fg-title: var(--kp-color-alert-warning-subtle-fg-title, #78350F);
-      --kp-toast-fg-desc:  var(--kp-color-alert-warning-subtle-fg-desc, #B45309);
-      --kp-toast-fg-body:  var(--kp-color-alert-warning-subtle-fg-desc, #B45309);
-      --kp-toast-icon:     var(--kp-color-alert-warning-subtle-icon, #D97706);
-      --kp-toast-action:   var(--kp-color-alert-warning-subtle-icon, #D97706);
+      --kp-toast-bg:       var(--kp-color-alert-warning-subtle-bg, var(--kp-color-amber-50));
+      --kp-toast-border:   var(--kp-color-alert-warning-subtle-border, var(--kp-color-amber-300));
+      --kp-toast-fg-title: var(--kp-color-alert-warning-subtle-fg-title, var(--kp-color-amber-900));
+      --kp-toast-fg-desc:  var(--kp-color-alert-warning-subtle-fg-desc, var(--kp-color-amber-700));
+      --kp-toast-fg-body:  var(--kp-color-alert-warning-subtle-fg-desc, var(--kp-color-amber-700));
+      --kp-toast-icon:     var(--kp-color-alert-warning-subtle-icon, var(--kp-color-amber-600));
+      --kp-toast-action:   var(--kp-color-alert-warning-subtle-icon, var(--kp-color-amber-600));
     }
     .kp-th__toast--info {
-      --kp-toast-bg:       var(--kp-color-alert-info-subtle-bg, #ECFEFF);
-      --kp-toast-border:   var(--kp-color-alert-info-subtle-border, #A5F3FC);
-      --kp-toast-fg-title: var(--kp-color-alert-info-subtle-fg-title, #164E63);
-      --kp-toast-fg-desc:  var(--kp-color-alert-info-subtle-fg-desc, #0E7490);
-      --kp-toast-fg-body:  var(--kp-color-alert-info-subtle-fg-desc, #0E7490);
-      --kp-toast-icon:     var(--kp-color-alert-info-subtle-icon, #0891B2);
-      --kp-toast-action:   var(--kp-color-alert-info-subtle-icon, #0891B2);
+      --kp-toast-bg:       var(--kp-color-alert-info-subtle-bg, var(--kp-color-cyan-50));
+      --kp-toast-border:   var(--kp-color-alert-info-subtle-border, var(--kp-color-cyan-200));
+      --kp-toast-fg-title: var(--kp-color-alert-info-subtle-fg-title, var(--kp-color-cyan-900));
+      --kp-toast-fg-desc:  var(--kp-color-alert-info-subtle-fg-desc, var(--kp-color-cyan-700));
+      --kp-toast-fg-body:  var(--kp-color-alert-info-subtle-fg-desc, var(--kp-color-cyan-700));
+      --kp-toast-icon:     var(--kp-color-alert-info-subtle-icon, var(--kp-color-cyan-600));
+      --kp-toast-action:   var(--kp-color-alert-info-subtle-icon, var(--kp-color-cyan-600));
     }
     .kp-th__toast--neutral {
-      --kp-toast-bg:       #FFFFFF;
-      --kp-toast-border:   #E4E4E7;
-      --kp-toast-fg-title: #18181B;
-      --kp-toast-fg-desc:  #52525B;
-      --kp-toast-fg-body:  #3F3F46;
-      --kp-toast-icon:     #71717A;
-      --kp-toast-action:   #2563EB;
+      --kp-toast-bg:       var(--kp-color-white);
+      --kp-toast-border:   var(--kp-color-gray-200);
+      --kp-toast-fg-title: var(--kp-color-gray-900);
+      --kp-toast-fg-desc:  var(--kp-color-gray-600);
+      --kp-toast-fg-body:  var(--kp-color-gray-700);
+      --kp-toast-icon:     var(--kp-color-gray-500);
+      --kp-toast-action:   var(--kp-color-blue-600);
     }
   `],
 })

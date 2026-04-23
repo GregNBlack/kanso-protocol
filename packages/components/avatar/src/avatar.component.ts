@@ -110,7 +110,7 @@ export type KpAvatarStatus = 'online' | 'offline' | 'busy' | 'away';
 
     /* Ring (for stacks) */
     :host(.kp-avatar--ring) {
-      box-shadow: 0 0 0 var(--kp-avatar-ring-w) var(--kp-color-avatar-ring, #FFFFFF);
+      box-shadow: 0 0 0 var(--kp-avatar-ring-w) var(--kp-color-avatar-ring, var(--kp-color-white));
     }
 
     /* Status dot */
@@ -121,15 +121,15 @@ export type KpAvatarStatus = 'online' | 'offline' | 'busy' | 'away';
       width: var(--kp-avatar-status-size);
       height: var(--kp-avatar-status-size);
       border-radius: 50%;
-      border: var(--kp-avatar-status-border) solid var(--kp-color-avatar-ring, #FFFFFF);
+      border: var(--kp-avatar-status-border) solid var(--kp-color-avatar-ring, var(--kp-color-white));
       box-sizing: content-box;
       transform: translate(20%, 20%);
     }
     :host(.kp-avatar--circle) .kp-avatar__status { transform: translate(5%, 5%); }
-    .kp-avatar__status[data-status='online']  { background: var(--kp-color-avatar-status-online,  #22C55E); }
-    .kp-avatar__status[data-status='offline'] { background: var(--kp-color-avatar-status-offline, #A1A1AA); }
-    .kp-avatar__status[data-status='busy']    { background: var(--kp-color-avatar-status-busy,    #EF4444); }
-    .kp-avatar__status[data-status='away']    { background: var(--kp-color-avatar-status-away,    #F59E0B); }
+    .kp-avatar__status[data-status='online']  { background: var(--kp-color-avatar-status-online,  var(--kp-color-green-500)); }
+    .kp-avatar__status[data-status='offline'] { background: var(--kp-color-avatar-status-offline, var(--kp-color-gray-400)); }
+    .kp-avatar__status[data-status='busy']    { background: var(--kp-color-avatar-status-busy,    var(--kp-color-red-500)); }
+    .kp-avatar__status[data-status='away']    { background: var(--kp-color-avatar-status-away,    var(--kp-color-amber-500)); }
 
     /* Shapes */
     :host(.kp-avatar--circle) { --kp-avatar-radius: 50%; }
@@ -194,32 +194,32 @@ export type KpAvatarStatus = 'online' | 'offline' | 'busy' | 'away';
 
     /* Appearances (color roles) */
     :host(.kp-avatar--default) {
-      --kp-avatar-bg: var(--kp-color-avatar-bg-default, #E4E4E7);
-      --kp-avatar-fg: var(--kp-color-avatar-fg-default, #3F3F46);
+      --kp-avatar-bg: var(--kp-color-avatar-bg-default, var(--kp-color-gray-200));
+      --kp-avatar-fg: var(--kp-color-avatar-fg-default, var(--kp-color-gray-700));
     }
     :host(.kp-avatar--primary) {
-      --kp-avatar-bg: var(--kp-color-avatar-bg-primary, #DBEAFE);
-      --kp-avatar-fg: var(--kp-color-avatar-fg-primary, #1D4ED8);
+      --kp-avatar-bg: var(--kp-color-avatar-bg-primary, var(--kp-color-blue-100));
+      --kp-avatar-fg: var(--kp-color-avatar-fg-primary, var(--kp-color-blue-700));
     }
     :host(.kp-avatar--success) {
-      --kp-avatar-bg: var(--kp-color-avatar-bg-success, #DCFCE7);
-      --kp-avatar-fg: var(--kp-color-avatar-fg-success, #15803D);
+      --kp-avatar-bg: var(--kp-color-avatar-bg-success, var(--kp-color-green-100));
+      --kp-avatar-fg: var(--kp-color-avatar-fg-success, var(--kp-color-green-700));
     }
     :host(.kp-avatar--warning) {
-      --kp-avatar-bg: var(--kp-color-avatar-bg-warning, #FEF3C7);
-      --kp-avatar-fg: var(--kp-color-avatar-fg-warning, #B45309);
+      --kp-avatar-bg: var(--kp-color-avatar-bg-warning, var(--kp-color-amber-100));
+      --kp-avatar-fg: var(--kp-color-avatar-fg-warning, var(--kp-color-amber-700));
     }
     :host(.kp-avatar--danger) {
-      --kp-avatar-bg: var(--kp-color-avatar-bg-danger, #FEE2E2);
-      --kp-avatar-fg: var(--kp-color-avatar-fg-danger, #B91C1C);
+      --kp-avatar-bg: var(--kp-color-avatar-bg-danger, var(--kp-color-red-100));
+      --kp-avatar-fg: var(--kp-color-avatar-fg-danger, var(--kp-color-red-700));
     }
     :host(.kp-avatar--info) {
-      --kp-avatar-bg: var(--kp-color-avatar-bg-info, #CFFAFE);
-      --kp-avatar-fg: var(--kp-color-avatar-fg-info, #0E7490);
+      --kp-avatar-bg: var(--kp-color-avatar-bg-info, var(--kp-color-cyan-100));
+      --kp-avatar-fg: var(--kp-color-avatar-fg-info, var(--kp-color-cyan-700));
     }
     :host(.kp-avatar--neutral) {
-      --kp-avatar-bg: var(--kp-color-avatar-bg-neutral, #18181B);
-      --kp-avatar-fg: var(--kp-color-avatar-fg-neutral, #FFFFFF);
+      --kp-avatar-bg: var(--kp-color-avatar-bg-neutral, var(--kp-color-gray-900));
+      --kp-avatar-fg: var(--kp-color-avatar-fg-neutral, var(--kp-color-white));
     }
   `],
 })

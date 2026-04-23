@@ -97,7 +97,7 @@ const DEFAULTS: Record<KpPageErrorType, { title: string; description: string; ic
       font-size: 120px;
       font-weight: 700;
       line-height: 1;
-      color: var(--kp-color-gray-200, #E4E4E7);
+      color: var(--kp-color-gray-200, var(--kp-color-gray-200));
       letter-spacing: -0.02em;
       margin-bottom: 0;
     }
@@ -109,8 +109,8 @@ const DEFAULTS: Record<KpPageErrorType, { title: string; description: string; ic
       width: 96px;
       height: 96px;
       border-radius: 50%;
-      background: var(--kp-color-gray-100, #F4F4F5);
-      color: var(--kp-color-gray-500, #71717A);
+      background: var(--kp-color-gray-100, var(--kp-color-gray-100));
+      color: var(--kp-color-gray-500, var(--kp-color-gray-500));
     }
     .kp-page-error__illustration .ti { font-size: 48px; line-height: 1; }
 
@@ -124,13 +124,13 @@ const DEFAULTS: Record<KpPageErrorType, { title: string; description: string; ic
       margin: 0;
       font-size: 24px;
       font-weight: 500;
-      color: var(--kp-color-gray-900, #18181B);
+      color: var(--kp-color-gray-900, var(--kp-color-gray-900));
     }
     .kp-page-error__desc {
       margin: 0;
       font-size: 16px;
       line-height: 1.5;
-      color: var(--kp-color-gray-600, #52525B);
+      color: var(--kp-color-gray-600, var(--kp-color-gray-600));
     }
 
     .kp-page-error__actions {

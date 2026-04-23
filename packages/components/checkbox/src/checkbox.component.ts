@@ -73,8 +73,8 @@ export type KpCheckboxColor = 'primary' | 'danger';
       width: var(--kp-checkbox-size);
       height: var(--kp-checkbox-size);
       border-radius: var(--kp-checkbox-radius);
-      border: var(--kp-checkbox-border-width) solid var(--kp-checkbox-border, #D4D4D8);
-      background: var(--kp-checkbox-bg, #FFFFFF);
+      border: var(--kp-checkbox-border-width) solid var(--kp-checkbox-border, var(--kp-color-gray-300));
+      background: var(--kp-checkbox-bg, var(--kp-color-white));
       transition:
         background var(--kp-motion-duration-fast, 100ms) ease,
         border-color var(--kp-motion-duration-fast, 100ms) ease;
@@ -83,13 +83,13 @@ export type KpCheckboxColor = 'primary' | 'danger';
     .kp-checkbox__icon {
       position: absolute;
       width: 75%; height: 75%;
-      color: var(--kp-checkbox-fg, #FFFFFF);
+      color: var(--kp-checkbox-fg, var(--kp-color-white));
       opacity: 0;
       transition: opacity var(--kp-motion-duration-fast, 100ms) ease;
     }
     .kp-checkbox__minus {
       position: absolute;
-      background: var(--kp-checkbox-fg, #FFFFFF);
+      background: var(--kp-checkbox-fg, var(--kp-color-white));
       border-radius: 1px;
       width: 50%;
       height: var(--kp-checkbox-minus-h, 2px);
@@ -101,52 +101,52 @@ export type KpCheckboxColor = 'primary' | 'danger';
 
     :host(:hover:not(.kp-checkbox--disabled)),
     :host(.kp-checkbox--hover) {
-      --kp-checkbox-border: var(--kp-checkbox-border-hover, #A1A1AA);
+      --kp-checkbox-border: var(--kp-checkbox-border-hover, var(--kp-color-gray-400));
     }
     :host(.kp-checkbox--active) {
-      --kp-checkbox-border: var(--kp-checkbox-border-active, #71717A);
+      --kp-checkbox-border: var(--kp-checkbox-border-active, var(--kp-color-gray-500));
     }
     :host(:focus-visible),
     :host(.kp-checkbox--focus) {
-      outline: 2px solid var(--kp-color-focus-ring, #60A5FA);
+      outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
       outline-offset: 2px;
     }
     :host(.kp-checkbox--disabled) {
-      --kp-checkbox-bg: #FAFAFA;
-      --kp-checkbox-border: #E4E4E7;
+      --kp-checkbox-bg: var(--kp-color-gray-50);
+      --kp-checkbox-border: var(--kp-color-gray-200);
     }
     :host(.kp-checkbox--error) {
-      --kp-checkbox-border: #EF4444;
+      --kp-checkbox-border: var(--kp-color-red-500);
     }
 
     /* --- Checked / Indeterminate --- */
     :host(.kp-checkbox--checked),
     :host(.kp-checkbox--indeterminate) {
-      --kp-checkbox-bg: var(--kp-checkbox-bg-checked, #2563EB);
-      --kp-checkbox-border: var(--kp-checkbox-bg-checked, #2563EB);
+      --kp-checkbox-bg: var(--kp-checkbox-bg-checked, var(--kp-color-blue-600));
+      --kp-checkbox-border: var(--kp-checkbox-bg-checked, var(--kp-color-blue-600));
     }
     :host(.kp-checkbox--checked:hover:not(.kp-checkbox--disabled)),
     :host(.kp-checkbox--checked.kp-checkbox--hover) {
-      --kp-checkbox-bg: #1D4ED8;
-      --kp-checkbox-border: #1D4ED8;
+      --kp-checkbox-bg: var(--kp-color-blue-700);
+      --kp-checkbox-border: var(--kp-color-blue-700);
     }
     :host(.kp-checkbox--checked.kp-checkbox--active) {
-      --kp-checkbox-bg: #1E40AF;
-      --kp-checkbox-border: #1E40AF;
+      --kp-checkbox-bg: var(--kp-color-blue-800);
+      --kp-checkbox-border: var(--kp-color-blue-800);
     }
     :host(.kp-checkbox--checked.kp-checkbox--disabled) {
-      --kp-checkbox-bg: #A1A1AA;
-      --kp-checkbox-border: #A1A1AA;
+      --kp-checkbox-bg: var(--kp-color-gray-400);
+      --kp-checkbox-border: var(--kp-color-gray-400);
     }
     :host(.kp-checkbox--checked.kp-checkbox--error) {
-      --kp-checkbox-bg: #EF4444;
-      --kp-checkbox-border: #EF4444;
+      --kp-checkbox-bg: var(--kp-color-red-500);
+      --kp-checkbox-border: var(--kp-color-red-500);
     }
 
     /* --- Danger color --- */
     :host(.kp-checkbox--danger.kp-checkbox--checked) {
-      --kp-checkbox-bg: #DC2626;
-      --kp-checkbox-border: #DC2626;
+      --kp-checkbox-bg: var(--kp-color-red-600);
+      --kp-checkbox-border: var(--kp-color-red-600);
     }
 
     /* --- Sizes --- */
@@ -171,7 +171,7 @@ export type KpCheckboxColor = 'primary' | 'danger';
 
     .kp-checkbox__label {
       font-size: 14px;
-      color: #3F3F46;
+      color: var(--kp-color-gray-700);
     }
   `]
 })

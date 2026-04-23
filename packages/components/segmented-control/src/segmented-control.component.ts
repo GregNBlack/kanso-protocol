@@ -103,7 +103,7 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
       gap: 2px;
       padding: 2px;
       border-radius: var(--kp-segmented-radius);
-      background: var(--kp-color-segmented-track-bg, #F4F4F5);
+      background: var(--kp-color-segmented-track-bg, var(--kp-color-gray-100));
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
     :host(.kp-segmented-control--disabled) {
@@ -120,7 +120,7 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
       width: var(--kp-pill-w, 0);
       height: calc(100% - 4px);
       border-radius: var(--kp-segmented-segment-radius);
-      background: var(--kp-color-segmented-segment-bg-selected, #FFFFFF);
+      background: var(--kp-color-segmented-segment-bg-selected, var(--kp-color-white));
       box-shadow:
         0 1px 2px rgba(0, 0, 0, 0.06),
         0 1px 3px rgba(0, 0, 0, 0.08);
@@ -149,7 +149,7 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
       border: none;
       border-radius: var(--kp-segmented-segment-radius);
       background: transparent;
-      color: var(--kp-color-segmented-segment-fg-unselected-rest, #52525B);
+      color: var(--kp-color-segmented-segment-fg-unselected-rest, var(--kp-color-gray-600));
       font: inherit;
       font-size: var(--kp-segmented-fs);
       font-weight: 500;
@@ -161,18 +161,18 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
     }
 
     .kp-segmented-control__segment:hover:not(.kp-segmented-control__segment--selected):not(:disabled) {
-      color: var(--kp-color-segmented-segment-fg-unselected-hover, #18181B);
+      color: var(--kp-color-segmented-segment-fg-unselected-hover, var(--kp-color-gray-900));
     }
     .kp-segmented-control__segment:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring, #60A5FA);
+      outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
       outline-offset: 1px;
     }
     .kp-segmented-control__segment:disabled {
-      color: var(--kp-color-segmented-segment-fg-disabled, #A1A1AA);
+      color: var(--kp-color-segmented-segment-fg-disabled, var(--kp-color-gray-400));
       cursor: not-allowed;
     }
     .kp-segmented-control__segment--selected {
-      color: var(--kp-color-segmented-segment-fg-selected, #18181B);
+      color: var(--kp-color-segmented-segment-fg-selected, var(--kp-color-gray-900));
     }
 
     .kp-segmented-control__icon { flex-shrink: 0; display: block; }

@@ -55,8 +55,8 @@ export type KpEmptyStateSize = 'sm' | 'md' | 'lg';
       width: var(--kp-es-ill-size);
       height: var(--kp-es-ill-size);
       border-radius: 50%;
-      background: var(--kp-color-empty-state-illustration-bg, #F4F4F5);
-      color: var(--kp-color-empty-state-illustration-icon, #71717A);
+      background: var(--kp-color-empty-state-illustration-bg, var(--kp-color-gray-100));
+      color: var(--kp-color-empty-state-illustration-icon, var(--kp-color-gray-500));
     }
     .kp-es__illustration ::ng-deep svg {
       width: var(--kp-es-ill-icon);
@@ -76,13 +76,13 @@ export type KpEmptyStateSize = 'sm' | 'md' | 'lg';
       font-size: var(--kp-es-title-size);
       line-height: var(--kp-es-title-lh);
       font-weight: 500;
-      color: var(--kp-color-empty-state-fg-title, #18181B);
+      color: var(--kp-color-empty-state-fg-title, var(--kp-color-gray-900));
     }
     .kp-es__desc {
       margin: 0;
       font-size: var(--kp-es-desc-size);
       line-height: var(--kp-es-desc-lh);
-      color: var(--kp-color-empty-state-fg-description, #52525B);
+      color: var(--kp-color-empty-state-fg-description, var(--kp-color-gray-600));
     }
 
     .kp-es__actions {

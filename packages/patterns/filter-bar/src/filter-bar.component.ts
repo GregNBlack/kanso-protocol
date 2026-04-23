@@ -90,8 +90,8 @@ export interface KpFilterChip {
       gap: 12px;
       row-gap: 8px;
       padding: 8px 16px;
-      background: var(--kp-color-white, #FFFFFF);
-      border-bottom: 1px solid var(--kp-color-gray-100, #F4F4F5);
+      background: var(--kp-color-white, var(--kp-color-white));
+      border-bottom: 1px solid var(--kp-color-gray-100, var(--kp-color-gray-100));
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
 
