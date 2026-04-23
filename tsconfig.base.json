@@ -65,7 +65,8 @@
       "@kanso-protocol/theme-toggle": ["packages/patterns/theme-toggle/src/index.ts"],
       "@kanso-protocol/search-bar": ["packages/patterns/search-bar/src/index.ts"],
       "@kanso-protocol/app-shell": ["packages/patterns/app-shell/src/index.ts"],
-      "@kanso-protocol/banner": ["packages/patterns/banner/src/index.ts"]
+      "@kanso-protocol/banner": ["packages/patterns/banner/src/index.ts"],
+      "@kanso-protocol/page-error": ["packages/patterns/page-error/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]
