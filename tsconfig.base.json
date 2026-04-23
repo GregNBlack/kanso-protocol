@@ -70,7 +70,8 @@
       "@kanso-protocol/notification-center": ["packages/patterns/notification-center/src/index.ts"],
       "@kanso-protocol/stat-card": ["packages/patterns/stat-card/src/index.ts"],
       "@kanso-protocol/table-toolbar": ["packages/patterns/table-toolbar/src/index.ts"],
-      "@kanso-protocol/filter-bar": ["packages/patterns/filter-bar/src/index.ts"]
+      "@kanso-protocol/filter-bar": ["packages/patterns/filter-bar/src/index.ts"],
+      "@kanso-protocol/form-section": ["packages/patterns/form-section/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]
