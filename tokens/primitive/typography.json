@@ -23,14 +23,14 @@
       "2xl": { "$value": "32px", "$description": "Large headings, hero text" }
     },
     "lineHeight": {
-      "$type": "number",
-      "2xs": { "$value": 1.455, "$description": "11px × 1.455 = 16px · on 4px grid" },
-      "xs":  { "$value": 1.333, "$description": "12px × 1.333 = 16px · on 4px grid" },
-      "sm":  { "$value": 1.428, "$description": "14px × 1.428 = 20px · on 4px grid" },
-      "md":  { "$value": 1.5,   "$description": "16px × 1.5 = 24px · on 4px grid" },
-      "lg":  { "$value": 1.4,   "$description": "20px × 1.4 = 28px · on 4px grid" },
-      "xl":  { "$value": 1.333, "$description": "24px × 1.333 = 32px · on 4px grid" },
-      "2xl": { "$value": 1.25,  "$description": "32px × 1.25 = 40px · on 4px grid" }
+      "$type": "dimension",
+      "2xs": { "$value": "16px", "$description": "Pairs with size 2xs (11px) — 4px grid" },
+      "xs":  { "$value": "16px", "$description": "Pairs with size xs (12px)" },
+      "sm":  { "$value": "20px", "$description": "Pairs with size sm (14px)" },
+      "md":  { "$value": "24px", "$description": "Pairs with size md (16px)" },
+      "lg":  { "$value": "28px", "$description": "Pairs with size lg (20px)" },
+      "xl":  { "$value": "32px", "$description": "Pairs with size xl (24px)" },
+      "2xl": { "$value": "40px", "$description": "Pairs with size 2xl (32px)" }
     }
   }
 }
