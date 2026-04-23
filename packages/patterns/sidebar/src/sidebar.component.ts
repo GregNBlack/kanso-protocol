@@ -176,7 +176,28 @@ export interface KpSidebarSection {
       gap: 12px;
       min-height: 40px;
     }
-    :host(.kp-sidebar--collapsed) .kp-sidebar__top-row { justify-content: center; }
+    :host(.kp-sidebar--collapsed) .kp-sidebar__top-row {
+      position: relative;
+      justify-content: center;
+    }
+    :host(.kp-sidebar--collapsed) .kp-sidebar__logo,
+    :host(.kp-sidebar--collapsed) .kp-sidebar__toggle {
+      transition: opacity 120ms ease;
+    }
+    /* When collapsed AND logo is present, logo shows by default; toggle reveals on hover */
+    :host(.kp-sidebar--collapsed) .kp-sidebar__top-row:has(.kp-sidebar__logo) .kp-sidebar__toggle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      pointer-events: none;
+    }
+    :host(.kp-sidebar--collapsed) .kp-sidebar__top-row:has(.kp-sidebar__logo):hover .kp-sidebar__logo { opacity: 0; }
+    :host(.kp-sidebar--collapsed) .kp-sidebar__top-row:has(.kp-sidebar__logo):hover .kp-sidebar__toggle {
+      opacity: 1;
+      pointer-events: auto;
+    }
     .kp-sidebar__logo {
       display: flex;
       align-items: center;
