@@ -68,7 +68,8 @@
       "@kanso-protocol/banner": ["packages/patterns/banner/src/index.ts"],
       "@kanso-protocol/page-error": ["packages/patterns/page-error/src/index.ts"],
       "@kanso-protocol/notification-center": ["packages/patterns/notification-center/src/index.ts"],
-      "@kanso-protocol/stat-card": ["packages/patterns/stat-card/src/index.ts"]
+      "@kanso-protocol/stat-card": ["packages/patterns/stat-card/src/index.ts"],
+      "@kanso-protocol/table-toolbar": ["packages/patterns/table-toolbar/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "dist"]
