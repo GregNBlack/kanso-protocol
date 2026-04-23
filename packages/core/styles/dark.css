@@ -132,4 +132,30 @@
   color-scheme: dark;
   background-color: #09090B;
   color: #FAFAFA;
+
+  /* ----------------------------------------------------------------
+     Subtle surface remaps.
+
+     The primitive ramp inverts so that `*-50` becomes the *deepest*
+     shade of the brand colour (e.g. blue-50 → #172554). That works
+     for borders / subtle outlines, but solid `subtle` backgrounds
+     end up nearly indistinguishable from the page (#09090B). Bump
+     them one step brighter so they read as "tinted surface".
+     ---------------------------------------------------------------- */
+
+  /* Badge — subtle backgrounds. */
+  --kp-color-badge-primary-subtle-bg: #1E3A8A;   /* blue-100 in dark */
+  --kp-color-badge-danger-subtle-bg:  #7F1D1D;   /* red-100 */
+  --kp-color-badge-success-subtle-bg: #14532D;   /* green-100 */
+  --kp-color-badge-warning-subtle-bg: #78350F;   /* amber-100 */
+  --kp-color-badge-info-subtle-bg:    #164E63;   /* cyan-100 */
+  --kp-color-badge-neutral-subtle-bg: #27272A;   /* gray-200 */
+
+  /* Alert — subtle backgrounds (same logic as badge). */
+  --kp-color-alert-primary-subtle-bg: #1E3A8A;
+  --kp-color-alert-danger-subtle-bg:  #7F1D1D;
+  --kp-color-alert-success-subtle-bg: #14532D;
+  --kp-color-alert-warning-subtle-bg: #78350F;
+  --kp-color-alert-info-subtle-bg:    #164E63;
+  --kp-color-alert-neutral-subtle-bg: #27272A;
 }
