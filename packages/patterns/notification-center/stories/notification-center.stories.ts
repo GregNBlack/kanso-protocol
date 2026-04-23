@@ -38,10 +38,11 @@ export const Playground: Story = {
 };
 
 export const States: Story = {
+  parameters: { layout: 'fullscreen' },
   render: () => ({
     props: { items: ITEMS },
     template: `
-      <div style="display:flex;gap:24px;align-items:flex-start">
+      <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;padding:24px">
         <kp-notification-center state="with-items" [notifications]="items"/>
         <kp-notification-center state="empty" [notifications]="[]"/>
         <kp-notification-center state="loading" [notifications]="[]"/>
