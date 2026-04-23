@@ -132,7 +132,19 @@ import { KpNotificationItemComponent } from '@kanso-protocol/notification-center
     .body {
       display: flex;
       flex: 1 1 auto;
+      align-items: stretch;
       min-height: 0;
+    }
+
+    /* Stretch the sidebar to fill the body height regardless of how
+       short the main content is. Override the sidebar's own
+       min-height: 100vh — we want it tied to the row, not the
+       viewport, so the right border of the sidebar reaches the
+       bottom of the page in this composition. */
+    .body > kp-sidebar {
+      align-self: stretch;
+      min-height: 100%;
+      height: auto;
     }
 
     .main {
