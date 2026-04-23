@@ -5,7 +5,11 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { KpAvatarComponent } from '@kanso-protocol/avatar';
+import {
+  KpAvatarAppearance,
+  KpAvatarComponent,
+  KpAvatarStatus,
+} from '@kanso-protocol/avatar';
 
 export type KpNotificationAppearance =
   | 'primary'
@@ -21,16 +25,18 @@ export type KpNotificationAppearance =
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses', role: 'listitem' },
   template: `
-    @if (!read) {
-      <span class="kp-notif-item__unread" aria-label="Unread"></span>
-    }
-    @if (avatarInitials || avatarSrc) {
-      <kp-avatar size="md" [initials]="avatarInitials || null" [src]="avatarSrc || null"/>
-    } @else if (icon) {
-      <span class="kp-notif-item__icon-wrap" [attr.data-appearance]="appearance" aria-hidden="true">
-        <i [class]="'ti ti-' + icon"></i>
-      </span>
-    }
+    <kp-avatar
+      size="md"
+      [appearance]="resolvedAppearance"
+      [initials]="avatarInitials || null"
+      [src]="avatarSrc || null"
+      [showStatus]="!read"
+      [status]="statusColor"
+    >
+      @if (!avatarInitials && !avatarSrc && icon) {
+        <i [class]="'ti ti-' + icon" aria-hidden="true"></i>
+      }
+    </kp-avatar>
     <div class="kp-notif-item__content">
       <span class="kp-notif-item__title">{{ title }}</span>
       @if (message) {
@@ -48,7 +54,6 @@ export type KpNotificationAppearance =
       align-items: flex-start;
       gap: 12px;
       padding: 12px 16px;
-      position: relative;
       border-bottom: 1px solid var(--kp-color-gray-100, #F4F4F5);
       background: var(--kp-color-white, #FFFFFF);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
@@ -58,33 +63,8 @@ export type KpNotificationAppearance =
     :host(.kp-notif-item--unread) { background: var(--kp-color-gray-50, #FAFAFA); }
     :host(:hover) { background: var(--kp-color-gray-100, #F4F4F5); }
 
-    .kp-notif-item__unread {
-      position: absolute;
-      left: 6px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--kp-color-blue-600, #2563EB);
-    }
-
-    .kp-notif-item__icon-wrap {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      flex: 0 0 auto;
-    }
-    .kp-notif-item__icon-wrap .ti { font-size: 20px; line-height: 1; }
-    .kp-notif-item__icon-wrap[data-appearance='primary'] { background: var(--kp-color-blue-100, #DBEAFE); color: var(--kp-color-blue-600, #2563EB); }
-    .kp-notif-item__icon-wrap[data-appearance='success'] { background: var(--kp-color-green-100, #DCFCE7); color: var(--kp-color-green-600, #16A34A); }
-    .kp-notif-item__icon-wrap[data-appearance='warning'] { background: var(--kp-color-amber-100, #FEF3C7); color: var(--kp-color-amber-600, #D97706); }
-    .kp-notif-item__icon-wrap[data-appearance='danger'] { background: var(--kp-color-red-100, #FEE2E2); color: var(--kp-color-red-600, #DC2626); }
-    .kp-notif-item__icon-wrap[data-appearance='info'] { background: var(--kp-color-cyan-100, #CFFAFE); color: var(--kp-color-cyan-600, #0891B2); }
-    .kp-notif-item__icon-wrap[data-appearance='neutral'] { background: var(--kp-color-gray-100, #F4F4F5); color: var(--kp-color-gray-600, #52525B); }
+    kp-avatar { flex: 0 0 auto; }
+    kp-avatar ::ng-deep .ti { font-size: 18px; line-height: 1; }
 
     .kp-notif-item__content {
       display: flex;
@@ -127,6 +107,22 @@ export class KpNotificationItemComponent {
   @Input() avatarSrc: string | null = null;
 
   @Output() click$ = new EventEmitter<void>();
+
+  /** Map notification appearance to Avatar's appearance tokens. User avatars stay default. */
+  get resolvedAppearance(): KpAvatarAppearance {
+    if (this.avatarInitials || this.avatarSrc) return 'default';
+    return this.appearance as KpAvatarAppearance;
+  }
+
+  /** Unread indicator color — matches the appearance intent. Default: online (green). */
+  get statusColor(): KpAvatarStatus {
+    switch (this.appearance) {
+      case 'danger':
+      case 'warning': return 'busy';
+      case 'neutral': return 'offline';
+      default: return 'online';
+    }
+  }
 
   get hostClasses(): string {
     return `kp-notif-item ${this.read ? '' : 'kp-notif-item--unread'}`;
