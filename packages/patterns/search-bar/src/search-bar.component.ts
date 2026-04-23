@@ -5,6 +5,7 @@ import {
   Input,
   Output,
 } from '@angular/core';
+import { KpButtonComponent } from '@kanso-protocol/button';
 
 export type KpSearchBarVariant = 'inline' | 'command-palette';
 export type KpSearchBarSize = 'sm' | 'md' | 'lg';
@@ -44,7 +45,7 @@ export interface KpSearchResultGroup {
  */
 @Component({
   selector: 'kp-search-bar',
-  imports: [],
+  imports: [KpButtonComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses' },
   template: `
@@ -62,14 +63,16 @@ export interface KpSearchResultGroup {
           [attr.aria-label]="placeholder"
         />
         @if (value) {
-          <button
-            type="button"
-            class="kp-search-bar__clear"
+          <kp-button
+            size="xs"
+            variant="ghost"
+            color="neutral"
+            [iconOnly]="true"
             aria-label="Clear"
             (click)="clear()"
           >
-            <i class="ti ti-x" aria-hidden="true"></i>
-          </button>
+            <svg kpButtonIconLeft viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </kp-button>
         } @else if (showShortcutHint) {
           <kbd class="kp-search-bar__shortcut">{{ shortcutHint }}</kbd>
         }
@@ -169,20 +172,6 @@ export interface KpSearchResultGroup {
     .kp-search-bar__input::placeholder { color: var(--kp-color-gray-500, #71717A); }
     .kp-search-bar__input::-webkit-search-cancel-button { display: none; }
 
-    .kp-search-bar__clear {
-      all: unset;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 20px;
-      height: 20px;
-      border-radius: 4px;
-      color: var(--kp-color-gray-500, #71717A);
-      cursor: pointer;
-      transition: background 120ms ease, color 120ms ease;
-    }
-    .kp-search-bar__clear:hover { background: var(--kp-color-gray-200, #E4E4E7); color: var(--kp-color-gray-900, #18181B); }
-    .kp-search-bar__clear .ti { font-size: 14px; }
 
     .kp-search-bar__shortcut {
       display: inline-flex;
