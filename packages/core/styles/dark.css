@@ -15,6 +15,7 @@
  * this block once the dark palette is signed off in design.
  */
 
+:root[data-theme="dark"],
 [data-theme="dark"] {
   /* Surfaces and base ink */
   --kp-color-white: #18181B;     /* the new "white" — top elevation surface */

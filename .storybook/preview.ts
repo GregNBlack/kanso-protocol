@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/angular';
+import type { Preview, Decorator } from '@storybook/angular';
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 
 /**
@@ -9,7 +9,20 @@ import { withThemeByDataAttribute } from '@storybook/addon-themes';
  * `packages/core/styles/dark.css`, loaded in `preview-head.html`,
  * which inverts the primitive grayscale + brand ramps under
  * `[data-theme="dark"]`.
+ *
+ * The second decorator below is a belt-and-braces mirror: it copies
+ * the chosen theme onto `<body>` (and re-asserts on `<html>`) every
+ * render, in case the iframe document gets reset by HMR or autodocs.
  */
+const mirrorThemeDecorator: Decorator = (storyFn, context) => {
+  if (typeof document !== 'undefined') {
+    const theme = (context.globals?.theme as string) || 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+    document.body.setAttribute('data-theme', theme);
+  }
+  return storyFn();
+};
+
 const preview: Preview = {
   decorators: [
     withThemeByDataAttribute({
@@ -17,6 +30,7 @@ const preview: Preview = {
       defaultTheme: 'light',
       attributeName: 'data-theme',
     }),
+    mirrorThemeDecorator,
   ],
   parameters: {
     controls: {
