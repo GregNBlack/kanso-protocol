@@ -80,7 +80,7 @@ export const Playground: Story = {
     template: `
       <kp-app-shell [layout]="layout" [showHeader]="showHeader" [showSidebar]="showSidebar" [showFooter]="showFooter" [showBanner]="showBanner">
         <kp-header kpAppShellHeader size="md" [navItems]="nav" userName="Greg Black" userInitials="GB" userRole="Admin" [showSearch]="true" notificationsCount="3"/>
-        <kp-sidebar kpAppShellSidebar [sections]="sections" userName="Greg Black" userInitials="GB" userEmail="greg@example.com"/>
+        <kp-sidebar kpAppShellSidebar [showLogo]="false" [sections]="sections" userName="Greg Black" userInitials="GB" userEmail="greg@example.com"/>
         ${BODY}
       </kp-app-shell>
     `,
@@ -107,7 +107,7 @@ export const SidebarCollapsed: Story = {
     template: `
       <kp-app-shell layout="sidebar-collapsed">
         <kp-header kpAppShellHeader [navItems]="nav" userName="Greg Black" userInitials="GB"/>
-        <kp-sidebar kpAppShellSidebar widthState="collapsed" [sections]="sections" userInitials="GB"/>
+        <kp-sidebar kpAppShellSidebar widthState="collapsed" [showLogo]="false" [sections]="sections" userInitials="GB"/>
         ${BODY}
       </kp-app-shell>
     `,
@@ -124,7 +124,7 @@ export const WithBanner: Story = {
         <div kpAppShellBanner style="padding:10px 24px;background:#FFFBEB;border-bottom:1px solid #FCD34D;font-size:13px;color:#92400E;display:flex;justify-content:space-between;align-items:center">
           <span>Your trial expires in <strong>3 days</strong>. Upgrade now to keep all features.</span>
         </div>
-        <kp-sidebar kpAppShellSidebar [sections]="sections" userName="Greg Black" userInitials="GB" userEmail="greg@example.com"/>
+        <kp-sidebar kpAppShellSidebar [showLogo]="false" [sections]="sections" userName="Greg Black" userInitials="GB" userEmail="greg@example.com"/>
         ${BODY}
       </kp-app-shell>
     `,
@@ -138,7 +138,7 @@ export const WithFooter: Story = {
     template: `
       <kp-app-shell [showFooter]="showFooter">
         <kp-header kpAppShellHeader [navItems]="nav" userName="Greg Black" userInitials="GB"/>
-        <kp-sidebar kpAppShellSidebar [sections]="sections" userName="Greg Black" userInitials="GB" userEmail="greg@example.com"/>
+        <kp-sidebar kpAppShellSidebar [showLogo]="false" [sections]="sections" userName="Greg Black" userInitials="GB" userEmail="greg@example.com"/>
         ${BODY}
         <div kpAppShellFooter style="padding:12px 24px;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:#71717A;font-family:Onest,system-ui,sans-serif">
           <span>© 2026 Kanso Protocol</span>
