@@ -8,6 +8,7 @@
     "primitive/elevation",
     "primitive/motion",
     "primitive/icon",
+    "themes/dark/color",
     "semantic/color",
     "semantic/typography",
     "semantic/layout"

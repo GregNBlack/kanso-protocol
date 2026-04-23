@@ -11,6 +11,25 @@
       "primitive/elevation": "source",
       "primitive/motion": "source",
       "primitive/icon": "source",
+      "themes/dark/color": "disabled",
+      "semantic/color": "enabled",
+      "semantic/typography": "enabled",
+      "semantic/layout": "enabled"
+    }
+  },
+  {
+    "id": "dark",
+    "name": "Dark",
+    "selectedTokenSets": {
+      "primitive/color": "disabled",
+      "primitive/typography": "source",
+      "primitive/spacing": "source",
+      "primitive/sizing": "source",
+      "primitive/radius": "source",
+      "primitive/elevation": "source",
+      "primitive/motion": "source",
+      "primitive/icon": "source",
+      "themes/dark/color": "source",
       "semantic/color": "enabled",
       "semantic/typography": "enabled",
       "semantic/layout": "enabled"
