@@ -39,14 +39,10 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-    backgrounds: {
-      default: 'light',
-      values: [
-        { name: 'light', value: '#FFFFFF' },
-        { name: 'dark', value: '#09090B' },
-        { name: 'gray', value: '#FAFAFA' },
-      ],
-    },
+    // Backgrounds addon disabled — body background is driven by
+    // `[data-theme]` rules in `packages/core/styles/dark.css`, so the
+    // theme switcher alone flips both component colours and the canvas.
+    backgrounds: { disable: true },
   },
 };
 
