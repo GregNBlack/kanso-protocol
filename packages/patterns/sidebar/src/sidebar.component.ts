@@ -55,35 +55,35 @@ export interface KpSidebarSection {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses', role: 'navigation' },
   template: `
-    @if (showLogo || (showSearch && widthState !== 'collapsed')) {
     <div class="kp-sidebar__top">
-      @if (showLogo) {
-        <div class="kp-sidebar__logo">
-          <ng-content select="[kpSidebarLogo]">
-            <span class="kp-sidebar__logo-mark" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 7l9-4 9 4v10l-9 4-9-4V7zM3 7l9 4 9-4M12 11v10"/>
-              </svg>
-            </span>
-            @if (widthState !== 'collapsed') {
-              <span class="kp-sidebar__logo-text">{{ logoText }}</span>
-            }
-          </ng-content>
-          <button
-            type="button"
-            class="kp-sidebar__toggle"
-            [attr.aria-label]="widthState === 'collapsed' ? 'Expand sidebar' : 'Collapse sidebar'"
-            (click)="toggle.emit()"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M9 5v14"/></svg>
-          </button>
-        </div>
-      }
+      <div class="kp-sidebar__top-row">
+        @if (showLogo) {
+          <div class="kp-sidebar__logo">
+            <ng-content select="[kpSidebarLogo]">
+              <span class="kp-sidebar__logo-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 7l9-4 9 4v10l-9 4-9-4V7zM3 7l9 4 9-4M12 11v10"/>
+                </svg>
+              </span>
+              @if (widthState !== 'collapsed') {
+                <span class="kp-sidebar__logo-text">{{ logoText }}</span>
+              }
+            </ng-content>
+          </div>
+        }
+        <button
+          type="button"
+          class="kp-sidebar__toggle"
+          [attr.aria-label]="widthState === 'collapsed' ? 'Expand sidebar' : 'Collapse sidebar'"
+          (click)="onToggle()"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M9 5v14"/></svg>
+        </button>
+      </div>
       @if (showSearch && widthState !== 'collapsed') {
         <ng-content select="[kpSidebarSearch]"/>
       }
     </div>
-    }
 
     <nav class="kp-sidebar__nav">
       @for (section of sections; track $index) {
@@ -170,11 +170,19 @@ export interface KpSidebarSection {
       gap: 16px;
       padding: 16px;
     }
+    .kp-sidebar__top-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 40px;
+    }
+    :host(.kp-sidebar--collapsed) .kp-sidebar__top-row { justify-content: center; }
     .kp-sidebar__logo {
       display: flex;
       align-items: center;
       gap: 12px;
-      height: 40px;
+      flex: 1 1 auto;
+      min-width: 0;
     }
     .kp-sidebar__logo-mark {
       display: inline-flex;
@@ -201,17 +209,25 @@ export interface KpSidebarSection {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 24px;
-      height: 24px;
-      border-radius: 4px;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
       color: var(--kp-color-gray-500, #71717A);
       cursor: pointer;
+      transition: background 120ms ease, color 120ms ease;
     }
-    .kp-sidebar__toggle:hover { color: var(--kp-color-gray-900, #18181B); }
+    .kp-sidebar__toggle:hover {
+      background: var(--kp-color-gray-100, #F4F4F5);
+      color: var(--kp-color-gray-900, #18181B);
+    }
     .kp-sidebar__toggle svg { width: 16px; height: 16px; }
+    :host(.kp-sidebar--dark) .kp-sidebar__toggle { color: rgba(255,255,255,0.7); }
+    :host(.kp-sidebar--dark) .kp-sidebar__toggle:hover {
+      background: #27272A;
+      color: #FFFFFF;
+    }
 
     :host(.kp-sidebar--collapsed) .kp-sidebar__logo { justify-content: center; }
-    :host(.kp-sidebar--collapsed) .kp-sidebar__toggle { display: none; }
 
     .kp-sidebar__nav {
       display: flex;
@@ -312,7 +328,12 @@ export class KpSidebarComponent {
   @Input() userEmail: string | null = null;
   @Input() userInitials: string | null = null;
 
-  @Output() toggle = new EventEmitter<void>();
+  @Output() toggle = new EventEmitter<KpSidebarWidth>();
+
+  onToggle(): void {
+    this.widthState = this.widthState === 'expanded' ? 'collapsed' : 'expanded';
+    this.toggle.emit(this.widthState);
+  }
   @Output() itemClick = new EventEmitter<KpSidebarNavItem>();
   @Output() userMenuClick = new EventEmitter<void>();
 
