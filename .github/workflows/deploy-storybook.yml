@@ -8,10 +8,13 @@ permissions:
   pages: write
   id-token: write
 
-# Serialize Pages deploys — only one environment at a time.
+# Serialize Pages deploys — newest commit wins. cancel-in-progress was
+# `false` originally, but two pushes in quick succession then deadlocked
+# the queued deploy against GitHub's environment lock and the second one
+# kept reporting `failure`. Latest-wins is fine for a docs site.
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
