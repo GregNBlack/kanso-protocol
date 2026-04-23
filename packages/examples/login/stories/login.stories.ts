@@ -93,6 +93,9 @@ import { KpDividerComponent } from '@kanso-protocol/divider';
       gap: 20px;
     }
 
+    .card kp-form-field { width: 100%; }
+    .card kp-input { display: flex; width: 100%; }
+
     .logo {
       width: 64px; height: 64px;
       border-radius: 16px;
