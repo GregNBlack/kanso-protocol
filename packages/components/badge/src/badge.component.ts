@@ -166,11 +166,15 @@ export type KpBadgeColor =
     /* Counter pill behaviour: min-width = height AND horizontal padding
        drops to 2px so 1–2 chars stay visually circular. The badge grows
        into a pill only once content is wide enough to push past the
-       height (3+ chars, or words like "Design"). */
+       height (3+ chars, or words like "Design"). When closable (filter
+       chips) we keep the normal pad-x — chips need real horizontal
+       breathing room around the label and close button. */
     :host(.kp-badge--pill) {
       min-width: var(--kp-badge-h);
-      padding-inline: 2px;
       justify-content: center;
+    }
+    :host(.kp-badge--pill:not(.kp-badge--closable)) {
+      padding-inline: 2px;
     }
 
     /* Color × Appearance tokens — generated from tokens/semantic/color.json */
@@ -353,6 +357,7 @@ export class KpBadgeComponent {
       `kp-badge--${this.appearance}`,
     ];
     if (this.pill) c.push('kp-badge--pill');
+    if (this.closable) c.push('kp-badge--closable');
     return c.join(' ');
   }
 
