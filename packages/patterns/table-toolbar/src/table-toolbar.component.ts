@@ -52,7 +52,7 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
 
         @if (showFilter) {
           <kp-button variant="outline" size="sm" (click)="filterClick.emit()">
-            <i class="ti ti-filter" aria-hidden="true"></i>
+            <i kpButtonIconLeft class="ti ti-filter" aria-hidden="true"></i>
             <span>Filters</span>
             @if (activeFilterCount > 0) {
               <kp-badge size="xs" color="primary" appearance="subtle">{{ activeFilterCount }}</kp-badge>
@@ -62,7 +62,7 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
 
         @if (showSort) {
           <kp-button variant="outline" size="sm" (click)="sortClick.emit()">
-            <i class="ti ti-arrows-up-down" aria-hidden="true"></i>
+            <i kpButtonIconLeft class="ti ti-arrows-up-down" aria-hidden="true"></i>
             <span>Sort</span>
           </kp-button>
         }
@@ -100,13 +100,13 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
 
         @if (showColumnPicker) {
           <kp-button variant="outline" size="sm" [iconOnly]="true" aria-label="Columns" (click)="columnsClick.emit()">
-            <i class="ti ti-layout-columns" aria-hidden="true"></i>
+            <i kpButtonIconLeft class="ti ti-layout-columns" aria-hidden="true"></i>
           </kp-button>
         }
 
         @if (showExport) {
           <kp-button variant="ghost" size="sm" (click)="exportClick.emit()">
-            <i class="ti ti-download" aria-hidden="true"></i>
+            <i kpButtonIconLeft class="ti ti-download" aria-hidden="true"></i>
             <span>Export</span>
           </kp-button>
         }
@@ -117,7 +117,7 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
 
         @if (showCreate) {
           <kp-button variant="default" color="primary" size="sm" (click)="createClick.emit()">
-            <i class="ti ti-plus" aria-hidden="true"></i>
+            <i kpButtonIconLeft class="ti ti-plus" aria-hidden="true"></i>
             <span>{{ createLabel }}</span>
           </kp-button>
         }
@@ -128,27 +128,27 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
           <strong>{{ selectedCount }}</strong> {{ selectedCount === 1 ? 'item' : 'items' }} selected
         </span>
         <kp-button variant="ghost" size="sm" (click)="clearSelection.emit()">
-          <i class="ti ti-x" aria-hidden="true"></i>
+          <i kpButtonIconLeft class="ti ti-x" aria-hidden="true"></i>
           <span>Clear selection</span>
         </kp-button>
       </div>
 
       <div class="kp-tt__right">
         <kp-button variant="outline" size="sm" (click)="bulkExport.emit()">
-          <i class="ti ti-download" aria-hidden="true"></i>
+          <i kpButtonIconLeft class="ti ti-download" aria-hidden="true"></i>
           <span>Export selected</span>
         </kp-button>
         <kp-button variant="outline" size="sm" (click)="bulkTag.emit()">
-          <i class="ti ti-tag" aria-hidden="true"></i>
+          <i kpButtonIconLeft class="ti ti-tag" aria-hidden="true"></i>
           <span>Tag</span>
         </kp-button>
         <kp-button variant="outline" size="sm" (click)="bulkMove.emit()">
-          <i class="ti ti-folder" aria-hidden="true"></i>
+          <i kpButtonIconLeft class="ti ti-folder" aria-hidden="true"></i>
           <span>Move to…</span>
         </kp-button>
         <span class="kp-tt__divider" aria-hidden="true"></span>
         <kp-button variant="outline" color="danger" size="sm" (click)="bulkDelete.emit()">
-          <i class="ti ti-trash" aria-hidden="true"></i>
+          <i kpButtonIconLeft class="ti ti-trash" aria-hidden="true"></i>
           <span>Delete</span>
         </kp-button>
       </div>
@@ -159,6 +159,9 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
       box-sizing: border-box;
       display: flex;
       width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      overflow: hidden;
       align-items: center;
       flex-wrap: wrap;
       gap: 12px;
@@ -190,14 +193,18 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
       margin-left: auto;
     }
 
-    /* Let SearchBar shrink inside the toolbar when the viewport is narrow */
+    /* Let SearchBar shrink inside the toolbar when the viewport is narrow.
+       Need !important — SearchBar's own :host { display: inline-block }
+       wins on specificity otherwise. */
     :host kp-search-bar {
-      display: flex;
-      flex: 0 1 320px;
+      display: flex !important;
+      flex: 1 1 240px;
       min-width: 0;
+      max-width: 320px;
     }
     :host kp-search-bar ::ng-deep .kp-search-bar__wrap {
-      width: 100%;
+      width: 100% !important;
+      min-width: 0;
     }
 
     .kp-tt__divider {
