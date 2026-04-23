@@ -131,7 +131,7 @@ interface MemberCard {
             </div>
 
             <div class="grid-side">
-              <kp-card title="Details" [showHeaderDivider]="true">
+              <kp-card title="Details" [showHeaderDivider]="true" class="details-card">
                 <kp-settings-row title="Owner" [showDescription]="false" [showDivider]="true">
                   <span class="kv">Greg Black</span>
                 </kp-settings-row>
@@ -259,6 +259,14 @@ interface MemberCard {
     .event-time { font-size: 12px; color: var(--kp-color-gray-500, #71717A); }
 
     .kv { font-size: 13px; color: var(--kp-color-gray-900, #18181B); }
+
+    /* Details card sits in the narrow side column. SettingsRow ships
+       with a 280px control column for forms — way too wide here. Pin
+       it to a tight 120px so Owner / Created / License values stay
+       inside the card. */
+    .details-card kp-settings-row {
+      --kp-sr-control-w: 120px;
+    }
 
     .members { display: flex; flex-direction: column; gap: 16px; }
     .member-list { display: flex; flex-direction: column; gap: 10px; }
