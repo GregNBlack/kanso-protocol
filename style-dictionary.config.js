@@ -1,10 +1,6 @@
 const StyleDictionary = require('style-dictionary');
 
 module.exports = {
-  // The default build emits the LIGHT theme. Theme override sets live in
-  // `tokens/themes/<name>/` — they are consumed by per-theme platforms
-  // (or external tooling like Tokens Studio) and are NOT included in the
-  // base source so they don't collide with the canonical token paths.
   source: [
     'tokens/primitive/**/*.json',
     'tokens/semantic/**/*.json',
