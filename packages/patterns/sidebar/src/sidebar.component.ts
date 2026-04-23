@@ -118,6 +118,7 @@ export interface KpSidebarSection {
                   [label]="child.label"
                   [active]="!!child.active"
                   [showIcon]="false"
+                  style="--kp-nav-item-indent: 30px"
                   (click$)="itemClick.emit(child)"
                 />
               }
