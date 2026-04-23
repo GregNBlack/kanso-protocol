@@ -1,0 +1,19 @@
+[
+  {
+    "id": "light",
+    "name": "Light",
+    "selectedTokenSets": {
+      "primitive/color": "source",
+      "primitive/typography": "source",
+      "primitive/spacing": "source",
+      "primitive/sizing": "source",
+      "primitive/radius": "source",
+      "primitive/elevation": "source",
+      "primitive/motion": "source",
+      "primitive/icon": "source",
+      "semantic/color": "enabled",
+      "semantic/typography": "enabled",
+      "semantic/layout": "enabled"
+    }
+  }
+]

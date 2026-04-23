@@ -1,0 +1,15 @@
+{
+  "tokenSetOrder": [
+    "primitive/color",
+    "primitive/typography",
+    "primitive/spacing",
+    "primitive/sizing",
+    "primitive/radius",
+    "primitive/elevation",
+    "primitive/motion",
+    "primitive/icon",
+    "semantic/color",
+    "semantic/typography",
+    "semantic/layout"
+  ]
+}
