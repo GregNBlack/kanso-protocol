@@ -55,6 +55,7 @@ export interface KpSidebarSection {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses', role: 'navigation' },
   template: `
+    @if (showLogo || (showSearch && widthState !== 'collapsed')) {
     <div class="kp-sidebar__top">
       @if (showLogo) {
         <div class="kp-sidebar__logo">
@@ -82,6 +83,7 @@ export interface KpSidebarSection {
         <ng-content select="[kpSidebarSearch]"/>
       }
     </div>
+    }
 
     <nav class="kp-sidebar__nav">
       @for (section of sections; track $index) {
@@ -101,9 +103,7 @@ export interface KpSidebarSection {
               (click$)="itemClick.emit(item)"
             >
               <span kpNavItemIcon>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 12l8-8 8 8M6 10v10h12V10"/>
-                </svg>
+                <i [class]="'ti ti-' + (item.icon || 'circle')" aria-hidden="true"></i>
               </span>
               @if (item.badge) {
                 <span kpNavItemBadge class="kp-sidebar__badge">{{ item.badge }}</span>

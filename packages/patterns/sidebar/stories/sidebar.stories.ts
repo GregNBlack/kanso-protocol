@@ -7,28 +7,28 @@ const SECTIONS: KpSidebarSection[] = [
   {
     label: 'Main',
     items: [
-      { label: 'Dashboard', active: true },
-      { label: 'Projects', children: [
+      { label: 'Dashboard', icon: 'layout-dashboard', active: true },
+      { label: 'Projects', icon: 'folder', children: [
         { label: 'Active' },
         { label: 'Archived' },
       ], expanded: true },
-      { label: 'Team', badge: '12' },
-      { label: 'Documents' },
+      { label: 'Team', icon: 'users', badge: '12' },
+      { label: 'Documents', icon: 'file-text' },
     ],
   },
   {
     label: 'Workspace',
     items: [
-      { label: 'Analytics' },
-      { label: 'Reports' },
-      { label: 'Integrations', badge: 'New' },
+      { label: 'Analytics', icon: 'chart-bar' },
+      { label: 'Reports', icon: 'chart-infographic' },
+      { label: 'Integrations', icon: 'plug', badge: 'New' },
     ],
   },
   {
     label: 'Settings',
     items: [
-      { label: 'Settings' },
-      { label: 'Help' },
+      { label: 'Settings', icon: 'settings' },
+      { label: 'Help', icon: 'help-circle' },
     ],
   },
 ];

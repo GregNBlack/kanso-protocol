@@ -122,6 +122,7 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
     }
     .kp-nav-item__content:hover .kp-nav-item__icon { color: var(--kp-color-nav-item-icon-hover, #3F3F46); }
     .kp-nav-item__icon ::ng-deep svg { width: 100%; height: 100%; }
+    .kp-nav-item__icon ::ng-deep .ti { font-size: var(--kp-nav-item-icon-size, 18px); line-height: 1; }
 
     .kp-nav-item__label {
       flex: 1 1 auto;

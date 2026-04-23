@@ -17,14 +17,14 @@ const NAV: KpHeaderNavItem[] = [
 
 const SECTIONS: KpSidebarSection[] = [
   { label: 'Main', items: [
-    { label: 'Dashboard', active: true },
-    { label: 'Projects' },
-    { label: 'Team', badge: '12' },
-    { label: 'Documents' },
+    { label: 'Dashboard', icon: 'layout-dashboard', active: true },
+    { label: 'Projects', icon: 'folder' },
+    { label: 'Team', icon: 'users', badge: '12' },
+    { label: 'Documents', icon: 'file-text' },
   ] },
   { label: 'Workspace', items: [
-    { label: 'Analytics' },
-    { label: 'Reports' },
+    { label: 'Analytics', icon: 'chart-bar' },
+    { label: 'Reports', icon: 'chart-infographic' },
   ] },
 ];
 
