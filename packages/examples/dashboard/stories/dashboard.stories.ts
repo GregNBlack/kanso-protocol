@@ -33,10 +33,9 @@ import { KpNotificationItemComponent } from '@kanso-protocol/notification-center
         <kp-sidebar
           widthState="expanded"
           appearance="light"
-          [sections]="sections"
-          userName="Greg Black"
-          userEmail="greg@example.com"
-          userInitials="GB">
+          [showLogo]="false"
+          [showUserFooter]="false"
+          [sections]="sections">
         </kp-sidebar>
 
         <main class="main">
