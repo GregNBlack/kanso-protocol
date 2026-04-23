@@ -77,6 +77,7 @@ export type KpSettingsRowSize = 'sm' | 'md' | 'lg';
 
     .kp-sr__control {
       flex: 0 0 auto;
+      width: var(--kp-sr-control-w, 280px);
       display: flex;
       align-items: center;
       justify-content: flex-end;
