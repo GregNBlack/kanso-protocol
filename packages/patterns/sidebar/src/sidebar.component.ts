@@ -100,7 +100,7 @@ export interface KpSidebarSection {
               [hasChildren]="!!item.children?.length"
               [expanded]="!!item.expanded"
               [collapsed]="widthState === 'collapsed'"
-              (click$)="itemClick.emit(item)"
+              (click$)="onItemClick(item)"
             >
               <span kpNavItemIcon>
                 <i [class]="'ti ti-' + (item.icon || 'circle')" aria-hidden="true"></i>
@@ -119,7 +119,7 @@ export interface KpSidebarSection {
                   [active]="!!child.active"
                   [showIcon]="false"
                   style="--kp-nav-item-indent: 30px"
-                  (click$)="itemClick.emit(child)"
+                  (click$)="onItemClick(child)"
                 />
               }
             }
@@ -355,6 +355,13 @@ export class KpSidebarComponent {
   onToggle(): void {
     this.widthState = this.widthState === 'expanded' ? 'collapsed' : 'expanded';
     this.toggle.emit(this.widthState);
+  }
+
+  onItemClick(item: KpSidebarNavItem): void {
+    if (item.children?.length) {
+      item.expanded = !item.expanded;
+    }
+    this.itemClick.emit(item);
   }
   @Output() itemClick = new EventEmitter<KpSidebarNavItem>();
   @Output() userMenuClick = new EventEmitter<void>();
