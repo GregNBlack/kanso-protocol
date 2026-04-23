@@ -5,6 +5,7 @@ const config: StorybookConfig = {
   stories: [
     '../packages/components/**/stories/*.stories.@(ts|tsx)',
     '../packages/patterns/**/stories/*.stories.@(ts|tsx)',
+    '../packages/examples/**/stories/*.stories.@(ts|tsx)',
     '../packages/core/stories/*.stories.@(ts|tsx)',
   ],
   addons: [getAbsolutePath("@storybook/addon-essentials")],
