@@ -160,7 +160,9 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
       display: flex;
       width: 100%;
       align-items: center;
+      flex-wrap: wrap;
       gap: 12px;
+      row-gap: 8px;
       padding: 12px 16px;
       background: var(--kp-color-white, #FFFFFF);
       border-bottom: 1px solid var(--kp-color-gray-200, #E4E4E7);
@@ -170,7 +172,9 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
     .kp-tt__left {
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
       gap: 12px;
+      row-gap: 8px;
       flex: 1 1 auto;
       min-width: 0;
     }
@@ -178,8 +182,22 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
     .kp-tt__right {
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
       gap: 8px;
-      flex: 0 0 auto;
+      row-gap: 8px;
+      flex: 0 1 auto;
+      justify-content: flex-end;
+      margin-left: auto;
+    }
+
+    /* Let SearchBar shrink inside the toolbar when the viewport is narrow */
+    :host kp-search-bar {
+      display: flex;
+      flex: 0 1 320px;
+      min-width: 0;
+    }
+    :host kp-search-bar ::ng-deep .kp-search-bar__wrap {
+      width: 100%;
     }
 
     .kp-tt__divider {
