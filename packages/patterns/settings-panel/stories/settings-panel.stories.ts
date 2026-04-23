@@ -99,7 +99,7 @@ export const ControlTypes: Story = {
         </kp-settings-row>
         <kp-settings-row title="Language"
                          description="The interface language across the workspace.">
-          <kp-select placeholder="English (US)" [options]="[]" style="width:200px"/>
+          <kp-select placeholder="English (US)" [options]="[]" style="width:240px"/>
         </kp-settings-row>
         <kp-settings-row title="Display name"
                          description="Shown next to your avatar in shared views.">
@@ -142,7 +142,7 @@ export const NotificationsSettings: Story = {
         <kp-settings-row title="Notification frequency"
                          description="How often we batch notifications when you're active."
                          [showDivider]="false">
-          <kp-select placeholder="Immediately" [options]="[]" style="width:200px"/>
+          <kp-select placeholder="Immediately" [options]="[]" style="width:240px"/>
         </kp-settings-row>
       </kp-settings-panel>
     `),
@@ -157,7 +157,7 @@ export const PrivacySettings: Story = {
                          description="Decide what other people can see and do.">
         <kp-settings-row title="Profile visibility"
                          description="Who can see your profile and activity.">
-          <kp-select placeholder="Workspace only" [options]="[]" style="width:200px"/>
+          <kp-select placeholder="Workspace only" [options]="[]" style="width:240px"/>
         </kp-settings-row>
         <kp-settings-row title="Show online status"
                          description="Teammates see a green dot when you're active.">
