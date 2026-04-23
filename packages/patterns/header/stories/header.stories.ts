@@ -15,8 +15,15 @@ const meta: Meta<KpHeaderComponent> = {
   decorators: [moduleMetadata({ imports: [KpAvatarComponent] })],
   tags: ['autodocs'],
   argTypes: {
-    size:       { control: 'inline-radio', options: ['sm','md','lg'], table: { defaultValue: { summary: 'md' } } },
-    appearance: { control: 'inline-radio', options: ['light','dark'], table: { defaultValue: { summary: 'light' } } },
+    size:              { control: 'inline-radio', options: ['sm','md','lg'], table: { defaultValue: { summary: 'md' } } },
+    appearance:        { control: 'inline-radio', options: ['light','dark'], table: { defaultValue: { summary: 'light' } } },
+    showLogo:          { control: 'boolean', table: { defaultValue: { summary: 'true' } } },
+    showMainNav:       { control: 'boolean', table: { defaultValue: { summary: 'true' } } },
+    showSearch:        { control: 'boolean', table: { defaultValue: { summary: 'false' } } },
+    showThemeToggle:   { control: 'boolean', table: { defaultValue: { summary: 'false' } } },
+    showNotifications: { control: 'boolean', table: { defaultValue: { summary: 'true' } } },
+    showCta:           { control: 'boolean', table: { defaultValue: { summary: 'false' } } },
+    showUserMenu:      { control: 'boolean', table: { defaultValue: { summary: 'true' } } },
   },
   parameters: {
     layout: 'fullscreen',

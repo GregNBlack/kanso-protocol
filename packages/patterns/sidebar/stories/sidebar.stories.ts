@@ -39,8 +39,12 @@ const meta: Meta<KpSidebarComponent> = {
   decorators: [moduleMetadata({ imports: [KpAvatarComponent, KpNavItemComponent] })],
   tags: ['autodocs'],
   argTypes: {
-    widthState: { control: 'inline-radio', options: ['expanded','collapsed'], table: { defaultValue: { summary: 'expanded' } } },
-    appearance: { control: 'inline-radio', options: ['light','dark'], table: { defaultValue: { summary: 'light' } } },
+    widthState:        { control: 'inline-radio', options: ['expanded','collapsed'], table: { defaultValue: { summary: 'expanded' } } },
+    appearance:        { control: 'inline-radio', options: ['light','dark'], table: { defaultValue: { summary: 'light' } } },
+    showLogo:          { control: 'boolean', table: { defaultValue: { summary: 'true' } } },
+    showSearch:        { control: 'boolean', table: { defaultValue: { summary: 'false' } } },
+    showSectionLabels: { control: 'boolean', table: { defaultValue: { summary: 'true' } } },
+    showUserFooter:    { control: 'boolean', table: { defaultValue: { summary: 'true' } } },
   },
   parameters: { layout: 'fullscreen' },
 };
