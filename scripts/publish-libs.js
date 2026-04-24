@@ -58,17 +58,44 @@ if (!pkgs.length) {
 const published = [];
 const skipped = [];
 
-for (const pkgDir of pkgs) {
-  const meta = JSON.parse(fs.readFileSync(path.join(pkgDir, 'package.json'), 'utf8'));
-  if (alreadyPublished(meta.name, meta.version)) {
-    skipped.push(`${meta.name}@${meta.version}`);
-    continue;
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// npm rate-limits new publishers around ~25 fast publishes in a row. We're
+// shipping 50+ packages on first release, so throttle + retry with backoff.
+async function publishWithRetry(pkgDir, name, version) {
+  const maxAttempts = 5;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      execSync(`npm publish --access public`, { cwd: pkgDir, stdio: 'inherit' });
+      return;
+    } catch (err) {
+      const is429 = String(err.stderr || err.stdout || err.message).includes('429') ||
+                    String(err.message).toLowerCase().includes('rate');
+      if (!is429 || attempt === maxAttempts) throw err;
+      const wait = 30_000 * attempt; // 30s, 60s, 90s, 120s
+      console.log(`  ↻ rate-limited, waiting ${wait / 1000}s before retry #${attempt + 1}…`);
+      await sleep(wait);
+    }
   }
-  console.log(`\nPublishing ${meta.name}@${meta.version} from ${path.relative(ROOT, pkgDir)}`);
-  execSync(`npm publish --access public`, { cwd: pkgDir, stdio: 'inherit' });
-  published.push(`${meta.name}@${meta.version}`);
 }
 
-console.log('\n--- Summary ---');
-console.log(`Published ${published.length}: ${published.join(', ') || '(none)'}`);
-console.log(`Skipped  ${skipped.length}: ${skipped.slice(0, 5).join(', ')}${skipped.length > 5 ? ' …' : ''}`);
+(async () => {
+  for (const pkgDir of pkgs) {
+    const meta = JSON.parse(fs.readFileSync(path.join(pkgDir, 'package.json'), 'utf8'));
+    if (alreadyPublished(meta.name, meta.version)) {
+      skipped.push(`${meta.name}@${meta.version}`);
+      continue;
+    }
+    console.log(`\nPublishing ${meta.name}@${meta.version} from ${path.relative(ROOT, pkgDir)}`);
+    await publishWithRetry(pkgDir, meta.name, meta.version);
+    published.push(`${meta.name}@${meta.version}`);
+    await sleep(1500); // gentle pacing to stay under npm's fresh-publisher ratelimit
+  }
+
+  console.log('\n--- Summary ---');
+  console.log(`Published ${published.length}: ${published.join(', ') || '(none)'}`);
+  console.log(`Skipped  ${skipped.length}: ${skipped.slice(0, 5).join(', ')}${skipped.length > 5 ? ' …' : ''}`);
+})().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
