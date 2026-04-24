@@ -185,21 +185,17 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
   `,
   styles: [`
     :host {
-      display: flex;
+      display: inline-flex;
       flex-direction: column;
-      width: 100%;
       box-sizing: border-box;
+      width: fit-content;
+      min-width: fit-content;
       border: 1px solid var(--kp-color-input-border, var(--kp-color-gray-300));
       background: var(--kp-color-input-bg, var(--kp-color-white));
       color: var(--kp-color-input-fg, var(--kp-color-gray-900));
       border-radius: 12px;
       overflow: hidden;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
-      transition: border-color 120ms ease, box-shadow 120ms ease;
-    }
-    :host(:focus-within) {
-      border-color: var(--kp-color-input-border-focus, var(--kp-color-blue-600));
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--kp-color-blue-600) 15%, transparent);
     }
     :host(.kp-rte--error) { border-color: var(--kp-color-red-500); }
     :host(.kp-rte--disabled) {
@@ -211,8 +207,8 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
     .kp-rte__toolbar {
       display: flex;
       flex-wrap: nowrap;
-      gap: 1px;
-      padding: 4px 6px;
+      gap: 2px;
+      padding: 6px 8px;
       border-bottom: 1px solid var(--kp-color-gray-200);
       background: var(--kp-color-gray-50);
     }
@@ -220,7 +216,7 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       display: inline-block;
       width: 1px;
       background: var(--kp-color-gray-200);
-      margin: 4px 3px;
+      margin: 4px 4px;
       flex-shrink: 0;
     }
     .kp-rte__btn {
@@ -229,9 +225,9 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      min-width: 24px;
-      height: 24px;
-      padding: 0 4px;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 6px;
       border-radius: 6px;
       color: var(--kp-color-gray-700);
       cursor: pointer;
@@ -267,28 +263,35 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
     :host(.kp-rte--lg) { --kp-rte-min-h: 240px; }
     :host(.kp-rte--lg) .kp-rte__editor { padding: 16px 20px; font-size: 16px; }
 
-    /* ProseMirror surface reset. */
-    .kp-rte__editor :global(.ProseMirror) { outline: none; min-height: inherit; }
-    .kp-rte__editor :global(.ProseMirror p) { margin: 0 0 8px; }
-    .kp-rte__editor :global(.ProseMirror h1) { font-size: 28px; line-height: 36px; font-weight: 600; margin: 16px 0 8px; }
-    .kp-rte__editor :global(.ProseMirror h2) { font-size: 22px; line-height: 28px; font-weight: 600; margin: 14px 0 6px; }
-    .kp-rte__editor :global(.ProseMirror h3) { font-size: 18px; line-height: 24px; font-weight: 600; margin: 12px 0 6px; }
-    .kp-rte__editor :global(.ProseMirror ul),
-    .kp-rte__editor :global(.ProseMirror ol) { padding-left: 24px; margin: 0 0 8px; }
-    .kp-rte__editor :global(.ProseMirror blockquote) {
+    /* ProseMirror surface reset — ::ng-deep pierces Angular's emulated
+       encapsulation so TipTap's dynamically-inserted .ProseMirror element
+       (and its children) get our styles. No focus ring on the editor
+       itself — we also kill the host's :focus-within outline above. */
+    ::ng-deep .kp-rte__editor .ProseMirror {
+      outline: none !important;
+      min-height: 100%;
+      height: 100%;
+    }
+    ::ng-deep .kp-rte__editor .ProseMirror p { margin: 0 0 8px; }
+    ::ng-deep .kp-rte__editor .ProseMirror h1 { font-size: 28px; line-height: 36px; font-weight: 600; margin: 16px 0 8px; }
+    ::ng-deep .kp-rte__editor .ProseMirror h2 { font-size: 22px; line-height: 28px; font-weight: 600; margin: 14px 0 6px; }
+    ::ng-deep .kp-rte__editor .ProseMirror h3 { font-size: 18px; line-height: 24px; font-weight: 600; margin: 12px 0 6px; }
+    ::ng-deep .kp-rte__editor .ProseMirror ul,
+    ::ng-deep .kp-rte__editor .ProseMirror ol { padding-left: 24px; margin: 0 0 8px; }
+    ::ng-deep .kp-rte__editor .ProseMirror blockquote {
       border-left: 3px solid var(--kp-color-gray-300);
       padding-left: 12px;
       color: var(--kp-color-gray-600);
       margin: 8px 0;
     }
-    .kp-rte__editor :global(.ProseMirror code) {
+    ::ng-deep .kp-rte__editor .ProseMirror code {
       background: var(--kp-color-gray-100);
       padding: 2px 4px;
       border-radius: 4px;
       font-family: 'SF Mono', Monaco, Consolas, monospace;
       font-size: 0.9em;
     }
-    .kp-rte__editor :global(.ProseMirror pre) {
+    ::ng-deep .kp-rte__editor .ProseMirror pre {
       background: var(--kp-color-gray-900);
       color: var(--kp-color-gray-50);
       padding: 12px 16px;
@@ -298,18 +301,18 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       font-size: 13px;
       margin: 8px 0;
     }
-    .kp-rte__editor :global(.ProseMirror pre code) { background: transparent; padding: 0; }
-    .kp-rte__editor :global(.ProseMirror hr) {
+    ::ng-deep .kp-rte__editor .ProseMirror pre code { background: transparent; padding: 0; }
+    ::ng-deep .kp-rte__editor .ProseMirror hr {
       border: none;
       border-top: 1px solid var(--kp-color-gray-200);
       margin: 12px 0;
     }
-    .kp-rte__editor :global(.ProseMirror img) { max-width: 100%; border-radius: 8px; }
-    .kp-rte__editor :global(.ProseMirror a) {
+    ::ng-deep .kp-rte__editor .ProseMirror img { max-width: 100%; border-radius: 8px; }
+    ::ng-deep .kp-rte__editor .ProseMirror a {
       color: var(--kp-color-blue-600);
       text-decoration: underline;
     }
-    .kp-rte__editor :global(.ProseMirror .is-editor-empty:first-child::before) {
+    ::ng-deep .kp-rte__editor .ProseMirror .is-editor-empty:first-child::before {
       content: attr(data-placeholder);
       float: left;
       color: var(--kp-color-gray-400);
