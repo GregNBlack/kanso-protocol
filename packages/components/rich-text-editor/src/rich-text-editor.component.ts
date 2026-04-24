@@ -209,23 +209,29 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
 
     .kp-rte__toolbar {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 2px;
       padding: 6px 8px;
       border-bottom: 1px solid var(--kp-color-gray-200);
       background: var(--kp-color-gray-50);
+      overflow-x: auto;
     }
+    /* Hide the horizontal scrollbar itself; scroll still works via trackpad
+       / shift-wheel. The toolbar prefers to stay on one line. */
+    .kp-rte__toolbar::-webkit-scrollbar { display: none; }
     .kp-rte__sep {
       display: inline-block;
       width: 1px;
       background: var(--kp-color-gray-200);
       margin: 4px 4px;
+      flex-shrink: 0;
     }
     .kp-rte__btn {
       all: unset;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
       min-width: 28px;
       height: 28px;
       padding: 0 6px;

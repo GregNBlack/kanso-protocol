@@ -28,7 +28,7 @@ export const Playground: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <div style="width:720px">
+      <div style="width:880px">
         <kp-rich-text-editor
           [size]="size"
           [disabled]="disabled"
@@ -43,7 +43,7 @@ export const Playground: Story = {
 export const Sizes: Story = {
   render: () => ({
     template: `
-      <div style="display:flex;flex-direction:column;gap:24px;width:720px">
+      <div style="display:flex;flex-direction:column;gap:24px;width:880px">
         <kp-rich-text-editor size="sm" placeholder="Small editor"></kp-rich-text-editor>
         <kp-rich-text-editor size="md" placeholder="Medium editor (default)"></kp-rich-text-editor>
         <kp-rich-text-editor size="lg" placeholder="Large editor"></kp-rich-text-editor>
@@ -57,7 +57,7 @@ export const Prefilled: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <div style="width:720px">
+      <div style="width:880px">
         <kp-rich-text-editor
           [size]="size"
           value="<h2>Welcome!</h2><p>This is a <strong>bold</strong> intro with <em>emphasis</em>, an <u>underline</u>, and a <a href='https://example.com'>link</a>. Below, a list:</p><ul><li>First item</li><li>Second item</li><li>Third item</li></ul><blockquote><p>Don't overthink the markup. Tokens decide.</p></blockquote><pre><code>const hello = 'world';</code></pre>">
@@ -70,7 +70,7 @@ export const Prefilled: Story = {
 export const Disabled: Story = {
   render: () => ({
     template: `
-      <div style="width:720px">
+      <div style="width:880px">
         <kp-rich-text-editor
           [disabled]="true"
           value="<p>Disabled editor — you can read, but not type.</p>">
@@ -83,7 +83,7 @@ export const Disabled: Story = {
 export const Error: Story = {
   render: () => ({
     template: `
-      <div style="width:720px">
+      <div style="width:880px">
         <kp-rich-text-editor
           [error]="true"
           placeholder="Something's wrong with this field"
@@ -104,7 +104,7 @@ export const Error: Story = {
   standalone: true,
   imports: [KpRichTextEditorComponent, ReactiveFormsModule],
   template: `
-    <div style="display:flex;flex-direction:column;gap:12px;width:720px">
+    <div style="display:flex;flex-direction:column;gap:12px;width:880px">
       <kp-rich-text-editor [formControl]="ctrl" placeholder="Edit me…"></kp-rich-text-editor>
       <label style="font-size:12px;color:#71717A">Current HTML:</label>
       <pre style="background:#F4F4F5;padding:8px 12px;border-radius:8px;font-size:12px;overflow:auto;max-height:140px">{{ ctrl.value }}</pre>
