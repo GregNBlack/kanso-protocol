@@ -187,6 +187,7 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
     :host {
       display: flex;
       flex-direction: column;
+      width: 100%;
       box-sizing: border-box;
       border: 1px solid var(--kp-color-input-border, var(--kp-color-gray-300));
       background: var(--kp-color-input-bg, var(--kp-color-white));
@@ -210,20 +211,16 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
     .kp-rte__toolbar {
       display: flex;
       flex-wrap: nowrap;
-      gap: 2px;
-      padding: 6px 8px;
+      gap: 1px;
+      padding: 4px 6px;
       border-bottom: 1px solid var(--kp-color-gray-200);
       background: var(--kp-color-gray-50);
-      overflow-x: auto;
     }
-    /* Hide the horizontal scrollbar itself; scroll still works via trackpad
-       / shift-wheel. The toolbar prefers to stay on one line. */
-    .kp-rte__toolbar::-webkit-scrollbar { display: none; }
     .kp-rte__sep {
       display: inline-block;
       width: 1px;
       background: var(--kp-color-gray-200);
-      margin: 4px 4px;
+      margin: 4px 3px;
       flex-shrink: 0;
     }
     .kp-rte__btn {
@@ -232,9 +229,9 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      min-width: 28px;
-      height: 28px;
-      padding: 0 6px;
+      min-width: 24px;
+      height: 24px;
+      padding: 0 4px;
       border-radius: 6px;
       color: var(--kp-color-gray-700);
       cursor: pointer;
