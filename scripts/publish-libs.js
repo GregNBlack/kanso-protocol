@@ -62,17 +62,23 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // npm rate-limits new publishers around ~25 fast publishes in a row. We're
 // shipping 50+ packages on first release, so throttle + retry with backoff.
-async function publishWithRetry(pkgDir, name, version) {
-  const maxAttempts = 5;
+// stdio:'pipe' so we can read the error text — stdio:'inherit' leaves
+// err.stderr null and we can't tell 429 from any other failure.
+async function publishWithRetry(pkgDir) {
+  const maxAttempts = 6;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
-      execSync(`npm publish --access public`, { cwd: pkgDir, stdio: 'inherit' });
+      const out = execSync(`npm publish --access public`, { cwd: pkgDir, encoding: 'utf8' });
+      process.stdout.write(out);
       return;
     } catch (err) {
-      const is429 = String(err.stderr || err.stdout || err.message).includes('429') ||
-                    String(err.message).toLowerCase().includes('rate');
+      if (err.stdout) process.stdout.write(err.stdout);
+      if (err.stderr) process.stderr.write(err.stderr);
+      const combined = String(err.stdout || '') + String(err.stderr || '');
+      const is429 = combined.includes('429') || /rate.?limit/i.test(combined) ||
+                    combined.includes('Too Many Requests');
       if (!is429 || attempt === maxAttempts) throw err;
-      const wait = 30_000 * attempt; // 30s, 60s, 90s, 120s
+      const wait = 60_000 * attempt; // 60s, 120s, 180s, 240s, 300s
       console.log(`  ↻ rate-limited, waiting ${wait / 1000}s before retry #${attempt + 1}…`);
       await sleep(wait);
     }
@@ -87,9 +93,9 @@ async function publishWithRetry(pkgDir, name, version) {
       continue;
     }
     console.log(`\nPublishing ${meta.name}@${meta.version} from ${path.relative(ROOT, pkgDir)}`);
-    await publishWithRetry(pkgDir, meta.name, meta.version);
+    await publishWithRetry(pkgDir);
     published.push(`${meta.name}@${meta.version}`);
-    await sleep(1500); // gentle pacing to stay under npm's fresh-publisher ratelimit
+    await sleep(3000); // gentle pacing to stay under npm's fresh-publisher ratelimit
   }
 
   console.log('\n--- Summary ---');
