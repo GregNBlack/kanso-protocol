@@ -78,8 +78,10 @@ async function publishWithRetry(pkgDir) {
       const is429 = combined.includes('429') || /rate.?limit/i.test(combined) ||
                     combined.includes('Too Many Requests');
       if (!is429 || attempt === maxAttempts) throw err;
-      const wait = 60_000 * attempt; // 60s, 120s, 180s, 240s, 300s
-      console.log(`  ↻ rate-limited, waiting ${wait / 1000}s before retry #${attempt + 1}…`);
+      // npm's per-account hourly publish quota for fresh publishers; once
+      // it trips, only real wall-clock cooldown helps. Start at 5 min.
+      const wait = 300_000 * attempt; // 5m, 10m, 15m, 20m, 25m
+      console.log(`  ↻ rate-limited, waiting ${wait / 60_000}m before retry #${attempt + 1}…`);
       await sleep(wait);
     }
   }
