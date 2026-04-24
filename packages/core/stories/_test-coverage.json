@@ -1,0 +1,436 @@
+{
+  "generatedAt": "2026-04-24T14:04:03.859Z",
+  "totalSpecs": 24,
+  "totalTests": 137,
+  "totalPackages": 56,
+  "items": [
+    {
+      "layer": "components",
+      "name": "accordion",
+      "title": "Components/Accordion",
+      "storybookId": "components-accordion--docs",
+      "specFile": "packages/components/accordion/src/accordion.spec.ts",
+      "specFiles": [
+        "packages/components/accordion/src/accordion.spec.ts"
+      ],
+      "tests": 4
+    },
+    {
+      "layer": "components",
+      "name": "alert",
+      "title": "Components/Alert",
+      "storybookId": "components-alert--docs",
+      "specFile": "packages/components/alert/src/alert.spec.ts",
+      "specFiles": [
+        "packages/components/alert/src/alert.spec.ts"
+      ],
+      "tests": 4
+    },
+    {
+      "layer": "components",
+      "name": "avatar",
+      "title": "Components/Avatar",
+      "storybookId": "components-avatar--docs",
+      "specFile": "packages/components/avatar/src/avatar.spec.ts",
+      "specFiles": [
+        "packages/components/avatar/src/avatar.spec.ts"
+      ],
+      "tests": 4
+    },
+    {
+      "layer": "components",
+      "name": "avatar-group",
+      "title": "Components/AvatarGroup",
+      "storybookId": "components-avatargroup--docs",
+      "specFile": "packages/components/avatar-group/src/avatar-group.spec.ts",
+      "specFiles": [
+        "packages/components/avatar-group/src/avatar-group.spec.ts"
+      ],
+      "tests": 4
+    },
+    {
+      "layer": "components",
+      "name": "badge",
+      "title": "Components/Badge",
+      "storybookId": "components-badge--docs",
+      "specFile": "packages/components/badge/src/badge.spec.ts",
+      "specFiles": [
+        "packages/components/badge/src/badge.spec.ts"
+      ],
+      "tests": 6
+    },
+    {
+      "layer": "components",
+      "name": "breadcrumbs",
+      "title": "Components/Breadcrumbs",
+      "storybookId": "components-breadcrumbs--docs",
+      "specFile": "packages/components/breadcrumbs/src/breadcrumbs.spec.ts",
+      "specFiles": [
+        "packages/components/breadcrumbs/src/breadcrumbs.spec.ts"
+      ],
+      "tests": 4
+    },
+    {
+      "layer": "components",
+      "name": "button",
+      "title": "Components/Button",
+      "storybookId": "components-button--docs",
+      "specFile": "packages/components/button/src/button.spec.ts",
+      "specFiles": [
+        "packages/components/button/src/button.spec.ts"
+      ],
+      "tests": 9
+    },
+    {
+      "layer": "components",
+      "name": "card",
+      "title": "Components/Card",
+      "storybookId": "components-card--docs",
+      "specFile": "packages/components/card/src/card.spec.ts",
+      "specFiles": [
+        "packages/components/card/src/card.spec.ts"
+      ],
+      "tests": 4
+    },
+    {
+      "layer": "components",
+      "name": "checkbox",
+      "title": "Components/Checkbox",
+      "storybookId": "components-checkbox--docs",
+      "specFile": "packages/components/checkbox/src/checkbox.spec.ts",
+      "specFiles": [
+        "packages/components/checkbox/src/checkbox.spec.ts"
+      ],
+      "tests": 9
+    },
+    {
+      "layer": "components",
+      "name": "dialog",
+      "title": "Components/Dialog",
+      "storybookId": "components-dialog--docs",
+      "specFile": "packages/components/dialog/src/dialog.spec.ts",
+      "specFiles": [
+        "packages/components/dialog/src/dialog.spec.ts"
+      ],
+      "tests": 7
+    },
+    {
+      "layer": "components",
+      "name": "divider",
+      "title": "Components/Divider",
+      "storybookId": "components-divider--docs",
+      "specFile": "packages/components/divider/src/divider.spec.ts",
+      "specFiles": [
+        "packages/components/divider/src/divider.spec.ts"
+      ],
+      "tests": 5
+    },
+    {
+      "layer": "components",
+      "name": "empty-state",
+      "title": "Components/EmptyState",
+      "storybookId": "components-emptystate--docs",
+      "specFile": "packages/components/empty-state/src/empty-state.spec.ts",
+      "specFiles": [
+        "packages/components/empty-state/src/empty-state.spec.ts"
+      ],
+      "tests": 4
+    },
+    {
+      "layer": "components",
+      "name": "form-field",
+      "title": "Components/FormField",
+      "storybookId": "components-formfield--docs",
+      "specFile": "packages/components/form-field/src/form-field.spec.ts",
+      "specFiles": [
+        "packages/components/form-field/src/form-field.spec.ts"
+      ],
+      "tests": 5
+    },
+    {
+      "layer": "components",
+      "name": "input",
+      "title": "Components/Input",
+      "storybookId": "components-input--docs",
+      "specFile": "packages/components/input/src/input.spec.ts",
+      "specFiles": [
+        "packages/components/input/src/input.spec.ts"
+      ],
+      "tests": 9
+    },
+    {
+      "layer": "components",
+      "name": "number-stepper",
+      "title": "Components/NumberStepper",
+      "storybookId": "components-numberstepper--docs",
+      "specFile": "packages/components/number-stepper/src/number-stepper.spec.ts",
+      "specFiles": [
+        "packages/components/number-stepper/src/number-stepper.spec.ts"
+      ],
+      "tests": 5
+    },
+    {
+      "layer": "components",
+      "name": "pagination",
+      "title": "Components/Pagination",
+      "storybookId": "components-pagination--docs",
+      "specFile": "packages/components/pagination/src/pagination.spec.ts",
+      "specFiles": [
+        "packages/components/pagination/src/pagination.spec.ts"
+      ],
+      "tests": 5
+    },
+    {
+      "layer": "components",
+      "name": "progress",
+      "title": "Components/Progress/Circular",
+      "storybookId": "components-progress-circular--docs",
+      "specFile": "packages/components/progress/src/progress-circular.spec.ts",
+      "specFiles": [
+        "packages/components/progress/src/progress-circular.spec.ts",
+        "packages/components/progress/src/progress-linear.spec.ts",
+        "packages/components/progress/src/progress-segmented.spec.ts"
+      ],
+      "tests": 12
+    },
+    {
+      "layer": "components",
+      "name": "radio",
+      "title": "Components/Radio",
+      "storybookId": "components-radio--docs",
+      "specFile": "packages/components/radio/src/radio.spec.ts",
+      "specFiles": [
+        "packages/components/radio/src/radio.spec.ts"
+      ],
+      "tests": 5
+    },
+    {
+      "layer": "components",
+      "name": "segmented-control",
+      "title": "Components/SegmentedControl",
+      "storybookId": "components-segmentedcontrol--docs",
+      "specFile": "packages/components/segmented-control/src/segmented-control.spec.ts",
+      "specFiles": [
+        "packages/components/segmented-control/src/segmented-control.spec.ts"
+      ],
+      "tests": 5
+    },
+    {
+      "layer": "components",
+      "name": "skeleton",
+      "title": "Components/Skeleton",
+      "storybookId": "components-skeleton--docs",
+      "specFile": "packages/components/skeleton/src/skeleton.spec.ts",
+      "specFiles": [
+        "packages/components/skeleton/src/skeleton.spec.ts"
+      ],
+      "tests": 4
+    },
+    {
+      "layer": "components",
+      "name": "tabs",
+      "title": "Components/Tabs",
+      "storybookId": "components-tabs--docs",
+      "specFile": "packages/components/tabs/src/tabs.spec.ts",
+      "specFiles": [
+        "packages/components/tabs/src/tabs.spec.ts"
+      ],
+      "tests": 6
+    },
+    {
+      "layer": "components",
+      "name": "textarea",
+      "title": "Components/Textarea",
+      "storybookId": "components-textarea--docs",
+      "specFile": "packages/components/textarea/src/textarea.spec.ts",
+      "specFiles": [
+        "packages/components/textarea/src/textarea.spec.ts"
+      ],
+      "tests": 6
+    },
+    {
+      "layer": "components",
+      "name": "toggle",
+      "title": "Components/Toggle",
+      "storybookId": "components-toggle--docs",
+      "specFile": "packages/components/toggle/src/toggle.spec.ts",
+      "specFiles": [
+        "packages/components/toggle/src/toggle.spec.ts"
+      ],
+      "tests": 6
+    },
+    {
+      "layer": "components",
+      "name": "tooltip",
+      "title": "Components/Tooltip",
+      "storybookId": "components-tooltip--docs",
+      "specFile": "packages/components/tooltip/src/tooltip.spec.ts",
+      "specFiles": [
+        "packages/components/tooltip/src/tooltip.spec.ts"
+      ],
+      "tests": 5
+    }
+  ],
+  "missing": [
+    {
+      "layer": "components",
+      "name": "combobox",
+      "title": "Components/Combobox"
+    },
+    {
+      "layer": "components",
+      "name": "datepicker",
+      "title": "Components/DatePicker"
+    },
+    {
+      "layer": "components",
+      "name": "drawer",
+      "title": "Components/Drawer"
+    },
+    {
+      "layer": "components",
+      "name": "menu",
+      "title": "Components/DropdownMenu"
+    },
+    {
+      "layer": "components",
+      "name": "popover",
+      "title": "Components/Popover"
+    },
+    {
+      "layer": "components",
+      "name": "rich-text-editor",
+      "title": "Components/RichTextEditor"
+    },
+    {
+      "layer": "components",
+      "name": "select",
+      "title": "Components/Select"
+    },
+    {
+      "layer": "components",
+      "name": "slider",
+      "title": "Components/Slider"
+    },
+    {
+      "layer": "components",
+      "name": "table",
+      "title": "Components/Table"
+    },
+    {
+      "layer": "components",
+      "name": "timepicker",
+      "title": "Components/TimePicker"
+    },
+    {
+      "layer": "components",
+      "name": "tree",
+      "title": "Components/Tree"
+    },
+    {
+      "layer": "patterns",
+      "name": "app-shell",
+      "title": "Patterns/AppShell"
+    },
+    {
+      "layer": "patterns",
+      "name": "banner",
+      "title": "Patterns/Banner"
+    },
+    {
+      "layer": "patterns",
+      "name": "container",
+      "title": "Patterns/Container"
+    },
+    {
+      "layer": "patterns",
+      "name": "filter-bar",
+      "title": "Patterns/FilterBar"
+    },
+    {
+      "layer": "patterns",
+      "name": "form-section",
+      "title": "Patterns/FormSection"
+    },
+    {
+      "layer": "patterns",
+      "name": "grid",
+      "title": "Patterns/Grid"
+    },
+    {
+      "layer": "patterns",
+      "name": "header",
+      "title": "Patterns/Header"
+    },
+    {
+      "layer": "patterns",
+      "name": "nav-item",
+      "title": "Patterns/NavItem"
+    },
+    {
+      "layer": "patterns",
+      "name": "page-error",
+      "title": "Patterns/PageError"
+    },
+    {
+      "layer": "patterns",
+      "name": "page-header",
+      "title": "Patterns/PageHeader"
+    },
+    {
+      "layer": "patterns",
+      "name": "row",
+      "title": "Patterns/Row"
+    },
+    {
+      "layer": "patterns",
+      "name": "search-bar",
+      "title": "Patterns/SearchBar"
+    },
+    {
+      "layer": "patterns",
+      "name": "settings-panel",
+      "title": "Patterns/SettingsPanel"
+    },
+    {
+      "layer": "patterns",
+      "name": "sidebar",
+      "title": "Patterns/Sidebar"
+    },
+    {
+      "layer": "patterns",
+      "name": "stack",
+      "title": "Patterns/Stack"
+    },
+    {
+      "layer": "patterns",
+      "name": "stat-card",
+      "title": "Patterns/StatCard"
+    },
+    {
+      "layer": "patterns",
+      "name": "table-toolbar",
+      "title": "Patterns/TableToolbar"
+    },
+    {
+      "layer": "patterns",
+      "name": "theme-toggle",
+      "title": "Patterns/ThemeToggle"
+    },
+    {
+      "layer": "patterns",
+      "name": "user-menu",
+      "title": "Patterns/UserMenu"
+    },
+    {
+      "layer": "patterns",
+      "name": "notification-center",
+      "title": "Sarah mentioned you"
+    },
+    {
+      "layer": "components",
+      "name": "toast",
+      "title": "Task completed"
+    }
+  ]
+}

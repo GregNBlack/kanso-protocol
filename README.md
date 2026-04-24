@@ -1,5 +1,10 @@
 # 簡素 Kanso Protocol
 
+[![CI](https://github.com/GregNBlack/kanso-protocol/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/GregNBlack/kanso-protocol/actions/workflows/ci.yml)
+[![Storybook](https://img.shields.io/badge/Storybook-live-FF4785?logo=storybook&logoColor=white)](https://gregnblack.github.io/kanso-protocol)
+[![Tests](https://img.shields.io/badge/tests-137%20passing-brightgreen)](https://gregnblack.github.io/kanso-protocol/?path=/docs/foundations-test-coverage--docs)
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+
 **Open source design system for Angular, built on architectural consistency.**
 
 Design tokens in W3C DTCG format serve as a single source of truth for both Figma and code. Rules are embedded in architecture, not in agreements.

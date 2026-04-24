@@ -1,0 +1,98 @@
+import { Meta } from '@storybook/blocks';
+import coverage from './_test-coverage.json';
+
+<Meta title="Foundations/Test Coverage" />
+
+# Test Coverage
+
+Автогенерится перед каждым `build-storybook` — индикатор того, какие компоненты уже покрыты Vitest unit-тестами.
+
+**Последняя сборка:** `{coverage.generatedAt}`
+
+<div style={{
+  display: 'grid',
+  gridTemplateColumns: 'repeat(3, 1fr)',
+  gap: 16,
+  margin: '24px 0 32px',
+}}>
+  <div style={{ padding: 16, borderRadius: 12, background: 'var(--kp-color-gray-50, #FAFAFA)', border: '1px solid var(--kp-color-gray-200, #E4E4E7)' }}>
+    <div style={{ fontSize: 32, fontWeight: 600 }}>{coverage.totalTests}</div>
+    <div style={{ color: 'var(--kp-color-gray-600, #52525B)' }}>unit tests</div>
+  </div>
+  <div style={{ padding: 16, borderRadius: 12, background: 'var(--kp-color-gray-50, #FAFAFA)', border: '1px solid var(--kp-color-gray-200, #E4E4E7)' }}>
+    <div style={{ fontSize: 32, fontWeight: 600 }}>{coverage.totalSpecs}/{coverage.totalPackages}</div>
+    <div style={{ color: 'var(--kp-color-gray-600, #52525B)' }}>packages with specs</div>
+  </div>
+  <div style={{ padding: 16, borderRadius: 12, background: 'var(--kp-color-gray-50, #FAFAFA)', border: '1px solid var(--kp-color-gray-200, #E4E4E7)' }}>
+    <div style={{ fontSize: 32, fontWeight: 600 }}>{Math.round(coverage.totalSpecs / coverage.totalPackages * 100)}%</div>
+    <div style={{ color: 'var(--kp-color-gray-600, #52525B)' }}>coverage (packages)</div>
+  </div>
+</div>
+
+## Covered components & patterns
+
+<table style={{ borderCollapse: 'collapse', width: '100%' }}>
+  <thead>
+    <tr style={{ background: 'var(--kp-color-gray-50, #FAFAFA)', textAlign: 'left' }}>
+      <th style={{ padding: '8px 12px', borderBottom: '1px solid var(--kp-color-gray-200, #E4E4E7)' }}>Component</th>
+      <th style={{ padding: '8px 12px', borderBottom: '1px solid var(--kp-color-gray-200, #E4E4E7)' }}>Tests</th>
+      <th style={{ padding: '8px 12px', borderBottom: '1px solid var(--kp-color-gray-200, #E4E4E7)' }}>Spec file</th>
+      <th style={{ padding: '8px 12px', borderBottom: '1px solid var(--kp-color-gray-200, #E4E4E7)' }}>Docs</th>
+    </tr>
+  </thead>
+  <tbody>
+    {coverage.items.map((item) => (
+      <tr key={item.name} style={{ borderBottom: '1px solid var(--kp-color-gray-100, #F4F4F5)' }}>
+        <td style={{ padding: '8px 12px' }}><strong>{item.title ?? item.name}</strong></td>
+        <td style={{ padding: '8px 12px' }}>
+          <span style={{
+            display: 'inline-block',
+            padding: '2px 8px',
+            borderRadius: 6,
+            background: 'var(--kp-color-green-100, #DCFCE7)',
+            color: 'var(--kp-color-green-800, #166534)',
+            fontSize: 12,
+            fontWeight: 500,
+          }}>✓ {item.tests}</span>
+        </td>
+        <td style={{ padding: '8px 12px', fontSize: 12, color: 'var(--kp-color-gray-600, #52525B)' }}>
+          <a href={`https://github.com/GregNBlack/kanso-protocol/blob/main/${item.specFile}`} target="_blank" rel="noopener">{item.specFile}</a>
+        </td>
+        <td style={{ padding: '8px 12px', fontSize: 12 }}>
+          {item.storybookId && <a href={`./?path=/docs/${item.storybookId}`}>open →</a>}
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+## Not yet tested
+
+<table style={{ borderCollapse: 'collapse', width: '100%', marginTop: 16 }}>
+  <thead>
+    <tr style={{ background: 'var(--kp-color-gray-50, #FAFAFA)', textAlign: 'left' }}>
+      <th style={{ padding: '8px 12px', borderBottom: '1px solid var(--kp-color-gray-200, #E4E4E7)' }}>Component</th>
+      <th style={{ padding: '8px 12px', borderBottom: '1px solid var(--kp-color-gray-200, #E4E4E7)' }}>Layer</th>
+    </tr>
+  </thead>
+  <tbody>
+    {coverage.missing.map((item) => (
+      <tr key={item.name} style={{ borderBottom: '1px solid var(--kp-color-gray-100, #F4F4F5)' }}>
+        <td style={{ padding: '8px 12px' }}>{item.title ?? item.name}</td>
+        <td style={{ padding: '8px 12px', color: 'var(--kp-color-gray-600, #52525B)', fontSize: 12 }}>{item.layer}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+---
+
+**Что именно покрывают тесты** (минимальный бар, применяемый к каждой спеке):
+
+1. **Rendering** — компонент монтируется без ошибок
+2. **Inputs → DOM** — `@Input()` отражается в классе/атрибуте/дочернем DOM
+3. **Accessibility** — `role`, `aria-*`, `tabindex` соответствуют контракту
+4. **Events** — `@Output()` стреляет при документированных триггерах; заблокированные состояния (disabled/loading) глушат эмиты
+5. **ControlValueAccessor** — `writeValue` + `registerOnChange` для form-компонентов
+
+Подробности паттернов написания — в [CONTRIBUTING.md](https://github.com/GregNBlack/kanso-protocol/blob/main/CONTRIBUTING.md#testing).
