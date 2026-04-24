@@ -2,13 +2,18 @@ name: Release
 
 # Changeset-driven release pipeline.
 #
+# Gated: the "Create release PR or publish" step only runs when the repo
+# has an `NPM_TOKEN` secret configured. Until that's set up, the job still
+# runs `build:libs` on every push to `main` to validate the build, but
+# doesn't try to version/publish — keeping the workflow green.
+#
 # 1. Contributor adds `npx changeset` to their PR describing the change kind
 #    (patch / minor / major). Changeset markdown files live in `.changeset/`.
 # 2. When their PR merges to `main`, this workflow runs:
-#      - If pending changesets exist → opens / updates a "Version Packages" PR
-#        that bumps every affected package.json and writes CHANGELOG entries.
-#      - If a "Version Packages" PR is merged (no pending changesets) → builds
-#        libraries and publishes the changed ones to npm.
+#      - If pending changesets exist → opens / updates a "Version Packages"
+#        PR that bumps every affected package.json and writes CHANGELOG.
+#      - If a "Version Packages" PR is merged (no pending changesets) →
+#        builds libraries and publishes the changed ones to npm.
 # 3. Requires two repo secrets:
 #      NPM_TOKEN     — an npm token with publish rights on @kanso-protocol/*
 #      GITHUB_TOKEN  — auto-provided by GitHub Actions (used by the action)
@@ -16,6 +21,7 @@ name: Release
 on:
   push:
     branches: [main]
+  workflow_dispatch: {}
 
 permissions:
   contents: write
@@ -29,6 +35,8 @@ concurrency:
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      HAS_NPM_TOKEN: ${{ secrets.NPM_TOKEN != '' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -49,13 +57,17 @@ jobs:
         run: npm run build:libs
 
       - name: Create release PR or publish
+        if: env.HAS_NPM_TOKEN == 'true'
         uses: changesets/action@v1
         with:
-          # Bumps versions & writes changelog on the source package.json files,
-          # then `publish` runs our script which walks dist/ and npm-publishes
-          # each library whose version differs from what's on the registry.
           version: npx changeset version
           publish: node scripts/publish-libs.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Release gate skipped (no NPM_TOKEN)
+        if: env.HAS_NPM_TOKEN != 'true'
+        run: |
+          echo "::notice::NPM_TOKEN not configured — release step skipped."
+          echo "Add NPM_TOKEN in repo settings → Secrets → Actions to enable publishing."
