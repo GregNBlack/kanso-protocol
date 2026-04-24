@@ -756,8 +756,11 @@ export class KpDatePickerComponent implements ControlValueAccessor, AfterViewChe
   }
 
   ngOnDestroy(): void {
-    window.removeEventListener('scroll', this.reposition, true);
-    window.removeEventListener('resize', this.reposition);
+    // Guarded for SSR teardown — bare-metal platform-server has no `window`.
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('scroll', this.reposition, true);
+      window.removeEventListener('resize', this.reposition);
+    }
     const pan = this.panelEl?.nativeElement;
     if (pan && pan.parentElement === this.doc?.body) pan.remove();
   }

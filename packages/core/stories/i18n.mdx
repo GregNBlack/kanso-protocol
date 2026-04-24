@@ -1,0 +1,130 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Foundations/Internationalization" />
+
+# Internationalization (i18n)
+
+Kanso Protocol ships English defaults for every user-facing string and provides a clear path to swap in any language without forking the library. This page documents the current story and what to expect in `0.2.x`.
+
+> **Status in `0.1.x`:** the `form-field` validation layer is fully configurable via a DI token. Other user-facing strings (overlay `aria-label`s, dropdown placeholders, Now / Apply / Cancel buttons in date/time pickers, toolbar tooltips in the rich-text editor) still ship as English-only literals inside templates — override them by passing your own values via the component's `@Input()`s. A complete DI-token audit for the remaining strings lands in `0.2.x`.
+
+---
+
+## Validation messages — `KP_VALIDATION_MESSAGES`
+
+The `form-field` component auto-detects the content child `NgControl`, listens for validation errors, and looks up the right human-readable message through an injectable resolver. No assumptions about language live inside the component.
+
+### Default English resolver
+
+```ts
+import {
+  KP_DEFAULT_VALIDATION_MESSAGES,
+  KP_VALIDATION_MESSAGES,
+  type KpValidationMessages,
+} from '@kanso-protocol/form-field';
+
+// KP_DEFAULT_VALIDATION_MESSAGES is used automatically when you don't
+// provide a custom resolver. It covers: required, email, min, max,
+// minLength, maxLength, pattern.
+```
+
+### Providing translations at the app root
+
+```ts
+import { bootstrapApplication } from '@angular/platform-browser';
+import {
+  KP_VALIDATION_MESSAGES,
+  type KpValidationMessages,
+} from '@kanso-protocol/form-field';
+
+const RU_VALIDATION: KpValidationMessages = {
+  required: 'Это поле обязательно',
+  email:    'Введите корректный email',
+  min:      (e) => `Значение должно быть ≥ ${e.min}`,
+  max:      (e) => `Значение должно быть ≤ ${e.max}`,
+  minlength: (e) => `Минимум ${e.requiredLength} символов`,
+  maxlength: (e) => `Максимум ${e.requiredLength} символов`,
+  pattern:  'Неверный формат',
+};
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    { provide: KP_VALIDATION_MESSAGES, useValue: RU_VALIDATION },
+  ],
+});
+```
+
+### Per-field overrides
+
+The global resolver is the fallback; a specific field can still win with its own `[errors]` dictionary:
+
+```html
+<kp-form-field
+  label="Username"
+  [errors]="{
+    required: 'Please choose a username',
+    pattern: 'Letters, digits, and underscores only',
+  }"
+>
+  <input kp-input [formControl]="username" />
+</kp-form-field>
+```
+
+Resolution priority: **per-field `[errors]` > DI token (`KP_VALIDATION_MESSAGES`) > English defaults**.
+
+### Reactive language switching
+
+The injectable is consumed lazily on every validation pass, so swapping the provider (e.g., from a language service) re-localizes messages without reloading the app. If you manage multiple locales at once, inject a service that returns the right bag based on the current locale:
+
+```ts
+@Injectable({ providedIn: 'root' })
+export class I18nValidationMessages {
+  constructor(private readonly locale: LocaleService) {}
+  get(): KpValidationMessages {
+    return this.locale.lang === 'ru' ? RU_VALIDATION : EN_VALIDATION;
+  }
+}
+
+// provide via factory:
+{
+  provide: KP_VALIDATION_MESSAGES,
+  useFactory: (svc: I18nValidationMessages) => svc.get(),
+  deps: [I18nValidationMessages],
+}
+```
+
+---
+
+## Overriding other user-facing strings today
+
+Until the full DI-token audit lands, the recipe for non-validation strings is: **pass your own `@Input()` values**. Every user-visible label that a component exposes is already an input, including overlay close buttons, dropdown placeholders, picker buttons, and action text.
+
+| Component | Inputs to translate |
+| --- | --- |
+| `kp-alert`, `kp-dialog`, `kp-drawer` | `title`, `description`, `ariaLabel` |
+| `kp-select`, `kp-combobox`, `kp-date-picker`, `kp-time-picker` | `placeholder`, `emptyMessage` |
+| `kp-form-field` | `label`, `helper`, `errors` dict |
+| `kp-dropdown-menu` | `searchPlaceholder`, `primaryLabel`, `cancelLabel` |
+| `kp-toast` action buttons | `action.label` on each `KpToastShowInput` |
+| `kp-table` | `emptyMessage`, column `label`s |
+
+For strings currently hardcoded inside component templates (e.g., `aria-label="Close"` on the dialog close button, `aria-label="Previous" / "Next"` on the datepicker nav, toolbar tooltips in `kp-rich-text-editor`), you have two options in `0.1.x`:
+
+1. Let the default English value ride (screen readers usually have language-packs that handle short control labels well).
+2. Wrap the component in a thin host component that surfaces the missing strings as inputs for your codebase — and [file an issue](https://github.com/GregNBlack/kanso-protocol/issues) so we prioritize exposing it in `0.2.x`.
+
+---
+
+## Roadmap for `0.2.x`
+
+- Audit every `aria-label`, `title`, and button label in component templates.
+- Move them to a single `KP_A11Y_MESSAGES` DI token (same resolver pattern as `KP_VALIDATION_MESSAGES`), with an optional per-component override input.
+- Publish an example locale bundle (`@kanso-protocol/locale-ru`, `-de`, `-es`) demonstrating the full shape.
+- Document the locale switch pattern with a working example in this page.
+
+---
+
+## Related
+
+- [`form-field` docs](?path=/docs/components-formfield--docs) — see the "Validation" section for live examples.
+- [`KP_VALIDATION_MESSAGES` source](https://github.com/GregNBlack/kanso-protocol/blob/main/packages/components/form-field/src/validation-messages.ts) on GitHub.

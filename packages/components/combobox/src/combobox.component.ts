@@ -622,8 +622,11 @@ export class KpComboboxComponent implements ControlValueAccessor, AfterViewCheck
   }
 
   ngOnDestroy(): void {
-    window.removeEventListener('scroll', this.reposition, true);
-    window.removeEventListener('resize', this.reposition);
+    // Guarded for SSR teardown — bare-metal platform-server has no `window`.
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('scroll', this.reposition, true);
+      window.removeEventListener('resize', this.reposition);
+    }
     const dd = this.dropdownEl?.nativeElement;
     if (dd && dd.parentElement === this.doc?.body) dd.remove();
   }

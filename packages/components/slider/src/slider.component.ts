@@ -334,9 +334,13 @@ export class KpSliderComponent implements ControlValueAccessor, OnDestroy {
   private endDrag(): void {
     this.dragIndex = null;
     this.pointerId = null;
-    window.removeEventListener('pointermove', this.onMoveBound);
-    window.removeEventListener('pointerup', this.onUpBound);
-    window.removeEventListener('pointercancel', this.onUpBound);
+    // endDrag is also called from ngOnDestroy; guard for bare-metal SSR where
+    // there is no `window` at teardown time.
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('pointermove', this.onMoveBound);
+      window.removeEventListener('pointerup', this.onUpBound);
+      window.removeEventListener('pointercancel', this.onUpBound);
+    }
   }
 
   onKeyDown(event: KeyboardEvent, idx: 0 | 1): void {

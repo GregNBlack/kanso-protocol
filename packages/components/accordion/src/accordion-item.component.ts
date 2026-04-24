@@ -155,6 +155,11 @@ export type KpAccordionItemSize = 'sm' | 'md' | 'lg';
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* Respect OS-level reduce-motion preference — content appears instantly. */
+    @media (prefers-reduced-motion: reduce) {
+      .kp-ai__content { animation-duration: 0.01ms; }
+    }
+
     :host(.kp-ai--sm) {
       --kp-ai-tr-h: 40px;
       --kp-ai-tr-pad: 12px;

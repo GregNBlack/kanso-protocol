@@ -114,6 +114,12 @@ export type KpProgressColor = 'primary' | 'success' | 'danger' | 'warning' | 'ne
       100% { left: 100%; }
     }
 
+    /* Reduce-motion: slow the indeterminate slide so it's calmer but still
+       clearly animating — the "in progress" semantic stays. */
+    @media (prefers-reduced-motion: reduce) {
+      .kp-progress-linear__bar--indeterminate { animation-duration: 4s; }
+    }
+
     /* Sizes */
     :host(.kp-progress-linear--xs) { --kp-progress-h: 2px; }
     :host(.kp-progress-linear--sm) { --kp-progress-h: 4px; }

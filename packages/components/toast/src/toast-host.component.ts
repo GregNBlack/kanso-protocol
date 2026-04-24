@@ -122,6 +122,11 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* Respect OS-level reduce-motion preference — skip the slide-down entry. */
+    @media (prefers-reduced-motion: reduce) {
+      .kp-th__toast { animation-duration: 0.01ms; }
+    }
+
     .kp-th__icon {
       flex: 0 0 auto;
       display: inline-flex;

@@ -45,6 +45,14 @@ export type KpSkeletonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
       100% { background-position: 200% 0; }
     }
 
+    /* Reduce-motion: stop the shimmer entirely. A static gray placeholder
+       still conveys "loading" without moving elements on the page. */
+    @media (prefers-reduced-motion: reduce) {
+      :host(.kp-sk--animated),
+      :host(.kp-sk--avatar.kp-sk--animated),
+      :host(.kp-sk--card.kp-sk--animated) { animation: none !important; }
+    }
+
     :host {
       display: inline-block;
       background: var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100));

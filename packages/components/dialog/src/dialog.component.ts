@@ -152,6 +152,13 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       to   { opacity: 1; transform: translateY(0) scale(1); }
     }
 
+    /* Respect OS-level reduce-motion preference: skip entrance choreography
+       and use a near-instant duration (a full 0 confuses some motion libraries). */
+    @media (prefers-reduced-motion: reduce) {
+      .kp-dialog__backdrop,
+      .kp-dialog__panel { animation-duration: 0.01ms; }
+    }
+
     .kp-dialog__header {
       display: flex;
       flex-direction: row;

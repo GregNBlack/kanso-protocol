@@ -150,6 +150,12 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
 
     @keyframes kp-spin { to { transform: rotate(360deg); } }
 
+    /* Reduce-motion: slow the loading spinner to avoid triggering vestibular
+       issues, but keep it rotating so the "busy" state stays visible. */
+    @media (prefers-reduced-motion: reduce) {
+      .kp-button__spinner { animation-duration: 3s; }
+    }
+
     /* === SIZE TOKENS === synced from Figma Button master component */
     :host(.kp-button--xs) {
       --kp-button-height: 24px; --kp-button-radius: 8px; --kp-button-padding: 6px;

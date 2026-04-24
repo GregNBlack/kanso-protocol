@@ -170,6 +170,12 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
     .kp-drawer__root--closing.kp-drawer--top    .kp-drawer__panel { animation: kp-drawer-out-top    220ms cubic-bezier(0.2, 1, 0.4, 1) forwards; }
     .kp-drawer__root--closing.kp-drawer--bottom .kp-drawer__panel { animation: kp-drawer-out-bottom 220ms cubic-bezier(0.2, 1, 0.4, 1) forwards; }
 
+    /* Respect OS-level reduce-motion preference — skip slide choreography. */
+    @media (prefers-reduced-motion: reduce) {
+      .kp-drawer__backdrop,
+      .kp-drawer__panel { animation-duration: 0.01ms; }
+    }
+
     /* Resize handle (top/bottom only) */
     .kp-drawer__handle {
       display: flex; justify-content: center;

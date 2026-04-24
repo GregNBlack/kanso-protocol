@@ -94,6 +94,12 @@ const SIZE_CFG: Record<KpProgressCircularSize, { d: number; s: number; valueFont
       to { transform: rotate(270deg); }
     }
 
+    /* Reduce-motion: slow the indeterminate spin so motion-sensitive users
+       still get a visible "busy" cue. */
+    @media (prefers-reduced-motion: reduce) {
+      .kp-progress-circular__svg--indeterminate { animation-duration: 3s; }
+    }
+
     .kp-progress-circular__value {
       position: absolute;
       inset: 0;
