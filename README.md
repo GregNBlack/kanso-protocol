@@ -9,6 +9,8 @@
 
 Design tokens in W3C DTCG format serve as a single source of truth for both Figma and code. Rules are embedded in architecture, not in agreements.
 
+> **Status: `0.1.x` alpha.** Public API is intentionally unstable until `1.0`. Expect breaking changes in any minor bump — pin the exact version in production. Read the [changelog](CHANGELOG.md) before upgrading.
+
 ---
 
 ## Why Kanso Protocol?

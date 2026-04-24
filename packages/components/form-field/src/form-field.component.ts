@@ -1,25 +1,54 @@
 import {
-  Component,
-  Input,
+  AfterContentInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  Input,
+  OnDestroy,
+  inject,
 } from '@angular/core';
+import { NgControl } from '@angular/forms';
+import { Subscription, merge } from 'rxjs';
+
+import {
+  KP_VALIDATION_MESSAGES,
+  KpValidationMessages,
+  resolveErrorMessage,
+} from './validation-messages';
 
 export type KpRequiredMode = 'none' | 'optional' | 'required-asterisk';
 
 /**
  * Kanso Protocol — FormField
  *
- * Wrapper around any form control that adds a label with optional/required
- * marker and a helper/error text below. Project any control via <ng-content>.
+ * Wraps any form control with a label, optional/required marker, and a
+ * footer that renders either a helper text (rest state) or a validation
+ * error message (when the projected control is invalid and was touched
+ * or dirty).
  *
- * @example
- * <kp-form-field label="Email" helper="We'll never share it">
- *   <kp-input placeholder="you@example.com"></kp-input>
- * </kp-form-field>
+ * **Auto-error mode.** Project any Angular form control — `[formControl]`,
+ * `[formControlName]`, `ngModel`, or a custom directive that implements
+ * `ControlValueAccessor`. FormField finds the `NgControl` via content
+ * projection, subscribes to its status/value changes, and surfaces the
+ * error from `control.errors` using a lookup against the validation
+ * message registry (see `KP_VALIDATION_MESSAGES`). Per-field messages
+ * override the registry via the `[errors]` input.
  *
- * <kp-form-field label="Password" required="required-asterisk" [error]="true" helper="Required field">
- *   <kp-input type="password"></kp-input>
- * </kp-form-field>
+ * **Manual mode.** Pass `[error]="true"` + a custom `[helper]` text if
+ * you want full control over the error display (e.g. when the validation
+ * state lives outside Angular Forms).
+ *
+ * @example Auto-error from a reactive FormControl:
+ *   <kp-form-field label="Email" required="required-asterisk">
+ *     <kp-input [formControl]="email" />
+ *   </kp-form-field>
+ *
+ * @example Per-field custom message:
+ *   <kp-form-field label="Age"
+ *                  [errors]="{ min: ({ min }) => `Должно быть ≥ ${min}` }">
+ *     <kp-input type="number" [formControl]="age" />
+ *   </kp-form-field>
  */
 @Component({
   selector: 'kp-form-field',
@@ -40,8 +69,8 @@ export type KpRequiredMode = 'none' | 'optional' | 'required-asterisk';
       </div>
     }
     <div class="kp-form-field__control"><ng-content/></div>
-    @if (showHelper && (helper || error)) {
-      <div class="kp-form-field__helper">{{ helper }}</div>
+    @if (showHelper && footerText) {
+      <div class="kp-form-field__helper" [attr.aria-live]="isInErrorState ? 'polite' : null">{{ footerText }}</div>
     }
   `,
   styles: [`
@@ -101,18 +130,81 @@ export type KpRequiredMode = 'none' | 'optional' | 'required-asterisk';
     }
   `]
 })
-export class KpFormFieldComponent {
+export class KpFormFieldComponent implements AfterContentInit, OnDestroy {
   @Input() label = '';
   @Input() helper = '';
   @Input() required: KpRequiredMode = 'none';
   @Input() showHelper = true;
+
+  /**
+   * Manual error flag — treated as an override. When `true`, the field
+   * renders in error state regardless of the projected control's status.
+   * Leave undefined to let the auto-error logic drive the state.
+   */
   @Input() error = false;
+
   @Input() disabled = false;
+
+  /**
+   * Per-field validation message overrides. Merged on top of the
+   * `KP_VALIDATION_MESSAGES` registry; the key must match the validator
+   * name in `AbstractControl.errors`.
+   */
+  @Input() errors: KpValidationMessages | null = null;
+
+  @ContentChild(NgControl) private ngControl: NgControl | null = null;
+
+  private readonly cdr = inject(ChangeDetectorRef);
+  private readonly registry = inject(KP_VALIDATION_MESSAGES);
+  private sub: Subscription | null = null;
+
+  /** Internal — whether we should currently show an error from NgControl. */
+  private autoErrorShown = false;
+  private autoErrorMessage: string | null = null;
+
+  get isInErrorState(): boolean {
+    return this.error || this.autoErrorShown;
+  }
+
+  /** Text rendered in the footer — error message when in error, helper otherwise. */
+  get footerText(): string {
+    if (this.isInErrorState) return this.autoErrorMessage ?? this.helper;
+    return this.helper;
+  }
 
   get hostClasses(): string {
     const classes = ['kp-form-field'];
-    if (this.error) classes.push('kp-form-field--error');
+    if (this.isInErrorState) classes.push('kp-form-field--error');
     if (this.disabled) classes.push('kp-form-field--disabled');
     return classes.join(' ');
+  }
+
+  ngAfterContentInit(): void {
+    const c = this.ngControl?.control;
+    if (!c) return;
+
+    this.sub = merge(c.statusChanges, c.valueChanges).subscribe(() => {
+      this.recomputeAutoError();
+      this.cdr.markForCheck();
+    });
+    this.recomputeAutoError();
+  }
+
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
+  }
+
+  private recomputeAutoError(): void {
+    const c = this.ngControl?.control;
+    if (!c) { this.autoErrorShown = false; this.autoErrorMessage = null; return; }
+
+    const shouldShow = !!(c.invalid && (c.touched || c.dirty));
+    if (!shouldShow || !c.errors) {
+      this.autoErrorShown = false;
+      this.autoErrorMessage = null;
+      return;
+    }
+    this.autoErrorShown = true;
+    this.autoErrorMessage = resolveErrorMessage(c.errors, this.errors, this.registry);
   }
 }
