@@ -6,7 +6,7 @@
     "@angular/core": "^18.0.0",
     "@angular/common": "^18.0.0",
     "@kanso-protocol/core": "^0.0.1",
-    "@kanso-protocol/tooltip": "^0.1.0"
+    "@kanso-protocol/tooltip": ">=0.0.1"
   },
   "description": "Kanso Protocol — nav-item (pattern).",
   "author": "GregNBlack",

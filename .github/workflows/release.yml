@@ -1,0 +1,61 @@
+name: Release
+
+# Changeset-driven release pipeline.
+#
+# 1. Contributor adds `npx changeset` to their PR describing the change kind
+#    (patch / minor / major). Changeset markdown files live in `.changeset/`.
+# 2. When their PR merges to `main`, this workflow runs:
+#      - If pending changesets exist → opens / updates a "Version Packages" PR
+#        that bumps every affected package.json and writes CHANGELOG entries.
+#      - If a "Version Packages" PR is merged (no pending changesets) → builds
+#        libraries and publishes the changed ones to npm.
+# 3. Requires two repo secrets:
+#      NPM_TOKEN     — an npm token with publish rights on @kanso-protocol/*
+#      GITHUB_TOKEN  — auto-provided by GitHub Actions (used by the action)
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+
+      - name: Install
+        run: npm ci --legacy-peer-deps
+
+      - name: Build tokens
+        run: npm run build:tokens
+
+      - name: Build libraries
+        run: npm run build:libs
+
+      - name: Create release PR or publish
+        uses: changesets/action@v1
+        with:
+          # Bumps versions & writes changelog on the source package.json files,
+          # then `publish` runs our script which walks dist/ and npm-publishes
+          # each library whose version differs from what's on the registry.
+          version: npx changeset version
+          publish: node scripts/publish-libs.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

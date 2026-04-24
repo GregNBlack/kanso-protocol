@@ -179,22 +179,35 @@ npm run build:lib core          # or: button, pagination, stat-card, ...
 
 Accepts the short folder name. If the target imports other workspace packages, build them first.
 
-### Publish
+### Release workflow (changesets)
 
-Packages are not published automatically. When releasing:
+Versioning and publishing are driven by [changesets](https://github.com/changesets/changesets). All `@kanso-protocol/*` packages are in the `fixed` group — they bump together.
+
+**When you make a change that should ship:**
 
 ```bash
-npm run build:libs
-# bump version in all package.json files to the new version (manual, or via changesets in the future)
-# then for each built package:
-npm publish dist/packages/core --access public
-npm publish dist/packages/components/button --access public
-# ... etc.
+npx changeset             # choose affected packages + bump type + write a summary
 ```
 
-First release requires the scope `@kanso-protocol` to be created on npm (`npm login` → `npm org create kanso-protocol` if applicable), and that the publishing user has access.
+That writes a markdown file under `.changeset/`. Commit it with your PR.
 
-Automation via [changesets](https://github.com/changesets/changesets) or `semantic-release` is planned but not yet wired.
+**Release pipeline (automated on `main`):**
+
+1. Merge a PR with changesets to `main`.
+2. `.github/workflows/release.yml` opens (or updates) a **"Version Packages"** PR — bumps every `@kanso-protocol/*` package.json + writes `CHANGELOG.md` entries.
+3. Merge that Version PR.
+4. The workflow runs again, sees no pending changesets, builds libraries, and runs `scripts/publish-libs.js` which walks `dist/packages/**/` and `npm publish`es each package whose `<name>@<version>` isn't on the registry yet.
+
+**Secrets required** (repo settings → Actions → Secrets):
+
+- `NPM_TOKEN` — an npm token with publish rights on the `@kanso-protocol` scope.
+- `GITHUB_TOKEN` is auto-provided.
+
+**First-time setup (maintainers only):**
+
+- Create the scope on npm: `npm login`, then `npm org create kanso-protocol` (or manually via the npm website).
+- Add `NPM_TOKEN` secret.
+- Manually run `npm run build:libs && node scripts/publish-libs.js` for the initial `0.0.1` publish, or merge a changeset that bumps to `0.1.0` through the automated flow.
 
 ## Reporting bugs / requesting features
 

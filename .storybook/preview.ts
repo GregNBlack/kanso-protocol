@@ -43,6 +43,22 @@ const preview: Preview = {
     // `[data-theme]` rules in `packages/core/styles/dark.css`, so the
     // theme switcher alone flips both component colours and the canvas.
     backgrounds: { disable: true },
+    // axe-core a11y checks — runs on every story, results surface in the
+    // Accessibility tab. Violations are reported, not auto-failed; the CI
+    // pipeline can tighten this later with `test-runner` + `axe-playwright`.
+    a11y: {
+      element: '#storybook-root',
+      config: {
+        rules: [
+          // Many stories render components without a surrounding landmark/
+          // page structure — those rules would produce noise for isolated
+          // component showcases. Keep the impactful checks on.
+          { id: 'region', enabled: false },
+          { id: 'landmark-one-main', enabled: false },
+          { id: 'page-has-heading-one', enabled: false },
+        ],
+      },
+    },
   },
 };
 
