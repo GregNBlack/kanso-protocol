@@ -18,7 +18,8 @@
     "storybook": "nx run kanso-protocol:storybook",
     "build-storybook": "nx run kanso-protocol:build-storybook",
     "lint": "nx run-many --target=lint --all",
-    "test": "nx run-many --target=test --all"
+    "test": "nx run-many --target=test --all",
+    "test:storybook": "test-storybook --config-dir .storybook"
   },
   "dependencies": {
     "@angular/animations": "^21.2.0",
@@ -52,11 +53,16 @@
     "@storybook/addon-themes": "^8.6.18",
     "@storybook/angular": "^8.3.0",
     "@storybook/blocks": "^8.3.0",
+    "@storybook/test-runner": "^0.19.1",
+    "axe-playwright": "^2.2.2",
+    "concurrently": "^9.2.1",
+    "http-server": "^14.1.1",
     "ng-packagr": "^21.2.0",
     "nx": "^22.6.4",
     "storybook": "^8.3.0",
     "style-dictionary": "^4.1.0",
-    "typescript": "~5.9"
+    "typescript": "~5.9",
+    "wait-on": "^9.0.5"
   },
   "workspaces": [
     "packages/*",
