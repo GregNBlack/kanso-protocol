@@ -6,7 +6,7 @@
     "@angular/core": "^18.0.0",
     "@angular/common": "^18.0.0",
     "@kanso-protocol/core": "^0.0.1",
-    "@kanso-protocol/avatar": ">=0.0.1"
+    "@kanso-protocol/avatar": ">=0.1.0"
   },
   "description": "Kanso Protocol — user-menu (pattern).",
   "author": "GregNBlack",

@@ -7,7 +7,7 @@
     "@angular/common": "^18.0.0",
     "@angular/forms": "^18.0.0",
     "@kanso-protocol/core": "^0.0.1",
-    "@kanso-protocol/select": ">=0.0.1"
+    "@kanso-protocol/select": ">=0.1.0"
   },
   "description": "Kanso Protocol — pagination (component).",
   "author": "GregNBlack",

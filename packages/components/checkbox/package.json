@@ -1,6 +1,6 @@
 {
   "name": "@kanso-protocol/checkbox",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": "^18.0.0",
