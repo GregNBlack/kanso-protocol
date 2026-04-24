@@ -105,28 +105,70 @@ describe('KpRichTextEditorComponent', () => {
     fix.destroy();
   });
 
-  it('promptLink: "" unsets the link, real URL sets it', () => {
+  it('openLinkBar opens the bar and seeds linkDraft from the active link href', () => {
     const { fix, cmp } = setup();
-    cmp.editor?.commands.setContent('<p>anchor</p>');
+    cmp.editor?.commands.setContent('<p><a href="https://existing.dev">anchor</a></p>');
     cmp.editor?.commands.selectAll();
-    const promptSpy = vi.spyOn(window, 'prompt').mockReturnValue('https://example.com');
-    cmp.promptLink();
-    expect(cmp.editor?.getHTML()).toMatch(/<a [^>]*href="https:\/\/example\.com"/);
-    promptSpy.mockReturnValue('');
-    cmp.promptLink();
-    expect(cmp.editor?.getHTML()).not.toMatch(/<a /);
-    promptSpy.mockRestore();
+    cmp.openLinkBar();
+    expect(cmp.linkOpen).toBe(true);
+    expect(cmp.linkDraft).toBe('https://existing.dev');
     fix.destroy();
   });
 
-  it('promptLink: cancelling the prompt is a no-op', () => {
+  it('applyLink wraps the saved selection with the entered href, then closes the bar', () => {
+    const { fix, cmp } = setup();
+    cmp.editor?.commands.setContent('<p>anchor</p>');
+    cmp.editor?.commands.selectAll();
+    cmp.openLinkBar();
+    cmp.linkDraft = 'https://example.com';
+    cmp.applyLink();
+    expect(cmp.editor?.getHTML()).toMatch(/<a [^>]*href="https:\/\/example\.com"/);
+    expect(cmp.linkOpen).toBe(false);
+    expect(cmp.linkDraft).toBe('');
+    fix.destroy();
+  });
+
+  it('removeLink unsets the link mark and closes the bar', () => {
+    const { fix, cmp } = setup();
+    cmp.editor?.commands.setContent('<p><a href="https://x.dev">anchor</a></p>');
+    cmp.editor?.commands.selectAll();
+    cmp.openLinkBar();
+    cmp.removeLink();
+    expect(cmp.editor?.getHTML()).not.toMatch(/<a /);
+    expect(cmp.linkOpen).toBe(false);
+    fix.destroy();
+  });
+
+  it('applyLink with an empty draft is a no-op (bar stays open, content unchanged)', () => {
+    const { fix, cmp } = setup();
+    cmp.editor?.commands.setContent('<p>plain</p>');
+    cmp.editor?.commands.selectAll();
+    cmp.openLinkBar();
+    cmp.linkDraft = '   ';
+    const before = cmp.editor?.getHTML();
+    cmp.applyLink();
+    expect(cmp.editor?.getHTML()).toBe(before);
+    expect(cmp.linkOpen).toBe(true);
+    fix.destroy();
+  });
+
+  it('closeLinkBar resets state without touching the document', () => {
     const { fix, cmp } = setup();
     cmp.editor?.commands.setContent('<p>plain</p>');
     const before = cmp.editor?.getHTML();
-    const promptSpy = vi.spyOn(window, 'prompt').mockReturnValue(null);
-    cmp.promptLink();
+    cmp.openLinkBar();
+    cmp.linkDraft = 'https://discarded.dev';
+    cmp.closeLinkBar();
     expect(cmp.editor?.getHTML()).toBe(before);
-    promptSpy.mockRestore();
+    expect(cmp.linkOpen).toBe(false);
+    expect(cmp.linkDraft).toBe('');
+    fix.destroy();
+  });
+
+  it('openLinkBar is a no-op when the editor is disabled', () => {
+    const { fix, cmp } = setup({ disabled: true });
+    cmp.openLinkBar();
+    expect(cmp.linkOpen).toBe(false);
     fix.destroy();
   });
 

@@ -170,8 +170,8 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
 
       <!-- link + image -->
       <button type="button" class="kp-rte__btn" title="Link" aria-label="Link"
-              [class.is-active]="is('link')" [attr.aria-pressed]="is('link')"
-              [disabled]="disabled" (click)="promptLink()">
+              [class.is-active]="is('link') || linkOpen" [attr.aria-pressed]="is('link')"
+              [disabled]="disabled" (click)="openLinkBar()">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.71"/></svg>
       </button>
       <button type="button" class="kp-rte__btn" title="Insert image" aria-label="Insert image"
@@ -180,6 +180,27 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       </button>
       <input #fileInput type="file" accept="image/*" hidden (change)="onFileChosen($event)" />
     </div>
+
+    @if (linkOpen) {
+      <div class="kp-rte__link-bar" role="group" aria-label="Edit link">
+        <input
+          #linkInput
+          type="url"
+          class="kp-rte__link-input"
+          placeholder="https://example.com"
+          [value]="linkDraft"
+          (input)="linkDraft = $any($event.target).value"
+          (keydown.enter)="$event.preventDefault(); applyLink()"
+          (keydown.escape)="$event.preventDefault(); closeLinkBar()"
+        />
+        <button type="button" class="kp-rte__link-btn kp-rte__link-btn--primary"
+                [disabled]="!linkDraft.trim()" (click)="applyLink()">Apply</button>
+        @if (is('link')) {
+          <button type="button" class="kp-rte__link-btn" (click)="removeLink()">Remove</button>
+        }
+        <button type="button" class="kp-rte__link-btn" (click)="closeLinkBar()">Cancel</button>
+      </div>
+    }
 
     <div #editorHost class="kp-rte__editor" [attr.aria-invalid]="error || null"></div>
   `,
@@ -248,6 +269,61 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       opacity: 0.4;
       cursor: not-allowed;
       pointer-events: none;
+    }
+
+    .kp-rte__link-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
+      border-bottom: 1px solid var(--kp-color-gray-200);
+      background: var(--kp-color-gray-50);
+    }
+    .kp-rte__link-input {
+      flex: 1;
+      min-width: 0;
+      height: 26px;
+      padding: 0 8px;
+      border: 1px solid var(--kp-color-gray-300);
+      border-radius: 6px;
+      background: var(--kp-color-white);
+      font: inherit;
+      font-size: 13px;
+      color: var(--kp-color-gray-900);
+      outline: none;
+    }
+    .kp-rte__link-input:focus {
+      border-color: var(--kp-color-blue-600);
+    }
+    .kp-rte__link-btn {
+      all: unset;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 26px;
+      padding: 0 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--kp-color-gray-700);
+      cursor: pointer;
+      transition: background 120ms ease, color 120ms ease;
+    }
+    .kp-rte__link-btn:hover:not([disabled]) {
+      background: var(--kp-color-gray-100);
+      color: var(--kp-color-gray-900);
+    }
+    .kp-rte__link-btn--primary {
+      background: var(--kp-color-blue-600);
+      color: var(--kp-color-white);
+    }
+    .kp-rte__link-btn--primary:hover:not([disabled]) {
+      background: var(--kp-color-blue-700);
+      color: var(--kp-color-white);
+    }
+    .kp-rte__link-btn[disabled] {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
 
     .kp-rte__editor {
@@ -438,15 +514,60 @@ export class KpRichTextEditorComponent implements ControlValueAccessor, OnDestro
     else chain.setHorizontalRule().run();
   }
 
+  /** @internal — link-bar state. The bar replaces the old `window.prompt`
+   *  flow with an inline input + Apply/Remove/Cancel row below the toolbar.
+   *  We persist the editor's selection range across the bar's lifetime so
+   *  applying the link wraps the original selection, even though focus
+   *  briefly leaves the editor for the input. */
+  linkOpen = false;
+  linkDraft = '';
+  private savedFrom = 0;
+  private savedTo = 0;
+
   /** @internal */
-  promptLink(): void {
-    if (!this.editor) return;
+  openLinkBar(): void {
+    if (!this.editor || this.disabled) return;
     const current = this.editor.getAttributes('link')['href'] as string | undefined;
-    // MVP: native prompt; upgrade to kp-popover + kp-input in a follow-up.
-    const url = typeof window !== 'undefined' ? window.prompt('Link URL', current ?? 'https://') : null;
-    if (url === null) return;
-    if (url === '') this.editor.chain().focus().unsetLink().run();
-    else this.editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
+    this.linkDraft = current ?? '';
+    const { from, to } = this.editor.state.selection;
+    this.savedFrom = from;
+    this.savedTo = to;
+    this.linkOpen = true;
+    this.cdr.markForCheck();
+  }
+
+  /** @internal */
+  applyLink(): void {
+    if (!this.editor) return;
+    const url = this.linkDraft.trim();
+    if (!url) return;
+    this.editor
+      .chain()
+      .focus()
+      .setTextSelection({ from: this.savedFrom, to: this.savedTo })
+      .extendMarkRange('link')
+      .setLink({ href: url })
+      .run();
+    this.closeLinkBar();
+  }
+
+  /** @internal */
+  removeLink(): void {
+    if (!this.editor) return;
+    this.editor
+      .chain()
+      .focus()
+      .setTextSelection({ from: this.savedFrom, to: this.savedTo })
+      .unsetLink()
+      .run();
+    this.closeLinkBar();
+  }
+
+  /** @internal */
+  closeLinkBar(): void {
+    this.linkOpen = false;
+    this.linkDraft = '';
+    this.cdr.markForCheck();
   }
 
   /** @internal */
