@@ -1,8 +1,10 @@
 import {
+  ChangeDetectorRef,
   Component,
   Input,
   ChangeDetectionStrategy,
   forwardRef,
+  inject,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -352,8 +354,11 @@ export class KpInputComponent implements ControlValueAccessor {
     this.onChange('');
   }
 
+  private readonly cdr = inject(ChangeDetectorRef);
+
   writeValue(value: string | null): void {
     this.value = value;
+    this.cdr.markForCheck();
   }
 
   registerOnChange(fn: (value: string) => void): void {

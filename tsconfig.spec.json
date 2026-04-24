@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/spec",
+    "moduleResolution": "bundler",
+    "module": "ESNext",
+    "types": ["vitest/globals", "node"],
+    "esModuleInterop": true
+  },
+  "include": [
+    "packages/**/*.spec.ts",
+    "packages/**/*.d.ts"
+  ]
+}

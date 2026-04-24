@@ -22,6 +22,8 @@ jobs:
         run: npm run build:libs
       - name: Build Storybook
         run: npm run build-storybook
+      - name: Unit tests (Vitest)
+        run: npm test
 
   a11y:
     # Serve the built Storybook, then run `test-storybook` against it — the

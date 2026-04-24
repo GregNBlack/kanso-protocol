@@ -152,6 +152,32 @@ Variable collections:
 
 When you change a token or component in code, apply the same change in Figma manually (Tokens Studio paid Push is required for automated sync, currently not set up).
 
+## Testing
+
+Unit tests run via **Vitest** through `@angular/build:unit-test`. Tests live next to their component as `*.spec.ts`.
+
+```bash
+npm test              # single run
+npm run test:watch    # watch mode
+npm run test:storybook   # axe-core accessibility pass over all Storybook stories
+```
+
+**What to cover per component** (minimum bar, matches existing specs):
+
+1. **Rendering** — host element exists, no runtime errors.
+2. **Inputs → DOM** — every `@Input()` reflects onto host class / attribute / child DOM.
+3. **Accessibility** — role, aria-*, tabindex behave per the component contract. Disabled elements have `tabindex="-1"`.
+4. **Events** — every `@Output()` fires on the documented trigger; blocked states (disabled, loading) suppress the event.
+5. **ControlValueAccessor** (for form components) — `writeValue` updates state and marks the view for check; `registerOnChange` fires on user input.
+
+**Testing patterns worth repeating** (see `button.spec.ts`, `input.spec.ts`, `dialog.spec.ts` for templates):
+
+- Use `fixture.componentRef.setInput(name, value)` for OnPush components — direct `componentInstance.x = …` bypasses the change-detection signal.
+- Portaled components (Dialog, Drawer, Popover, Menu, Toast) render into `document.body` — query with `document.querySelector` not `fixture.nativeElement`, and clean up in `afterEach`.
+- Reactive-forms integration deserves an explicit host-component test (`KpInputComponent` has one) — it catches CVA wiring bugs that unit tests miss.
+
+Running one suite during development: `npx ng test` then use the `p` (filter by filename) command in the Vitest UI.
+
 ## Building & publishing packages
 
 Every library (core + each component + each pattern) is published as its own npm package under the `@kanso-protocol/*` scope.

@@ -31,6 +31,14 @@
             "browserTarget": "kanso-protocol:build",
             "outputDir": "storybook-static"
           }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "buildTarget": "kanso-protocol:build",
+            "tsConfig": "tsconfig.spec.json",
+            "runner": "vitest"
+          }
         }
       }
     }
