@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-24T14:04:03.859Z",
-  "totalSpecs": 24,
-  "totalTests": 137,
+  "generatedAt": "2026-04-24T18:59:54.838Z",
+  "totalSpecs": 36,
+  "totalTests": 326,
   "totalPackages": 56,
   "items": [
     {
@@ -105,6 +105,28 @@
     },
     {
       "layer": "components",
+      "name": "combobox",
+      "title": "Components/Combobox",
+      "storybookId": "components-combobox--docs",
+      "specFile": "packages/components/combobox/src/combobox.spec.ts",
+      "specFiles": [
+        "packages/components/combobox/src/combobox.spec.ts"
+      ],
+      "tests": 15
+    },
+    {
+      "layer": "components",
+      "name": "datepicker",
+      "title": "Components/DatePicker",
+      "storybookId": "components-datepicker--docs",
+      "specFile": "packages/components/datepicker/src/datepicker.spec.ts",
+      "specFiles": [
+        "packages/components/datepicker/src/datepicker.spec.ts"
+      ],
+      "tests": 17
+    },
+    {
+      "layer": "components",
       "name": "dialog",
       "title": "Components/Dialog",
       "storybookId": "components-dialog--docs",
@@ -127,6 +149,28 @@
     },
     {
       "layer": "components",
+      "name": "drawer",
+      "title": "Components/Drawer",
+      "storybookId": "components-drawer--docs",
+      "specFile": "packages/components/drawer/src/drawer.spec.ts",
+      "specFiles": [
+        "packages/components/drawer/src/drawer.spec.ts"
+      ],
+      "tests": 13
+    },
+    {
+      "layer": "components",
+      "name": "menu",
+      "title": "Components/DropdownMenu",
+      "storybookId": "components-dropdownmenu--docs",
+      "specFile": "packages/components/menu/src/menu.spec.ts",
+      "specFiles": [
+        "packages/components/menu/src/menu.spec.ts"
+      ],
+      "tests": 18
+    },
+    {
+      "layer": "components",
       "name": "empty-state",
       "title": "Components/EmptyState",
       "storybookId": "components-emptystate--docs",
@@ -145,7 +189,7 @@
       "specFiles": [
         "packages/components/form-field/src/form-field.spec.ts"
       ],
-      "tests": 5
+      "tests": 14
     },
     {
       "layer": "components",
@@ -182,6 +226,17 @@
     },
     {
       "layer": "components",
+      "name": "popover",
+      "title": "Components/Popover",
+      "storybookId": "components-popover--docs",
+      "specFile": "packages/components/popover/src/popover.spec.ts",
+      "specFiles": [
+        "packages/components/popover/src/popover.spec.ts"
+      ],
+      "tests": 17
+    },
+    {
+      "layer": "components",
       "name": "progress",
       "title": "Components/Progress/Circular",
       "storybookId": "components-progress-circular--docs",
@@ -206,6 +261,17 @@
     },
     {
       "layer": "components",
+      "name": "rich-text-editor",
+      "title": "Components/RichTextEditor",
+      "storybookId": "components-richtexteditor--docs",
+      "specFile": "packages/components/rich-text-editor/src/rich-text-editor.spec.ts",
+      "specFiles": [
+        "packages/components/rich-text-editor/src/rich-text-editor.spec.ts"
+      ],
+      "tests": 13
+    },
+    {
+      "layer": "components",
       "name": "segmented-control",
       "title": "Components/SegmentedControl",
       "storybookId": "components-segmentedcontrol--docs",
@@ -217,6 +283,17 @@
     },
     {
       "layer": "components",
+      "name": "select",
+      "title": "Components/Select",
+      "storybookId": "components-select--docs",
+      "specFile": "packages/components/select/src/select.spec.ts",
+      "specFiles": [
+        "packages/components/select/src/select.spec.ts"
+      ],
+      "tests": 13
+    },
+    {
+      "layer": "components",
       "name": "skeleton",
       "title": "Components/Skeleton",
       "storybookId": "components-skeleton--docs",
@@ -225,6 +302,28 @@
         "packages/components/skeleton/src/skeleton.spec.ts"
       ],
       "tests": 4
+    },
+    {
+      "layer": "components",
+      "name": "slider",
+      "title": "Components/Slider",
+      "storybookId": "components-slider--docs",
+      "specFile": "packages/components/slider/src/slider.spec.ts",
+      "specFiles": [
+        "packages/components/slider/src/slider.spec.ts"
+      ],
+      "tests": 15
+    },
+    {
+      "layer": "components",
+      "name": "table",
+      "title": "Components/Table",
+      "storybookId": "components-table--docs",
+      "specFile": "packages/components/table/src/table.spec.ts",
+      "specFiles": [
+        "packages/components/table/src/table.spec.ts"
+      ],
+      "tests": 14
     },
     {
       "layer": "components",
@@ -250,6 +349,17 @@
     },
     {
       "layer": "components",
+      "name": "timepicker",
+      "title": "Components/TimePicker",
+      "storybookId": "components-timepicker--docs",
+      "specFile": "packages/components/timepicker/src/timepicker.spec.ts",
+      "specFiles": [
+        "packages/components/timepicker/src/timepicker.spec.ts"
+      ],
+      "tests": 17
+    },
+    {
+      "layer": "components",
       "name": "toggle",
       "title": "Components/Toggle",
       "storybookId": "components-toggle--docs",
@@ -269,64 +379,31 @@
         "packages/components/tooltip/src/tooltip.spec.ts"
       ],
       "tests": 5
-    }
-  ],
-  "missing": [
-    {
-      "layer": "components",
-      "name": "combobox",
-      "title": "Components/Combobox"
-    },
-    {
-      "layer": "components",
-      "name": "datepicker",
-      "title": "Components/DatePicker"
-    },
-    {
-      "layer": "components",
-      "name": "drawer",
-      "title": "Components/Drawer"
-    },
-    {
-      "layer": "components",
-      "name": "menu",
-      "title": "Components/DropdownMenu"
-    },
-    {
-      "layer": "components",
-      "name": "popover",
-      "title": "Components/Popover"
-    },
-    {
-      "layer": "components",
-      "name": "rich-text-editor",
-      "title": "Components/RichTextEditor"
-    },
-    {
-      "layer": "components",
-      "name": "select",
-      "title": "Components/Select"
-    },
-    {
-      "layer": "components",
-      "name": "slider",
-      "title": "Components/Slider"
-    },
-    {
-      "layer": "components",
-      "name": "table",
-      "title": "Components/Table"
-    },
-    {
-      "layer": "components",
-      "name": "timepicker",
-      "title": "Components/TimePicker"
     },
     {
       "layer": "components",
       "name": "tree",
-      "title": "Components/Tree"
+      "title": "Components/Tree",
+      "storybookId": "components-tree--docs",
+      "specFile": "packages/components/tree/src/tree.spec.ts",
+      "specFiles": [
+        "packages/components/tree/src/tree.spec.ts"
+      ],
+      "tests": 14
     },
+    {
+      "layer": "components",
+      "name": "toast",
+      "title": "Task completed",
+      "storybookId": "task-completed--docs",
+      "specFile": "packages/components/toast/src/toast.spec.ts",
+      "specFiles": [
+        "packages/components/toast/src/toast.spec.ts"
+      ],
+      "tests": 14
+    }
+  ],
+  "missing": [
     {
       "layer": "patterns",
       "name": "app-shell",
@@ -426,11 +503,6 @@
       "layer": "patterns",
       "name": "notification-center",
       "title": "Sarah mentioned you"
-    },
-    {
-      "layer": "components",
-      "name": "toast",
-      "title": "Task completed"
     }
   ]
 }
