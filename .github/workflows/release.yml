@@ -61,3 +61,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # setup-node writes .npmrc with `${NODE_AUTH_TOKEN}` placeholder;
+          # npm resolves it at runtime. Our publish-libs.js reads NPM_TOKEN
+          # for the graceful-skip check, but npm itself needs NODE_AUTH_TOKEN.
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
