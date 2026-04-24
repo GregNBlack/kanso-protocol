@@ -1,6 +1,6 @@
 {
   "name": "@kanso-protocol/rich-text-editor",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Kanso Protocol — Rich Text Editor component (TipTap-powered, Angular 18+).",
   "license": "MIT",
   "author": "GregNBlack",
@@ -24,11 +24,11 @@
     "@angular/core": ">=18.0.0",
     "@angular/common": ">=18.0.0",
     "@angular/forms": ">=18.0.0",
-    "@kanso-protocol/core": ">=0.0.1",
-    "@kanso-protocol/button": ">=0.0.1",
-    "@kanso-protocol/divider": ">=0.0.1",
-    "@kanso-protocol/popover": ">=0.0.1",
-    "@kanso-protocol/input": ">=0.0.1"
+    "@kanso-protocol/core": ">=1.0.0",
+    "@kanso-protocol/button": ">=1.0.0",
+    "@kanso-protocol/divider": ">=1.0.0",
+    "@kanso-protocol/popover": ">=1.0.0",
+    "@kanso-protocol/input": ">=1.0.0"
   },
   "dependencies": {
     "@tiptap/core": "^3.22.4",

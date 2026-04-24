@@ -1,13 +1,13 @@
 {
   "name": "@kanso-protocol/number-stepper",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": "^18.0.0",
     "@angular/common": "^18.0.0",
     "@angular/forms": "^18.0.0",
-    "@kanso-protocol/core": "^0.0.1",
-    "@kanso-protocol/button": "^0.0.1"
+    "@kanso-protocol/core": "^1.0.0",
+    "@kanso-protocol/button": "^1.0.0"
   },
   "description": "Kanso Protocol — number-stepper (component).",
   "author": "GregNBlack",
