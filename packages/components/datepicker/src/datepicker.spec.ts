@@ -171,4 +171,77 @@ describe('KpDatePickerComponent', () => {
     cmp.view = 'year';
     expect(cmp.headerLabel()).toMatch(/^\d{4} – \d{4}$/);
   });
+
+  // ─── Keyboard navigation in the day grid ──────────────────────────────
+
+  it('opening the panel seeds focusedDay from the current value (or today)', () => {
+    const { fix, cmp } = setup();
+    cmp.writeValue(new Date(2025, 5, 14));
+    fix.detectChanges();
+    cmp.toggle();
+    fix.detectChanges();
+    expect(cmp.focusedDay?.getTime()).toBe(new Date(2025, 5, 14).getTime());
+  });
+
+  it('ArrowRight advances focus by 1 day', () => {
+    const { cmp } = setup();
+    cmp.toggle();
+    cmp.focusedDay = new Date(2025, 5, 14);
+    cmp.onDayKeyDown(new KeyboardEvent('keydown', { key: 'ArrowRight' }), cmp.focusedDay);
+    expect(cmp.focusedDay?.getDate()).toBe(15);
+  });
+
+  it('ArrowDown advances focus by one week', () => {
+    const { cmp } = setup();
+    cmp.toggle();
+    cmp.focusedDay = new Date(2025, 5, 14);
+    cmp.onDayKeyDown(new KeyboardEvent('keydown', { key: 'ArrowDown' }), cmp.focusedDay);
+    expect(cmp.focusedDay?.getDate()).toBe(21);
+  });
+
+  it('crossing the month boundary re-anchors viewDate', () => {
+    const { cmp } = setup();
+    cmp.toggle();
+    cmp.focusedDay = new Date(2025, 5, 30); // June 30
+    cmp.onDayKeyDown(new KeyboardEvent('keydown', { key: 'ArrowRight' }), cmp.focusedDay);
+    expect(cmp.focusedDay?.getMonth()).toBe(6); // July
+    expect(cmp.viewDate.getMonth()).toBe(6);
+  });
+
+  it('PageUp moves the focus back one month; Shift+PageUp moves back one year', () => {
+    const { cmp } = setup();
+    cmp.toggle();
+    cmp.focusedDay = new Date(2025, 5, 14);
+    cmp.onDayKeyDown(new KeyboardEvent('keydown', { key: 'PageUp' }), cmp.focusedDay);
+    expect(cmp.focusedDay?.getMonth()).toBe(4); // May
+    cmp.onDayKeyDown(new KeyboardEvent('keydown', { key: 'PageUp', shiftKey: true }), cmp.focusedDay!);
+    expect(cmp.focusedDay?.getFullYear()).toBe(2024);
+  });
+
+  it('Home jumps to the first day of the current week', () => {
+    const { cmp } = setup();
+    cmp.toggle();
+    // Tuesday, June 3, 2025 (firstDayOfWeek=1 → Mon); Home should yield Mon Jun 2.
+    cmp.focusedDay = new Date(2025, 5, 3);
+    cmp.onDayKeyDown(new KeyboardEvent('keydown', { key: 'Home' }), cmp.focusedDay);
+    expect(cmp.focusedDay?.getDate()).toBe(2);
+  });
+
+  it('Enter on the focused day picks it (delegates to pickDay)', () => {
+    const { cmp } = setup();
+    cmp.toggle();
+    const spy = vi.fn();
+    cmp.valueChange.subscribe(spy);
+    cmp.focusedDay = new Date(2025, 5, 14);
+    cmp.onDayKeyDown(new KeyboardEvent('keydown', { key: 'Enter' }), cmp.focusedDay);
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('closing the panel clears focusedDay', () => {
+    const { cmp } = setup();
+    cmp.toggle();
+    expect(cmp.focusedDay).not.toBeNull();
+    cmp.onEscape();
+    expect(cmp.focusedDay).toBeNull();
+  });
 });

@@ -1,9 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   Output,
+  inject,
 } from '@angular/core';
 
 export type KpTabSize = 'sm' | 'md' | 'lg';
@@ -159,6 +161,10 @@ export class KpTabComponent {
   @Input() fullWidth = false;
 
   @Output() selectedChange = new EventEmitter<boolean>();
+
+  /** @internal — exposed so the parent `<kp-tabs>` can focus this tab's
+   *  inner button as part of its arrow-key roving-tabindex navigation. */
+  readonly elementRef = inject(ElementRef) as ElementRef<HTMLElement>;
 
   get hostClasses(): string {
     const c = ['kp-tab', `kp-tab--${this.size}`];

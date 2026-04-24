@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   Output,
@@ -58,7 +59,11 @@ export interface KpTreeNode {
       <li class="kp-tree__node" role="treeitem"
           [attr.aria-level]="level + 1"
           [attr.aria-expanded]="isExpandable(node) ? isExpanded(node.id) : null"
-          [attr.aria-selected]="selected === node.id || null">
+          [attr.aria-selected]="selected === node.id || null"
+          [attr.tabindex]="node.disabled ? -1 : (initialFocusedId === node.id ? 0 : -1)"
+          [attr.data-node-id]="node.id"
+          (keydown)="onKeyDown($event, node)"
+          (focus)="focusedId = node.id">
         <div
           class="kp-tree__row"
           [class.kp-tree__row--selected]="selected === node.id"
@@ -250,7 +255,20 @@ export class KpTreeComponent {
   @Output() readonly checkedChange = new EventEmitter<string[]>();
   @Output() readonly nodeClick = new EventEmitter<KpTreeNode>();
 
+  /** @internal — id of the node that currently owns focus. Roving tabindex
+   *  pattern: only this node is tabbable; arrow keys move focus around. */
+  focusedId: string | null = null;
+
+  /** @internal — fallback tabbable target when nothing has been clicked yet:
+   *  the selected node if it exists, otherwise the first enabled top-level. */
+  get initialFocusedId(): string | null {
+    if (this.focusedId) return this.focusedId;
+    if (this.selected) return this.selected;
+    return this.data.find((n) => !n.disabled)?.id ?? null;
+  }
+
   private readonly cdr = inject(ChangeDetectorRef);
+  private readonly host = inject(ElementRef) as ElementRef<HTMLElement>;
 
   get hostClasses(): string { return `kp-tree kp-tree--${this.size}`; }
 
@@ -279,7 +297,102 @@ export class KpTreeComponent {
     if (node.disabled) return;
     this.nodeClick.emit(node);
     this.selected = node.id;
+    this.focusedId = node.id;
     this.selectedChange.emit(node.id);
+  }
+
+  /**
+   * WAI-ARIA tree keyboard pattern:
+   *   ArrowDown / ArrowUp  — previous / next visible node
+   *   ArrowRight           — expand (if collapsed) or focus first child (if expanded)
+   *   ArrowLeft            — collapse (if expanded) or focus parent
+   *   Home / End           — first / last visible node
+   *   Enter / Space        — select the focused node
+   */
+  onKeyDown(event: KeyboardEvent, node: KpTreeNode): void {
+    if (node.disabled) return;
+    const flat = this.visibleNodes();
+    const idx = flat.findIndex((n) => n.node.id === node.id);
+    if (idx < 0) return;
+
+    switch (event.key) {
+      case 'ArrowDown': {
+        event.preventDefault();
+        const next = flat.slice(idx + 1).find((n) => !n.node.disabled);
+        if (next) this.focusNode(next.node.id);
+        break;
+      }
+      case 'ArrowUp': {
+        event.preventDefault();
+        const prev = [...flat.slice(0, idx)].reverse().find((n) => !n.node.disabled);
+        if (prev) this.focusNode(prev.node.id);
+        break;
+      }
+      case 'Home': {
+        event.preventDefault();
+        const first = flat.find((n) => !n.node.disabled);
+        if (first) this.focusNode(first.node.id);
+        break;
+      }
+      case 'End': {
+        event.preventDefault();
+        const last = [...flat].reverse().find((n) => !n.node.disabled);
+        if (last) this.focusNode(last.node.id);
+        break;
+      }
+      case 'ArrowRight': {
+        event.preventDefault();
+        if (this.isExpandable(node) && !this.isExpanded(node.id)) {
+          this.toggleExpanded(node, event);
+        } else if (this.isExpandable(node) && node.children?.length) {
+          const firstChild = node.children.find((c) => !c.disabled);
+          if (firstChild) this.focusNode(firstChild.id);
+        }
+        break;
+      }
+      case 'ArrowLeft': {
+        event.preventDefault();
+        if (this.isExpandable(node) && this.isExpanded(node.id)) {
+          this.toggleExpanded(node, event);
+        } else {
+          const parent = flat[idx].parent;
+          if (parent) this.focusNode(parent.id);
+        }
+        break;
+      }
+      case 'Enter':
+      case ' ':
+        event.preventDefault();
+        this.onRowClick(node);
+        break;
+      default:
+        return;
+    }
+  }
+
+  /** Flatten the tree to the linear order that's currently visible (closed
+   *  branches are pruned), with each entry carrying its direct parent.
+   *  Used for Up/Down keyboard nav and for resolving ArrowLeft → parent. */
+  private visibleNodes(): { node: KpTreeNode; parent: KpTreeNode | null }[] {
+    const out: { node: KpTreeNode; parent: KpTreeNode | null }[] = [];
+    const walk = (nodes: KpTreeNode[], parent: KpTreeNode | null) => {
+      for (const n of nodes) {
+        out.push({ node: n, parent });
+        if (n.children?.length && this.isExpanded(n.id)) walk(n.children, n);
+      }
+    };
+    walk(this.data, null);
+    return out;
+  }
+
+  private focusNode(id: string): void {
+    this.focusedId = id;
+    this.cdr.markForCheck();
+    // After Angular reconciles tabindex, move DOM focus to the new node.
+    queueMicrotask(() => {
+      const el = this.host.nativeElement.querySelector<HTMLElement>(`li[data-node-id="${id}"]`);
+      el?.focus();
+    });
   }
 
   /** Tri-state check derivation: a parent reflects the union of its leaves. */

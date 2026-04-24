@@ -79,4 +79,56 @@ describe('KpTabs — composition with KpTab', () => {
       expect(t.className).toContain('kp-tab--md');
     });
   });
+
+  const fireKey = (root: HTMLElement, key: string): KeyboardEvent => {
+    const tablist = root.querySelector('kp-tabs') as HTMLElement;
+    const ev = new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true });
+    tablist.dispatchEvent(ev);
+    return ev;
+  };
+
+  it('ArrowRight moves selection to the next enabled tab and skips disabled ones', () => {
+    const { fix, root } = setup();
+    fireKey(root, 'ArrowRight');
+    fix.detectChanges();
+    expect(fix.componentInstance.active).toBe(1);
+    fireKey(root, 'ArrowRight'); // tab 2 is disabled → wrap to 0
+    fix.detectChanges();
+    expect(fix.componentInstance.active).toBe(0);
+  });
+
+  it('ArrowLeft moves selection to the previous enabled tab (wraps around)', () => {
+    const { fix, root } = setup();
+    fireKey(root, 'ArrowLeft');
+    fix.detectChanges();
+    // Initially active=0 → wrap to last enabled = index 1
+    expect(fix.componentInstance.active).toBe(1);
+  });
+
+  it('Home jumps to the first enabled tab', () => {
+    const { fix, root } = setup();
+    // Move to tab 1 via ArrowRight first to avoid mutating the field directly
+    // (which triggers ExpressionChangedAfterItHasBeenCheckedError against
+    // the auto-detected binding on [selected]).
+    fireKey(root, 'ArrowRight');
+    fix.detectChanges();
+    expect(fix.componentInstance.active).toBe(1);
+    fireKey(root, 'Home');
+    fix.detectChanges();
+    expect(fix.componentInstance.active).toBe(0);
+  });
+
+  it('End jumps to the last enabled tab', () => {
+    const { fix, root } = setup();
+    fireKey(root, 'End');
+    fix.detectChanges();
+    // Tab 2 is disabled → last enabled is index 1
+    expect(fix.componentInstance.active).toBe(1);
+  });
+
+  it('Arrow keys call preventDefault on the event', () => {
+    const { root } = setup();
+    const ev = fireKey(root, 'ArrowRight');
+    expect(ev.defaultPrevented).toBe(true);
+  });
 });

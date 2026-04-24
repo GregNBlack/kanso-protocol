@@ -182,8 +182,11 @@ interface DayCell {
                   [class.kp-dp__day--range-start]="cell.rangeStart"
                   [class.kp-dp__day--range-end]="cell.rangeEnd"
                   [disabled]="cell.disabled"
+                  [attr.data-day-iso]="cell.date.toISOString().slice(0, 10)"
+                  [attr.tabindex]="isDayFocused(cell.date) ? 0 : -1"
                   (click)="pickDay(cell.date)"
                   (mouseenter)="onDayHover(cell.date)"
+                  (keydown)="onDayKeyDown($event, cell.date)"
                 >{{ cell.label }}</button>
               }
             </div>
@@ -506,6 +509,9 @@ export class KpDatePickerComponent implements ControlValueAccessor, AfterViewChe
   /** @internal */ view: View = 'day';
   /** @internal */ viewDate: Date = startOfMonth(new Date());
   /** @internal */ rangeHover: Date | null = null;
+  /** @internal — day currently holding focus for arrow-key navigation.
+   *  Initialized when the panel opens; updated by onDayKeyDown. */
+  focusedDay: Date | null = null;
 
   private singleValue: Date | null = null;
   private rangeStart: Date | null = null;
@@ -625,9 +631,13 @@ export class KpDatePickerComponent implements ControlValueAccessor, AfterViewChe
       this.viewDate = startOfMonth(anchor ?? new Date());
       this.view = 'day';
       this.rangeHover = null;
+      // Seed keyboard focus on the selected day (or today if none) so
+      // arrow-key navigation has a starting point.
+      this.focusedDay = startOfDay(anchor ?? new Date());
       window.addEventListener('scroll', this.reposition, true);
       window.addEventListener('resize', this.reposition);
     } else {
+      this.focusedDay = null;
       this.rangeHover = null;
       window.removeEventListener('scroll', this.reposition, true);
       window.removeEventListener('resize', this.reposition);
@@ -751,6 +761,73 @@ export class KpDatePickerComponent implements ControlValueAccessor, AfterViewChe
 
   @HostListener('document:keydown.escape')
   onEscape(): void { if (this.isOpen) this.setOpen(false); }
+
+  /** @internal — is this cell the one the keyboard roving-tabindex is on? */
+  isDayFocused(d: Date): boolean {
+    return this.focusedDay != null && sameDay(d, this.focusedDay);
+  }
+
+  /**
+   * WAI-ARIA date picker grid keyboard pattern:
+   *   ArrowLeft / ArrowRight  — previous / next day
+   *   ArrowUp / ArrowDown     — previous / next week (−7 / +7 days)
+   *   Home / End              — start / end of the current week
+   *   PageUp / PageDown       — previous / next month
+   *   Shift+PageUp / Shift+PageDown — previous / next year
+   *   Enter / Space           — pick the focused day
+   * Moving outside the current month auto-advances `viewDate` so the grid
+   * re-renders and the newly-focused cell is visible.
+   */
+  onDayKeyDown(event: KeyboardEvent, current: Date): void {
+    let next: Date | null = null;
+    switch (event.key) {
+      case 'ArrowLeft':  next = addDays(current, -1); break;
+      case 'ArrowRight': next = addDays(current,  1); break;
+      case 'ArrowUp':    next = addDays(current, -7); break;
+      case 'ArrowDown':  next = addDays(current,  7); break;
+      case 'Home': {
+        const weekday = current.getDay();
+        const offset = ((weekday - this.firstDayOfWeek) + 7) % 7;
+        next = addDays(current, -offset);
+        break;
+      }
+      case 'End': {
+        const weekday = current.getDay();
+        const offset = ((weekday - this.firstDayOfWeek) + 7) % 7;
+        next = addDays(current, 6 - offset);
+        break;
+      }
+      case 'PageUp':
+        next = event.shiftKey
+          ? new Date(current.getFullYear() - 1, current.getMonth(), current.getDate())
+          : addMonths(current, -1);
+        break;
+      case 'PageDown':
+        next = event.shiftKey
+          ? new Date(current.getFullYear() + 1, current.getMonth(), current.getDate())
+          : addMonths(current, 1);
+        break;
+      case 'Enter':
+      case ' ':
+        event.preventDefault();
+        this.pickDay(current);
+        return;
+      default:
+        return;
+    }
+    event.preventDefault();
+    this.focusedDay = startOfDay(next);
+    // If the new day is outside the visible month, re-anchor the view.
+    if (next.getMonth() !== this.viewDate.getMonth() || next.getFullYear() !== this.viewDate.getFullYear()) {
+      this.viewDate = startOfMonth(next);
+    }
+    this.cdr.markForCheck();
+    queueMicrotask(() => {
+      const iso = this.focusedDay!.toISOString().slice(0, 10);
+      const el = this.panelEl?.nativeElement.querySelector<HTMLElement>(`[data-day-iso="${iso}"]`);
+      el?.focus();
+    });
+  }
 
   ngAfterViewChecked(): void {
     if (!this.isOpen) return;

@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/GregNBlack/kanso-protocol/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/GregNBlack/kanso-protocol/actions/workflows/ci.yml)
 [![Storybook](https://img.shields.io/badge/Storybook-live-FF4785?logo=storybook&logoColor=white)](https://gregnblack.github.io/kanso-protocol)
-[![Tests](https://img.shields.io/badge/tests-330%20passing-brightgreen)](https://gregnblack.github.io/kanso-protocol/?path=/docs/foundations-test-coverage--docs)
+[![Tests](https://img.shields.io/badge/tests-352%20passing-brightgreen)](https://gregnblack.github.io/kanso-protocol/?path=/docs/foundations-test-coverage--docs)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 **Open source design system for Angular, built on architectural consistency.**

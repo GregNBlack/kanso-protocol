@@ -147,4 +147,82 @@ describe('KpTreeComponent', () => {
     expect(readmeLi.querySelector('.kp-tree__label')?.textContent?.trim()).toBe('README.md');
     expect(readmeLi.getAttribute('aria-selected')).toBe('true');
   });
+
+  // ─── Keyboard navigation ──────────────────────────────────────────────
+
+  it('initial tabindex=0 is on the first enabled root node (or selected if set)', () => {
+    const { fix, host } = setup();
+    fix.detectChanges();
+    const src = host.querySelector('li[data-node-id="src"]');
+    expect(src?.getAttribute('tabindex')).toBe('0');
+    const readme = host.querySelector('li[data-node-id="README"]');
+    expect(readme?.getAttribute('tabindex')).toBe('-1');
+  });
+
+  it('ArrowDown moves focus to the next visible node; ArrowUp moves back', () => {
+    const { fix, cmp } = setup({ expanded: ['src'] });
+    cmp.focusedId = 'src';
+    cmp.onKeyDown(new KeyboardEvent('keydown', { key: 'ArrowDown' }), TREE[0]);
+    expect(cmp.focusedId).toBe('src/a.ts');
+    fix.detectChanges();
+    cmp.onKeyDown(new KeyboardEvent('keydown', { key: 'ArrowUp' }), cmp.data.find((d) => d.id === 'src')!.children![0]);
+    expect(cmp.focusedId).toBe('src');
+  });
+
+  it('ArrowRight on a collapsed expandable node expands it', () => {
+    const { cmp } = setup();
+    cmp.focusedId = 'src';
+    const spy = vi.fn();
+    cmp.expandedChange.subscribe(spy);
+    cmp.onKeyDown(new KeyboardEvent('keydown', { key: 'ArrowRight' }), TREE[0]);
+    expect(cmp.expanded).toContain('src');
+    expect(spy).toHaveBeenCalledWith(['src']);
+  });
+
+  it('ArrowRight on an already-expanded node moves focus to the first child', () => {
+    const { cmp } = setup({ expanded: ['src'] });
+    cmp.focusedId = 'src';
+    cmp.onKeyDown(new KeyboardEvent('keydown', { key: 'ArrowRight' }), TREE[0]);
+    expect(cmp.focusedId).toBe('src/a.ts');
+  });
+
+  it('ArrowLeft on an expanded node collapses it', () => {
+    const { cmp } = setup({ expanded: ['src'] });
+    cmp.focusedId = 'src';
+    cmp.onKeyDown(new KeyboardEvent('keydown', { key: 'ArrowLeft' }), TREE[0]);
+    expect(cmp.expanded).not.toContain('src');
+  });
+
+  it('ArrowLeft on a leaf focuses the parent', () => {
+    const { cmp } = setup({ expanded: ['src'] });
+    cmp.focusedId = 'src/a.ts';
+    cmp.onKeyDown(new KeyboardEvent('keydown', { key: 'ArrowLeft' }), TREE[0].children![0]);
+    expect(cmp.focusedId).toBe('src');
+  });
+
+  it('Home focuses the first enabled node; End focuses the last visible non-disabled node', () => {
+    const { cmp } = setup({ expanded: ['src'] });
+    cmp.focusedId = 'src/a.ts';
+    cmp.onKeyDown(new KeyboardEvent('keydown', { key: 'Home' }), TREE[0].children![0]);
+    expect(cmp.focusedId).toBe('src');
+    cmp.onKeyDown(new KeyboardEvent('keydown', { key: 'End' }), TREE[0]);
+    // Last visible non-disabled is README ("locked" is disabled).
+    expect(cmp.focusedId).toBe('README');
+  });
+
+  it('Enter on the focused node selects it', () => {
+    const { cmp } = setup();
+    cmp.focusedId = 'README';
+    const spy = vi.fn();
+    cmp.selectedChange.subscribe(spy);
+    cmp.onKeyDown(new KeyboardEvent('keydown', { key: 'Enter' }), TREE[1]);
+    expect(spy).toHaveBeenCalledWith('README');
+  });
+
+  it('key presses on a disabled node are ignored', () => {
+    const { cmp } = setup();
+    cmp.focusedId = 'locked';
+    cmp.onKeyDown(new KeyboardEvent('keydown', { key: 'ArrowUp' }), TREE[2]);
+    expect(cmp.focusedId).toBe('locked');
+  });
 });
