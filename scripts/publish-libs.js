@@ -40,6 +40,14 @@ function alreadyPublished(name, version) {
   }
 }
 
+// Skip gracefully when no auth is configured — CI stays green, user can
+// set NPM_TOKEN later and re-run. Without this, `npm publish` errors with
+// E401 on the first package.
+if (!process.env.NPM_TOKEN && !process.env.NODE_AUTH_TOKEN) {
+  console.log('::notice::NPM_TOKEN not set — skipping publish (this is fine until the secret is configured).');
+  process.exit(0);
+}
+
 const pkgs = walk(DIST);
 if (!pkgs.length) {
   console.error('No built packages found under dist/packages.');
