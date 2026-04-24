@@ -160,6 +160,7 @@ Every component has a formal API contract in `docs/components/`. Read the contra
 - [MenuItem](docs/components/menu-item.md)
 - [DropdownMenu](docs/components/dropdown-menu.md)
 - [Textarea](docs/components/textarea.md)
+- [RichTextEditor](docs/components/rich-text-editor.md)
 
 Template for new components: [`docs/components/_template.md`](docs/components/_template.md)
 

@@ -1,0 +1,42 @@
+{
+  "name": "@kanso-protocol/rich-text-editor",
+  "version": "0.0.1",
+  "description": "Kanso Protocol — Rich Text Editor component (TipTap-powered, Angular 18+).",
+  "license": "MIT",
+  "author": "GregNBlack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GregNBlack/kanso-protocol.git",
+    "directory": "packages/components/rich-text-editor"
+  },
+  "homepage": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-richtexteditor--docs",
+  "bugs": "https://github.com/GregNBlack/kanso-protocol/issues",
+  "keywords": [
+    "design-system",
+    "angular",
+    "kanso",
+    "rich-text-editor",
+    "wysiwyg",
+    "tiptap"
+  ],
+  "sideEffects": false,
+  "peerDependencies": {
+    "@angular/core": ">=18.0.0",
+    "@angular/common": ">=18.0.0",
+    "@angular/forms": ">=18.0.0",
+    "@kanso-protocol/core": ">=0.0.1",
+    "@kanso-protocol/button": ">=0.0.1",
+    "@kanso-protocol/divider": ">=0.0.1",
+    "@kanso-protocol/popover": ">=0.0.1",
+    "@kanso-protocol/input": ">=0.0.1"
+  },
+  "dependencies": {
+    "@tiptap/core": "^3.22.4",
+    "@tiptap/starter-kit": "^3.22.4",
+    "@tiptap/extension-underline": "^3.22.4",
+    "@tiptap/extension-link": "^3.22.4",
+    "@tiptap/extension-image": "^3.22.4",
+    "@tiptap/extension-text-align": "^3.22.4",
+    "@tiptap/extension-placeholder": "^3.22.4"
+  }
+}
