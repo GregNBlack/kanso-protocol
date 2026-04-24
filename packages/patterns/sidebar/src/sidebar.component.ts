@@ -152,7 +152,7 @@ export interface KpSidebarSection {
       height: 100%;
       min-height: 100vh;
       background: var(--kp-color-sidebar-bg, var(--kp-color-white));
-      border-right: 1px solid var(--kp-color-sidebar-border, var(--kp-color-gray-200));
+      border-inline-end: 1px solid var(--kp-color-sidebar-border, var(--kp-color-gray-200));
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       transition: width 160ms ease;
     }

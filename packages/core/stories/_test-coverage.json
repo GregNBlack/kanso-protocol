@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-24T18:59:54.838Z",
+  "generatedAt": "2026-04-24T20:24:03.373Z",
   "totalSpecs": 36,
-  "totalTests": 326,
+  "totalTests": 330,
   "totalPackages": 56,
   "items": [
     {
@@ -268,7 +268,7 @@
       "specFiles": [
         "packages/components/rich-text-editor/src/rich-text-editor.spec.ts"
       ],
-      "tests": 13
+      "tests": 17
     },
     {
       "layer": "components",

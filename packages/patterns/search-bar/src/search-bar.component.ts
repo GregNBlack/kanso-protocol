@@ -260,7 +260,7 @@ export interface KpSearchResultGroup {
       display: inline-flex;
       align-items: center;
       padding: 1px 5px;
-      margin-right: 2px;
+      margin-inline-end: 2px;
       border: 1px solid var(--kp-color-gray-200, var(--kp-color-gray-200));
       border-radius: 3px;
       background: var(--kp-color-white, var(--kp-color-white));
@@ -268,7 +268,7 @@ export interface KpSearchResultGroup {
       font-family: inherit;
       font-size: 10px;
     }
-    .kp-search-bar__footer-brand { margin-left: auto; color: var(--kp-color-gray-400, var(--kp-color-gray-400)); }
+    .kp-search-bar__footer-brand { margin-inline-start: auto; color: var(--kp-color-gray-400, var(--kp-color-gray-400)); }
   `],
 })
 export class KpSearchBarComponent {

@@ -99,10 +99,10 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
       font: inherit;
       font-size: var(--kp-textarea-fs);
       line-height: var(--kp-textarea-lh);
-      padding-top: var(--kp-textarea-pad-y);
-      padding-right: var(--kp-textarea-pad-x);
-      padding-bottom: 22px; /* reserve space for counter + resize grip — matches Figma */
-      padding-left: var(--kp-textarea-pad-x);
+      padding-block-start: var(--kp-textarea-pad-y);
+      padding-inline-end: var(--kp-textarea-pad-x);
+      padding-block-end: 22px; /* reserve space for counter + resize grip — matches Figma */
+      padding-inline-start: var(--kp-textarea-pad-x);
       margin: 0;
       resize: both;
       border-radius: inherit;
@@ -123,7 +123,7 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
     .kp-textarea__field::-webkit-scrollbar-thumb {
       background: var(--kp-color-gray-300);
       border-radius: 3px;
-      border-right: 2px solid transparent;
+      border-inline-end: 2px solid transparent;
       background-clip: padding-box;
     }
     .kp-textarea__field::-webkit-scrollbar-thumb:hover { background: var(--kp-color-gray-400); background-clip: padding-box; }
@@ -173,7 +173,7 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
       font-variant-numeric: tabular-nums;
       pointer-events: none;
       background: var(--kp-input-bg, var(--kp-color-white));
-      padding-left: 4px;
+      padding-inline-start: 4px;
     }
     :host(.kp-textarea--filled) .kp-textarea__counter { background: var(--kp-color-gray-100); }
     /* When the custom grip is hidden, align counter to the same inset as the bottom */

@@ -222,7 +222,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       font-size: var(--kp-input-font-size);
       line-height: var(--kp-input-line-height);
       font-variant-numeric: tabular-nums;
-      text-align: left;
+      text-align: start;
     }
     .kp-tp__value--placeholder { color: var(--kp-input-placeholder, var(--kp-color-gray-400)); }
 

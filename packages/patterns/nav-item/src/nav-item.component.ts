@@ -105,8 +105,8 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
       gap: var(--kp-nav-item-gap, 12px);
       width: 100%;
       height: var(--kp-nav-item-h, 40px);
-      padding-left: calc(var(--kp-nav-item-pad, 12px) + var(--kp-nav-item-depth, 0) * var(--kp-nav-item-indent, 20px));
-      padding-right: var(--kp-nav-item-pad, 12px);
+      padding-inline-start: calc(var(--kp-nav-item-pad, 12px) + var(--kp-nav-item-depth, 0) * var(--kp-nav-item-indent, 20px));
+      padding-inline-end: var(--kp-nav-item-pad, 12px);
       border-radius: var(--kp-nav-item-radius, 8px);
       color: var(--kp-color-nav-item-fg-rest, var(--kp-color-gray-700));
       background: var(--kp-color-nav-item-bg-rest, transparent);
@@ -149,7 +149,7 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
       white-space: nowrap;
       font-size: var(--kp-nav-item-fs, 14px);
       font-weight: 500;
-      text-align: left;
+      text-align: start;
     }
 
     .kp-nav-item__badge {
@@ -206,8 +206,8 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
     :host(.kp-nav-item--collapsed) .kp-nav-item__badge,
     :host(.kp-nav-item--collapsed) .kp-nav-item__chevron { display: none; }
     :host(.kp-nav-item--collapsed) .kp-nav-item__content {
-      padding-left: 0;
-      padding-right: 0;
+      padding-inline-start: 0;
+      padding-inline-end: 0;
       justify-content: center;
     }
   `],

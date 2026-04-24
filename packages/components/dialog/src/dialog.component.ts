@@ -169,7 +169,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
     /* Leave room for the absolutely-positioned close button so long titles
        don't tuck under it. */
     .kp-dialog__header--has-close {
-      padding-right: calc(var(--kp-dialog-pad) + var(--kp-dialog-close-btn) + 8px);
+      padding-inline-end: calc(var(--kp-dialog-pad) + var(--kp-dialog-close-btn) + 8px);
     }
     .kp-dialog__hero {
       display: inline-flex;

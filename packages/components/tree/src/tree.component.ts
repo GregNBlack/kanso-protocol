@@ -63,7 +63,7 @@ export interface KpTreeNode {
           class="kp-tree__row"
           [class.kp-tree__row--selected]="selected === node.id"
           [class.kp-tree__row--disabled]="node.disabled"
-          [style.paddingLeft.px]="paddingForLevel(level)"
+          [style.padding-inline-start.px]="paddingForLevel(level)"
           (click)="onRowClick(node)"
         >
           @if (isExpandable(node)) {
@@ -164,7 +164,7 @@ export interface KpTreeNode {
       align-items: center;
       gap: var(--kp-tree-gap);
       height: var(--kp-tree-row-h);
-      padding-right: var(--kp-tree-pad-x);
+      padding-inline-end: var(--kp-tree-pad-x);
       border-radius: 6px;
       font-size: var(--kp-tree-fs);
       color: var(--kp-color-tree-node-fg-rest, var(--kp-color-gray-900));

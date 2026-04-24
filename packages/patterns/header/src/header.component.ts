@@ -200,7 +200,7 @@ export interface KpHeaderNavItem {
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      margin-left: 16px;
+      margin-inline-start: 16px;
     }
     :host(.kp-header--md) .kp-header__nav,
     :host(.kp-header--lg) .kp-header__nav { gap: 8px; }
@@ -246,7 +246,7 @@ export interface KpHeaderNavItem {
     .kp-header__search-placeholder span {
       flex: 1 1 auto;
       min-width: 0;
-      text-align: left;
+      text-align: start;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;

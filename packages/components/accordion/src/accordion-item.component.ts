@@ -113,7 +113,7 @@ export type KpAccordionItemSize = 'sm' | 'md' | 'lg';
       display: inline-flex;
       flex-direction: column;
       gap: 2px;
-      text-align: left;
+      text-align: start;
     }
     .kp-ai__title {
       font-size: var(--kp-ai-title-size);

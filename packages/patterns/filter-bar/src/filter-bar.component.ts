@@ -110,7 +110,7 @@ export interface KpFilterChip {
       align-items: center;
       gap: 4px;
       flex: 0 0 auto;
-      margin-left: auto;
+      margin-inline-start: auto;
     }
 
     :host .ti { font-size: 14px; line-height: 1; }

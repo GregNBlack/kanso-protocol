@@ -352,10 +352,10 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
     ::ng-deep .kp-rte__editor .ProseMirror h2 { font-size: 22px; line-height: 28px; font-weight: 600; margin: 14px 0 6px; }
     ::ng-deep .kp-rte__editor .ProseMirror h3 { font-size: 18px; line-height: 24px; font-weight: 600; margin: 12px 0 6px; }
     ::ng-deep .kp-rte__editor .ProseMirror ul,
-    ::ng-deep .kp-rte__editor .ProseMirror ol { padding-left: 24px; margin: 0 0 8px; }
+    ::ng-deep .kp-rte__editor .ProseMirror ol { padding-inline-start: 24px; margin: 0 0 8px; }
     ::ng-deep .kp-rte__editor .ProseMirror blockquote {
-      border-left: 3px solid var(--kp-color-gray-300);
-      padding-left: 12px;
+      border-inline-start: 3px solid var(--kp-color-gray-300);
+      padding-inline-start: 12px;
       color: var(--kp-color-gray-600);
       margin: 8px 0;
     }

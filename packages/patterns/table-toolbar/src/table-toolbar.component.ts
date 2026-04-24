@@ -190,7 +190,7 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
       row-gap: 8px;
       flex: 0 1 auto;
       justify-content: flex-end;
-      margin-left: auto;
+      margin-inline-start: auto;
     }
 
     /* Let SearchBar shrink inside the toolbar when the viewport is narrow.

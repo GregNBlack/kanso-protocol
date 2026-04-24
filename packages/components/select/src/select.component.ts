@@ -154,7 +154,7 @@ export interface KpSelectOption {
       gap: var(--kp-input-gap);
       font: inherit;
       color: var(--kp-input-fg, var(--kp-color-gray-900));
-      text-align: left;
+      text-align: start;
       cursor: pointer;
       transition:
         border-color var(--kp-motion-duration-fast, 100ms) ease,

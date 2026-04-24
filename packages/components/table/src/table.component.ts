@@ -201,12 +201,12 @@ export class KpTableHeaderDirective {
       padding: 0 var(--kp-table-pad-x);
       height: var(--kp-table-row-h);
       vertical-align: middle;
-      text-align: left;
+      text-align: start;
       color: inherit;
     }
     .kp-table__cell--center { text-align: center; }
-    .kp-table__cell--right  { text-align: right; }
-    .kp-table__cell--checkbox { width: 44px; padding-right: 0; }
+    .kp-table__cell--right  { text-align: end; }
+    .kp-table__cell--checkbox { width: 44px; padding-inline-end: 0; }
 
     .kp-table__cell--header {
       font-size: 11px;

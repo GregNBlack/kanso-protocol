@@ -49,7 +49,7 @@ Patterns are larger compositions (page shells, layouts, multi-control bars) buil
 - **API is intentionally unstable.** Until `1.0`, any minor bump (`0.x.y`) may include breaking changes. Pin exact versions in production.
 - **SSR validation pending.** Components access the DOM exclusively via `inject(DOCUMENT)` or inside `ngAfterViewInit` / `ngAfterViewChecked` (which don't run on the server), and teardown logic is guarded with `typeof window !== 'undefined'`. Static analysis suggests they should render on bare-metal `@angular/platform-server`, but a full SSR + hydration test is on the `0.2.x` track.
 - **Manual a11y audit pending.** Components ship with sensible ARIA roles, labels, and keyboard handling, but a formal screen-reader / focus-trap audit is on the `0.2.x` track.
-- **No RTL pass yet** — layout assumes LTR. RTL is on the roadmap.
+- **RTL validation pending.** Components use CSS logical properties (`margin-inline-start`, `padding-inline-end`, `border-start-start-radius`, `text-align: start`, etc.) throughout — setting `dir="rtl"` on an ancestor should flip horizontal layout without overrides. Formal RTL validation (visual regression on Arabic / Hebrew content) is on the `0.2.x` track. Drawer's `side="left" | "right"` remains a physical API by design.
 - **Onest font + Tabler icons** are referenced via the host app's font/icon stack; no CDN vendoring inside packages yet.
 
 ### Install

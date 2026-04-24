@@ -199,7 +199,7 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       background: var(--kp-color-gray-100, var(--kp-color-gray-100));
       color: var(--kp-color-gray-900, var(--kp-color-gray-900));
     }
-    .kp-theme-toggle__dropdown-label { min-width: 44px; text-align: left; }
+    .kp-theme-toggle__dropdown-label { min-width: 44px; text-align: start; }
 
     .kp-theme-toggle__dropdown-wrap {
       position: relative;
@@ -238,7 +238,7 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       font-weight: 500;
     }
     .kp-theme-toggle__option-check {
-      margin-left: auto;
+      margin-inline-start: auto;
       color: var(--kp-color-blue-600, var(--kp-color-blue-600));
     }
 
