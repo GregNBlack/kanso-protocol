@@ -12,6 +12,7 @@
   "files": [
     "dist",
     "manifest.json",
+    "figma-mapping.json",
     "README.md"
   ],
   "scripts": {

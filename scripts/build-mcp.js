@@ -54,6 +54,8 @@ fs.mkdirSync(DEST_PKG, { recursive: true });
 // Files at the package root.
 copy(path.join(SRC_PKG, 'package.json'), path.join(DEST_PKG, 'package.json'));
 copy(path.join(SRC_PKG, 'manifest.json'), path.join(DEST_PKG, 'manifest.json'));
+const figmaMapping = path.join(SRC_PKG, 'figma-mapping.json');
+if (fs.existsSync(figmaMapping)) copy(figmaMapping, path.join(DEST_PKG, 'figma-mapping.json'));
 const readme = path.join(SRC_PKG, 'README.md');
 if (fs.existsSync(readme)) copy(readme, path.join(DEST_PKG, 'README.md'));
 

@@ -1,10 +1,61 @@
 {
-  "generatedAt": "2026-04-25T02:59:47.097Z",
+  "generatedAt": "2026-04-25T04:45:39.694Z",
   "version": "0.1.0",
   "totals": {
     "components": 48,
     "patterns": 22,
-    "tokens": 884
+    "tokens": 895
+  },
+  "figma": {
+    "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+    "fileName": "Design-System",
+    "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System",
+    "pages": {
+      "components": {
+        "id": "0:1",
+        "name": "🧩 Components"
+      },
+      "patterns": {
+        "id": "3612:2",
+        "name": "📐 Patterns"
+      },
+      "foundations": {
+        "id": "6:4",
+        "name": "🎨 Foundations"
+      },
+      "examples": {
+        "id": "3753:2",
+        "name": "🖼️ Example Pages"
+      },
+      "assets": {
+        "id": "17:2",
+        "name": "⚙️ Assets"
+      },
+      "manifest": {
+        "id": "6:3",
+        "name": "📋 Manifest"
+      },
+      "cover": {
+        "id": "6:2",
+        "name": "📖 Cover"
+      }
+    },
+    "iconLibrary": {
+      "fileKey": "0bgkes9nJYbk0vonduKaVZ",
+      "name": "Tabler Icon Pack",
+      "$comment": "Single source of icon glyphs for Kanso. The Icon component wraps an instance from this library."
+    },
+    "foundations": {
+      "typography": "3043:2",
+      "colors": "3051:2",
+      "spacing": "3055:2",
+      "sizing": "3056:2",
+      "radius": "3057:2",
+      "elevation": "3881:2",
+      "overlays": "3881:30",
+      "foreground-on-dark": "3881:73",
+      "motion": "3881:93"
+    }
   },
   "components": [
     {
@@ -79,7 +130,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-accordion--docs",
-      "sourcePath": "packages/components/accordion/src/accordion-item.component.ts"
+      "sourcePath": "packages/components/accordion/src/accordion-item.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11103",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11103"
+      }
     },
     {
       "name": "accordion",
@@ -118,7 +174,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-accordion--docs",
-      "sourcePath": "packages/components/accordion/src/accordion.component.ts"
+      "sourcePath": "packages/components/accordion/src/accordion.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11103",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11103"
+      }
     },
     {
       "name": "alert",
@@ -188,7 +249,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-alert--docs",
-      "sourcePath": "packages/components/alert/src/alert.component.ts"
+      "sourcePath": "packages/components/alert/src/alert.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11044",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11044"
+      }
     },
     {
       "name": "avatar",
@@ -274,7 +340,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-avatar--docs",
-      "sourcePath": "packages/components/avatar/src/avatar.component.ts"
+      "sourcePath": "packages/components/avatar/src/avatar.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11139",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11139"
+      }
     },
     {
       "name": "avatar-group",
@@ -313,7 +384,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-avatargroup--docs",
-      "sourcePath": "packages/components/avatar-group/src/avatar-group.component.ts"
+      "sourcePath": "packages/components/avatar-group/src/avatar-group.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11139",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11139"
+      }
     },
     {
       "name": "badge",
@@ -377,7 +453,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-badge--docs",
-      "sourcePath": "packages/components/badge/src/badge.component.ts"
+      "sourcePath": "packages/components/badge/src/badge.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11040",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11040"
+      }
     },
     {
       "name": "breadcrumbs",
@@ -440,7 +521,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-breadcrumbs--docs",
-      "sourcePath": "packages/components/breadcrumbs/src/breadcrumb-item.component.ts"
+      "sourcePath": "packages/components/breadcrumbs/src/breadcrumb-item.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11072",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11072"
+      }
     },
     {
       "name": "breadcrumbs",
@@ -472,7 +558,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-breadcrumbs--docs",
-      "sourcePath": "packages/components/breadcrumbs/src/breadcrumb-separator.component.ts"
+      "sourcePath": "packages/components/breadcrumbs/src/breadcrumb-separator.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11072",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11072"
+      }
     },
     {
       "name": "breadcrumbs",
@@ -514,7 +605,12 @@
         "Home"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-breadcrumbs--docs",
-      "sourcePath": "packages/components/breadcrumbs/src/breadcrumbs-auto.component.ts"
+      "sourcePath": "packages/components/breadcrumbs/src/breadcrumbs-auto.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11072",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11072"
+      }
     },
     {
       "name": "breadcrumbs",
@@ -548,7 +644,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-breadcrumbs--docs",
-      "sourcePath": "packages/components/breadcrumbs/src/breadcrumbs.component.ts"
+      "sourcePath": "packages/components/breadcrumbs/src/breadcrumbs.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11072",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11072"
+      }
     },
     {
       "name": "button",
@@ -609,7 +710,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-button--docs",
-      "sourcePath": "packages/components/button/src/button.component.ts"
+      "sourcePath": "packages/components/button/src/button.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:10993",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-10993"
+      }
     },
     {
       "name": "card",
@@ -701,7 +807,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-card--docs",
-      "sourcePath": "packages/components/card/src/card.component.ts"
+      "sourcePath": "packages/components/card/src/card.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11091",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11091"
+      }
     },
     {
       "name": "checkbox",
@@ -771,7 +882,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-checkbox--docs",
-      "sourcePath": "packages/components/checkbox/src/checkbox.component.ts"
+      "sourcePath": "packages/components/checkbox/src/checkbox.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11001",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11001"
+      }
     },
     {
       "name": "combobox",
@@ -861,7 +977,12 @@
         "Backspace"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-combobox--docs",
-      "sourcePath": "packages/components/combobox/src/combobox.component.ts"
+      "sourcePath": "packages/components/combobox/src/combobox.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11115",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11115"
+      }
     },
     {
       "name": "datepicker",
@@ -977,7 +1098,12 @@
         "Space"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-datepicker--docs",
-      "sourcePath": "packages/components/datepicker/src/datepicker.component.ts"
+      "sourcePath": "packages/components/datepicker/src/datepicker.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11119",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11119"
+      }
     },
     {
       "name": "dialog",
@@ -1103,7 +1229,12 @@
         "Escape"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-dialog--docs",
-      "sourcePath": "packages/components/dialog/src/dialog.component.ts"
+      "sourcePath": "packages/components/dialog/src/dialog.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11083",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11083"
+      }
     },
     {
       "name": "divider",
@@ -1144,7 +1275,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-divider--docs",
-      "sourcePath": "packages/components/divider/src/divider.component.ts"
+      "sourcePath": "packages/components/divider/src/divider.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11087",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11087"
+      }
     },
     {
       "name": "drawer",
@@ -1267,7 +1403,12 @@
         "Escape"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-drawer--docs",
-      "sourcePath": "packages/components/drawer/src/drawer.component.ts"
+      "sourcePath": "packages/components/drawer/src/drawer.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11099",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11099"
+      }
     },
     {
       "name": "empty-state",
@@ -1318,7 +1459,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-emptystate--docs",
-      "sourcePath": "packages/components/empty-state/src/empty-state.component.ts"
+      "sourcePath": "packages/components/empty-state/src/empty-state.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11095",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11095"
+      }
     },
     {
       "name": "form-field",
@@ -1380,7 +1526,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-formfield--docs",
-      "sourcePath": "packages/components/form-field/src/form-field.component.ts"
+      "sourcePath": "packages/components/form-field/src/form-field.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11016",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11016"
+      }
     },
     {
       "name": "input",
@@ -1453,7 +1604,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-input--docs",
-      "sourcePath": "packages/components/input/src/input.component.ts"
+      "sourcePath": "packages/components/input/src/input.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:10997",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-10997"
+      }
     },
     {
       "name": "menu",
@@ -1527,7 +1683,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-menu--docs",
-      "sourcePath": "packages/components/menu/src/dropdown-menu.component.ts"
+      "sourcePath": "packages/components/menu/src/dropdown-menu.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11020",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11020"
+      }
     },
     {
       "name": "menu",
@@ -1543,7 +1704,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-menu--docs",
-      "sourcePath": "packages/components/menu/src/menu-divider.component.ts"
+      "sourcePath": "packages/components/menu/src/menu-divider.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11020",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11020"
+      }
     },
     {
       "name": "menu",
@@ -1620,7 +1786,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-menu--docs",
-      "sourcePath": "packages/components/menu/src/menu-item.component.ts"
+      "sourcePath": "packages/components/menu/src/menu-item.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11020",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11020"
+      }
     },
     {
       "name": "menu",
@@ -1643,7 +1814,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-menu--docs",
-      "sourcePath": "packages/components/menu/src/menu-section-label.component.ts"
+      "sourcePath": "packages/components/menu/src/menu-section-label.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11020",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11020"
+      }
     },
     {
       "name": "number-stepper",
@@ -1716,7 +1892,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-numberstepper--docs",
-      "sourcePath": "packages/components/number-stepper/src/number-stepper.component.ts"
+      "sourcePath": "packages/components/number-stepper/src/number-stepper.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11032",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11032"
+      }
     },
     {
       "name": "pagination",
@@ -1796,7 +1977,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-pagination--docs",
-      "sourcePath": "packages/components/pagination/src/pagination-item.component.ts"
+      "sourcePath": "packages/components/pagination/src/pagination-item.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11076",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11076"
+      }
     },
     {
       "name": "pagination",
@@ -1912,7 +2098,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-pagination--docs",
-      "sourcePath": "packages/components/pagination/src/pagination.component.ts"
+      "sourcePath": "packages/components/pagination/src/pagination.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11076",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11076"
+      }
     },
     {
       "name": "popover",
@@ -1996,7 +2187,12 @@
         "Space"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-popover--docs",
-      "sourcePath": "packages/components/popover/src/popover.component.ts"
+      "sourcePath": "packages/components/popover/src/popover.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11052",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11052"
+      }
     },
     {
       "name": "progress",
@@ -2053,7 +2249,12 @@
         "Space"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-progress--docs",
-      "sourcePath": "packages/components/progress/src/progress-circular.component.ts"
+      "sourcePath": "packages/components/progress/src/progress-circular.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11056",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11056"
+      }
     },
     {
       "name": "progress",
@@ -2119,7 +2320,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-progress--docs",
-      "sourcePath": "packages/components/progress/src/progress-linear.component.ts"
+      "sourcePath": "packages/components/progress/src/progress-linear.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11056",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11056"
+      }
     },
     {
       "name": "progress",
@@ -2191,7 +2397,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-progress--docs",
-      "sourcePath": "packages/components/progress/src/progress-segmented.component.ts"
+      "sourcePath": "packages/components/progress/src/progress-segmented.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11056",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11056"
+      }
     },
     {
       "name": "radio",
@@ -2239,7 +2450,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-radio--docs",
-      "sourcePath": "packages/components/radio/src/radio-group.component.ts"
+      "sourcePath": "packages/components/radio/src/radio-group.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11005",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11005"
+      }
     },
     {
       "name": "radio",
@@ -2309,7 +2525,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-radio--docs",
-      "sourcePath": "packages/components/radio/src/radio.component.ts"
+      "sourcePath": "packages/components/radio/src/radio.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11005",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11005"
+      }
     },
     {
       "name": "rich-text-editor",
@@ -2373,7 +2594,12 @@
         "Escape"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-richtexteditor--docs",
-      "sourcePath": "packages/components/rich-text-editor/src/rich-text-editor.component.ts"
+      "sourcePath": "packages/components/rich-text-editor/src/rich-text-editor.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3849:11648",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3849-11648"
+      }
     },
     {
       "name": "segmented-control",
@@ -2426,7 +2652,12 @@
         "End"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-segmentedcontrol--docs",
-      "sourcePath": "packages/components/segmented-control/src/segmented-control.component.ts"
+      "sourcePath": "packages/components/segmented-control/src/segmented-control.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11036",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11036"
+      }
     },
     {
       "name": "select",
@@ -2506,7 +2737,12 @@
         "Escape"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-select--docs",
-      "sourcePath": "packages/components/select/src/select.component.ts"
+      "sourcePath": "packages/components/select/src/select.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11028",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11028"
+      }
     },
     {
       "name": "skeleton",
@@ -2559,7 +2795,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-skeleton--docs",
-      "sourcePath": "packages/components/skeleton/src/skeleton.component.ts"
+      "sourcePath": "packages/components/skeleton/src/skeleton.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11107",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11107"
+      }
     },
     {
       "name": "slider",
@@ -2678,7 +2919,12 @@
         "PageDown"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-slider--docs",
-      "sourcePath": "packages/components/slider/src/slider.component.ts"
+      "sourcePath": "packages/components/slider/src/slider.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11111",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11111"
+      }
     },
     {
       "name": "table",
@@ -2774,7 +3020,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-table--docs",
-      "sourcePath": "packages/components/table/src/table.component.ts"
+      "sourcePath": "packages/components/table/src/table.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11131",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11131"
+      }
     },
     {
       "name": "tabs",
@@ -2832,7 +3083,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tabs--docs",
-      "sourcePath": "packages/components/tabs/src/tab.component.ts"
+      "sourcePath": "packages/components/tabs/src/tab.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11068",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11068"
+      }
     },
     {
       "name": "tabs",
@@ -2872,7 +3128,12 @@
         "End"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tabs--docs",
-      "sourcePath": "packages/components/tabs/src/tabs.component.ts"
+      "sourcePath": "packages/components/tabs/src/tabs.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11068",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11068"
+      }
     },
     {
       "name": "textarea",
@@ -2949,7 +3210,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-textarea--docs",
-      "sourcePath": "packages/components/textarea/src/textarea.component.ts"
+      "sourcePath": "packages/components/textarea/src/textarea.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11024",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11024"
+      }
     },
     {
       "name": "timepicker",
@@ -3035,7 +3301,12 @@
         "Escape"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-timepicker--docs",
-      "sourcePath": "packages/components/timepicker/src/timepicker.component.ts"
+      "sourcePath": "packages/components/timepicker/src/timepicker.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11123",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11123"
+      }
     },
     {
       "name": "toast",
@@ -3081,7 +3352,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-toast--docs",
-      "sourcePath": "packages/components/toast/src/toast-host.component.ts"
+      "sourcePath": "packages/components/toast/src/toast-host.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11127",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11127"
+      }
     },
     {
       "name": "toggle",
@@ -3145,7 +3421,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-toggle--docs",
-      "sourcePath": "packages/components/toggle/src/toggle.component.ts"
+      "sourcePath": "packages/components/toggle/src/toggle.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11009",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11009"
+      }
     },
     {
       "name": "tooltip",
@@ -3192,7 +3473,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tooltip--docs",
-      "sourcePath": "packages/components/tooltip/src/tooltip.component.ts"
+      "sourcePath": "packages/components/tooltip/src/tooltip.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11048",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11048"
+      }
     },
     {
       "name": "tree",
@@ -3280,7 +3566,12 @@
         "Space"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tree--docs",
-      "sourcePath": "packages/components/tree/src/tree.component.ts"
+      "sourcePath": "packages/components/tree/src/tree.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11135",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11135"
+      }
     }
   ],
   "patterns": [
@@ -3331,7 +3622,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-appshell--docs",
-      "sourcePath": "packages/patterns/app-shell/src/app-shell.component.ts"
+      "sourcePath": "packages/patterns/app-shell/src/app-shell.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7265",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7265"
+      }
     },
     {
       "name": "banner",
@@ -3394,7 +3690,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-banner--docs",
-      "sourcePath": "packages/patterns/banner/src/banner.component.ts"
+      "sourcePath": "packages/patterns/banner/src/banner.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7272",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7272"
+      }
     },
     {
       "name": "container",
@@ -3425,7 +3726,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-container--docs",
-      "sourcePath": "packages/patterns/container/src/container.component.ts"
+      "sourcePath": "packages/patterns/container/src/container.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7280",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7280"
+      }
     },
     {
       "name": "filter-bar",
@@ -3485,7 +3791,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-filterbar--docs",
-      "sourcePath": "packages/patterns/filter-bar/src/filter-bar.component.ts"
+      "sourcePath": "packages/patterns/filter-bar/src/filter-bar.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7288",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7288"
+      }
     },
     {
       "name": "form-section",
@@ -3544,7 +3855,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-formsection--docs",
-      "sourcePath": "packages/patterns/form-section/src/form-section.component.ts"
+      "sourcePath": "packages/patterns/form-section/src/form-section.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7296",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7296"
+      }
     },
     {
       "name": "grid",
@@ -3581,7 +3897,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-grid--docs",
-      "sourcePath": "packages/patterns/grid/src/grid.component.ts"
+      "sourcePath": "packages/patterns/grid/src/grid.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7304",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7304"
+      }
     },
     {
       "name": "header",
@@ -3729,7 +4050,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-header--docs",
-      "sourcePath": "packages/patterns/header/src/header.component.ts"
+      "sourcePath": "packages/patterns/header/src/header.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7312",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7312"
+      }
     },
     {
       "name": "nav-item",
@@ -3823,7 +4149,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-navitem--docs",
-      "sourcePath": "packages/patterns/nav-item/src/nav-item.component.ts"
+      "sourcePath": "packages/patterns/nav-item/src/nav-item.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7320",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7320"
+      }
     },
     {
       "name": "notification-center",
@@ -3899,7 +4230,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-notificationcenter--docs",
-      "sourcePath": "packages/patterns/notification-center/src/notification-center.component.ts"
+      "sourcePath": "packages/patterns/notification-center/src/notification-center.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7327",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7327"
+      }
     },
     {
       "name": "notification-center",
@@ -3969,7 +4305,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-notificationcenter--docs",
-      "sourcePath": "packages/patterns/notification-center/src/notification-item.component.ts"
+      "sourcePath": "packages/patterns/notification-center/src/notification-item.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7327",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7327"
+      }
     },
     {
       "name": "page-error",
@@ -4030,7 +4371,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-pageerror--docs",
-      "sourcePath": "packages/patterns/page-error/src/page-error.component.ts"
+      "sourcePath": "packages/patterns/page-error/src/page-error.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7334",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7334"
+      }
     },
     {
       "name": "page-header",
@@ -4112,7 +4458,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-pageheader--docs",
-      "sourcePath": "packages/patterns/page-header/src/page-header.component.ts"
+      "sourcePath": "packages/patterns/page-header/src/page-header.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7341",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7341"
+      }
     },
     {
       "name": "row",
@@ -4155,7 +4506,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-row--docs",
-      "sourcePath": "packages/patterns/row/src/row.component.ts"
+      "sourcePath": "packages/patterns/row/src/row.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3825:7273",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3825-7273"
+      }
     },
     {
       "name": "search-bar",
@@ -4233,7 +4589,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-searchbar--docs",
-      "sourcePath": "packages/patterns/search-bar/src/search-bar.component.ts"
+      "sourcePath": "packages/patterns/search-bar/src/search-bar.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7356",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7356"
+      }
     },
     {
       "name": "settings-panel",
@@ -4292,7 +4653,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-settingspanel--docs",
-      "sourcePath": "packages/patterns/settings-panel/src/settings-panel.component.ts"
+      "sourcePath": "packages/patterns/settings-panel/src/settings-panel.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7364",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7364"
+      }
     },
     {
       "name": "settings-panel",
@@ -4345,7 +4711,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-settingspanel--docs",
-      "sourcePath": "packages/patterns/settings-panel/src/settings-row.component.ts"
+      "sourcePath": "packages/patterns/settings-panel/src/settings-row.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7364",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7364"
+      }
     },
     {
       "name": "sidebar",
@@ -4443,7 +4814,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-sidebar--docs",
-      "sourcePath": "packages/patterns/sidebar/src/sidebar.component.ts"
+      "sourcePath": "packages/patterns/sidebar/src/sidebar.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7372",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7372"
+      }
     },
     {
       "name": "stack",
@@ -4474,7 +4850,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-stack--docs",
-      "sourcePath": "packages/patterns/stack/src/stack.component.ts"
+      "sourcePath": "packages/patterns/stack/src/stack.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3825:7265",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3825-7265"
+      }
     },
     {
       "name": "stat-card",
@@ -4563,7 +4944,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-statcard--docs",
-      "sourcePath": "packages/patterns/stat-card/src/stat-card.component.ts"
+      "sourcePath": "packages/patterns/stat-card/src/stat-card.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7387",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7387"
+      }
     },
     {
       "name": "table-toolbar",
@@ -4715,7 +5101,12 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-tabletoolbar--docs",
-      "sourcePath": "packages/patterns/table-toolbar/src/table-toolbar.component.ts"
+      "sourcePath": "packages/patterns/table-toolbar/src/table-toolbar.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7395",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7395"
+      }
     },
     {
       "name": "theme-toggle",
@@ -4773,7 +5164,12 @@
         "Escape"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-themetoggle--docs",
-      "sourcePath": "packages/patterns/theme-toggle/src/theme-toggle.component.ts"
+      "sourcePath": "packages/patterns/theme-toggle/src/theme-toggle.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7403",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7403"
+      }
     },
     {
       "name": "user-menu",
@@ -4854,7 +5250,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-usermenu--docs",
-      "sourcePath": "packages/patterns/user-menu/src/user-menu.component.ts"
+      "sourcePath": "packages/patterns/user-menu/src/user-menu.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3822:7411",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7411"
+      }
     }
   ],
   "tokens": [
@@ -5813,6 +6214,60 @@
       "subPath": "dialog-backdrop"
     },
     {
+      "name": "--kp-color-overlay-hover-subtle",
+      "value": "rgba(0, 0, 0, 0.04)",
+      "category": "color",
+      "subPath": "overlay-hover-subtle"
+    },
+    {
+      "name": "--kp-color-overlay-hover-light",
+      "value": "rgba(0, 0, 0, 0.06)",
+      "category": "color",
+      "subPath": "overlay-hover-light"
+    },
+    {
+      "name": "--kp-color-overlay-hover-medium",
+      "value": "rgba(0, 0, 0, 0.08)",
+      "category": "color",
+      "subPath": "overlay-hover-medium"
+    },
+    {
+      "name": "--kp-color-overlay-primary-hover",
+      "value": "rgba(37, 99, 235, 0.08)",
+      "category": "color",
+      "subPath": "overlay-primary-hover"
+    },
+    {
+      "name": "--kp-color-overlay-focus-ring",
+      "value": "rgba(59, 130, 246, 0.12)",
+      "category": "color",
+      "subPath": "overlay-focus-ring"
+    },
+    {
+      "name": "--kp-color-fg-on-dark-strong",
+      "value": "rgba(255, 255, 255, 0.92)",
+      "category": "color",
+      "subPath": "fg-on-dark-strong"
+    },
+    {
+      "name": "--kp-color-fg-on-dark-default",
+      "value": "rgba(255, 255, 255, 0.8)",
+      "category": "color",
+      "subPath": "fg-on-dark-default"
+    },
+    {
+      "name": "--kp-color-fg-on-dark-muted",
+      "value": "rgba(255, 255, 255, 0.7)",
+      "category": "color",
+      "subPath": "fg-on-dark-muted"
+    },
+    {
+      "name": "--kp-color-fg-on-dark-subtle",
+      "value": "rgba(255, 255, 255, 0.6)",
+      "category": "color",
+      "subPath": "fg-on-dark-subtle"
+    },
+    {
       "name": "--kp-elevation-none",
       "value": "0px 0px 0px 0px rgba(0,0,0,0)",
       "category": "elevation",
@@ -5898,7 +6353,7 @@
     },
     {
       "name": "--kp-motion-duration-fast",
-      "value": "100ms",
+      "value": "120ms",
       "category": "motion",
       "subPath": "duration-fast"
     },
@@ -5913,6 +6368,18 @@
       "value": "300ms",
       "category": "motion",
       "subPath": "duration-slow"
+    },
+    {
+      "name": "--kp-motion-duration-spin",
+      "value": "1000ms",
+      "category": "motion",
+      "subPath": "duration-spin"
+    },
+    {
+      "name": "--kp-motion-duration-shimmer",
+      "value": "1400ms",
+      "category": "motion",
+      "subPath": "duration-shimmer"
     },
     {
       "name": "--kp-motion-ease-in",

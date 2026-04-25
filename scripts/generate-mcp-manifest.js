@@ -241,6 +241,35 @@ function parseTokens() {
   return out;
 }
 
+function loadFigmaMapping() {
+  const p = path.join(ROOT, 'packages', 'mcp', 'figma-mapping.json');
+  if (!fs.existsSync(p)) return null;
+  return JSON.parse(fs.readFileSync(p, 'utf8'));
+}
+
+/**
+ * Attach `figma: { fileKey, nodeId, url }` to every component / pattern record
+ * for which we have a node id in the mapping. The MCP server uses this so
+ * `figma_for_component(name)` can return a one-shot context the assistant
+ * feeds straight into Figma's MCP tools (get_design_context, get_screenshot)
+ * without an intermediate search step.
+ */
+function attachFigmaContext(items, mappingForLayer, fileKey, fileUrl) {
+  if (!mappingForLayer) return items;
+  return items.map((item) => {
+    const nodeId = mappingForLayer[item.name];
+    if (!nodeId) return item;
+    return {
+      ...item,
+      figma: {
+        fileKey,
+        nodeId,
+        url: `${fileUrl}?node-id=${nodeId.replace(':', '-')}`,
+      },
+    };
+  });
+}
+
 function main() {
   const project = new Project({
     compilerOptions: { allowJs: false, target: 99 },
@@ -248,9 +277,16 @@ function main() {
     useInMemoryFileSystem: false,
   });
 
+  const figmaMap = loadFigmaMapping();
   const components = walkComponents(project, 'components', path.join(ROOT, 'packages', 'components'));
   const patterns   = walkComponents(project, 'patterns',   path.join(ROOT, 'packages', 'patterns'));
   const tokens     = parseTokens();
+
+  const fileKey = figmaMap?.fileKey ?? null;
+  const fileUrl = figmaMap?.url ?? null;
+
+  const componentsWithFigma = attachFigmaContext(components, figmaMap?.components, fileKey, fileUrl);
+  const patternsWithFigma   = attachFigmaContext(patterns,   figmaMap?.patterns,   fileKey, fileUrl);
 
   const manifest = {
     generatedAt: new Date().toISOString(),
@@ -260,14 +296,25 @@ function main() {
       patterns: patterns.length,
       tokens: tokens.length,
     },
-    components: components.sort((a, b) => a.name.localeCompare(b.name)),
-    patterns:   patterns.sort((a, b) => a.name.localeCompare(b.name)),
+    figma: figmaMap
+      ? {
+          fileKey: figmaMap.fileKey,
+          fileName: figmaMap.fileName,
+          url: figmaMap.url,
+          pages: figmaMap.pages,
+          iconLibrary: figmaMap.iconLibrary,
+          foundations: figmaMap.foundations,
+        }
+      : null,
+    components: componentsWithFigma.sort((a, b) => a.name.localeCompare(b.name)),
+    patterns:   patternsWithFigma.sort((a, b) => a.name.localeCompare(b.name)),
     tokens,
   };
 
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
   fs.writeFileSync(OUT, JSON.stringify(manifest, null, 2));
-  console.log(`mcp manifest: ${manifest.totals.components} components, ${manifest.totals.patterns} patterns, ${manifest.totals.tokens} tokens → ${path.relative(ROOT, OUT)}`);
+  const figmaCovered = componentsWithFigma.filter((c) => c.figma).length + patternsWithFigma.filter((p) => p.figma).length;
+  console.log(`mcp manifest: ${manifest.totals.components} components, ${manifest.totals.patterns} patterns, ${manifest.totals.tokens} tokens, ${figmaCovered} figma node refs → ${path.relative(ROOT, OUT)}`);
 }
 
 main();

@@ -40,6 +40,12 @@ interface ComponentOutput {
   payload: string;
 }
 
+interface FigmaRef {
+  fileKey: string;
+  nodeId: string;
+  url: string;
+}
+
 interface ComponentMeta {
   name: string;
   className: string;
@@ -55,6 +61,7 @@ interface ComponentMeta {
   keyboardPatterns: string[];
   docsUrl: string;
   sourcePath: string;
+  figma?: FigmaRef;
 }
 
 interface TokenMeta {
@@ -64,10 +71,20 @@ interface TokenMeta {
   subPath: string;
 }
 
+interface FigmaContext {
+  fileKey: string;
+  fileName: string;
+  url: string;
+  pages: Record<string, { id: string; name: string }>;
+  iconLibrary: { fileKey: string; name: string };
+  foundations: Record<string, string>;
+}
+
 interface Manifest {
   generatedAt: string;
   version: string;
   totals: { components: number; patterns: number; tokens: number };
+  figma: FigmaContext | null;
   components: ComponentMeta[];
   patterns: ComponentMeta[];
   tokens: TokenMeta[];
@@ -90,6 +107,30 @@ function loadManifest(): Manifest {
   throw new Error('manifest.json not found — run `node scripts/generate-mcp-manifest.js` first.');
 }
 
+/**
+ * Resolve the Figma file context with environment-variable overrides:
+ *   KANSO_FIGMA_FILE_KEY  — point at a forked / private Kanso file instead of
+ *                           the canonical public one. Useful when a team
+ *                           branches the system internally.
+ *   KANSO_FIGMA_FILE_URL  — full URL override; rarely needed (auto-derived
+ *                           from fileKey if missing).
+ * If the manifest has no figma block (e.g., the mapping JSON wasn't shipped),
+ * we return null and the bridge tools downgrade to a "not configured" error.
+ */
+function resolveFigma(fig: FigmaContext | null): FigmaContext | null {
+  if (!fig) return null;
+  const overrideKey = process.env.KANSO_FIGMA_FILE_KEY;
+  const overrideUrl = process.env.KANSO_FIGMA_FILE_URL;
+  if (!overrideKey && !overrideUrl) return fig;
+  const fileKey = overrideKey ?? fig.fileKey;
+  const url = overrideUrl ?? `https://www.figma.com/design/${fileKey}/Design-System`;
+  return { ...fig, fileKey, url };
+}
+
+function nodeUrl(fileKey: string, nodeId: string): string {
+  return `https://www.figma.com/design/${fileKey}/Design-System?node-id=${nodeId.replace(':', '-')}`;
+}
+
 function summarize(c: ComponentMeta) {
   return {
     name: c.name,
@@ -101,6 +142,7 @@ function summarize(c: ComponentMeta) {
 }
 
 const manifest = loadManifest();
+const figma = resolveFigma(manifest.figma);
 
 // ─── Tool registry ───────────────────────────────────────────────────────
 // Hand-rolled JSON Schema for each tool. The MCP SDK serializes these to
@@ -220,6 +262,133 @@ const tools: ToolDef[] = [
       const hit = manifest.tokens.find((t) => t.name === normalized);
       if (!hit) return { error: `No token named "${normalized}". Call list_tokens to discover.` };
       return JSON.stringify(hit, null, 2);
+    },
+  },
+
+  // ─── Figma bridge ─────────────────────────────────────────────────────
+  // These tools return the Figma context the assistant needs to immediately
+  // call the official Figma MCP (https://help.figma.com/hc/articles/32132100833559)
+  // — `get_design_context`, `get_screenshot`, `get_variable_defs`, etc. —
+  // without an extra discovery step. Each response includes:
+  //   - fileKey + nodeId          (feed straight into the Figma MCP)
+  //   - url                       (clickable link for the human in the loop)
+  //   - relatedFigmaTools         (which Figma MCP tools to chain next)
+  // The default file key points at the canonical public Kanso Design System
+  // file. Override with KANSO_FIGMA_FILE_KEY env var when working off a fork.
+  {
+    name: 'figma_context',
+    title: 'Figma library context',
+    description: 'Top-level Figma metadata: canonical Design System file key + URL, page IDs (Components / Patterns / Foundations / Examples), and the linked Tabler icon library file. Call once when starting Figma-aware work so subsequent tools have the right fileKey to target.',
+    inputSchema: { type: 'object', properties: {} },
+    handler: () => {
+      if (!figma) {
+        return { error: 'Figma bridge is not configured. The manifest was generated without a figma-mapping.json — re-run `npm run generate:mcp-manifest` after copying the mapping into the package.' };
+      }
+      return JSON.stringify({
+        fileKey: figma.fileKey,
+        fileName: figma.fileName,
+        url: figma.url,
+        pages: figma.pages,
+        iconLibrary: figma.iconLibrary,
+        foundationsPages: Object.entries(figma.foundations).map(([key, nodeId]) => ({
+          name: key,
+          nodeId,
+          url: nodeUrl(figma.fileKey, nodeId),
+        })),
+        notes: [
+          'Pass fileKey to Figma MCP tools (get_design_context, get_screenshot, get_variable_defs).',
+          'KANSO_FIGMA_FILE_KEY env var overrides the canonical key when working from a fork.',
+        ],
+      }, null, 2);
+    },
+  },
+  {
+    name: 'figma_for_component',
+    title: 'Figma node for a Kanso component',
+    description: 'Resolve a Kanso component name to its master frame in the Figma library. Returns fileKey + nodeId you feed into the Figma MCP\'s get_design_context (for code-and-screenshot) or get_screenshot (for a flat preview).',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        name: { type: 'string', description: 'Component short name (e.g. "button") or selector (e.g. "kp-button")' },
+      },
+      required: ['name'],
+    },
+    handler: (args) => {
+      if (!figma) return { error: 'Figma bridge is not configured.' };
+      const raw = String(args.name ?? '');
+      const key = raw.replace(/^kp-/, '').toLowerCase();
+      const hit = manifest.components.find(
+        (c) => c.name === key || c.selector === `kp-${key}` || c.className.toLowerCase() === `kp${key.replace(/-/g, '')}component`,
+      );
+      if (!hit) return { error: `No component named "${raw}". Call list_components to see available names.` };
+      if (!hit.figma) {
+        return { error: `Component "${hit.name}" exists but has no Figma node mapping. Add it to packages/mcp/figma-mapping.json and regenerate the manifest.` };
+      }
+      return JSON.stringify({
+        component: hit.name,
+        package: hit.package,
+        fileKey: figma.fileKey,
+        nodeId: hit.figma.nodeId,
+        url: nodeUrl(figma.fileKey, hit.figma.nodeId),
+        relatedFigmaTools: [
+          { tool: 'get_design_context', purpose: 'Pull the master frame as code + screenshot.' },
+          { tool: 'get_screenshot',     purpose: 'Plain PNG of the master frame (no code).' },
+          { tool: 'get_variable_defs',  purpose: 'List the CSS variables this frame consumes.' },
+        ],
+      }, null, 2);
+    },
+  },
+  {
+    name: 'figma_for_pattern',
+    title: 'Figma node for a Kanso pattern',
+    description: 'Same shape as figma_for_component but resolves higher-level patterns (app-shell, page-header, sidebar, …).',
+    inputSchema: {
+      type: 'object',
+      properties: { name: { type: 'string', description: 'Pattern short name (e.g. "page-header")' } },
+      required: ['name'],
+    },
+    handler: (args) => {
+      if (!figma) return { error: 'Figma bridge is not configured.' };
+      const raw = String(args.name ?? '');
+      const key = raw.replace(/^kp-/, '').toLowerCase();
+      const hit = manifest.patterns.find((p) => p.name === key || p.selector === `kp-${key}`);
+      if (!hit) return { error: `No pattern named "${raw}". Call list_patterns to see available names.` };
+      if (!hit.figma) {
+        return { error: `Pattern "${hit.name}" exists but has no Figma node mapping.` };
+      }
+      return JSON.stringify({
+        pattern: hit.name,
+        package: hit.package,
+        fileKey: figma.fileKey,
+        nodeId: hit.figma.nodeId,
+        url: nodeUrl(figma.fileKey, hit.figma.nodeId),
+      }, null, 2);
+    },
+  },
+  {
+    name: 'figma_for_icon',
+    title: 'Figma context for the icon library',
+    description: 'Returns the Tabler Icon Pack file context — separate from the main Design System file. The Kanso Icon component wraps an instance from this library, so any glyph the assistant might want to insert lives there. Pass `query` to receive a search hint the assistant feeds into Figma MCP\'s search_design_system tool.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        query: { type: 'string', description: 'Optional icon name or concept (e.g. "search", "trash"). The response includes a searchQuery + library key the agent can use with Figma MCP\'s search_design_system.' },
+      },
+    },
+    handler: (args) => {
+      if (!figma?.iconLibrary) return { error: 'Icon library mapping is not configured.' };
+      const query = args.query ? String(args.query).trim() : null;
+      return JSON.stringify({
+        fileKey: figma.iconLibrary.fileKey,
+        libraryName: figma.iconLibrary.name,
+        url: `https://www.figma.com/design/${figma.iconLibrary.fileKey}/${encodeURIComponent(figma.iconLibrary.name)}`,
+        suggestedSearchQuery: query,
+        relatedFigmaTools: [
+          { tool: 'search_design_system', purpose: 'Find the icon by name across the Tabler Icon Pack.' },
+          { tool: 'get_libraries',        purpose: 'Confirm the library is subscribed in the target file.' },
+        ],
+        usageNote: 'In Kanso, every icon slot expects an instance of an Icon-component wrapper, not a raw Tabler glyph. Find the Tabler glyph here, then wrap it via the Kanso `kp-icon` component (see get_component name="icon" if it exists, otherwise the icon slot in the parent component\'s docs).',
+      }, null, 2);
     },
   },
 ];

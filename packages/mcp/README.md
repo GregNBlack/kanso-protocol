@@ -4,19 +4,46 @@
 
 ## What you get
 
-Seven tools, all running locally over stdio:
+Eleven tools, all running locally over stdio.
+
+**Catalog** — typed metadata extracted from the source code at build time:
 
 | Tool | What it returns |
 | --- | --- |
 | `catalog_overview` | Version, totals, links — call once per session. |
 | `list_components` | Compact list of every `@kanso-protocol/*` component with selector, package, ARIA role. |
-| `get_component` | Full record — inputs (name/type/default), outputs, ARIA role, keyboard patterns, Storybook URL. |
+| `get_component` | Full record — inputs (name/type/default), outputs, ARIA role, keyboard patterns, Storybook URL, **plus the Figma node ref**. |
 | `list_patterns` | Same shape, for higher-level pattern packages. |
 | `get_pattern` | Full record for one pattern. |
 | `list_tokens` | Every CSS variable from `tokens.css`, optionally filtered by category or substring. |
 | `get_token` | One token by name (with or without the `--kp-` prefix). |
 
+**Figma bridge** — points at the canonical public Kanso Design System file, so any Figma-MCP-aware client (Claude Code with the Figma MCP installed, Cursor, etc.) can pull the visual reference for the same component the assistant is writing code for:
+
+| Tool | What it returns |
+| --- | --- |
+| `figma_context` | File key + URL of the Kanso Figma library, IDs of the Components / Patterns / Foundations / Examples pages, and the linked Tabler Icon Pack file. |
+| `figma_for_component` | `{ fileKey, nodeId, url }` for the component's master frame — feed straight into Figma MCP's `get_design_context` or `get_screenshot`. |
+| `figma_for_pattern` | Same shape for higher-level patterns. |
+| `figma_for_icon` | Tabler icon library context + a search hint the assistant uses with Figma MCP's `search_design_system`. |
+
 The data comes from a manifest baked at build time — no network calls, deterministic, fast.
+
+### Customizing the Figma bridge
+
+By default the bridge points at the **public canonical Kanso Design System file**. That's the right target for most users — even if you fork the system, the canonical Figma file is still your visual source of truth.
+
+Override when you need to:
+
+```bash
+# point at a forked / private Figma file
+KANSO_FIGMA_FILE_KEY=<your-file-key> npx @kanso-protocol/mcp
+
+# (optional) override the URL too
+KANSO_FIGMA_FILE_URL=https://figma.com/design/<key>/<name> npx @kanso-protocol/mcp
+```
+
+The component/pattern/foundation node IDs in the shipped mapping point at the canonical file's nodes; they will not match arbitrary forked layouts. If you've heavily restructured your Figma file, set `KANSO_FIGMA_FILE_KEY` to it and the bridge will return your file key with the original node IDs (use them as a hint, not a guarantee), or stop using `figma_for_component` entirely and fall back to Figma MCP's `search_design_system` with the right file key.
 
 ## Install
 
