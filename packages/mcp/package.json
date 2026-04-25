@@ -1,0 +1,41 @@
+{
+  "name": "@kanso-protocol/mcp",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "Kanso Protocol — Model Context Protocol server. Exposes the component / pattern / token catalog to AI agents so they can author Kanso UI without leaving the editor.",
+  "author": "GregNBlack",
+  "bin": {
+    "kanso-mcp": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "type": "module",
+  "files": [
+    "dist",
+    "manifest.json",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.23.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GregNBlack/kanso-protocol.git",
+    "directory": "packages/mcp"
+  },
+  "homepage": "https://gregnblack.github.io/kanso-protocol/?path=/docs/foundations-mcp--docs",
+  "bugs": "https://github.com/GregNBlack/kanso-protocol/issues",
+  "keywords": [
+    "kanso",
+    "design-system",
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "ai",
+    "angular"
+  ]
+}

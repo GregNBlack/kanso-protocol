@@ -20,6 +20,8 @@ jobs:
         run: npm run build:tokens
       - name: Build libraries
         run: npm run build:libs
+      - name: Build MCP server
+        run: npm run build:mcp
       - name: Build Storybook
         run: npm run build-storybook
       - name: Unit tests (Vitest)
