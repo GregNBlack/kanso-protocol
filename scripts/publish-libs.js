@@ -60,34 +60,28 @@ const skipped = [];
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-// npm rate-limits new publishers around ~25 fast publishes in a row. We're
-// shipping 50+ packages on first release, so throttle + retry with backoff.
-// stdio:'pipe' so we can read the error text — stdio:'inherit' leaves
-// err.stderr null and we can't tell 429 from any other failure.
-async function publishWithRetry(pkgDir) {
-  const maxAttempts = 6;
-  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    try {
-      const out = execSync(`npm publish --access public`, { cwd: pkgDir, encoding: 'utf8' });
-      process.stdout.write(out);
-      return;
-    } catch (err) {
-      if (err.stdout) process.stdout.write(err.stdout);
-      if (err.stderr) process.stderr.write(err.stderr);
-      const combined = String(err.stdout || '') + String(err.stderr || '');
-      const is429 = combined.includes('429') || /rate.?limit/i.test(combined) ||
-                    combined.includes('Too Many Requests');
-      if (!is429 || attempt === maxAttempts) throw err;
-      // npm's per-account hourly publish quota for fresh publishers; once
-      // it trips, only real wall-clock cooldown helps. Start at 5 min.
-      const wait = 300_000 * attempt; // 5m, 10m, 15m, 20m, 25m
-      console.log(`  ↻ rate-limited, waiting ${wait / 60_000}m before retry #${attempt + 1}…`);
-      await sleep(wait);
-    }
+// Per npm support guidance for the initial-release rate-limit incident
+// (ticket Apr 2026): no retry loops — they keep extending the cooldown
+// instead of clearing it. Pace publishes 8s apart and fail-fast on 429.
+// `npm view` at the top of each iteration skips already-published packages,
+// so a follow-up run after a wall-clock cooldown picks up where we left off.
+async function publishOnce(pkgDir) {
+  try {
+    const out = execSync(`npm publish --access public`, { cwd: pkgDir, encoding: 'utf8' });
+    process.stdout.write(out);
+    return { ok: true };
+  } catch (err) {
+    if (err.stdout) process.stdout.write(err.stdout);
+    if (err.stderr) process.stderr.write(err.stderr);
+    const combined = String(err.stdout || '') + String(err.stderr || '');
+    const is429 = combined.includes('429') || /rate.?limit/i.test(combined) ||
+                  combined.includes('Too Many Requests');
+    return { ok: false, is429, err };
   }
 }
 
 (async () => {
+  let stopped429 = null;
   for (const pkgDir of pkgs) {
     const meta = JSON.parse(fs.readFileSync(path.join(pkgDir, 'package.json'), 'utf8'));
     if (alreadyPublished(meta.name, meta.version)) {
@@ -95,14 +89,29 @@ async function publishWithRetry(pkgDir) {
       continue;
     }
     console.log(`\nPublishing ${meta.name}@${meta.version} from ${path.relative(ROOT, pkgDir)}`);
-    await publishWithRetry(pkgDir);
-    published.push(`${meta.name}@${meta.version}`);
-    await sleep(3000); // gentle pacing to stay under npm's fresh-publisher ratelimit
+    const res = await publishOnce(pkgDir);
+    if (res.ok) {
+      published.push(`${meta.name}@${meta.version}`);
+      await sleep(8000); // 8s spacing — npm support's "smaller batches with spacing" advice
+      continue;
+    }
+    if (res.is429) {
+      stopped429 = `${meta.name}@${meta.version}`;
+      console.error(`\n::error::npm 429 hit on ${stopped429}. Stopping (no retry — see ticket).`);
+      console.error(`Wait ≥24h of complete silence on the account, then re-run; already-published packages are skipped automatically.`);
+      break;
+    }
+    // Non-429 error — surface it and stop hard.
+    throw res.err;
   }
 
   console.log('\n--- Summary ---');
   console.log(`Published ${published.length}: ${published.join(', ') || '(none)'}`);
   console.log(`Skipped  ${skipped.length}: ${skipped.slice(0, 5).join(', ')}${skipped.length > 5 ? ' …' : ''}`);
+  if (stopped429) {
+    console.log(`Blocked at ${stopped429} — re-run after wall-clock cooldown to publish the rest.`);
+    process.exit(1);
+  }
 })().catch((err) => {
   console.error(err);
   process.exit(1);
