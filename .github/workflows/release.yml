@@ -34,6 +34,13 @@ concurrency:
 jobs:
   release:
     runs-on: ubuntu-latest
+    # Bail out when the head commit message contains `[skip-release]`. Lets us
+    # push housekeeping (tests, docs, CI tweaks) during a wall-clock npm
+    # cooldown window without triggering a publish attempt — every attempt
+    # during cooldown extends the limiter (per npm support guidance).
+    # workflow_dispatch always runs (head_commit is empty), so we still have
+    # a manual "Run workflow" button.
+    if: github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[skip-release]')
     steps:
       - uses: actions/checkout@v4
         with:
