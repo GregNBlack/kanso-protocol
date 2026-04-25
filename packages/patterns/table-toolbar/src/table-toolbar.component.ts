@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { KpButtonComponent } from '@kanso-protocol/button';
 import { KpBadgeComponent } from '@kanso-protocol/badge';
+import { KpIconComponent } from '@kanso-protocol/icon';
 import { KpSearchBarComponent } from '@kanso-protocol/search-bar';
 
 export type KpTableToolbarMode = 'default' | 'bulk-select';
@@ -34,7 +35,7 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
  */
 @Component({
   selector: 'kp-table-toolbar',
-  imports: [KpButtonComponent, KpBadgeComponent, KpSearchBarComponent],
+  imports: [KpButtonComponent, KpBadgeComponent, KpIconComponent, KpSearchBarComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses' },
   template: `
@@ -52,7 +53,7 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
 
         @if (showFilter) {
           <kp-button variant="outline" size="sm" (click)="filterClick.emit()">
-            <i kpButtonIconLeft class="ti ti-filter" aria-hidden="true"></i>
+            <kp-icon kpButtonIconLeft name="filter" />
             <span>Filters</span>
             @if (activeFilterCount > 0) {
               <kp-badge size="xs" color="primary" appearance="subtle">{{ activeFilterCount }}</kp-badge>
@@ -62,7 +63,7 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
 
         @if (showSort) {
           <kp-button variant="outline" size="sm" (click)="sortClick.emit()">
-            <i kpButtonIconLeft class="ti ti-arrows-up-down" aria-hidden="true"></i>
+            <kp-icon kpButtonIconLeft name="arrows-up-down" />
             <span>Sort</span>
           </kp-button>
         }
@@ -77,7 +78,7 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
               [class.kp-tt__density-btn--active]="density === 'compact'"
               (click)="densityChange.emit('compact')"
               aria-label="Compact">
-              <i class="ti ti-layout-list" aria-hidden="true"></i>
+              <kp-icon name="layout-list" />
             </button>
             <button
               type="button"
@@ -85,7 +86,7 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
               [class.kp-tt__density-btn--active]="density === 'comfortable'"
               (click)="densityChange.emit('comfortable')"
               aria-label="Comfortable">
-              <i class="ti ti-layout-rows" aria-hidden="true"></i>
+              <kp-icon name="layout-rows" />
             </button>
             <button
               type="button"
@@ -93,20 +94,20 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
               [class.kp-tt__density-btn--active]="density === 'spacious'"
               (click)="densityChange.emit('spacious')"
               aria-label="Spacious">
-              <i class="ti ti-layout-grid" aria-hidden="true"></i>
+              <kp-icon name="layout-grid" />
             </button>
           </div>
         }
 
         @if (showColumnPicker) {
           <kp-button variant="outline" size="sm" [iconOnly]="true" aria-label="Columns" (click)="columnsClick.emit()">
-            <i kpButtonIconLeft class="ti ti-layout-columns" aria-hidden="true"></i>
+            <kp-icon kpButtonIconLeft name="layout-columns" />
           </kp-button>
         }
 
         @if (showExport) {
           <kp-button variant="ghost" size="sm" (click)="exportClick.emit()">
-            <i kpButtonIconLeft class="ti ti-download" aria-hidden="true"></i>
+            <kp-icon kpButtonIconLeft name="download" />
             <span>Export</span>
           </kp-button>
         }
@@ -117,7 +118,7 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
 
         @if (showCreate) {
           <kp-button variant="default" color="primary" size="sm" (click)="createClick.emit()">
-            <i kpButtonIconLeft class="ti ti-plus" aria-hidden="true"></i>
+            <kp-icon kpButtonIconLeft name="plus" />
             <span>{{ createLabel }}</span>
           </kp-button>
         }
@@ -128,27 +129,27 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
           <strong>{{ selectedCount }}</strong> {{ selectedCount === 1 ? 'item' : 'items' }} selected
         </span>
         <kp-button variant="ghost" size="sm" (click)="clearSelection.emit()">
-          <i kpButtonIconLeft class="ti ti-x" aria-hidden="true"></i>
+          <kp-icon kpButtonIconLeft name="x" />
           <span>Clear selection</span>
         </kp-button>
       </div>
 
       <div class="kp-tt__right">
         <kp-button variant="outline" size="sm" (click)="bulkExport.emit()">
-          <i kpButtonIconLeft class="ti ti-download" aria-hidden="true"></i>
+          <kp-icon kpButtonIconLeft name="download" />
           <span>Export selected</span>
         </kp-button>
         <kp-button variant="outline" size="sm" (click)="bulkTag.emit()">
-          <i kpButtonIconLeft class="ti ti-tag" aria-hidden="true"></i>
+          <kp-icon kpButtonIconLeft name="tag" />
           <span>Tag</span>
         </kp-button>
         <kp-button variant="outline" size="sm" (click)="bulkMove.emit()">
-          <i kpButtonIconLeft class="ti ti-folder" aria-hidden="true"></i>
+          <kp-icon kpButtonIconLeft name="folder" />
           <span>Move to…</span>
         </kp-button>
         <span class="kp-tt__divider" aria-hidden="true"></span>
         <kp-button variant="outline" color="danger" size="sm" (click)="bulkDelete.emit()">
-          <i kpButtonIconLeft class="ti ti-trash" aria-hidden="true"></i>
+          <kp-icon kpButtonIconLeft name="trash" />
           <span>Delete</span>
         </kp-button>
       </div>

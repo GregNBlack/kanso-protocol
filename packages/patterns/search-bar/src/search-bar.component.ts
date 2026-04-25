@@ -6,6 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { KpButtonComponent } from '@kanso-protocol/button';
+import { KpIconComponent } from '@kanso-protocol/icon';
 
 export type KpSearchBarVariant = 'inline' | 'command-palette';
 export type KpSearchBarSize = 'sm' | 'md' | 'lg';
@@ -45,13 +46,13 @@ export interface KpSearchResultGroup {
  */
 @Component({
   selector: 'kp-search-bar',
-  imports: [KpButtonComponent],
+  imports: [KpButtonComponent, KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses' },
   template: `
     @if (variant === 'inline') {
       <div class="kp-search-bar__wrap" [class.kp-search-bar__wrap--focused]="focused">
-        <i class="ti ti-search kp-search-bar__leading" aria-hidden="true"></i>
+        <kp-icon name="search" class="kp-search-bar__leading" />
         <input
           class="kp-search-bar__input"
           type="search"
@@ -80,7 +81,7 @@ export interface KpSearchResultGroup {
     } @else {
       <div class="kp-search-bar__palette">
         <div class="kp-search-bar__palette-header">
-          <i class="ti ti-search kp-search-bar__leading" aria-hidden="true"></i>
+          <kp-icon name="search" class="kp-search-bar__leading" />
           <input
             class="kp-search-bar__palette-input"
             type="search"
@@ -103,7 +104,7 @@ export interface KpSearchResultGroup {
                   (click)="itemClick.emit(item)"
                 >
                   @if (item.icon) {
-                    <i [class]="'ti ti-' + item.icon + ' kp-search-bar__item-icon'" aria-hidden="true"></i>
+                    <kp-icon [name]="item.icon" class="kp-search-bar__item-icon" />
                   }
                   <span class="kp-search-bar__item-label">{{ item.label }}</span>
                   @if (item.shortcut) {

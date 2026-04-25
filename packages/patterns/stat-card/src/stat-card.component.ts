@@ -3,6 +3,7 @@ import {
   Component,
   Input,
 } from '@angular/core';
+import { KpIconComponent } from '@kanso-protocol/icon';
 
 export type KpStatCardSize = 'sm' | 'md' | 'lg';
 export type KpStatTrendDirection = 'up' | 'down' | 'neutral';
@@ -27,7 +28,7 @@ export type KpStatTrendAppearance = 'positive' | 'negative';
  */
 @Component({
   selector: 'kp-stat-card',
-  imports: [],
+  imports: [KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses' },
   template: `
@@ -35,7 +36,7 @@ export type KpStatTrendAppearance = 'positive' | 'negative';
       <span class="kp-stat__label">{{ label }}</span>
       @if (showIcon && icon) {
         <span class="kp-stat__icon" aria-hidden="true">
-          <i [class]="'ti ti-' + icon"></i>
+          <kp-icon [name]="icon" />
         </span>
       }
     </div>
@@ -44,7 +45,7 @@ export type KpStatTrendAppearance = 'positive' | 'negative';
 
     @if (showTrend) {
       <div class="kp-stat__trend" [attr.data-tone]="trendTone">
-        <i class="ti kp-stat__trend-icon" [class]="'ti ' + trendIconClass" aria-hidden="true"></i>
+        <kp-icon class="kp-stat__trend-icon" [name]="trendIconName" />
         <span class="kp-stat__trend-value">{{ trendValue }}</span>
         @if (trendDescription) {
           <span class="kp-stat__trend-desc">{{ trendDescription }}</span>
@@ -144,10 +145,10 @@ export class KpStatCardComponent {
 
   @Input() showSparkline = false;
 
-  get trendIconClass(): string {
-    if (this.trendDirection === 'up') return 'ti-trending-up';
-    if (this.trendDirection === 'down') return 'ti-trending-down';
-    return 'ti-minus';
+  get trendIconName(): string {
+    if (this.trendDirection === 'up') return 'trending-up';
+    if (this.trendDirection === 'down') return 'trending-down';
+    return 'minus';
   }
 
   get trendTone(): 'good' | 'bad' | 'neutral' {

@@ -6,6 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { KpButtonComponent } from '@kanso-protocol/button';
+import { KpIconComponent } from '@kanso-protocol/icon';
 import {
   KpNotificationAppearance,
   KpNotificationItemComponent,
@@ -43,7 +44,7 @@ export interface KpNotification {
  */
 @Component({
   selector: 'kp-notification-center',
-  imports: [KpButtonComponent, KpNotificationItemComponent],
+  imports: [KpButtonComponent, KpNotificationItemComponent, KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses', role: 'region', 'aria-label': 'Notifications' },
   template: `
@@ -52,7 +53,7 @@ export interface KpNotification {
       <div class="kp-notif-center__header-actions">
         <kp-button size="sm" variant="ghost" color="neutral" (click)="markAllRead.emit()">Mark all as read</kp-button>
         <kp-button size="sm" variant="ghost" color="neutral" [iconOnly]="true" aria-label="Settings" (click)="settingsClick.emit()">
-          <i kpButtonIconLeft class="ti ti-settings" aria-hidden="true"></i>
+          <kp-icon kpButtonIconLeft name="settings" />
         </kp-button>
       </div>
     </div>
@@ -94,7 +95,7 @@ export interface KpNotification {
         }
         @case ('empty') {
           <div class="kp-notif-center__empty">
-            <span class="kp-notif-center__empty-icon" aria-hidden="true"><i class="ti ti-bell-off"></i></span>
+            <span class="kp-notif-center__empty-icon" aria-hidden="true"><kp-icon name="bell-off" /></span>
             <span class="kp-notif-center__empty-title">You're all caught up</span>
             <span class="kp-notif-center__empty-desc">No new notifications. We'll let you know when something arrives.</span>
           </div>

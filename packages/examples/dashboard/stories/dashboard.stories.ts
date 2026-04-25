@@ -9,14 +9,13 @@ import { KpStatCardComponent } from '@kanso-protocol/stat-card';
 import { KpCardComponent } from '@kanso-protocol/card';
 import { KpButtonComponent } from '@kanso-protocol/button';
 import { KpNotificationItemComponent } from '@kanso-protocol/notification-center';
+import { KpIconComponent } from '@kanso-protocol/icon';
 
 @Component({
   selector: 'kp-example-dashboard',
   standalone: true,
-  imports: [
-    KpHeaderComponent, KpSidebarComponent, KpBannerComponent, KpPageHeaderComponent,
-    KpStatCardComponent, KpCardComponent, KpButtonComponent, KpNotificationItemComponent,
-  ],
+  imports: [KpHeaderComponent, KpSidebarComponent, KpBannerComponent, KpPageHeaderComponent,
+    KpStatCardComponent, KpCardComponent, KpButtonComponent, KpNotificationItemComponent, KpIconComponent],
   template: `
     <div class="shell">
       <kp-header
@@ -53,11 +52,11 @@ import { KpNotificationItemComponent } from '@kanso-protocol/notification-center
             [showBottomDivider]="false">
             <div kpPageHeaderActions style="display:flex;gap:8px">
               <kp-button variant="ghost" color="neutral" size="sm">
-                <i kpButtonIconLeft class="ti ti-download"></i>
+                <kp-icon kpButtonIconLeft name="download" />
                 <span>Export</span>
               </kp-button>
               <kp-button variant="default" color="primary" size="sm">
-                <i kpButtonIconLeft class="ti ti-plus"></i>
+                <kp-icon kpButtonIconLeft name="plus" />
                 <span>Create report</span>
               </kp-button>
             </div>

@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { KpButtonComponent } from '@kanso-protocol/button';
 import { KpBadgeComponent, KpBadgeColor } from '@kanso-protocol/badge';
+import { KpIconComponent } from '@kanso-protocol/icon';
 
 export type KpFilterChipColor = KpBadgeColor;
 
@@ -39,7 +40,7 @@ export interface KpFilterChip {
  */
 @Component({
   selector: 'kp-filter-bar',
-  imports: [KpButtonComponent, KpBadgeComponent],
+  imports: [KpButtonComponent, KpBadgeComponent, KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses' },
   template: `
@@ -59,7 +60,7 @@ export interface KpFilterChip {
 
       @if (showAddFilter) {
         <kp-button variant="ghost" size="sm" (click)="addFilter.emit()">
-          <i class="ti ti-plus" aria-hidden="true"></i>
+          <kp-icon name="plus" />
           <span>Add filter</span>
         </kp-button>
       }
@@ -68,7 +69,7 @@ export interface KpFilterChip {
     <div class="kp-fb__actions">
       @if (showSaveFilter) {
         <kp-button variant="ghost" size="sm" (click)="saveFilter.emit()">
-          <i class="ti ti-bookmark" aria-hidden="true"></i>
+          <kp-icon name="bookmark" />
           <span>Save filter</span>
         </kp-button>
       }

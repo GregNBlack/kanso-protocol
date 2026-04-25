@@ -13,6 +13,7 @@ import {
   signal,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { KpIconComponent } from '@kanso-protocol/icon';
 
 export type KpThemeToggleVariant = 'icon' | 'segmented' | 'dropdown';
 export type KpThemeToggleSize = 'sm' | 'md' | 'lg';
@@ -42,7 +43,7 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
  */
 @Component({
   selector: 'kp-theme-toggle',
-  imports: [],
+  imports: [KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses' },
   template: `
@@ -53,7 +54,7 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
         [attr.aria-label]="'Toggle theme (current: ' + currentTheme + ')'"
         (click)="cycle()"
       >
-        <i [class]="'ti ti-' + iconName(currentTheme)" aria-hidden="true"></i>
+        <kp-icon [name]="iconName(currentTheme)" />
       </button>
     } @else if (variant === 'segmented') {
       @if (showLabel) {
@@ -70,7 +71,7 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
             [attr.aria-label]="t"
             (click)="select(t)"
           >
-            <i [class]="'ti ti-' + iconName(t)" aria-hidden="true"></i>
+            <kp-icon [name]="iconName(t)" />
           </button>
         }
       </div>
@@ -87,9 +88,9 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
           [attr.aria-expanded]="isOpen()"
           (click)="toggleOpen()"
         >
-          <i [class]="'ti ti-' + iconName(currentTheme)" aria-hidden="true"></i>
+          <kp-icon [name]="iconName(currentTheme)" />
           <span class="kp-theme-toggle__dropdown-label">{{ themeLabel(currentTheme) }}</span>
-          <i class="ti ti-chevron-down kp-theme-toggle__chevron" aria-hidden="true"></i>
+          <kp-icon name="chevron-down" class="kp-theme-toggle__chevron" />
         </button>
         @if (isOpen()) {
           <div #menu class="kp-theme-toggle__menu" role="listbox" aria-label="Theme">
@@ -102,10 +103,10 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
                 [attr.aria-selected]="currentTheme === t"
                 (click)="selectFromMenu(t)"
               >
-                <i [class]="'ti ti-' + iconName(t)" aria-hidden="true"></i>
+                <kp-icon [name]="iconName(t)" />
                 <span>{{ themeLabel(t) }}</span>
                 @if (currentTheme === t) {
-                  <i class="ti ti-check kp-theme-toggle__option-check" aria-hidden="true"></i>
+                  <kp-icon name="check" class="kp-theme-toggle__option-check" />
                 }
               </button>
             }

@@ -6,6 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { KpButtonComponent } from '@kanso-protocol/button';
+import { KpIconComponent } from '@kanso-protocol/icon';
 
 export type KpBannerSize = 'sm' | 'md';
 export type KpBannerColor =
@@ -33,13 +34,13 @@ export type KpBannerColor =
  */
 @Component({
   selector: 'kp-banner',
-  imports: [KpButtonComponent],
+  imports: [KpButtonComponent, KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses', role: 'status' },
   template: `
     <div class="kp-banner__content">
       @if (showIcon) {
-        <i class="ti kp-banner__icon" [class]="'ti kp-banner__icon ' + iconClass" aria-hidden="true"></i>
+        <kp-icon class="kp-banner__icon" [name]="iconName" />
       }
       <span class="kp-banner__title">{{ title }}</span>
       @if (description) {
@@ -172,14 +173,14 @@ export class KpBannerComponent {
 
   @Output() close = new EventEmitter<void>();
 
-  get iconClass(): string {
+  get iconName(): string {
     const map: Record<KpBannerColor, string> = {
-      primary: 'ti-info-circle',
-      success: 'ti-circle-check',
-      warning: 'ti-alert-triangle',
-      danger: 'ti-alert-circle',
-      info: 'ti-info-circle',
-      neutral: 'ti-info-circle',
+      primary: 'info-circle',
+      success: 'circle-check',
+      warning: 'alert-triangle',
+      danger: 'alert-circle',
+      info: 'info-circle',
+      neutral: 'info-circle',
     };
     return map[this.color];
   }

@@ -5,6 +5,7 @@ import { KpInputComponent } from '@kanso-protocol/input';
 import { KpCheckboxComponent } from '@kanso-protocol/checkbox';
 import { KpButtonComponent } from '@kanso-protocol/button';
 import { KpDividerComponent } from '@kanso-protocol/divider';
+import { KpIconComponent } from '@kanso-protocol/icon';
 
 /**
  * Headless wrapper so Storybook can render a single Angular component
@@ -14,12 +15,12 @@ import { KpDividerComponent } from '@kanso-protocol/divider';
 @Component({
   selector: 'kp-example-login',
   standalone: true,
-  imports: [KpFormFieldComponent, KpInputComponent, KpCheckboxComponent, KpButtonComponent, KpDividerComponent],
+  imports: [KpFormFieldComponent, KpInputComponent, KpCheckboxComponent, KpButtonComponent, KpDividerComponent, KpIconComponent],
   template: `
     <div class="page">
       <div class="card">
         <div class="logo" aria-hidden="true">
-          <i class="ti ti-shield-check"></i>
+          <kp-icon name="shield-check" />
         </div>
 
         <h1 class="title">Welcome back</h1>
@@ -49,11 +50,11 @@ import { KpDividerComponent } from '@kanso-protocol/divider';
 
         <div class="social">
           <kp-button variant="outline" color="neutral" size="md" style="display:flex;flex:1 1 0;width:100%">
-            <i kpButtonIconLeft class="ti ti-brand-google" aria-hidden="true"></i>
+            <kp-icon kpButtonIconLeft name="brand-google" />
             <span>Google</span>
           </kp-button>
           <kp-button variant="outline" color="neutral" size="md" style="display:flex;flex:1 1 0;width:100%">
-            <i kpButtonIconLeft class="ti ti-brand-github" aria-hidden="true"></i>
+            <kp-icon kpButtonIconLeft name="brand-github" />
             <span>GitHub</span>
           </kp-button>
         </div>

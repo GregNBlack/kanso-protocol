@@ -10,6 +10,7 @@ import {
   KpAvatarComponent,
   KpAvatarStatus,
 } from '@kanso-protocol/avatar';
+import { KpIconComponent } from '@kanso-protocol/icon';
 
 export type KpNotificationAppearance =
   | 'primary'
@@ -21,7 +22,7 @@ export type KpNotificationAppearance =
 
 @Component({
   selector: 'kp-notification-item',
-  imports: [KpAvatarComponent],
+  imports: [KpAvatarComponent, KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses', role: 'listitem' },
   template: `
@@ -34,7 +35,7 @@ export type KpNotificationAppearance =
       [status]="statusColor"
     >
       @if (!avatarInitials && !avatarSrc && icon) {
-        <i [class]="'ti ti-' + icon" aria-hidden="true"></i>
+        <kp-icon [name]="icon" />
       }
     </kp-avatar>
     <div class="kp-notif-item__content">

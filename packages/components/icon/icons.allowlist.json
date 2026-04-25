@@ -1,0 +1,29 @@
+{
+  "$comment": "Tabler icon names bundled by default into @kanso-protocol/icon. Outlined + filled lists must match the Figma 'Tabler Icons' page. To add more icons in your own app, use KP_ICON_REGISTRY.register(name, svgString). Regenerate the map with `npm run generate:icons` after editing this list.",
+  "outlined": [
+    "alert-circle", "alert-triangle", "align-center", "align-left", "align-right",
+    "arrow-back-up", "arrow-forward-up", "arrow-left", "arrows-up-down",
+    "bell", "bell-off", "blockquote", "bookmark", "brand-github", "brand-google",
+    "calendar", "chart-bar", "chart-infographic", "check",
+    "chevron-down", "chevron-left", "chevron-right",
+    "circle-check", "clock", "columns-3", "credit-card", "currency-dollar",
+    "device-desktop", "dots", "download", "edit",
+    "file-text", "filter", "folder", "folder-open", "folder-plus",
+    "help-circle", "info-circle",
+    "layout-columns", "layout-dashboard", "layout-grid", "layout-list", "layout-rows",
+    "line", "link", "list", "list-numbers", "lock", "logout",
+    "message", "minus", "moon", "photo", "plug", "plus",
+    "search", "settings", "share", "share-2", "shield-check", "source-code",
+    "star", "sun-high", "tag", "trash", "trending-down", "trending-up",
+    "user", "users", "users-plus", "wifi-off", "x"
+  ],
+  "filled": [
+    "alert-circle", "alert-triangle", "bell", "bookmark", "brand-github", "brand-google",
+    "calendar", "check", "chevron-down", "chevron-right", "circle-check", "clock",
+    "columns-3", "credit-card", "device-desktop", "dots", "download", "edit",
+    "file-text", "filter", "folder", "folder-open", "help-circle", "info-circle",
+    "layout-dashboard", "layout-grid", "layout-list", "link", "list", "lock",
+    "message", "moon", "photo", "plus", "search", "settings",
+    "shield-check", "star", "sun-high", "tag", "trash", "user", "x"
+  ]
+}

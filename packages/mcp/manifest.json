@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-04-25T04:45:39.694Z",
+  "generatedAt": "2026-04-25T16:00:10.020Z",
   "version": "0.1.0",
   "totals": {
-    "components": 48,
+    "components": 49,
     "patterns": 22,
     "tokens": 895
   },
@@ -707,7 +707,13 @@
       ],
       "outputs": [],
       "ariaRole": null,
-      "sizeRamp": [],
+      "sizeRamp": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-button--docs",
       "sourcePath": "packages/components/button/src/button.component.ts",
@@ -966,7 +972,13 @@
         }
       ],
       "ariaRole": null,
-      "sizeRamp": [],
+      "sizeRamp": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
       "keyboardPatterns": [
         "ArrowUp",
         "ArrowDown",
@@ -1083,7 +1095,13 @@
         }
       ],
       "ariaRole": null,
-      "sizeRamp": [],
+      "sizeRamp": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
       "keyboardPatterns": [
         "ArrowRight",
         "ArrowLeft",
@@ -1534,6 +1552,24 @@
       }
     },
     {
+      "name": "icon",
+      "className": "KpIconComponent",
+      "selector": "kp-icon",
+      "layer": "components",
+      "package": "@kanso-protocol/icon",
+      "description": "Kanso Protocol — Icon Component\n\nRenders Tabler Icons SVGs inline with stroke-width auto-tuned per size.\nThe same `name` strings work in code and Figma (the `tabler/{name}` master\ncomponents on the Foundations » Tabler Icons page mirror this set).",
+      "examples": [
+        "<kp-icon name=\"search\" size=\"md\" />\n<kp-icon name=\"star-filled\" size=\"sm\" />\n<kp-icon [name]=\"dynamicName\" size=\"lg\" />\n\nNeed an icon outside the default set? Register at startup:\n\n  KP_ICON_REGISTRY.register('my-logo', '<svg viewBox=\"0 0 24 24\">…</svg>');"
+      ],
+      "inputs": [],
+      "outputs": [],
+      "ariaRole": null,
+      "sizeRamp": [],
+      "keyboardPatterns": [],
+      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-icon--docs",
+      "sourcePath": "packages/components/icon/src/icon.component.ts"
+    },
+    {
       "name": "input",
       "className": "KpInputComponent",
       "selector": "kp-input",
@@ -1601,7 +1637,13 @@
       ],
       "outputs": [],
       "ariaRole": null,
-      "sizeRamp": [],
+      "sizeRamp": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-input--docs",
       "sourcePath": "packages/components/input/src/input.component.ts",
@@ -1889,7 +1931,13 @@
       ],
       "outputs": [],
       "ariaRole": null,
-      "sizeRamp": [],
+      "sizeRamp": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-numberstepper--docs",
       "sourcePath": "packages/components/number-stepper/src/number-stepper.component.ts",
@@ -2644,7 +2692,13 @@
         }
       ],
       "ariaRole": "tablist",
-      "sizeRamp": [],
+      "sizeRamp": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
       "keyboardPatterns": [
         "ArrowRight",
         "ArrowLeft",
@@ -2732,7 +2786,13 @@
         }
       ],
       "ariaRole": null,
-      "sizeRamp": [],
+      "sizeRamp": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
       "keyboardPatterns": [
         "Escape"
       ],

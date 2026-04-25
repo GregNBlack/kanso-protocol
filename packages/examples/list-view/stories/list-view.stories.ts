@@ -11,6 +11,7 @@ import { KpPaginationComponent } from '@kanso-protocol/pagination';
 import { KpAvatarComponent } from '@kanso-protocol/avatar';
 import { KpBadgeComponent, KpBadgeColor } from '@kanso-protocol/badge';
 import { KpButtonComponent } from '@kanso-protocol/button';
+import { KpIconComponent } from '@kanso-protocol/icon';
 
 interface TeamMember {
   id: string;
@@ -24,12 +25,10 @@ interface TeamMember {
 @Component({
   selector: 'kp-example-list-view',
   standalone: true,
-  imports: [
-    KpHeaderComponent, KpSidebarComponent, KpPageHeaderComponent,
+  imports: [KpHeaderComponent, KpSidebarComponent, KpPageHeaderComponent,
     KpTableToolbarComponent, KpFilterBarComponent,
     KpTableComponent, KpTableCellDirective, KpTableHeaderDirective,
-    KpPaginationComponent, KpAvatarComponent, KpBadgeComponent, KpButtonComponent,
-  ],
+    KpPaginationComponent, KpAvatarComponent, KpBadgeComponent, KpButtonComponent, KpIconComponent],
   template: `
     <div class="shell">
       <kp-header
@@ -58,11 +57,11 @@ interface TeamMember {
             [showBottomDivider]="false">
             <div kpPageHeaderActions class="ph-actions">
               <kp-button variant="ghost" color="neutral" size="sm">
-                <i kpButtonIconLeft class="ti ti-download"></i>
+                <kp-icon kpButtonIconLeft name="download" />
                 <span>Export</span>
               </kp-button>
               <kp-button variant="default" color="primary" size="sm">
-                <i kpButtonIconLeft class="ti ti-plus"></i>
+                <kp-icon kpButtonIconLeft name="plus" />
                 <span>Invite</span>
               </kp-button>
             </div>
@@ -97,7 +96,7 @@ interface TeamMember {
 
               <ng-template kpTableCell="actions">
                 <kp-button variant="ghost" color="neutral" size="sm" [iconOnly]="true" aria-label="More">
-                  <i kpButtonIconLeft class="ti ti-dots"></i>
+                  <kp-icon kpButtonIconLeft name="dots" />
                 </kp-button>
               </ng-template>
             </kp-table>

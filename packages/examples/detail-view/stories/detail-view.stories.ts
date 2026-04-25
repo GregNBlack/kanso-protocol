@@ -12,6 +12,7 @@ import { KpBadgeComponent } from '@kanso-protocol/badge';
 import { KpAvatarComponent } from '@kanso-protocol/avatar';
 import { KpAvatarGroupComponent, KpAvatarGroupItem } from '@kanso-protocol/avatar-group';
 import { KpSettingsRowComponent } from '@kanso-protocol/settings-panel';
+import { KpIconComponent } from '@kanso-protocol/icon';
 
 interface ActivityEvent {
   initials: string;
@@ -30,14 +31,12 @@ interface MemberCard {
 @Component({
   selector: 'kp-example-detail-view',
   standalone: true,
-  imports: [
-    KpHeaderComponent, KpSidebarComponent, KpPageHeaderComponent,
+  imports: [KpHeaderComponent, KpSidebarComponent, KpPageHeaderComponent,
     KpBreadcrumbsComponent,
     KpTabsComponent, KpTabComponent,
     KpCardComponent, KpButtonComponent, KpBadgeComponent,
     KpAvatarComponent, KpAvatarGroupComponent,
-    KpSettingsRowComponent,
-  ],
+    KpSettingsRowComponent, KpIconComponent],
   template: `
     <div class="shell">
       <kp-header
@@ -80,15 +79,15 @@ interface MemberCard {
 
             <div kpPageHeaderActions class="actions">
               <kp-button variant="outline" color="neutral" size="sm">
-                <i kpButtonIconLeft class="ti ti-share"></i>
+                <kp-icon kpButtonIconLeft name="share" />
                 <span>Share</span>
               </kp-button>
               <kp-button variant="default" color="primary" size="sm">
-                <i kpButtonIconLeft class="ti ti-edit"></i>
+                <kp-icon kpButtonIconLeft name="edit" />
                 <span>Edit</span>
               </kp-button>
               <kp-button variant="ghost" color="neutral" size="sm" [iconOnly]="true" aria-label="More">
-                <i kpButtonIconLeft class="ti ti-dots"></i>
+                <kp-icon kpButtonIconLeft name="dots" />
               </kp-button>
             </div>
 

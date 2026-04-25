@@ -3,6 +3,7 @@ import {
   Component,
   Input,
 } from '@angular/core';
+import { KpIconComponent } from '@kanso-protocol/icon';
 
 export type KpPageErrorType = '404' | '500' | 'offline' | 'access-denied';
 
@@ -55,7 +56,7 @@ const DEFAULTS: Record<KpPageErrorType, { title: string; description: string; ic
  */
 @Component({
   selector: 'kp-page-error',
-  imports: [],
+  imports: [KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses', role: 'alert' },
   template: `
@@ -63,7 +64,7 @@ const DEFAULTS: Record<KpPageErrorType, { title: string; description: string; ic
       <div class="kp-page-error__code" aria-hidden="true">{{ code }}</div>
     }
     <div class="kp-page-error__illustration" aria-hidden="true">
-      <i class="ti" [class]="'ti ti-' + iconName"></i>
+      <kp-icon [name]="iconName" size="xl" />
     </div>
     <div class="kp-page-error__text">
       <h1 class="kp-page-error__title">{{ resolvedTitle }}</h1>

@@ -6,6 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { KpAvatarComponent } from '@kanso-protocol/avatar';
+import { KpIconComponent } from '@kanso-protocol/icon';
 import { KpNavItemComponent } from '@kanso-protocol/nav-item';
 
 export type KpSidebarWidth = 'expanded' | 'collapsed';
@@ -51,7 +52,7 @@ export interface KpSidebarSection {
  */
 @Component({
   selector: 'kp-sidebar',
-  imports: [KpAvatarComponent, KpNavItemComponent],
+  imports: [KpAvatarComponent, KpIconComponent, KpNavItemComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses', role: 'navigation' },
   template: `
@@ -103,7 +104,7 @@ export interface KpSidebarSection {
               (click$)="onItemClick(item)"
             >
               <span kpNavItemIcon>
-                <i [class]="'ti ti-' + (item.icon || 'circle')" aria-hidden="true"></i>
+                <kp-icon [name]="item.icon || 'circle'" />
               </span>
               @if (item.badge) {
                 <span kpNavItemBadge class="kp-sidebar__badge">{{ item.badge }}</span>
