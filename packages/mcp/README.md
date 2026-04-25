@@ -20,40 +20,65 @@ The data comes from a manifest baked at build time — no network calls, determi
 
 ## Install
 
+The server runs via `npx`, so there's nothing to install globally. Pick the snippet for your editor:
+
 ### Claude Code
 
-Add to your project's `.mcp.json` (or run `claude mcp add kanso npx @kanso-protocol/mcp`):
+One command from the project root:
 
-```json
+```bash
+claude mcp add kanso -- npx @kanso-protocol/mcp
+```
+
+…or drop this into your project's `.mcp.json` (create the file if missing):
+
+```jsonc
 {
   "mcpServers": {
-    "kanso": {
-      "command": "npx",
-      "args": ["@kanso-protocol/mcp"]
-    }
+    "kanso": { "command": "npx", "args": ["@kanso-protocol/mcp"] }
   }
 }
 ```
 
+Restart Claude Code, then run `/mcp` to confirm `kanso` appears as ✔ connected with 7 tools.
+
 ### Cursor
 
-Open *Cursor Settings → Features → MCP* → **Add new MCP server**:
+Open *Settings → Features → MCP* → **Add new MCP server**:
 
 - Name: `kanso`
 - Type: `command`
 - Command: `npx @kanso-protocol/mcp`
 
-### VS Code (with Continue / any MCP-aware extension)
+…or edit `~/.cursor/mcp.json` (project-scoped: `.cursor/mcp.json` in repo root):
 
-In the extension's MCP config:
-
-```json
+```jsonc
 {
-  "kanso": {
-    "command": "npx",
-    "args": ["@kanso-protocol/mcp"]
+  "mcpServers": {
+    "kanso": { "command": "npx", "args": ["@kanso-protocol/mcp"] }
   }
 }
+```
+
+### VS Code (Continue, Cline, GitHub Copilot agent mode)
+
+Add to the extension's MCP config — for Continue this is `~/.continue/config.json`, for Cline it's the *Cline MCP Servers* settings panel. Same shape:
+
+```jsonc
+{
+  "mcpServers": {
+    "kanso": { "command": "npx", "args": ["@kanso-protocol/mcp"] }
+  }
+}
+```
+
+### Any other MCP-aware client (Zed, Windsurf, Goose, custom)
+
+Any client that speaks the [MCP stdio transport](https://modelcontextprotocol.io/docs/concepts/transports) works:
+
+```
+command: npx
+args:    ["@kanso-protocol/mcp"]
 ```
 
 ## Usage

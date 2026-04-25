@@ -32,10 +32,24 @@ Every component, pattern and example page is published there with autodocs, live
 
 ## AI-native: ship with an MCP server
 
-Kanso Protocol is one of the first design systems to ship a [**Model Context Protocol**](https://modelcontextprotocol.io) server out of the box — `@kanso-protocol/mcp`. Your AI assistant (Claude Code, Cursor, VS Code, any MCP-aware client) can introspect the entire catalog over stdio: every component's inputs / outputs / ARIA role / keyboard pattern, every pattern, every design token. No copy-pasting docs, no guessing prop names, no out-of-date snippets.
+Kanso Protocol is one of the first design systems to ship a [**Model Context Protocol**](https://modelcontextprotocol.io) server out of the box — [`@kanso-protocol/mcp`](https://www.npmjs.com/package/@kanso-protocol/mcp). Your AI assistant (Claude Code, Cursor, VS Code, any MCP-aware client) can introspect the entire catalog over stdio: every component's inputs / outputs / ARIA role / keyboard pattern, every pattern, every design token. No copy-pasting docs, no guessing prop names, no out-of-date snippets.
+
+### Install
+
+The server runs via `npx`, so there's nothing to install globally — pick the snippet for your editor below.
+
+<details open>
+<summary><b>Claude Code</b></summary>
+
+One command from the project root:
+
+```bash
+claude mcp add kanso -- npx @kanso-protocol/mcp
+```
+
+…or, equivalently, drop this into your project's `.mcp.json` (create the file if missing):
 
 ```jsonc
-// .mcp.json — Claude Code (or wire it via `claude mcp add kanso npx @kanso-protocol/mcp`)
 {
   "mcpServers": {
     "kanso": { "command": "npx", "args": ["@kanso-protocol/mcp"] }
@@ -43,13 +57,69 @@ Kanso Protocol is one of the first design systems to ship a [**Model Context Pro
 }
 ```
 
-Once connected, ask things like:
+Restart Claude Code, then run `/mcp` to confirm `kanso` appears as ✔ connected with 7 tools.
+
+</details>
+
+<details>
+<summary><b>Cursor</b></summary>
+
+Open *Settings → Features → MCP* → **Add new MCP server**, then fill:
+
+- Name: `kanso`
+- Type: `command`
+- Command: `npx @kanso-protocol/mcp`
+
+…or edit `~/.cursor/mcp.json` directly (project-scoped: `.cursor/mcp.json` in repo root):
+
+```jsonc
+{
+  "mcpServers": {
+    "kanso": { "command": "npx", "args": ["@kanso-protocol/mcp"] }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary><b>VS Code (Continue, Cline, GitHub Copilot agent mode)</b></summary>
+
+Add to the extension's MCP config — for Continue this is `~/.continue/config.json`, for Cline it's the *Cline MCP Servers* settings panel. Same shape:
+
+```jsonc
+{
+  "mcpServers": {
+    "kanso": { "command": "npx", "args": ["@kanso-protocol/mcp"] }
+  }
+}
+```
+
+</details>
+
+<details>
+<summary><b>Other MCP-aware clients (Zed, Windsurf, Goose, custom)</b></summary>
+
+Any client that speaks the [MCP stdio transport](https://modelcontextprotocol.io/docs/concepts/transports) works. Point it at:
+
+```
+command: npx
+args:    ["@kanso-protocol/mcp"]
+```
+
+The server registers seven tools at startup (`catalog_overview`, `list_components`, `get_component`, `list_patterns`, `get_pattern`, `list_tokens`, `get_token`).
+
+</details>
+
+### Try it
+
+Once connected, ask your assistant things like:
 
 - *"Which size ramp does `kp-input` support, and which validators does `form-field` translate by default?"*
 - *"List every `--kp-color-*` token tied to the danger role."*
 - *"I need a settings page with a sidebar of collapsible sections — which Kanso pieces compose that?"*
 
-The assistant calls `list_components` / `get_component` / `list_tokens` under the hood and answers from the live catalog. Cursor / VS Code setup, full tool reference, and the roadmap (Figma bridge in `0.2.x`) live in the [package README](packages/mcp/README.md).
+The assistant calls `list_components` / `get_component` / `list_tokens` under the hood and answers from the live catalog. Full tool reference and the roadmap (Figma bridge in `0.2.x`) live in the [package README](packages/mcp/README.md).
 
 ## Install & Use
 
