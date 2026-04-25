@@ -683,6 +683,23 @@
       "fg-desc":  { "$value": "{color.gray.600}", "$type": "color", "$description": "Dialog description (under title) + close icon" },
       "fg-body":  { "$value": "{color.gray.700}", "$type": "color", "$description": "Dialog body copy" },
       "divider":  { "$value": "{color.gray.100}", "$type": "color", "$description": "Optional divider between header/body/footer" }
+    },
+
+    "overlay": {
+      "$description": "Translucent layers used by hover backgrounds, focus rings, and other state cues that shouldn't introduce a hard color stop. Applied via background / box-shadow on top of the base surface.",
+      "hover-subtle": { "$value": "rgba(0, 0, 0, 0.04)", "$type": "color", "$description": "Faintest hover bg — close-button on Alert / Badge / Popover surfaces." },
+      "hover-light":  { "$value": "rgba(0, 0, 0, 0.06)", "$type": "color", "$description": "Light hover bg — subtle interactive emphasis on light surfaces." },
+      "hover-medium": { "$value": "rgba(0, 0, 0, 0.08)", "$type": "color", "$description": "Standard hover bg on light surfaces." },
+      "primary-hover": { "$value": "rgba(37, 99, 235, 0.08)", "$type": "color", "$description": "Translucent primary tint — Toast action button hover." },
+      "focus-ring":   { "$value": "rgba(59, 130, 246, 0.12)", "$type": "color", "$description": "Soft glow around the focused control (3px ring on SearchBar)." }
+    },
+
+    "fg-on-dark": {
+      "$description": "Text colors used over dark surfaces (Header / Sidebar dark variants). White at decreasing opacity gives a hierarchy without introducing a separate gray ramp.",
+      "strong":  { "$value": "rgba(255, 255, 255, 0.92)", "$type": "color", "$description": "Primary text on dark backgrounds — Sidebar item label." },
+      "default": { "$value": "rgba(255, 255, 255, 0.8)",  "$type": "color", "$description": "Default text on dark backgrounds — Header nav item / icon button." },
+      "muted":   { "$value": "rgba(255, 255, 255, 0.7)",  "$type": "color", "$description": "Secondary text on dark — Sidebar toggle." },
+      "subtle":  { "$value": "rgba(255, 255, 255, 0.6)",  "$type": "color", "$description": "Lowest-emphasis text on dark — Header user role / chevron." }
     }
   }
 }

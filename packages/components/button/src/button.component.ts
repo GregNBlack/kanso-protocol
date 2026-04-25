@@ -145,8 +145,7 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      /* kanso-lint-disable raw-motion-duration -- infinite indeterminate animation; no fast/normal/slow token applies */
-      animation: kp-spin 0.8s linear infinite;
+            animation: kp-spin var(--kp-motion-duration-spin) linear infinite;
     }
 
     @keyframes kp-spin { to { transform: rotate(360deg); } }

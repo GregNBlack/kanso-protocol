@@ -161,8 +161,7 @@ export interface KpSidebarSection {
 
     :host(.kp-sidebar--dark) {
       background: var(--kp-color-sidebar-bg-dark, var(--kp-color-gray-900));
-      /* kanso-lint-disable raw-color -- pending dark-mode color tokens (0.2.x) */
-      color: rgba(255,255,255,0.92);
+            color: var(--kp-color-fg-on-dark-strong);
       border-right-color: var(--kp-color-gray-800);
     }
 
@@ -244,8 +243,7 @@ export interface KpSidebarSection {
       color: var(--kp-color-gray-900, var(--kp-color-gray-900));
     }
     .kp-sidebar__toggle svg { width: 16px; height: 16px; }
-    /* kanso-lint-disable raw-color -- pending dark-mode color tokens (0.2.x) */
-    :host(.kp-sidebar--dark) .kp-sidebar__toggle { color: rgba(255,255,255,0.7); }
+        :host(.kp-sidebar--dark) .kp-sidebar__toggle { color: var(--kp-color-fg-on-dark-muted); }
     :host(.kp-sidebar--dark) .kp-sidebar__toggle:hover {
       background: var(--kp-color-gray-800);
       color: var(--kp-color-white);

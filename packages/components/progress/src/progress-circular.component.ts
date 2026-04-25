@@ -88,8 +88,7 @@ const SIZE_CFG: Record<KpProgressCircularSize, { d: number; s: number; valueFont
     }
 
     .kp-progress-circular__svg--indeterminate {
-      /* kanso-lint-disable raw-motion-duration -- infinite indeterminate animation; no fast/normal/slow token applies */
-      animation: kp-progress-circular-spin 1s linear infinite;
+            animation: kp-progress-circular-spin var(--kp-motion-duration-spin) linear infinite;
     }
     @keyframes kp-progress-circular-spin {
       to { transform: rotate(270deg); }

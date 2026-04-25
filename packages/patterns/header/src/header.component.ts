@@ -223,8 +223,7 @@ export interface KpHeaderNavItem {
     .kp-header__nav-item--active {
       color: var(--kp-color-header-nav-item-fg-active, var(--kp-color-blue-600));
     }
-    /* kanso-lint-disable raw-color -- pending dark-mode color tokens (0.2.x) */
-    :host(.kp-header--dark) .kp-header__nav-item { color: rgba(255,255,255,0.8); }
+        :host(.kp-header--dark) .kp-header__nav-item { color: var(--kp-color-fg-on-dark-default); }
     :host(.kp-header--dark) .kp-header__nav-item:hover { background: var(--kp-color-gray-800); color: var(--kp-color-white); }
     :host(.kp-header--dark) .kp-header__nav-item--active { color: var(--kp-color-blue-400); }
 
@@ -278,8 +277,7 @@ export interface KpHeaderNavItem {
     }
     .kp-header__icon-btn svg { width: 20px; height: 20px; }
     .kp-header__icon-btn:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); color: var(--kp-color-gray-900, var(--kp-color-gray-900)); }
-    /* kanso-lint-disable raw-color -- pending dark-mode color tokens (0.2.x) */
-    :host(.kp-header--dark) .kp-header__icon-btn { color: rgba(255,255,255,0.8); }
+        :host(.kp-header--dark) .kp-header__icon-btn { color: var(--kp-color-fg-on-dark-default); }
     :host(.kp-header--dark) .kp-header__icon-btn:hover { background: var(--kp-color-gray-800); color: var(--kp-color-white); }
 
     .kp-header__notif-badge {
@@ -332,12 +330,10 @@ export interface KpHeaderNavItem {
     }
     .kp-header__user-name { font-size: 13px; font-weight: 500; color: var(--kp-header-fg); }
     .kp-header__user-role { font-size: 11px; color: var(--kp-color-gray-500, var(--kp-color-gray-500)); }
-    /* kanso-lint-disable raw-color -- pending dark-mode color tokens (0.2.x) */
-    :host(.kp-header--dark) .kp-header__user-role { color: rgba(255,255,255,0.6); }
+        :host(.kp-header--dark) .kp-header__user-role { color: var(--kp-color-fg-on-dark-subtle); }
 
     .kp-header__user-chevron { width: 14px; height: 14px; color: var(--kp-color-gray-500, var(--kp-color-gray-500)); }
-    /* kanso-lint-disable raw-color -- pending dark-mode color tokens (0.2.x) */
-    :host(.kp-header--dark) .kp-header__user-chevron { color: rgba(255,255,255,0.6); }
+        :host(.kp-header--dark) .kp-header__user-chevron { color: var(--kp-color-fg-on-dark-subtle); }
   `],
 })
 export class KpHeaderComponent {

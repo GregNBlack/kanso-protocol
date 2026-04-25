@@ -2,9 +2,12 @@
   "motion": {
     "duration": {
       "$type": "duration",
-      "fast":   { "$value": "120ms" },
-      "normal": { "$value": "200ms" },
-      "slow":   { "$value": "300ms" }
+      "$description": "Fast/normal/slow cover state transitions; spin/shimmer cover infinite indeterminate loops where the duration is intentionally long enough to read the animation, not just acknowledge it.",
+      "fast":     { "$value": "120ms", "$description": "Hover, focus, color/border state changes." },
+      "normal":   { "$value": "200ms", "$description": "Overlay enter/exit, accordion expand, larger transitions." },
+      "slow":     { "$value": "300ms", "$description": "Page-level changes; rare." },
+      "spin":     { "$value": "1000ms", "$description": "Infinite spinner loop — button loading, progress-circular indeterminate." },
+      "shimmer":  { "$value": "1400ms", "$description": "Infinite shimmer loop — skeleton placeholder, progress-linear indeterminate slide." }
     },
     "ease": {
       "$type": "cubicBezier",

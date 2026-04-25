@@ -195,8 +195,7 @@ export type KpCardAppearance = 'default' | 'muted' | 'elevated' | 'outline';
     :host(.kp-card--elevated) {
       --kp-card-bg: var(--kp-color-card-bg, var(--kp-color-white));
       --kp-card-border: transparent;
-      /* kanso-lint-disable raw-color -- pending state-overlay token (subtle hover, 0.2.x) */
-      box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.06);
+            box-shadow: 0 1px 2px var(--kp-color-overlay-hover-subtle), 0 2px 4px rgba(0,0,0,0.06);
     }
     :host(.kp-card--outline) {
       --kp-card-bg: transparent;

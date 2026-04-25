@@ -159,8 +159,7 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
     }
-    /* kanso-lint-disable raw-color -- pending primary-translucent overlay token (0.2.x) */
-    .kp-th__action:hover { background: rgba(37, 99, 235, 0.08); }
+        .kp-th__action:hover { background: var(--kp-color-overlay-primary-hover); }
     .kp-th__action:focus-visible {
       outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
       outline-offset: 2px;

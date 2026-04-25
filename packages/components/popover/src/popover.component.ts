@@ -154,8 +154,7 @@ export type KpPopoverArrowPosition =
       opacity: 0.75;
       transition: opacity var(--kp-motion-duration-fast) ease, background 120ms ease;
     }
-    /* kanso-lint-disable raw-color -- pending state-overlay token (subtle hover, 0.2.x) */
-    .kp-popover__close:hover { opacity: 1; background: rgba(0, 0, 0, 0.04); }
+    .kp-popover__close:hover { opacity: 1; background: var(--kp-color-overlay-hover-subtle); }
     .kp-popover__close:focus-visible {
       outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
       outline-offset: 1px;

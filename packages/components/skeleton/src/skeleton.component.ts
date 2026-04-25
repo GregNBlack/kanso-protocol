@@ -67,8 +67,7 @@ export type KpSkeletonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
         var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100)) 100%
       );
       background-size: 200% 100%;
-      /* kanso-lint-disable raw-motion-duration -- infinite indeterminate animation; no fast/normal/slow token applies */
-      animation: kp-sk-shimmer 1.4s ease-in-out infinite;
+            animation: kp-sk-shimmer var(--kp-motion-duration-shimmer) ease-in-out infinite;
     }
 
     /* Shapes */
@@ -137,8 +136,7 @@ export type KpSkeletonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
         var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100)) 100%
       );
       background-size: 200% 100%;
-      /* kanso-lint-disable raw-motion-duration -- infinite indeterminate animation; no fast/normal/slow token applies */
-      animation: kp-sk-shimmer 1.4s ease-in-out infinite;
+            animation: kp-sk-shimmer var(--kp-motion-duration-shimmer) ease-in-out infinite;
     }
 
     /* Card composite */
@@ -174,8 +172,7 @@ export type KpSkeletonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
         var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100)) 100%
       );
       background-size: 200% 100%;
-      /* kanso-lint-disable raw-motion-duration -- infinite indeterminate animation; no fast/normal/slow token applies */
-      animation: kp-sk-shimmer 1.4s ease-in-out infinite;
+            animation: kp-sk-shimmer var(--kp-motion-duration-shimmer) ease-in-out infinite;
     }
   `],
 })

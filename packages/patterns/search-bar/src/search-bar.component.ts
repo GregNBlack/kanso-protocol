@@ -148,8 +148,7 @@ export interface KpSearchResultGroup {
     .kp-search-bar__wrap:focus-within {
       background: var(--kp-color-white, var(--kp-color-white));
       border-color: var(--kp-color-blue-500, var(--kp-color-blue-500));
-      /* kanso-lint-disable raw-color -- pending focus-ring color token (0.2.x) */
-      box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+            box-shadow: 0 0 0 3px var(--kp-color-overlay-focus-ring);
     }
 
     :host(.kp-search-bar--sm) { --kp-search-w: 320px; --kp-search-h: 32px; --kp-search-fs: 13px; }

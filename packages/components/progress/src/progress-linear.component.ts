@@ -106,8 +106,7 @@ export type KpProgressColor = 'primary' | 'success' | 'danger' | 'warning' | 'ne
 
     .kp-progress-linear__bar--indeterminate {
       width: 30%;
-      /* kanso-lint-disable raw-motion-duration -- infinite indeterminate animation; no fast/normal/slow token applies */
-      animation: kp-progress-linear-indet 1.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+            animation: kp-progress-linear-indet var(--kp-motion-duration-shimmer) cubic-bezier(0.65, 0, 0.35, 1) infinite;
     }
 
     @keyframes kp-progress-linear-indet {
