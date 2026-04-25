@@ -42,7 +42,10 @@ console.log('mcp: regenerating manifest…');
 run('node scripts/generate-mcp-manifest.js');
 
 console.log('mcp: compiling TypeScript…');
-run('npx tsc -p packages/mcp/tsconfig.json');
+// Direct binary path — `npx tsc` in CI sometimes triggers an install attempt
+// or shadowing if the local resolution misses, which fails non-deterministically.
+const tscBin = path.join(ROOT, 'node_modules', '.bin', 'tsc');
+run(`"${tscBin}" -p packages/mcp/tsconfig.json`);
 
 console.log('mcp: staging into dist/packages/mcp…');
 fs.rmSync(DEST_PKG, { recursive: true, force: true });
