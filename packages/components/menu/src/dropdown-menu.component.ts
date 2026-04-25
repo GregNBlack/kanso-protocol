@@ -60,9 +60,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       background: var(--kp-color-white);
       border: 1px solid var(--kp-color-gray-200);
       border-radius: 12px;
-      box-shadow:
-        0 4px 6px rgba(0, 0, 0, 0.05),
-        0 10px 15px rgba(0, 0, 0, 0.10);
+      box-shadow: var(--kp-elevation-overlay);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       box-sizing: border-box;
     }

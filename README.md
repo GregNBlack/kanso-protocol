@@ -16,15 +16,15 @@ Design tokens in W3C DTCG format serve as a single source of truth for both Figm
 
 ## Why Kanso Protocol?
 
-The name 簡素 (*kanso*) comes from the seven principles of Japanese aesthetics — austerity and the removal of the unnecessary. The library is built on the same idea: a small, opinionated, internally consistent surface where the rules are enforced by architecture, not by convention.
+簡素 (*kanso*) — one of the seven principles of Japanese aesthetics — is the practice of restraint and the removal of the unnecessary. The library follows the same idea: a small, opinionated, internally consistent surface where the rules live in the code, not in conventions.
 
 - **Every value is a token.** Components never carry magic numbers or inline hex. CSS custom properties — generated from W3C DTCG tokens — are the single source of truth shared between Figma and code.
 - **Every component follows the same anatomy.** Container → Content → Element. New components don't introduce a new mental model.
-- **Every state is explicit.** Six named states (rest / hover / active / focus / disabled / loading), each with its own color and motion tokens. No opacity overlays, no decorative chrome.
-- **One coherent voice.** Every visual decision passes through a single review. The system is small on purpose; growing it is deliberate, not opportunistic.
-- **No exceptions without a record.** When a component needs to depart from the contract, the deviation lives as an ADR with a reason — never as an undocumented one-off.
-- **Tree-shakeable per package.** Every component is its own npm package. You install only what you use; nothing else gets pulled in.
-- **AI-native.** Ships with a Model Context Protocol server (`@kanso-protocol/mcp`), so an assistant in Claude Code / Cursor / VS Code authors Kanso UI from the live, typed catalog — not from training-data guesses.
+- **Every state is explicit.** Six named states (rest / hover / active / focus / disabled / loading), each with its own color and motion tokens.
+- **No exception without a record.** When a component departs from the contract, the deviation lives as an ADR with a reason — not as an undocumented one-off.
+- **Designed to stay small.** Components are added intentionally, when there's a clear need — not because something might be useful.
+- **One npm package per component.** Install only what you use; nothing transitive comes along.
+- **AI-native.** Ships with `@kanso-protocol/mcp` — a Model Context Protocol server that exposes the live, typed catalog to Claude Code, Cursor, and VS Code, so the assistant authors Kanso UI from the actual API instead of from training-data guesses.
 
 ## Live Preview
 

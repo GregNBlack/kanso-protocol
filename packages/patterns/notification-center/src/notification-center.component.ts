@@ -132,7 +132,7 @@ export interface KpNotification {
       border-radius: 12px;
       background: var(--kp-color-white, var(--kp-color-white));
       border: 1px solid var(--kp-color-gray-200, var(--kp-color-gray-200));
-      box-shadow: 0 12px 32px -8px rgba(0,0,0,0.12), 0 4px 8px -4px rgba(0,0,0,0.06);
+      box-shadow: var(--kp-elevation-floating);
       overflow: hidden;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
@@ -172,7 +172,7 @@ export interface KpNotification {
       font-weight: 500;
       color: var(--kp-color-gray-600, var(--kp-color-gray-600));
       cursor: pointer;
-      transition: background 120ms ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
     .kp-notif-center__filter:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); color: var(--kp-color-gray-900, var(--kp-color-gray-900)); }
     .kp-notif-center__filter--active { background: var(--kp-color-blue-50, var(--kp-color-blue-50)); color: var(--kp-color-blue-700, var(--kp-color-blue-700)); }

@@ -83,7 +83,7 @@ export type KpAccordionItemSize = 'sm' | 'md' | 'lg';
       background: var(--kp-color-accordion-trigger-bg-rest, transparent);
       color: var(--kp-color-accordion-trigger-fg-rest, var(--kp-color-gray-900));
       cursor: pointer;
-      transition: background 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease;
     }
     .kp-ai__trigger:hover:not([disabled]) { background: var(--kp-color-accordion-trigger-bg-hover, var(--kp-color-gray-50)); }
     .kp-ai__trigger:focus-visible {
@@ -135,7 +135,7 @@ export type KpAccordionItemSize = 'sm' | 'md' | 'lg';
       width: var(--kp-ai-chev);
       height: var(--kp-ai-chev);
       color: var(--kp-color-accordion-trigger-icon-rest, var(--kp-color-gray-500));
-      transition: transform 180ms ease, color 120ms ease;
+      transition: transform var(--kp-motion-duration-normal) ease, color var(--kp-motion-duration-fast) ease;
     }
     .kp-ai__chevron svg { width: 100%; height: 100%; }
     :host(.kp-ai--expanded) .kp-ai__chevron {
@@ -148,7 +148,7 @@ export type KpAccordionItemSize = 'sm' | 'md' | 'lg';
       color: var(--kp-color-accordion-content, var(--kp-color-gray-700));
       font-size: var(--kp-ai-ct-size);
       line-height: var(--kp-ai-ct-lh);
-      animation: kp-ai-in 180ms ease;
+      animation: kp-ai-in var(--kp-motion-duration-normal) ease;
     }
     @keyframes kp-ai-in {
       from { opacity: 0; transform: translateY(-4px); }

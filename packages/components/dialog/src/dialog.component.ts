@@ -123,7 +123,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       position: absolute;
       inset: 0;
       background: var(--kp-color-dialog-backdrop, rgba(0, 0, 0, 0.5));
-      animation: kp-dialog-fade 160ms ease;
+      animation: kp-dialog-fade var(--kp-motion-duration-fast) ease;
     }
 
     .kp-dialog__panel {
@@ -136,11 +136,8 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       background: var(--kp-color-dialog-panel-bg, var(--kp-color-white));
       border: 1px solid var(--kp-color-dialog-panel-border, var(--kp-color-gray-200));
       border-radius: var(--kp-dialog-radius);
-      box-shadow:
-        0 10px 15px rgba(0, 0, 0, 0.08),
-        0 20px 25px rgba(0, 0, 0, 0.10),
-        0 30px 60px rgba(0, 0, 0, 0.12);
-      animation: kp-dialog-pop 180ms cubic-bezier(0.2, 1, 0.4, 1);
+      box-shadow: var(--kp-elevation-floating);
+      animation: kp-dialog-pop var(--kp-motion-duration-normal) cubic-bezier(0.2, 1, 0.4, 1);
       outline: none;
     }
 
@@ -219,7 +216,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       border-radius: var(--kp-dialog-close-radius);
       color: var(--kp-color-dialog-fg-desc, var(--kp-color-gray-600));
       cursor: pointer;
-      transition: background 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease;
       z-index: 1;
     }
     .kp-dialog__close:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); }

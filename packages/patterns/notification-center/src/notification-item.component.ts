@@ -58,7 +58,7 @@ export type KpNotificationAppearance =
       background: var(--kp-color-white, var(--kp-color-white));
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       cursor: pointer;
-      transition: background 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease;
     }
     :host(.kp-notif-item--unread) { background: var(--kp-color-gray-50, var(--kp-color-gray-50)); }
     :host(:hover) { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); }

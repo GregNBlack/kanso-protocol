@@ -147,7 +147,7 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       border-radius: 8px;
       color: var(--kp-color-gray-600, var(--kp-color-gray-600));
       cursor: pointer;
-      transition: background 120ms ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
     .kp-theme-toggle__icon-btn:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); color: var(--kp-color-gray-900, var(--kp-color-gray-900)); }
 
@@ -171,13 +171,13 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       border-radius: 6px;
       color: var(--kp-color-gray-500, var(--kp-color-gray-500));
       cursor: pointer;
-      transition: background 120ms ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
     .kp-theme-toggle__segment:hover { color: var(--kp-color-gray-900, var(--kp-color-gray-900)); }
     .kp-theme-toggle__segment--selected {
       background: var(--kp-color-white, var(--kp-color-white));
       color: var(--kp-color-gray-900, var(--kp-color-gray-900));
-      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+      box-shadow: var(--kp-elevation-raised);
     }
 
     /* Dropdown variant */
@@ -192,7 +192,7 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;
-      transition: background 120ms ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
     .kp-theme-toggle__dropdown:hover,
     .kp-theme-toggle__dropdown--open {
@@ -213,7 +213,7 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       border-radius: 10px;
       background: var(--kp-color-white, var(--kp-color-white));
       border: 1px solid var(--kp-color-gray-200, var(--kp-color-gray-200));
-      box-shadow: 0 8px 24px -4px rgba(0,0,0,0.08), 0 4px 8px -4px rgba(0,0,0,0.04);
+      box-shadow: var(--kp-elevation-overlay);
       z-index: 1000;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
@@ -227,7 +227,7 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       font-size: 13px;
       color: var(--kp-color-gray-700, var(--kp-color-gray-700));
       cursor: pointer;
-      transition: background 120ms ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
     .kp-theme-toggle__option:hover {
       background: var(--kp-color-gray-100, var(--kp-color-gray-100));

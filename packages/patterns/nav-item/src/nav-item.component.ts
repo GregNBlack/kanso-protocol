@@ -111,7 +111,7 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
       color: var(--kp-color-nav-item-fg-rest, var(--kp-color-gray-700));
       background: var(--kp-color-nav-item-bg-rest, transparent);
       cursor: pointer;
-      transition: background 120ms ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
     .kp-nav-item__content:hover:not(:disabled) {
       color: var(--kp-color-nav-item-fg-hover, var(--kp-color-gray-900));
@@ -165,7 +165,7 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
       width: var(--kp-nav-item-chev-size, 14px);
       height: var(--kp-nav-item-chev-size, 14px);
       color: var(--kp-color-nav-item-icon-rest, var(--kp-color-gray-500));
-      transition: transform 120ms ease;
+      transition: transform var(--kp-motion-duration-fast) ease;
     }
     .kp-nav-item__chevron--expanded { transform: rotate(90deg); }
     .kp-nav-item__chevron svg { width: 100%; height: 100%; }

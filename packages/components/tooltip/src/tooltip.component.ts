@@ -60,9 +60,7 @@ export type KpTooltipArrowPosition = 'none' | 'top' | 'right' | 'bottom' | 'left
       background: var(--kp-color-tooltip-bg, var(--kp-color-gray-900));
       color: var(--kp-color-tooltip-fg, var(--kp-color-white));
       max-width: 240px;
-      box-shadow:
-        0 4px 6px rgba(0, 0, 0, 0.12),
-        0 2px 4px rgba(0, 0, 0, 0.08);
+      box-shadow: var(--kp-elevation-overlay);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       font-weight: 500;
       font-size: var(--kp-tooltip-font-size);

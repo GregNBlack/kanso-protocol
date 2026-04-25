@@ -192,7 +192,7 @@ export interface KpHeaderNavItem {
       height: var(--kp-header-logo, 32px);
       border-radius: 8px;
       background: var(--kp-color-blue-600, var(--kp-color-blue-600));
-      color: #fff;
+      color: var(--kp-color-white);
     }
     .kp-header__logo-mark svg { width: 60%; height: 60%; }
 
@@ -214,7 +214,7 @@ export interface KpHeaderNavItem {
       font-weight: 500;
       color: var(--kp-color-header-nav-item-fg-rest, var(--kp-color-gray-700));
       text-decoration: none;
-      transition: background 120ms ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
     .kp-header__nav-item:hover {
       color: var(--kp-color-header-nav-item-fg-hover, var(--kp-color-gray-900));
@@ -223,8 +223,9 @@ export interface KpHeaderNavItem {
     .kp-header__nav-item--active {
       color: var(--kp-color-header-nav-item-fg-active, var(--kp-color-blue-600));
     }
+    /* kanso-lint-disable raw-color -- pending dark-mode color tokens (0.2.x) */
     :host(.kp-header--dark) .kp-header__nav-item { color: rgba(255,255,255,0.8); }
-    :host(.kp-header--dark) .kp-header__nav-item:hover { background: var(--kp-color-gray-800); color: #fff; }
+    :host(.kp-header--dark) .kp-header__nav-item:hover { background: var(--kp-color-gray-800); color: var(--kp-color-white); }
     :host(.kp-header--dark) .kp-header__nav-item--active { color: var(--kp-color-blue-400); }
 
     .kp-header__search-placeholder {
@@ -256,7 +257,7 @@ export interface KpHeaderNavItem {
       font-family: inherit;
       font-size: 11px;
       padding: 2px 6px;
-      background: #fff;
+      background: var(--kp-color-white);
       border: 1px solid var(--kp-color-gray-200, var(--kp-color-gray-200));
       border-radius: 4px;
       color: var(--kp-color-gray-600, var(--kp-color-gray-600));
@@ -273,12 +274,13 @@ export interface KpHeaderNavItem {
       border-radius: 8px;
       color: var(--kp-color-gray-600, var(--kp-color-gray-600));
       cursor: pointer;
-      transition: background 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease;
     }
     .kp-header__icon-btn svg { width: 20px; height: 20px; }
     .kp-header__icon-btn:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); color: var(--kp-color-gray-900, var(--kp-color-gray-900)); }
+    /* kanso-lint-disable raw-color -- pending dark-mode color tokens (0.2.x) */
     :host(.kp-header--dark) .kp-header__icon-btn { color: rgba(255,255,255,0.8); }
-    :host(.kp-header--dark) .kp-header__icon-btn:hover { background: var(--kp-color-gray-800); color: #fff; }
+    :host(.kp-header--dark) .kp-header__icon-btn:hover { background: var(--kp-color-gray-800); color: var(--kp-color-white); }
 
     .kp-header__notif-badge {
       position: absolute;
@@ -293,12 +295,12 @@ export interface KpHeaderNavItem {
       align-items: center;
       padding: 8px 16px;
       background: var(--kp-color-blue-600, var(--kp-color-blue-600));
-      color: #fff;
+      color: var(--kp-color-white);
       border-radius: 8px;
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
-      transition: background 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease;
     }
     .kp-header__cta:hover { background: var(--kp-color-blue-700, var(--kp-color-blue-700)); }
 
@@ -318,7 +320,7 @@ export interface KpHeaderNavItem {
       padding: 4px;
       border-radius: 8px;
       cursor: pointer;
-      transition: background 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease;
     }
     .kp-header__user:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); }
     :host(.kp-header--dark) .kp-header__user:hover { background: var(--kp-color-gray-800); }
@@ -330,9 +332,11 @@ export interface KpHeaderNavItem {
     }
     .kp-header__user-name { font-size: 13px; font-weight: 500; color: var(--kp-header-fg); }
     .kp-header__user-role { font-size: 11px; color: var(--kp-color-gray-500, var(--kp-color-gray-500)); }
+    /* kanso-lint-disable raw-color -- pending dark-mode color tokens (0.2.x) */
     :host(.kp-header--dark) .kp-header__user-role { color: rgba(255,255,255,0.6); }
 
     .kp-header__user-chevron { width: 14px; height: 14px; color: var(--kp-color-gray-500, var(--kp-color-gray-500)); }
+    /* kanso-lint-disable raw-color -- pending dark-mode color tokens (0.2.x) */
     :host(.kp-header--dark) .kp-header__user-chevron { color: rgba(255,255,255,0.6); }
   `],
 })

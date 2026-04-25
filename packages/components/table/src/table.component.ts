@@ -242,7 +242,7 @@ export class KpTableHeaderDirective {
     .kp-table__row {
       background: var(--kp-color-table-row-bg-rest, var(--kp-color-white));
       border-bottom: 1px solid var(--kp-color-table-border-soft, var(--kp-color-gray-100));
-      transition: background 80ms ease;
+      transition: background var(--kp-motion-duration-fast) ease;
     }
     .kp-table__row:hover:not(.kp-table__row--selected):not(.kp-table__row--empty) {
       background: var(--kp-color-table-row-bg-hover, var(--kp-color-gray-50));

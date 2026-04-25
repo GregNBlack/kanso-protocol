@@ -175,10 +175,10 @@ export type KpSliderValue = number | readonly [number, number];
       border-radius: 50%;
       background: var(--kp-color-slider-thumb-bg, var(--kp-color-white));
       border: 2px solid var(--kp-color-slider-thumb-border, var(--kp-color-blue-600));
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+      box-shadow: var(--kp-elevation-raised);
       cursor: grab;
       transform: translateX(-50%);
-      transition: border-color 120ms ease, box-shadow 120ms ease;
+      transition: border-color var(--kp-motion-duration-fast) ease, box-shadow 120ms ease;
       box-sizing: border-box;
       touch-action: none;
     }

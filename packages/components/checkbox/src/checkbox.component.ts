@@ -85,7 +85,7 @@ export type KpCheckboxColor = 'primary' | 'danger';
       width: 75%; height: 75%;
       color: var(--kp-checkbox-fg, var(--kp-color-white));
       opacity: 0;
-      transition: opacity var(--kp-motion-duration-fast, 100ms) ease;
+      transition: opacity var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease;
     }
     .kp-checkbox__minus {
       position: absolute;
@@ -94,7 +94,7 @@ export type KpCheckboxColor = 'primary' | 'danger';
       width: 50%;
       height: var(--kp-checkbox-minus-h, 2px);
       opacity: 0;
-      transition: opacity var(--kp-motion-duration-fast, 100ms) ease;
+      transition: opacity var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease;
     }
     :host(.kp-checkbox--checked) .kp-checkbox__icon { opacity: 1; }
     :host(.kp-checkbox--indeterminate) .kp-checkbox__minus { opacity: 1; }

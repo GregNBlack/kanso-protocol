@@ -67,6 +67,7 @@ export type KpSkeletonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
         var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100)) 100%
       );
       background-size: 200% 100%;
+      /* kanso-lint-disable raw-motion-duration -- infinite indeterminate animation; no fast/normal/slow token applies */
       animation: kp-sk-shimmer 1.4s ease-in-out infinite;
     }
 
@@ -136,6 +137,7 @@ export type KpSkeletonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
         var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100)) 100%
       );
       background-size: 200% 100%;
+      /* kanso-lint-disable raw-motion-duration -- infinite indeterminate animation; no fast/normal/slow token applies */
       animation: kp-sk-shimmer 1.4s ease-in-out infinite;
     }
 
@@ -172,6 +174,7 @@ export type KpSkeletonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
         var(--kp-color-skeleton-bg-base, var(--kp-color-gray-100)) 100%
       );
       background-size: 200% 100%;
+      /* kanso-lint-disable raw-motion-duration -- infinite indeterminate animation; no fast/normal/slow token applies */
       animation: kp-sk-shimmer 1.4s ease-in-out infinite;
     }
   `],

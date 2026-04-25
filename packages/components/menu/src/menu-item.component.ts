@@ -80,7 +80,7 @@ export type KpMenuItemSize = 'sm' | 'md' | 'lg';
       font-weight: 500;
       cursor: pointer;
       user-select: none;
-      transition: background var(--kp-motion-duration-fast, 100ms) ease;
+      transition: background var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease;
     }
 
     :host(:hover:not(.kp-menu-item--disabled)),

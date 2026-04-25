@@ -2,7 +2,7 @@
   "motion": {
     "duration": {
       "$type": "duration",
-      "fast":   { "$value": "100ms" },
+      "fast":   { "$value": "120ms" },
       "normal": { "$value": "200ms" },
       "slow":   { "$value": "300ms" }
     },

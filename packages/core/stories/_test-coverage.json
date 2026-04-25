@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-24T20:24:03.373Z",
+  "generatedAt": "2026-04-25T03:00:57.428Z",
   "totalSpecs": 36,
-  "totalTests": 330,
+  "totalTests": 352,
   "totalPackages": 56,
   "items": [
     {
@@ -123,7 +123,7 @@
       "specFiles": [
         "packages/components/datepicker/src/datepicker.spec.ts"
       ],
-      "tests": 17
+      "tests": 25
     },
     {
       "layer": "components",
@@ -334,7 +334,7 @@
       "specFiles": [
         "packages/components/tabs/src/tabs.spec.ts"
       ],
-      "tests": 6
+      "tests": 11
     },
     {
       "layer": "components",
@@ -389,7 +389,7 @@
       "specFiles": [
         "packages/components/tree/src/tree.spec.ts"
       ],
-      "tests": 14
+      "tests": 23
     },
     {
       "layer": "components",

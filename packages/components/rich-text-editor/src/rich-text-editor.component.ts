@@ -251,7 +251,7 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       border-radius: 6px;
       color: var(--kp-color-gray-700);
       cursor: pointer;
-      transition: background 120ms ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
     .kp-rte__btn:hover:not([disabled]) {
       background: var(--kp-color-gray-100);
@@ -307,7 +307,7 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       font-weight: 500;
       color: var(--kp-color-gray-700);
       cursor: pointer;
-      transition: background 120ms ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
     .kp-rte__link-btn:hover:not([disabled]) {
       background: var(--kp-color-gray-100);
@@ -389,7 +389,7 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
     }
     ::ng-deep .kp-rte__editor .ProseMirror .is-editor-empty:first-child::before {
       content: attr(data-placeholder);
-      float: left;
+      float: inline-start;
       color: var(--kp-color-gray-400);
       pointer-events: none;
       height: 0;

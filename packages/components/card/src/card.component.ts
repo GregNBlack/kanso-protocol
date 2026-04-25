@@ -75,7 +75,7 @@ export type KpCardAppearance = 'default' | 'muted' | 'elevated' | 'outline';
       background: var(--kp-card-bg);
       border: 1px solid var(--kp-card-border);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
-      transition: background 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, box-shadow 120ms ease, transform 120ms ease;
     }
     :host(.kp-card--clickable) { cursor: pointer; }
     :host(.kp-card--clickable:hover) { background: var(--kp-color-card-bg-muted, var(--kp-color-gray-50)); }
@@ -195,6 +195,7 @@ export type KpCardAppearance = 'default' | 'muted' | 'elevated' | 'outline';
     :host(.kp-card--elevated) {
       --kp-card-bg: var(--kp-color-card-bg, var(--kp-color-white));
       --kp-card-border: transparent;
+      /* kanso-lint-disable raw-color -- pending state-overlay token (subtle hover, 0.2.x) */
       box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.06);
     }
     :host(.kp-card--outline) {

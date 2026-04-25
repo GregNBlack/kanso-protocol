@@ -259,7 +259,7 @@ export interface KpSelectOption {
       background: transparent;
       color: var(--kp-color-gray-500);
       cursor: pointer;
-      transition: background var(--kp-motion-duration-fast, 100ms) ease, color var(--kp-motion-duration-fast, 100ms) ease;
+      transition: background var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease, color var(--kp-motion-duration-fast, 100ms) ease;
     }
     .kp-select__clear:hover { background: var(--kp-color-gray-100); color: var(--kp-color-gray-700); }
     .kp-select__clear svg { width: var(--kp-input-clear-icon, 14px); height: var(--kp-input-clear-icon, 14px); }
@@ -272,7 +272,7 @@ export interface KpSelectOption {
       justify-content: center;
       flex-shrink: 0;
       color: var(--kp-select-chevron, var(--kp-color-gray-500));
-      transition: transform var(--kp-motion-duration-fast, 150ms) ease, color var(--kp-motion-duration-fast, 150ms) ease;
+      transition: transform var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease, color var(--kp-motion-duration-fast, 150ms) ease;
     }
     :host(.kp-select--open) .kp-select__chevron {
       transform: rotate(180deg);
@@ -302,9 +302,7 @@ export interface KpSelectOption {
       background: var(--kp-color-white);
       border: 1px solid var(--kp-color-gray-200);
       border-radius: 12px;
-      box-shadow:
-        0 4px 6px rgba(0, 0, 0, 0.05),
-        0 10px 15px rgba(0, 0, 0, 0.10);
+      box-shadow: var(--kp-elevation-overlay);
       overflow-y: auto;
       box-sizing: border-box;
       gap: 2px;
@@ -322,7 +320,7 @@ export interface KpSelectOption {
       color: var(--kp-color-gray-900);
       cursor: pointer;
       user-select: none;
-      transition: background var(--kp-motion-duration-fast, 100ms) ease;
+      transition: background var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease;
     }
     .kp-select__option:hover:not(.kp-select__option--disabled) {
       background: var(--kp-color-gray-50);

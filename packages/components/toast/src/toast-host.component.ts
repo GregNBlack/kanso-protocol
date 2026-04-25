@@ -103,11 +103,8 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
       border: 1px solid var(--kp-toast-border, var(--kp-color-gray-200));
       background: var(--kp-toast-bg, var(--kp-color-white));
       color: var(--kp-toast-fg-body, var(--kp-color-gray-700));
-      box-shadow:
-        0 4px 8px rgba(0, 0, 0, 0.08),
-        0 10px 20px rgba(0, 0, 0, 0.10),
-        0 20px 30px rgba(0, 0, 0, 0.12);
-      animation: kp-th-in 180ms cubic-bezier(0.2, 1, 0.4, 1);
+      box-shadow: var(--kp-elevation-floating);
+      animation: kp-th-in var(--kp-motion-duration-normal) cubic-bezier(0.2, 1, 0.4, 1);
     }
     :host-context(.kp-th-size-sm) .kp-th__toast,
     :host .kp-th__stack--sm .kp-th__toast {
@@ -160,8 +157,9 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
       font-weight: 500;
       color: var(--kp-toast-action, var(--kp-color-blue-600));
       cursor: pointer;
-      transition: background 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease;
     }
+    /* kanso-lint-disable raw-color -- pending primary-translucent overlay token (0.2.x) */
     .kp-th__action:hover { background: rgba(37, 99, 235, 0.08); }
     .kp-th__action:focus-visible {
       outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
@@ -179,7 +177,7 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
       border-radius: 4px;
       color: var(--kp-color-toast-close, var(--kp-color-gray-400));
       cursor: pointer;
-      transition: background 120ms ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
     .kp-th__close:hover { background: var(--kp-color-gray-100); color: var(--kp-color-gray-700); }
 

@@ -142,12 +142,13 @@ export interface KpSearchResultGroup {
       border: 1px solid var(--kp-color-gray-200, var(--kp-color-gray-200));
       border-radius: 8px;
       background: var(--kp-color-gray-50, var(--kp-color-gray-50));
-      transition: background 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, border-color 120ms ease, box-shadow 120ms ease;
     }
     .kp-search-bar__wrap--focused,
     .kp-search-bar__wrap:focus-within {
       background: var(--kp-color-white, var(--kp-color-white));
       border-color: var(--kp-color-blue-500, var(--kp-color-blue-500));
+      /* kanso-lint-disable raw-color -- pending focus-ring color token (0.2.x) */
       box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
     }
 
@@ -193,7 +194,7 @@ export interface KpSearchResultGroup {
       border-radius: 12px;
       border: 1px solid var(--kp-color-search-palette-border, var(--kp-color-gray-200));
       background: var(--kp-color-search-palette-bg, var(--kp-color-white));
-      box-shadow: 0 24px 48px -12px rgba(0,0,0,0.15), 0 8px 16px -8px rgba(0,0,0,0.08);
+      box-shadow: var(--kp-elevation-floating);
       overflow: hidden;
     }
 
@@ -239,7 +240,7 @@ export interface KpSearchResultGroup {
       font-size: 13px;
       color: var(--kp-color-gray-700, var(--kp-color-gray-700));
       cursor: pointer;
-      transition: background 120ms ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
     .kp-search-bar__item:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); color: var(--kp-color-gray-900, var(--kp-color-gray-900)); }
     .kp-search-bar__item-icon { font-size: 16px; color: var(--kp-color-gray-500, var(--kp-color-gray-500)); }

@@ -103,7 +103,7 @@ export interface KpUserMenuItem {
       border-radius: 12px;
       background: var(--kp-color-white, var(--kp-color-white));
       border: 1px solid var(--kp-color-gray-200, var(--kp-color-gray-200));
-      box-shadow: 0 8px 24px -4px rgba(0,0,0,0.08), 0 4px 8px -4px rgba(0,0,0,0.04);
+      box-shadow: var(--kp-elevation-overlay);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
     :host(.kp-user-menu--sm) { --kp-user-menu-w: 240px; --kp-user-menu-pad: 8px; }
@@ -124,7 +124,7 @@ export interface KpUserMenuItem {
       padding: 2px 8px;
       border-radius: 999px;
       background: var(--kp-color-blue-600, var(--kp-color-blue-600));
-      color: #fff;
+      color: var(--kp-color-white);
       font-size: 11px;
       font-weight: 600;
       line-height: 1;
@@ -153,7 +153,7 @@ export interface KpUserMenuItem {
       font-size: 13px;
       color: var(--kp-color-gray-700, var(--kp-color-gray-700));
       cursor: pointer;
-      transition: background 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease;
     }
     .kp-user-menu__row:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); color: var(--kp-color-gray-900, var(--kp-color-gray-900)); }
     .kp-user-menu__row-icon {

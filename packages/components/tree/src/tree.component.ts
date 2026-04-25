@@ -175,7 +175,7 @@ export interface KpTreeNode {
       color: var(--kp-color-tree-node-fg-rest, var(--kp-color-gray-900));
       cursor: pointer;
       user-select: none;
-      transition: background 80ms ease;
+      transition: background var(--kp-motion-duration-fast) ease;
     }
     .kp-tree__row:hover:not(.kp-tree__row--selected):not(.kp-tree__row--disabled) {
       background: var(--kp-color-tree-node-bg-hover, var(--kp-color-gray-50));
@@ -199,7 +199,7 @@ export interface KpTreeNode {
       height: 16px;
       color: var(--kp-color-tree-node-chevron, var(--kp-color-gray-500));
       cursor: pointer;
-      transition: transform 120ms ease;
+      transition: transform var(--kp-motion-duration-fast) ease;
       flex: 0 0 auto;
     }
     .kp-tree__chevron--expanded { transform: rotate(90deg); }

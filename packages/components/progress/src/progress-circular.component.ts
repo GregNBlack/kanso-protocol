@@ -84,10 +84,11 @@ const SIZE_CFG: Record<KpProgressCircularSize, { d: number; s: number; valueFont
     }
     .kp-progress-circular__arc {
       stroke: var(--kp-progress-fill);
-      transition: stroke-dashoffset 240ms cubic-bezier(0.32, 0.72, 0, 1);
+      transition: stroke-dashoffset var(--kp-motion-duration-normal) cubic-bezier(0.32, 0.72, 0, 1);
     }
 
     .kp-progress-circular__svg--indeterminate {
+      /* kanso-lint-disable raw-motion-duration -- infinite indeterminate animation; no fast/normal/slow token applies */
       animation: kp-progress-circular-spin 1s linear infinite;
     }
     @keyframes kp-progress-circular-spin {

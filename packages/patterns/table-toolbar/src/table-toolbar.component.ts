@@ -249,7 +249,7 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
     .kp-tt__density-btn--active {
       background: var(--kp-color-white, var(--kp-color-white));
       color: var(--kp-color-gray-900, var(--kp-color-gray-900));
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      box-shadow: var(--kp-elevation-raised);
     }
     .kp-tt__density-btn .ti { font-size: 14px; line-height: 1; }
 

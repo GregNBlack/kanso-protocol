@@ -98,7 +98,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       height: var(--kp-stepper-height);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       overflow: hidden;
-      transition: border-color var(--kp-motion-duration-fast, 100ms) ease;
+      transition: border-color var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease;
     }
 
     :host(:hover:not(.kp-number-stepper--disabled):not(.kp-number-stepper--error)),

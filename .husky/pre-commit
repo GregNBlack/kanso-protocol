@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+# Kanso architectural rule check — blocks commits that introduce raw colors,
+# physical CSS, raw shadows, or raw motion durations into component styles.
+# Suppress on a single line with `/* kanso-lint-disable <rule> -- <reason> */`.
+
+node scripts/lint-tokens.js --staged

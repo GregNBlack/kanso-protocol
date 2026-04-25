@@ -145,6 +145,7 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      /* kanso-lint-disable raw-motion-duration -- infinite indeterminate animation; no fast/normal/slow token applies */
       animation: kp-spin 0.8s linear infinite;
     }
 
@@ -206,7 +207,7 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       --kp-button-bg: var(--kp-color-gray-200); --kp-button-fg: var(--kp-color-gray-400); --kp-button-border: var(--kp-color-gray-200);
     }
     :host(.kp-button--primary.kp-button--default.kp-button--loading) {
-      --kp-button-bg: var(--kp-color-blue-500); --kp-button-fg: #FFF; --kp-button-border: var(--kp-color-blue-500);
+      --kp-button-bg: var(--kp-color-blue-500); --kp-button-fg: var(--kp-color-white); --kp-button-border: var(--kp-color-blue-500);
     }
 
     /* === PRIMARY SUBTLE === */
@@ -242,14 +243,14 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
     /* === DANGER DEFAULT === */
     :host(.kp-button--danger.kp-button--default) {
       --kp-button-bg: var(--kp-color-red-600); --kp-button-bg-hover: var(--kp-color-red-700); --kp-button-bg-active: var(--kp-color-red-800);
-      --kp-button-fg: #FFF; --kp-button-fg-hover: #FFF; --kp-button-fg-active: #FFF;
+      --kp-button-fg: var(--kp-color-white); --kp-button-fg-hover: var(--kp-color-white); --kp-button-fg-active: var(--kp-color-white);
       --kp-button-border: var(--kp-color-red-600); --kp-button-border-hover: var(--kp-color-red-700); --kp-button-border-active: var(--kp-color-red-800);
     }
     :host(.kp-button--danger.kp-button--default.kp-button--disabled) {
       --kp-button-bg: var(--kp-color-gray-200); --kp-button-fg: var(--kp-color-gray-400); --kp-button-border: var(--kp-color-gray-200);
     }
     :host(.kp-button--danger.kp-button--default.kp-button--loading) {
-      --kp-button-bg: var(--kp-color-red-500); --kp-button-fg: #FFF; --kp-button-border: var(--kp-color-red-500);
+      --kp-button-bg: var(--kp-color-red-500); --kp-button-fg: var(--kp-color-white); --kp-button-border: var(--kp-color-red-500);
     }
 
     /* === DANGER SUBTLE === */
@@ -276,14 +277,14 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
     /* === NEUTRAL DEFAULT === */
     :host(.kp-button--neutral.kp-button--default) {
       --kp-button-bg: var(--kp-color-gray-900); --kp-button-bg-hover: var(--kp-color-gray-800); --kp-button-bg-active: var(--kp-color-gray-700);
-      --kp-button-fg: #FFF; --kp-button-fg-hover: #FFF; --kp-button-fg-active: #FFF;
+      --kp-button-fg: var(--kp-color-white); --kp-button-fg-hover: var(--kp-color-white); --kp-button-fg-active: var(--kp-color-white);
       --kp-button-border: var(--kp-color-gray-900); --kp-button-border-hover: var(--kp-color-gray-800); --kp-button-border-active: var(--kp-color-gray-700);
     }
     :host(.kp-button--neutral.kp-button--default.kp-button--disabled) {
       --kp-button-bg: var(--kp-color-gray-200); --kp-button-fg: var(--kp-color-gray-400); --kp-button-border: var(--kp-color-gray-200);
     }
     :host(.kp-button--neutral.kp-button--default.kp-button--loading) {
-      --kp-button-bg: var(--kp-color-gray-700); --kp-button-fg: #FFF; --kp-button-border: var(--kp-color-gray-700);
+      --kp-button-bg: var(--kp-color-gray-700); --kp-button-fg: var(--kp-color-white); --kp-button-border: var(--kp-color-gray-700);
     }
 
     /* === NEUTRAL SUBTLE === */

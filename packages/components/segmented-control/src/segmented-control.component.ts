@@ -121,9 +121,7 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
       height: calc(100% - 4px);
       border-radius: var(--kp-segmented-segment-radius);
       background: var(--kp-color-segmented-segment-bg-selected, var(--kp-color-white));
-      box-shadow:
-        0 1px 2px rgba(0, 0, 0, 0.06),
-        0 1px 3px rgba(0, 0, 0, 0.08);
+      box-shadow: var(--kp-elevation-raised);
       transform: translateX(var(--kp-pill-x, 0));
       opacity: var(--kp-pill-opacity, 0);
       pointer-events: none;
@@ -157,7 +155,7 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
       cursor: pointer;
       user-select: none;
       white-space: nowrap;
-      transition: color 240ms cubic-bezier(0.32, 0.72, 0, 1);
+      transition: color var(--kp-motion-duration-normal) cubic-bezier(0.32, 0.72, 0, 1);
     }
 
     .kp-segmented-control__segment:hover:not(.kp-segmented-control__segment--selected):not(:disabled) {

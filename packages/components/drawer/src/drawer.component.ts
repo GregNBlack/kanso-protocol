@@ -102,10 +102,10 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       position: absolute;
       inset: 0;
       background: var(--kp-color-dialog-backdrop, rgba(0, 0, 0, 0.5));
-      animation: kp-drawer-fade-in 160ms ease;
+      animation: kp-drawer-fade-in var(--kp-motion-duration-fast) ease;
     }
     .kp-drawer__root--closing .kp-drawer__backdrop {
-      animation: kp-drawer-fade-out 200ms ease forwards;
+      animation: kp-drawer-fade-out var(--kp-motion-duration-normal) ease forwards;
     }
 
     .kp-drawer__panel {
@@ -114,9 +114,7 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       flex-direction: column;
       background: var(--kp-color-dialog-panel-bg, var(--kp-color-white));
       border: 1px solid var(--kp-color-dialog-panel-border, var(--kp-color-gray-200));
-      box-shadow:
-        0 10px 15px rgba(0, 0, 0, 0.10),
-        0 20px 25px rgba(0, 0, 0, 0.12);
+      box-shadow: var(--kp-elevation-floating);
       outline: none;
       max-width: 100vw;
       max-height: 100vh;
@@ -138,37 +136,39 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       top: 0; right: 0; height: 100vh;
       width: var(--kp-drawer-w);
       border-radius: 16px 0 0 16px;
+      /* kanso-lint-disable physical-css -- drawer's side="right" is a physical API by design */
       border-right: none;
-      animation: kp-drawer-slide-right 220ms cubic-bezier(0.2, 1, 0.4, 1);
+      animation: kp-drawer-slide-right var(--kp-motion-duration-normal) cubic-bezier(0.2, 1, 0.4, 1);
     }
     .kp-drawer__root.kp-drawer--left .kp-drawer__panel {
       top: 0; left: 0; height: 100vh;
       width: var(--kp-drawer-w);
       border-radius: 0 16px 16px 0;
+      /* kanso-lint-disable physical-css -- drawer's side="left" is a physical API by design */
       border-left: none;
-      animation: kp-drawer-slide-left 220ms cubic-bezier(0.2, 1, 0.4, 1);
+      animation: kp-drawer-slide-left var(--kp-motion-duration-normal) cubic-bezier(0.2, 1, 0.4, 1);
     }
     .kp-drawer__root.kp-drawer--top .kp-drawer__panel {
       top: 0; left: 0; width: 100vw;
       height: var(--kp-drawer-h);
       border-radius: 0 0 16px 16px;
       border-top: none;
-      animation: kp-drawer-slide-top 220ms cubic-bezier(0.2, 1, 0.4, 1);
+      animation: kp-drawer-slide-top var(--kp-motion-duration-normal) cubic-bezier(0.2, 1, 0.4, 1);
     }
     .kp-drawer__root.kp-drawer--bottom .kp-drawer__panel {
       bottom: 0; left: 0; width: 100vw;
       height: var(--kp-drawer-h);
       border-radius: 16px 16px 0 0;
       border-bottom: none;
-      animation: kp-drawer-slide-bottom 220ms cubic-bezier(0.2, 1, 0.4, 1);
+      animation: kp-drawer-slide-bottom var(--kp-motion-duration-normal) cubic-bezier(0.2, 1, 0.4, 1);
     }
 
     /* Exit animations — same easing, reversed direction. forwards keeps the
        panel at its off-screen end position until the timeout unmounts it. */
-    .kp-drawer__root--closing.kp-drawer--right  .kp-drawer__panel { animation: kp-drawer-out-right  220ms cubic-bezier(0.2, 1, 0.4, 1) forwards; }
-    .kp-drawer__root--closing.kp-drawer--left   .kp-drawer__panel { animation: kp-drawer-out-left   220ms cubic-bezier(0.2, 1, 0.4, 1) forwards; }
-    .kp-drawer__root--closing.kp-drawer--top    .kp-drawer__panel { animation: kp-drawer-out-top    220ms cubic-bezier(0.2, 1, 0.4, 1) forwards; }
-    .kp-drawer__root--closing.kp-drawer--bottom .kp-drawer__panel { animation: kp-drawer-out-bottom 220ms cubic-bezier(0.2, 1, 0.4, 1) forwards; }
+    .kp-drawer__root--closing.kp-drawer--right  .kp-drawer__panel { animation: kp-drawer-out-right  var(--kp-motion-duration-normal) cubic-bezier(0.2, 1, 0.4, 1) forwards; }
+    .kp-drawer__root--closing.kp-drawer--left   .kp-drawer__panel { animation: kp-drawer-out-left   var(--kp-motion-duration-normal) cubic-bezier(0.2, 1, 0.4, 1) forwards; }
+    .kp-drawer__root--closing.kp-drawer--top    .kp-drawer__panel { animation: kp-drawer-out-top    var(--kp-motion-duration-normal) cubic-bezier(0.2, 1, 0.4, 1) forwards; }
+    .kp-drawer__root--closing.kp-drawer--bottom .kp-drawer__panel { animation: kp-drawer-out-bottom var(--kp-motion-duration-normal) cubic-bezier(0.2, 1, 0.4, 1) forwards; }
 
     /* Respect OS-level reduce-motion preference — skip slide choreography. */
     @media (prefers-reduced-motion: reduce) {
@@ -226,7 +226,7 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       border-radius: 8px;
       color: var(--kp-color-dialog-fg-desc, var(--kp-color-gray-600));
       cursor: pointer;
-      transition: background 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease;
       flex: 0 0 auto;
     }
     .kp-drawer__close:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); }

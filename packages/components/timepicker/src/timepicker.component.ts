@@ -193,7 +193,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       background: var(--kp-input-bg, var(--kp-color-white));
       color: var(--kp-input-fg, var(--kp-color-gray-900));
       cursor: pointer;
-      transition: border-color 120ms ease, background 120ms ease;
+      transition: border-color var(--kp-motion-duration-fast) ease, background 120ms ease;
     }
     :host(:not(.kp-tp--disabled):not(.kp-tp--error)) .kp-tp__trigger:hover,
     :host(.kp-tp--hover) .kp-tp__trigger {
@@ -237,7 +237,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       border-radius: 4px;
       color: var(--kp-color-gray-500);
       cursor: pointer;
-      transition: background 120ms ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
     .kp-tp__clear:hover { background: var(--kp-color-gray-100); color: var(--kp-color-gray-700); }
     .kp-tp__clear svg { width: var(--kp-input-clear-icon, 14px); height: var(--kp-input-clear-icon, 14px); }
@@ -256,9 +256,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       background: var(--kp-color-datepicker-panel-bg, var(--kp-color-white));
       border: 1px solid var(--kp-color-datepicker-panel-border, var(--kp-color-gray-200));
       border-radius: 12px;
-      box-shadow:
-        0 4px 6px rgba(0, 0, 0, 0.05),
-        0 10px 15px rgba(0, 0, 0, 0.10);
+      box-shadow: var(--kp-elevation-overlay);
       box-sizing: border-box;
     }
 
@@ -321,7 +319,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       font-variant-numeric: tabular-nums;
       color: var(--kp-color-datepicker-day-fg-rest, var(--kp-color-gray-900));
       cursor: pointer;
-      transition: background 100ms ease, color 100ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color 100ms ease;
       flex-shrink: 0;
     }
     .kp-tp__item:hover:not(.kp-tp__item--selected) {

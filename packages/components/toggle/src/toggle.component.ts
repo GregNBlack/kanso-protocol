@@ -68,7 +68,7 @@ export type KpToggleColor = 'primary' | 'danger';
       height: var(--kp-toggle-track-h);
       border-radius: var(--kp-toggle-track-h);
       background: var(--kp-toggle-track-bg, var(--kp-color-gray-300));
-      transition: background var(--kp-motion-duration-fast, 150ms) ease;
+      transition: background var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease;
     }
 
     .kp-toggle__thumb {
@@ -79,8 +79,8 @@ export type KpToggleColor = 'primary' | 'danger';
       height: var(--kp-toggle-thumb);
       border-radius: 50%;
       background: var(--kp-color-white);
-      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-      transition: left var(--kp-motion-duration-fast, 150ms) ease;
+      box-shadow: var(--kp-elevation-raised);
+      transition: left var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease;
     }
 
     :host(.kp-toggle--on) .kp-toggle__thumb {

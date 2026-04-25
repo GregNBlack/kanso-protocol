@@ -102,7 +102,7 @@ export type KpBreadcrumbItemType = 'link' | 'current' | 'ellipsis';
       line-height: var(--kp-bc-line-height);
       color: var(--kp-color-breadcrumbs-item-fg-link-rest, var(--kp-color-gray-600));
       font-weight: 400;
-      transition: color 120ms ease;
+      transition: color var(--kp-motion-duration-fast) ease;
     }
     a.kp-bc-item__content,
     button.kp-bc-item__content { cursor: pointer; }
@@ -115,7 +115,7 @@ export type KpBreadcrumbItemType = 'link' | 'current' | 'ellipsis';
       display: inline-flex;
       align-items: center;
       color: var(--kp-color-breadcrumbs-item-icon-link-rest, var(--kp-color-gray-500));
-      transition: color 120ms ease;
+      transition: color var(--kp-motion-duration-fast) ease;
     }
     .kp-bc-item__icon:empty { display: none; }
     .kp-bc-item__icon ::ng-deep svg {

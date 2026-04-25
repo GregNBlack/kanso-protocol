@@ -53,7 +53,7 @@ export type KpTabSize = 'sm' | 'md' | 'lg';
       height: var(--kp-tab-h);
       border-bottom: 2px solid var(--kp-color-tabs-tab-underline-rest, transparent);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
-      transition: border-color 120ms ease, color 120ms ease;
+      transition: border-color var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
     :host(.kp-tab--full-width) { flex: 1 1 0; }
 

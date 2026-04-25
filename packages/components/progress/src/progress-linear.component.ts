@@ -101,11 +101,12 @@ export type KpProgressColor = 'primary' | 'success' | 'danger' | 'warning' | 'ne
       height: 100%;
       background: var(--kp-progress-fill);
       border-radius: calc(var(--kp-progress-h) / 2);
-      transition: width 240ms cubic-bezier(0.32, 0.72, 0, 1);
+      transition: width var(--kp-motion-duration-normal) cubic-bezier(0.32, 0.72, 0, 1);
     }
 
     .kp-progress-linear__bar--indeterminate {
       width: 30%;
+      /* kanso-lint-disable raw-motion-duration -- infinite indeterminate animation; no fast/normal/slow token applies */
       animation: kp-progress-linear-indet 1.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
     }
 

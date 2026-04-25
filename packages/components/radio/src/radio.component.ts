@@ -85,7 +85,7 @@ export type KpRadioColor = 'primary' | 'danger';
       border-radius: 50%;
       border: var(--kp-radio-border-width) solid var(--kp-radio-border, var(--kp-color-gray-300));
       background: var(--kp-radio-bg, var(--kp-color-white));
-      transition: border-color var(--kp-motion-duration-fast, 100ms) ease;
+      transition: border-color var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease;
     }
 
     .kp-radio__dot {
@@ -94,7 +94,7 @@ export type KpRadioColor = 'primary' | 'danger';
       border-radius: 50%;
       background: var(--kp-radio-dot-bg, var(--kp-color-blue-600));
       opacity: 0;
-      transition: opacity var(--kp-motion-duration-fast, 100ms) ease;
+      transition: opacity var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease;
     }
     :host(.kp-radio--checked) .kp-radio__dot { opacity: 1; }
 

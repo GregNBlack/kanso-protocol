@@ -118,7 +118,7 @@ export type KpPageHeaderSize = 'sm' | 'md' | 'lg';
       border-radius: 8px;
       color: var(--kp-color-gray-600, var(--kp-color-gray-600));
       cursor: pointer;
-      transition: background 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease;
     }
     .kp-page-header__back:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); color: var(--kp-color-gray-900, var(--kp-color-gray-900)); }
     .kp-page-header__back svg { width: 20px; height: 20px; }

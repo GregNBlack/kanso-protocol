@@ -82,7 +82,7 @@ type KpProgressColor = 'primary' | 'success' | 'danger' | 'warning' | 'neutral';
       height: var(--kp-progress-h);
       background: var(--kp-color-progress-track, var(--kp-color-gray-100));
       border-radius: calc(var(--kp-progress-h) / 2);
-      transition: background 200ms ease;
+      transition: background var(--kp-motion-duration-normal) ease;
     }
     .kp-progress-segmented__segment--complete {
       background: var(--kp-progress-fill);

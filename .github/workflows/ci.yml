@@ -16,6 +16,8 @@ jobs:
           node-version: 24
           cache: 'npm'
       - run: npm ci --legacy-peer-deps
+      - name: Lint tokens (architectural rules)
+        run: npm run lint:tokens
       - name: Build tokens
         run: npm run build:tokens
       - name: Build libraries
