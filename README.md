@@ -3,6 +3,7 @@
 [![CI](https://github.com/GregNBlack/kanso-protocol/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/GregNBlack/kanso-protocol/actions/workflows/ci.yml)
 [![Storybook](https://img.shields.io/badge/Storybook-live-FF4785?logo=storybook&logoColor=white)](https://gregnblack.github.io/kanso-protocol)
 [![Tests](https://img.shields.io/badge/tests-352%20passing-brightgreen)](https://gregnblack.github.io/kanso-protocol/?path=/docs/foundations-test-coverage--docs)
+[![MCP](https://img.shields.io/badge/MCP-ready-7c3aed)](https://www.npmjs.com/package/@kanso-protocol/mcp)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 **Open source design system for Angular, built on architectural consistency.**
@@ -21,12 +22,34 @@ Most design systems break consistency through convention drift — developers an
 - **Every component follows the same anatomy.** Container → Content → Element.
 - **Every state is explicit.** No opacity overlays — clean, predictable colors.
 - **One source of truth.** Change a token in one place — it updates in Figma and code.
+- **AI-native.** Ships with a Model Context Protocol server so your assistant authors Kanso UI from the live catalog, not from training data.
 
 ## Live Preview
 
 **Storybook:** [gregnblack.github.io/kanso-protocol](https://gregnblack.github.io/kanso-protocol)
 
 Every component, pattern and example page is published there with autodocs, live controls, and a light/dark theme toggle.
+
+## AI-native: ship with an MCP server
+
+Kanso Protocol is one of the first design systems to ship a [**Model Context Protocol**](https://modelcontextprotocol.io) server out of the box — `@kanso-protocol/mcp`. Your AI assistant (Claude Code, Cursor, VS Code, any MCP-aware client) can introspect the entire catalog over stdio: every component's inputs / outputs / ARIA role / keyboard pattern, every pattern, every design token. No copy-pasting docs, no guessing prop names, no out-of-date snippets.
+
+```jsonc
+// .mcp.json — Claude Code (or wire it via `claude mcp add kanso npx @kanso-protocol/mcp`)
+{
+  "mcpServers": {
+    "kanso": { "command": "npx", "args": ["@kanso-protocol/mcp"] }
+  }
+}
+```
+
+Once connected, ask things like:
+
+- *"Which size ramp does `kp-input` support, and which validators does `form-field` translate by default?"*
+- *"List every `--kp-color-*` token tied to the danger role."*
+- *"I need a settings page with a sidebar of collapsible sections — which Kanso pieces compose that?"*
+
+The assistant calls `list_components` / `get_component` / `list_tokens` under the hood and answers from the live catalog. Cursor / VS Code setup, full tool reference, and the roadmap (Figma bridge in `0.2.x`) live in the [package README](packages/mcp/README.md).
 
 ## Install & Use
 
@@ -262,6 +285,7 @@ Kanso Protocol syncs with Figma via [Tokens Studio](https://tokens.studio):
 - **Icons:** [Tabler Icons](https://tabler.io/icons)
 - **CI/CD:** GitHub Actions
 - **Figma sync:** Tokens Studio
+- **AI tooling:** [Model Context Protocol](https://modelcontextprotocol.io) — `@kanso-protocol/mcp`
 
 ## License
 

@@ -38,11 +38,21 @@ Highlights:
 
 Patterns are larger compositions (page shells, layouts, multi-control bars) built on top of components. Each is its own publishable package so consumers only pay for what they import.
 
+### AI tooling — `@kanso-protocol/mcp`
+
+A first-class [Model Context Protocol](https://modelcontextprotocol.io) server ships in the same release. Wire it into Claude Code / Cursor / VS Code with one line:
+
+```jsonc
+{ "mcpServers": { "kanso": { "command": "npx", "args": ["@kanso-protocol/mcp"] } } }
+```
+
+Seven stdio tools — `catalog_overview`, `list_components`, `get_component`, `list_patterns`, `get_pattern`, `list_tokens`, `get_token` — let your assistant introspect the live catalog (inputs, outputs, ARIA roles, keyboard patterns, every CSS variable) instead of guessing from training data. Manifest is regenerated from sources via `ts-morph` on every build, so it never drifts. Figma bridge (`figma_component_for(name)`, `figma_token_for(name)`) lands in `0.2.x`.
+
 ### Quality
 
-- **330 unit tests across 38 spec files** (Vitest + Angular `@angular/build:unit-test` runner) covering every shipped component. See the live [Storybook Test Coverage page](https://gregnblack.github.io/kanso-protocol/?path=/docs/foundations-test-coverage--docs).
+- **352 unit tests across 38 spec files** (Vitest + Angular `@angular/build:unit-test` runner) covering every shipped component. See the live [Storybook Test Coverage page](https://gregnblack.github.io/kanso-protocol/?path=/docs/foundations-test-coverage--docs).
 - **Storybook** docs deployed to `https://gregnblack.github.io/kanso-protocol/` — every component and pattern has stories with controls, source, and usage docs.
-- **CI** — install + tests + Storybook build + `ng-packagr` build for all 56 packages on every push.
+- **CI** — install + tests + Storybook build + `ng-packagr` build for all 57 packages (56 libs + MCP server) on every push.
 
 ### Known limitations / out of scope for `0.1.0`
 
