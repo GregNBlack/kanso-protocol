@@ -6,13 +6,16 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  DestroyRef,
   ElementRef,
   OnDestroy,
   forwardRef,
+  inject,
   ViewChild,
   ViewChildren,
   QueryList,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { KpSize } from '@kanso-protocol/core';
@@ -227,6 +230,8 @@ export class KpSegmentedControlComponent
 
   readonly iconSizeMap: Record<KpSize, number> = { xs: 14, sm: 16, md: 18, lg: 22, xl: 24 };
 
+  private readonly destroyRef = inject(DestroyRef);
+
   constructor(
     private host: ElementRef<HTMLElement>,
     private cdr: ChangeDetectorRef,
@@ -258,7 +263,9 @@ export class KpSegmentedControlComponent
     this.ro = new ResizeObserver(() => this.updatePill());
     this.ro.observe(this.host.nativeElement);
     // Also recompute when options change after init
-    this.segEls.changes.subscribe(() => queueMicrotask(() => this.updatePill()));
+    this.segEls.changes
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => queueMicrotask(() => this.updatePill()));
   }
 
   ngOnDestroy(): void {

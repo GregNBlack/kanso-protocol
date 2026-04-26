@@ -3,9 +3,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
+  DestroyRef,
   Input,
   QueryList,
+  inject,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { map, merge, startWith, switchMap } from 'rxjs';
 
 import { KpAccordionItemComponent, KpAccordionItemSize } from './accordion-item.component';
 
@@ -51,12 +55,25 @@ export class KpAccordionComponent implements AfterContentInit {
 
   @ContentChildren(KpAccordionItemComponent) items!: QueryList<KpAccordionItemComponent>;
 
+  private readonly destroyRef = inject(DestroyRef);
+
   ngAfterContentInit(): void {
-    this.sync();
-    this.items.changes.subscribe(() => this.sync());
-    this.items.forEach((item) => {
-      item.expandedChange.subscribe(() => this.onItemToggle(item));
-    });
+    this.items.changes
+      .pipe(startWith(null), takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => this.sync());
+
+    // Re-merge per-item streams whenever the projected set changes, so newly
+    // added items get wired up and removed items don't keep stale subscriptions.
+    // switchMap drops the previous merged stream — no manual unsubscribe needed.
+    this.items.changes
+      .pipe(
+        startWith(null),
+        switchMap(() => merge(
+          ...this.items.toArray().map((item) => item.expandedChange.pipe(map(() => item))),
+        )),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe((toggled) => this.onItemToggle(toggled));
   }
 
   private sync(): void {

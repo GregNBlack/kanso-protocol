@@ -75,14 +75,6 @@ describe('KpPopoverComponent', () => {
     expect(host.classList.contains('kp-popover--lg')).toBe(true);
   });
 
-  it('closeIconSize is 16 for sm', () => {
-    expect(setup({ size: 'sm' }).cmp.closeIconSize).toBe(16);
-  });
-
-  it('closeIconSize is 18 for md', () => {
-    expect(setup({ size: 'md' }).cmp.closeIconSize).toBe(18);
-  });
-
   it('header divider absent by default', () => {
     expect(setup().host.querySelector('.kp-popover__header + .kp-popover__divider')).toBeNull();
   });

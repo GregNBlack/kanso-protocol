@@ -77,7 +77,7 @@ export type KpAlertActionPlacement = 'inline' | 'stacked';
           class="kp-alert__close"
           aria-label="Close"
           (click)="handleClose($event)">
-          <svg [attr.width]="closeIconSize" [attr.height]="closeIconSize" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </button>
@@ -181,6 +181,10 @@ export type KpAlertActionPlacement = 'inline' | 'stacked';
       outline-offset: 1px;
       opacity: 1;
     }
+    .kp-alert__close svg {
+      width: var(--kp-alert-close-icon-size);
+      height: var(--kp-alert-close-icon-size);
+    }
 
     /* --- Sizes --- */
     :host(.kp-alert--sm) {
@@ -191,6 +195,7 @@ export type KpAlertActionPlacement = 'inline' | 'stacked';
       --kp-alert-radius: 10px;
       --kp-alert-icon-size: 16px;
       --kp-alert-close-size: 20px;
+      --kp-alert-close-icon-size: 14px;
       --kp-alert-close-radius: 4px;
       --kp-alert-accent-width: 3px;
       --kp-alert-title-size: 14px; --kp-alert-title-lh: 20px;
@@ -204,6 +209,7 @@ export type KpAlertActionPlacement = 'inline' | 'stacked';
       --kp-alert-radius: 12px;
       --kp-alert-icon-size: 18px;
       --kp-alert-close-size: 24px;
+      --kp-alert-close-icon-size: 16px;
       --kp-alert-close-radius: 6px;
       --kp-alert-accent-width: 4px;
       --kp-alert-title-size: 16px; --kp-alert-title-lh: 24px;
@@ -217,6 +223,7 @@ export type KpAlertActionPlacement = 'inline' | 'stacked';
       --kp-alert-radius: 14px;
       --kp-alert-icon-size: 22px;
       --kp-alert-close-size: 28px;
+      --kp-alert-close-icon-size: 18px;
       --kp-alert-close-radius: 6px;
       --kp-alert-accent-width: 4px;
       --kp-alert-title-size: 20px; --kp-alert-title-lh: 28px;
@@ -433,10 +440,6 @@ export class KpAlertComponent {
   @Input() closable = false;
 
   @Output() close = new EventEmitter<MouseEvent>();
-
-  get closeIconSize(): number {
-    return this.size === 'lg' ? 18 : this.size === 'md' ? 16 : 14;
-  }
 
   get hostClasses(): string {
     return [

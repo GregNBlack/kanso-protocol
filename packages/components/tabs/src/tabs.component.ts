@@ -3,11 +3,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
+  DestroyRef,
   ElementRef,
   Input,
   QueryList,
   inject,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { KpTabComponent, KpTabSize } from './tab.component';
 
@@ -71,10 +73,11 @@ export class KpTabsComponent implements AfterContentInit {
   @ContentChildren(KpTabComponent) tabs!: QueryList<KpTabComponent>;
 
   private readonly host = inject(ElementRef) as ElementRef<HTMLElement>;
+  private readonly destroyRef = inject(DestroyRef);
 
   ngAfterContentInit(): void {
     this.applyToTabs();
-    this.tabs.changes.subscribe(() => this.applyToTabs());
+    this.tabs.changes.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => this.applyToTabs());
   }
 
   private applyToTabs(): void {

@@ -53,7 +53,7 @@ export type KpBadgeColor =
         class="kp-badge__close"
         aria-label="Remove"
         (click)="handleClose($event)">
-        <svg [attr.width]="closeSize" [attr.height]="closeSize" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
       </button>
@@ -117,6 +117,10 @@ export type KpBadgeColor =
       opacity: 0.75;
       transition: opacity var(--kp-motion-duration-fast) ease, background 120ms ease;
     }
+    .kp-badge__close svg {
+      width: var(--kp-badge-close-size);
+      height: var(--kp-badge-close-size);
+    }
     .kp-badge__close:hover { opacity: 1; background: var(--kp-color-overlay-hover-medium); }
     .kp-badge__close:focus-visible {
       outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
@@ -159,9 +163,7 @@ export type KpBadgeColor =
       --kp-badge-radius: 8px;
     }
 
-    :host(.kp-badge--pill.kp-badge--xs) { --kp-badge-radius: 9px; }
-    :host(.kp-badge--pill.kp-badge--sm) { --kp-badge-radius: 11px; }
-    :host(.kp-badge--pill.kp-badge--md) { --kp-badge-radius: 13px; }
+    :host(.kp-badge--pill) { --kp-badge-radius: var(--kp-radius-full, 9999px); }
 
     /* Counter pill behaviour: min-width = height AND horizontal padding
        drops to 2px so 1–2 chars stay visually circular. The badge grows
@@ -343,10 +345,6 @@ export class KpBadgeComponent {
 
   get showDot(): boolean {
     return this.showLeadingDot || this.appearance === 'dot';
-  }
-
-  get closeSize(): number {
-    return this.size === 'md' ? 14 : this.size === 'sm' ? 12 : 10;
   }
 
   get hostClasses(): string {

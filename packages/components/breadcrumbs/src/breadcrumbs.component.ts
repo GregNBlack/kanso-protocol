@@ -3,9 +3,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
+  DestroyRef,
   Input,
   QueryList,
+  inject,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { KpBreadcrumbItemComponent, KpBreadcrumbItemSize } from './breadcrumb-item.component';
 import { KpBreadcrumbSeparatorComponent } from './breadcrumb-separator.component';
@@ -75,10 +78,12 @@ export class KpBreadcrumbsComponent implements AfterContentInit {
   @ContentChildren(KpBreadcrumbItemComponent) items!: QueryList<KpBreadcrumbItemComponent>;
   @ContentChildren(KpBreadcrumbSeparatorComponent) separators!: QueryList<KpBreadcrumbSeparatorComponent>;
 
+  private readonly destroyRef = inject(DestroyRef);
+
   ngAfterContentInit(): void {
     this.applySize();
-    this.items.changes.subscribe(() => this.applySize());
-    this.separators.changes.subscribe(() => this.applySize());
+    this.items.changes.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => this.applySize());
+    this.separators.changes.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => this.applySize());
   }
 
   private applySize(): void {

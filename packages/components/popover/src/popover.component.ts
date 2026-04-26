@@ -53,7 +53,7 @@ export type KpPopoverArrowPosition =
           </div>
           @if (closable) {
             <button type="button" class="kp-popover__close" aria-label="Close" (click)="handleClose($event)">
-              <svg [attr.width]="closeIconSize" [attr.height]="closeIconSize" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
               </svg>
             </button>
@@ -160,6 +160,10 @@ export type KpPopoverArrowPosition =
       outline-offset: 1px;
       opacity: 1;
     }
+    .kp-popover__close svg {
+      width: var(--kp-popover-close-icon-size);
+      height: var(--kp-popover-close-icon-size);
+    }
 
     .kp-popover__content {
       padding: 0 var(--kp-popover-pad);
@@ -220,6 +224,7 @@ export type KpPopoverArrowPosition =
       --kp-popover-header-gap: 2px;
       --kp-popover-radius: 10px;
       --kp-popover-close-size: 20px;
+      --kp-popover-close-icon-size: 16px;
       --kp-popover-close-radius: 4px;
       --kp-popover-title-size: 14px; --kp-popover-title-lh: 20px;
       --kp-popover-desc-size: 12px;  --kp-popover-desc-lh: 16px;
@@ -232,6 +237,7 @@ export type KpPopoverArrowPosition =
       --kp-popover-header-gap: 4px;
       --kp-popover-radius: 12px;
       --kp-popover-close-size: 24px;
+      --kp-popover-close-icon-size: 18px;
       --kp-popover-close-radius: 6px;
       --kp-popover-title-size: 16px; --kp-popover-title-lh: 24px;
       --kp-popover-desc-size: 14px;  --kp-popover-desc-lh: 20px;
@@ -244,6 +250,7 @@ export type KpPopoverArrowPosition =
       --kp-popover-header-gap: 4px;
       --kp-popover-radius: 14px;
       --kp-popover-close-size: 24px;
+      --kp-popover-close-icon-size: 18px;
       --kp-popover-close-radius: 6px;
       --kp-popover-title-size: 20px; --kp-popover-title-lh: 28px;
       --kp-popover-desc-size: 16px;  --kp-popover-desc-lh: 24px;
@@ -265,8 +272,6 @@ export class KpPopoverComponent {
   @Output() close = new EventEmitter<MouseEvent>();
 
   get hasFooter(): boolean { return this.showFooter; }
-
-  get closeIconSize(): number { return this.size === 'sm' ? 16 : 18; }
 
   private get arrowBase(): number { return this.size === 'sm' ? 10 : 12; }
   private get arrowHeight(): number { return this.size === 'sm' ? 7 : 8; }
