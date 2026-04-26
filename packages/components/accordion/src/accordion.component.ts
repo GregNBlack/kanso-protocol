@@ -3,13 +3,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
-  DestroyRef,
   Input,
+  OnDestroy,
   QueryList,
-  inject,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { map, merge, startWith, switchMap } from 'rxjs';
+import { map, merge, startWith, Subject, switchMap, takeUntil } from 'rxjs';
 
 import { KpAccordionItemComponent, KpAccordionItemSize } from './accordion-item.component';
 
@@ -48,18 +46,18 @@ export type KpAccordionMode = 'single' | 'multi';
     }
   `],
 })
-export class KpAccordionComponent implements AfterContentInit {
+export class KpAccordionComponent implements AfterContentInit, OnDestroy {
   @Input() size: KpAccordionItemSize = 'md';
   @Input() mode: KpAccordionMode = 'single';
   @Input() showOuterBorder = false;
 
   @ContentChildren(KpAccordionItemComponent) items!: QueryList<KpAccordionItemComponent>;
 
-  private readonly destroyRef = inject(DestroyRef);
+  private readonly destroyed$ = new Subject<void>();
 
   ngAfterContentInit(): void {
     this.items.changes
-      .pipe(startWith(null), takeUntilDestroyed(this.destroyRef))
+      .pipe(startWith(null), takeUntil(this.destroyed$))
       .subscribe(() => this.sync());
 
     // Re-merge per-item streams whenever the projected set changes, so newly
@@ -71,9 +69,14 @@ export class KpAccordionComponent implements AfterContentInit {
         switchMap(() => merge(
           ...this.items.toArray().map((item) => item.expandedChange.pipe(map(() => item))),
         )),
-        takeUntilDestroyed(this.destroyRef),
+        takeUntil(this.destroyed$),
       )
-      .subscribe((toggled) => this.onItemToggle(toggled));
+      .subscribe((toggled) => this.onItemToggle(toggled as KpAccordionItemComponent));
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 
   private sync(): void {

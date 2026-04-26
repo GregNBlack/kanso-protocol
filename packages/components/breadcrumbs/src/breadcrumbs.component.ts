@@ -3,12 +3,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
-  DestroyRef,
   Input,
+  OnDestroy,
   QueryList,
-  inject,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Subject, takeUntil } from 'rxjs';
 
 import { KpBreadcrumbItemComponent, KpBreadcrumbItemSize } from './breadcrumb-item.component';
 import { KpBreadcrumbSeparatorComponent } from './breadcrumb-separator.component';
@@ -71,19 +70,24 @@ export type KpBreadcrumbsSize = KpBreadcrumbItemSize;
     :host(.kp-breadcrumbs--md) .kp-breadcrumbs__list { gap: 6px; }
   `],
 })
-export class KpBreadcrumbsComponent implements AfterContentInit {
+export class KpBreadcrumbsComponent implements AfterContentInit, OnDestroy {
   @Input() size: KpBreadcrumbsSize = 'md';
   @Input() ariaLabel = 'Breadcrumb';
 
   @ContentChildren(KpBreadcrumbItemComponent) items!: QueryList<KpBreadcrumbItemComponent>;
   @ContentChildren(KpBreadcrumbSeparatorComponent) separators!: QueryList<KpBreadcrumbSeparatorComponent>;
 
-  private readonly destroyRef = inject(DestroyRef);
+  private readonly destroyed$ = new Subject<void>();
 
   ngAfterContentInit(): void {
     this.applySize();
-    this.items.changes.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => this.applySize());
-    this.separators.changes.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => this.applySize());
+    this.items.changes.pipe(takeUntil(this.destroyed$)).subscribe(() => this.applySize());
+    this.separators.changes.pipe(takeUntil(this.destroyed$)).subscribe(() => this.applySize());
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 
   private applySize(): void {

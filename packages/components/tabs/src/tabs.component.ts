@@ -3,13 +3,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
-  DestroyRef,
   ElementRef,
   Input,
+  OnDestroy,
   QueryList,
   inject,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Subject, takeUntil } from 'rxjs';
 
 import { KpTabComponent, KpTabSize } from './tab.component';
 
@@ -66,18 +66,23 @@ import { KpTabComponent, KpTabSize } from './tab.component';
     .kp-tabs__more:empty { display: none; }
   `],
 })
-export class KpTabsComponent implements AfterContentInit {
+export class KpTabsComponent implements AfterContentInit, OnDestroy {
   @Input() size: KpTabSize = 'md';
   @Input() fullWidth = false;
 
   @ContentChildren(KpTabComponent) tabs!: QueryList<KpTabComponent>;
 
   private readonly host = inject(ElementRef) as ElementRef<HTMLElement>;
-  private readonly destroyRef = inject(DestroyRef);
+  private readonly destroyed$ = new Subject<void>();
 
   ngAfterContentInit(): void {
     this.applyToTabs();
-    this.tabs.changes.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => this.applyToTabs());
+    this.tabs.changes.pipe(takeUntil(this.destroyed$)).subscribe(() => this.applyToTabs());
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 
   private applyToTabs(): void {
