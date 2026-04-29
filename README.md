@@ -247,25 +247,6 @@ Six explicit states for every interactive component:
 
 **Loading ≠ Disabled.** Loading preserves focus and announces state to screen readers.
 
-## Component API contracts
-
-Every component has a formal API contract in `docs/components/`. Read the contract before using a component — it describes the API, variants, states, accessibility requirements, and usage rules.
-
-- [Button](docs/components/button.md)
-- [Input](docs/components/input.md)
-- [Icon](docs/components/icon.md)
-- [Spinner](docs/components/spinner.md)
-- [Checkbox](docs/components/checkbox.md)
-- [Radio](docs/components/radio.md)
-- [Toggle](docs/components/toggle.md)
-- [FormField](docs/components/form-field.md)
-- [MenuItem](docs/components/menu-item.md)
-- [DropdownMenu](docs/components/dropdown-menu.md)
-- [Textarea](docs/components/textarea.md)
-- [RichTextEditor](docs/components/rich-text-editor.md)
-
-Template for new components: [`docs/components/_template.md`](docs/components/_template.md)
-
 ## Usage
 
 ```typescript
@@ -287,6 +268,60 @@ export class MyComponent {
   isSaving = false;
 }
 ```
+
+## Components
+
+37 components, each its own npm package — install only what you import. Tokens live in `@kanso-protocol/core` and need to be loaded once for any of them to render correctly.
+
+Install all components in one shot (zsh / bash brace expansion):
+
+```bash
+npm i @kanso-protocol/core @kanso-protocol/{accordion,alert,avatar,avatar-group,badge,breadcrumbs,button,card,checkbox,combobox,datepicker,dialog,divider,drawer,empty-state,form-field,icon,input,menu,number-stepper,pagination,popover,progress,radio,rich-text-editor,segmented-control,select,skeleton,slider,table,tabs,textarea,timepicker,toast,toggle,tooltip,tree}
+```
+
+Or pick what you need from the catalog. Every component has a formal API contract (props, variants, states, a11y rules) and a live Storybook page with controls.
+
+| Component | Contract | Storybook | Install |
+|---|---|---|---|
+| Accordion | [accordion.md](docs/components/accordion.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-accordion--docs) | `npm i @kanso-protocol/accordion` |
+| Alert | [alert.md](docs/components/alert.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-alert--docs) | `npm i @kanso-protocol/alert` |
+| Avatar | [avatar.md](docs/components/avatar.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-avatar--docs) | `npm i @kanso-protocol/avatar` |
+| AvatarGroup | [avatar-group.md](docs/components/avatar-group.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-avatargroup--docs) | `npm i @kanso-protocol/avatar-group` |
+| Badge | [badge.md](docs/components/badge.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-badge--docs) | `npm i @kanso-protocol/badge` |
+| Breadcrumbs | [breadcrumbs.md](docs/components/breadcrumbs.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-breadcrumbs--docs) | `npm i @kanso-protocol/breadcrumbs` |
+| Button | [button.md](docs/components/button.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-button--docs) | `npm i @kanso-protocol/button` |
+| Card | [card.md](docs/components/card.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-card--docs) | `npm i @kanso-protocol/card` |
+| Checkbox | [checkbox.md](docs/components/checkbox.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-checkbox--docs) | `npm i @kanso-protocol/checkbox` |
+| Combobox | [combobox.md](docs/components/combobox.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-combobox--docs) | `npm i @kanso-protocol/combobox` |
+| DatePicker | [datepicker.md](docs/components/datepicker.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-datepicker--docs) | `npm i @kanso-protocol/datepicker` |
+| Dialog | [dialog.md](docs/components/dialog.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-dialog--docs) | `npm i @kanso-protocol/dialog` |
+| Divider | [divider.md](docs/components/divider.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-divider--docs) | `npm i @kanso-protocol/divider` |
+| Drawer | [drawer.md](docs/components/drawer.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-drawer--docs) | `npm i @kanso-protocol/drawer` |
+| DropdownMenu | [dropdown-menu.md](docs/components/dropdown-menu.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-dropdownmenu--docs) | `npm i @kanso-protocol/menu` |
+| EmptyState | [empty-state.md](docs/components/empty-state.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-emptystate--docs) | `npm i @kanso-protocol/empty-state` |
+| FormField | [form-field.md](docs/components/form-field.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-formfield--docs) | `npm i @kanso-protocol/form-field` |
+| Icon | [icon.md](docs/components/icon.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-icon--docs) | `npm i @kanso-protocol/icon` |
+| Input | [input.md](docs/components/input.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-input--docs) | `npm i @kanso-protocol/input` |
+| NumberStepper | [number-stepper.md](docs/components/number-stepper.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-numberstepper--docs) | `npm i @kanso-protocol/number-stepper` |
+| Pagination | [pagination.md](docs/components/pagination.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-pagination--docs) | `npm i @kanso-protocol/pagination` |
+| Popover | [popover.md](docs/components/popover.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-popover--docs) | `npm i @kanso-protocol/popover` |
+| Progress | [progress.md](docs/components/progress.md) | [linear ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-progress-linear--docs) · [circular ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-progress-circular--docs) · [segmented ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-progress-segmented--docs) | `npm i @kanso-protocol/progress` |
+| Radio | [radio.md](docs/components/radio.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-radio--docs) | `npm i @kanso-protocol/radio` |
+| RichTextEditor | [rich-text-editor.md](docs/components/rich-text-editor.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-richtexteditor--docs) | `npm i @kanso-protocol/rich-text-editor` |
+| SegmentedControl | [segmented-control.md](docs/components/segmented-control.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-segmentedcontrol--docs) | `npm i @kanso-protocol/segmented-control` |
+| Select | [select.md](docs/components/select.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-select--docs) | `npm i @kanso-protocol/select` |
+| Skeleton | [skeleton.md](docs/components/skeleton.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-skeleton--docs) | `npm i @kanso-protocol/skeleton` |
+| Slider | [slider.md](docs/components/slider.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-slider--docs) | `npm i @kanso-protocol/slider` |
+| Table | [table.md](docs/components/table.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-table--docs) | `npm i @kanso-protocol/table` |
+| Tabs | [tabs.md](docs/components/tabs.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tabs--docs) | `npm i @kanso-protocol/tabs` |
+| Textarea | [textarea.md](docs/components/textarea.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-textarea--docs) | `npm i @kanso-protocol/textarea` |
+| TimePicker | [timepicker.md](docs/components/timepicker.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-timepicker--docs) | `npm i @kanso-protocol/timepicker` |
+| Toast | [toast.md](docs/components/toast.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-toast--docs) | `npm i @kanso-protocol/toast` |
+| Toggle | [toggle.md](docs/components/toggle.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-toggle--docs) | `npm i @kanso-protocol/toggle` |
+| Tooltip | [tooltip.md](docs/components/tooltip.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tooltip--docs) | `npm i @kanso-protocol/tooltip` |
+| Tree | [tree.md](docs/components/tree.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tree--docs) | `npm i @kanso-protocol/tree` |
+
+Adding a new component? Start from [`docs/components/_template.md`](docs/components/_template.md).
 
 ## Patterns
 
