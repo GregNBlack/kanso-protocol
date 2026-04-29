@@ -31,12 +31,15 @@ jobs:
 
   a11y:
     # Serve the built Storybook, then run `test-storybook` against it — the
-    # test-runner config in `.storybook/test-runner.ts` runs axe-core and
-    # surfaces moderate+ violations.
+    # test-runner config in `.storybook/test-runner.ts` runs axe-core in BOTH
+    # light and dark themes for every story, so any dark-mode regression
+    # (hardcoded colors, missed tokens, contrast drops) shows up as a serious
+    # axe violation here.
     #
     # Currently advisory (continue-on-error) so existing stories that haven't
     # been audited yet don't block merges. Flip to a hard gate once the
     # baseline is clean by removing `continue-on-error`.
+    name: a11y + dark-mode
     runs-on: ubuntu-latest
     continue-on-error: true
     needs: build
@@ -53,7 +56,7 @@ jobs:
         run: npm run build:tokens
       - name: Build Storybook
         run: npm run build-storybook
-      - name: Serve Storybook & run a11y tests
+      - name: Serve Storybook & run a11y + dark-mode checks
         run: |
           npx concurrently -k -s first -n "SB,TEST" \
             "npx http-server storybook-static --port 6006 --silent" \
