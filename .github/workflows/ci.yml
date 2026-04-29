@@ -7,6 +7,22 @@ on:
     branches: [main]
 
 jobs:
+  changelog:
+    # Enforces that any PR which bumps a `packages/**/package.json` version
+    # also updates CHANGELOG.md. The check parses the diff against the PR
+    # base ref — see scripts/check-changelog.js for the full ruleset and
+    # the [skip-changelog] override.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify CHANGELOG.md is updated when a package version is bumped
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: node scripts/check-changelog.js
+
   build:
     runs-on: ubuntu-latest
     steps:

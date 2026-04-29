@@ -235,6 +235,12 @@ While we're on `0.x`, **patch and minor are both allowed to break callers** in p
 
 If a single PR mixes a fix and a new input, take the larger of the two bumps and write both in the changeset.
 
+#### Enforcement
+
+CI runs `scripts/check-changelog.js` on every PR. If you bump a `version` field in any `packages/**/package.json`, the same PR must also update `CHANGELOG.md`. The intent isn't to validate semver correctness automatically — that needs human judgment — but to **force the conversation** about migration steps to happen at PR review time, not after release.
+
+To bypass for a legitimate reason (revert PRs, build-tooling-only commits that happen to touch a package version), include `[skip-changelog]` in the PR title or any commit message.
+
 ### Release workflow (changesets)
 
 Versioning and publishing are driven by [changesets](https://github.com/changesets/changesets). All `@kanso-protocol/*` packages are in the `fixed` group — they bump together.
