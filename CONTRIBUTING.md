@@ -59,11 +59,18 @@ Tokens live in `tokens/**/*.json` in W3C DTCG format. They are the single source
 2. Run `npm run build:tokens` — this regenerates:
    - `packages/core/styles/tokens.css` (CSS custom properties)
    - `packages/core/styles/_tokens.scss` (Sass variables)
+   - `packages/core/styles/dark.css` (dark-theme overrides — see below)
    - `packages/core/src/_generated/tokens.js` (TS/JS constants)
-3. Commit both the source JSON and the regenerated output. (Generated files are gitignored except `dark.css` — see `.gitignore`.)
+3. Commit both the source JSON and the regenerated output.
 4. Mirror the change in Figma if it's a primitive.
 
-**Dark theme:** `packages/core/styles/dark.css` is currently hand-maintained. Any new primitive you add must have its dark-mode override added there (`:root[data-theme="dark"] { … }`). If the primitive is a simple ramp inversion, mirror the pattern used by existing ramps.
+**Dark theme** is also generated from DTCG sources. Overrides live in `tokens/themes/dark.json` and emit to `packages/core/styles/dark.css` via the `css/variables-dark` custom format defined in `style-dictionary.config.js`. When you add a new primitive ramp:
+
+1. Add the inverted ramp to `tokens/themes/dark.json` (mirror the structure of an existing ramp like `gray` or `blue`).
+2. If a semantic token built on top of that primitive needs a *different* mapping in dark (e.g. a `subtle-bg` that inversion alone doesn't make tinted enough — see how `alert.subtle.bg` and `badge.subtle.bg` are listed at the bottom of `tokens/themes/dark.json`), add an explicit override there too.
+3. Re-run `npm run build:tokens` and commit the regenerated `dark.css`.
+
+> Never edit `dark.css` by hand — your changes will be wiped on the next build. The header comment in the generated file repeats this warning.
 
 ## Adding a new component
 

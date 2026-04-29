@@ -10,7 +10,7 @@
     "url": "https://github.com/GregNBlack/kanso-protocol.git"
   },
   "scripts": {
-    "build:tokens": "style-dictionary build --config style-dictionary.config.js",
+    "build:tokens": "node scripts/build-tokens.js",
     "build:libs": "node scripts/build-libs.js",
     "build:lib": "node scripts/build-libs.js --only",
     "prebuild:libs": "npm run build:tokens",

@@ -1,0 +1,133 @@
+{
+  "$description": "Dark-theme overrides applied under [data-theme=\"dark\"]. Inverts the primitive color ramps so every var(--kp-color-*) reference cascades automatically. Contains: (1) primitive ramp inversions for every color in tokens/primitive/color.json, (2) explicit semantic overrides for the handful of tokens (alert/badge subtle backgrounds) where simple inversion produces a surface too close to the page background. Static prelude (color-scheme: dark; background-color; color) is added by the dark-css custom format in style-dictionary.config.js.",
+
+  "color": {
+    "$type": "color",
+    "white": { "$value": "#18181B", "$description": "the new \"white\" — top elevation surface" },
+    "black": { "$value": "#FAFAFA", "$description": "the new \"black\" — primary text on dark" },
+
+    "gray": {
+      "50":  { "$value": "#09090B" },
+      "100": { "$value": "#18181B" },
+      "200": { "$value": "#27272A" },
+      "300": { "$value": "#3F3F46" },
+      "400": { "$value": "#52525B" },
+      "500": { "$value": "#71717A" },
+      "600": { "$value": "#A1A1AA" },
+      "700": { "$value": "#D4D4D8" },
+      "800": { "$value": "#E4E4E7" },
+      "900": { "$value": "#F4F4F5" },
+      "950": { "$value": "#FAFAFA" }
+    },
+    "blue": {
+      "50":  { "$value": "#172554" },
+      "100": { "$value": "#1E3A8A" },
+      "200": { "$value": "#1E40AF" },
+      "300": { "$value": "#1D4ED8" },
+      "400": { "$value": "#2563EB" },
+      "500": { "$value": "#3B82F6" },
+      "600": { "$value": "#60A5FA" },
+      "700": { "$value": "#93C5FD" },
+      "800": { "$value": "#BFDBFE" },
+      "900": { "$value": "#DBEAFE" },
+      "950": { "$value": "#EFF6FF" }
+    },
+    "red": {
+      "50":  { "$value": "#450A0A" },
+      "100": { "$value": "#7F1D1D" },
+      "200": { "$value": "#991B1B" },
+      "300": { "$value": "#B91C1C" },
+      "400": { "$value": "#DC2626" },
+      "500": { "$value": "#EF4444" },
+      "600": { "$value": "#F87171" },
+      "700": { "$value": "#FCA5A5" },
+      "800": { "$value": "#FECACA" },
+      "900": { "$value": "#FEE2E2" },
+      "950": { "$value": "#FEF2F2" }
+    },
+    "green": {
+      "50":  { "$value": "#052E16" },
+      "100": { "$value": "#14532D" },
+      "200": { "$value": "#166534" },
+      "300": { "$value": "#15803D" },
+      "400": { "$value": "#16A34A" },
+      "500": { "$value": "#22C55E" },
+      "600": { "$value": "#4ADE80" },
+      "700": { "$value": "#86EFAC" },
+      "800": { "$value": "#BBF7D0" },
+      "900": { "$value": "#DCFCE7" },
+      "950": { "$value": "#F0FDF4" }
+    },
+    "amber": {
+      "50":  { "$value": "#451A03" },
+      "100": { "$value": "#78350F" },
+      "200": { "$value": "#92400E" },
+      "300": { "$value": "#B45309" },
+      "400": { "$value": "#D97706" },
+      "500": { "$value": "#F59E0B" },
+      "600": { "$value": "#FBBF24" },
+      "700": { "$value": "#FCD34D" },
+      "800": { "$value": "#FDE68A" },
+      "900": { "$value": "#FEF3C7" },
+      "950": { "$value": "#FFFBEB" }
+    },
+    "cyan": {
+      "50":  { "$value": "#083344" },
+      "100": { "$value": "#164E63" },
+      "200": { "$value": "#155E75" },
+      "300": { "$value": "#0E7490" },
+      "400": { "$value": "#0891B2" },
+      "500": { "$value": "#06B6D4" },
+      "600": { "$value": "#22D3EE" },
+      "700": { "$value": "#67E8F9" },
+      "800": { "$value": "#A5F3FC" },
+      "900": { "$value": "#CFFAFE" },
+      "950": { "$value": "#ECFEFF" }
+    },
+    "orange": {
+      "50":  { "$value": "#431407" },
+      "100": { "$value": "#7C2D12" },
+      "200": { "$value": "#9A3412" },
+      "300": { "$value": "#C2410C" },
+      "400": { "$value": "#EA580C" },
+      "500": { "$value": "#F97316" },
+      "600": { "$value": "#FB923C" },
+      "700": { "$value": "#FDBA74" },
+      "800": { "$value": "#FED7AA" },
+      "900": { "$value": "#FFEDD5" },
+      "950": { "$value": "#FFF7ED" }
+    },
+    "violet": {
+      "50":  { "$value": "#2E1065" },
+      "100": { "$value": "#4C1D95" },
+      "200": { "$value": "#5B21B6" },
+      "300": { "$value": "#6D28D9" },
+      "400": { "$value": "#7C3AED" },
+      "500": { "$value": "#8B5CF6" },
+      "600": { "$value": "#A78BFA" },
+      "700": { "$value": "#C4B5FD" },
+      "800": { "$value": "#DDD6FE" },
+      "900": { "$value": "#EDE9FE" },
+      "950": { "$value": "#F5F3FF" }
+    },
+
+    "badge": {
+      "$description": "Subtle backgrounds — the inverted primitive ramp lands too close to page bg (#09090B). Bump one step brighter so subtle badges read as tinted surfaces.",
+      "primary": { "subtle": { "bg": { "$value": "#1E3A8A", "$description": "blue-100 in dark" } } },
+      "danger":  { "subtle": { "bg": { "$value": "#7F1D1D", "$description": "red-100" } } },
+      "success": { "subtle": { "bg": { "$value": "#14532D", "$description": "green-100" } } },
+      "warning": { "subtle": { "bg": { "$value": "#78350F", "$description": "amber-100" } } },
+      "info":    { "subtle": { "bg": { "$value": "#164E63", "$description": "cyan-100" } } },
+      "neutral": { "subtle": { "bg": { "$value": "#27272A", "$description": "gray-200" } } }
+    },
+    "alert": {
+      "$description": "Subtle backgrounds — same logic as badge.",
+      "primary": { "subtle": { "bg": { "$value": "#1E3A8A" } } },
+      "danger":  { "subtle": { "bg": { "$value": "#7F1D1D" } } },
+      "success": { "subtle": { "bg": { "$value": "#14532D" } } },
+      "warning": { "subtle": { "bg": { "$value": "#78350F" } } },
+      "info":    { "subtle": { "bg": { "$value": "#164E63" } } },
+      "neutral": { "subtle": { "bg": { "$value": "#27272A" } } }
+    }
+  }
+}
