@@ -1,12 +1,95 @@
 # Changelog
 
-This file is updated by [changesets](https://github.com/changesets/changesets) when packages are versioned. Per-package changelogs live next to each package under `packages/**/CHANGELOG.md`.
+Top-level log of every release. Mirrors the [GitHub Releases](https://github.com/GregNBlack/kanso-protocol/releases) page; this file is the authoritative source — release notes are produced from these sections.
 
 ## Release cadence
 
 - **Alpha (`0.x.y`)** — API may change in any minor bump. No backward-compatibility guarantees. Pin exact versions.
 - **Beta (`1.0.0-beta.N`)** — API frozen; only breaking fixes. Feedback phase.
 - **Stable (`>=1.0.0`)** — strict SemVer; breaking changes only in major bumps, with deprecation cycles.
+
+See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy) for the rules that decide which segment to bump for a given change.
+
+---
+
+## `0.1.3` — 2026-04-29
+
+Fixes the visually broken pill-with-text case in `<kp-badge>` and disambiguates the API.
+
+### Bumps
+
+- `@kanso-protocol/badge` `0.1.2` → `0.1.3`
+- `@kanso-protocol/header` `0.1.0` → `0.1.1` *(peer: `badge >=0.1.3`)*
+
+### What changed
+
+`<kp-badge>` had `[pill]` doing double duty — both *"fully rounded sides"* and *"circular short-number counter"*. Non-closable pill badges with text content (`Pro`, `Active`, `Enabled`) were forced into `padding-inline: 2px` and looked cramped against the curved edges.
+
+The two intents are now separate inputs:
+
+- **`[pill]`** — only `border-radius: full` + normal padding. For chips and word-bearing tags.
+- **`[count]` (new)** — full radius + `min-width = height` + tight 2px padding + center alignment. For notification-style counters (`1`, `12`, `99+`). Pair with `size="xs"`.
+
+### Migration
+
+- `[pill]="true"` on word-bearing tags (`Pro`, `Online`, `Design`, etc.) — **no action required**. The visual now looks correct (more breathing room).
+- `[pill]="true"` on short numeric counters — **switch to `[count]="true"`**:
+
+```html
+<!-- before -->
+<kp-badge size="xs" color="danger" [pill]="true">12</kp-badge>
+
+<!-- after -->
+<kp-badge size="xs" color="danger" [count]="true">12</kp-badge>
+```
+
+The repo's own `<kp-header>` notification badge is migrated as part of this release.
+
+---
+
+## `0.1.2` — 2026-04-26
+
+Hotfix for CI / consumer-app build failures introduced by `0.1.1`.
+
+### Bumps
+
+- `@kanso-protocol/accordion`, `alert`, `badge`, `popover`, `segmented-control`, `tabs` — `0.1.1` → `0.1.2`
+- `@kanso-protocol/breadcrumbs` — `0.2.1` → `0.2.2`
+
+### Why a hotfix
+
+`0.1.1` shipped with `import { takeUntilDestroyed } from '@angular/core/rxjs-interop'` in the four components touched by the memory-leak fix. That subpath only resolves when the consumer's `tsconfig.json` uses `moduleResolution: "bundler"` (or `node16` / `nodenext`); under the legacy `node` resolver the import fails with `TS2307: Cannot find module '@angular/core/rxjs-interop'`. Storybook's webpack + ts-loader pipeline, and any downstream consumer with a default Angular `tsconfig.base.json`, hit the same error.
+
+### What changed
+
+Replaced `takeUntilDestroyed(DestroyRef)` with the classic `Subject<void> + takeUntil(destroyed$) + ngOnDestroy` pattern. Equivalent unsubscribe semantics, works under any `moduleResolution`. No public API change.
+
+### Migration
+
+- **Do not use `0.1.1`.** It is published on npm but unbuildable in projects with `moduleResolution: "node"`. `npm i @kanso-protocol/<name>@latest` resolves to `0.1.2` automatically.
+- If you pinned `0.1.1` exactly, bump to `0.1.2` (or `0.2.2` for `breadcrumbs`).
+
+---
+
+## `0.1.1` — 2026-04-25
+
+> **Skip this version. It is published but unusable in consumer projects with `moduleResolution: "node"`.** Use `0.1.2` instead.
+
+### Bumps
+
+- `@kanso-protocol/accordion`, `alert`, `badge`, `popover`, `segmented-control`, `tabs` — `0.1.0` → `0.1.1`
+- `@kanso-protocol/breadcrumbs` — `0.1.0` → `0.2.1` *(`0.2.0` was an aborted release artifact from a `fixed: ["@kanso-protocol/*"]` group bump)*
+
+### What changed
+
+- **Memory leaks fixed** in `<kp-accordion>`, `<kp-breadcrumbs>`, `<kp-tabs>`, `<kp-segmented-control>`. `QueryList.changes` and per-item `EventEmitter` subscriptions were never unsubscribed — `ngOnDestroy` is now wired up everywhere.
+- **Hardcoded sizes replaced** with CSS custom properties:
+  - `<kp-badge>`, `<kp-alert>`, `<kp-popover>` — close-icon size moved out of TS getters into `--kp-badge-close-size` / `--kp-alert-close-icon-size` / `--kp-popover-close-icon-size`.
+  - `<kp-badge>` — pill radius now resolves to the existing `--kp-radius-full` token instead of three hand-tuned 9 / 11 / 13 px values.
+
+### Known issue
+
+Imports `@angular/core/rxjs-interop` for `takeUntilDestroyed`, which doesn't resolve under `moduleResolution: "node"`. Replaced in `0.1.2`.
 
 ---
 

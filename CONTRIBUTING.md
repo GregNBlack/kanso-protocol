@@ -205,6 +205,29 @@ npm run build:lib core          # or: button, pagination, stat-card, ...
 
 Accepts the short folder name. If the target imports other workspace packages, build them first.
 
+### Versioning policy
+
+Kanso is in **alpha** (`0.x.y`). The cadence laid out in [`CHANGELOG.md`](CHANGELOG.md#release-cadence) governs *when* the API is allowed to break, but every PR still has to choose a bump type. The rule:
+
+| Change | Bump | Why |
+|---|---|---|
+| Adds a new component, pattern, input, output, slot, or token | **minor** | New surface — old code keeps working but new code can rely on it |
+| **Renames or removes** an input, output, slot, CSS variable, or class | **minor** | Public-API break — visible to consumers, can fail their build / type-check / runtime |
+| **Repurposes** an existing input or output (semantic change) | **minor** | Same shape, different behaviour — still a break for callers who relied on the old meaning |
+| Fixes a visual / behavioural bug without changing the public surface | **patch** | Internal — consumers see only the fix |
+| Tightens defaults that *might* surprise some callers (e.g. focus-ring color) | **patch**, but call it out in the migration section | Borderline — flag explicitly so anyone overriding tokens can review |
+| Changes only docs, stories, tests, build, or CI | **no bump** (mark commit with `[skip-release]`) | Not shipped to consumers |
+
+While we're on `0.x`, **patch and minor are both allowed to break callers** in principle — but the rule above forces honest signaling so anyone reading the changelog knows whether a `0.1.x → 0.1.y` upgrade is safe to take blindly. After `1.0`, the same table applies but minor is no longer allowed to remove or repurpose surfaces — those move to major and require a deprecation cycle.
+
+**Worked examples from recent releases:**
+
+- `0.1.3` — split `<kp-badge>` `[pill]` into `[pill]` (shape) + new `[count]` (counter). The shape of the input didn't change, but `[pill]="true"` no longer applies the tight padding it used to. **Repurpose → minor by this rule.** Was shipped as a patch (`0.1.2 → 0.1.3`); under this policy that should have been `0.2.0`. Logged in the changelog so consumers see the migration step.
+- `0.1.2` — replaced `takeUntilDestroyed(DestroyRef)` with `Subject + ngOnDestroy`. No public input / output / slot changed. **Internal fix → patch.** Correctly classified.
+- `0.1.0` → `0.2.0` (hypothetical next minor) — adding `<kp-data-table>` + a new `[stickyHeader]` input on `<kp-table>` would both be minor.
+
+If a single PR mixes a fix and a new input, take the larger of the two bumps and write both in the changeset.
+
 ### Release workflow (changesets)
 
 Versioning and publishing are driven by [changesets](https://github.com/changesets/changesets). All `@kanso-protocol/*` packages are in the `fixed` group — they bump together.
