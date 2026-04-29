@@ -28,6 +28,7 @@ export type KpBadgeColor =
  * <kp-badge color="success">Active</kp-badge>
  * <kp-badge appearance="dot" color="warning" [showLeadingDot]="true">Away</kp-badge>
  * <kp-badge pill [closable]="true" color="neutral" appearance="subtle" (close)="remove()">Design</kp-badge>
+ * <kp-badge size="xs" color="danger" [count]="true">12</kp-badge>
  */
 @Component({
   selector: 'kp-badge',
@@ -165,18 +166,15 @@ export type KpBadgeColor =
 
     :host(.kp-badge--pill) { --kp-badge-radius: var(--kp-radius-full, 9999px); }
 
-    /* Counter pill behaviour: min-width = height AND horizontal padding
-       drops to 2px so 1–2 chars stay visually circular. The badge grows
-       into a pill only once content is wide enough to push past the
-       height (3+ chars, or words like "Design"). When closable (filter
-       chips) we keep the normal pad-x — chips need real horizontal
-       breathing room around the label and close button. */
-    :host(.kp-badge--pill) {
+    /* Counter shape: a notification-style circle for 1–2 short numeric chars.
+       Forces full radius, min-width = height, tight horizontal padding, and
+       center-aligned content so "1", "12", "99+" all look visually circular
+       at the same baseline. Use [pill] for word-bearing chips/tags instead. */
+    :host(.kp-badge--count) {
+      --kp-badge-radius: var(--kp-radius-full, 9999px);
       min-width: var(--kp-badge-h);
-      justify-content: center;
-    }
-    :host(.kp-badge--pill:not(.kp-badge--closable)) {
       padding-inline: 2px;
+      justify-content: center;
     }
 
     /* Color × Appearance tokens — generated from tokens/semantic/color.json */
@@ -336,6 +334,8 @@ export class KpBadgeComponent {
   @Input() appearance: KpBadgeAppearance = 'filled';
   @Input() color: KpBadgeColor = 'primary';
   @Input() pill = false;
+  /** Counter shape: a tight circle for short numeric content (notification badges, "1", "12", "99+"). Use `pill` for word-bearing chips. */
+  @Input() count = false;
   /** Render a small colored dot before the label (independent of `appearance='dot'`; auto-shown for that appearance) */
   @Input() showLeadingDot = false;
   /** Render a ✕ affordance after the label and emit `close` when clicked */
@@ -355,6 +355,7 @@ export class KpBadgeComponent {
       `kp-badge--${this.appearance}`,
     ];
     if (this.pill) c.push('kp-badge--pill');
+    if (this.count) c.push('kp-badge--count');
     if (this.closable) c.push('kp-badge--closable');
     return c.join(' ');
   }

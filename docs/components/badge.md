@@ -40,7 +40,8 @@ Heights are fixed; width hugs contents.
 | `size` | `'xs' \| 'sm' \| 'md'` | `'md'` | Component size |
 | `appearance` | `'filled' \| 'subtle' \| 'outline' \| 'dot'` | `'filled'` | Visual treatment |
 | `color` | `'primary' \| 'danger' \| 'success' \| 'warning' \| 'info' \| 'neutral'` | `'primary'` | Semantic color role |
-| `pill` | `boolean` | `false` | Use fully rounded (`height / 2`) corners instead of the size-scaled radius |
+| `pill` | `boolean` | `false` | Use fully rounded (`height / 2`) corners instead of the size-scaled radius — for chips and word-bearing tags |
+| `count` | `boolean` | `false` | Counter shape — tight circle (`min-width = height`, 2px horizontal padding) for short numeric content like `1`, `12`, `99+`. Use this for notification badges; pair with `size="xs"` |
 | `showLeadingDot` | `boolean` | `false` | Render the leading dot marker. Automatically `true` when `appearance='dot'` |
 | `closable` | `boolean` | `false` | Render a ✕ button after the label and emit `close` when clicked |
 
@@ -70,7 +71,7 @@ Heights are fixed; width hugs contents.
 | Size | xs, sm, md |
 | Appearance | filled, subtle, outline, dot |
 | Color | primary, danger, success, warning, info, neutral |
-| Shape | rounded (default), pill |
+| Shape | rounded (default), pill, count |
 
 ### Appearances, visually
 
@@ -97,7 +98,8 @@ Badge is **non-interactive by default** — it has no hover / active / focus / d
 - Pair with surrounding context so the badge doesn't carry semantics alone
 - Use `subtle` as the default — `filled` should be reserved for the most prominent states (error, highlighted counters)
 - Use `dot` appearance for "live" status indicators (Online / Away / Busy)
-- Use `pill` shape for closable chips and counters
+- Use `pill` shape for closable chips and word-bearing tags ("Pro", "Enabled", "Design")
+- Use `count` shape for short-number notification badges (`size="xs" [count]="true"` with content like `1` / `12` / `99+`)
 
 ### Don't
 - Don't put long sentences inside a badge — if truncation kicks in, switch to a different UI
@@ -122,3 +124,4 @@ Badge is **non-interactive by default** — it has no hover / active / focus / d
 ## Changelog
 
 - `0.1.0` — Initial component. 3 sizes × 4 appearances × 6 color roles × 2 shapes. Leading dot and close affordance; `[kpBadgeIcon]` projection slot for Tabler-style icons. Token-driven colors from the generated `--kp-color-badge-*` custom properties.
+- `0.1.x` — Split overloaded `pill` into two intents: `pill` is now purely a shape (full-radius corners + normal padding) for chips and word-bearing tags; `count` is the new boolean for notification-style circular counters (full radius + `min-width = height` + tight 2px padding + center alignment). Fixes cramped horizontal padding on non-closable pill badges with text content.

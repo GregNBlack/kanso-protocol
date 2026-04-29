@@ -23,7 +23,8 @@ const meta: Meta<KpBadgeComponent> = {
     size:       { control: 'inline-radio', options: ['xs', 'sm', 'md'], table: { defaultValue: { summary: 'md' } } },
     appearance: { control: 'select', options: ['filled', 'subtle', 'outline', 'dot'], table: { defaultValue: { summary: 'filled' } } },
     color:      { control: 'select', options: ['primary', 'danger', 'success', 'warning', 'info', 'neutral'], table: { defaultValue: { summary: 'primary' } } },
-    pill:           { control: 'boolean', table: { defaultValue: { summary: 'false' } } },
+    pill:           { control: 'boolean', description: 'Fully rounded sides — for chips and word-bearing tags', table: { defaultValue: { summary: 'false' } } },
+    count:          { control: 'boolean', description: 'Counter shape — tight circle for short numeric content (1, 12, 99+)', table: { defaultValue: { summary: 'false' } } },
     showLeadingDot: { control: 'boolean', description: 'Force a leading dot marker (auto-shown when appearance=dot)', table: { defaultValue: { summary: 'false' } } },
     closable:       { control: 'boolean', table: { defaultValue: { summary: 'false' } } },
   },
@@ -32,10 +33,10 @@ export default meta;
 type Story = StoryObj<KpBadgeComponent>;
 
 export const Default: Story = {
-  args: { size: 'md', appearance: 'filled', color: 'primary', pill: false, showLeadingDot: false, closable: false },
+  args: { size: 'md', appearance: 'filled', color: 'primary', pill: false, count: false, showLeadingDot: false, closable: false },
   render: (args) => ({
     props: args,
-    template: `<kp-badge [size]="size" [appearance]="appearance" [color]="color" [pill]="pill" [showLeadingDot]="showLeadingDot" [closable]="closable">Badge</kp-badge>`,
+    template: `<kp-badge [size]="size" [appearance]="appearance" [color]="color" [pill]="pill" [count]="count" [showLeadingDot]="showLeadingDot" [closable]="closable">Badge</kp-badge>`,
   }),
 };
 
@@ -137,11 +138,11 @@ export const Counters: Story = {
   render: () => ({
     template: `
       <div style="display:flex;align-items:center;gap:16px">
-        <kp-badge size="xs" [pill]="true" color="danger">1</kp-badge>
-        <kp-badge size="xs" [pill]="true" color="danger">5</kp-badge>
-        <kp-badge size="xs" [pill]="true" color="danger">12</kp-badge>
-        <kp-badge size="xs" [pill]="true" color="danger">99</kp-badge>
-        <kp-badge size="xs" [pill]="true" color="danger">99+</kp-badge>
+        <kp-badge size="xs" [count]="true" color="danger">1</kp-badge>
+        <kp-badge size="xs" [count]="true" color="danger">5</kp-badge>
+        <kp-badge size="xs" [count]="true" color="danger">12</kp-badge>
+        <kp-badge size="xs" [count]="true" color="danger">99</kp-badge>
+        <kp-badge size="xs" [count]="true" color="danger">99+</kp-badge>
       </div>`,
   }),
 };
@@ -169,7 +170,7 @@ export const UseCases: Story = {
         </div>
         <div style="display:flex;align-items:center;gap:12px">
           <span style="font-size:12px;color:#71717A">Notifications:</span>
-          <kp-badge size="xs" [pill]="true" color="danger">3</kp-badge>
+          <kp-badge size="xs" [count]="true" color="danger">3</kp-badge>
         </div>
       </div>`,
   }),

@@ -26,6 +26,12 @@ describe('KpBadgeComponent', () => {
     expect(host.className).toContain('kp-badge--pill');
   });
 
+  it('applies count modifier when count=true', () => {
+    fixture.componentInstance.count = true;
+    fixture.detectChanges();
+    expect(host.className).toContain('kp-badge--count');
+  });
+
   it('applies closable modifier when closable=true', () => {
     fixture.componentRef.setInput('closable', true);
     fixture.detectChanges();

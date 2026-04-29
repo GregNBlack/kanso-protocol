@@ -105,7 +105,7 @@ export interface KpHeaderNavItem {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21a2 2 0 0 0 4 0"/></svg>
           @if (notificationsCount != null && notificationsCount !== '') {
             <span class="kp-header__notif-badge" aria-live="polite">
-              <kp-badge size="xs" color="danger" appearance="filled" [pill]="true">{{ notificationsCount }}</kp-badge>
+              <kp-badge size="xs" color="danger" appearance="filled" [count]="true">{{ notificationsCount }}</kp-badge>
             </span>
           }
         </button>
