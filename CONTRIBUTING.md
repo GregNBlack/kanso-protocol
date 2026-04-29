@@ -237,9 +237,15 @@ If a single PR mixes a fix and a new input, take the larger of the two bumps and
 
 #### Enforcement
 
-CI runs `scripts/check-changelog.js` on every PR. If you bump a `version` field in any `packages/**/package.json`, the same PR must also update `CHANGELOG.md`. The intent isn't to validate semver correctness automatically — that needs human judgment — but to **force the conversation** about migration steps to happen at PR review time, not after release.
+A husky `pre-push` hook and a CI job both run `scripts/check-changelog.js`. If you bump a `version` field in any `packages/**/package.json`, the push must also update `CHANGELOG.md`. The intent isn't to validate semver correctness automatically — that needs human judgment — but to **force the conversation** about migration steps to happen at PR review time, not after release.
 
-To bypass for a legitimate reason (revert PRs, build-tooling-only commits that happen to touch a package version), include `[skip-changelog]` in the PR title or any commit message.
+Run it locally any time:
+
+```bash
+npm run lint:changelog
+```
+
+To bypass for a legitimate reason (revert PRs, build-tooling-only commits that happen to touch a package version), include `[skip-changelog]` in the PR title or any commit message. Locally, `git push --no-verify` skips the hook (CI will still enforce the rule unless `[skip-changelog]` is present).
 
 ### Release workflow (changesets)
 

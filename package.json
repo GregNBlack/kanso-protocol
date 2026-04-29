@@ -20,6 +20,7 @@
     "build": "npm run build:tokens && npm run generate:icons && npm run build:libs && npm run build:mcp",
     "lint:tokens": "node scripts/lint-tokens.js",
     "lint:tokens:staged": "node scripts/lint-tokens.js --staged",
+    "lint:changelog": "node scripts/check-changelog.js",
     "postinstall": "git config core.hooksPath .husky 2>/dev/null || true",
     "generate:test-coverage": "node scripts/generate-test-coverage.js",
     "prestorybook": "npm run generate:test-coverage",

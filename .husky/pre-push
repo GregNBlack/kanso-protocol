@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+# Pre-push gate: blocks pushes that bump a packages/**/package.json version
+# without a matching CHANGELOG.md entry. Mirrors the CI rule in
+# .github/workflows/ci.yml so the failure surfaces locally instead of
+# 2-3 minutes after `git push` lands. Skip with --no-verify if the override
+# is genuine (you'll still need [skip-changelog] in the PR title for CI).
+
+node scripts/check-changelog.js
