@@ -34,9 +34,16 @@ export type KpTabSize = 'sm' | 'md' | 'lg';
     '[attr.aria-selected]': 'selected',
     '[attr.aria-disabled]': 'disabled || null',
     '[attr.tabindex]': 'disabled ? -1 : (selected ? 0 : -1)',
+    '(click)': 'handleClick($event)',
+    '(keydown.enter)': 'handleKey($event)',
+    '(keydown.space)': 'handleKey($event)',
   },
+  // Inner content is a non-interactive span. The previous <button> inside the
+  // role="tab" host triggered axe's nested-interactive rule. Click + keyboard
+  // activation now live on the host directly; arrow-key navigation between
+  // tabs is owned by the parent <kp-tabs> via roving tabindex (see tabs.component.ts).
   template: `
-    <button type="button" class="kp-tab__btn" [disabled]="disabled" (click)="handleClick($event)">
+    <span class="kp-tab__btn">
       <span class="kp-tab__icon" aria-hidden="true">
         <ng-content select="[kpTabIcon]"/>
       </span>
@@ -44,7 +51,7 @@ export type KpTabSize = 'sm' | 'md' | 'lg';
       <span class="kp-tab__badge">
         <ng-content select="[kpTabBadge]"/>
       </span>
-    </button>
+    </span>
   `,
   styles: [`
     :host {
@@ -180,6 +187,12 @@ export class KpTabComponent {
       event.stopPropagation();
       return;
     }
+    this.selectedChange.emit(true);
+  }
+
+  handleKey(event: KeyboardEvent): void {
+    if (this.disabled) return;
+    event.preventDefault();
     this.selectedChange.emit(true);
   }
 }

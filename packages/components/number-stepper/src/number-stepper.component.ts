@@ -64,7 +64,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
         [style.width]="inputWidth"
         [value]="displayValue"
         [disabled]="isDisabled"
-        [attr.aria-label]="ariaLabel || null"
+        [attr.aria-label]="ariaLabel || 'Number input'"
         (input)="onInputChange($event)"
         (blur)="onBlur()"
       />

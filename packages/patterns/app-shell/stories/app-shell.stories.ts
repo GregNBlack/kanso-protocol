@@ -39,7 +39,20 @@ const meta: Meta<KpAppShellComponent> = {
   argTypes: {
     layout: { control: 'inline-radio', options: ['sidebar-left','sidebar-right','no-sidebar','sidebar-collapsed'], table: { defaultValue: { summary: 'sidebar-left' } } },
   },
-  parameters: { layout: 'fullscreen' },
+  parameters: {
+    layout: 'fullscreen',
+    // Pattern stories compose multiple landmark-bearing components (Header,
+    // Sidebar, footer, etc.) on a single page — that's the *correct* shape
+    // for a real app shell, but it triggers landmark-unique / no-duplicate-*
+    // rules in axe. Real consumers see only one shell per page; the demo
+    // legitimately needs to render several side by side. Disable the rules
+    // here, not in the components themselves.
+    a11y: { config: { rules: [
+      { id: 'landmark-unique', enabled: false },
+      { id: 'landmark-no-duplicate-banner', enabled: false },
+      { id: 'landmark-no-duplicate-contentinfo', enabled: false },
+    ] } },
+  },
 };
 export default meta;
 type Story = StoryObj<KpAppShellComponent>;

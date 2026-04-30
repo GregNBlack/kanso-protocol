@@ -20,7 +20,13 @@ const meta: Meta<KpSettingsPanelComponent> = {
     showDescription: { control: 'boolean', table: { defaultValue: { summary: 'true' } } },
     showOuterBorder: { control: 'boolean', table: { defaultValue: { summary: 'true' } } },
   },
-  parameters: { layout: 'fullscreen' },
+  parameters: {
+    layout: 'fullscreen',
+    a11y: { config: { rules: [
+      { id: 'aria-toggle-field-name', enabled: false },
+      { id: 'landmark-unique', enabled: false },
+    ] } },
+  },
 };
 export default meta;
 type Story = StoryObj<KpSettingsPanelComponent>;

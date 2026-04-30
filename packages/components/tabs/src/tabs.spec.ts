@@ -56,16 +56,16 @@ describe('KpTabs — composition with KpTab', () => {
 
   it('click on an enabled tab fires (selectedChange) — host updates active index', () => {
     const { fix, root } = setup();
-    const secondBtn = root.querySelectorAll('kp-tab')[1].querySelector('button') as HTMLButtonElement;
-    secondBtn.click();
+    const secondTab = root.querySelectorAll('kp-tab')[1] as HTMLElement;
+    secondTab.click();
     fix.detectChanges();
     expect(fix.componentInstance.active).toBe(1);
     expect(root.querySelectorAll('kp-tab')[1].getAttribute('aria-selected')).toBe('true');
   });
 
-  it('click on a disabled tab is a no-op (native <button disabled> blocks it)', () => {
+  it('click on a disabled tab is a no-op (handleClick guards on disabled)', () => {
     const { fix, root } = setup();
-    const disabledBtn = root.querySelectorAll('kp-tab')[2].querySelector('button') as HTMLButtonElement;
+    const disabledBtn = root.querySelectorAll('kp-tab')[2] as HTMLElement;
     disabledBtn.click();
     fix.detectChanges();
     expect(fix.componentInstance.active).toBe(0);

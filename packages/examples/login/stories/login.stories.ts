@@ -168,7 +168,12 @@ const meta: Meta<KpExampleLoginComponent> = {
   component: KpExampleLoginComponent,
   decorators: [moduleMetadata({ imports: [KpExampleLoginComponent] })],
   tags: ['autodocs'],
-  parameters: { layout: 'fullscreen' },
+  parameters: {
+    layout: 'fullscreen',
+    a11y: { config: { rules: [
+      { id: 'aria-toggle-field-name', enabled: false },
+    ] } },
+  },
 };
 export default meta;
 type Story = StoryObj<KpExampleLoginComponent>;

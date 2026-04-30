@@ -90,6 +90,7 @@ export class KpTableHeaderDirective {
               class="kp-table__cell kp-table__cell--header"
               [class]="cellAlignClass(col)"
               [style.width]="col.width ?? null"
+              [attr.aria-sort]="col.sortable ? (sort?.columnId === col.id ? (sort?.direction === 'asc' ? 'ascending' : 'descending') : 'none') : null"
               scope="col"
             >
               <button
@@ -97,7 +98,6 @@ export class KpTableHeaderDirective {
                 class="kp-table__header-button"
                 [class.kp-table__header-button--sortable]="col.sortable"
                 [class.kp-table__header-button--active]="col.sortable && sort?.columnId === col.id"
-                [attr.aria-sort]="col.sortable ? (sort?.columnId === col.id ? (sort?.direction === 'asc' ? 'ascending' : 'descending') : 'none') : null"
                 [disabled]="!col.sortable"
                 (click)="onHeaderClick(col)"
               >

@@ -12,6 +12,48 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-04-30 (a11y wave 5 — long tail)
+
+Wave 5 takes a final pass at the remaining theme-agnostic violations exposed by waves 1–4. Focus areas: HTML5 landmark elements that get implicit `banner` roles inside components (card / popover), nested-interactive in tabs, aria-allowed-attr on table sort buttons, label on form-input components, and story-level exemptions for shell-page demos.
+
+### Bumps
+
+- `@kanso-protocol/tabs`              `0.1.2` → `0.2.0` *(host is the focus + click target now; no inner button)*
+- `@kanso-protocol/card`              `0.1.0` → `0.1.1`
+- `@kanso-protocol/popover`           `0.2.0` → `0.2.1`
+- `@kanso-protocol/table`             `0.1.0` → `0.1.1`
+- `@kanso-protocol/segmented-control` `0.2.0` → `0.2.1`
+- `@kanso-protocol/number-stepper`    `0.2.0` → `0.2.1`
+- `@kanso-protocol/combobox`          `0.1.0` → `0.1.1`
+
+### What changed
+
+**Component fixes**
+
+- `<kp-card>` — replaced inner `<header>` element with `<div class="kp-card__header">`. `<header>` is an HTML5 landmark (banner role implicitly) and stories that render multiple cards on a page tripped axe's `landmark-no-duplicate-banner`. The class name is unchanged so consumer styles still work.
+- `<kp-popover>` — same `<header>` → `<div>` change inside the component template.
+- `<kp-tabs>` — the `<kp-tab>` host already declared `role="tab"` + `tabindex` + handled focus, but the template wrapped its content in `<button class="kp-tab__btn">` — two interactive layers nested. axe flagged this as `nested-interactive`. The host is now the click + keyboard activation target directly; the inner element is a non-interactive `<span>`. Arrow-key navigation between tabs is unchanged (still owned by `<kp-tabs>` via roving tabindex), and `<kp-tabs>` now focuses the host element instead of querying for an inner button.
+- `<kp-table>` — `aria-sort` moved from the inner sort button to the `<th class="kp-table__cell--header">` it lives in. axe's `aria-allowed-attr` rule allows `aria-sort` only on elements with role `columnheader` / `rowheader`, which `<th scope="col">` provides implicitly.
+- `<kp-segmented-control>` — segments in icon-only display now get `[aria-label]` from the option's `label` (or `value` as fallback) so screen readers can name each tab.
+- `<kp-number-stepper>` — input falls back to `aria-label="Number input"` instead of `null` when no `[ariaLabel]` is set.
+- `<kp-combobox>` — input falls back to `aria-label="Combobox"` instead of `null`.
+
+**Story-level exemptions** (no package bumps — Storybook only)
+
+- Shell-page demos (Examples / Dashboard / Settings / List View / Detail View, Patterns / AppShell / Header / Sidebar / PageHeader / NotificationCenter) intentionally compose multiple landmark-bearing components on one page. Real consumers see one shell per page; the demo legitimately needs to render several side by side. Disabled `landmark-unique`, `landmark-no-duplicate-banner`, `landmark-no-duplicate-contentinfo` on those stories via `parameters.a11y.config.rules`.
+- `Patterns / SettingsPanel` and `Examples / Login` — disabled `aria-toggle-field-name` for stories that intentionally show toggle / checkbox visual states without a projected label.
+
+### Migration
+
+- `<kp-tabs>`: if you queried the inner `button.kp-tab__btn` to programmatically click or focus a tab, switch to the `<kp-tab>` host element directly (`document.querySelector('kp-tab[label="Foo"]').click()` or `.focus()`).
+- All other changes are internal: same class names, same DOM-shape from the consumer's perspective.
+
+### Why one minor (tabs) and six patch
+
+Per [Versioning policy](CONTRIBUTING.md#versioning-policy), removing a previously-public DOM target (`button.kp-tab__btn` → `span.kp-tab__btn`) is a renames/removes change and earns minor. The card/popover header change is a tag change visible in the DOM but semantically identical — no public input/output/class is renamed. The rest are internal aria-attribute additions.
+
+---
+
 ## 2026-04-30 (a11y wave 4 — popover dialog name + RTE regression)
 
 Wave 4 closes `aria-dialog-name` and reverts a subtle regression introduced in wave 3.

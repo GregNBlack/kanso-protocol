@@ -70,6 +70,7 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
         [disabled]="isDisabled || opt.disabled"
         role="tab"
         [attr.aria-selected]="opt.value === value"
+        [attr.aria-label]="showLabel && opt.label ? null : (opt.label || String(opt.value))"
         [attr.tabindex]="opt.value === value && !isDisabled && !opt.disabled ? 0 : -1"
         (click)="select(opt)"
         (keydown)="onKey($event, i)">

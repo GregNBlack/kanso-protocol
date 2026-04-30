@@ -64,8 +64,9 @@ describe('KpTableComponent', () => {
 
   it('aria-sort=none on sortable columns when no sort is active', () => {
     const { host } = setup();
-    const nameBtn = headerCells(host)[0].querySelector('button')!;
-    expect(nameBtn.getAttribute('aria-sort')).toBe('none');
+    // aria-sort lives on the <th> (implicit role=columnheader) — axe's
+    // aria-allowed-attr forbids it on the inner button.
+    expect(headerCells(host)[0].getAttribute('aria-sort')).toBe('none');
   });
 
   it('clicking a sortable header cycles asc → desc → null and emits sortChange', () => {

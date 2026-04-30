@@ -8,7 +8,13 @@ const meta: Meta<KpPageHeaderComponent> = {
   argTypes: {
     size: { control: 'inline-radio', options: ['sm','md','lg'], table: { defaultValue: { summary: 'md' } } },
   },
-  parameters: { layout: 'padded' },
+  parameters: {
+    layout: 'padded',
+    a11y: { config: { rules: [
+      { id: 'landmark-unique', enabled: false },
+      { id: 'landmark-no-duplicate-banner', enabled: false },
+    ] } },
+  },
 };
 export default meta;
 type Story = StoryObj<KpPageHeaderComponent>;

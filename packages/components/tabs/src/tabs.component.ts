@@ -132,8 +132,9 @@ export class KpTabsComponent implements AfterContentInit, OnDestroy {
   }
 
   private focusTab(tab: KpTabComponent): void {
-    const btn = tab.elementRef.nativeElement.querySelector<HTMLButtonElement>('button.kp-tab__btn');
-    btn?.focus();
+    // The host element itself is the focusable target — it carries role="tab"
+    // and tabindex. The inner span is non-interactive (axe nested-interactive).
+    tab.elementRef.nativeElement.focus();
   }
 
   get hostClasses(): string {

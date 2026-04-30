@@ -45,7 +45,7 @@ export type KpPopoverArrowPosition =
   template: `
     <div class="kp-popover__body">
       @if (showHeader) {
-        <header class="kp-popover__header">
+        <div class="kp-popover__header">
           <div class="kp-popover__text">
             <span class="kp-popover__title">{{ title }}</span>
             @if (description) {
@@ -59,7 +59,7 @@ export type KpPopoverArrowPosition =
               </svg>
             </button>
           }
-        </header>
+        </div>
         @if (showHeaderDivider) {
           <span class="kp-popover__divider" aria-hidden="true"></span>
         }

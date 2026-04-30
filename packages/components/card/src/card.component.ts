@@ -35,7 +35,7 @@ export type KpCardAppearance = 'default' | 'muted' | 'elevated' | 'outline';
   },
   template: `
     @if (showHeader) {
-      <header class="kp-card__header">
+      <div class="kp-card__header">
         <div class="kp-card__text-group">
           <h3 class="kp-card__title">{{ title }}</h3>
           @if (showDescription) {
@@ -47,7 +47,7 @@ export type KpCardAppearance = 'default' | 'muted' | 'elevated' | 'outline';
             <ng-content select="[kpCardHeaderAction]"/>
           </div>
         }
-      </header>
+      </div>
     }
 
     @if (showHeader && showHeaderDivider) { <div class="kp-card__divider"></div> }

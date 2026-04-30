@@ -69,7 +69,7 @@ export interface KpComboboxOption {
         [attr.aria-expanded]="isOpen"
         [attr.aria-controls]="listboxId"
         [attr.aria-activedescendant]="activeDescendantId()"
-        [attr.aria-label]="ariaLabel || null"
+        [attr.aria-label]="ariaLabel || 'Combobox'"
         [placeholder]="placeholderText()"
         [disabled]="isDisabled"
         [value]="inputValue"
