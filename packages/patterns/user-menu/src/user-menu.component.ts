@@ -44,7 +44,10 @@ export interface KpUserMenuItem {
   selector: 'kp-user-menu',
   imports: [KpAvatarComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { '[class]': 'hostClasses', role: 'menu' },
+  // Host is a floating panel containing menuitems alongside non-menu chrome
+  // (user info card, theme toggle, divider). role="menu" is scoped to each
+  // menuitem-bearing group below; the host itself stays a generic container.
+  host: { '[class]': 'hostClasses' },
   template: `
     <div class="kp-user-menu__info">
       <kp-avatar [size]="avatarSize" [initials]="userInitials || null" [showStatus]="true" status="online"/>
@@ -63,7 +66,7 @@ export interface KpUserMenuItem {
 
     <div class="kp-user-menu__divider" aria-hidden="true"></div>
 
-    <div class="kp-user-menu__group">
+    <div class="kp-user-menu__group" role="menu">
       <ng-content select="[kpUserMenuItems]"/>
     </div>
 
@@ -78,14 +81,14 @@ export interface KpUserMenuItem {
     }
 
     @if (showHelpLink) {
-      <div class="kp-user-menu__group">
+      <div class="kp-user-menu__group" role="menu">
         <ng-content select="[kpUserMenuHelp]"/>
       </div>
       <div class="kp-user-menu__divider" aria-hidden="true"></div>
     }
 
-    <div class="kp-user-menu__group">
-      <button type="button" class="kp-user-menu__row kp-user-menu__row--danger" (click)="signOut.emit()">
+    <div class="kp-user-menu__group" role="menu">
+      <button type="button" role="menuitem" class="kp-user-menu__row kp-user-menu__row--danger" (click)="signOut.emit()">
         <span class="kp-user-menu__row-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h12l-3-3m0 6 3-3M15 17v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg>
         </span>

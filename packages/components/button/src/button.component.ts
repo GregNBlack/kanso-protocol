@@ -145,7 +145,20 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       align-items: center;
     }
 
-    .kp-button__label--hidden { display: none; }
+    /* Visually hidden during loading but still part of the accessibility
+       tree — without this, axe flags the loading button as having no
+       accessible name (aria-command-name). The spinner overlays the label. */
+    .kp-button__label--hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
 
     .kp-button__spinner {
       display: inline-flex;

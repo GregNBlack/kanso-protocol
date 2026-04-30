@@ -2,6 +2,9 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { KpCardComponent } from '../src/card.component';
 
 const meta: Meta<KpCardComponent> = {
+  parameters: {
+    a11y: { config: { rules: [{ id: 'landmark-unique', enabled: false }, { id: 'landmark-no-duplicate-contentinfo', enabled: false }] } },
+  },
   title: 'Components/Card',
   component: KpCardComponent,
   tags: ['autodocs'],

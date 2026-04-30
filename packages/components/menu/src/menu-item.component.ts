@@ -34,7 +34,10 @@ export type KpMenuItemSize = 'sm' | 'md' | 'lg';
     '[attr.tabindex]': 'disabled ? -1 : 0',
   },
   template: `
-    <span class="kp-menu-item__leading" aria-hidden="true">
+    <!-- Leading slot may project interactive markers (checkbox / radio used
+         as visual indicators), so it can't be aria-hidden — that would
+         contain a focusable descendant inside an aria-hidden subtree. -->
+    <span class="kp-menu-item__leading">
       <ng-content select="[kpMenuItemLeading]"/>
     </span>
     <span class="kp-menu-item__icon" aria-hidden="true">

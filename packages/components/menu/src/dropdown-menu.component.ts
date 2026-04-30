@@ -26,7 +26,10 @@ import { KpButtonComponent } from '@kanso-protocol/button';
   selector: 'kp-dropdown-menu',
   imports: [KpInputComponent, KpButtonComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { '[attr.role]': '"menu"' },
+  // The host is a *floating panel* that may contain a search field and footer
+  // buttons in addition to menuitems. role="menu" requires only menuitem-* as
+  // direct children — so role="menu" lives on the inner body wrapper, not the
+  // host. The host stays a generic container (no role).
   template: `
     @if (hasSearch) {
       <div class="kp-dropdown-menu__search">
@@ -34,7 +37,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
         <div class="kp-dropdown-menu__divider"></div>
       </div>
     }
-    <div class="kp-dropdown-menu__body">
+    <div class="kp-dropdown-menu__body" role="menu">
       <ng-content/>
     </div>
     @if (hasFooter) {

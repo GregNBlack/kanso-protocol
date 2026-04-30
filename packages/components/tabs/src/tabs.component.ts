@@ -39,11 +39,13 @@ import { KpTabComponent, KpTabSize } from './tab.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class]': 'hostClasses',
-    '[attr.role]': '"tablist"',
     '(keydown)': 'onKeyDown($event)',
   },
+  // role="tablist" lives on the row that holds the projected <kp-tab> elements.
+  // The host also carries an optional [kpTabsMore] sibling slot which is not a
+  // tab, so role=tablist on the host would fail axe's aria-required-children.
   template: `
-    <div class="kp-tabs__row"><ng-content/></div>
+    <div class="kp-tabs__row" role="tablist"><ng-content/></div>
     <div class="kp-tabs__more"><ng-content select="[kpTabsMore]"/></div>
   `,
   styles: [`

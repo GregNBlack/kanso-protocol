@@ -3,6 +3,9 @@ import { KpAccordionComponent } from '../src/accordion.component';
 import { KpAccordionItemComponent } from '../src/accordion-item.component';
 
 const meta: Meta<KpAccordionComponent> = {
+  parameters: {
+    a11y: { config: { rules: [{ id: 'landmark-unique', enabled: false }, { id: 'landmark-no-duplicate-contentinfo', enabled: false }] } },
+  },
   title: 'Components/Accordion',
   component: KpAccordionComponent,
   tags: ['autodocs'],

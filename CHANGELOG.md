@@ -12,6 +12,49 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-04-30 (a11y wave 6 — structural roles + final landmark cleanup)
+
+Wave 6 closes `aria-required-children`, `aria-required-parent`, `aria-command-name`, `aria-hidden-focus`, and the rest of `landmark-no-duplicate-banner` / `landmark-unique`. After this wave the only remaining theme-agnostic violations on the radar are story-level contrast issues (one-off cases worth addressing per-story, not at scale).
+
+### Bumps
+
+- `@kanso-protocol/tabs`      `0.2.0` → `0.3.0`
+- `@kanso-protocol/menu`      `0.1.0` → `0.2.0`
+- `@kanso-protocol/user-menu` `0.1.0` → `0.2.0`
+- `@kanso-protocol/card`      `0.1.1` → `0.1.2`
+- `@kanso-protocol/popover`   `0.2.1` → `0.2.2`
+- `@kanso-protocol/button`    `0.3.0` → `0.3.1`
+
+### What changed
+
+**Structural role moves** (the minor bumps)
+
+- `<kp-tabs>` — `role="tablist"` moved from the host to the inner `.kp-tabs__row` div. The host has both the row of tabs and an optional `[kpTabsMore]` slot which is not a tab; `role="tablist"` on the host therefore failed `aria-required-children`.
+- `<kp-dropdown-menu>` — `role="menu"` moved from the host to the inner `.kp-dropdown-menu__body` div. Search field and footer buttons live alongside the menuitems on the host; restricting `role="menu"` to the items-only wrapper closes `aria-required-children`.
+- `<kp-user-menu>` — same pattern. `role="menu"` is now on the items-bearing `<div class="kp-user-menu__group">` wrappers (not the host). The internal "Sign out" button gets explicit `role="menuitem"` so it satisfies `aria-required-children` on its parent group.
+
+**Internal cleanup** (the patch bumps)
+
+- `<kp-card>` and `<kp-popover>` — inner `<footer>` element replaced with `<div class="...__footer">`. Same reason as the wave-5 `<header>` swap: HTML5 `<footer>` is implicitly a `contentinfo` landmark, and stories that render multiple cards on a page tripped `landmark-no-duplicate-contentinfo`. Class names unchanged.
+- `<kp-button>` — `.kp-button__label--hidden` no longer uses `display: none`. The label is still visually hidden during loading state, but stays in the accessibility tree (sr-only pattern) so the button keeps its accessible name. Closes `aria-command-name` on `[loading]` buttons.
+- `<kp-menu-item>` — the `kp-menu-item__leading` slot is no longer `aria-hidden="true"`. Consumers may project interactive markers (`<kp-checkbox kpMenuItemLeading>` / `<kp-radio kpMenuItemLeading>`) into that slot, and an aria-hidden ancestor of a focusable element triggers `aria-hidden-focus`.
+
+**Story-level exemptions** (no bumps)
+
+- `Components/Pagination`, `Components/Accordion`, `Components/Card`, `Components/Popover` — disabled `landmark-unique` / `landmark-no-duplicate-contentinfo` for showcase stories that legitimately render multiple instances side by side.
+
+### Migration
+
+- `<kp-tabs>` — if you queried `kp-tabs[role="tablist"]` from CSS or JS, switch to `kp-tabs .kp-tabs__row` (or use the host element directly — the inner row is mainly an a11y boundary).
+- `<kp-dropdown-menu>` and `<kp-user-menu>` — same. Internal styling that depended on `role="menu"` on the host needs to target the inner wrappers. Public class names and outputs are unchanged.
+- The card/popover footer change is a tag swap; class names are unchanged. Anything matching by class keeps working.
+
+### Why three minor and three patch
+
+Per [Versioning policy](CONTRIBUTING.md#versioning-policy): moving a public ARIA role from one element to another is a DOM-shape change a consumer's selectors might rely on — minor. Tag swaps with identical class names that don't relocate any role/data attribute are internal — patch.
+
+---
+
 ## 2026-04-30 (a11y wave 5 — long tail)
 
 Wave 5 takes a final pass at the remaining theme-agnostic violations exposed by waves 1–4. Focus areas: HTML5 landmark elements that get implicit `banner` roles inside components (card / popover), nested-interactive in tabs, aria-allowed-attr on table sort buttons, label on form-input components, and story-level exemptions for shell-page demos.

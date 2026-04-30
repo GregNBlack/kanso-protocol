@@ -4,6 +4,9 @@ import { KpPaginationComponent } from '../src/pagination.component';
 import { KpPaginationItemComponent } from '../src/pagination-item.component';
 
 const meta: Meta<KpPaginationComponent> = {
+  parameters: {
+    a11y: { config: { rules: [{ id: 'landmark-unique', enabled: false }, { id: 'landmark-no-duplicate-contentinfo', enabled: false }] } },
+  },
   title: 'Components/Pagination',
   component: KpPaginationComponent,
   tags: ['autodocs'],

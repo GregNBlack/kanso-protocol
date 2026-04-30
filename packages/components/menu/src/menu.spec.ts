@@ -50,10 +50,13 @@ describe('Menu (DropdownMenu + MenuItem)', () => {
   }
 
   describe('KpDropdownMenuComponent', () => {
-    it('exposes role="menu" on the host', () => {
+    it('exposes role="menu" on the body wrapper (not the host)', () => {
       const { host } = setup();
-      const menu = host.querySelector('kp-dropdown-menu')!;
-      expect(menu.getAttribute('role')).toBe('menu');
+      // role=menu must contain only menuitem-* direct children. Search field
+      // + footer buttons live on the host alongside the items, so role=menu
+      // is scoped to the body wrapper they sit inside.
+      const body = host.querySelector('kp-dropdown-menu .kp-dropdown-menu__body')!;
+      expect(body.getAttribute('role')).toBe('menu');
     });
 
     it('renders projected content (items, divider, section label)', () => {

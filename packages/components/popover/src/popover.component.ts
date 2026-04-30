@@ -73,9 +73,9 @@ export type KpPopoverArrowPosition =
         @if (hasFooter && showFooterDivider) {
           <span class="kp-popover__divider" aria-hidden="true"></span>
         }
-        <footer class="kp-popover__footer">
+        <div class="kp-popover__footer">
           <ng-content select="[kpPopoverFooter]"/>
-        </footer>
+        </div>
       </div>
     </div>
 

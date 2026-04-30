@@ -60,9 +60,9 @@ export type KpCardAppearance = 'default' | 'muted' | 'elevated' | 'outline';
     @if (showFooter && showFooterDivider) { <div class="kp-card__divider"></div> }
 
     @if (showFooter) {
-      <footer class="kp-card__footer">
+      <div class="kp-card__footer">
         <ng-content select="[kpCardFooter]"/>
-      </footer>
+      </div>
     }
   `,
   styles: [`

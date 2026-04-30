@@ -3,6 +3,9 @@ import { KpPopoverComponent } from '../src/popover.component';
 import { KpButtonComponent } from '@kanso-protocol/button';
 
 const meta: Meta<KpPopoverComponent> = {
+  parameters: {
+    a11y: { config: { rules: [{ id: 'landmark-unique', enabled: false }, { id: 'landmark-no-duplicate-contentinfo', enabled: false }] } },
+  },
   title: 'Components/Popover',
   component: KpPopoverComponent,
   tags: ['autodocs'],

@@ -34,7 +34,9 @@ describe('KpTabs — composition with KpTab', () => {
 
   it('renders role=tablist and role=tab elements', () => {
     const { root } = setup();
-    expect(root.querySelector('kp-tabs')?.getAttribute('role')).toBe('tablist');
+    // role=tablist lives on the inner .kp-tabs__row (the host has an
+    // additional [kpTabsMore] slot that isn't a tab).
+    expect(root.querySelector('kp-tabs .kp-tabs__row')?.getAttribute('role')).toBe('tablist');
     root.querySelectorAll('kp-tab').forEach((t) => {
       expect(t.getAttribute('role')).toBe('tab');
     });
