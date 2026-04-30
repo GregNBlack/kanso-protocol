@@ -1,6 +1,6 @@
 {
   "name": "@kanso-protocol/button",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Kanso Protocol — Button component (Angular 18+).",
   "license": "MIT",
   "author": "GregNBlack",

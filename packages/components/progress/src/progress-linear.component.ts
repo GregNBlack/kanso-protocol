@@ -28,7 +28,7 @@ export type KpProgressColor = 'primary' | 'success' | 'danger' | 'warning' | 'ne
     '[attr.aria-valuemin]': 'indeterminate ? null : 0',
     '[attr.aria-valuemax]': 'indeterminate ? null : 100',
     '[attr.aria-valuenow]': 'indeterminate ? null : clampedValue',
-    '[attr.aria-label]': 'label || null',
+    '[attr.aria-label]': 'effectiveAriaLabel',
   },
   template: `
     @if (showLabel && labelPosition === 'top') {
@@ -142,6 +142,12 @@ export class KpProgressLinearComponent {
   @Input() showLabel = false;
   @Input() labelPosition: KpProgressLabelPosition = 'top';
   @Input() label = '';
+  /** Override the accessible name for screen readers. Falls back to the visible `label` if set, otherwise "Progress". */
+  @Input() ariaLabel: string | null = null;
+
+  get effectiveAriaLabel(): string {
+    return this.ariaLabel ?? (this.label || 'Progress');
+  }
 
   get clampedValue(): number {
     const n = Number(this.value);

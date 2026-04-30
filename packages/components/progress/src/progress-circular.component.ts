@@ -36,6 +36,7 @@ const SIZE_CFG: Record<KpProgressCircularSize, { d: number; s: number; valueFont
     '[attr.aria-valuemin]': 'indeterminate ? null : 0',
     '[attr.aria-valuemax]': 'indeterminate ? null : 100',
     '[attr.aria-valuenow]': 'indeterminate ? null : clampedValue',
+    '[attr.aria-label]': 'ariaLabel',
   },
   template: `
     <svg
@@ -126,6 +127,8 @@ export class KpProgressCircularComponent {
   @Input() value = 0;
   @Input() indeterminate = false;
   @Input() showValue = false;
+  /** Accessible name for screen readers. */
+  @Input() ariaLabel = 'Progress';
 
   get cfg() { return SIZE_CFG[this.size]; }
 

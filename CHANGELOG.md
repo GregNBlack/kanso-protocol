@@ -12,6 +12,36 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## `0.3.0` — 2026-04-30 (a11y wave 1)
+
+First wave of fixes from a CI-driven a11y audit (`test-storybook` running axe-core against every story in light + dark themes; results showed 260 of 330 stories had at least one moderate+ violation). This release covers `aria-progressbar-name` and `aria-prohibited-attr` on the most common offenders.
+
+### Bumps
+
+- `@kanso-protocol/button` `0.2.0` → `0.3.0`
+- `@kanso-protocol/progress` `0.1.0` → `0.2.0`
+
+### What changed
+
+- `<kp-button>` — host now has `role="button"` and `tabindex` (0 when enabled, -1 when disabled). Existing `[aria-label]` set on `<kp-button>` (used by icon-only buttons) is no longer flagged as `aria-prohibited-attr`. Added a keydown handler so Enter/Space activate the button — native `<button>` got this for free; the custom-element host needed it explicit.
+- `<kp-progress-linear>`, `<kp-progress-circular>`, `<kp-progress-segmented>` — added `[ariaLabel]` input. Defaults to `'Progress'` so screen readers always have an accessible name. Linear's existing fallback to the visible `label` is preserved.
+
+### Migration
+
+- **Tab order may shift** on pages using `<kp-button>` if you previously relied on the host element being skipped by the tab loop. The host is now in tab order with `tabindex=0`. If you intentionally need it non-focusable, set `tabindex="-1"` on the host directly.
+- `<kp-progress-linear>` — if you set `[label]` and want the SR name to differ, set `[ariaLabel]`. Default behavior is unchanged.
+
+### Why minor
+
+`role="button"` on `<kp-button>` is observable in the DOM — anything matching `kp-button:not([role])` in CSS or scripts is broken. Tabindex change shifts focus order. New `[ariaLabel]` input is additive. Per [Versioning policy](CONTRIBUTING.md#versioning-policy), any of these alone earns minor.
+
+### Out of scope
+
+- Color-contrast violations in dark mode (~167 instances). Those need token-level work — a separate release.
+- `aria-toggle-field-name` on toggle/checkbox/radio used standalone in stories (without label projection). Will be addressed in wave 2 along with custom-element ARIA hygiene for card / sidebar / breadcrumbs.
+
+---
+
 ## `0.2.0` — 2026-04-30
 
 Audit-driven cleanup pass. Same class of fixes as `0.1.1` (memory leaks, hardcoded sizes), now applied to the rest of the components after a systematic walk through every `*.component.ts`. Bumped as **minor** because public readonly properties were removed — see Migration below.

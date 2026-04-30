@@ -22,9 +22,12 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
         '[class]': 'hostClasses',
+        '[attr.role]': '"button"',
+        '[attr.tabindex]': 'disabled ? -1 : 0',
         '[attr.aria-busy]': 'loading || null',
         '[attr.aria-disabled]': 'disabled || null',
         '(click)': 'handleClick($event)',
+        '(keydown)': 'handleKey($event)',
     },
     template: `
     <span class="kp-button__content">
@@ -395,5 +398,15 @@ export class KpButtonComponent {
       event.preventDefault();
       event.stopPropagation();
     }
+  }
+
+  handleKey(event: KeyboardEvent): void {
+    // role="button" needs explicit Enter/Space handling — native buttons get
+    // this for free, but we're a custom element. Translate to a click so the
+    // (click) handler / consumer (click) bindings fire identically.
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    if (this.disabled || this.loading) return;
+    event.preventDefault();
+    (event.target as HTMLElement).click();
   }
 }

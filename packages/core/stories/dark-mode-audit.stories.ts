@@ -20,7 +20,17 @@ import { Meta, StoryObj } from '@storybook/angular';
 const meta: Meta = {
   title: 'Foundations/Dark Mode Audit',
   tags: ['autodocs'],
-  parameters: { layout: 'fullscreen' },
+  parameters: {
+    layout: 'fullscreen',
+    // This page is the visual proof of the *full* token set in both themes,
+    // including primitive ramps that intentionally aren't WCAG-AA compliant
+    // (light blue-50 against white, dark gray-50 against black). Swatch labels
+    // also use mix-blend-mode: difference for legibility independent of
+    // background — that math doesn't translate to a static contrast ratio.
+    // Disable color-contrast on this story; the real components are still
+    // checked elsewhere.
+    a11y: { config: { rules: [{ id: 'color-contrast', enabled: false }] } },
+  },
 };
 export default meta;
 type Story = StoryObj;

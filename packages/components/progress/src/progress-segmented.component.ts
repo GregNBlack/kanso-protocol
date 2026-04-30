@@ -30,6 +30,7 @@ type KpProgressColor = 'primary' | 'success' | 'danger' | 'warning' | 'neutral';
     '[attr.aria-valuemin]': '1',
     '[attr.aria-valuemax]': 'total',
     '[attr.aria-valuenow]': 'clampedCurrent',
+    '[attr.aria-label]': 'ariaLabel',
   },
   template: `
     @if (showStepCounter) {
@@ -133,6 +134,8 @@ export class KpProgressSegmentedComponent {
   @Input() labels: string[] = [];
   /** Overrides the auto-generated "Step X of Y" text */
   @Input() stepCounterText: string | null = null;
+  /** Accessible name for screen readers. */
+  @Input() ariaLabel = 'Progress';
 
   get clampedTotal(): number { return Math.max(2, Math.min(12, this.total)); }
   get clampedCurrent(): number { return Math.max(0, Math.min(this.clampedTotal, this.current)); }
