@@ -12,6 +12,32 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-04-30 (a11y wave 3 — patch)
+
+Wave 3 closes the long tail of `aria-input-field-name`, `link-name`, `button-name` violations that emerged after waves 1+2. All internal aria-fixes — no public API changes — so all bumps are patch.
+
+### Bumps
+
+- `@kanso-protocol/slider`            `0.1.0` → `0.1.1`
+- `@kanso-protocol/nav-item`          `0.1.0` → `0.1.1`
+- `@kanso-protocol/search-bar`        `0.1.0` → `0.1.1`
+- `@kanso-protocol/rich-text-editor`  `0.1.0` → `0.1.1`
+- `@kanso-protocol/breadcrumbs`       `0.2.2` → `0.2.3`
+
+### What changed
+
+- `<kp-slider>` thumb (single mode) — falls back to `aria-label="Slider"` when no `[ariaLabel]` is set, instead of `null`.
+- `<kp-nav-item>` collapsed mode — the inner button now gets `[attr.aria-label]="label"` when collapsed (label is hidden via `display:none` in collapsed mode, so screen readers had no name otherwise).
+- `<kp-search-bar>` command-palette variant — input has `aria-label` mirroring the placeholder. The inline variant already had it.
+- `<kp-rich-text-editor>` — editor div now has `aria-label="Rich text editor"` so the TipTap-injected `role="textbox"` is properly named.
+- `<kp-breadcrumb-item>` — link / button fall back to `[aria-label]` (defaulting to `"Home"`) when no visible `label` or projected text is provided. Covers icon-only home breadcrumbs.
+
+### Why patch (not minor)
+
+Per [Versioning policy](CONTRIBUTING.md#versioning-policy): "Fixes a visual / behavioural bug without changing the public surface" → patch. None of these add or rename inputs / outputs / slots / classes. Internal accessibility hardening only.
+
+---
+
 ## `0.4.0` — 2026-04-30 (a11y wave 2)
 
 Wave 2 of the a11y audit — `aria-toggle-field-name` (12 violations) for the three roles that need an accessible name when used standalone, plus a fallback for the avatar's `role="img"`.

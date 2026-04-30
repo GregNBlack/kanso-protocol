@@ -202,7 +202,7 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       </div>
     }
 
-    <div #editorHost class="kp-rte__editor" [attr.aria-invalid]="error || null"></div>
+    <div #editorHost class="kp-rte__editor" aria-label="Rich text editor" [attr.aria-invalid]="error || null"></div>
   `,
   styles: [`
     :host {

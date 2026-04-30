@@ -57,6 +57,7 @@ export type KpBreadcrumbItemType = 'link' | 'current' | 'ellipsis';
             class="kp-bc-item__content"
             [attr.href]="disabled ? null : href"
             [attr.aria-disabled]="disabled || null"
+            [attr.aria-label]="label ? null : (ariaLabel || 'Home')"
             [attr.tabindex]="disabled ? -1 : null"
             (click)="handleClick($event)"
           >
@@ -67,6 +68,7 @@ export type KpBreadcrumbItemType = 'link' | 'current' | 'ellipsis';
             type="button"
             class="kp-bc-item__content"
             [disabled]="disabled"
+            [attr.aria-label]="label ? null : (ariaLabel || 'Home')"
             (click)="handleClick($event)"
           >
             <ng-container *ngTemplateOutlet="body"/>

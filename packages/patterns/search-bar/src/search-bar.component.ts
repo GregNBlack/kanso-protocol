@@ -86,6 +86,7 @@ export interface KpSearchResultGroup {
             class="kp-search-bar__palette-input"
             type="search"
             [placeholder]="placeholder"
+            [attr.aria-label]="placeholder"
             [value]="value"
             (input)="handleInput($event)"
             autofocus

@@ -1,6 +1,6 @@
 {
   "name": "@kanso-protocol/breadcrumbs",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": "^18.0.0",

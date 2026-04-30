@@ -51,6 +51,7 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
       type="button"
       class="kp-nav-item__content"
       [disabled]="disabled"
+      [attr.aria-label]="collapsed ? label : null"
       (click)="handleClick($event)"
       (mouseenter)="onMouseEnter()"
       (mouseleave)="onMouseLeave()"

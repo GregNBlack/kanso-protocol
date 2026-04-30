@@ -69,7 +69,7 @@ export type KpSliderValue = number | readonly [number, number];
         [attr.aria-valuemin]="min"
         [attr.aria-valuemax]="max"
         [attr.aria-valuenow]="value0"
-        [attr.aria-label]="mode === 'range' ? (ariaLabelStart || 'Start') : (ariaLabel || null)"
+        [attr.aria-label]="mode === 'range' ? (ariaLabelStart || 'Start') : (ariaLabel || 'Slider')"
         [attr.aria-orientation]="'horizontal'"
         [disabled]="disabled"
         [style.left.%]="pct(value0)"
