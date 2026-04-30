@@ -12,6 +12,31 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-04-30 (a11y wave 4 — popover dialog name + RTE regression)
+
+Wave 4 closes `aria-dialog-name` and reverts a subtle regression introduced in wave 3.
+
+### Bumps
+
+- `@kanso-protocol/popover`           `0.1.2` → `0.2.0`
+- `@kanso-protocol/rich-text-editor`  `0.1.1` → `0.1.2`
+
+### What changed
+
+- `<kp-popover>` — new `[ariaLabel]` input. `role="dialog"` requires an accessible name; host now binds `[attr.aria-label]` to `title || ariaLabel || "Popover"`, so a popover with a visible title gets it as the SR name automatically; otherwise the `[ariaLabel]` override or the literal "Popover" is used.
+- `<kp-rich-text-editor>` — wave 3's `aria-label="Rich text editor"` on the wrapper div was *worse* than the original gap. The wrapper has no role (TipTap mounts a child element with `role="textbox"`), so aria-label on it triggered `aria-prohibited-attr`. Moved the aria-label to TipTap's own ProseMirror element via `editorProps.attributes.aria-label` — that's the element with role="textbox" and where the rule expects the name.
+
+### Migration
+
+- Popover with `<kp-popover title="Foo">` keeps working; SR now announces "Foo, dialog". For title-less popovers, set `[ariaLabel]` explicitly.
+- Patch on RTE — fully internal; no API change.
+
+### Why minor for popover (and not patch)
+
+New `[ariaLabel]` input on the public surface. Per [Versioning policy](CONTRIBUTING.md#versioning-policy), additive inputs are minor.
+
+---
+
 ## 2026-04-30 (a11y wave 3 — patch)
 
 Wave 3 closes the long tail of `aria-input-field-name`, `link-name`, `button-name` violations that emerged after waves 1+2. All internal aria-fixes — no public API changes — so all bumps are patch.

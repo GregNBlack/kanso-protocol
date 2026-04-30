@@ -202,7 +202,7 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       </div>
     }
 
-    <div #editorHost class="kp-rte__editor" aria-label="Rich text editor" [attr.aria-invalid]="error || null"></div>
+    <div #editorHost class="kp-rte__editor" [attr.aria-invalid]="error || null"></div>
   `,
   styles: [`
     :host {
@@ -439,6 +439,12 @@ export class KpRichTextEditorComponent implements ControlValueAccessor, OnDestro
       element: this.editorHostRef.nativeElement,
       editable: !this.disabled,
       content: this.pendingValue ?? '',
+      // Set aria-label on the inner ProseMirror element (the one TipTap
+      // gives role="textbox"), not on our wrapper div — wrapper has no role
+      // so aria-label there triggers aria-prohibited-attr.
+      editorProps: {
+        attributes: { 'aria-label': 'Rich text editor' },
+      },
       extensions: [
         StarterKit,
         Underline,

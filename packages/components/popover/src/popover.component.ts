@@ -40,6 +40,7 @@ export type KpPopoverArrowPosition =
   host: {
     '[class]': 'hostClasses',
     '[attr.role]': '"dialog"',
+    '[attr.aria-label]': 'title || ariaLabel || "Popover"',
   },
   template: `
     <div class="kp-popover__body">
@@ -268,6 +269,8 @@ export class KpPopoverComponent {
   @Input() showFooter = false;
   @Input() showFooterDivider = true;
   @Input() closable = true;
+  /** Accessible name override; falls through to title or "Popover". */
+  @Input() ariaLabel: string | null = null;
 
   @Output() close = new EventEmitter<MouseEvent>();
 
