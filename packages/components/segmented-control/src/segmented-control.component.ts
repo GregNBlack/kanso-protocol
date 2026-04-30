@@ -77,8 +77,6 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
         @if (showIcon && opt.icon) {
           <svg
             class="kp-segmented-control__icon"
-            [attr.width]="iconSize"
-            [attr.height]="iconSize"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -177,36 +175,48 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
     .kp-segmented-control__icon { flex-shrink: 0; display: block; }
     .kp-segmented-control__label { display: inline-block; }
 
+    /* Icon sized via the per-variant --kp-segmented-icon-size token below. */
+    .kp-segmented-control__icon {
+      width: var(--kp-segmented-icon-size);
+      height: var(--kp-segmented-icon-size);
+      flex-shrink: 0;
+    }
+
     /* === Sizes === */
     :host(.kp-segmented-control--xs) {
       --kp-segmented-radius: 8px;
       --kp-segmented-segment-h: 20px; --kp-segmented-segment-radius: 6px;
       --kp-segmented-pad-x: 8px; --kp-segmented-gap: 6px;
       --kp-segmented-fs: 12px; --kp-segmented-lh: 16px;
+      --kp-segmented-icon-size: 14px;
     }
     :host(.kp-segmented-control--sm) {
       --kp-segmented-radius: 10px;
       --kp-segmented-segment-h: 24px; --kp-segmented-segment-radius: 8px;
       --kp-segmented-pad-x: 10px; --kp-segmented-gap: 6px;
       --kp-segmented-fs: 14px; --kp-segmented-lh: 20px;
+      --kp-segmented-icon-size: 16px;
     }
     :host(.kp-segmented-control--md) {
       --kp-segmented-radius: 12px;
       --kp-segmented-segment-h: 32px; --kp-segmented-segment-radius: 10px;
       --kp-segmented-pad-x: 12px; --kp-segmented-gap: 8px;
       --kp-segmented-fs: 14px; --kp-segmented-lh: 20px;
+      --kp-segmented-icon-size: 18px;
     }
     :host(.kp-segmented-control--lg) {
       --kp-segmented-radius: 14px;
       --kp-segmented-segment-h: 40px; --kp-segmented-segment-radius: 12px;
       --kp-segmented-pad-x: 14px; --kp-segmented-gap: 8px;
       --kp-segmented-fs: 16px; --kp-segmented-lh: 24px;
+      --kp-segmented-icon-size: 22px;
     }
     :host(.kp-segmented-control--xl) {
       --kp-segmented-radius: 16px;
       --kp-segmented-segment-h: 48px; --kp-segmented-segment-radius: 14px;
       --kp-segmented-pad-x: 16px; --kp-segmented-gap: 8px;
       --kp-segmented-fs: 20px; --kp-segmented-lh: 28px;
+      --kp-segmented-icon-size: 24px;
     }
   `],
 })
@@ -226,8 +236,6 @@ export class KpSegmentedControlComponent
 
   @ViewChildren('seg') private segEls!: QueryList<ElementRef<HTMLButtonElement>>;
 
-  readonly iconSizeMap: Record<KpSize, number> = { xs: 14, sm: 16, md: 18, lg: 22, xl: 24 };
-
   private readonly destroyed$ = new Subject<void>();
 
   constructor(
@@ -238,7 +246,6 @@ export class KpSegmentedControlComponent
   get isDisabled(): boolean { return this.disabled || this.cvaDisabled; }
   get showIcon(): boolean { return this.display === 'icon' || this.display === 'icon-text'; }
   get showLabel(): boolean { return this.display === 'text' || this.display === 'icon-text'; }
-  get iconSize(): number { return this.iconSizeMap[this.size]; }
 
   get hostClasses(): string {
     const c = ['kp-segmented-control', `kp-segmented-control--${this.size}`];

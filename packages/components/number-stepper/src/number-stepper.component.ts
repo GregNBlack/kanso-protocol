@@ -47,7 +47,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       class="kp-number-stepper__btn"
       aria-label="Decrease value"
       (click)="dec()">
-      <svg kpButtonIconLeft [attr.width]="iconSize" [attr.height]="iconSize" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <svg kpButtonIconLeft viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
       </svg>
     </kp-button>
@@ -82,7 +82,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       class="kp-number-stepper__btn"
       aria-label="Increase value"
       (click)="inc()">
-      <svg kpButtonIconLeft [attr.width]="iconSize" [attr.height]="iconSize" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <svg kpButtonIconLeft viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
       </svg>
     </kp-button>
@@ -210,10 +210,6 @@ export class KpNumberStepperComponent implements ControlValueAccessor {
   value: number | null = 1;
   private cvaDisabled = false;
 
-  readonly iconSizeMap: Record<KpSize, number> = {
-    xs: 14, sm: 16, md: 18, lg: 22, xl: 24,
-  };
-
   get isDisabled(): boolean {
     return this.disabled || this.cvaDisabled || this.forceState === 'disabled';
   }
@@ -224,10 +220,6 @@ export class KpNumberStepperComponent implements ControlValueAccessor {
 
   get atMax(): boolean {
     return this.max != null && this.value != null && this.value >= this.max;
-  }
-
-  get iconSize(): number {
-    return this.iconSizeMap[this.size];
   }
 
   get displayValue(): string {

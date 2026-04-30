@@ -68,7 +68,7 @@ export interface KpTreeNode {
           class="kp-tree__row"
           [class.kp-tree__row--selected]="selected === node.id"
           [class.kp-tree__row--disabled]="node.disabled"
-          [style.padding-inline-start.px]="paddingForLevel(level)"
+          [style.--kp-tree-row-level]="level"
           (click)="onRowClick(node)"
         >
           @if (isExpandable(node)) {
@@ -169,6 +169,10 @@ export interface KpTreeNode {
       align-items: center;
       gap: var(--kp-tree-gap);
       height: var(--kp-tree-row-h);
+      /* Indentation: base padding + (depth × per-level indent). The level is
+         supplied per-row via the inline custom property --kp-tree-row-level
+         (set by the template). */
+      padding-inline-start: calc(var(--kp-tree-pad-x) + var(--kp-tree-row-level, 0) * var(--kp-tree-indent));
       padding-inline-end: var(--kp-tree-pad-x);
       border-radius: 6px;
       font-size: var(--kp-tree-fs);
@@ -276,12 +280,6 @@ export class KpTreeComponent {
     return node.expandable ?? ((node.children?.length ?? 0) > 0);
   }
   isExpanded(id: string): boolean { return this.expanded.includes(id); }
-
-  paddingForLevel(level: number): number {
-    const base = this.size === 'sm' ? 8 : 12;
-    const indent = this.size === 'sm' ? 20 : 24;
-    return base + level * indent;
-  }
 
   toggleExpanded(node: KpTreeNode, event: Event): void {
     event.stopPropagation();

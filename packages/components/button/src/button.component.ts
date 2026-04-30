@@ -30,11 +30,7 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
     <span class="kp-button__content">
       @if (loading || forceState === 'loading') {
         <span class="kp-button__spinner" aria-hidden="true">
-          <svg
-            [attr.width]="iconSizeMap[size]"
-            [attr.height]="iconSizeMap[size]"
-            viewBox="0 0 24 24"
-            fill="none">
+          <svg viewBox="0 0 24 24" fill="none">
             <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" opacity="0.25"/>
             <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
           </svg>
@@ -131,6 +127,13 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       justify-content: center;
       flex-shrink: 0;
     }
+    /* Sized via the per-variant --kp-button-icon-size token below; covers
+       both the loading spinner SVG and any consumer-provided projected icon. */
+    .kp-button__icon ::ng-deep svg,
+    .kp-button__spinner svg {
+      width: var(--kp-button-icon-size);
+      height: var(--kp-button-icon-size);
+    }
 
     .kp-button__icon:empty { display: none; }
 
@@ -161,26 +164,31 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       --kp-button-height: 24px; --kp-button-radius: 8px; --kp-button-padding: 6px;
       --kp-button-font-size: 12px; --kp-button-line-height: 1.333;
       --kp-button-font-weight: 400; --kp-button-gap: 4px;
+      --kp-button-icon-size: 14px;
     }
     :host(.kp-button--sm) {
       --kp-button-height: 28px; --kp-button-radius: 10px; --kp-button-padding: 8px;
       --kp-button-font-size: 14px; --kp-button-line-height: 1.428;
       --kp-button-font-weight: 400; --kp-button-gap: 5px;
+      --kp-button-icon-size: 16px;
     }
     :host(.kp-button--md) {
       --kp-button-height: 36px; --kp-button-radius: 12px; --kp-button-padding: 12px;
       --kp-button-font-size: 16px; --kp-button-line-height: 1.5;
       --kp-button-font-weight: 400; --kp-button-gap: 6px;
+      --kp-button-icon-size: 18px;
     }
     :host(.kp-button--lg) {
       --kp-button-height: 44px; --kp-button-radius: 14px; --kp-button-padding: 14px;
       --kp-button-font-size: 16px; --kp-button-line-height: 1.5;
       --kp-button-font-weight: 400; --kp-button-gap: 8px;
+      --kp-button-icon-size: 22px;
     }
     :host(.kp-button--xl) {
       --kp-button-height: 52px; --kp-button-radius: 16px; --kp-button-padding: 16px;
       --kp-button-font-size: 20px; --kp-button-line-height: 1.4;
       --kp-button-font-weight: 500; --kp-button-gap: 8px;
+      --kp-button-icon-size: 24px;
     }
 
     /* Icon-only: square hit-area, symmetric padding, no label */
@@ -364,10 +372,6 @@ export class KpButtonComponent {
   @Input() iconOnly = false;
   /** Force a visual state for showcase/documentation purposes */
   @Input() forceState: KpState | null = null;
-
-  readonly iconSizeMap: Record<KpSize, number> = {
-    xs: 14, sm: 16, md: 18, lg: 22, xl: 24,
-  };
 
   get hostClasses(): string {
     const classes = [

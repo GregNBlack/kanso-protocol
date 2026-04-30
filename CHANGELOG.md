@@ -12,6 +12,45 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## `0.2.0` — 2026-04-30
+
+Audit-driven cleanup pass. Same class of fixes as `0.1.1` (memory leaks, hardcoded sizes), now applied to the rest of the components after a systematic walk through every `*.component.ts`. Bumped as **minor** because public readonly properties were removed — see Migration below.
+
+### Bumps
+
+- `@kanso-protocol/button` `0.1.0` → `0.2.0`
+- `@kanso-protocol/number-stepper` `0.1.0` → `0.2.0` *(peer: `button >=0.2.0`)*
+- `@kanso-protocol/segmented-control` `0.1.3` → `0.2.0`
+- `@kanso-protocol/tree` `0.1.0` → `0.2.0`
+
+### What changed
+
+Replaced TypeScript ternary-based icon-size getters with CSS custom properties — same pattern that closed `closeIconSize` / `closeSize` in `0.1.1`. Now every component sizes its glyphs via `--kp-<component>-icon-size`, settable from outside without touching TS.
+
+- `<kp-button>` — `iconSizeMap` field removed; loading spinner and projected icons (`[kpButtonIconLeft]` / `[kpButtonIconRight]`) now size via `--kp-button-icon-size` set per `xs / sm / md / lg / xl`.
+- `<kp-number-stepper>` — `iconSizeMap` + `iconSize` getter removed; the projected `+` / `−` icons inherit their size from the inner `<kp-button>`.
+- `<kp-segmented-control>` — `iconSizeMap` + `iconSize` getter removed; option icons size via `--kp-segmented-icon-size`.
+- `<kp-tree>` — `paddingForLevel(level)` method removed; row indentation now lives entirely in CSS via `padding-inline-start: calc(var(--kp-tree-pad-x) + var(--kp-tree-row-level, 0) * var(--kp-tree-indent))`. The level is supplied per-row via `[style.--kp-tree-row-level]="level"`.
+
+### Migration
+
+If you read these public properties from outside the components (rare — they were intended as internal helpers but were accessible), switch to the CSS custom-property equivalent:
+
+| Before | After |
+|---|---|
+| `buttonCmp.iconSizeMap[size]` | `getComputedStyle(host).getPropertyValue('--kp-button-icon-size')` or set `--kp-button-icon-size` directly |
+| `stepperCmp.iconSize` | (none — icons size via the inner button automatically) |
+| `segmentedCmp.iconSize` | `--kp-segmented-icon-size` |
+| `treeCmp.paddingForLevel(n)` | (none — level is set inline as `--kp-tree-row-level` and CSS does the math) |
+
+If you didn't reference these internally — there's no migration needed. The visual output is identical.
+
+### Why not a patch
+
+Strict reading of [Versioning policy](CONTRIBUTING.md#versioning-policy): removing a TypeScript-public property is a renames/removes change to the public surface. Even if these properties were never documented as public API, they appeared in the generated `.d.ts` and were therefore reachable by consumers. Bumping minor honors the rule established in `0.1.3`.
+
+---
+
 ## `0.1.3` — 2026-04-29
 
 Fixes the visually broken pill-with-text case in `<kp-badge>` and disambiguates the API.

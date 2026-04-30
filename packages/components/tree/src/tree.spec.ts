@@ -47,16 +47,15 @@ describe('KpTreeComponent', () => {
     expect(cmp.isExpandable({ id: 'lazy', label: 'Lazy', expandable: true })).toBe(true);
   });
 
-  it('paddingForLevel scales with level (md)', () => {
-    const md = setup().cmp;
-    expect(md.paddingForLevel(0)).toBe(12);
-    expect(md.paddingForLevel(1)).toBe(36);
-  });
-
-  it('paddingForLevel uses smaller base + indent at sm', () => {
-    const sm = setup({ size: 'sm' }).cmp;
-    expect(sm.paddingForLevel(0)).toBe(8);
-    expect(sm.paddingForLevel(2)).toBe(48);
+  it('row indentation is supplied via the inline --kp-tree-row-level custom property', () => {
+    const { host } = setup();
+    const rows = Array.from(host.querySelectorAll<HTMLElement>('.kp-tree__row'));
+    // Every top-level row gets level=0, written as an inline custom property
+    // that the CSS calc() in .kp-tree__row picks up. The actual padding is
+    // computed in CSS, not TS — so this test just asserts the wiring.
+    for (const row of rows) {
+      expect(row.style.getPropertyValue('--kp-tree-row-level')).toBe('0');
+    }
   });
 
   it('toggleExpanded adds / removes id from expanded and emits expandedChange', () => {
