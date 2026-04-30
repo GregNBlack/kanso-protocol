@@ -241,9 +241,9 @@ export class KpAvatarComponent {
   /** Override the auto-computed aria-label (defaults to initials/alt) */
   @Input() ariaLabelOverride: string | null = null;
 
-  get ariaLabel(): string | null {
+  get ariaLabel(): string {
     if (this.ariaLabelOverride) return this.ariaLabelOverride;
-    return this.alt || this.initials || null;
+    return this.alt || this.initials || 'Avatar';
   }
 
   get hostClasses(): string {

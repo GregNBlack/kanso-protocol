@@ -50,6 +50,7 @@ export type KpRadioColor = 'primary' | 'danger';
     '[attr.aria-checked]': 'checked',
     '[attr.aria-disabled]': 'isDisabled || null',
     '[attr.tabindex]': 'isDisabled ? -1 : 0',
+    '[attr.aria-label]': 'effectiveAriaLabel',
     '(click)': 'select()',
     '(keydown.space)': 'onSpace($event)',
   },
@@ -152,6 +153,13 @@ export class KpRadioComponent implements OnInit, OnDestroy, ControlValueAccessor
   @Input() disabled = false;
   @Input() forceState: KpState | null = null;
   @Input() hasLabel = true;
+  /** Accessible name for screen readers when no visible label is projected. */
+  @Input() ariaLabel: string | null = null;
+
+  get effectiveAriaLabel(): string | null {
+    if (this.ariaLabel) return this.ariaLabel;
+    return this.hasLabel ? null : 'Radio';
+  }
   @Output() checkedChange = new EventEmitter<boolean>();
 
   private registration: { value: unknown; setChecked: (c: boolean) => void } | null = null;

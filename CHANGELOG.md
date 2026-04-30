@@ -12,6 +12,28 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## `0.4.0` — 2026-04-30 (a11y wave 2)
+
+Wave 2 of the a11y audit — `aria-toggle-field-name` (12 violations) for the three roles that need an accessible name when used standalone, plus a fallback for the avatar's `role="img"`.
+
+### Bumps
+
+- `@kanso-protocol/toggle`   `0.1.0` → `0.2.0`
+- `@kanso-protocol/checkbox` `0.1.0` → `0.2.0`
+- `@kanso-protocol/radio`    `0.1.0` → `0.2.0`
+- `@kanso-protocol/avatar`   `0.1.0` → `0.2.0`
+
+### What changed
+
+- `<kp-toggle>`, `<kp-checkbox>`, `<kp-radio>` — added `[ariaLabel]` input. When the visible label is projected via `<ng-content>` the projected text is the accessible name (no aria-label set, so it doesn't shadow). When `[hasLabel]="false"` (icon-only) and no `[ariaLabel]` is given, the host falls back to a sensible default (`"Toggle"` / `"Checkbox"` / `"Radio"`) so screen readers always have a name to announce.
+- `<kp-avatar>` — when no `alt`, `initials`, or `ariaLabelOverride` is provided, the host now defaults to `aria-label="Avatar"` instead of leaving the name empty (which violated `aria-img-name`).
+
+### Migration
+
+Additive only — none required if you projected text labels (everyone using `<kp-toggle>Notifications</kp-toggle>` keeps the same accessible name). If you previously used `[hasLabel]="false"` and provided a name via a wrapping `<label>` or `aria-labelledby`, that still works; the new fallback only kicks in when nothing else is set.
+
+---
+
 ## `0.3.0` — 2026-04-30 (a11y wave 1)
 
 First wave of fixes from a CI-driven a11y audit (`test-storybook` running axe-core against every story in light + dark themes; results showed 260 of 330 stories had at least one moderate+ violation). This release covers `aria-progressbar-name` and `aria-prohibited-attr` on the most common offenders.

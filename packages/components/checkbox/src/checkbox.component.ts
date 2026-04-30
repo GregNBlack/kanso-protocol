@@ -36,6 +36,7 @@ export type KpCheckboxColor = 'primary' | 'danger';
     '[attr.aria-checked]': 'indeterminate ? "mixed" : checked',
     '[attr.aria-disabled]': 'disabled || null',
     '[attr.tabindex]': 'disabled ? -1 : 0',
+    '[attr.aria-label]': 'effectiveAriaLabel',
     '(click)': 'toggle()',
     '(keydown.space)': 'onSpace($event)',
   },
@@ -183,6 +184,16 @@ export class KpCheckboxComponent implements ControlValueAccessor {
   @Input() disabled = false;
   @Input() forceState: KpState | null = null;
   @Input() hasLabel = true;
+  /** Accessible name for screen readers when no visible label is projected. Falls through to projected text content otherwise. */
+  @Input() ariaLabel: string | null = null;
+
+  /** Use ariaLabel only when there's no visible label — otherwise the projected
+   *  text becomes the accessible name automatically and a duplicate aria-label
+   *  would shadow it. */
+  get effectiveAriaLabel(): string | null {
+    if (this.ariaLabel) return this.ariaLabel;
+    return this.hasLabel ? null : 'Checkbox';
+  }
   @Output() checkedChange = new EventEmitter<boolean>();
 
   get hostClasses(): string {

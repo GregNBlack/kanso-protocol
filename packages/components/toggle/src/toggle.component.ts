@@ -35,6 +35,7 @@ export type KpToggleColor = 'primary' | 'danger';
     '[attr.aria-checked]': 'on',
     '[attr.aria-disabled]': 'disabled || null',
     '[attr.tabindex]': 'disabled ? -1 : 0',
+    '[attr.aria-label]': 'effectiveAriaLabel',
     '(click)': 'toggle()',
     '(keydown.space)': 'onSpace($event)',
   },
@@ -146,6 +147,13 @@ export class KpToggleComponent implements ControlValueAccessor {
   @Input() disabled = false;
   @Input() forceState: KpState | null = null;
   @Input() hasLabel = true;
+  /** Accessible name for screen readers when no visible label is projected. */
+  @Input() ariaLabel: string | null = null;
+
+  get effectiveAriaLabel(): string | null {
+    if (this.ariaLabel) return this.ariaLabel;
+    return this.hasLabel ? null : 'Toggle';
+  }
   @Output() onChangeEvent = new EventEmitter<boolean>();
 
   get hostClasses(): string {
