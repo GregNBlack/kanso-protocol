@@ -35,8 +35,7 @@ export type KpTabSize = 'sm' | 'md' | 'lg';
     '[attr.aria-disabled]': 'disabled || null',
     '[attr.tabindex]': 'disabled ? -1 : (selected ? 0 : -1)',
     '(click)': 'handleClick($event)',
-    '(keydown.enter)': 'handleKey($event)',
-    '(keydown.space)': 'handleKey($event)',
+    '(keydown)': 'handleKey($event)',
   },
   // Inner content is a non-interactive span. The previous <button> inside the
   // role="tab" host triggered axe's nested-interactive rule. Click + keyboard
@@ -191,6 +190,7 @@ export class KpTabComponent {
   }
 
   handleKey(event: KeyboardEvent): void {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
     if (this.disabled) return;
     event.preventDefault();
     this.selectedChange.emit(true);
