@@ -12,6 +12,36 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-05-01 — designer-pass disabled-state correction + picker round 2 entries
+
+Fixes my mistake on disabled values (`#71717A` actually fails AA at 3.5:1 on the dark-bg `#18181B` it sits on for many components) and adds 15 new entries to the Foundations / Dark Mode Token Picker for round 2.
+
+### Bumps
+
+- `@kanso-protocol/core` `0.2.1` → `0.2.2`
+
+### Fix
+
+- `primary.default.fg.disabled`, `danger.default.fg.disabled`, `neutral.default.fg.disabled` — moved from `#71717A` (gray-500 pivot, 3.5:1 on dark surfaces) to `#A1A1AA` (gray-400 light, 5.3:1). Subtle variants stay at `#52525B` since they sit on the deeper subtle backgrounds where contrast there is fine.
+
+### Picker round 2
+
+The Foundations / Dark Mode Token Picker now includes 15 additional entries (existing 18 + 15 = 33 total) covering the components that didn't make it into batch 1:
+
+- form-field helper / label
+- stat-card trend (good / bad / neutral)
+- textarea counter chip
+- alert primary subtle title / desc
+- divider inline label
+- datepicker day rest / outside-month
+- table row cell
+- sidebar section label
+- notification-item time
+
+Designer can revisit the picker page, scroll to the new entries, fill them in, and paste a fresh JSON for batch 2 integration.
+
+---
+
 ## 2026-05-01 — designer-pass: button state extension
 
 Patch follow-up to the designer-pass core@0.2.0. Algorithmic propagation of the .rest picks to the other 5 button states (hover, active, focus, loading, disabled) for the picked color × variant combos, plus neutral.subtle.fg.* family that was missed in batch 1.

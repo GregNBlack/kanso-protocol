@@ -128,7 +128,7 @@
   --kp-color-primary-default-fg-active: #0f1729;
   --kp-color-primary-default-fg-focus: #0f1729;
   --kp-color-primary-default-fg-loading: #0f1729;
-  --kp-color-primary-default-fg-disabled: #71717a;
+  --kp-color-primary-default-fg-disabled: #a1a1aa;
   --kp-color-primary-subtle-fg-rest: #93c5fd;
   --kp-color-primary-subtle-fg-hover: #bfdbfe;
   --kp-color-primary-subtle-fg-active: #dbeafe;
@@ -140,7 +140,7 @@
   --kp-color-danger-default-fg-active: #450a0a;
   --kp-color-danger-default-fg-focus: #450a0a;
   --kp-color-danger-default-fg-loading: #450a0a;
-  --kp-color-danger-default-fg-disabled: #71717a;
+  --kp-color-danger-default-fg-disabled: #a1a1aa;
   --kp-color-danger-subtle-fg-rest: #fca5a5;
   --kp-color-danger-subtle-fg-hover: #fecaca;
   --kp-color-danger-subtle-fg-active: #fee2e2;
@@ -152,7 +152,7 @@
   --kp-color-neutral-default-fg-active: #09090b;
   --kp-color-neutral-default-fg-focus: #09090b;
   --kp-color-neutral-default-fg-loading: #09090b;
-  --kp-color-neutral-default-fg-disabled: #71717a;
+  --kp-color-neutral-default-fg-disabled: #a1a1aa;
   --kp-color-neutral-subtle-fg-rest: #d4d4d8;
   --kp-color-neutral-subtle-fg-hover: #e4e4e7;
   --kp-color-neutral-subtle-fg-active: #f4f4f5;
