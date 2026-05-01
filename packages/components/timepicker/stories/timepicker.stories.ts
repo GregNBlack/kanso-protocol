@@ -15,7 +15,7 @@ const meta: Meta<KpTimePickerComponent> = {
 export default meta;
 type Story = StoryObj<KpTimePickerComponent>;
 
-const cap = `font-size:11px;color: var(--kp-color-gray-500);margin-top:8px;display:block`;
+const cap = `font-size:11px;color: var(--kp-color-gray-600);margin-top:8px;display:block`;
 
 export const Default: Story = {
   args: { size: 'md', format: '24h', placeholder: 'Select time' },
@@ -98,14 +98,14 @@ export const UseCases: Story = {
           <div style="font-weight:500;font-size:14px;margin-bottom:8px">Opening hours</div>
           <div style="display:flex;gap:12px;align-items:center">
             <kp-time-picker placeholder="Opens at" [minuteStep]="15" [(ngModel)]="opensAt"/>
-            <span style="color: var(--kp-color-gray-500)">—</span>
+            <span style="color: var(--kp-color-gray-600)">—</span>
             <kp-time-picker placeholder="Closes at" [minuteStep]="15" [(ngModel)]="closesAt"/>
           </div>
         </div>
 
         <div>
           <div style="font-weight:500;font-size:14px;margin-bottom:4px">Event starts</div>
-          <div style="font-size:12px;color: var(--kp-color-gray-500);margin-bottom:8px">Pick a time (minutes snap to 15).</div>
+          <div style="font-size:12px;color: var(--kp-color-gray-600);margin-bottom:8px">Pick a time (minutes snap to 15).</div>
           <kp-time-picker format="24h" [minuteStep]="15" [(ngModel)]="eventTime"/>
         </div>
       </div>`,

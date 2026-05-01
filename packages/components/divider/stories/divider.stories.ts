@@ -14,7 +14,7 @@ const meta: Meta<KpDividerComponent> = {
 export default meta;
 type Story = StoryObj<KpDividerComponent>;
 
-const caption = `font-size:11px;color: var(--kp-color-gray-500);margin-top:6px;display:block`;
+const caption = `font-size:11px;color: var(--kp-color-gray-600);margin-top:6px;display:block`;
 
 export const Default: Story = {
   args: { orientation: 'horizontal', label: 'Or', labelPosition: 'center' },
@@ -36,9 +36,9 @@ export const Orientations: Story = {
           <span style="${caption}">Horizontal — width fills container</span>
         </div>
         <div style="display:inline-flex;align-items:center;gap:12px">
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">Above</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">Above</span>
           <kp-divider orientation="vertical" style="height:80px"/>
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">Below</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">Below</span>
           <span style="${caption}">Vertical — fixed height by parent</span>
         </div>
       </div>`,
@@ -63,9 +63,9 @@ export const UseCases: Story = {
     template: `
       <div style="display:flex;flex-direction:column;gap:32px;width:600px">
         <div>
-          <p style="font-size:14px;color: var(--kp-color-gray-500);margin:0 0 16px">Personal info fields…</p>
+          <p style="font-size:14px;color: var(--kp-color-gray-600);margin:0 0 16px">Personal info fields…</p>
           <kp-divider label="Billing details" labelPosition="start"/>
-          <p style="font-size:14px;color: var(--kp-color-gray-500);margin:16px 0 0">Billing fields…</p>
+          <p style="font-size:14px;color: var(--kp-color-gray-600);margin:16px 0 0">Billing fields…</p>
           <span style="${caption}">Form section separator</span>
         </div>
 

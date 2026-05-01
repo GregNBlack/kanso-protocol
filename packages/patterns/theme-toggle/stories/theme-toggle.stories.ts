@@ -23,15 +23,15 @@ export const Variants: Story = {
       <div style="display:flex;flex-direction:column;gap:24px;font-family:Onest,system-ui,sans-serif">
         <div style="display:flex;gap:16px;align-items:center">
           <kp-theme-toggle variant="icon" currentTheme="light"/>
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">icon · light</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">icon · light</span>
         </div>
         <div style="display:flex;gap:16px;align-items:center">
           <kp-theme-toggle variant="segmented" currentTheme="light"/>
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">segmented · light</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">segmented · light</span>
         </div>
         <div style="display:flex;gap:16px;align-items:center">
           <kp-theme-toggle variant="dropdown" currentTheme="light"/>
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">dropdown · light</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">dropdown · light</span>
         </div>
       </div>
     `,

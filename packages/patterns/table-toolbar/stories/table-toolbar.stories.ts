@@ -90,7 +90,7 @@ export const UseCases: Story = {
     template: `
       <div style="display:flex;flex-direction:column;gap:24px;padding:24px">
         <div>
-          <div style="font:500 12px Onest;color: var(--kp-color-gray-500);margin-bottom:6px">Admin users table</div>
+          <div style="font:500 12px Onest;color: var(--kp-color-gray-600);margin-bottom:6px">Admin users table</div>
           <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
             <kp-table-toolbar
               searchPlaceholder="Search users…"
@@ -100,7 +100,7 @@ export const UseCases: Story = {
         </div>
 
         <div>
-          <div style="font:500 12px Onest;color: var(--kp-color-gray-500);margin-bottom:6px">E-commerce products</div>
+          <div style="font:500 12px Onest;color: var(--kp-color-gray-600);margin-bottom:6px">E-commerce products</div>
           <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
             <kp-table-toolbar
               searchPlaceholder="Search products…"
@@ -114,7 +114,7 @@ export const UseCases: Story = {
         </div>
 
         <div>
-          <div style="font:500 12px Onest;color: var(--kp-color-gray-500);margin-bottom:6px">Bulk delete scenario</div>
+          <div style="font:500 12px Onest;color: var(--kp-color-gray-600);margin-bottom:6px">Bulk delete scenario</div>
           <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
             <kp-table-toolbar mode="bulk-select" [selectedCount]="5"></kp-table-toolbar>
           </div>

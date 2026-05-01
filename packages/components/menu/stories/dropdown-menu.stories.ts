@@ -50,7 +50,7 @@ export const Sizes: Story = {
             <kp-menu-item size="sm" label="Preferences"></kp-menu-item>
             <kp-menu-item size="sm" label="Sign out"></kp-menu-item>
           </kp-dropdown-menu>
-          <span style="font-size:11px;color: var(--kp-color-gray-500)">sm / 28px items</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-600)">sm / 28px items</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-dropdown-menu>
@@ -59,7 +59,7 @@ export const Sizes: Story = {
             <kp-menu-item size="md" label="Preferences"></kp-menu-item>
             <kp-menu-item size="md" label="Sign out"></kp-menu-item>
           </kp-dropdown-menu>
-          <span style="font-size:11px;color: var(--kp-color-gray-500)">md / 32px items</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-600)">md / 32px items</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-dropdown-menu>
@@ -68,7 +68,7 @@ export const Sizes: Story = {
             <kp-menu-item size="lg" label="Preferences"></kp-menu-item>
             <kp-menu-item size="lg" label="Sign out"></kp-menu-item>
           </kp-dropdown-menu>
-          <span style="font-size:11px;color: var(--kp-color-gray-500)">lg / 40px items</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-600)">lg / 40px items</span>
         </div>
       </div>`,
   }),
@@ -170,7 +170,7 @@ export const WithFooter: Story = {
             <kp-menu-item label="Recent" [selected]="true"></kp-menu-item>
             <kp-menu-item label="Starred"></kp-menu-item>
           </kp-dropdown-menu>
-          <span style="font-size:11px;color: var(--kp-color-gray-500)">2 buttons (Cancel + Apply)</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-600)">2 buttons (Cancel + Apply)</span>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;align-items:center">
           <kp-dropdown-menu [hasFooter]="true" [showCancel]="false" primaryLabel="Done">
@@ -178,7 +178,7 @@ export const WithFooter: Story = {
             <kp-menu-item label="Option B"></kp-menu-item>
             <kp-menu-item label="Option C"></kp-menu-item>
           </kp-dropdown-menu>
-          <span style="font-size:11px;color: var(--kp-color-gray-500)">1 button only</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-600)">1 button only</span>
         </div>
       </div>`,
   }),

@@ -85,7 +85,7 @@ export const ArrowPositions: Story = {
             <kp-popover size="sm" arrowPosition="${p}" title="Popover" [closable]="true">
               Body content.
             </kp-popover>
-            <span style="font-size:11px;color: var(--kp-color-gray-500)">${p}</span>
+            <span style="font-size:11px;color: var(--kp-color-gray-600)">${p}</span>
           </div>`).join('')}
       </div>`
     ).join('');

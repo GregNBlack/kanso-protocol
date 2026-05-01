@@ -64,23 +64,23 @@ export const States: Story = {
     template: `
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:.06em">Rest</span>
+          <span style="font-size:10px;color: var(--kp-color-gray-600);text-transform:uppercase;letter-spacing:.06em">Rest</span>
           <kp-input forceState="rest" placeholder="Placeholder"></kp-input>
         </div>
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:.06em">Hover</span>
+          <span style="font-size:10px;color: var(--kp-color-gray-600);text-transform:uppercase;letter-spacing:.06em">Hover</span>
           <kp-input forceState="hover" placeholder="Placeholder"></kp-input>
         </div>
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:.06em">Focus</span>
+          <span style="font-size:10px;color: var(--kp-color-gray-600);text-transform:uppercase;letter-spacing:.06em">Focus</span>
           <kp-input forceState="focus" placeholder="Placeholder"></kp-input>
         </div>
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:.06em">Disabled</span>
+          <span style="font-size:10px;color: var(--kp-color-gray-600);text-transform:uppercase;letter-spacing:.06em">Disabled</span>
           <kp-input forceState="disabled" placeholder="Placeholder"></kp-input>
         </div>
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:.06em">Error</span>
+          <span style="font-size:10px;color: var(--kp-color-gray-600);text-transform:uppercase;letter-spacing:.06em">Error</span>
           <kp-input forceState="error" placeholder="Error state"></kp-input>
         </div>
       </div>`,
@@ -93,15 +93,15 @@ export const FloatingLabel: Story = {
     template: `
       <div style="display:flex;flex-direction:column;gap:24px">
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:.06em">LG · Rest (label inside)</span>
+          <span style="font-size:10px;color: var(--kp-color-gray-600);text-transform:uppercase;letter-spacing:.06em">LG · Rest (label inside)</span>
           <kp-input size="lg" [floatingLabel]="true" label="Email" placeholder="Email"></kp-input>
         </div>
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:.06em">LG · Focus (label floated)</span>
+          <span style="font-size:10px;color: var(--kp-color-gray-600);text-transform:uppercase;letter-spacing:.06em">LG · Focus (label floated)</span>
           <kp-input size="lg" [floatingLabel]="true" label="Email" placeholder="you@example.com" forceState="focus"></kp-input>
         </div>
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:.06em">XL · Filled (with value)</span>
+          <span style="font-size:10px;color: var(--kp-color-gray-600);text-transform:uppercase;letter-spacing:.06em">XL · Filled (with value)</span>
           <kp-input size="xl" [floatingLabel]="true" label="Name" placeholder="Your name" forceState="active"></kp-input>
         </div>
       </div>`,
@@ -121,15 +121,15 @@ export const ClearButton: Story = {
       <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-input [(ngModel)]="v1" [showClear]="true" placeholder="Type to see clear icon"></kp-input>
-          <span style="font-size:11px;color: var(--kp-color-gray-500)">Show Clear</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-600)">Show Clear</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-input [(ngModel)]="v3" [showClear]="true" placeholder="Focus state" forceState="focus"></kp-input>
-          <span style="font-size:11px;color: var(--kp-color-gray-500)">Focus</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-600)">Focus</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-input [(ngModel)]="v4" [showClear]="true" placeholder="Disabled" [disabled]="true"></kp-input>
-          <span style="font-size:11px;color: var(--kp-color-gray-500)">Disabled (hidden)</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-600)">Disabled (hidden)</span>
         </div>
       </div>`,
   }),

@@ -20,7 +20,7 @@ const box = (w: number, h = 32) => `<div style="width:${w}px;height:${h}px;backg
 export const Gaps: Story = {
   render: () => ({
     template: `
-      <div style="display:flex;flex-direction:column;gap:16px;font-family:Onest,system-ui,sans-serif;font-size:12px;color: var(--kp-color-gray-500)">
+      <div style="display:flex;flex-direction:column;gap:16px;font-family:Onest,system-ui,sans-serif;font-size:12px;color: var(--kp-color-gray-600)">
         ${['none','2xs','xs','sm','md','lg','xl','2xl'].map(g => `
           <div>
             <div style="margin-bottom:6px">gap=${g}</div>
@@ -35,7 +35,7 @@ export const Gaps: Story = {
 export const Justify: Story = {
   render: () => ({
     template: `
-      <div style="display:flex;flex-direction:column;gap:16px;font-family:Onest,system-ui,sans-serif;font-size:12px;color: var(--kp-color-gray-500)">
+      <div style="display:flex;flex-direction:column;gap:16px;font-family:Onest,system-ui,sans-serif;font-size:12px;color: var(--kp-color-gray-600)">
         ${['start','center','end','space-between','space-around'].map(j => `
           <div>
             <div style="margin-bottom:6px">justify=${j}</div>
@@ -52,7 +52,7 @@ export const Justify: Story = {
 export const Align: Story = {
   render: () => ({
     template: `
-      <div style="display:flex;flex-direction:column;gap:16px;font-family:Onest,system-ui,sans-serif;font-size:12px;color: var(--kp-color-gray-500)">
+      <div style="display:flex;flex-direction:column;gap:16px;font-family:Onest,system-ui,sans-serif;font-size:12px;color: var(--kp-color-gray-600)">
         ${['start','center','end','stretch','baseline'].map(a => `
           <div>
             <div style="margin-bottom:6px">align=${a}</div>
@@ -71,7 +71,7 @@ export const UseCases: Story = {
     template: `
       <div style="display:flex;flex-direction:column;gap:24px;font-family:Onest,system-ui,sans-serif">
         <div>
-          <div style="font-size:12px;color: var(--kp-color-gray-500);margin-bottom:6px">Button group (justify=end)</div>
+          <div style="font-size:12px;color: var(--kp-color-gray-600);margin-bottom:6px">Button group (justify=end)</div>
           <div style="background: var(--kp-color-gray-50);padding:12px;border-radius:6px;width:600px">
             <kp-row gap="sm" justify="end">
               <button style="padding:8px 16px;background: var(--kp-color-white);border: 1px solid var(--kp-color-gray-200);border-radius:6px">Cancel</button>
@@ -80,7 +80,7 @@ export const UseCases: Story = {
           </div>
         </div>
         <div>
-          <div style="font-size:12px;color: var(--kp-color-gray-500);margin-bottom:6px">Header (justify=space-between)</div>
+          <div style="font-size:12px;color: var(--kp-color-gray-600);margin-bottom:6px">Header (justify=space-between)</div>
           <div style="background: var(--kp-color-gray-50);padding:12px;border-radius:6px;width:600px">
             <kp-row justify="space-between" align="center">
               <span style="font-weight:600">Logo</span>

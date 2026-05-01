@@ -43,23 +43,23 @@ export const Sizes: Story = {
       <div style="display:flex;flex-direction:column;gap:20px;font-family:Onest,system-ui,sans-serif">
         <div style="display:flex;align-items:center;gap:16px">
           <kp-avatar-group size="xs" [items]="team" [max]="3" [total]="8"/>
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">xs</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">xs</span>
         </div>
         <div style="display:flex;align-items:center;gap:16px">
           <kp-avatar-group size="sm" [items]="team" [max]="3" [total]="8"/>
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">sm</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">sm</span>
         </div>
         <div style="display:flex;align-items:center;gap:16px">
           <kp-avatar-group size="md" [items]="team" [max]="3" [total]="8"/>
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">md</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">md</span>
         </div>
         <div style="display:flex;align-items:center;gap:16px">
           <kp-avatar-group size="lg" [items]="team" [max]="3" [total]="8"/>
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">lg</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">lg</span>
         </div>
         <div style="display:flex;align-items:center;gap:16px">
           <kp-avatar-group size="xl" [items]="team" [max]="3" [total]="8"/>
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">xl</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">xl</span>
         </div>
       </div>
     `,
@@ -73,15 +73,15 @@ export const Overlap: Story = {
       <div style="display:flex;flex-direction:column;gap:20px;font-family:Onest,system-ui,sans-serif">
         <div style="display:flex;align-items:center;gap:16px">
           <kp-avatar-group size="md" overlap="tight" [items]="team" [max]="4" [total]="10"/>
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">tight</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">tight</span>
         </div>
         <div style="display:flex;align-items:center;gap:16px">
           <kp-avatar-group size="md" overlap="normal" [items]="team" [max]="4" [total]="10"/>
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">normal</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">normal</span>
         </div>
         <div style="display:flex;align-items:center;gap:16px">
           <kp-avatar-group size="md" overlap="loose" [items]="team" [max]="4" [total]="10"/>
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">loose</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">loose</span>
         </div>
       </div>
     `,
@@ -121,14 +121,14 @@ export const UseCases: Story = {
         </div>
         <div style="display:flex;align-items:center;gap:10px">
           <kp-avatar-group size="xs" [items]="team" [max]="5" [total]="24"/>
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">24 people replied</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">24 people replied</span>
         </div>
         <div style="display:flex;align-items:center;gap:10px">
           <kp-avatar-group size="md" [items]="team" [max]="3" [total]="7"/>
           <span style="font-size:13px;color: var(--kp-color-gray-700)">Shared with 7 people</span>
         </div>
         <div style="display:flex;align-items:center;gap:10px">
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">Assignees</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">Assignees</span>
           <kp-avatar-group size="sm" [items]="team" [max]="3" [total]="5"/>
         </div>
       </div>

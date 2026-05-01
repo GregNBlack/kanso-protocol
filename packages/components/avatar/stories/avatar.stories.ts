@@ -127,7 +127,7 @@ export const UseCases: Story = {
           <kp-avatar size="md" initials="GB"/>
           <div style="display:flex;flex-direction:column;line-height:1.2">
             <span style="font-size:13px;font-weight:500">Greg Black</span>
-            <span style="font-size:12px;color: var(--kp-color-gray-500)">Admin</span>
+            <span style="font-size:12px;color: var(--kp-color-gray-600)">Admin</span>
           </div>
         </div>
         <div style="display:flex;gap:12px;align-items:flex-start">
@@ -141,7 +141,7 @@ export const UseCases: Story = {
           <kp-avatar size="md" initials="AJ" [showStatus]="true" status="online"/>
           <div style="display:flex;flex-direction:column;line-height:1.2">
             <span style="font-size:13px;font-weight:500">Anna Jones</span>
-            <span style="font-size:12px;color: var(--kp-color-gray-500)">anna@example.com</span>
+            <span style="font-size:12px;color: var(--kp-color-gray-600)">anna@example.com</span>
           </div>
         </div>
       </div>

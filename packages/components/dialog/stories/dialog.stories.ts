@@ -224,7 +224,7 @@ export const UseCases: Story = {
         <div kpDialogBody style="display:flex;flex-direction:column;gap:8px">
           <label style="font-size:14px;color: var(--kp-color-gray-700);font-weight:500">Emails</label>
           <textarea rows="4" placeholder="user@example.com, another@example.com" style="padding:10px 12px;border:1px solid #D4D4D8;border-radius:8px;font-family:Onest,system-ui;font-size:14px;resize:vertical"></textarea>
-          <p style="font-size:12px;color: var(--kp-color-gray-500);margin:0">Members will receive an invite email with a link to join.</p>
+          <p style="font-size:12px;color: var(--kp-color-gray-600);margin:0">Members will receive an invite email with a link to join.</p>
         </div>
         <ng-container kpDialogFooter>
           <kp-button variant="ghost" color="neutral" (click)="openKey = ''">Send template link</kp-button>

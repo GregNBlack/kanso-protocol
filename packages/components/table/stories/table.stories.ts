@@ -65,7 +65,7 @@ export const Selectable: Story = {
           <kp-badge [color]="row.active ? 'success' : 'neutral'" size="sm">{{ row.active ? 'Active' : 'Inactive' }}</kp-badge>
         </ng-template>
       </kp-table>
-      <div style="margin-top:16px;font-size:12px;color: var(--kp-color-gray-500)">
+      <div style="margin-top:16px;font-size:12px;color: var(--kp-color-gray-600)">
         Selected {{ selected.length }} of {{ data.length }} — click a row or the header checkbox.
       </div>`,
   }),

@@ -17,7 +17,7 @@ type Story = StoryObj<KpUserMenuComponent>;
 
 const ROW = (icon: string, label: string) => `
   <button style="all:unset;display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;font-size:13px;color: var(--kp-color-gray-700);cursor:pointer;font-family:Onest,system-ui,sans-serif" onmouseover="this.style.background='#F4F4F5'" onmouseout="this.style.background='transparent'">
-    <span style="display:inline-flex;width:16px;height:16px;color: var(--kp-color-gray-500)">
+    <span style="display:inline-flex;width:16px;height:16px;color: var(--kp-color-gray-600)">
       ${icon}
     </span>
     <span>${label}</span>

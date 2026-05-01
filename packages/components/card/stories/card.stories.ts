@@ -17,7 +17,7 @@ const meta: Meta<KpCardComponent> = {
 export default meta;
 type Story = StoryObj<KpCardComponent>;
 
-const cap = `font-size:11px;color: var(--kp-color-gray-500);margin-top:8px;display:block`;
+const cap = `font-size:11px;color: var(--kp-color-gray-600);margin-top:8px;display:block`;
 
 export const Default: Story = {
   args: { size: 'md', appearance: 'default', title: 'Card title', description: 'Optional description', showDescription: true },

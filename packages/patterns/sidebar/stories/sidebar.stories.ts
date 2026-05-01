@@ -100,7 +100,7 @@ export const WithContext: Story = {
         <div style="flex:1;padding:40px;font-family:Onest,system-ui,sans-serif">
           <div style="background: var(--kp-color-white);border: 1px solid var(--kp-color-gray-200);border-radius:16px;padding:40px;min-height:400px">
             <h1 style="margin:0 0 12px 0;font-size:24px;font-weight:600;color: var(--kp-color-gray-900)">Dashboard</h1>
-            <p style="margin:0;color: var(--kp-color-gray-500)">Main content area sits next to the sidebar.</p>
+            <p style="margin:0;color: var(--kp-color-gray-600)">Main content area sits next to the sidebar.</p>
           </div>
         </div>
       </div>

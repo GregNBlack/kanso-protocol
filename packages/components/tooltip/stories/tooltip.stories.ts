@@ -29,11 +29,11 @@ export const Sizes: Story = {
       <div style="display:flex;align-items:flex-end;gap:40px">
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-tooltip size="sm" label="Tooltip text"/>
-          <span style="font-size:11px;color: var(--kp-color-gray-500)">sm</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-600)">sm</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-tooltip size="md" label="Tooltip text"/>
-          <span style="font-size:11px;color: var(--kp-color-gray-500)">md</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-600)">md</span>
         </div>
       </div>`,
   }),
@@ -46,23 +46,23 @@ export const ArrowPositions: Story = {
       <div style="display:flex;align-items:center;gap:60px;padding:24px 12px">
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-tooltip arrowPosition="none"   label="Tooltip"/>
-          <span style="font-size:11px;color: var(--kp-color-gray-500)">None</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-600)">None</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-tooltip arrowPosition="top"    label="Tooltip"/>
-          <span style="font-size:11px;color: var(--kp-color-gray-500)">Top</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-600)">Top</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-tooltip arrowPosition="bottom" label="Tooltip"/>
-          <span style="font-size:11px;color: var(--kp-color-gray-500)">Bottom</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-600)">Bottom</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-tooltip arrowPosition="left"   label="Tooltip"/>
-          <span style="font-size:11px;color: var(--kp-color-gray-500)">Left</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-600)">Left</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-tooltip arrowPosition="right"  label="Tooltip"/>
-          <span style="font-size:11px;color: var(--kp-color-gray-500)">Right</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-600)">Right</span>
         </div>
       </div>`,
   }),

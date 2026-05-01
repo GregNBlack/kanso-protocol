@@ -24,7 +24,7 @@ export default meta;
 type Story = StoryObj<KpContainerComponent>;
 
 const BG = 'background: var(--kp-color-gray-100);min-height:180px;padding:40px 0;';
-const SLOT = 'background: var(--kp-color-white);border:1px dashed #D4D4D8;border-radius:6px;padding:32px;color: var(--kp-color-gray-500);text-align:center;font-family:Onest,system-ui,sans-serif;';
+const SLOT = 'background: var(--kp-color-white);border:1px dashed #D4D4D8;border-radius:6px;padding:32px;color: var(--kp-color-gray-600);text-align:center;font-family:Onest,system-ui,sans-serif;';
 
 export const Widths: Story = {
   render: () => ({
@@ -64,7 +64,7 @@ export const RealContent: Story = {
           <div style="font-family:Onest,system-ui,sans-serif;display:flex;flex-direction:column;gap:20px">
             <div>
               <div style="font-size:24px;font-weight:600;color: var(--kp-color-gray-900)">Settings</div>
-              <div style="font-size:14px;color: var(--kp-color-gray-500);margin-top:4px">Manage your account preferences and integrations.</div>
+              <div style="font-size:14px;color: var(--kp-color-gray-600);margin-top:4px">Manage your account preferences and integrations.</div>
             </div>
             <div style="${SLOT}">Profile card</div>
             <div style="height:1px;background:#E4E4E7"></div>

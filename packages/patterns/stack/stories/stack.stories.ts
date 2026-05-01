@@ -18,7 +18,7 @@ const box = (w: number) => `<div style="width:${w}px;height:40px;background:#E4E
 export const Gaps: Story = {
   render: () => ({
     template: `
-      <div style="display:flex;gap:32px;flex-wrap:wrap;font-family:Onest,system-ui,sans-serif;font-size:12px;color: var(--kp-color-gray-500)">
+      <div style="display:flex;gap:32px;flex-wrap:wrap;font-family:Onest,system-ui,sans-serif;font-size:12px;color: var(--kp-color-gray-600)">
         ${['none','2xs','xs','sm','md','lg','xl','2xl'].map(g => `
           <div style="display:flex;flex-direction:column;gap:8px">
             <span>gap=${g}</span>
@@ -33,7 +33,7 @@ export const Gaps: Story = {
 export const Align: Story = {
   render: () => ({
     template: `
-      <div style="display:flex;gap:32px;font-family:Onest,system-ui,sans-serif;font-size:12px;color: var(--kp-color-gray-500)">
+      <div style="display:flex;gap:32px;font-family:Onest,system-ui,sans-serif;font-size:12px;color: var(--kp-color-gray-600)">
         ${['start','center','end','stretch'].map(a => `
           <div style="display:flex;flex-direction:column;gap:8px;width:240px">
             <span>align=${a}</span>

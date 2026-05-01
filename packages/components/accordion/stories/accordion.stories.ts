@@ -19,7 +19,7 @@ const meta: Meta<KpAccordionComponent> = {
 export default meta;
 type Story = StoryObj<KpAccordionComponent>;
 
-const cap = `font-size:11px;color: var(--kp-color-gray-500);margin-top:8px;display:block`;
+const cap = `font-size:11px;color: var(--kp-color-gray-600);margin-top:8px;display:block`;
 
 export const Default: Story = {
   args: { size: 'md', mode: 'single', showOuterBorder: true },

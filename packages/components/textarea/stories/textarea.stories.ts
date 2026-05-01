@@ -8,7 +8,7 @@ import { KpFormFieldComponent } from '@kanso-protocol/form-field';
 // neighboring cells. `overflow: visible` keeps the docs canvas from clipping.
 const STACK = 'display:flex;flex-direction:column;align-items:flex-start;gap:32px;overflow:visible;padding:8px 0';
 const ITEM = 'display:flex;flex-direction:column;align-items:flex-start;gap:8px';
-const CAPTION = 'font-size:11px;color: var(--kp-color-gray-500)';
+const CAPTION = 'font-size:11px;color: var(--kp-color-gray-600)';
 
 const meta: Meta<KpTextareaComponent> = {
   title: 'Components/Textarea',

@@ -25,7 +25,7 @@ const meta: Meta<KpPaginationComponent> = {
 export default meta;
 type Story = StoryObj<KpPaginationComponent>;
 
-const caption = `font-size:11px;color: var(--kp-color-gray-500);margin-top:6px;display:block`;
+const caption = `font-size:11px;color: var(--kp-color-gray-600);margin-top:6px;display:block`;
 
 export const Default: Story = {
   args: { size: 'md', navMode: 'icon', currentPage: 3, totalPages: 20 },
@@ -156,7 +156,7 @@ export const WithItemsPerPage: Story = {
           (pageChange)="p = $event"
           (itemsPerPageChange)="pp = $event"
         />
-        <p style="font-size:11px;color: var(--kp-color-gray-500);margin:8px 0 0">Full pagination: items info + controls + per page selector. Default options [25, 50, 75, 100].</p>
+        <p style="font-size:11px;color: var(--kp-color-gray-600);margin:8px 0 0">Full pagination: items info + controls + per page selector. Default options [25, 50, 75, 100].</p>
       </div>`,
   }),
 };
@@ -173,7 +173,7 @@ export const ItemStates: Story = {
         <kp-pagination-item type="nav" navDirection="prev" [disabled]="true"/>
         <kp-pagination-item type="nav" navDirection="next"/>
       </div>
-      <p style="font-size:11px;color: var(--kp-color-gray-500);margin:8px 0 0">Rest, selected (current), disabled, ellipsis, disabled-nav, enabled-nav.</p>`,
+      <p style="font-size:11px;color: var(--kp-color-gray-600);margin:8px 0 0">Rest, selected (current), disabled, ellipsis, disabled-nav, enabled-nav.</p>`,
   }),
 };
 

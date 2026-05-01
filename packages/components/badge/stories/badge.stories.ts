@@ -44,9 +44,9 @@ export const Sizes: Story = {
   render: () => ({
     template: `
       <div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-badge size="xs">Badge</kp-badge><span style="font-size:11px;color: var(--kp-color-gray-500)">xs</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-badge size="sm">Badge</kp-badge><span style="font-size:11px;color: var(--kp-color-gray-500)">sm</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-badge size="md">Badge</kp-badge><span style="font-size:11px;color: var(--kp-color-gray-500)">md</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-badge size="xs">Badge</kp-badge><span style="font-size:11px;color: var(--kp-color-gray-600)">xs</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-badge size="sm">Badge</kp-badge><span style="font-size:11px;color: var(--kp-color-gray-600)">sm</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-badge size="md">Badge</kp-badge><span style="font-size:11px;color: var(--kp-color-gray-600)">md</span></div>
       </div>`,
   }),
 };
@@ -55,10 +55,10 @@ export const Appearances: Story = {
   render: () => ({
     template: `
       <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-badge appearance="filled">Primary</kp-badge><span style="font-size:11px;color: var(--kp-color-gray-500)">Filled</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-badge appearance="subtle">Primary</kp-badge><span style="font-size:11px;color: var(--kp-color-gray-500)">Subtle</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-badge appearance="outline">Primary</kp-badge><span style="font-size:11px;color: var(--kp-color-gray-500)">Outline</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-badge appearance="dot">Primary</kp-badge><span style="font-size:11px;color: var(--kp-color-gray-500)">Dot</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-badge appearance="filled">Primary</kp-badge><span style="font-size:11px;color: var(--kp-color-gray-600)">Filled</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-badge appearance="subtle">Primary</kp-badge><span style="font-size:11px;color: var(--kp-color-gray-600)">Subtle</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-badge appearance="outline">Primary</kp-badge><span style="font-size:11px;color: var(--kp-color-gray-600)">Outline</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-badge appearance="dot">Primary</kp-badge><span style="font-size:11px;color: var(--kp-color-gray-600)">Dot</span></div>
       </div>`,
   }),
 };
@@ -85,8 +85,8 @@ export const Shapes: Story = {
   render: () => ({
     template: `
       <div style="display:flex;align-items:center;gap:24px">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-badge appearance="subtle">Rounded</kp-badge><span style="font-size:11px;color: var(--kp-color-gray-500)">Rounded</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-badge appearance="subtle" [pill]="true">Pill</kp-badge><span style="font-size:11px;color: var(--kp-color-gray-500)">Pill</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-badge appearance="subtle">Rounded</kp-badge><span style="font-size:11px;color: var(--kp-color-gray-600)">Rounded</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-badge appearance="subtle" [pill]="true">Pill</kp-badge><span style="font-size:11px;color: var(--kp-color-gray-600)">Pill</span></div>
       </div>`,
   }),
 };
@@ -154,22 +154,22 @@ export const UseCases: Story = {
     template: `
       <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
         <div style="display:flex;align-items:center;gap:12px">
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">User status:</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">User status:</span>
           <kp-badge appearance="dot" color="success">Online</kp-badge>
         </div>
         <div style="display:flex;align-items:center;gap:12px">
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">Order #1234:</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">Order #1234:</span>
           <kp-badge appearance="subtle" color="warning">Pending</kp-badge>
           <kp-badge appearance="subtle" color="info">Priority</kp-badge>
         </div>
         <div style="display:flex;align-items:center;gap:12px">
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">Article tags:</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">Article tags:</span>
           <kp-badge color="neutral" appearance="subtle" [pill]="true" [closable]="true" (close)="onClose($event)">Design</kp-badge>
           <kp-badge color="neutral" appearance="subtle" [pill]="true" [closable]="true" (close)="onClose($event)">UX</kp-badge>
           <kp-badge color="neutral" appearance="subtle" [pill]="true" [closable]="true" (close)="onClose($event)">Product</kp-badge>
         </div>
         <div style="display:flex;align-items:center;gap:12px">
-          <span style="font-size:12px;color: var(--kp-color-gray-500)">Notifications:</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-600)">Notifications:</span>
           <kp-badge size="xs" [count]="true" color="danger">3</kp-badge>
         </div>
       </div>`,
