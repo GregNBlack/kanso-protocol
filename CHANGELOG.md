@@ -12,6 +12,37 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-05-02 — fix(tokens): solid-button bg state direction in dark
+
+Architectural fix that follows the designer-pass: in light mode, `*.default.bg.hover` (`blue-700`) is *darker* than `*.default.bg.rest` (`blue-600`), giving the standard "press-to-darken" feel. After primitive ramp inversion in dark mode, `blue-700` (which becomes `#93C5FD` light) is *lighter* than `blue-600` (which becomes `#60A5FA` light) — so the hover state appears to "press up to lighter" instead of "press down to darker". This made the designer's deep-tone fg picks (`#172554`, `#450A0A`) fail contrast on hover/active because the bg lightened toward them.
+
+### Bumps
+
+- `@kanso-protocol/core` `0.2.3` → `0.2.4`
+
+### What changed
+
+Explicit bg overrides in `tokens/themes/dark.json` that re-invert the hover/active values back to "darker than rest":
+
+- `primary.default.bg.hover`  → `#2563EB` *(light's blue-600)*
+- `primary.default.bg.active` → `#1D4ED8` *(light's blue-700)*
+- `primary.default.bg.focus`  → `#60A5FA` *(same as rest — focus shouldn't change tone)*
+- `primary.default.bg.loading`→ `#60A5FA`
+- `danger.default.bg.hover`   → `#DC2626` *(light's red-600)*
+- `danger.default.bg.active`  → `#B91C1C` *(light's red-700)*
+- `danger.default.bg.focus`   → `#F87171`
+- `danger.default.bg.loading` → `#F87171`
+- `neutral.default.bg.hover`  → `#E4E4E7`
+- `neutral.default.bg.active` → `#D4D4D8`
+
+Designer's `fg.rest` picks now hold contrast across all interactive states because hover/active bgs are deeper, not lighter.
+
+### Migration
+
+None. Pure dark.css refinement. Light mode unchanged.
+
+---
+
 ## 2026-05-01 — designer-pass round 2 (full 32-token integration)
 
 Designer returned the picker with 32 selections — 18 from round 1 (with 2 revised values) + 14 new entries from round 2. All applied to `tokens/themes/dark.json`.
