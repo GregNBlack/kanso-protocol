@@ -12,6 +12,42 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-05-01 — designer-pass round 2 (full 32-token integration)
+
+Designer returned the picker with 32 selections — 18 from round 1 (with 2 revised values) + 14 new entries from round 2. All applied to `tokens/themes/dark.json`.
+
+### Bumps
+
+- `@kanso-protocol/core` `0.2.2` → `0.2.3`
+
+### Revised from round 1
+
+- `primary.default.fg.rest`: `#0F1729` → `#172554`  *(blue-50 light = the deepest blue — designer prefers a tinted dark over the near-black almost-black)*
+- `nav-item.fg.disabled`: `#52525B` → `#71717A`  *(gray-500 pivot — slightly lighter for nav-item context)*
+
+### New round-2 entries
+
+- `form.helper`: `#A1A1AA`  &nbsp; — form-field hint text below input
+- `form.label`: `#D4D4D8`  &nbsp; — form-field label above input
+- `stat-card.trend-value-good`: `#4ADE80`  &nbsp; — positive trend (green)
+- `stat-card.trend-value-bad`: `#F87171`  &nbsp; — negative trend (red)
+- `stat-card.trend-value-neutral`: `#A1A1AA`
+- `textarea.counter`: `#71717A`
+- `alert.primary.subtle.fg-title`: `#DBEAFE`
+- `alert.primary.subtle.fg-desc`: `#BFDBFE`
+- `divider.label`: `#A1A1AA`
+- `datepicker.day.fg.rest`: `#F4F4F5`
+- `datepicker.day.fg.outside`: `#71717A`  *(designer kept the failing-AA value — likely intentional muted-style choice; revisit if axe complains)*
+- `table.row.fg`: `#F4F4F5`
+- `sidebar.section-label`: `#A1A1AA`
+- `notif-item.time`: `#71717A`  *(same caveat as datepicker outside — borderline AA)*
+
+### Migration
+
+None — pure dark.css value updates within `@kanso-protocol/core`. Light theme rendering is unchanged.
+
+---
+
 ## 2026-05-01 — designer-pass disabled-state correction + picker round 2 entries
 
 Fixes my mistake on disabled values (`#71717A` actually fails AA at 3.5:1 on the dark-bg `#18181B` it sits on for many components) and adds 15 new entries to the Foundations / Dark Mode Token Picker for round 2.

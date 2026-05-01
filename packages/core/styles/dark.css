@@ -118,12 +118,14 @@
   --kp-color-badge-neutral-subtle-bg: #27272a;
   --kp-color-badge-neutral-subtle-fg: #d4d4d8;
   --kp-color-alert-primary-subtle-bg: #1e3a8a;
+  --kp-color-alert-primary-subtle-fg-title: #dbeafe;
+  --kp-color-alert-primary-subtle-fg-desc: #bfdbfe;
   --kp-color-alert-danger-subtle-bg: #7f1d1d;
   --kp-color-alert-success-subtle-bg: #14532d;
   --kp-color-alert-warning-subtle-bg: #78350f;
   --kp-color-alert-info-subtle-bg: #164e63;
   --kp-color-alert-neutral-subtle-bg: #27272a;
-  --kp-color-primary-default-fg-rest: #0f1729;
+  --kp-color-primary-default-fg-rest: #172554;
   --kp-color-primary-default-fg-hover: #0f1729;
   --kp-color-primary-default-fg-active: #0f1729;
   --kp-color-primary-default-fg-focus: #0f1729;
@@ -163,7 +165,19 @@
   --kp-color-input-fg-default: #71717a;
   --kp-color-popover-fg-desc: #a1a1aa;
   --kp-color-tabs-tab-fg-rest: #a1a1aa;
-  --kp-color-nav-item-fg-disabled: #52525b;
+  --kp-color-nav-item-fg-disabled: #71717a;
   --kp-color-breadcrumbs-item-fg-link-rest: #93c5fd;
   --kp-color-table-header-fg: #a1a1aa;
+  --kp-color-table-row-fg: #f4f4f5;
+  --kp-color-form-helper: #a1a1aa;
+  --kp-color-form-label: #d4d4d8;
+  --kp-color-stat-card-trend-value-good: #4ade80;
+  --kp-color-stat-card-trend-value-bad: #f87171;
+  --kp-color-stat-card-trend-value-neutral: #a1a1aa;
+  --kp-color-textarea-counter: #71717a;
+  --kp-color-divider-label: #a1a1aa;
+  --kp-color-datepicker-day-fg-rest: #f4f4f5;
+  --kp-color-datepicker-day-fg-outside: #71717a;
+  --kp-color-sidebar-section-label: #a1a1aa;
+  --kp-color-notif-item-time: #71717a;
 }

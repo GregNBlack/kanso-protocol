@@ -371,6 +371,14 @@
         "subtle": {
           "bg": {
             "$value": "#1E3A8A"
+          },
+          "fg-title": {
+            "$value": "#DBEAFE",
+            "$description": "designer-pass"
+          },
+          "fg-desc": {
+            "$value": "#BFDBFE",
+            "$description": "designer-pass"
           }
         }
       },
@@ -415,8 +423,8 @@
       "default": {
         "fg": {
           "rest": {
-            "$value": "#0F1729",
-            "$description": "almost-black on light blue solid"
+            "$value": "#172554",
+            "$description": "designer-pass"
           },
           "hover": {
             "$value": "#0F1729"
@@ -439,7 +447,8 @@
       "subtle": {
         "fg": {
           "rest": {
-            "$value": "#93C5FD"
+            "$value": "#93C5FD",
+            "$description": "designer-pass"
           },
           "hover": {
             "$value": "#BFDBFE",
@@ -466,7 +475,7 @@
         "fg": {
           "rest": {
             "$value": "#450A0A",
-            "$description": "red-950 light on light red solid"
+            "$description": "designer-pass"
           },
           "hover": {
             "$value": "#450A0A"
@@ -489,7 +498,8 @@
       "subtle": {
         "fg": {
           "rest": {
-            "$value": "#FCA5A5"
+            "$value": "#FCA5A5",
+            "$description": "designer-pass"
           },
           "hover": {
             "$value": "#FECACA"
@@ -514,7 +524,7 @@
         "fg": {
           "rest": {
             "$value": "#09090B",
-            "$description": "gray-950 (deepest) on inverted-white surface"
+            "$description": "designer-pass"
           },
           "hover": {
             "$value": "#09090B"
@@ -561,14 +571,14 @@
     "card": {
       "fg-desc": {
         "$value": "#A1A1AA",
-        "$description": "designer-pass \u2014 soft gray on dark card bg"
+        "$description": "designer-pass"
       }
     },
     "input": {
       "fg": {
         "default": {
           "$value": "#71717A",
-          "$description": "designer-pass \u2014 pivot gray for placeholders"
+          "$description": "designer-pass"
         }
       }
     },
@@ -583,7 +593,7 @@
         "fg": {
           "rest": {
             "$value": "#A1A1AA",
-            "$description": "designer-pass \u2014 inactive tab text"
+            "$description": "designer-pass"
           }
         }
       }
@@ -591,8 +601,8 @@
     "nav-item": {
       "fg": {
         "disabled": {
-          "$value": "#52525B",
-          "$description": "designer-pass \u2014 disabled nav item"
+          "$value": "#71717A",
+          "$description": "designer-pass"
         }
       }
     },
@@ -601,7 +611,7 @@
         "fg": {
           "link-rest": {
             "$value": "#93C5FD",
-            "$description": "designer-pass \u2014 linky blue for breadcrumb links"
+            "$description": "designer-pass"
           }
         }
       }
@@ -610,8 +620,76 @@
       "header": {
         "fg": {
           "$value": "#A1A1AA",
-          "$description": "designer-pass \u2014 table column header"
+          "$description": "designer-pass"
         }
+      },
+      "row": {
+        "fg": {
+          "$value": "#F4F4F5",
+          "$description": "designer-pass"
+        }
+      }
+    },
+    "form": {
+      "helper": {
+        "$value": "#A1A1AA",
+        "$description": "designer-pass"
+      },
+      "label": {
+        "$value": "#D4D4D8",
+        "$description": "designer-pass"
+      }
+    },
+    "stat-card": {
+      "trend-value-good": {
+        "$value": "#4ADE80",
+        "$description": "designer-pass"
+      },
+      "trend-value-bad": {
+        "$value": "#F87171",
+        "$description": "designer-pass"
+      },
+      "trend-value-neutral": {
+        "$value": "#A1A1AA",
+        "$description": "designer-pass"
+      }
+    },
+    "textarea": {
+      "counter": {
+        "$value": "#71717A",
+        "$description": "designer-pass"
+      }
+    },
+    "divider": {
+      "label": {
+        "$value": "#A1A1AA",
+        "$description": "designer-pass"
+      }
+    },
+    "datepicker": {
+      "day": {
+        "fg": {
+          "rest": {
+            "$value": "#F4F4F5",
+            "$description": "designer-pass"
+          },
+          "outside": {
+            "$value": "#71717A",
+            "$description": "designer-pass"
+          }
+        }
+      }
+    },
+    "sidebar": {
+      "section-label": {
+        "$value": "#A1A1AA",
+        "$description": "designer-pass"
+      }
+    },
+    "notif-item": {
+      "time": {
+        "$value": "#71717A",
+        "$description": "designer-pass"
       }
     }
   }
