@@ -61,6 +61,22 @@ function contrastRatio(fg: string, bg: string): number {
             <div class="bg-info">
               bg <code>{{ entry.bgHex }}</code>
             </div>
+            <div class="current-block">
+              <div class="current-label">CURRENT (axe-flagged)</div>
+              <div
+                class="current-sample"
+                [style.background]="entry.bgHex"
+                [style.color]="entry.currentFg">
+                <span class="cand-sample">{{ entry.sample }}</span>
+                <span class="cand-meta">
+                  <code>{{ entry.currentFg }}</code>
+                  <span class="cand-ratio current-ratio">
+                    {{ ratio(entry.currentFg, entry.bgHex) }}:1
+                    <span class="ratio-flag">{{ passesAA(entry.currentFg, entry.bgHex) ? '✓' : '✗ below 4.5' }}</span>
+                  </span>
+                </span>
+              </div>
+            </div>
           </div>
 
           <div class="candidates">
@@ -119,8 +135,31 @@ function contrastRatio(fg: string, bg: string): number {
     .entry-meta h2 { font-size: 15px; font-weight: 600; margin: 0 0 4px; color: #F4F4F5; }
     .ctx { font-size: 11px; color: #71717A; margin: 0 0 8px; font-family: 'SFMono-Regular', Consolas, monospace; }
     .token { font-size: 11px; color: #93C5FD; word-break: break-all; display: block; margin-bottom: 8px; }
-    .bg-info { font-size: 11px; color: #A1A1AA; }
+    .bg-info { font-size: 11px; color: #A1A1AA; margin-bottom: 12px; }
     .bg-info code { font-family: 'SFMono-Regular', Consolas, monospace; color: #D4D4D8; }
+
+    .current-block {
+      margin-top: 8px;
+      padding-top: 12px;
+      border-top: 1px dashed #3F3F46;
+    }
+    .current-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #F87171;
+      margin-bottom: 6px;
+    }
+    .current-sample {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px dashed #DC2626;
+    }
+    .current-ratio { display: flex; align-items: center; gap: 6px; }
+    .ratio-flag { font-weight: 600; }
 
     .candidates {
       display: grid;
@@ -210,6 +249,10 @@ export class KpDarkTokenPickerComponent {
 
   ratio(fg: string, bg: string): string {
     return contrastRatio(fg, bg).toFixed(1);
+  }
+
+  passesAA(fg: string, bg: string): boolean {
+    return contrastRatio(fg, bg) >= 4.5;
   }
 
   async copy(): Promise<void> {
