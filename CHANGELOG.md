@@ -12,6 +12,29 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-05-01 — designer-pass: button state extension
+
+Patch follow-up to the designer-pass core@0.2.0. Algorithmic propagation of the .rest picks to the other 5 button states (hover, active, focus, loading, disabled) for the picked color × variant combos, plus neutral.subtle.fg.* family that was missed in batch 1.
+
+### Bumps
+
+- `@kanso-protocol/core` `0.2.0` → `0.2.1`
+
+### What changed
+
+For each `{primary,danger,neutral}.{default,subtle}.fg.*` already touched in 0.2.0:
+
+- `hover`, `active`, `focus`, `loading` inherit the `.rest` value from designer's pick (consistent fg across these states is the project default — light mode does the same).
+- `disabled` overrides to a muted `gray-500` / `gray-600` pivot — readable but visibly de-emphasised.
+- `subtle` variant gets a slight progression: `.rest` → blue/red-300 light, `.hover` → blue/red-200, `.active` → blue/red-100. Mirrors the light-mode hover progression in reverse.
+- `neutral.subtle.fg.*` was missing entirely from batch 1 — added with `gray-300` light at .rest, progressing to `gray-100` on active.
+
+### Migration
+
+None. dark.css gains additional explicit overrides; consumers already cascaded through to primitive-inverted defaults in 0.2.0, so the visual delta is "slightly better contrast on hovered/active subtle buttons" — no API change.
+
+---
+
 ## 2026-05-01 — designer-pass on dark-mode color contrast
 
 First wave from the Foundations / Dark Mode Token Picker page. Designer walked through the 18 most-flagged failing token pairs, picked an aesthetically-acceptable fg per entry, exported JSON, integrated into `tokens/themes/dark.json`. After this release the dark theme should be much closer to WCAG AA across the catalog.
