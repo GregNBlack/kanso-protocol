@@ -112,13 +112,13 @@
     },
 
     "badge": {
-      "$description": "Subtle backgrounds — the inverted primitive ramp lands too close to page bg (#09090B). Bump one step brighter so subtle badges read as tinted surfaces.",
-      "primary": { "subtle": { "bg": { "$value": "#1E3A8A", "$description": "blue-100 in dark" } } },
-      "danger":  { "subtle": { "bg": { "$value": "#7F1D1D", "$description": "red-100" } } },
-      "success": { "subtle": { "bg": { "$value": "#14532D", "$description": "green-100" } } },
-      "warning": { "subtle": { "bg": { "$value": "#78350F", "$description": "amber-100" } } },
-      "info":    { "subtle": { "bg": { "$value": "#164E63", "$description": "cyan-100" } } },
-      "neutral": { "subtle": { "bg": { "$value": "#27272A", "$description": "gray-200" } } }
+      "$description": "Subtle backgrounds — the inverted primitive ramp lands too close to page bg (#09090B). Bump one step brighter so subtle badges read as tinted surfaces. Subtle fg's were picked by the designer-pass on 2026-05-01 against axe-flagged contrast violations.",
+      "primary": { "subtle": { "bg": { "$value": "#1E3A8A", "$description": "blue-100 in dark" }, "fg": { "$value": "#93C5FD", "$description": "designer-pass" } } },
+      "danger":  { "subtle": { "bg": { "$value": "#7F1D1D", "$description": "red-100" },  "fg": { "$value": "#FCA5A5", "$description": "designer-pass" } } },
+      "success": { "subtle": { "bg": { "$value": "#14532D", "$description": "green-100" }, "fg": { "$value": "#86EFAC", "$description": "designer-pass" } } },
+      "warning": { "subtle": { "bg": { "$value": "#78350F", "$description": "amber-100" }, "fg": { "$value": "#FDE68A", "$description": "designer-pass" } } },
+      "info":    { "subtle": { "bg": { "$value": "#164E63", "$description": "cyan-100" },  "fg": { "$value": "#67E8F9", "$description": "designer-pass" } } },
+      "neutral": { "subtle": { "bg": { "$value": "#27272A", "$description": "gray-200" }, "fg": { "$value": "#D4D4D8", "$description": "designer-pass" } } }
     },
     "alert": {
       "$description": "Subtle backgrounds — same logic as badge.",
@@ -128,6 +128,28 @@
       "warning": { "subtle": { "bg": { "$value": "#78350F" } } },
       "info":    { "subtle": { "bg": { "$value": "#164E63" } } },
       "neutral": { "subtle": { "bg": { "$value": "#27272A" } } }
-    }
+    },
+
+    "primary": {
+      "$description": "Designer-pass overrides for solid-bg + subtle-bg button text. 2026-05-01.",
+      "default": { "fg": { "rest": { "$value": "#0F1729", "$description": "almost-black on light blue solid" } } },
+      "subtle":  { "fg": { "rest": { "$value": "#93C5FD" } } }
+    },
+    "danger": {
+      "default": { "fg": { "rest": { "$value": "#450A0A", "$description": "red-950 light on light red solid" } } },
+      "subtle":  { "fg": { "rest": { "$value": "#FCA5A5" } } }
+    },
+    "neutral": {
+      "default": { "fg": { "rest": { "$value": "#09090B", "$description": "gray-950 (deepest) on inverted-white surface" } } }
+    },
+
+    "card":        { "fg-desc": { "$value": "#A1A1AA", "$description": "designer-pass — soft gray on dark card bg" } },
+    "input":       { "fg":      { "default": { "$value": "#71717A", "$description": "designer-pass — pivot gray for placeholders" } } },
+    "popover":     { "fg-desc": { "$value": "#A1A1AA", "$description": "designer-pass" } },
+
+    "tabs":        { "tab": { "fg": { "rest": { "$value": "#A1A1AA", "$description": "designer-pass — inactive tab text" } } } },
+    "nav-item":    { "fg": { "disabled": { "$value": "#52525B", "$description": "designer-pass — disabled nav item" } } },
+    "breadcrumbs": { "item": { "fg": { "link-rest": { "$value": "#93C5FD", "$description": "designer-pass — linky blue for breadcrumb links" } } } },
+    "table":       { "header": { "fg": { "$value": "#A1A1AA", "$description": "designer-pass — table column header" } } }
   }
 }

@@ -12,6 +12,50 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-05-01 — designer-pass on dark-mode color contrast
+
+First wave from the Foundations / Dark Mode Token Picker page. Designer walked through the 18 most-flagged failing token pairs, picked an aesthetically-acceptable fg per entry, exported JSON, integrated into `tokens/themes/dark.json`. After this release the dark theme should be much closer to WCAG AA across the catalog.
+
+### Bumps
+
+- `@kanso-protocol/core` `0.1.0` → `0.2.0` *(new semantic-token overrides in dark.css that consumers may observe — minor)*
+
+### What changed (dark.css overrides)
+
+Buttons:
+- `--kp-color-primary-default-fg-rest` → `#0F1729`  *(almost-black on the light-blue dark-mode primary surface)*
+- `--kp-color-danger-default-fg-rest`  → `#450A0A`  *(deepest red on the light-red dark-mode danger surface)*
+- `--kp-color-neutral-default-fg-rest` → `#09090B`  *(true black on the inverted-white neutral surface)*
+- `--kp-color-primary-subtle-fg-rest`  → `#93C5FD`
+- `--kp-color-danger-subtle-fg-rest`   → `#FCA5A5`
+
+Badges (subtle variants — pair with the existing dark subtle.bg overrides):
+- `--kp-color-badge-primary-subtle-fg` → `#93C5FD`
+- `--kp-color-badge-danger-subtle-fg`  → `#FCA5A5`
+- `--kp-color-badge-success-subtle-fg` → `#86EFAC`
+- `--kp-color-badge-warning-subtle-fg` → `#FDE68A`
+- `--kp-color-badge-info-subtle-fg`    → `#67E8F9`
+- `--kp-color-badge-neutral-subtle-fg` → `#D4D4D8`
+
+Body / muted text:
+- `--kp-color-card-fg-desc`              → `#A1A1AA`
+- `--kp-color-input-fg-default`          → `#71717A`
+- `--kp-color-popover-fg-desc`           → `#A1A1AA`
+- `--kp-color-tabs-tab-fg-rest`          → `#A1A1AA`
+- `--kp-color-nav-item-fg-disabled`      → `#52525B`
+- `--kp-color-breadcrumbs-item-fg-link-rest` → `#93C5FD`
+- `--kp-color-table-header-fg`           → `#A1A1AA`
+
+### Migration
+
+If you'd manually targeted these computed dark-mode values from your own CSS, recheck — they've moved. Tokens themselves are unchanged in light mode; behaviour is identical for `data-theme="light"` consumers.
+
+### Why minor
+
+Per [Versioning policy](CONTRIBUTING.md#versioning-policy): changes to token *values* (not names/structure) are normally patch — but these are observable in dark theme rendering of every `<kp-button>`, `<kp-badge>`, `<kp-card>`, etc. Calling it minor honors the spirit of "consumers may notice".
+
+---
+
 ## 2026-04-30 (a11y wave 6 — structural roles + final landmark cleanup)
 
 Wave 6 closes `aria-required-children`, `aria-required-parent`, `aria-command-name`, `aria-hidden-focus`, and the rest of `landmark-no-duplicate-banner` / `landmark-unique`. After this wave the only remaining theme-agnostic violations on the radar are story-level contrast issues (one-off cases worth addressing per-story, not at scale).

@@ -1,6 +1,6 @@
 {
   "name": "@kanso-protocol/core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Kanso Protocol — core design tokens (CSS/SCSS variables + generated TS constants).",
   "license": "MIT",
   "author": "GregNBlack",
