@@ -11,7 +11,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
     <kp-toast-host [position]="position"/>
 
     <div style="display:flex;flex-direction:column;gap:16px;max-width:560px">
-      <div style="font-size:13px;color:#52525B;">
+      <div style="font-size:13px;color: var(--kp-color-gray-600);">
         Click to emit toasts. Host corner is controlled by the <code>position</code> arg above.
       </div>
 

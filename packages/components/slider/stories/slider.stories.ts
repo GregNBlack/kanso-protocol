@@ -15,7 +15,7 @@ const meta: Meta<KpSliderComponent> = {
 export default meta;
 type Story = StoryObj<KpSliderComponent>;
 
-const cap = `font-size:11px;color:#A1A1AA;margin-top:8px;display:block`;
+const cap = `font-size:11px;color: var(--kp-color-gray-500);margin-top:8px;display:block`;
 
 export const Default: Story = {
   args: { size: 'md', mode: 'single', showValueLabel: true, showLabels: true },
@@ -95,7 +95,7 @@ export const UseCases: Story = {
         <div>
           <div style="font-weight:500;font-size:14px;margin-bottom:16px">Volume</div>
           <div style="display:flex;align-items:center;gap:12px">
-            <span aria-hidden="true" style="color:#71717A">🔈</span>
+            <span aria-hidden="true" style="color: var(--kp-color-gray-500)">🔈</span>
             <kp-slider size="sm" style="flex:1" [(value)]="volume"/>
             <span style="font-variant-numeric:tabular-nums;font-size:14px;min-width:32px;text-align:right">{{ volume }}</span>
           </div>
@@ -111,7 +111,7 @@ export const UseCases: Story = {
 
         <div>
           <div style="font-weight:500;font-size:14px;margin-bottom:4px">Font size</div>
-          <div style="font-size:12px;color:#71717A;margin-bottom:16px">Between 12 and 72 pixels</div>
+          <div style="font-size:12px;color: var(--kp-color-gray-500);margin-bottom:16px">Between 12 and 72 pixels</div>
           <kp-slider [min]="12" [max]="72" [step]="1"
             [showValueLabel]="true" [showLabels]="true"
             [(value)]="fontSize"/>

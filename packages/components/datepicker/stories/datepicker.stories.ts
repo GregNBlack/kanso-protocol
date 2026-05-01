@@ -15,7 +15,7 @@ const meta: Meta<KpDatePickerComponent> = {
 export default meta;
 type Story = StoryObj<KpDatePickerComponent>;
 
-const cap = `font-size:11px;color:#A1A1AA;margin-top:8px;display:block`;
+const cap = `font-size:11px;color: var(--kp-color-gray-500);margin-top:8px;display:block`;
 
 export const Default: Story = {
   args: { size: 'md', mode: 'single', placeholder: 'Select date' },
@@ -121,7 +121,7 @@ export const UseCases: Story = {
 
         <div>
           <div style="font-weight:500;font-size:14px;margin-bottom:4px">Report range</div>
-          <div style="font-size:12px;color:#71717A;margin-bottom:8px">Select a range — presets cover the common cases.</div>
+          <div style="font-size:12px;color: var(--kp-color-gray-500);margin-bottom:8px">Select a range — presets cover the common cases.</div>
           <kp-date-picker mode="range" [showPresets]="true" placeholder="Choose range" [(ngModel)]="reportRange"/>
         </div>
       </div>`,

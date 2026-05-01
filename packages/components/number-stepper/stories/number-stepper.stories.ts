@@ -57,11 +57,11 @@ export const Sizes: Story = {
     props: { v1: 1, v2: 1, v3: 1, v4: 1, v5: 1 },
     template: `
       <div style="display:flex;align-items:flex-start;gap:24px">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper size="xs" [(ngModel)]="v1"></kp-number-stepper><span style="font-size:11px;color:#A1A1AA">xs · 24px</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper size="sm" [(ngModel)]="v2"></kp-number-stepper><span style="font-size:11px;color:#A1A1AA">sm · 28px</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper size="md" [(ngModel)]="v3"></kp-number-stepper><span style="font-size:11px;color:#A1A1AA">md · 36px</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper size="lg" [(ngModel)]="v4"></kp-number-stepper><span style="font-size:11px;color:#A1A1AA">lg · 44px</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper size="xl" [(ngModel)]="v5"></kp-number-stepper><span style="font-size:11px;color:#A1A1AA">xl · 52px</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper size="xs" [(ngModel)]="v1"></kp-number-stepper><span style="font-size:11px;color: var(--kp-color-gray-500)">xs · 24px</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper size="sm" [(ngModel)]="v2"></kp-number-stepper><span style="font-size:11px;color: var(--kp-color-gray-500)">sm · 28px</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper size="md" [(ngModel)]="v3"></kp-number-stepper><span style="font-size:11px;color: var(--kp-color-gray-500)">md · 36px</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper size="lg" [(ngModel)]="v4"></kp-number-stepper><span style="font-size:11px;color: var(--kp-color-gray-500)">lg · 44px</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper size="xl" [(ngModel)]="v5"></kp-number-stepper><span style="font-size:11px;color: var(--kp-color-gray-500)">xl · 52px</span></div>
       </div>`,
   }),
 };
@@ -70,11 +70,11 @@ export const States: Story = {
   render: () => ({
     template: `
       <div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper forceState="rest"></kp-number-stepper><span style="font-size:11px;color:#A1A1AA">rest</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper forceState="hover"></kp-number-stepper><span style="font-size:11px;color:#A1A1AA">hover</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper forceState="focus"></kp-number-stepper><span style="font-size:11px;color:#A1A1AA">focus</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper forceState="disabled"></kp-number-stepper><span style="font-size:11px;color:#A1A1AA">disabled</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper forceState="error"></kp-number-stepper><span style="font-size:11px;color:#A1A1AA">error</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper forceState="rest"></kp-number-stepper><span style="font-size:11px;color: var(--kp-color-gray-500)">rest</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper forceState="hover"></kp-number-stepper><span style="font-size:11px;color: var(--kp-color-gray-500)">hover</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper forceState="focus"></kp-number-stepper><span style="font-size:11px;color: var(--kp-color-gray-500)">focus</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper forceState="disabled"></kp-number-stepper><span style="font-size:11px;color: var(--kp-color-gray-500)">disabled</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-number-stepper forceState="error"></kp-number-stepper><span style="font-size:11px;color: var(--kp-color-gray-500)">error</span></div>
       </div>`,
   }),
 };
@@ -92,15 +92,15 @@ export const AtLimits: Story = {
       <div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap">
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-number-stepper [(ngModel)]="vMin" [min]="0" [max]="100"></kp-number-stepper>
-          <span style="font-size:11px;color:#A1A1AA">{{ label(vMin) }}</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-500)">{{ label(vMin) }}</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-number-stepper [(ngModel)]="vMid" [min]="0" [max]="100"></kp-number-stepper>
-          <span style="font-size:11px;color:#A1A1AA">{{ label(vMid) }}</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-500)">{{ label(vMid) }}</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-number-stepper [(ngModel)]="vMax" [min]="0" [max]="100"></kp-number-stepper>
-          <span style="font-size:11px;color:#A1A1AA">{{ label(vMax) }}</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-500)">{{ label(vMax) }}</span>
         </div>
       </div>`,
   }),
@@ -114,19 +114,19 @@ export const PrefixAndSuffix: Story = {
       <div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap">
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-number-stepper [(ngModel)]="v1"></kp-number-stepper>
-          <span style="font-size:11px;color:#A1A1AA">Plain</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-500)">Plain</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-number-stepper [(ngModel)]="v2" prefix="$"></kp-number-stepper>
-          <span style="font-size:11px;color:#A1A1AA">Currency</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-500)">Currency</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-number-stepper [(ngModel)]="v3" suffix="kg"></kp-number-stepper>
-          <span style="font-size:11px;color:#A1A1AA">Unit</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-500)">Unit</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-number-stepper [(ngModel)]="v4" prefix="€" suffix=".00"></kp-number-stepper>
-          <span style="font-size:11px;color:#A1A1AA">Both affixes</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-500)">Both affixes</span>
         </div>
       </div>`,
   }),

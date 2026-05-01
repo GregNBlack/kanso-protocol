@@ -43,23 +43,23 @@ export const Sizes: Story = {
       <div style="display:flex;flex-direction:column;gap:20px;font-family:Onest,system-ui,sans-serif">
         <div style="display:flex;align-items:center;gap:16px">
           <kp-avatar-group size="xs" [items]="team" [max]="3" [total]="8"/>
-          <span style="font-size:12px;color:#71717A">xs</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-500)">xs</span>
         </div>
         <div style="display:flex;align-items:center;gap:16px">
           <kp-avatar-group size="sm" [items]="team" [max]="3" [total]="8"/>
-          <span style="font-size:12px;color:#71717A">sm</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-500)">sm</span>
         </div>
         <div style="display:flex;align-items:center;gap:16px">
           <kp-avatar-group size="md" [items]="team" [max]="3" [total]="8"/>
-          <span style="font-size:12px;color:#71717A">md</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-500)">md</span>
         </div>
         <div style="display:flex;align-items:center;gap:16px">
           <kp-avatar-group size="lg" [items]="team" [max]="3" [total]="8"/>
-          <span style="font-size:12px;color:#71717A">lg</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-500)">lg</span>
         </div>
         <div style="display:flex;align-items:center;gap:16px">
           <kp-avatar-group size="xl" [items]="team" [max]="3" [total]="8"/>
-          <span style="font-size:12px;color:#71717A">xl</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-500)">xl</span>
         </div>
       </div>
     `,
@@ -73,15 +73,15 @@ export const Overlap: Story = {
       <div style="display:flex;flex-direction:column;gap:20px;font-family:Onest,system-ui,sans-serif">
         <div style="display:flex;align-items:center;gap:16px">
           <kp-avatar-group size="md" overlap="tight" [items]="team" [max]="4" [total]="10"/>
-          <span style="font-size:12px;color:#71717A">tight</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-500)">tight</span>
         </div>
         <div style="display:flex;align-items:center;gap:16px">
           <kp-avatar-group size="md" overlap="normal" [items]="team" [max]="4" [total]="10"/>
-          <span style="font-size:12px;color:#71717A">normal</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-500)">normal</span>
         </div>
         <div style="display:flex;align-items:center;gap:16px">
           <kp-avatar-group size="md" overlap="loose" [items]="team" [max]="4" [total]="10"/>
-          <span style="font-size:12px;color:#71717A">loose</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-500)">loose</span>
         </div>
       </div>
     `,
@@ -117,18 +117,18 @@ export const UseCases: Story = {
       <div style="display:flex;flex-direction:column;gap:24px;font-family:Onest,system-ui,sans-serif">
         <div style="display:flex;align-items:center;gap:10px">
           <kp-avatar-group size="sm" [items]="team" [max]="4" [total]="12"/>
-          <span style="font-size:13px;color:#3F3F46">12 team members</span>
+          <span style="font-size:13px;color: var(--kp-color-gray-700)">12 team members</span>
         </div>
         <div style="display:flex;align-items:center;gap:10px">
           <kp-avatar-group size="xs" [items]="team" [max]="5" [total]="24"/>
-          <span style="font-size:12px;color:#71717A">24 people replied</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-500)">24 people replied</span>
         </div>
         <div style="display:flex;align-items:center;gap:10px">
           <kp-avatar-group size="md" [items]="team" [max]="3" [total]="7"/>
-          <span style="font-size:13px;color:#3F3F46">Shared with 7 people</span>
+          <span style="font-size:13px;color: var(--kp-color-gray-700)">Shared with 7 people</span>
         </div>
         <div style="display:flex;align-items:center;gap:10px">
-          <span style="font-size:12px;color:#71717A">Assignees</span>
+          <span style="font-size:12px;color: var(--kp-color-gray-500)">Assignees</span>
           <kp-avatar-group size="sm" [items]="team" [max]="3" [total]="5"/>
         </div>
       </div>

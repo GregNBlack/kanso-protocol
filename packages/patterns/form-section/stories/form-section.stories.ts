@@ -96,7 +96,7 @@ export const ProfileSettings: Story = {
   render: () => ({
     template: `
       <div style="padding:32px;width:100%;box-sizing:border-box;max-width:1100px">
-        <h2 style="margin:0 0 24px;font:600 24px Onest;color:#18181B">Profile</h2>
+        <h2 style="margin:0 0 24px;font:600 24px Onest;color: var(--kp-color-gray-900)">Profile</h2>
 
         <kp-form-section title="Personal information"
                          description="This information will be displayed publicly so be careful what you share.">

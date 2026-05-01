@@ -20,9 +20,9 @@ export default meta;
 type Story = StoryObj<KpPageHeaderComponent>;
 
 const BTN_PRIMARY = `<button style="padding:8px 16px;background:#2563EB;color:#fff;border:none;border-radius:8px;font:500 14px Onest,system-ui,sans-serif;cursor:pointer">Create</button>`;
-const BTN_GHOST = `<button style="padding:8px 16px;background:#fff;color:#3F3F46;border:1px solid #E4E4E7;border-radius:8px;font:500 14px Onest,system-ui,sans-serif;cursor:pointer">Export</button>`;
-const CRUMBS = `<nav kpPageHeaderBreadcrumbs style="display:flex;gap:6px;align-items:center;font:13px Onest,system-ui,sans-serif;color:#71717A"><span>Home</span><span>›</span><span>Projects</span><span>›</span><span style="color:#18181B">Kanso Protocol</span></nav>`;
-const TABS = `<div kpPageHeaderTabs style="display:flex;gap:24px;border-bottom:1px solid #E4E4E7;font:14px Onest,system-ui,sans-serif"><span style="padding:8px 0;border-bottom:2px solid #2563EB;color:#1D4ED8;font-weight:500">Overview</span><span style="padding:8px 0;color:#71717A">Details</span><span style="padding:8px 0;color:#71717A">Activity</span></div>`;
+const BTN_GHOST = `<button style="padding:8px 16px;background: var(--kp-color-white);color: var(--kp-color-gray-700);border: 1px solid var(--kp-color-gray-200);border-radius:8px;font:500 14px Onest,system-ui,sans-serif;cursor:pointer">Export</button>`;
+const CRUMBS = `<nav kpPageHeaderBreadcrumbs style="display:flex;gap:6px;align-items:center;font:13px Onest,system-ui,sans-serif;color: var(--kp-color-gray-500)"><span>Home</span><span>›</span><span>Projects</span><span>›</span><span style="color: var(--kp-color-gray-900)">Kanso Protocol</span></nav>`;
+const TABS = `<div kpPageHeaderTabs style="display:flex;gap:24px;border-bottom:1px solid #E4E4E7;font:14px Onest,system-ui,sans-serif"><span style="padding:8px 0;border-bottom:2px solid #2563EB;color:#1D4ED8;font-weight:500">Overview</span><span style="padding:8px 0;color: var(--kp-color-gray-500)">Details</span><span style="padding:8px 0;color: var(--kp-color-gray-500)">Activity</span></div>`;
 const ACTIONS = `<div kpPageHeaderActions style="display:flex;gap:8px">${BTN_GHOST}${BTN_PRIMARY}</div>`;
 
 export const Playground: Story = {

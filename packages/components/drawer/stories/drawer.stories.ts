@@ -98,8 +98,8 @@ export const UseCases: Story = {
 
       <kp-drawer [open]="openKey === 'filters'" side="left" size="sm" title="Filters" [showFooter]="true" (openChange)="openKey = ''">
         <div kpDrawerBody style="display:flex;flex-direction:column;gap:16px">
-          <div><strong style="font-size:13px">Category</strong><div style="margin-top:6px;font-size:14px;color:#52525B">☐ Electronics<br>☐ Clothing<br>☐ Books</div></div>
-          <div><strong style="font-size:13px">Price</strong><div style="margin-top:6px;font-size:14px;color:#52525B">☐ Under $50<br>☐ $50 — $200<br>☐ Over $200</div></div>
+          <div><strong style="font-size:13px">Category</strong><div style="margin-top:6px;font-size:14px;color: var(--kp-color-gray-600)">☐ Electronics<br>☐ Clothing<br>☐ Books</div></div>
+          <div><strong style="font-size:13px">Price</strong><div style="margin-top:6px;font-size:14px;color: var(--kp-color-gray-600)">☐ Under $50<br>☐ $50 — $200<br>☐ Over $200</div></div>
         </div>
         <ng-container kpDrawerFooter>
           <kp-button variant="ghost" color="neutral" (click)="openKey = ''">Clear</kp-button>
@@ -108,7 +108,7 @@ export const UseCases: Story = {
       </kp-drawer>
 
       <kp-drawer [open]="openKey === 'share'" side="bottom" size="md" title="Share" [showResizeHandle]="true" [showFooter]="false" (openChange)="openKey = ''">
-        <div kpDrawerBody style="display:flex;justify-content:space-around;padding:16px 0;font-size:14px;color:#3F3F46">
+        <div kpDrawerBody style="display:flex;justify-content:space-around;padding:16px 0;font-size:14px;color: var(--kp-color-gray-700)">
           <div style="text-align:center">📋<div>Copy link</div></div>
           <div style="text-align:center">✉️<div>Email</div></div>
           <div style="text-align:center">💬<div>Messages</div></div>
@@ -117,7 +117,7 @@ export const UseCases: Story = {
       </kp-drawer>
 
       <kp-drawer [open]="openKey === 'notif'" side="top" size="sm" title="3 unread notifications" [showFooter]="false" (openChange)="openKey = ''">
-        <div kpDrawerBody style="font-size:14px;color:#3F3F46">
+        <div kpDrawerBody style="font-size:14px;color: var(--kp-color-gray-700)">
           • New comment on your post<br>
           • Sarah liked your message<br>
           • Your weekly digest is ready

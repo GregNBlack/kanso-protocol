@@ -56,7 +56,7 @@ export const OutlineVsFilled: Story = {
     template: `
       <div style="display:flex;flex-direction:column;gap:18px;font-family:Onest,system-ui,sans-serif">
         <div style="display:flex;gap:24px;align-items:center">
-          <span style="width:64px;font-size:12px;color:#71717A">Outline</span>
+          <span style="width:64px;font-size:12px;color: var(--kp-color-gray-500)">Outline</span>
           <kp-icon name="star" size="lg"/>
           <kp-icon name="bell" size="lg"/>
           <kp-icon name="bookmark" size="lg"/>
@@ -64,7 +64,7 @@ export const OutlineVsFilled: Story = {
           <kp-icon name="check" size="lg"/>
         </div>
         <div style="display:flex;gap:24px;align-items:center">
-          <span style="width:64px;font-size:12px;color:#71717A">Filled</span>
+          <span style="width:64px;font-size:12px;color: var(--kp-color-gray-500)">Filled</span>
           <kp-icon name="star-filled" size="lg"/>
           <kp-icon name="bell-filled" size="lg"/>
           <kp-icon name="bookmark-filled" size="lg"/>
@@ -88,7 +88,7 @@ export const Color: Story = {
   render: () => ({
     template: `
       <div style="display:flex;gap:28px;align-items:center;font-family:Onest,system-ui,sans-serif">
-        <span style="color:#3F3F46;display:inline-flex;gap:6px;align-items:center"><kp-icon name="info-circle" size="md"/> Default</span>
+        <span style="color: var(--kp-color-gray-700);display:inline-flex;gap:6px;align-items:center"><kp-icon name="info-circle" size="md"/> Default</span>
         <span style="color:#2563EB;display:inline-flex;gap:6px;align-items:center"><kp-icon name="info-circle" size="md"/> Primary</span>
         <span style="color:#16A34A;display:inline-flex;gap:6px;align-items:center"><kp-icon name="circle-check" size="md"/> Success</span>
         <span style="color:#D97706;display:inline-flex;gap:6px;align-items:center"><kp-icon name="alert-triangle" size="md"/> Warning</span>
@@ -118,7 +118,7 @@ export const CustomRegistration: Story = {
           <kp-icon name="kp-mark" size="md"/>
           <kp-icon name="kp-mark" size="lg"/>
           <kp-icon name="kp-mark" size="xl"/>
-          <code style="font-size:12px;color:#71717A">KP_ICON_REGISTRY.register('kp-mark', svg)</code>
+          <code style="font-size:12px;color: var(--kp-color-gray-500)">KP_ICON_REGISTRY.register('kp-mark', svg)</code>
         </div>
       `,
     };
@@ -140,7 +140,7 @@ export const Outlined: Story = {
         @for (n of names; track n) {
           <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 8px;border:1px solid rgba(0,0,0,.06);border-radius:8px">
             <kp-icon [name]="n" size="md"/>
-            <span style="font-size:11px;color:#71717A;text-align:center;word-break:break-word">{{n}}</span>
+            <span style="font-size:11px;color: var(--kp-color-gray-500);text-align:center;word-break:break-word">{{n}}</span>
           </div>
         }
       </div>
@@ -163,7 +163,7 @@ export const Filled: Story = {
         @for (n of names; track n) {
           <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 8px;border:1px solid rgba(0,0,0,.06);border-radius:8px">
             <kp-icon [name]="n" size="md"/>
-            <span style="font-size:11px;color:#71717A;text-align:center;word-break:break-word">{{n}}</span>
+            <span style="font-size:11px;color: var(--kp-color-gray-500);text-align:center;word-break:break-word">{{n}}</span>
           </div>
         }
       </div>

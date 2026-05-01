@@ -134,120 +134,120 @@ export const AllStates: Story = {
     template: `
       <div style="display:flex;flex-direction:column;gap:24px">
         <div>
-          <div style="font-size:12px;font-weight:600;color:#71717A;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Primary · Default</div>
+          <div style="font-size:12px;font-weight:600;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Primary · Default</div>
           <div style="display:flex;align-items:center;gap:12px">
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Rest</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Rest</span>
               <kp-button forceState="rest">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Hover</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Hover</span>
               <kp-button forceState="hover">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Active</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Active</span>
               <kp-button forceState="active">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Focus</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Focus</span>
               <kp-button forceState="focus">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Disabled</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Disabled</span>
               <kp-button forceState="disabled">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Loading</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Loading</span>
               <kp-button forceState="loading">Button</kp-button>
             </div>
           </div>
         </div>
 
         <div>
-          <div style="font-size:12px;font-weight:600;color:#71717A;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Primary · Subtle</div>
+          <div style="font-size:12px;font-weight:600;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Primary · Subtle</div>
           <div style="display:flex;align-items:center;gap:12px">
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Rest</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Rest</span>
               <kp-button variant="subtle" forceState="rest">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Hover</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Hover</span>
               <kp-button variant="subtle" forceState="hover">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Active</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Active</span>
               <kp-button variant="subtle" forceState="active">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Focus</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Focus</span>
               <kp-button variant="subtle" forceState="focus">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Disabled</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Disabled</span>
               <kp-button variant="subtle" forceState="disabled">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Loading</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Loading</span>
               <kp-button variant="subtle" forceState="loading">Button</kp-button>
             </div>
           </div>
         </div>
 
         <div>
-          <div style="font-size:12px;font-weight:600;color:#71717A;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Primary · Outline</div>
+          <div style="font-size:12px;font-weight:600;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Primary · Outline</div>
           <div style="display:flex;align-items:center;gap:12px">
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Rest</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Rest</span>
               <kp-button variant="outline" forceState="rest">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Hover</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Hover</span>
               <kp-button variant="outline" forceState="hover">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Active</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Active</span>
               <kp-button variant="outline" forceState="active">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Focus</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Focus</span>
               <kp-button variant="outline" forceState="focus">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Disabled</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Disabled</span>
               <kp-button variant="outline" forceState="disabled">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Loading</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Loading</span>
               <kp-button variant="outline" forceState="loading">Button</kp-button>
             </div>
           </div>
         </div>
 
         <div>
-          <div style="font-size:12px;font-weight:600;color:#71717A;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Primary · Ghost</div>
+          <div style="font-size:12px;font-weight:600;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Primary · Ghost</div>
           <div style="display:flex;align-items:center;gap:12px">
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Rest</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Rest</span>
               <kp-button variant="ghost" forceState="rest">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Hover</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Hover</span>
               <kp-button variant="ghost" forceState="hover">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Active</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Active</span>
               <kp-button variant="ghost" forceState="active">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Focus</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Focus</span>
               <kp-button variant="ghost" forceState="focus">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Disabled</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Disabled</span>
               <kp-button variant="ghost" forceState="disabled">Button</kp-button>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-              <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Loading</span>
+              <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Loading</span>
               <kp-button variant="ghost" forceState="loading">Button</kp-button>
             </div>
           </div>
@@ -262,25 +262,25 @@ export const DangerStates: Story = {
     template: `
       <div style="display:flex;flex-direction:column;gap:24px">
         <div>
-          <div style="font-size:12px;font-weight:600;color:#71717A;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Danger · Default</div>
+          <div style="font-size:12px;font-weight:600;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Danger · Default</div>
           <div style="display:flex;align-items:center;gap:12px">
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Rest</span><kp-button color="danger" forceState="rest">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Hover</span><kp-button color="danger" forceState="hover">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Active</span><kp-button color="danger" forceState="active">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Focus</span><kp-button color="danger" forceState="focus">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Disabled</span><kp-button color="danger" forceState="disabled">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Loading</span><kp-button color="danger" forceState="loading">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Rest</span><kp-button color="danger" forceState="rest">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Hover</span><kp-button color="danger" forceState="hover">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Active</span><kp-button color="danger" forceState="active">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Focus</span><kp-button color="danger" forceState="focus">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Disabled</span><kp-button color="danger" forceState="disabled">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Loading</span><kp-button color="danger" forceState="loading">Button</kp-button></div>
           </div>
         </div>
         <div>
-          <div style="font-size:12px;font-weight:600;color:#71717A;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Danger · Outline</div>
+          <div style="font-size:12px;font-weight:600;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Danger · Outline</div>
           <div style="display:flex;align-items:center;gap:12px">
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Rest</span><kp-button color="danger" variant="outline" forceState="rest">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Hover</span><kp-button color="danger" variant="outline" forceState="hover">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Active</span><kp-button color="danger" variant="outline" forceState="active">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Focus</span><kp-button color="danger" variant="outline" forceState="focus">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Disabled</span><kp-button color="danger" variant="outline" forceState="disabled">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Loading</span><kp-button color="danger" variant="outline" forceState="loading">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Rest</span><kp-button color="danger" variant="outline" forceState="rest">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Hover</span><kp-button color="danger" variant="outline" forceState="hover">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Active</span><kp-button color="danger" variant="outline" forceState="active">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Focus</span><kp-button color="danger" variant="outline" forceState="focus">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Disabled</span><kp-button color="danger" variant="outline" forceState="disabled">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Loading</span><kp-button color="danger" variant="outline" forceState="loading">Button</kp-button></div>
           </div>
         </div>
       </div>`,
@@ -374,25 +374,25 @@ export const NeutralStates: Story = {
     template: `
       <div style="display:flex;flex-direction:column;gap:24px">
         <div>
-          <div style="font-size:12px;font-weight:600;color:#71717A;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Neutral · Default</div>
+          <div style="font-size:12px;font-weight:600;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Neutral · Default</div>
           <div style="display:flex;align-items:center;gap:12px">
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Rest</span><kp-button color="neutral" forceState="rest">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Hover</span><kp-button color="neutral" forceState="hover">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Active</span><kp-button color="neutral" forceState="active">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Focus</span><kp-button color="neutral" forceState="focus">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Disabled</span><kp-button color="neutral" forceState="disabled">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Loading</span><kp-button color="neutral" forceState="loading">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Rest</span><kp-button color="neutral" forceState="rest">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Hover</span><kp-button color="neutral" forceState="hover">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Active</span><kp-button color="neutral" forceState="active">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Focus</span><kp-button color="neutral" forceState="focus">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Disabled</span><kp-button color="neutral" forceState="disabled">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Loading</span><kp-button color="neutral" forceState="loading">Button</kp-button></div>
           </div>
         </div>
         <div>
-          <div style="font-size:12px;font-weight:600;color:#71717A;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Neutral · Outline</div>
+          <div style="font-size:12px;font-weight:600;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Neutral · Outline</div>
           <div style="display:flex;align-items:center;gap:12px">
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Rest</span><kp-button color="neutral" variant="outline" forceState="rest">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Hover</span><kp-button color="neutral" variant="outline" forceState="hover">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Active</span><kp-button color="neutral" variant="outline" forceState="active">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Focus</span><kp-button color="neutral" variant="outline" forceState="focus">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Disabled</span><kp-button color="neutral" variant="outline" forceState="disabled">Button</kp-button></div>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color:#A1A1AA;text-transform:uppercase">Loading</span><kp-button color="neutral" variant="outline" forceState="loading">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Rest</span><kp-button color="neutral" variant="outline" forceState="rest">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Hover</span><kp-button color="neutral" variant="outline" forceState="hover">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Active</span><kp-button color="neutral" variant="outline" forceState="active">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Focus</span><kp-button color="neutral" variant="outline" forceState="focus">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Disabled</span><kp-button color="neutral" variant="outline" forceState="disabled">Button</kp-button></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase">Loading</span><kp-button color="neutral" variant="outline" forceState="loading">Button</kp-button></div>
           </div>
         </div>
       </div>`,

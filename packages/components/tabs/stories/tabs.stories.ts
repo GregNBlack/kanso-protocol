@@ -44,7 +44,7 @@ export const Sizes: Story = {
             <kp-tab label="Activity" [selected]="tab === 'activity'" (selectedChange)="tab = 'activity'"/>
             <kp-tab label="Settings" [selected]="tab === 'settings'" (selectedChange)="tab = 'settings'"/>
           </kp-tabs>
-          <span style="font-size:11px;color:#A1A1AA;margin-top:8px;display:block">Small</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-500);margin-top:8px;display:block">Small</span>
         </div>
         <div>
           <kp-tabs size="md">
@@ -52,7 +52,7 @@ export const Sizes: Story = {
             <kp-tab label="Activity" [selected]="tab === 'activity'" (selectedChange)="tab = 'activity'"/>
             <kp-tab label="Settings" [selected]="tab === 'settings'" (selectedChange)="tab = 'settings'"/>
           </kp-tabs>
-          <span style="font-size:11px;color:#A1A1AA;margin-top:8px;display:block">Medium (default)</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-500);margin-top:8px;display:block">Medium (default)</span>
         </div>
         <div>
           <kp-tabs size="lg">
@@ -60,7 +60,7 @@ export const Sizes: Story = {
             <kp-tab label="Activity" [selected]="tab === 'activity'" (selectedChange)="tab = 'activity'"/>
             <kp-tab label="Settings" [selected]="tab === 'settings'" (selectedChange)="tab = 'settings'"/>
           </kp-tabs>
-          <span style="font-size:11px;color:#A1A1AA;margin-top:8px;display:block">Large</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-500);margin-top:8px;display:block">Large</span>
         </div>
       </div>`,
   }),
@@ -122,7 +122,7 @@ export const States: Story = {
         <kp-tab label="Selected" [selected]="true"/>
         <kp-tab label="Disabled" [disabled]="true"/>
       </kp-tabs>
-      <p style="font-size:11px;color:#A1A1AA;margin:8px 0 0 0">Hover + focus states are interactive — move the mouse over "Default" or tab into it.</p>`,
+      <p style="font-size:11px;color: var(--kp-color-gray-500);margin:8px 0 0 0">Hover + focus states are interactive — move the mouse over "Default" or tab into it.</p>`,
   }),
 };
 
@@ -159,7 +159,7 @@ export const Overflow: Story = {
         <kp-tab label="Activity" [selected]="tab === 'activity'" (selectedChange)="tab = 'activity'"/>
         <kp-tab label="Settings" [selected]="tab === 'settings'" (selectedChange)="tab = 'settings'"/>
         <kp-tab label="Team"     [selected]="tab === 'team'"     (selectedChange)="tab = 'team'"/>
-        <button kpTabsMore style="all:unset;display:inline-flex;align-items:center;gap:4px;padding:0 16px;font-family:Onest,system-ui,sans-serif;font-weight:500;font-size:14px;color:#52525B;cursor:pointer">
+        <button kpTabsMore style="all:unset;display:inline-flex;align-items:center;gap:4px;padding:0 16px;font-family:Onest,system-ui,sans-serif;font-weight:500;font-size:14px;color: var(--kp-color-gray-600);cursor:pointer">
           More
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 9l6 6 6-6"/>

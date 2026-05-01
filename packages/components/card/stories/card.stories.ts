@@ -17,7 +17,7 @@ const meta: Meta<KpCardComponent> = {
 export default meta;
 type Story = StoryObj<KpCardComponent>;
 
-const cap = `font-size:11px;color:#A1A1AA;margin-top:8px;display:block`;
+const cap = `font-size:11px;color: var(--kp-color-gray-500);margin-top:8px;display:block`;
 
 export const Default: Story = {
   args: { size: 'md', appearance: 'default', title: 'Card title', description: 'Optional description', showDescription: true },
@@ -41,7 +41,7 @@ export const Sizes: Story = {
 export const Appearances: Story = {
   render: () => ({
     template: `
-      <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;background:#F4F4F5;padding:32px;border-radius:12px">
+      <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;background: var(--kp-color-gray-100);padding:32px;border-radius:12px">
         <kp-card appearance="default"  title="Default"  [showDescription]="true" description="White bg, gray border.">Body</kp-card>
         <kp-card appearance="muted"    title="Muted"    [showDescription]="true" description="Gray bg, gray border.">Body</kp-card>
         <kp-card appearance="elevated" title="Elevated" [showDescription]="true" description="Shadow, no border.">Body</kp-card>
@@ -98,8 +98,8 @@ export const UseCases: Story = {
         <div>
           <kp-card size="sm" [showHeader]="false">
             <div style="display:flex;flex-direction:column;gap:6px">
-              <span style="font-size:14px;color:#52525B">Total revenue</span>
-              <span style="font-size:24px;font-weight:600;color:#18181B">$12,482</span>
+              <span style="font-size:14px;color: var(--kp-color-gray-600)">Total revenue</span>
+              <span style="font-size:24px;font-weight:600;color: var(--kp-color-gray-900)">$12,482</span>
               <span style="font-size:12px;color:#15803D">↑ +12.5% from last month</span>
             </div>
           </kp-card>
@@ -120,7 +120,7 @@ export const UseCases: Story = {
               <label style="display:flex;justify-content:space-between"><span>SMS notifications</span><span>◯</span></label>
             </div>
             <div kpCardFooter>
-              <button style="all:unset;color:#52525B;padding:6px 12px;cursor:pointer">Cancel</button>
+              <button style="all:unset;color: var(--kp-color-gray-600);padding:6px 12px;cursor:pointer">Cancel</button>
               <button style="all:unset;background:#2563EB;color:#fff;padding:6px 12px;border-radius:6px;cursor:pointer">Save</button>
             </div>
           </kp-card>

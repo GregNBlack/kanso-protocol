@@ -11,7 +11,7 @@ import { KpBreadcrumbsAutoComponent } from '../src/breadcrumbs-auto.component';
   imports: [KpBreadcrumbsAutoComponent],
   template: `
     <kp-breadcrumbs-auto size="md" separator="chevron"/>
-    <p style="font-size:11px;color:#A1A1AA;margin:12px 0 0">
+    <p style="font-size:11px;color: var(--kp-color-gray-500);margin:12px 0 0">
       Router state is driven by <code>provideRouter(...)</code> in this story's <code>applicationConfig</code>.
       In a real app, drop <code>&lt;kp-breadcrumbs-auto/&gt;</code> inside any routed component and the trail
       rebuilds on every <code>NavigationEnd</code>.
@@ -66,7 +66,7 @@ const file = `<svg kpBreadcrumbIcon viewBox="0 0 24 24" fill="none" stroke="curr
   <path d="M14 2 H6 V22 H18 V6 Z"/><path d="M14 2 V6 H18"/>
 </svg>`;
 
-const caption = `font-size:11px;color:#A1A1AA;margin-top:6px;display:block`;
+const caption = `font-size:11px;color: var(--kp-color-gray-500);margin-top:6px;display:block`;
 
 export const Default: Story = {
   args: { size: 'md' },
@@ -249,7 +249,7 @@ export const Overflow: Story = {
         <kp-breadcrumb-separator type="chevron"/>
         <kp-breadcrumb-item type="current" label="Hover"/>
       </kp-breadcrumbs>
-      <p style="font-size:11px;color:#A1A1AA;margin:8px 0 0">Use ellipsis to collapse middle levels when path is long. Clicking ellipsis opens a Popover / DropdownMenu with hidden items.</p>`,
+      <p style="font-size:11px;color: var(--kp-color-gray-500);margin:8px 0 0">Use ellipsis to collapse middle levels when path is long. Clicking ellipsis opens a Popover / DropdownMenu with hidden items.</p>`,
   }),
 };
 
@@ -263,7 +263,7 @@ export const States: Story = {
         <kp-breadcrumb-separator type="chevron"/>
         <kp-breadcrumb-item type="current" label="Current"/>
       </kp-breadcrumbs>
-      <p style="font-size:11px;color:#A1A1AA;margin:8px 0 0">Hover + focus states are interactive — move the mouse over "Rest" or tab into it.</p>`,
+      <p style="font-size:11px;color: var(--kp-color-gray-500);margin:8px 0 0">Hover + focus states are interactive — move the mouse over "Rest" or tab into it.</p>`,
   }),
 };
 

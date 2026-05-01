@@ -44,7 +44,7 @@ export const Playground: Story = {
     props: args,
     template: `
       <div style="padding:24px;width:100%;box-sizing:border-box">
-        <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+        <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
           <kp-filter-bar
             [filters]="filters"
             [showAddFilter]="showAddFilter"
@@ -63,26 +63,26 @@ export const States: Story = {
     template: `
       <div style="display:flex;flex-direction:column;gap:24px;padding:24px">
         <div>
-          <div style="font:500 12px Onest;color:#71717A;margin-bottom:6px">Empty</div>
-          <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+          <div style="font:500 12px Onest;color: var(--kp-color-gray-500);margin-bottom:6px">Empty</div>
+          <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
             <kp-filter-bar [filters]="empty"></kp-filter-bar>
           </div>
         </div>
         <div>
-          <div style="font:500 12px Onest;color:#71717A;margin-bottom:6px">With 1 filter</div>
-          <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+          <div style="font:500 12px Onest;color: var(--kp-color-gray-500);margin-bottom:6px">With 1 filter</div>
+          <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
             <kp-filter-bar [filters]="one"></kp-filter-bar>
           </div>
         </div>
         <div>
-          <div style="font:500 12px Onest;color:#71717A;margin-bottom:6px">With 3 filters</div>
-          <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+          <div style="font:500 12px Onest;color: var(--kp-color-gray-500);margin-bottom:6px">With 3 filters</div>
+          <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
             <kp-filter-bar [filters]="three"></kp-filter-bar>
           </div>
         </div>
         <div>
-          <div style="font:500 12px Onest;color:#71717A;margin-bottom:6px">With 6 filters (wrap behaviour)</div>
-          <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+          <div style="font:500 12px Onest;color: var(--kp-color-gray-500);margin-bottom:6px">With 6 filters (wrap behaviour)</div>
+          <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
             <kp-filter-bar [filters]="many"></kp-filter-bar>
           </div>
         </div>
@@ -97,14 +97,14 @@ export const Features: Story = {
     template: `
       <div style="display:flex;flex-direction:column;gap:24px;padding:24px">
         <div>
-          <div style="font:500 12px Onest;color:#71717A;margin-bottom:6px">Default — Add filter + Clear all</div>
-          <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+          <div style="font:500 12px Onest;color: var(--kp-color-gray-500);margin-bottom:6px">Default — Add filter + Clear all</div>
+          <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
             <kp-filter-bar [filters]="three"></kp-filter-bar>
           </div>
         </div>
         <div>
-          <div style="font:500 12px Onest;color:#71717A;margin-bottom:6px">Full — Add filter + Save filter + Clear all</div>
-          <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+          <div style="font:500 12px Onest;color: var(--kp-color-gray-500);margin-bottom:6px">Full — Add filter + Save filter + Clear all</div>
+          <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
             <kp-filter-bar [filters]="three" [showSaveFilter]="true"></kp-filter-bar>
           </div>
         </div>
@@ -132,20 +132,20 @@ export const UseCases: Story = {
     template: `
       <div style="display:flex;flex-direction:column;gap:32px;padding:24px">
         <div>
-          <div style="font:500 12px Onest;color:#71717A;margin-bottom:6px">Product catalog filters</div>
-          <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+          <div style="font:500 12px Onest;color: var(--kp-color-gray-500);margin-bottom:6px">Product catalog filters</div>
+          <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
             <kp-filter-bar [filters]="products"></kp-filter-bar>
           </div>
         </div>
         <div>
-          <div style="font:500 12px Onest;color:#71717A;margin-bottom:6px">Admin log filters</div>
-          <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+          <div style="font:500 12px Onest;color: var(--kp-color-gray-500);margin-bottom:6px">Admin log filters</div>
+          <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
             <kp-filter-bar [filters]="logs"></kp-filter-bar>
           </div>
         </div>
         <div>
-          <div style="font:500 12px Onest;color:#71717A;margin-bottom:6px">With saved filter preset loaded</div>
-          <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+          <div style="font:500 12px Onest;color: var(--kp-color-gray-500);margin-bottom:6px">With saved filter preset loaded</div>
+          <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
             <kp-filter-bar [filters]="saved" [showSaveFilter]="true"></kp-filter-bar>
           </div>
         </div>

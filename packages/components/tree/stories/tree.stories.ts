@@ -99,7 +99,7 @@ export const Default: Story = {
           [(expanded)]="expanded"
           [(selected)]="selected"
         />
-        <div style="margin-top:12px;font-size:12px;color:#71717A">
+        <div style="margin-top:12px;font-size:12px;color: var(--kp-color-gray-500)">
           Selected: {{ selected ?? '—' }}
         </div>
       </div>`,
@@ -131,7 +131,7 @@ export const WithCheckboxes: Story = {
     template: `
       <div style="width:420px">
         <kp-tree [data]="data" [showCheckboxes]="true" [(expanded)]="expanded" [(checked)]="checked"/>
-        <div style="margin-top:12px;font-size:12px;color:#71717A">
+        <div style="margin-top:12px;font-size:12px;color: var(--kp-color-gray-500)">
           Checked leaves: {{ checked.length }}
         </div>
       </div>`,

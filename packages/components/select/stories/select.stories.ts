@@ -83,23 +83,23 @@ export const States: Story = {
     template: `
       <div style="${ROOM};display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase;letter-spacing:.06em">Rest</span>
+          <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:.06em">Rest</span>
           <kp-select forceState="rest" placeholder="Placeholder" [options]="options"></kp-select>
         </div>
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase;letter-spacing:.06em">Hover</span>
+          <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:.06em">Hover</span>
           <kp-select forceState="hover" placeholder="Placeholder" [options]="options"></kp-select>
         </div>
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase;letter-spacing:.06em">Focus</span>
+          <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:.06em">Focus</span>
           <kp-select forceState="focus" placeholder="Placeholder" [options]="options"></kp-select>
         </div>
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase;letter-spacing:.06em">Disabled</span>
+          <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:.06em">Disabled</span>
           <kp-select forceState="disabled" placeholder="Placeholder" [options]="options"></kp-select>
         </div>
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase;letter-spacing:.06em">Error</span>
+          <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:.06em">Error</span>
           <kp-select forceState="error" placeholder="Error state" [options]="options"></kp-select>
         </div>
       </div>`,
@@ -114,11 +114,11 @@ export const SingleVsMulti: Story = {
       <div style="${ROOM};display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-select [(ngModel)]="single" placeholder="Pick one tag" [options]="options"></kp-select>
-          <span style="font-size:11px;color:#A1A1AA">Single · value: {{ single ?? '—' }}</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-500)">Single · value: {{ single ?? '—' }}</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-select [(ngModel)]="multi" [multiple]="true" placeholder="Pick any" [options]="options"></kp-select>
-          <span style="font-size:11px;color:#A1A1AA">Multi · value: [{{ multi.join(', ') || '—' }}]</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-500)">Multi · value: [{{ multi.join(', ') || '—' }}]</span>
         </div>
       </div>`,
   }),
@@ -132,11 +132,11 @@ export const WithValue: Story = {
       <div style="${ROOM};display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-select [(ngModel)]="v1" [options]="options" placeholder="Pick a country"></kp-select>
-          <span style="font-size:11px;color:#A1A1AA">Single w/ value + clear</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-500)">Single w/ value + clear</span>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-select [(ngModel)]="v2" [multiple]="true" [options]="tags" placeholder="Pick tags"></kp-select>
-          <span style="font-size:11px;color:#A1A1AA">Multi w/ 2 values</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-500)">Multi w/ 2 values</span>
         </div>
       </div>`,
   }),
@@ -157,22 +157,22 @@ export const FloatingLabel: Story = {
       <div style="${ROOM};display:flex;flex-direction:column;gap:32px">
 
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase;letter-spacing:.06em">LG · Single · Rest (label inside)</span>
+          <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:.06em">LG · Single · Rest (label inside)</span>
           <kp-select size="lg" [floatingLabel]="true" label="Country" [options]="options" [(ngModel)]="vSingleEmpty"></kp-select>
         </div>
 
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase;letter-spacing:.06em">LG · Single · With value (label floated)</span>
+          <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:.06em">LG · Single · With value (label floated)</span>
           <kp-select size="lg" [floatingLabel]="true" label="Country" [options]="options" [(ngModel)]="vSingleFilled"></kp-select>
         </div>
 
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase;letter-spacing:.06em">XL · Multi · Rest (label inside)</span>
+          <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:.06em">XL · Multi · Rest (label inside)</span>
           <kp-select size="xl" [floatingLabel]="true" [multiple]="true" label="Tags" [options]="tags" [(ngModel)]="vMultiEmpty"></kp-select>
         </div>
 
         <div style="display:flex;flex-direction:column;align-items:flex-start;gap:6px">
-          <span style="font-size:10px;color:#A1A1AA;text-transform:uppercase;letter-spacing:.06em">XL · Multi · With values (label floated, "Selected N out of M")</span>
+          <span style="font-size:10px;color: var(--kp-color-gray-500);text-transform:uppercase;letter-spacing:.06em">XL · Multi · With values (label floated, "Selected N out of M")</span>
           <kp-select size="xl" [floatingLabel]="true" [multiple]="true" label="Tags" [options]="tags" [(ngModel)]="vMultiFilled"></kp-select>
         </div>
 

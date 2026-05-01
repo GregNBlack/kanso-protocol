@@ -62,7 +62,7 @@ export const Sizes: Story = {
   render: () => ({
     props: { nav: NAV },
     template: `
-      <div style="background:#F4F4F5;display:flex;flex-direction:column;gap:24px;padding:24px">
+      <div style="background: var(--kp-color-gray-100);display:flex;flex-direction:column;gap:24px;padding:24px">
         <kp-header size="sm" [navItems]="nav" userName="Greg" userInitials="GB"/>
         <kp-header size="md" [navItems]="nav" userName="Greg Black" userRole="Admin" userInitials="GB" [showSearch]="true" notificationsCount="3"/>
         <kp-header size="lg" [navItems]="nav" userName="Greg Black" userRole="Admin" userInitials="GB" [showSearch]="true" notificationsCount="3"/>

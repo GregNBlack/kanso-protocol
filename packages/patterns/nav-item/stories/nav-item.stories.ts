@@ -19,14 +19,14 @@ export const Playground: Story = {
   args: { size: 'md', label: 'Dashboard', active: true },
   render: (args) => ({
     props: args,
-    template: `<div style="width:240px;padding:8px;background:#fff;border:1px solid #E4E4E7;border-radius:8px;font-family:Onest,system-ui,sans-serif"><kp-nav-item [size]="size" [depth]="depth" [label]="label" [active]="active" [disabled]="disabled" [hasChildren]="hasChildren" [expanded]="expanded" [showIcon]="showIcon">${ICON}</kp-nav-item></div>`,
+    template: `<div style="width:240px;padding:8px;background: var(--kp-color-white);border: 1px solid var(--kp-color-gray-200);border-radius:8px;font-family:Onest,system-ui,sans-serif"><kp-nav-item [size]="size" [depth]="depth" [label]="label" [active]="active" [disabled]="disabled" [hasChildren]="hasChildren" [expanded]="expanded" [showIcon]="showIcon">${ICON}</kp-nav-item></div>`,
   }),
 };
 
 export const States: Story = {
   render: () => ({
     template: `
-      <div style="width:240px;padding:8px;background:#fff;border:1px solid #E4E4E7;border-radius:8px;font-family:Onest,system-ui,sans-serif;display:flex;flex-direction:column;gap:2px">
+      <div style="width:240px;padding:8px;background: var(--kp-color-white);border: 1px solid var(--kp-color-gray-200);border-radius:8px;font-family:Onest,system-ui,sans-serif;display:flex;flex-direction:column;gap:2px">
         <kp-nav-item size="md" label="Rest">${ICON}</kp-nav-item>
         <kp-nav-item size="md" label="Active" [active]="true">${ICON}</kp-nav-item>
         <kp-nav-item size="md" label="Disabled" [disabled]="true">${ICON}</kp-nav-item>
@@ -41,7 +41,7 @@ export const States: Story = {
 export const Sizes: Story = {
   render: () => ({
     template: `
-      <div style="width:240px;padding:8px;background:#fff;border:1px solid #E4E4E7;border-radius:8px;font-family:Onest,system-ui,sans-serif;display:flex;flex-direction:column;gap:2px">
+      <div style="width:240px;padding:8px;background: var(--kp-color-white);border: 1px solid var(--kp-color-gray-200);border-radius:8px;font-family:Onest,system-ui,sans-serif;display:flex;flex-direction:column;gap:2px">
         <kp-nav-item size="sm" label="Small">${ICON}</kp-nav-item>
         <kp-nav-item size="md" label="Medium">${ICON}</kp-nav-item>
         <kp-nav-item size="lg" label="Large">${ICON}</kp-nav-item>

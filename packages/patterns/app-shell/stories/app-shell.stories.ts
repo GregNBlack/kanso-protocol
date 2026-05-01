@@ -62,23 +62,23 @@ const BODY = `
     <kp-container width="wide" padding="md" style="padding-top:24px;padding-bottom:48px">
       <kp-page-header title="Dashboard" description="Welcome back, Greg" [showDescription]="true"/>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px">
-        <div style="padding:20px;background:#fff;border:1px solid #E4E4E7;border-radius:12px">
-          <div style="font-size:12px;color:#71717A">Revenue</div>
+        <div style="padding:20px;background: var(--kp-color-white);border: 1px solid var(--kp-color-gray-200);border-radius:12px">
+          <div style="font-size:12px;color: var(--kp-color-gray-500)">Revenue</div>
           <div style="font-size:28px;font-weight:600;margin-top:4px">$48,329</div>
           <div style="font-size:12px;color:#16A34A;margin-top:8px">+12.5% from last month</div>
         </div>
-        <div style="padding:20px;background:#fff;border:1px solid #E4E4E7;border-radius:12px">
-          <div style="font-size:12px;color:#71717A">Active users</div>
+        <div style="padding:20px;background: var(--kp-color-white);border: 1px solid var(--kp-color-gray-200);border-radius:12px">
+          <div style="font-size:12px;color: var(--kp-color-gray-500)">Active users</div>
           <div style="font-size:28px;font-weight:600;margin-top:4px">2,451</div>
           <div style="font-size:12px;color:#16A34A;margin-top:8px">+4.2% from last week</div>
         </div>
-        <div style="padding:20px;background:#fff;border:1px solid #E4E4E7;border-radius:12px">
-          <div style="font-size:12px;color:#71717A">Conversion</div>
+        <div style="padding:20px;background: var(--kp-color-white);border: 1px solid var(--kp-color-gray-200);border-radius:12px">
+          <div style="font-size:12px;color: var(--kp-color-gray-500)">Conversion</div>
           <div style="font-size:28px;font-weight:600;margin-top:4px">3.8%</div>
           <div style="font-size:12px;color:#DC2626;margin-top:8px">−0.3% from last week</div>
         </div>
       </div>
-      <div style="margin-top:16px;padding:20px;background:#fff;border:1px solid #E4E4E7;border-radius:12px;height:240px">
+      <div style="margin-top:16px;padding:20px;background: var(--kp-color-white);border: 1px solid var(--kp-color-gray-200);border-radius:12px;height:240px">
         <div style="font-size:14px;font-weight:500;margin-bottom:8px">Revenue over time</div>
         <div style="height:180px;background:repeating-linear-gradient(90deg,#F4F4F5,#F4F4F5 8px,transparent 8px,transparent 20px);border-radius:6px"></div>
       </div>
@@ -153,7 +153,7 @@ export const WithFooter: Story = {
         <kp-header kpAppShellHeader [navItems]="nav" userName="Greg Black" userInitials="GB"/>
         <kp-sidebar kpAppShellSidebar [showLogo]="false" [showUserFooter]="false" [sections]="sections" userName="Greg Black" userInitials="GB" userEmail="greg@example.com"/>
         ${BODY}
-        <div kpAppShellFooter style="padding:12px 24px;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:#71717A;font-family:Onest,system-ui,sans-serif">
+        <div kpAppShellFooter style="padding:12px 24px;display:flex;align-items:center;justify-content:space-between;font-size:13px;color: var(--kp-color-gray-500);font-family:Onest,system-ui,sans-serif">
           <span>© 2026 Kanso Protocol</span>
           <span style="display:flex;gap:16px"><a style="color:inherit">Privacy</a><a style="color:inherit">Terms</a><a style="color:inherit">Contact</a></span>
         </div>

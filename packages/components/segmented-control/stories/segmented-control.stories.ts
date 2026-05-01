@@ -49,11 +49,11 @@ export const Sizes: Story = {
     props: { options: DAY_WEEK_MONTH, v1: 'week', v2: 'week', v3: 'week', v4: 'week', v5: 'week' },
     template: `
       <div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control size="xs" [(ngModel)]="v1" [options]="options"></kp-segmented-control><span style="font-size:11px;color:#A1A1AA">xs</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control size="sm" [(ngModel)]="v2" [options]="options"></kp-segmented-control><span style="font-size:11px;color:#A1A1AA">sm</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control size="md" [(ngModel)]="v3" [options]="options"></kp-segmented-control><span style="font-size:11px;color:#A1A1AA">md</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control size="lg" [(ngModel)]="v4" [options]="options"></kp-segmented-control><span style="font-size:11px;color:#A1A1AA">lg</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control size="xl" [(ngModel)]="v5" [options]="options"></kp-segmented-control><span style="font-size:11px;color:#A1A1AA">xl</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control size="xs" [(ngModel)]="v1" [options]="options"></kp-segmented-control><span style="font-size:11px;color: var(--kp-color-gray-500)">xs</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control size="sm" [(ngModel)]="v2" [options]="options"></kp-segmented-control><span style="font-size:11px;color: var(--kp-color-gray-500)">sm</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control size="md" [(ngModel)]="v3" [options]="options"></kp-segmented-control><span style="font-size:11px;color: var(--kp-color-gray-500)">md</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control size="lg" [(ngModel)]="v4" [options]="options"></kp-segmented-control><span style="font-size:11px;color: var(--kp-color-gray-500)">lg</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control size="xl" [(ngModel)]="v5" [options]="options"></kp-segmented-control><span style="font-size:11px;color: var(--kp-color-gray-500)">xl</span></div>
       </div>`,
   }),
 };
@@ -70,10 +70,10 @@ export const NumberOfSegments: Story = {
     },
     template: `
       <div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [(ngModel)]="v2" [options]="two"></kp-segmented-control><span style="font-size:11px;color:#A1A1AA">2 segments</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [(ngModel)]="v3" [options]="three"></kp-segmented-control><span style="font-size:11px;color:#A1A1AA">3 segments</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [(ngModel)]="v4" [options]="four"></kp-segmented-control><span style="font-size:11px;color:#A1A1AA">4 segments</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [(ngModel)]="v5" [options]="five"></kp-segmented-control><span style="font-size:11px;color:#A1A1AA">5 segments</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [(ngModel)]="v2" [options]="two"></kp-segmented-control><span style="font-size:11px;color: var(--kp-color-gray-500)">2 segments</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [(ngModel)]="v3" [options]="three"></kp-segmented-control><span style="font-size:11px;color: var(--kp-color-gray-500)">3 segments</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [(ngModel)]="v4" [options]="four"></kp-segmented-control><span style="font-size:11px;color: var(--kp-color-gray-500)">4 segments</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [(ngModel)]="v5" [options]="five"></kp-segmented-control><span style="font-size:11px;color: var(--kp-color-gray-500)">5 segments</span></div>
       </div>`,
   }),
 };
@@ -97,9 +97,9 @@ export const ContentTypes: Story = {
     },
     template: `
       <div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [(ngModel)]="vText" [options]="textOpts" display="text"></kp-segmented-control><span style="font-size:11px;color:#A1A1AA">Text</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [(ngModel)]="vIcon" [options]="iconOpts" display="icon"></kp-segmented-control><span style="font-size:11px;color:#A1A1AA">Icons</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [(ngModel)]="vIconText" [options]="iconTextOpts" display="icon-text"></kp-segmented-control><span style="font-size:11px;color:#A1A1AA">Icon + text</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [(ngModel)]="vText" [options]="textOpts" display="text"></kp-segmented-control><span style="font-size:11px;color: var(--kp-color-gray-500)">Text</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [(ngModel)]="vIcon" [options]="iconOpts" display="icon"></kp-segmented-control><span style="font-size:11px;color: var(--kp-color-gray-500)">Icons</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [(ngModel)]="vIconText" [options]="iconTextOpts" display="icon-text"></kp-segmented-control><span style="font-size:11px;color: var(--kp-color-gray-500)">Icon + text</span></div>
       </div>`,
   }),
 };
@@ -117,9 +117,9 @@ export const States: Story = {
     },
     template: `
       <div style="display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [(ngModel)]="v1" [options]="normal"></kp-segmented-control><span style="font-size:11px;color:#A1A1AA">Default</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [(ngModel)]="v2" [options]="disabledThird"></kp-segmented-control><span style="font-size:11px;color:#A1A1AA">One segment disabled</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [disabled]="true" [options]="normal" value="week"></kp-segmented-control><span style="font-size:11px;color:#A1A1AA">Entire control disabled</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [(ngModel)]="v1" [options]="normal"></kp-segmented-control><span style="font-size:11px;color: var(--kp-color-gray-500)">Default</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [(ngModel)]="v2" [options]="disabledThird"></kp-segmented-control><span style="font-size:11px;color: var(--kp-color-gray-500)">One segment disabled</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px"><kp-segmented-control [disabled]="true" [options]="normal" value="week"></kp-segmented-control><span style="font-size:11px;color: var(--kp-color-gray-500)">Entire control disabled</span></div>
       </div>`,
   }),
 };
@@ -155,19 +155,19 @@ export const UseCases: Story = {
       <div style="display:flex;flex-direction:column;gap:24px;align-items:flex-start">
         <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start">
           <kp-segmented-control size="sm" [(ngModel)]="vPeriod" [options]="period"></kp-segmented-control>
-          <span style="font-size:11px;color:#A1A1AA">Time period filter</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-500)">Time period filter</span>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start">
           <kp-segmented-control [(ngModel)]="vView" [options]="view" display="icon"></kp-segmented-control>
-          <span style="font-size:11px;color:#A1A1AA">View switcher</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-500)">View switcher</span>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start">
           <kp-segmented-control size="lg" [(ngModel)]="vPricing" [options]="pricing"></kp-segmented-control>
-          <span style="font-size:11px;color:#A1A1AA">Pricing toggle</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-500)">Pricing toggle</span>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start">
           <kp-segmented-control [(ngModel)]="vSettings" [options]="settings" display="icon-text"></kp-segmented-control>
-          <span style="font-size:11px;color:#A1A1AA">Settings navigation</span>
+          <span style="font-size:11px;color: var(--kp-color-gray-500)">Settings navigation</span>
         </div>
       </div>`,
   }),

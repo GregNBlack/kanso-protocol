@@ -106,8 +106,8 @@ export const Error: Story = {
   template: `
     <div style="display:flex;flex-direction:column;gap:12px;width:880px">
       <kp-rich-text-editor [formControl]="ctrl" placeholder="Edit me…"></kp-rich-text-editor>
-      <label style="font-size:12px;color:#71717A">Current HTML:</label>
-      <pre style="background:#F4F4F5;padding:8px 12px;border-radius:8px;font-size:12px;overflow:auto;max-height:140px">{{ ctrl.value }}</pre>
+      <label style="font-size:12px;color: var(--kp-color-gray-500)">Current HTML:</label>
+      <pre style="background: var(--kp-color-gray-100);padding:8px 12px;border-radius:8px;font-size:12px;overflow:auto;max-height:140px">{{ ctrl.value }}</pre>
     </div>
   `,
 })

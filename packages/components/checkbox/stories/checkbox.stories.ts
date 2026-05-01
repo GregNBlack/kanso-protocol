@@ -40,11 +40,11 @@ export const States: Story = {
   render: () => ({
     template: `
       <div style="display:flex;gap:16px;align-items:flex-end">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-checkbox [checked]="true" forceState="rest" [hasLabel]="false"></kp-checkbox><span style="font-size:10px;color:#A1A1AA">rest</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-checkbox [checked]="true" forceState="hover" [hasLabel]="false"></kp-checkbox><span style="font-size:10px;color:#A1A1AA">hover</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-checkbox [checked]="true" forceState="focus" [hasLabel]="false"></kp-checkbox><span style="font-size:10px;color:#A1A1AA">focus</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-checkbox [checked]="true" forceState="disabled" [hasLabel]="false"></kp-checkbox><span style="font-size:10px;color:#A1A1AA">disabled</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-checkbox [checked]="true" forceState="error" [hasLabel]="false"></kp-checkbox><span style="font-size:10px;color:#A1A1AA">error</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-checkbox [checked]="true" forceState="rest" [hasLabel]="false"></kp-checkbox><span style="font-size:10px;color: var(--kp-color-gray-500)">rest</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-checkbox [checked]="true" forceState="hover" [hasLabel]="false"></kp-checkbox><span style="font-size:10px;color: var(--kp-color-gray-500)">hover</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-checkbox [checked]="true" forceState="focus" [hasLabel]="false"></kp-checkbox><span style="font-size:10px;color: var(--kp-color-gray-500)">focus</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-checkbox [checked]="true" forceState="disabled" [hasLabel]="false"></kp-checkbox><span style="font-size:10px;color: var(--kp-color-gray-500)">disabled</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-checkbox [checked]="true" forceState="error" [hasLabel]="false"></kp-checkbox><span style="font-size:10px;color: var(--kp-color-gray-500)">error</span></div>
       </div>`,
   }),
 };
@@ -53,9 +53,9 @@ export const CheckedStates: Story = {
   render: () => ({
     template: `
       <div style="display:flex;gap:16px;align-items:flex-end">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-checkbox [hasLabel]="false"></kp-checkbox><span style="font-size:10px;color:#A1A1AA">unchecked</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-checkbox [checked]="true" [hasLabel]="false"></kp-checkbox><span style="font-size:10px;color:#A1A1AA">checked</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-checkbox [indeterminate]="true" [hasLabel]="false"></kp-checkbox><span style="font-size:10px;color:#A1A1AA">indeterminate</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-checkbox [hasLabel]="false"></kp-checkbox><span style="font-size:10px;color: var(--kp-color-gray-500)">unchecked</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-checkbox [checked]="true" [hasLabel]="false"></kp-checkbox><span style="font-size:10px;color: var(--kp-color-gray-500)">checked</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-checkbox [indeterminate]="true" [hasLabel]="false"></kp-checkbox><span style="font-size:10px;color: var(--kp-color-gray-500)">indeterminate</span></div>
       </div>`,
   }),
 };

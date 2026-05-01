@@ -41,7 +41,7 @@ const countries: KpComboboxOption[] = [
   { value: 'us', label: 'United States' },
 ];
 
-const cap = `font-size:11px;color:#A1A1AA;margin-top:8px;display:block`;
+const cap = `font-size:11px;color: var(--kp-color-gray-500);margin-top:8px;display:block`;
 
 export const Default: Story = {
   args: { size: 'md', placeholder: 'Search fruit…' },

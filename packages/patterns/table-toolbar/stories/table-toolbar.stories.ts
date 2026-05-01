@@ -37,7 +37,7 @@ export const Playground: Story = {
   },
   render: (args) => ({
     props: args,
-    template: `<div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden"><kp-table-toolbar ${Object.keys(args).map(k => `[${k}]="${k}"`).join(' ')}></kp-table-toolbar></div>`,
+    template: `<div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden"><kp-table-toolbar ${Object.keys(args).map(k => `[${k}]="${k}"`).join(' ')}></kp-table-toolbar></div>`,
   }),
 };
 
@@ -45,10 +45,10 @@ export const Modes: Story = {
   render: () => ({
     template: `
       <div style="display:flex;flex-direction:column;gap:24px;padding:24px">
-        <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+        <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
           <kp-table-toolbar mode="default" [activeFilterCount]="2"></kp-table-toolbar>
         </div>
-        <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+        <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
           <kp-table-toolbar mode="bulk-select" [selectedCount]="5"></kp-table-toolbar>
         </div>
       </div>
@@ -60,13 +60,13 @@ export const Compositions: Story = {
   render: () => ({
     template: `
       <div style="display:flex;flex-direction:column;gap:24px;padding:24px">
-        <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+        <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
           <kp-table-toolbar [showFilter]="false"></kp-table-toolbar>
         </div>
-        <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+        <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
           <kp-table-toolbar [activeFilterCount]="3" [showSort]="true"></kp-table-toolbar>
         </div>
-        <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+        <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
           <kp-table-toolbar
             [activeFilterCount]="2"
             [showSort]="true"
@@ -74,7 +74,7 @@ export const Compositions: Story = {
             [showColumnPicker]="true"
             [showExport]="true"></kp-table-toolbar>
         </div>
-        <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+        <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
           <kp-table-toolbar
             [showDensity]="true"
             [showColumnPicker]="true"
@@ -90,8 +90,8 @@ export const UseCases: Story = {
     template: `
       <div style="display:flex;flex-direction:column;gap:24px;padding:24px">
         <div>
-          <div style="font:500 12px Onest;color:#71717A;margin-bottom:6px">Admin users table</div>
-          <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+          <div style="font:500 12px Onest;color: var(--kp-color-gray-500);margin-bottom:6px">Admin users table</div>
+          <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
             <kp-table-toolbar
               searchPlaceholder="Search users…"
               [activeFilterCount]="2"
@@ -100,8 +100,8 @@ export const UseCases: Story = {
         </div>
 
         <div>
-          <div style="font:500 12px Onest;color:#71717A;margin-bottom:6px">E-commerce products</div>
-          <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+          <div style="font:500 12px Onest;color: var(--kp-color-gray-500);margin-bottom:6px">E-commerce products</div>
+          <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
             <kp-table-toolbar
               searchPlaceholder="Search products…"
               [activeFilterCount]="1"
@@ -114,8 +114,8 @@ export const UseCases: Story = {
         </div>
 
         <div>
-          <div style="font:500 12px Onest;color:#71717A;margin-bottom:6px">Bulk delete scenario</div>
-          <div style="width:100%;box-sizing:border-box;border:1px solid #E4E4E7;border-radius:8px;overflow:hidden">
+          <div style="font:500 12px Onest;color: var(--kp-color-gray-500);margin-bottom:6px">Bulk delete scenario</div>
+          <div style="width:100%;box-sizing:border-box;border: 1px solid var(--kp-color-gray-200);border-radius:8px;overflow:hidden">
             <kp-table-toolbar mode="bulk-select" [selectedCount]="5"></kp-table-toolbar>
           </div>
         </div>

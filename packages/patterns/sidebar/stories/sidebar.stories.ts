@@ -79,7 +79,7 @@ export const States: Story = {
   render: () => ({
     props: { sections: SECTIONS },
     template: `
-      <div style="display:flex;gap:24px;padding:24px;background:#F4F4F5;min-height:100vh">
+      <div style="display:flex;gap:24px;padding:24px;background: var(--kp-color-gray-100);min-height:100vh">
         <kp-sidebar [sections]="sections" widthState="expanded" userName="Greg Black" userEmail="greg@example.com" userInitials="GB"/>
         <kp-sidebar [sections]="sections" widthState="collapsed" userInitials="GB"/>
       </div>
@@ -95,12 +95,12 @@ export const WithContext: Story = {
   render: () => ({
     props: { sections: SECTIONS },
     template: `
-      <div style="display:flex;min-height:100vh;background:#F4F4F5">
+      <div style="display:flex;min-height:100vh;background: var(--kp-color-gray-100)">
         <kp-sidebar [sections]="sections" userName="Greg Black" userEmail="greg@example.com" userInitials="GB"/>
         <div style="flex:1;padding:40px;font-family:Onest,system-ui,sans-serif">
-          <div style="background:#fff;border:1px solid #E4E4E7;border-radius:16px;padding:40px;min-height:400px">
-            <h1 style="margin:0 0 12px 0;font-size:24px;font-weight:600;color:#18181B">Dashboard</h1>
-            <p style="margin:0;color:#71717A">Main content area sits next to the sidebar.</p>
+          <div style="background: var(--kp-color-white);border: 1px solid var(--kp-color-gray-200);border-radius:16px;padding:40px;min-height:400px">
+            <h1 style="margin:0 0 12px 0;font-size:24px;font-weight:600;color: var(--kp-color-gray-900)">Dashboard</h1>
+            <p style="margin:0;color: var(--kp-color-gray-500)">Main content area sits next to the sidebar.</p>
           </div>
         </div>
       </div>

@@ -43,11 +43,11 @@ export const States: Story = {
   render: () => ({
     template: `
       <div style="display:flex;gap:16px;align-items:flex-end">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-radio [checked]="true" forceState="rest" [hasLabel]="false"></kp-radio><span style="font-size:10px;color:#A1A1AA">rest</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-radio [checked]="true" forceState="hover" [hasLabel]="false"></kp-radio><span style="font-size:10px;color:#A1A1AA">hover</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-radio [checked]="true" forceState="focus" [hasLabel]="false"></kp-radio><span style="font-size:10px;color:#A1A1AA">focus</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-radio [checked]="true" forceState="disabled" [hasLabel]="false"></kp-radio><span style="font-size:10px;color:#A1A1AA">disabled</span></div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-radio [checked]="true" forceState="error" [hasLabel]="false"></kp-radio><span style="font-size:10px;color:#A1A1AA">error</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-radio [checked]="true" forceState="rest" [hasLabel]="false"></kp-radio><span style="font-size:10px;color: var(--kp-color-gray-500)">rest</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-radio [checked]="true" forceState="hover" [hasLabel]="false"></kp-radio><span style="font-size:10px;color: var(--kp-color-gray-500)">hover</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-radio [checked]="true" forceState="focus" [hasLabel]="false"></kp-radio><span style="font-size:10px;color: var(--kp-color-gray-500)">focus</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-radio [checked]="true" forceState="disabled" [hasLabel]="false"></kp-radio><span style="font-size:10px;color: var(--kp-color-gray-500)">disabled</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><kp-radio [checked]="true" forceState="error" [hasLabel]="false"></kp-radio><span style="font-size:10px;color: var(--kp-color-gray-500)">error</span></div>
       </div>`,
   }),
 };
@@ -63,7 +63,7 @@ export const Group: Story = {
         <kp-radio value="c">Option C</kp-radio>
       </kp-radio-group>
 
-      <div style="margin-top:20px;font-size:12px;color:#71717A;font-family:monospace">
+      <div style="margin-top:20px;font-size:12px;color: var(--kp-color-gray-500);font-family:monospace">
         Selected: <strong>{{ selected }}</strong>
       </div>`,
   }),

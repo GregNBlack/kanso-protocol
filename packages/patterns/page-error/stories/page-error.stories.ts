@@ -18,7 +18,7 @@ export default meta;
 type Story = StoryObj<KpPageErrorComponent>;
 
 const SHELL = (inner: string) => `
-  <div style="background:#fff;min-height:600px;width:100%">
+  <div style="background: var(--kp-color-white);min-height:600px;width:100%">
     ${inner}
   </div>
 `;
