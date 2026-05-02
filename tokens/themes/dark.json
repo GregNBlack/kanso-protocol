@@ -442,24 +442,6 @@
             "$value": "#A1A1AA",
             "$description": "gray-400 light \u2014 readable on dark surfaces (was #71717A which barely failed AA)"
           }
-        },
-        "bg": {
-          "hover": {
-            "$value": "#2563EB",
-            "$description": "dark hover/active should darken vs rest, not lighten \u2014 inversion logic puts blue.700 lighter than blue.600 by accident"
-          },
-          "active": {
-            "$value": "#1D4ED8",
-            "$description": "dark hover/active should darken vs rest, not lighten \u2014 inversion logic puts blue.700 lighter than blue.600 by accident"
-          },
-          "focus": {
-            "$value": "#60A5FA",
-            "$description": "dark hover/active should darken vs rest, not lighten \u2014 inversion logic puts blue.700 lighter than blue.600 by accident"
-          },
-          "loading": {
-            "$value": "#60A5FA",
-            "$description": "dark hover/active should darken vs rest, not lighten \u2014 inversion logic puts blue.700 lighter than blue.600 by accident"
-          }
         }
       },
       "subtle": {
@@ -511,24 +493,6 @@
             "$value": "#A1A1AA",
             "$description": "gray-400 light \u2014 readable on dark surfaces (was #71717A which barely failed AA)"
           }
-        },
-        "bg": {
-          "hover": {
-            "$value": "#DC2626",
-            "$description": "dark hover/active should darken vs rest, not lighten \u2014 inversion logic puts blue.700 lighter than blue.600 by accident"
-          },
-          "active": {
-            "$value": "#B91C1C",
-            "$description": "dark hover/active should darken vs rest, not lighten \u2014 inversion logic puts blue.700 lighter than blue.600 by accident"
-          },
-          "focus": {
-            "$value": "#F87171",
-            "$description": "dark hover/active should darken vs rest, not lighten \u2014 inversion logic puts blue.700 lighter than blue.600 by accident"
-          },
-          "loading": {
-            "$value": "#F87171",
-            "$description": "dark hover/active should darken vs rest, not lighten \u2014 inversion logic puts blue.700 lighter than blue.600 by accident"
-          }
         }
       },
       "subtle": {
@@ -577,16 +541,6 @@
           "disabled": {
             "$value": "#A1A1AA",
             "$description": "gray-400 light \u2014 readable on dark surfaces (was #71717A which barely failed AA)"
-          }
-        },
-        "bg": {
-          "hover": {
-            "$value": "#E4E4E7",
-            "$description": "dark hover/active should darken vs rest, not lighten \u2014 inversion logic puts blue.700 lighter than blue.600 by accident"
-          },
-          "active": {
-            "$value": "#D4D4D8",
-            "$description": "dark hover/active should darken vs rest, not lighten \u2014 inversion logic puts blue.700 lighter than blue.600 by accident"
           }
         }
       },

@@ -12,6 +12,18 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-05-02 — revert solid-button bg state overrides
+
+The 0.2.4 "fix" was based on a wrong contrast intuition. I assumed that lighter bg + dark fg gave low contrast, but it's the opposite — lighter bg with dark fg = HIGHER contrast. The primitive-inverted dark mode hover/active bgs (which lighten to `#93C5FD` / `#BFDBFE`) actually pair well with the designer's deep `fg.rest = #172554` (`7.83:1` and `14:1` respectively). My override darkened the bg toward the fg instead, dropping ratios into the 2-3:1 range.
+
+Reverts the bg state overrides added in `0.2.4`. Designer's `fg.rest` picks now hold via the natural primitive cascade for hover/active/focus/loading.
+
+### Bumps
+
+- `@kanso-protocol/core` `0.2.4` → `0.2.5`
+
+---
+
 ## 2026-05-02 — fix(tokens): solid-button bg state direction in dark
 
 Architectural fix that follows the designer-pass: in light mode, `*.default.bg.hover` (`blue-700`) is *darker* than `*.default.bg.rest` (`blue-600`), giving the standard "press-to-darken" feel. After primitive ramp inversion in dark mode, `blue-700` (which becomes `#93C5FD` light) is *lighter* than `blue-600` (which becomes `#60A5FA` light) — so the hover state appears to "press up to lighter" instead of "press down to darker". This made the designer's deep-tone fg picks (`#172554`, `#450A0A`) fail contrast on hover/active because the bg lightened toward them.
