@@ -65,13 +65,16 @@
         "$value": "#3B82F6"
       },
       "600": {
-        "$value": "#60A5FA"
+        "$value": "#2563EB",
+        "$description": "blue-600 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "700": {
-        "$value": "#93C5FD"
+        "$value": "#1D4ED8",
+        "$description": "blue-700 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "800": {
-        "$value": "#BFDBFE"
+        "$value": "#1E40AF",
+        "$description": "blue-800 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "900": {
         "$value": "#DBEAFE"
@@ -100,13 +103,16 @@
         "$value": "#EF4444"
       },
       "600": {
-        "$value": "#F87171"
+        "$value": "#DC2626",
+        "$description": "red-600 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "700": {
-        "$value": "#FCA5A5"
+        "$value": "#B91C1C",
+        "$description": "red-700 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "800": {
-        "$value": "#FECACA"
+        "$value": "#991B1B",
+        "$description": "red-800 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "900": {
         "$value": "#FEE2E2"
@@ -135,13 +141,16 @@
         "$value": "#22C55E"
       },
       "600": {
-        "$value": "#4ADE80"
+        "$value": "#16A34A",
+        "$description": "green-600 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "700": {
-        "$value": "#86EFAC"
+        "$value": "#15803D",
+        "$description": "green-700 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "800": {
-        "$value": "#BBF7D0"
+        "$value": "#166534",
+        "$description": "green-800 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "900": {
         "$value": "#DCFCE7"
@@ -170,13 +179,16 @@
         "$value": "#F59E0B"
       },
       "600": {
-        "$value": "#FBBF24"
+        "$value": "#D97706",
+        "$description": "amber-600 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "700": {
-        "$value": "#FCD34D"
+        "$value": "#B45309",
+        "$description": "amber-700 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "800": {
-        "$value": "#FDE68A"
+        "$value": "#92400E",
+        "$description": "amber-800 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "900": {
         "$value": "#FEF3C7"
@@ -205,13 +217,16 @@
         "$value": "#06B6D4"
       },
       "600": {
-        "$value": "#22D3EE"
+        "$value": "#0891B2",
+        "$description": "cyan-600 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "700": {
-        "$value": "#67E8F9"
+        "$value": "#0E7490",
+        "$description": "cyan-700 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "800": {
-        "$value": "#A5F3FC"
+        "$value": "#155E75",
+        "$description": "cyan-800 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "900": {
         "$value": "#CFFAFE"
@@ -240,13 +255,16 @@
         "$value": "#F97316"
       },
       "600": {
-        "$value": "#FB923C"
+        "$value": "#EA580C",
+        "$description": "orange-600 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "700": {
-        "$value": "#FDBA74"
+        "$value": "#C2410C",
+        "$description": "orange-700 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "800": {
-        "$value": "#FED7AA"
+        "$value": "#9A3412",
+        "$description": "orange-800 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "900": {
         "$value": "#FFEDD5"
@@ -275,13 +293,16 @@
         "$value": "#8B5CF6"
       },
       "600": {
-        "$value": "#A78BFA"
+        "$value": "#7C3AED",
+        "$description": "violet-600 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "700": {
-        "$value": "#C4B5FD"
+        "$value": "#6D28D9",
+        "$description": "violet-700 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "800": {
-        "$value": "#DDD6FE"
+        "$value": "#5B21B6",
+        "$description": "violet-800 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
       },
       "900": {
         "$value": "#EDE9FE"
@@ -423,24 +444,28 @@
       "default": {
         "fg": {
           "rest": {
-            "$value": "#172554",
-            "$description": "designer-pass"
+            "$value": "#FFFFFF",
+            "$description": "phase-b: white fg on saturated dark bg"
           },
           "hover": {
-            "$value": "#0F1729"
+            "$value": "#FFFFFF",
+            "$description": "phase-b: white fg on saturated dark bg"
           },
           "active": {
-            "$value": "#0F1729"
+            "$value": "#FFFFFF",
+            "$description": "phase-b: white fg on saturated dark bg"
           },
           "focus": {
-            "$value": "#0F1729"
+            "$value": "#FFFFFF",
+            "$description": "phase-b: white fg on saturated dark bg"
           },
           "loading": {
-            "$value": "#0F1729"
+            "$value": "#FFFFFF",
+            "$description": "phase-b: white fg on saturated dark bg"
           },
           "disabled": {
             "$value": "#A1A1AA",
-            "$description": "gray-400 light \u2014 readable on dark surfaces (was #71717A which barely failed AA)"
+            "$description": "phase-b: white fg on saturated dark bg"
           }
         }
       },
@@ -474,24 +499,28 @@
       "default": {
         "fg": {
           "rest": {
-            "$value": "#450A0A",
-            "$description": "designer-pass"
+            "$value": "#FFFFFF",
+            "$description": "phase-b: white fg on saturated dark bg"
           },
           "hover": {
-            "$value": "#450A0A"
+            "$value": "#FFFFFF",
+            "$description": "phase-b: white fg on saturated dark bg"
           },
           "active": {
-            "$value": "#450A0A"
+            "$value": "#FFFFFF",
+            "$description": "phase-b: white fg on saturated dark bg"
           },
           "focus": {
-            "$value": "#450A0A"
+            "$value": "#FFFFFF",
+            "$description": "phase-b: white fg on saturated dark bg"
           },
           "loading": {
-            "$value": "#450A0A"
+            "$value": "#FFFFFF",
+            "$description": "phase-b: white fg on saturated dark bg"
           },
           "disabled": {
             "$value": "#A1A1AA",
-            "$description": "gray-400 light \u2014 readable on dark surfaces (was #71717A which barely failed AA)"
+            "$description": "phase-b: white fg on saturated dark bg"
           }
         }
       },

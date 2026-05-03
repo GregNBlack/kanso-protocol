@@ -12,6 +12,49 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-05-03 — dark theme architecture: split brand inversion
+
+The first big architectural pass on dark theme. Stops fighting the primitive-inversion strategy by being explicit about WHICH stops in the brand ramps should invert and which shouldn't.
+
+### Bumps
+
+- `@kanso-protocol/core` `0.2.5` → `0.3.0` *(minor — visual changes for any component using saturated brand colors in dark mode)*
+
+### What changed
+
+**Phase A — un-invert action shades**
+
+For each brand ramp (`blue / red / green / amber / cyan / orange / violet`) the `600 / 700 / 800` stops now stay at their LIGHT values in dark mode. The `50 / 100 / 200` stops still invert (they drive `subtle.bg` darkening). The mid-stops (`300 / 400 / 500`) stay at light values too.
+
+Why this matters: in light mode `blue.700` is darker than `blue.600` — the standard "press to darken" hover convention. After full primitive inversion in dark mode, `blue.700` was lighter than `blue.600`, which made every solid-bg hover state appear to brighten instead of deepen, and forced the designer's deep-tone fg picks (`#172554`) to contend with bg's that lightened toward them.
+
+After this change in dark mode:
+- `--kp-color-blue-600` = `#2563EB` (saturated action blue, same as light)
+- `--kp-color-blue-700` = `#1D4ED8` (deeper, hover/active)
+- `--kp-color-blue-800` = `#1E40AF` (deepest, active)
+- Same for `red / green / amber / cyan / orange / violet`
+
+**Phase B — solid-button fg back to white**
+
+With saturated bgs returning to dark mode, white text is the natural contrast pair. Overrides:
+
+- `primary.default.fg.{rest, hover, active, focus, loading}` → `#FFFFFF`
+- `danger.default.fg.{rest, hover, active, focus, loading}` → `#FFFFFF`
+- `*.default.fg.disabled` → `#A1A1AA`
+- `neutral.default.fg.*` unchanged (it sits on inverted gray surface, dark text was correct)
+
+This supersedes the designer-pass picks for these same tokens in `core@0.2.0/0.2.3`. Designer's picks were correct *for the previous architecture* where dark-mode bgs were pastel; with bgs back at saturated values, white fg is both the canonical choice and a stronger contrast pair (often 8-12:1 instead of 4-7:1).
+
+### Migration
+
+If you depended on the dark-mode pastel-blue look of `<kp-button color="primary" variant="default">` (post `0.2.0`), the new look is saturated-blue + white text — closer to the light-mode rendering. Subtle / outline / ghost variants are unchanged.
+
+### Why minor (not patch)
+
+Visual changes for every consumer using saturated brand colors in dark theme. Per [Versioning policy](CONTRIBUTING.md#versioning-policy): observable rendering shift = minor.
+
+---
+
 ## 2026-05-02 — revert solid-button bg state overrides
 
 The 0.2.4 "fix" was based on a wrong contrast intuition. I assumed that lighter bg + dark fg gave low contrast, but it's the opposite — lighter bg with dark fg = HIGHER contrast. The primitive-inverted dark mode hover/active bgs (which lighten to `#93C5FD` / `#BFDBFE`) actually pair well with the designer's deep `fg.rest = #172554` (`7.83:1` and `14:1` respectively). My override darkened the bg toward the fg instead, dropping ratios into the 2-3:1 range.
