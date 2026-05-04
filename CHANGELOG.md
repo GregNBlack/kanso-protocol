@@ -12,6 +12,31 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-05-04 — full revert of dark architecture phases A+B+C
+
+The phase A+B+C bundle landed at 168 failed / 163 passed — a 30-story regression vs the pre-refactor baseline of 138 / 193. Root cause: phase A un-inverted brand `600/700/800` stops, which fixed solid buttons but broke every component that references brand primitives DIRECTLY for accent text (`<kp-tab--selected>`, `<kp-breadcrumb>`, `<kp-pagination__item--active>`, etc.). Those switched from a readable light-blue (`#60A5FA`) to a saturated dark-blue (`#2563EB`) that fails contrast on the dark page bg.
+
+The fix that wouldn't regress requires synchronously editing every component CSS file that hardcodes a `var(--kp-color-blue-600)`-style reference to use a semantic accent token instead. That's ~20 component edits + a new `color.accent.*` token family. Out of scope for a single CI cycle.
+
+### Bumps
+
+- `@kanso-protocol/core` `0.3.1` → `0.3.2` *(patch — visual values restored to designer-pass state)*
+
+### Migration
+
+None — visual state goes back to where `core@0.2.5` was. Designer-pass picks for `*.subtle.fg` and the round-2 entries for form-field / stat-card / etc. all preserved.
+
+### What we learned
+
+The dark theme architecture has TWO classes of contrast issue that pull in opposite directions:
+
+1. **Solid bg buttons / badges** — pastel inverted brand bgs paired with dark designer fg picks. Visually less "dark mode" but contrast-correct.
+2. **Direct primitive accents** — `var(--kp-color-blue-600)` for accent text that needs to read on the dark page.
+
+A clean fix needs both: un-invert the action ramp AND introduce `color.accent.*` semantics so accent-text components stop reaching for primitive values. Tracked for a separate, thorough refactor.
+
+---
+
 ## 2026-05-04 — dark architecture phase C: outline / ghost fg
 
 Follow-up to phase A+B. With brand action shades now staying at light values in dark, `outline` / `ghost` button variants (transparent bg, fg sits on the page bg `#09090B`) had `blue.600 = #2563EB` as fg — only 3.74:1 against the dark page, fails AA.

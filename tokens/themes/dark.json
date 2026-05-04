@@ -65,16 +65,13 @@
         "$value": "#3B82F6"
       },
       "600": {
-        "$value": "#2563EB",
-        "$description": "blue-600 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#60A5FA"
       },
       "700": {
-        "$value": "#1D4ED8",
-        "$description": "blue-700 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#93C5FD"
       },
       "800": {
-        "$value": "#1E40AF",
-        "$description": "blue-800 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#BFDBFE"
       },
       "900": {
         "$value": "#DBEAFE"
@@ -103,16 +100,13 @@
         "$value": "#EF4444"
       },
       "600": {
-        "$value": "#DC2626",
-        "$description": "red-600 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#F87171"
       },
       "700": {
-        "$value": "#B91C1C",
-        "$description": "red-700 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#FCA5A5"
       },
       "800": {
-        "$value": "#991B1B",
-        "$description": "red-800 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#FECACA"
       },
       "900": {
         "$value": "#FEE2E2"
@@ -141,16 +135,13 @@
         "$value": "#22C55E"
       },
       "600": {
-        "$value": "#16A34A",
-        "$description": "green-600 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#4ADE80"
       },
       "700": {
-        "$value": "#15803D",
-        "$description": "green-700 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#86EFAC"
       },
       "800": {
-        "$value": "#166534",
-        "$description": "green-800 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#BBF7D0"
       },
       "900": {
         "$value": "#DCFCE7"
@@ -179,16 +170,13 @@
         "$value": "#F59E0B"
       },
       "600": {
-        "$value": "#D97706",
-        "$description": "amber-600 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#FBBF24"
       },
       "700": {
-        "$value": "#B45309",
-        "$description": "amber-700 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#FCD34D"
       },
       "800": {
-        "$value": "#92400E",
-        "$description": "amber-800 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#FDE68A"
       },
       "900": {
         "$value": "#FEF3C7"
@@ -217,16 +205,13 @@
         "$value": "#06B6D4"
       },
       "600": {
-        "$value": "#0891B2",
-        "$description": "cyan-600 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#22D3EE"
       },
       "700": {
-        "$value": "#0E7490",
-        "$description": "cyan-700 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#67E8F9"
       },
       "800": {
-        "$value": "#155E75",
-        "$description": "cyan-800 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#A5F3FC"
       },
       "900": {
         "$value": "#CFFAFE"
@@ -255,16 +240,13 @@
         "$value": "#F97316"
       },
       "600": {
-        "$value": "#EA580C",
-        "$description": "orange-600 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#FB923C"
       },
       "700": {
-        "$value": "#C2410C",
-        "$description": "orange-700 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#FDBA74"
       },
       "800": {
-        "$value": "#9A3412",
-        "$description": "orange-800 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#FED7AA"
       },
       "900": {
         "$value": "#FFEDD5"
@@ -293,16 +275,13 @@
         "$value": "#8B5CF6"
       },
       "600": {
-        "$value": "#7C3AED",
-        "$description": "violet-600 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#A78BFA"
       },
       "700": {
-        "$value": "#6D28D9",
-        "$description": "violet-700 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#C4B5FD"
       },
       "800": {
-        "$value": "#5B21B6",
-        "$description": "violet-800 kept at LIGHT value in dark \u2014 preserves \"hover darker than rest\" semantics for action shades"
+        "$value": "#DDD6FE"
       },
       "900": {
         "$value": "#EDE9FE"
@@ -444,28 +423,28 @@
       "default": {
         "fg": {
           "rest": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated dark bg"
+            "$value": "#172554",
+            "$description": "designer-pass \u2014 restored after Phase A revert"
           },
           "hover": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated dark bg"
+            "$value": "#172554",
+            "$description": "designer-pass \u2014 restored after Phase A revert"
           },
           "active": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated dark bg"
+            "$value": "#172554",
+            "$description": "designer-pass \u2014 restored after Phase A revert"
           },
           "focus": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated dark bg"
+            "$value": "#172554",
+            "$description": "designer-pass \u2014 restored after Phase A revert"
           },
           "loading": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated dark bg"
+            "$value": "#172554",
+            "$description": "designer-pass \u2014 restored after Phase A revert"
           },
           "disabled": {
             "$value": "#A1A1AA",
-            "$description": "phase-b: white fg on saturated dark bg"
+            "$description": "designer-pass \u2014 restored after Phase A revert"
           }
         }
       },
@@ -493,90 +472,34 @@
             "$value": "#52525B"
           }
         }
-      },
-      "outline": {
-        "fg": {
-          "rest": {
-            "$value": "#60A5FA",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "hover": {
-            "$value": "#93C5FD",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "active": {
-            "$value": "#BFDBFE",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "focus": {
-            "$value": "#60A5FA",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "disabled": {
-            "$value": "#52525B",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "loading": {
-            "$value": "#3B82F6",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          }
-        }
-      },
-      "ghost": {
-        "fg": {
-          "rest": {
-            "$value": "#60A5FA",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "hover": {
-            "$value": "#93C5FD",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "active": {
-            "$value": "#BFDBFE",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "focus": {
-            "$value": "#60A5FA",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "disabled": {
-            "$value": "#52525B",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "loading": {
-            "$value": "#3B82F6",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          }
-        }
       }
     },
     "danger": {
       "default": {
         "fg": {
           "rest": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated dark bg"
+            "$value": "#450A0A",
+            "$description": "designer-pass \u2014 restored after Phase A revert"
           },
           "hover": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated dark bg"
+            "$value": "#450A0A",
+            "$description": "designer-pass \u2014 restored after Phase A revert"
           },
           "active": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated dark bg"
+            "$value": "#450A0A",
+            "$description": "designer-pass \u2014 restored after Phase A revert"
           },
           "focus": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated dark bg"
+            "$value": "#450A0A",
+            "$description": "designer-pass \u2014 restored after Phase A revert"
           },
           "loading": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated dark bg"
+            "$value": "#450A0A",
+            "$description": "designer-pass \u2014 restored after Phase A revert"
           },
           "disabled": {
             "$value": "#A1A1AA",
-            "$description": "phase-b: white fg on saturated dark bg"
+            "$description": "designer-pass \u2014 restored after Phase A revert"
           }
         }
       },
@@ -600,62 +523,6 @@
           },
           "disabled": {
             "$value": "#52525B"
-          }
-        }
-      },
-      "outline": {
-        "fg": {
-          "rest": {
-            "$value": "#F87171",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "hover": {
-            "$value": "#FCA5A5",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "active": {
-            "$value": "#FECACA",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "focus": {
-            "$value": "#F87171",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "disabled": {
-            "$value": "#52525B",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "loading": {
-            "$value": "#EF4444",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          }
-        }
-      },
-      "ghost": {
-        "fg": {
-          "rest": {
-            "$value": "#F87171",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "hover": {
-            "$value": "#FCA5A5",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "active": {
-            "$value": "#FECACA",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "focus": {
-            "$value": "#F87171",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "disabled": {
-            "$value": "#52525B",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "loading": {
-            "$value": "#EF4444",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
           }
         }
       }
@@ -705,62 +572,6 @@
           },
           "disabled": {
             "$value": "#52525B"
-          }
-        }
-      },
-      "outline": {
-        "fg": {
-          "rest": {
-            "$value": "#D4D4D8",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "hover": {
-            "$value": "#E4E4E7",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "active": {
-            "$value": "#F4F4F5",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "focus": {
-            "$value": "#D4D4D8",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "disabled": {
-            "$value": "#52525B",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "loading": {
-            "$value": "#A1A1AA",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          }
-        }
-      },
-      "ghost": {
-        "fg": {
-          "rest": {
-            "$value": "#D4D4D8",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "hover": {
-            "$value": "#E4E4E7",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "active": {
-            "$value": "#F4F4F5",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "focus": {
-            "$value": "#D4D4D8",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "disabled": {
-            "$value": "#52525B",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
-          },
-          "loading": {
-            "$value": "#A1A1AA",
-            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
           }
         }
       }
