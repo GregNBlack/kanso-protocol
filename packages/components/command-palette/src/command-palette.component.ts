@@ -74,7 +74,6 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
     <kp-dialog
       [open]="open"
       [size]="dialogSize"
-      [showHeader]="false"
       [showFooter]="false"
       [closeOnBackdrop]="true"
       [closeOnEsc]="true"

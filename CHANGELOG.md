@@ -12,6 +12,43 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-04-28 — feat(dialog): header always renders, title/description independently toggleable
+
+Removed the `[showHeader]` toggle. Header is now always rendered; its content (hero icon, title, description, close button) is controlled by individual flags. Without a title, the header collapses to "just the close X in the corner" via `:empty`-style CSS — no more crooked layout when the dialog is used chromeless.
+
+### Bumps
+
+- `@kanso-protocol/dialog` `0.1.2` → `0.2.0` *(minor — `[showHeader]` input removed; breaking for the few callers that used it)*
+- `@kanso-protocol/command-palette` (no version bump — internal template adjustment to drop the now-removed input; behavior unchanged)
+
+### What changed
+
+- `[showHeader]: boolean` removed.
+- Header markup always renders. Its content tree:
+  - `[kpDialogHeroIcon]` slot (gated by `[showHeroIcon]`)
+  - `<h2>` title (rendered only when `[title]` is non-empty)
+  - `<p>` description (rendered only when `[showDescription]` is true and `[description]` is non-empty)
+  - close `<button>` (rendered when `[showClose]` is true)
+- Close button moved from absolute positioning at the panel level to flow as a flex child inside the header. Visual position unchanged (top-right corner) but it now respects auto-layout and stays aligned even when title wraps.
+- ARIA: `aria-labelledby` is set to the title id when a title is present; otherwise `aria-label` from `[ariaLabel]` is applied to the panel.
+- Body's `--no-header` modifier removed (no longer needed); `--no-footer` retained.
+
+### Why
+
+Three rendering states were possible in the old API: `showHeader=true` with title (normal), `showHeader=true` without title (rendered an empty padded bar), `showHeader=false` (body stuck to panel edge). The first two looked broken; the third was a special chromeless mode. Collapsing the toggle and making the header self-collapse via CSS gives one shape that works for all three: title + description + close all become independently optional, and the close-only header looks clean.
+
+### Migration
+
+If you set `[showHeader]="false"` to render a chromeless dialog (e.g. for a custom modal panel), drop the prop. To suppress the close button, set `[showClose]="false"` instead — the header will collapse to nothing and the panel will look identical to the old chromeless mode.
+
+`@kanso-protocol/command-palette` ships pre-migrated; users of that component see no change.
+
+### Figma
+
+The Dialog component-set in the Kanso Figma library was updated in lockstep — Close moved into the Header frame as the last horizontal child, header padding reset to symmetric 16px on all sides. All 15 Size × Footer Layout variants synced.
+
+---
+
 ## 2026-04-28 — fix(dialog): body breathing room when header/footer is off
 
 When `[showHeader]=false` or `[showFooter]=false`, the body content sat flush against the panel edge. Now the body adds 16px padding only on the affected side — header/footer still own their own padding when present, so headered dialogs are unchanged.

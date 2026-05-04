@@ -36,7 +36,7 @@ describe('KpDialogComponent', () => {
     expect(dlg!.getAttribute('aria-modal')).toBe('true');
   });
 
-  it('wires aria-labelledby to the title element when showHeader=true', () => {
+  it('wires aria-labelledby to the title element when title is set', () => {
     fixture.componentRef.setInput('open', true);
     fixture.componentRef.setInput('title', 'Confirm delete');
     fixture.detectChanges();
@@ -46,13 +46,14 @@ describe('KpDialogComponent', () => {
     expect(document.getElementById(labelledby!)?.textContent).toContain('Confirm delete');
   });
 
-  it('uses aria-label fallback when showHeader=false', () => {
+  it('uses aria-label fallback when no title is provided', () => {
     fixture.componentRef.setInput('open', true);
-    fixture.componentRef.setInput('showHeader', false);
+    // title stays empty; ariaLabel should be applied to the panel.
     fixture.componentRef.setInput('ariaLabel', 'Standalone dialog');
     fixture.detectChanges();
     const dlg = getDialog()!;
     expect(dlg.getAttribute('aria-label')).toBe('Standalone dialog');
+    expect(dlg.getAttribute('aria-labelledby')).toBeNull();
   });
 
   it('close() emits openChange(false) and closed()', () => {

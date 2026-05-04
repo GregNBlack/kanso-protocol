@@ -56,45 +56,43 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
           class="kp-dialog__panel"
           role="dialog"
           aria-modal="true"
-          [attr.aria-labelledby]="titleId"
+          [attr.aria-labelledby]="title ? titleId : null"
           [attr.aria-describedby]="showDescription ? descId : null"
-          [attr.aria-label]="!showHeader ? ariaLabel : null"
+          [attr.aria-label]="!title ? ariaLabel : null"
           tabindex="-1"
         >
-          @if (showHeader) {
-            <header class="kp-dialog__header" [class.kp-dialog__header--has-close]="showClose">
-              @if (showHeroIcon) {
-                <div class="kp-dialog__hero">
-                  <ng-content select="[kpDialogHeroIcon]"/>
-                </div>
-              }
-              <div class="kp-dialog__text-group">
-                <h2 class="kp-dialog__title" [id]="titleId">{{ title }}</h2>
-                @if (showDescription) {
-                  <p class="kp-dialog__desc" [id]="descId">{{ description }}</p>
-                }
+          <header class="kp-dialog__header" [class.kp-dialog__header--has-close]="showClose">
+            @if (showHeroIcon) {
+              <div class="kp-dialog__hero">
+                <ng-content select="[kpDialogHeroIcon]"/>
               </div>
-            </header>
-          }
+            }
+            <div class="kp-dialog__text-group">
+              @if (title) {
+                <h2 class="kp-dialog__title" [id]="titleId">{{ title }}</h2>
+              }
+              @if (showDescription && description) {
+                <p class="kp-dialog__desc" [id]="descId">{{ description }}</p>
+              }
+            </div>
+            @if (showClose) {
+              <button
+                type="button"
+                class="kp-dialog__close"
+                aria-label="Close dialog"
+                (click)="close()"
+              >
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M18 6 L6 18 M6 6 L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+            }
+          </header>
 
-          @if (showClose) {
-            <button
-              type="button"
-              class="kp-dialog__close"
-              aria-label="Close dialog"
-              (click)="close()"
-            >
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M18 6 L6 18 M6 6 L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </button>
-          }
-
-          @if (showHeader && showHeaderDivider) { <div class="kp-dialog__divider"></div> }
+          @if (showHeaderDivider) { <div class="kp-dialog__divider"></div> }
 
           <div
             class="kp-dialog__body"
-            [class.kp-dialog__body--no-header]="!showHeader"
             [class.kp-dialog__body--no-footer]="!showFooter"
           >
             <ng-content select="[kpDialogBody]"/>
@@ -166,12 +164,17 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       align-items: flex-start;
       gap: 12px;
       padding: var(--kp-dialog-pad);
+      /* Hug close-only headers tightly so dialogs without title/description
+         don't show a giant empty bar. The text-group below has flex:1 so it
+         stays empty + zero-height when there's no title or description; the
+         flex layout collapses to just the close button on the right. */
     }
-    /* Leave room for the absolutely-positioned close button so long titles
-       don't tuck under it. */
-    .kp-dialog__header--has-close {
-      padding-inline-end: calc(var(--kp-dialog-pad) + var(--kp-dialog-close-btn) + 8px);
-    }
+    /* Empty text-group (no title, no description) collapses — header
+       becomes "just the close X" sized only by its own padding. */
+    .kp-dialog__text-group:empty { display: none; }
+    /* If the entire header is empty (no hero, no text-group, no close
+       button), collapse it so it doesn't push body down. */
+    .kp-dialog__header:empty { padding: 0; }
     .kp-dialog__hero {
       display: inline-flex;
       align-items: center;
@@ -209,9 +212,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
     }
     .kp-dialog__close {
       all: unset;
-      position: absolute;
-      top: var(--kp-dialog-pad);
-      right: var(--kp-dialog-pad);
+      flex: 0 0 auto;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -221,7 +222,11 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       color: var(--kp-color-dialog-fg-desc, var(--kp-color-gray-600));
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
-      z-index: 1;
+      /* Negative margin lets the close button sit flush with the panel
+         edge inside the header, while still flowing as a flex child. */
+      margin-inline-start: auto;
+      margin-block-start: -4px;
+      margin-inline-end: -4px;
     }
     .kp-dialog__close:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); }
     .kp-dialog__close:focus-visible {
@@ -246,11 +251,10 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       overflow: auto;
       flex: 1 1 auto;
     }
-    /* Without a header above, the body sticks to the panel's top edge —
-       same problem at the bottom when the footer is off. Add 16px breathing
-       room only on the affected sides; header/footer still own their own
-       padding when present. */
-    .kp-dialog__body--no-header { padding-top: 16px; }
+    /* Header always renders; if empty (no title, description, hero, close)
+       it self-collapses via the :empty rules above — body still gets
+       natural padding. When the footer is off, body would otherwise stick
+       to the panel bottom — keep an explicit 16px there. */
     .kp-dialog__body--no-footer { padding-bottom: 16px; }
 
     .kp-dialog__footer {
@@ -363,7 +367,6 @@ export class KpDialogComponent implements AfterViewInit, AfterViewChecked, OnDes
   @Input() size: KpDialogSize = 'md';
   @Input() title = '';
   @Input() description = '';
-  @Input() showHeader = true;
   @Input() showHeroIcon = false;
   @Input() showDescription = false;
   @Input() showClose = true;
