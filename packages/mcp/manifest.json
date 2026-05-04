@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-05-04T16:54:46.450Z",
+  "generatedAt": "2026-05-04T17:30:14.785Z",
   "version": "0.1.0",
   "totals": {
-    "components": 52,
+    "components": 53,
     "patterns": 22,
     "tokens": 900
   },
@@ -3883,6 +3883,60 @@
         "nodeId": "3805:11135",
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11135"
       }
+    },
+    {
+      "name": "virtual-list",
+      "className": "KpVirtualListComponent",
+      "selector": "kp-virtual-list",
+      "layer": "components",
+      "package": "@kanso-protocol/virtual-list",
+      "description": "Kanso Protocol — VirtualList\n\nWindow-mode virtual scroller for **fixed-height rows**. Renders only the\nrows currently visible in the viewport (plus a configurable `[overscan]`\nbuffer). Lets the consumer hand any item shape via a projected\n`<ng-template kpVirtualRow let-item let-i=\"index\">`.\n\nWhy fixed-height: keeps the math O(1) per scroll event (`scrollTop /\nitemHeight`), no measurement pass, no layout thrash. Variable-height\nsupport is on the roadmap (`KpVariableVirtualListComponent`); for now,\nsize each row to a uniform height.\n\nUse this for tables / message lists / log views with thousands of rows.\nBelow ~100 rows just render them — virtualization adds complexity for\nnegligible gain.",
+      "examples": [
+        "<kp-virtual-list\n  [items]=\"rows\"\n  [itemHeight]=\"40\"\n  [viewportHeight]=\"480\"\n  [overscan]=\"6\"\n  (rangeChange)=\"onRange($event)\"\n>\n  <ng-template kpVirtualRow let-row let-i=\"index\">\n    <div class=\"row\" [class.row--alt]=\"i % 2\">{{ row.name }}</div>\n  </ng-template>\n</kp-virtual-list>"
+      ],
+      "inputs": [
+        {
+          "name": "items",
+          "type": "readonly T[]",
+          "default": "[]",
+          "description": "The full list. The component never iterates the whole thing — only the visible window."
+        },
+        {
+          "name": "itemHeight",
+          "type": "number",
+          "default": "40",
+          "description": "Pixel height of one row. Required; must be uniform across rows."
+        },
+        {
+          "name": "viewportHeight",
+          "type": "number",
+          "default": "400",
+          "description": "Pixel height of the scroll viewport."
+        },
+        {
+          "name": "overscan",
+          "type": "number",
+          "default": "4",
+          "description": "Extra rows rendered above + below the visible window to soften scroll-flicker."
+        },
+        {
+          "name": "trackBy",
+          "type": "((index: number, item: T) => unknown) | null",
+          "default": "null",
+          "description": "Optional trackBy for the projected rows. Defaults to index — fine for stable lists."
+        }
+      ],
+      "outputs": [
+        {
+          "name": "rangeChange",
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/components/virtual-list/src/virtual-list.component\").KpVirtualRange"
+        }
+      ],
+      "ariaRole": null,
+      "sizeRamp": [],
+      "keyboardPatterns": [],
+      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-virtuallist--docs",
+      "sourcePath": "packages/components/virtual-list/src/virtual-list.component.ts"
     }
   ],
   "patterns": [

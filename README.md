@@ -297,12 +297,12 @@ export class MyComponent {
 
 ## Components
 
-40 components, each its own npm package — install only what you import. Tokens live in `@kanso-protocol/core` and need to be loaded once for any of them to render correctly.
+41 components, each its own npm package — install only what you import. Tokens live in `@kanso-protocol/core` and need to be loaded once for any of them to render correctly.
 
 Install all components in one shot (zsh / bash brace expansion):
 
 ```bash
-npm i @kanso-protocol/core @kanso-protocol/{accordion,alert,avatar,avatar-group,badge,breadcrumbs,button,card,checkbox,combobox,command-palette,datepicker,dialog,divider,drawer,empty-state,file-upload,form-field,icon,input,markdown-viewer,menu,number-stepper,pagination,popover,progress,radio,rich-text-editor,segmented-control,select,skeleton,slider,table,tabs,textarea,timepicker,toast,toggle,tooltip,tree}
+npm i @kanso-protocol/core @kanso-protocol/{accordion,alert,avatar,avatar-group,badge,breadcrumbs,button,card,checkbox,combobox,command-palette,datepicker,dialog,divider,drawer,empty-state,file-upload,form-field,icon,input,markdown-viewer,menu,number-stepper,pagination,popover,progress,radio,rich-text-editor,segmented-control,select,skeleton,slider,table,tabs,textarea,timepicker,toast,toggle,tooltip,tree,virtual-list}
 ```
 
 Or pick what you need from the catalog. Every component has a formal API contract (props, variants, states, a11y rules) and a live Storybook page with controls.
@@ -349,6 +349,7 @@ Or pick what you need from the catalog. Every component has a formal API contrac
 | Toggle | [toggle.md](docs/components/toggle.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-toggle--docs) | `npm i @kanso-protocol/toggle` |
 | Tooltip | [tooltip.md](docs/components/tooltip.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tooltip--docs) | `npm i @kanso-protocol/tooltip` |
 | Tree | [tree.md](docs/components/tree.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tree--docs) | `npm i @kanso-protocol/tree` |
+| VirtualList | [virtual-list.md](docs/components/virtual-list.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-virtuallist--docs) | `npm i @kanso-protocol/virtual-list` |
 
 Adding a new component? Start from [`docs/components/_template.md`](docs/components/_template.md).
 

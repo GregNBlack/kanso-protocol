@@ -12,6 +12,37 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-04-28 — `@kanso-protocol/virtual-list` — fixed-height window virtualization
+
+Fourth and final gap-fill from `docs/1.0-readiness.md`. Generic window-mode virtual scroller for fixed-height rows. Renders only the visible window + an overscan buffer; below ~100 rows just render normally — virtualization adds complexity for nothing.
+
+### New package
+
+- `@kanso-protocol/virtual-list@0.1.0` *(experimental)*
+
+### What it does
+
+- O(1) per-scroll math (`Math.floor(scrollTop / itemHeight)`), no measurement pass.
+- Translated window: rendered rows live inside `transform: translate3d(0, visibleStart * itemHeight, 0)`. Outer spacer keeps the scrollbar honest.
+- Generic over item shape — pass any `T[]`, project a `<ng-template kpVirtualRow let-item let-i="index">`.
+- `[overscan]` buffer for smooth scroll, `[trackBy]` for reconciliation, `(rangeChange)` event for prefetching / "showing N of M" indicators.
+- `scrollToIndex(i, 'start' | 'center' | 'end')` imperative method.
+- ARIA `role="list"` + per-row `role="listitem"` with `aria-rowcount` / `aria-rowindex`.
+
+### Why fixed-height only
+
+Variable-height needs either pre-measured heights or measure-on-mount with a position cache + careful invalidation. Both add complexity and risk reflow per scroll. Fixed-height is the 90% case (data tables, log viewers, chat scrolls). Variable-height ships separately as `<kp-variable-virtual-list>` (roadmap) so the simple fast path stays simple.
+
+### Integration with `kp-table`
+
+For >500 table rows: compose `<kp-virtual-list>` around your row cell template. A baked-in `<kp-table-virtual>` is on the roadmap so users get virtualization with zero composition glue.
+
+### Migration
+
+None — new package.
+
+---
+
 ## 2026-04-28 — `@kanso-protocol/command-palette` — standalone ⌘K-style launcher
 
 Third gap-fill from `docs/1.0-readiness.md`. Modal command launcher composing `<kp-dialog>` (chromeless) with internal input + grouped result list. Owns keyboard navigation (↑/↓/Home/End/Enter/Esc) and a configurable global open-shortcut (default `mod+k` — ⌘ on Mac, Ctrl elsewhere).
