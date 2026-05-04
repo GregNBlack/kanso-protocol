@@ -12,6 +12,32 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-05-04 — dark architecture phase C: outline / ghost fg
+
+Follow-up to phase A+B. With brand action shades now staying at light values in dark, `outline` / `ghost` button variants (transparent bg, fg sits on the page bg `#09090B`) had `blue.600 = #2563EB` as fg — only 3.74:1 against the dark page, fails AA.
+
+Phase C overrides `outline.fg.*` and `ghost.fg.*` to lighter shades for dark mode:
+
+- `primary` → `blue-400 (#60A5FA)` rest, `blue-300 (#93C5FD)` hover, `blue-200 (#BFDBFE)` active
+- `danger`  → `red-400 (#F87171)` rest, `red-300 (#FCA5A5)` hover, `red-200 (#FECACA)` active
+- `neutral` → `gray-300 (#D4D4D8)` rest, `gray-200 (#E4E4E7)` hover, `gray-100 (#F4F4F5)` active
+
+All 6 states (rest / hover / active / focus / disabled / loading) for each color × variant.
+
+### Bumps
+
+- `@kanso-protocol/core` `0.3.0` → `0.3.1`
+
+### Also in this release
+
+README clarifies the dual `tokens.css` + `_tokens.scss` story. CSS custom properties are the primary distribution; `_tokens.scss` exposes the equivalent compile-time `$kp-*` variables for legacy Sass consumers.
+
+### Migration
+
+None — pure dark-theme refinement. Light theme unchanged.
+
+---
+
 ## 2026-05-03 — dark theme architecture: split brand inversion
 
 The first big architectural pass on dark theme. Stops fighting the primitive-inversion strategy by being explicit about WHICH stops in the brand ramps should invert and which shouldn't.

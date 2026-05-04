@@ -131,12 +131,20 @@ Install the pieces you need — each component is its own package. Zero transiti
 npm install @kanso-protocol/core @kanso-protocol/button
 ```
 
-Load the CSS tokens once in your app bootstrap (e.g. `styles.scss` or `main.ts`):
+Load the tokens once in your app bootstrap. The primary distribution is **CSS custom properties** — all components consume them at runtime:
 
 ```ts
 import '@kanso-protocol/core/styles/tokens.css';
 import '@kanso-protocol/core/styles/dark.css';   // optional — enables [data-theme="dark"]
 ```
+
+**Sass / SCSS consumers** can also import the equivalent compile-time `$kp-*` variables (handy for projects that haven't migrated to CSS custom properties yet):
+
+```scss
+@use '@kanso-protocol/core/styles/tokens' as *;   // exposes $kp-color-blue-600 etc.
+```
+
+Both files are generated from the same DTCG source; pick whichever fits your stylesheet pipeline. Components themselves only depend on the CSS variables — they work identically regardless of which import you choose.
 
 Use the component as a standalone Angular import:
 
@@ -386,7 +394,7 @@ Kanso Protocol syncs with Figma via [Tokens Studio](https://tokens.studio):
 
 - **Framework:** Angular 18+
 - **Monorepo:** Nx
-- **Tokens:** W3C DTCG + Style Dictionary 4
+- **Tokens:** W3C DTCG + Style Dictionary 4 (emits CSS custom properties as the primary runtime, plus equivalent SCSS variables and TS constants for compile-time consumers)
 - **Docs:** Storybook 8
 - **Font:** [Onest](https://fonts.google.com/specimen/Onest) (Google Fonts, Cyrillic)
 - **Icons:** [Tabler Icons](https://tabler.io/icons)

@@ -493,6 +493,62 @@
             "$value": "#52525B"
           }
         }
+      },
+      "outline": {
+        "fg": {
+          "rest": {
+            "$value": "#60A5FA",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "hover": {
+            "$value": "#93C5FD",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "active": {
+            "$value": "#BFDBFE",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "focus": {
+            "$value": "#60A5FA",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "disabled": {
+            "$value": "#52525B",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "loading": {
+            "$value": "#3B82F6",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          }
+        }
+      },
+      "ghost": {
+        "fg": {
+          "rest": {
+            "$value": "#60A5FA",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "hover": {
+            "$value": "#93C5FD",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "active": {
+            "$value": "#BFDBFE",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "focus": {
+            "$value": "#60A5FA",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "disabled": {
+            "$value": "#52525B",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "loading": {
+            "$value": "#3B82F6",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          }
+        }
       }
     },
     "danger": {
@@ -546,6 +602,62 @@
             "$value": "#52525B"
           }
         }
+      },
+      "outline": {
+        "fg": {
+          "rest": {
+            "$value": "#F87171",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "hover": {
+            "$value": "#FCA5A5",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "active": {
+            "$value": "#FECACA",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "focus": {
+            "$value": "#F87171",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "disabled": {
+            "$value": "#52525B",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "loading": {
+            "$value": "#EF4444",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          }
+        }
+      },
+      "ghost": {
+        "fg": {
+          "rest": {
+            "$value": "#F87171",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "hover": {
+            "$value": "#FCA5A5",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "active": {
+            "$value": "#FECACA",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "focus": {
+            "$value": "#F87171",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "disabled": {
+            "$value": "#52525B",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "loading": {
+            "$value": "#EF4444",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          }
+        }
       }
     },
     "neutral": {
@@ -593,6 +705,62 @@
           },
           "disabled": {
             "$value": "#52525B"
+          }
+        }
+      },
+      "outline": {
+        "fg": {
+          "rest": {
+            "$value": "#D4D4D8",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "hover": {
+            "$value": "#E4E4E7",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "active": {
+            "$value": "#F4F4F5",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "focus": {
+            "$value": "#D4D4D8",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "disabled": {
+            "$value": "#52525B",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "loading": {
+            "$value": "#A1A1AA",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          }
+        }
+      },
+      "ghost": {
+        "fg": {
+          "rest": {
+            "$value": "#D4D4D8",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "hover": {
+            "$value": "#E4E4E7",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "active": {
+            "$value": "#F4F4F5",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "focus": {
+            "$value": "#D4D4D8",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "disabled": {
+            "$value": "#52525B",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
+          },
+          "loading": {
+            "$value": "#A1A1AA",
+            "$description": "phase-c: lighter brand shade for outline/ghost on dark page bg"
           }
         }
       }
