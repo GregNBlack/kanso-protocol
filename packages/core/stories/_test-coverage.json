@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-04-25T03:00:57.428Z",
+  "generatedAt": "2026-04-30T10:29:46.949Z",
   "totalSpecs": 36,
-  "totalTests": 352,
-  "totalPackages": 56,
+  "totalTests": 350,
+  "totalPackages": 57,
   "items": [
     {
       "layer": "components",
@@ -57,7 +57,7 @@
       "specFiles": [
         "packages/components/badge/src/badge.spec.ts"
       ],
-      "tests": 6
+      "tests": 7
     },
     {
       "layer": "components",
@@ -233,7 +233,7 @@
       "specFiles": [
         "packages/components/popover/src/popover.spec.ts"
       ],
-      "tests": 17
+      "tests": 15
     },
     {
       "layer": "components",
@@ -389,7 +389,7 @@
       "specFiles": [
         "packages/components/tree/src/tree.spec.ts"
       ],
-      "tests": 23
+      "tests": 22
     },
     {
       "layer": "components",
@@ -404,6 +404,11 @@
     }
   ],
   "missing": [
+    {
+      "layer": "components",
+      "name": "icon",
+      "title": "Components/Icon"
+    },
     {
       "layer": "patterns",
       "name": "app-shell",

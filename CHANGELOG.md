@@ -12,6 +12,36 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-04-28 — un-invert brand action shades + white solid-button fg (Step B of dark refactor)
+
+Step B of the dark architecture rebuild — applies the actual visual fix that Step A enabled. Solid-bg buttons now render with saturated brand bg (proper hover darkens correctly) and white fg (matches light-mode hierarchy). Accent text on the page surface is unaffected — it goes through `color.accent.*` and keeps its light-mode-readable hex.
+
+### Bumps
+
+- `@kanso-protocol/core` `0.4.0` → `0.5.0` *(observable visual change in dark mode — minor)*
+
+### What changed in `tokens/themes/dark.json`
+
+- **Brand stops `600 / 700 / 800` un-inverted** for `blue`, `red`, `green`, `amber`, `cyan`, `orange`, `violet`. They now resolve to the same saturated light-mode values (e.g. `blue.600` = `#2563EB` in both modes). Solid bg buttons get correct hover → active progression.
+- **`primary.default.fg.{rest,hover,active,focus,loading}` → `#FFFFFF`**. Same for `danger.default.fg.*`. Disabled stays at `#A1A1AA`. Pairs the saturated bg with a white label, matching the light-mode contrast intent.
+- **Subtle stops `50 / 100 / 200` remain inverted** — those drive `*.subtle.bg` (low-emphasis backgrounds) and need the dark surface treatment.
+
+### Why this didn't regress like the original phase A
+
+The fix that broke last time was un-inverting brand primitives without first decoupling the components that read them directly for text on the page. Step A added `color.accent.*` and migrated 21 components to use it. So when Step B un-inverts the primitives, only the things that *should* change (solid-bg buttons) actually change — accent text on the page goes through `accent.*-fg`, which stays at `#60A5FA` / `#F87171` / etc. and remains readable.
+
+### Migration
+
+None for token consumers using the public `--kp-color-accent-*` or `--kp-color-{primary,danger}.default.*` variables.
+
+If your own CSS reads `--kp-color-blue-600` / `red-600` / `green-600` / `amber-600` / `cyan-600` / `orange-600` / `violet-600` directly **for text colors** in dark mode, those will now look saturated. Switch to `--kp-color-accent-*-fg` to get the semantic dark-mode-readable value.
+
+### Tooling
+
+- `scripts/publish-libs.js` — added `isAlreadyPublished` skip for npm registry propagation lag (no-op for fresh versions; only kicks in when re-running after a partial publish).
+
+---
+
 ## 2026-05-04 — semantic accent tokens + component migration (Step A of dark refactor)
 
 Step A of the proper dark theme architecture rebuild — set up the right token plumbing so Phase A (un-invert action shades) can land safely in Step B. Visually a no-op: same hex values resolve in both modes, just through a new semantic layer.

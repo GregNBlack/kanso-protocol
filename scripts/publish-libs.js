@@ -76,7 +76,8 @@ async function publishOnce(pkgDir) {
     const combined = String(err.stdout || '') + String(err.stderr || '');
     const is429 = combined.includes('429') || /rate.?limit/i.test(combined) ||
                   combined.includes('Too Many Requests');
-    return { ok: false, is429, err };
+    const isAlreadyPublished = combined.includes('cannot publish over the previously published');
+    return { ok: false, is429, isAlreadyPublished, err };
   }
 }
 
@@ -93,6 +94,11 @@ async function publishOnce(pkgDir) {
     if (res.ok) {
       published.push(`${meta.name}@${meta.version}`);
       await sleep(8000); // 8s spacing — npm support's "smaller batches with spacing" advice
+      continue;
+    }
+    if (res.isAlreadyPublished) {
+      console.log(`  already published (registry propagation lag) — skipping`);
+      skipped.push(`${meta.name}@${meta.version}`);
       continue;
     }
     if (res.is429) {
