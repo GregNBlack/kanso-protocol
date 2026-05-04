@@ -12,6 +12,48 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-05-05 — refactor(tokens): semantic `color.foreground.on-saturated` primitive
+
+Aligns code tokens with the Figma library by introducing an explicit primitive for "always-white text on saturated brand backgrounds". Replaces 30 inline `{color.white}` aliases that previously needed the `#FFFFFF` override list in `dark.json` because `color.white` itself inverts to `#18181B` (the elevation surface). Same final pixels, cleaner architecture, and lets Tokens Studio sync code → Figma without overwriting the manually-added Figma primitive.
+
+### Bumps
+
+- `@kanso-protocol/core` `0.5.0` → `0.5.1` *(patch — no resolved-value changes)*
+
+### What changed
+
+- **`tokens/primitive/color.json`** — new `color.foreground.on-saturated` primitive. Stays `#FFFFFF` in BOTH modes (no dark.json override). Serves as the explicit semantic primitive for "fg on saturated brand bg" — decoupled from `color.white` which represents the elevation surface and inverts to dark.
+- **`tokens/semantic/color.json`** — 30 references retargeted from `{color.white}` → `{color.foreground.on-saturated}`:
+  - `primary.default.fg.{rest,hover,active,focus,loading}` (5)
+  - `danger.default.fg.{rest,hover,active,focus,loading}` (5)
+  - `badge.{primary,danger,success,info}.filled.fg` + `dot` (8)
+  - `alert.{primary,danger,success,info}.solid.fg-title` + `icon` + `accent` (12)
+  - `pagination.item.fg.selected` + `icon.selected` (2)
+  - `stepper.indicator.fg.{active,completed,error}` (3)
+- **`tokens/themes/dark.json`** — removed redundant `#FFFFFF` overrides on `primary.default.fg.{rest,hover,active,focus,loading}` and `danger.default.fg.*` (now flow through on-saturated automatically). `disabled` overrides retained — they need the explicit light-gray pivot since `color.gray.400` would otherwise invert to `#52525B` (too dark on saturated bg).
+
+### Resolved values: identical
+
+Light mode: `primary.default.fg.rest` = `#FFFFFF` (was `#FFFFFF`, via `color.white`).
+Dark mode: `primary.default.fg.rest` = `#FFFFFF` (was `#FFFFFF`, via the now-removed dark.json override).
+
+Same for every refactored token. Verified via `npm run build:tokens` + diff of `dark.css`.
+
+### Why this matters for Figma sync
+
+The Figma library has the same `color/foreground/on-saturated` primitive (created manually during the dark-mode refactor). With code now mirroring that structure, Tokens Studio push (code → Figma) will:
+- Match the existing primitive (no-op on values)
+- Confirm the 30 alias targets (no-op)
+- Not try to delete the on-saturated primitive
+
+Token sync is now safe to run.
+
+### Migration
+
+None for code consumers — `--kp-color-primary-default-fg-rest` etc. resolve to the same final hex. If you alias the new primitive directly: `--kp-color-foreground-on-saturated` is now public and stable across modes.
+
+---
+
 ## 2026-05-05 — feat(dialog): close button always rendered; header hugs content
 
 Iteration on the previous change. After the chromeless / Show-Header refactor, the close button was moved inside the header's flex flow. We're now removing the `[showClose]` toggle entirely — the close X is always present so the header's built-in dismiss path is consistent across every dialog. Header itself hugs its content (no min-height); the empty-header self-collapse rule from the prior commit still applies.

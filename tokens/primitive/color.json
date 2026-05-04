@@ -3,6 +3,12 @@
     "$type": "color",
     "white": { "$value": "#FFFFFF" },
     "black": { "$value": "#09090B" },
+    "foreground": {
+      "on-saturated": {
+        "$value": "#FFFFFF",
+        "$description": "Text/icon color on saturated brand backgrounds — solid buttons, filled badges, alert solid title, selected pagination items, stepper indicators. Stays #FFFFFF in BOTH modes (no dark.json override) — semantic primitive that decouples 'fg on saturated' from `color.white` (which is the elevation surface and inverts to #18181B in dark)."
+      }
+    },
     "gray": {
       "50":  { "$value": "#FAFAFA" },
       "100": { "$value": "#F4F4F5" },

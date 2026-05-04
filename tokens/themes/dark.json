@@ -440,32 +440,12 @@
       }
     },
     "primary": {
-      "$description": "Designer-pass + algorithmic state extension. .rest values picked by designer 2026-05-01; non-rest states inherit the same fg (consistent text color across hover/active/focus/loading) except disabled which moves to a muted gray pivot.",
+      "$description": "Subtle .fg picked by designer 2026-05-01. default.fg.* resolves to color.foreground.on-saturated = #FFFFFF in both modes (no override needed here). disabled needs an explicit value because gray.400 inverts naturally to a too-dark shade — light gray is more readable on saturated bg.",
       "default": {
         "fg": {
-          "rest": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated solid bg"
-          },
-          "hover": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated solid bg"
-          },
-          "active": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated solid bg"
-          },
-          "focus": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated solid bg"
-          },
-          "loading": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated solid bg"
-          },
           "disabled": {
             "$value": "#A1A1AA",
-            "$description": "phase-b: muted gray for disabled state"
+            "$description": "muted light gray — readable on saturated blue bg in dark mode"
           }
         }
       },
@@ -498,29 +478,9 @@
     "danger": {
       "default": {
         "fg": {
-          "rest": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated solid bg"
-          },
-          "hover": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated solid bg"
-          },
-          "active": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated solid bg"
-          },
-          "focus": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated solid bg"
-          },
-          "loading": {
-            "$value": "#FFFFFF",
-            "$description": "phase-b: white fg on saturated solid bg"
-          },
           "disabled": {
             "$value": "#A1A1AA",
-            "$description": "phase-b: muted gray for disabled state"
+            "$description": "muted light gray — readable on saturated red bg in dark mode"
           }
         }
       },
