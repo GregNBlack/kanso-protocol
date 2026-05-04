@@ -134,9 +134,13 @@ jobs:
             "npx wait-on tcp:6006 && npm run test:visual:update"
       - name: Commit refreshed baselines
         if: steps.mode.outputs.update == 'true'
+        # Author as the repo owner so the commit doesn't surface
+        # `github-actions[bot]` in the Contributors sidebar — the email
+        # has to be the one tied to your GitHub account so attribution
+        # maps back to it.
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "Greg N Black"
+          git config user.email "orekhovgn@gmail.com"
           git add e2e/visual.spec.ts-snapshots/
           if git diff --cached --quiet; then
             echo "No baseline diffs — nothing to commit."
