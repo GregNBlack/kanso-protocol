@@ -409,6 +409,14 @@ export class KpDialogComponent implements AfterViewInit, AfterViewChecked, OnDes
 
   ngOnDestroy(): void {
     if (this.open) this.restoreBodyScroll();
+    // The portal in ngAfterViewChecked moves our root into <body>; Angular
+    // tears down the component but doesn't follow that move, so the element
+    // is left orphaned in <body>. Remove it explicitly to prevent DOM leaks
+    // (and test-isolation flakes when multiple fixtures portal in sequence).
+    const el = this.root?.nativeElement;
+    if (el && el.parentElement === this.doc?.body) {
+      this.doc.body.removeChild(el);
+    }
   }
 
   ngOnChanges(): void {

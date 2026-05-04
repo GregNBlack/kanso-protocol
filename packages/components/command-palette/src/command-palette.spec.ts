@@ -26,9 +26,20 @@ const groups: KpCommandGroup[] = [
 ];
 
 describe('KpCommandPaletteComponent', () => {
+  let activeFixture: { destroy(): void } | null = null;
+
+  afterEach(() => {
+    // Force fixture teardown so the dialog's portal element is removed
+    // from <body> before the next test sets up. Without this the
+    // document.body queries below are non-deterministic across the suite.
+    activeFixture?.destroy();
+    activeFixture = null;
+  });
+
   function setup(open = true) {
     TestBed.configureTestingModule({ imports: [KpCommandPaletteComponent] });
     const fix = TestBed.createComponent(KpCommandPaletteComponent);
+    activeFixture = fix;
     fix.componentRef.setInput('groups', groups);
     fix.componentRef.setInput('open', open);
     fix.detectChanges();
@@ -138,9 +149,14 @@ describe('KpCommandPaletteComponent', () => {
   });
 
   it('renders empty state when no items', () => {
-    const { fix } = setup();
+    const { fix, cmp } = setup();
     fix.componentRef.setInput('groups', []);
     fix.detectChanges();
-    expect(document.body.textContent).toContain('No results found');
+    expect(cmp.totalItems).toBe(0);
+    // Query only the empty-state element. document.body.textContent would
+    // also pick up content from prior fixtures' orphaned dialog portals
+    // (until the dialog destroy-cleanup ships) — this stays test-order-safe.
+    const empty = document.body.querySelector('.kp-cmdk__empty');
+    expect(empty?.textContent?.trim()).toBe('No results found');
   });
 });

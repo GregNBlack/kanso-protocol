@@ -12,6 +12,25 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-04-28 — fix(dialog): clean up portal element on destroy
+
+`<kp-dialog>` portals its root into `<body>` via `appendChild` to escape transformed / clipped ancestors. The portal moves the element out of Angular's view tree, so `ngOnDestroy` was leaving the orphaned element in `<body>` after the component went away — a slow-grow DOM leak in long-lived apps that mount and unmount dialogs frequently, and the cause of test-isolation flakes when multiple `<kp-command-palette>` fixtures ran in sequence (the prior test's dialog stayed in body, polluting `document.body.textContent` queries).
+
+### Bumps
+
+- `@kanso-protocol/dialog` `0.1.0` → `0.1.1` *(patch — no API change)*
+
+### What changed
+
+- `KpDialogComponent.ngOnDestroy` now removes its root from `document.body` if it had been portaled there. Pairs with the existing `appendChild` lazy-portal in `ngAfterViewChecked`.
+- `command-palette.spec.ts` — added an `afterEach` that explicitly destroys the active fixture, plus narrowed the empty-state assertion to query the `.kp-cmdk__empty` element directly instead of reading `document.body.textContent` (which would have been polluted by orphaned portals across the test run).
+
+### Migration
+
+None. Behavior is strictly better — no consumer change needed.
+
+---
+
 ## 2026-04-28 — i18n migration: timepicker + file-upload + command-palette + search-bar
 
 Closes the i18n cross-cutting work in `docs/1.0-readiness.md` (item 2). Every component that hardcoded English strings or AM/PM markers now reads through `KP_STRINGS` / `kpDayPeriod()`. Existing English consumers see no change — defaults match prior literals.
