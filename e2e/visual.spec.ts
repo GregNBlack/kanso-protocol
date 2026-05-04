@@ -25,7 +25,7 @@ interface StorySpec {
 const STORIES: StorySpec[] = [
   // Atoms
   { id: 'components-button--default',         name: 'button — default' },
-  { id: 'components-button--variants',        name: 'button — variants showcase' },
+  { id: 'components-button--all-variants',    name: 'button — all variants' },
   { id: 'components-badge--default',          name: 'badge — default' },
   { id: 'components-input--default',          name: 'input — default' },
   { id: 'components-checkbox--default',       name: 'checkbox — default' },
@@ -37,7 +37,7 @@ const STORIES: StorySpec[] = [
   { id: 'components-tabs--default',           name: 'tabs — default' },
   { id: 'components-table--default',          name: 'table — default' },
   // Patterns / examples
-  { id: 'patterns-header--default',           name: 'header pattern' },
+  { id: 'patterns-header--saa-s-app',         name: 'header — SaaS app shell' },
   { id: 'examples-dashboard--default',        name: 'dashboard example' },
 ];
 
