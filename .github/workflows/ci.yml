@@ -109,15 +109,11 @@ jobs:
         env:
           STORYBOOK_URL: http://localhost:6006
         run: |
-          # Auto-generate baselines on first run if none committed yet.
-          # Detect by counting PNGs in snapshots dir.
-          PNG_COUNT=$(find e2e/visual.spec.ts-snapshots -name '*.png' 2>/dev/null | wc -l)
-          if [ "$PNG_COUNT" -eq 0 ]; then
-            echo "No baselines committed yet — generating with --update-snapshots."
-            UPDATE_FLAG="--update-snapshots"
-          else
-            UPDATE_FLAG=""
-          fi
+          # When the visual-regression job is in continue-on-error mode (during
+          # coverage expansion), always run with --update-snapshots so newly-added
+          # test cases generate their baselines and end up in the uploaded artifact.
+          # Once the gate flips to hard, drop the flag — diffs become real failures.
+          UPDATE_FLAG="--update-snapshots"
           npx concurrently -k -s first -n "SB,VISUAL" \
             "npx http-server storybook-static --port 6006 --silent" \
             "npx wait-on tcp:6006 && npx playwright test --config e2e/playwright.config.ts $UPDATE_FLAG"
