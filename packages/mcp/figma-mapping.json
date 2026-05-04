@@ -14,9 +14,7 @@
     "cover":       { "id": "6:2",     "name": "📖 Cover" }
   },
   "iconLibrary": {
-    "fileKey": "0bgkes9nJYbk0vonduKaVZ",
-    "name": "Tabler Icon Pack",
-    "$comment": "Single source of icon glyphs for Kanso. The Icon component wraps an instance from this library."
+    "$comment": "Tabler icons used in this library are now detached (inlined into the Kanso file) so community duplicators don't need an external library subscription. To add NEW icons inside Figma, use the official Tabler Icons plugin and drag glyphs in directly. The previous external file ref (0bgkes9nJYbk0vonduKaVZ) has been removed — every icon node now lives locally."
   },
   "components": {
     "button":            "3805:10993",

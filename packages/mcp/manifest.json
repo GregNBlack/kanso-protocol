@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-05-04T22:59:09.761Z",
+  "generatedAt": "2026-05-04T23:43:21.388Z",
   "version": "0.1.0",
   "totals": {
     "components": 53,
     "patterns": 22,
-    "tokens": 900
+    "tokens": 901
   },
   "figma": {
     "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
@@ -41,9 +41,7 @@
       }
     },
     "iconLibrary": {
-      "fileKey": "0bgkes9nJYbk0vonduKaVZ",
-      "name": "Tabler Icon Pack",
-      "$comment": "Single source of icon glyphs for Kanso. The Icon component wraps an instance from this library."
+      "$comment": "Tabler icons used in this library are now detached (inlined into the Kanso file) so community duplicators don't need an external library subscription. To add NEW icons inside Figma, use the official Tabler Icons plugin and drag glyphs in directly. The previous external file ref (0bgkes9nJYbk0vonduKaVZ) has been removed — every icon node now lives locally."
     },
     "foundations": {
       "typography": "3043:2",
@@ -5682,6 +5680,12 @@
       "subPath": "black"
     },
     {
+      "name": "--kp-color-foreground-on-saturated",
+      "value": "#ffffff",
+      "category": "color",
+      "subPath": "foreground-on-saturated"
+    },
+    {
       "name": "--kp-color-gray-50",
       "value": "#fafafa",
       "category": "color",
@@ -7183,25 +7187,25 @@
     },
     {
       "name": "--kp-color-primary-default-fg-rest",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "primary-default-fg-rest"
     },
     {
       "name": "--kp-color-primary-default-fg-hover",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "primary-default-fg-hover"
     },
     {
       "name": "--kp-color-primary-default-fg-active",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "primary-default-fg-active"
     },
     {
       "name": "--kp-color-primary-default-fg-focus",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "primary-default-fg-focus"
     },
@@ -7213,7 +7217,7 @@
     },
     {
       "name": "--kp-color-primary-default-fg-loading",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "primary-default-fg-loading"
     },
@@ -7507,25 +7511,25 @@
     },
     {
       "name": "--kp-color-danger-default-fg-rest",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "danger-default-fg-rest"
     },
     {
       "name": "--kp-color-danger-default-fg-hover",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "danger-default-fg-hover"
     },
     {
       "name": "--kp-color-danger-default-fg-active",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "danger-default-fg-active"
     },
     {
       "name": "--kp-color-danger-default-fg-focus",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "danger-default-fg-focus"
     },
@@ -7537,7 +7541,7 @@
     },
     {
       "name": "--kp-color-danger-default-fg-loading",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "danger-default-fg-loading"
     },
@@ -8515,19 +8519,19 @@
     },
     {
       "name": "--kp-color-stepper-indicator-fg-active",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "stepper-indicator-fg-active"
     },
     {
       "name": "--kp-color-stepper-indicator-fg-completed",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "stepper-indicator-fg-completed"
     },
     {
       "name": "--kp-color-stepper-indicator-fg-error",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "stepper-indicator-fg-error"
     },
@@ -8641,7 +8645,7 @@
     },
     {
       "name": "--kp-color-badge-primary-filled-fg",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "badge-primary-filled-fg"
     },
@@ -8653,7 +8657,7 @@
     },
     {
       "name": "--kp-color-badge-primary-filled-dot",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "badge-primary-filled-dot"
     },
@@ -8713,7 +8717,7 @@
     },
     {
       "name": "--kp-color-badge-danger-filled-fg",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "badge-danger-filled-fg"
     },
@@ -8725,7 +8729,7 @@
     },
     {
       "name": "--kp-color-badge-danger-filled-dot",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "badge-danger-filled-dot"
     },
@@ -8785,7 +8789,7 @@
     },
     {
       "name": "--kp-color-badge-success-filled-fg",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "badge-success-filled-fg"
     },
@@ -8797,7 +8801,7 @@
     },
     {
       "name": "--kp-color-badge-success-filled-dot",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "badge-success-filled-dot"
     },
@@ -8929,7 +8933,7 @@
     },
     {
       "name": "--kp-color-badge-info-filled-fg",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "badge-info-filled-fg"
     },
@@ -8941,7 +8945,7 @@
     },
     {
       "name": "--kp-color-badge-info-filled-dot",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "badge-info-filled-dot"
     },
@@ -9109,7 +9113,7 @@
     },
     {
       "name": "--kp-color-alert-primary-solid-fg-title",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "alert-primary-solid-fg-title"
     },
@@ -9127,13 +9131,13 @@
     },
     {
       "name": "--kp-color-alert-primary-solid-icon",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "alert-primary-solid-icon"
     },
     {
       "name": "--kp-color-alert-primary-solid-accent",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "alert-primary-solid-accent"
     },
@@ -9253,7 +9257,7 @@
     },
     {
       "name": "--kp-color-alert-danger-solid-fg-title",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "alert-danger-solid-fg-title"
     },
@@ -9271,13 +9275,13 @@
     },
     {
       "name": "--kp-color-alert-danger-solid-icon",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "alert-danger-solid-icon"
     },
     {
       "name": "--kp-color-alert-danger-solid-accent",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "alert-danger-solid-accent"
     },
@@ -9397,7 +9401,7 @@
     },
     {
       "name": "--kp-color-alert-success-solid-fg-title",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "alert-success-solid-fg-title"
     },
@@ -9415,13 +9419,13 @@
     },
     {
       "name": "--kp-color-alert-success-solid-icon",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "alert-success-solid-icon"
     },
     {
       "name": "--kp-color-alert-success-solid-accent",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "alert-success-solid-accent"
     },
@@ -9685,7 +9689,7 @@
     },
     {
       "name": "--kp-color-alert-info-solid-fg-title",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "alert-info-solid-fg-title"
     },
@@ -9703,13 +9707,13 @@
     },
     {
       "name": "--kp-color-alert-info-solid-icon",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "alert-info-solid-icon"
     },
     {
       "name": "--kp-color-alert-info-solid-accent",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "alert-info-solid-accent"
     },
@@ -10507,7 +10511,7 @@
     },
     {
       "name": "--kp-color-pagination-item-fg-selected",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "pagination-item-fg-selected"
     },
@@ -10537,7 +10541,7 @@
     },
     {
       "name": "--kp-color-pagination-item-icon-selected",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "pagination-item-icon-selected"
     },
