@@ -81,18 +81,17 @@ jobs:
   visual-regression:
     # Pixel-level visual regression against committed baselines in
     # e2e/visual.spec.ts-snapshots/. Curated set of representative stories
-    # (see e2e/visual.spec.ts), both light + dark.
+    # (see e2e/visual.spec.ts), both light + dark. **Hard gate** — any diff
+    # above maxDiffPixelRatio (1%) fails the build.
     #
     # On intentional visual changes: locally run `npm run test:visual:update`
-    # and commit the new PNGs alongside the source change.
-    #
-    # First-run setup:
-    #   1. continue-on-error stays true while the snapshots dir is empty —
-    #      CI uploads the freshly-generated PNGs as `visual-diffs` artifacts.
-    #   2. Download those artifacts, commit them to e2e/visual.spec.ts-snapshots/.
-    #   3. Flip continue-on-error to false to make this a hard gate.
+    # and commit the new PNGs alongside the source change. Always inspect the
+    # diff before committing — easy way to catch unintentional bg shifts in
+    # token PRs.
     name: visual-regression
     runs-on: ubuntu-latest
+    # Temporarily continue-on-error while expanding coverage — flips to hard
+    # gate after the next commit lands the freshly-seeded baselines.
     continue-on-error: true
     needs: build
     steps:
