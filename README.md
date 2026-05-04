@@ -297,12 +297,12 @@ export class MyComponent {
 
 ## Components
 
-37 components, each its own npm package — install only what you import. Tokens live in `@kanso-protocol/core` and need to be loaded once for any of them to render correctly.
+38 components, each its own npm package — install only what you import. Tokens live in `@kanso-protocol/core` and need to be loaded once for any of them to render correctly.
 
 Install all components in one shot (zsh / bash brace expansion):
 
 ```bash
-npm i @kanso-protocol/core @kanso-protocol/{accordion,alert,avatar,avatar-group,badge,breadcrumbs,button,card,checkbox,combobox,datepicker,dialog,divider,drawer,empty-state,form-field,icon,input,menu,number-stepper,pagination,popover,progress,radio,rich-text-editor,segmented-control,select,skeleton,slider,table,tabs,textarea,timepicker,toast,toggle,tooltip,tree}
+npm i @kanso-protocol/core @kanso-protocol/{accordion,alert,avatar,avatar-group,badge,breadcrumbs,button,card,checkbox,combobox,datepicker,dialog,divider,drawer,empty-state,file-upload,form-field,icon,input,menu,number-stepper,pagination,popover,progress,radio,rich-text-editor,segmented-control,select,skeleton,slider,table,tabs,textarea,timepicker,toast,toggle,tooltip,tree}
 ```
 
 Or pick what you need from the catalog. Every component has a formal API contract (props, variants, states, a11y rules) and a live Storybook page with controls.
@@ -325,6 +325,7 @@ Or pick what you need from the catalog. Every component has a formal API contrac
 | Drawer | [drawer.md](docs/components/drawer.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-drawer--docs) | `npm i @kanso-protocol/drawer` |
 | DropdownMenu | [dropdown-menu.md](docs/components/dropdown-menu.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-dropdownmenu--docs) | `npm i @kanso-protocol/menu` |
 | EmptyState | [empty-state.md](docs/components/empty-state.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-emptystate--docs) | `npm i @kanso-protocol/empty-state` |
+| FileUpload | [file-upload.md](docs/components/file-upload.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-fileupload--docs) | `npm i @kanso-protocol/file-upload` |
 | FormField | [form-field.md](docs/components/form-field.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-formfield--docs) | `npm i @kanso-protocol/form-field` |
 | Icon | [icon.md](docs/components/icon.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-icon--docs) | `npm i @kanso-protocol/icon` |
 | Input | [input.md](docs/components/input.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-input--docs) | `npm i @kanso-protocol/input` |

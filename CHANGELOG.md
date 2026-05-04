@@ -12,6 +12,37 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-04-28 — `@kanso-protocol/file-upload` — drag-and-drop dropzone
+
+First component closing a `1.0` gap from `docs/1.0-readiness.md`. Drag-and-drop + click-to-browse with constraint validation (`accept` / `maxSize` / `maxFiles`) and a managed file list. The component owns the row state; the consumer drives upload progress via `setProgress(id, n)` and finalizes via `setStatus(id, 'success' | 'error')`.
+
+### New package
+
+- `@kanso-protocol/file-upload@0.1.0` *(experimental)*
+
+### What's in the box
+
+- Two layouts: `appearance="default"` (vertical zone with icon + label) and `appearance="compact"` (single-row strip for dialogs / form sections).
+- Three sizes: `sm` / `md` / `lg`.
+- A11y: zone is `role="button"` with keyboard activation (`Enter` / `Space`); per-row progress is `role="progressbar"` with proper aria values.
+- `(filesAdded)` / `(filesRejected)` / `(fileRemoved)` event surface.
+- `setProgress(id, n)` + `setStatus(id, status, error?)` imperative methods for the consumer to drive upload state.
+- Token-only colors via `color.accent.{primary,danger,success}.fg` — auto-correct in dark mode.
+
+### Tests + docs
+
+- 13-case spec covering ingest, multi vs single, rejection by size / count / type, removal, progress + status mutation, format helpers, disabled state.
+- `docs/components/file-upload.md` contract.
+- README catalog row + total bumped 37 → 38.
+
+### Open questions before promoting to `beta`
+
+- Server upload contract is consumer-implemented — Kanso could ship a reference adapter (XHR / fetch with progress events) as a separate `*-upload-adapter` package or guide.
+- `accept` is OS-level only (filters the picker dialog, doesn't validate magic bytes). Document that re-validation on the server is required.
+- No image preview thumbnail variant yet — TBD in a follow-up.
+
+---
+
 ## 2026-04-28 — un-invert brand action shades + white solid-button fg (Step B of dark refactor)
 
 Step B of the dark architecture rebuild — applies the actual visual fix that Step A enabled. Solid-bg buttons now render with saturated brand bg (proper hover darkens correctly) and white fg (matches light-mode hierarchy). Accent text on the page surface is unaffected — it goes through `color.accent.*` and keeps its light-mode-readable hex.

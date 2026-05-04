@@ -1,0 +1,27 @@
+{
+  "name": "@kanso-protocol/file-upload",
+  "version": "0.1.0",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/core": "^18.0.0",
+    "@angular/common": "^18.0.0",
+    "@kanso-protocol/core": "^0.0.1"
+  },
+  "description": "Kanso Protocol — file-upload (component).",
+  "author": "GregNBlack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GregNBlack/kanso-protocol.git",
+    "directory": "packages/components/file-upload"
+  },
+  "homepage": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-file-upload--docs",
+  "bugs": "https://github.com/GregNBlack/kanso-protocol/issues",
+  "keywords": [
+    "design-system",
+    "angular",
+    "kanso",
+    "file-upload",
+    "dropzone"
+  ],
+  "sideEffects": false
+}

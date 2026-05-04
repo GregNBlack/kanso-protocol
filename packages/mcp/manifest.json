@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-04-25T16:00:10.020Z",
+  "generatedAt": "2026-05-04T14:56:47.054Z",
   "version": "0.1.0",
   "totals": {
-    "components": 49,
+    "components": 50,
     "patterns": 22,
-    "tokens": 895
+    "tokens": 900
   },
   "figma": {
     "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
@@ -399,7 +399,7 @@
       "package": "@kanso-protocol/badge",
       "description": "Kanso Protocol — Badge\n\nCompact label for statuses, tags, and counters. 3 sizes × 4 appearances\n× 6 color roles. A leading dot and a leading icon are independent\noptional slots; the dot appearance drops the background and border so\nthe dot becomes the only colour cue.",
       "examples": [
-        "<kp-badge color=\"success\">Active</kp-badge>\n<kp-badge appearance=\"dot\" color=\"warning\" [showLeadingDot]=\"true\">Away</kp-badge>\n<kp-badge pill [closable]=\"true\" color=\"neutral\" appearance=\"subtle\" (close)=\"remove()\">Design</kp-badge>"
+        "<kp-badge color=\"success\">Active</kp-badge>\n<kp-badge appearance=\"dot\" color=\"warning\" [showLeadingDot]=\"true\">Away</kp-badge>\n<kp-badge pill [closable]=\"true\" color=\"neutral\" appearance=\"subtle\" (close)=\"remove()\">Design</kp-badge>\n<kp-badge size=\"xs\" color=\"danger\" [count]=\"true\">12</kp-badge>"
       ],
       "inputs": [
         {
@@ -425,6 +425,12 @@
           "type": "boolean",
           "default": "false",
           "description": ""
+        },
+        {
+          "name": "count",
+          "type": "boolean",
+          "default": "false",
+          "description": "Counter shape: a tight circle for short numeric content (notification badges, \"1\", \"12\", \"99+\"). Use `pill` for word-bearing chips."
         },
         {
           "name": "showLeadingDot",
@@ -519,7 +525,9 @@
         "sm",
         "md"
       ],
-      "keyboardPatterns": [],
+      "keyboardPatterns": [
+        "Home"
+      ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-breadcrumbs--docs",
       "sourcePath": "packages/components/breadcrumbs/src/breadcrumb-item.component.ts",
       "figma": {
@@ -706,7 +714,7 @@
         }
       ],
       "outputs": [],
-      "ariaRole": null,
+      "ariaRole": "button",
       "sizeRamp": [
         "xs",
         "sm",
@@ -714,7 +722,10 @@
         "lg",
         "xl"
       ],
-      "keyboardPatterns": [],
+      "keyboardPatterns": [
+        "Enter",
+        "Space"
+      ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-button--docs",
       "sourcePath": "packages/components/button/src/button.component.ts",
       "figma": {
@@ -872,6 +883,12 @@
           "type": "boolean",
           "default": "true",
           "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "type": "string | null",
+          "default": "null",
+          "description": "Accessible name for screen readers when no visible label is projected. Falls through to projected text content otherwise."
         }
       ],
       "outputs": [
@@ -1485,6 +1502,105 @@
       }
     },
     {
+      "name": "file-upload",
+      "className": "KpFileUploadComponent",
+      "selector": "kp-file-upload",
+      "layer": "components",
+      "package": "@kanso-protocol/file-upload",
+      "description": "Kanso Protocol — FileUpload (dropzone)\n\nClick-to-browse + drag-and-drop. Constraints:\n`[accept]` MIME / extension list, `[maxSize]` bytes per file,\n`[maxFiles]` total count, `[multiple]` toggle.\n\nEmits `(filesAdded)` for accepted files (the consumer owns the upload\nloop and reports back via `setProgress` / `setStatus`) and\n`(filesRejected)` for the rest. Selected files are tracked in `files`\nso the UI can show a status list with progress + remove.",
+      "examples": [
+        "<kp-file-upload\n  [multiple]=\"true\"\n  accept=\"image/*,.pdf\"\n  [maxSize]=\"5 * 1024 * 1024\"\n  [maxFiles]=\"10\"\n  (filesAdded)=\"upload($event)\"\n  (filesRejected)=\"warn($event)\"\n  (fileRemoved)=\"cancel($event)\"\n/>"
+      ],
+      "inputs": [
+        {
+          "name": "size",
+          "type": "KpFileUploadSize",
+          "default": "'md'",
+          "description": ""
+        },
+        {
+          "name": "appearance",
+          "type": "KpFileUploadAppearance",
+          "default": "'default'",
+          "description": ""
+        },
+        {
+          "name": "multiple",
+          "type": "boolean",
+          "default": "false",
+          "description": ""
+        },
+        {
+          "name": "accept",
+          "type": "string | null",
+          "default": "null",
+          "description": ""
+        },
+        {
+          "name": "maxSize",
+          "type": "number | null",
+          "default": "null",
+          "description": "Max bytes per file. `null` = no limit."
+        },
+        {
+          "name": "maxFiles",
+          "type": "number | null",
+          "default": "null",
+          "description": "Max total file count. `null` = no limit."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "description": ""
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "default": "'Drop files here or click to browse'",
+          "description": ""
+        },
+        {
+          "name": "hint",
+          "type": "string | null",
+          "default": "null",
+          "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "type": "string | null",
+          "default": "'File upload'",
+          "description": ""
+        }
+      ],
+      "outputs": [
+        {
+          "name": "filesAdded",
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/components/file-upload/src/file-upload.component\").KpUploadFile[]"
+        },
+        {
+          "name": "filesRejected",
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/components/file-upload/src/file-upload.component\").KpFileRejection[]"
+        },
+        {
+          "name": "fileRemoved",
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/components/file-upload/src/file-upload.component\").KpUploadFile"
+        }
+      ],
+      "ariaRole": null,
+      "sizeRamp": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "keyboardPatterns": [
+        "Enter",
+        "Space"
+      ],
+      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-fileupload--docs",
+      "sourcePath": "packages/components/file-upload/src/file-upload.component.ts"
+    },
+    {
       "name": "form-field",
       "className": "KpFormFieldComponent",
       "selector": "kp-form-field",
@@ -1721,7 +1837,7 @@
           "payload": "void"
         }
       ],
-      "ariaRole": "menu",
+      "ariaRole": null,
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-menu--docs",
@@ -2217,6 +2333,12 @@
           "type": "boolean",
           "default": "true",
           "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "type": "string | null",
+          "default": "null",
+          "description": "Accessible name override; falls through to title or \"Popover\"."
         }
       ],
       "outputs": [
@@ -2282,6 +2404,12 @@
           "type": "boolean",
           "default": "false",
           "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "type": "string",
+          "default": "'Progress'",
+          "description": "Accessible name for screen readers."
         }
       ],
       "outputs": [],
@@ -2356,6 +2484,12 @@
           "type": "string",
           "default": "''",
           "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "type": "string | null",
+          "default": "null",
+          "description": "Override the accessible name for screen readers. Falls back to the visible `label` if set, otherwise \"Progress\"."
         }
       ],
       "outputs": [],
@@ -2433,6 +2567,12 @@
           "type": "string | null",
           "default": "null",
           "description": "Overrides the auto-generated \"Step X of Y\" text"
+        },
+        {
+          "name": "ariaLabel",
+          "type": "string",
+          "default": "'Progress'",
+          "description": "Accessible name for screen readers."
         }
       ],
       "outputs": [],
@@ -2557,6 +2697,12 @@
           "type": "boolean",
           "default": "true",
           "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "type": "string | null",
+          "default": "null",
+          "description": "Accessible name for screen readers when no visible label is projected."
         }
       ],
       "outputs": [
@@ -3141,7 +3287,10 @@
         "md",
         "lg"
       ],
-      "keyboardPatterns": [],
+      "keyboardPatterns": [
+        "Enter",
+        "Space"
+      ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tabs--docs",
       "sourcePath": "packages/components/tabs/src/tab.component.ts",
       "figma": {
@@ -3175,7 +3324,7 @@
         }
       ],
       "outputs": [],
-      "ariaRole": "tablist",
+      "ariaRole": null,
       "sizeRamp": [
         "sm",
         "md",
@@ -3465,6 +3614,12 @@
           "type": "boolean",
           "default": "true",
           "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "type": "string | null",
+          "default": "null",
+          "description": "Accessible name for screen readers when no visible label is projected."
         }
       ],
       "outputs": [
@@ -6764,6 +6919,36 @@
       "value": "32px",
       "category": "layout",
       "subPath": "container-padding-lg"
+    },
+    {
+      "name": "--kp-color-accent-primary-fg",
+      "value": "var(--kp-color-blue-600)",
+      "category": "color",
+      "subPath": "accent-primary-fg"
+    },
+    {
+      "name": "--kp-color-accent-danger-fg",
+      "value": "var(--kp-color-red-600)",
+      "category": "color",
+      "subPath": "accent-danger-fg"
+    },
+    {
+      "name": "--kp-color-accent-success-fg",
+      "value": "var(--kp-color-green-600)",
+      "category": "color",
+      "subPath": "accent-success-fg"
+    },
+    {
+      "name": "--kp-color-accent-warning-fg",
+      "value": "var(--kp-color-amber-600)",
+      "category": "color",
+      "subPath": "accent-warning-fg"
+    },
+    {
+      "name": "--kp-color-accent-info-fg",
+      "value": "var(--kp-color-cyan-600)",
+      "category": "color",
+      "subPath": "accent-info-fg"
     },
     {
       "name": "--kp-color-primary-default-bg-rest",
