@@ -49,6 +49,13 @@ export interface KpLocaleStrings {
   previousMonth: string;
   nextMonth: string;
 
+  // Timepicker columns + footer
+  timeHour: string;
+  timeMinute: string;
+  timeSecond: string;
+  timeDayPeriod: string;
+  timeNow: string;
+
   // File upload
   dropzoneTitle: string;
   dropzoneRemove: (filename: string) => string;
@@ -82,6 +89,12 @@ export const KP_DEFAULT_STRINGS_EN: KpLocaleStrings = {
   selectTime: 'Select time',
   previousMonth: 'Previous month',
   nextMonth: 'Next month',
+
+  timeHour: 'Hour',
+  timeMinute: 'Min',
+  timeSecond: 'Sec',
+  timeDayPeriod: 'AM/PM',
+  timeNow: 'Now',
 
   dropzoneTitle: 'Drop files here or click to browse',
   dropzoneRemove: (filename) => `Remove ${filename}`,

@@ -12,6 +12,73 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-04-28 — i18n migration: timepicker + file-upload + command-palette + search-bar
+
+Closes the i18n cross-cutting work in `docs/1.0-readiness.md` (item 2). Every component that hardcoded English strings or AM/PM markers now reads through `KP_STRINGS` / `kpDayPeriod()`. Existing English consumers see no change — defaults match prior literals.
+
+### Bumps
+
+- `@kanso-protocol/i18n` `0.1.0` → `0.2.0` *(new keys: `timeHour`, `timeMinute`, `timeSecond`, `timeDayPeriod`, `timeNow` — minor, additive)*
+- `@kanso-protocol/timepicker` `0.1.0` → `0.2.0`
+- `@kanso-protocol/file-upload` `0.1.0` → `0.2.0`
+- `@kanso-protocol/command-palette` `0.1.0` → `0.2.0`
+- `@kanso-protocol/search-bar` `0.1.1` → `0.2.0`
+
+### What changed
+
+**`@kanso-protocol/i18n`**
+- Five new keys for timepicker chrome: `timeHour`, `timeMinute`, `timeSecond`, `timeDayPeriod`, `timeNow`. English defaults match the prior hardcoded literals (`'Hour'`, `'Min'`, `'Sec'`, `'AM/PM'`, `'Now'`).
+
+**`@kanso-protocol/timepicker`** *(0.2.0 minor — new i18n peer)*
+- AM/PM markers in trigger text and column buttons now from `kpDayPeriod(0|13, locale)` — locale-aware (`AM`/`PM` in en-US, `am`/`pm` lowercase in en-GB, period markers in other locales). Falls back to `'AM'`/`'PM'` if the locale uses 24h format only.
+- Column labels (`Hour` / `Min` / `Sec` / `AM/PM`) read from `KP_STRINGS`.
+- Footer buttons now `strings.timeNow` / `strings.cancel` / `strings.confirm` (was hardcoded `Now` / `Cancel` / `Apply`).
+- ARIA labels (`Clear time`, `Choose time`) bound to `strings.clear` / `strings.selectTime`.
+- `[placeholder]` input now `string | null`; `null` falls through to `strings.selectTime`.
+
+**`@kanso-protocol/file-upload`** *(0.2.0 minor — new i18n peer)*
+- `[title]`, `[ariaLabel]` now `string | null`; `null` falls through to `strings.dropzoneTitle`.
+- "Uploaded" status pill now `strings.dropzoneUploaded`.
+- Per-row remove button aria-label now `strings.dropzoneRemove(filename)` (function-typed string in the registry).
+
+**`@kanso-protocol/command-palette`** *(0.2.0 minor — new i18n peer)*
+- `[placeholder]`, `[emptyMessage]`, `[ariaLabel]` now `string | null`; `null` falls through to `strings.commandPalettePlaceholder` / `strings.noResults` / `'Command palette'` respectively.
+
+**`@kanso-protocol/search-bar`** *(0.2.0 minor — new i18n peer)*
+- `[placeholder]` now falls through to `strings.searchPlaceholder` when `null`.
+- `[shortcutHint]` now falls through to `strings.commandPaletteHint` (default `⌘K`) when `null`.
+
+### Migration
+
+For consumers using English: **no action needed** — every hardcoded literal becomes the corresponding `KP_DEFAULT_STRINGS_EN` value, byte-for-byte.
+
+For consumers passing custom strings via `[title]` / `[placeholder]` / etc.: keep doing what you do — the explicit input still wins over the registry.
+
+For consumers wanting full localization:
+
+```ts
+providers: [
+  { provide: KP_LOCALE, useValue: 'fr-FR' },
+  { provide: KP_STRINGS, useValue: {
+      clear: 'Effacer',
+      cancel: 'Annuler',
+      confirm: 'Valider',
+      timeNow: 'Maintenant',
+      timeHour: 'Heure', timeMinute: 'Min', timeSecond: 'Sec',
+      dropzoneTitle: 'Déposez vos fichiers ici',
+      dropzoneRemove: (n) => `Supprimer ${n}`,
+      dropzoneUploaded: 'Envoyé',
+      commandPalettePlaceholder: 'Commande ou recherche…',
+      noResults: 'Aucun résultat',
+      searchPlaceholder: 'Rechercher…',
+  }},
+]
+```
+
+`docs/i18n.md` updated with the per-component status table.
+
+---
+
 ## 2026-04-28 — `@kanso-protocol/i18n` + datepicker locale-aware
 
 First step on the i18n cross-cutting work in `docs/1.0-readiness.md`. Ships a small DI-backed i18n primitive layer and migrates the datepicker as proof.

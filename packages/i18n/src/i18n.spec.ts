@@ -76,6 +76,7 @@ describe('@kanso-protocol/i18n', () => {
         'close', 'clear', 'cancel', 'confirm', 'loading', 'noResults',
         'today', 'yesterday', 'thisWeek', 'lastWeek', 'thisMonth', 'lastMonth',
         'selectDate', 'selectTime', 'previousMonth', 'nextMonth',
+        'timeHour', 'timeMinute', 'timeSecond', 'timeDayPeriod', 'timeNow',
         'dropzoneTitle', 'dropzoneRemove', 'dropzoneUploaded',
         'searchPlaceholder', 'commandPaletteHint', 'commandPalettePlaceholder',
       ];

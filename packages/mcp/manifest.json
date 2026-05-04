@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-04T17:56:57.469Z",
+  "generatedAt": "2026-05-04T18:58:32.461Z",
   "version": "0.1.0",
   "totals": {
     "components": 53,
@@ -1050,20 +1050,20 @@
         },
         {
           "name": "placeholder",
-          "type": "string",
-          "default": "'Type a command or search…'",
+          "type": "string | null",
+          "default": "null",
           "description": ""
         },
         {
           "name": "emptyMessage",
-          "type": "string",
-          "default": "'No results found'",
+          "type": "string | null",
+          "default": "null",
           "description": ""
         },
         {
           "name": "ariaLabel",
-          "type": "string",
-          "default": "'Command palette'",
+          "type": "string | null",
+          "default": "null",
           "description": ""
         },
         {
@@ -1646,8 +1646,8 @@
         },
         {
           "name": "title",
-          "type": "string",
-          "default": "'Drop files here or click to browse'",
+          "type": "string | null",
+          "default": "null",
           "description": ""
         },
         {
@@ -1659,7 +1659,7 @@
         {
           "name": "ariaLabel",
           "type": "string | null",
-          "default": "'File upload'",
+          "default": "null",
           "description": ""
         }
       ],
@@ -3605,8 +3605,8 @@
         },
         {
           "name": "placeholder",
-          "type": "string",
-          "default": "'Select time'",
+          "type": "string | null",
+          "default": "null",
           "description": ""
         },
         {
@@ -4945,8 +4945,8 @@
         },
         {
           "name": "placeholder",
-          "type": "string",
-          "default": "'Search anything...'",
+          "type": "string | null",
+          "default": "null",
           "description": ""
         },
         {
@@ -4963,8 +4963,8 @@
         },
         {
           "name": "shortcutHint",
-          "type": "string",
-          "default": "'⌘K'",
+          "type": "string | null",
+          "default": "null",
           "description": ""
         },
         {

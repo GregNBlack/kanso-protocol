@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { KpButtonComponent } from '@kanso-protocol/button';
 import { KpIconComponent } from '@kanso-protocol/icon';
+import { injectKpStrings } from '@kanso-protocol/i18n';
 
 export type KpSearchBarVariant = 'inline' | 'command-palette';
 export type KpSearchBarSize = 'sm' | 'md' | 'lg';
@@ -56,12 +57,12 @@ export interface KpSearchResultGroup {
         <input
           class="kp-search-bar__input"
           type="search"
-          [placeholder]="placeholder"
+          [placeholder]="resolvedPlaceholder"
           [value]="value"
           (input)="handleInput($event)"
           (focus)="focused = true"
           (blur)="focused = false"
-          [attr.aria-label]="placeholder"
+          [attr.aria-label]="resolvedPlaceholder"
         />
         @if (value) {
           <kp-button
@@ -75,7 +76,7 @@ export interface KpSearchResultGroup {
             <svg kpButtonIconLeft viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
           </kp-button>
         } @else if (showShortcutHint) {
-          <kbd class="kp-search-bar__shortcut">{{ shortcutHint }}</kbd>
+          <kbd class="kp-search-bar__shortcut">{{ resolvedShortcutHint }}</kbd>
         }
       </div>
     } @else {
@@ -85,8 +86,8 @@ export interface KpSearchResultGroup {
           <input
             class="kp-search-bar__palette-input"
             type="search"
-            [placeholder]="placeholder"
-            [attr.aria-label]="placeholder"
+            [placeholder]="resolvedPlaceholder"
+            [attr.aria-label]="resolvedPlaceholder"
             [value]="value"
             (input)="handleInput($event)"
             autofocus
@@ -276,10 +277,10 @@ export interface KpSearchResultGroup {
 export class KpSearchBarComponent {
   @Input() variant: KpSearchBarVariant = 'inline';
   @Input() size: KpSearchBarSize = 'md';
-  @Input() placeholder = 'Search anything...';
+  @Input() placeholder: string | null = null;
   @Input() value = '';
   @Input() showShortcutHint = true;
-  @Input() shortcutHint = '⌘K';
+  @Input() shortcutHint: string | null = null;
   /** Result groups — only rendered in `command-palette` variant */
   @Input() groups: KpSearchResultGroup[] = [];
 
@@ -288,6 +289,16 @@ export class KpSearchBarComponent {
   @Output() itemClick = new EventEmitter<KpSearchResultItem>();
 
   focused = false;
+
+  readonly strings = injectKpStrings();
+
+  get resolvedPlaceholder(): string {
+    return this.placeholder ?? this.strings.searchPlaceholder;
+  }
+
+  get resolvedShortcutHint(): string {
+    return this.shortcutHint ?? this.strings.commandPaletteHint;
+  }
 
   get hostClasses(): string {
     return `kp-search-bar kp-search-bar--${this.variant} kp-search-bar--${this.size}`;

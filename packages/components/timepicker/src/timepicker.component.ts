@@ -18,6 +18,7 @@ import { DOCUMENT } from '@angular/common';
 
 import { KpState } from '@kanso-protocol/core';
 import { KpButtonComponent } from '@kanso-protocol/button';
+import { injectKpLocale, injectKpStrings, kpDayPeriod } from '@kanso-protocol/i18n';
 
 export type KpTimePickerSize = 'sm' | 'md' | 'lg';
 export type KpTimePickerFormat = '12h' | '24h';
@@ -81,7 +82,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
         <span
           class="kp-tp__clear"
           role="button"
-          aria-label="Clear time"
+          [attr.aria-label]="strings.clear"
           (click)="clear($event)"
           (mousedown)="$event.preventDefault()"
         >
@@ -100,10 +101,10 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
     </button>
 
     @if (isOpen && !isDisabled) {
-      <div #panel class="kp-tp__panel" role="dialog" aria-label="Choose time">
+      <div #panel class="kp-tp__panel" role="dialog" [attr.aria-label]="strings.selectTime">
         <div class="kp-tp__columns">
           <div class="kp-tp__col">
-            <div class="kp-tp__col-label">Hour</div>
+            <div class="kp-tp__col-label">{{ strings.timeHour }}</div>
             <div #hourCol class="kp-tp__col-list">
               @for (h of hourItems; track h) {
                 <button
@@ -119,7 +120,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
           <span class="kp-tp__sep">:</span>
 
           <div class="kp-tp__col">
-            <div class="kp-tp__col-label">Min</div>
+            <div class="kp-tp__col-label">{{ strings.timeMinute }}</div>
             <div #minCol class="kp-tp__col-list">
               @for (m of minuteItems; track m) {
                 <button
@@ -135,7 +136,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
           @if (showSeconds) {
             <span class="kp-tp__sep">:</span>
             <div class="kp-tp__col">
-              <div class="kp-tp__col-label">Sec</div>
+              <div class="kp-tp__col-label">{{ strings.timeSecond }}</div>
               <div #secCol class="kp-tp__col-list">
                 @for (s of secondItems; track s) {
                   <button
@@ -151,20 +152,20 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
 
           @if (format === '12h') {
             <div class="kp-tp__col kp-tp__col--period">
-              <div class="kp-tp__col-label">AM/PM</div>
+              <div class="kp-tp__col-label">{{ strings.timeDayPeriod }}</div>
               <div class="kp-tp__col-list kp-tp__col-list--period">
-                <button type="button" class="kp-tp__item" [class.kp-tp__item--selected]="draftPeriod === 'AM'" (click)="pickPeriod('AM')">AM</button>
-                <button type="button" class="kp-tp__item" [class.kp-tp__item--selected]="draftPeriod === 'PM'" (click)="pickPeriod('PM')">PM</button>
+                <button type="button" class="kp-tp__item" [class.kp-tp__item--selected]="draftPeriod === 'AM'" (click)="pickPeriod('AM')">{{ amLabel }}</button>
+                <button type="button" class="kp-tp__item" [class.kp-tp__item--selected]="draftPeriod === 'PM'" (click)="pickPeriod('PM')">{{ pmLabel }}</button>
               </div>
             </div>
           }
         </div>
 
         <div class="kp-tp__footer">
-          <kp-button variant="ghost" size="sm" color="neutral" (click)="setNow()">Now</kp-button>
+          <kp-button variant="ghost" size="sm" color="neutral" (click)="setNow()">{{ strings.timeNow }}</kp-button>
           <div class="kp-tp__footer-right">
-            <kp-button variant="ghost" size="sm" color="neutral" (click)="cancel()">Cancel</kp-button>
-            <kp-button size="sm" (click)="apply()">Apply</kp-button>
+            <kp-button variant="ghost" size="sm" color="neutral" (click)="cancel()">{{ strings.cancel }}</kp-button>
+            <kp-button size="sm" (click)="apply()">{{ strings.confirm }}</kp-button>
           </div>
         </div>
       </div>
@@ -355,7 +356,7 @@ export class KpTimePickerComponent implements ControlValueAccessor, AfterViewChe
   @Input() minuteStep = 1;
   /** Step for the seconds column. Only used when `showSeconds` is true. */
   @Input() secondStep = 1;
-  @Input() placeholder = 'Select time';
+  @Input() placeholder: string | null = null;
   @Input() showClear = true;
   @Input() disabled = false;
   @Input() forceState: KpState | null = null;
@@ -383,6 +384,13 @@ export class KpTimePickerComponent implements ControlValueAccessor, AfterViewChe
   private readonly host = inject(ElementRef) as ElementRef<HTMLElement>;
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly doc = inject(DOCUMENT);
+
+  readonly strings = injectKpStrings();
+  private readonly locale = injectKpLocale();
+  /** Localized AM marker (or "AM" if locale is 24h-only). */
+  readonly amLabel = kpDayPeriod(0, this.locale) || 'AM';
+  /** Localized PM marker (or "PM" if locale is 24h-only). */
+  readonly pmLabel = kpDayPeriod(13, this.locale) || 'PM';
 
   pad(n: number): string { return pad2(n); }
 
@@ -428,12 +436,12 @@ export class KpTimePickerComponent implements ControlValueAccessor, AfterViewChe
   hasValue(): boolean { return this.committed != null; }
 
   triggerText(): string {
-    if (!this.committed) return this.placeholder;
+    if (!this.committed) return this.placeholder ?? this.strings.selectTime;
     const { h, m, s } = this.committed;
     if (this.format === '24h') {
       return this.showSeconds ? `${pad2(h)}:${pad2(m)}:${pad2(s)}` : `${pad2(h)}:${pad2(m)}`;
     }
-    const period: Period = h >= 12 ? 'PM' : 'AM';
+    const period = h >= 12 ? this.pmLabel : this.amLabel;
     const h12 = h % 12 || 12;
     return this.showSeconds
       ? `${pad2(h12)}:${pad2(m)}:${pad2(s)} ${period}`

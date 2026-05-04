@@ -16,6 +16,7 @@ import {
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { KpDialogComponent } from '@kanso-protocol/dialog';
+import { injectKpStrings } from '@kanso-protocol/i18n';
 
 export type KpCommandPaletteSize = 'sm' | 'md' | 'lg';
 
@@ -77,7 +78,7 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
       [showFooter]="false"
       [closeOnBackdrop]="true"
       [closeOnEsc]="true"
-      [ariaLabel]="ariaLabel"
+      [ariaLabel]="ariaLabel ?? defaultAriaLabel"
       (openChange)="onDialogOpenChange($event)"
     >
       <div kpDialogBody class="kp-cmdk">
@@ -97,7 +98,7 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
             [attr.aria-expanded]="open"
             [attr.aria-controls]="listId"
             [attr.aria-activedescendant]="activeId"
-            [placeholder]="placeholder"
+            [placeholder]="placeholder ?? strings.commandPalettePlaceholder"
             [value]="filter"
             (input)="onInput($event)"
             (keydown)="onKeydown($event)"
@@ -118,7 +119,7 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
 
         <div class="kp-cmdk__list" role="listbox" [id]="listId">
           @if (totalItems === 0) {
-            <div class="kp-cmdk__empty">{{ emptyMessage }}</div>
+            <div class="kp-cmdk__empty">{{ emptyMessage ?? strings.noResults }}</div>
           }
           @for (group of groups; track group.id) {
             @if (group.items.length > 0) {
@@ -307,9 +308,9 @@ export class KpCommandPaletteComponent implements OnChanges, AfterViewInit, OnDe
   @Input() open = false;
   @Input() groups: KpCommandGroup[] = [];
   @Input() filter = '';
-  @Input() placeholder = 'Type a command or search…';
-  @Input() emptyMessage = 'No results found';
-  @Input() ariaLabel = 'Command palette';
+  @Input() placeholder: string | null = null;
+  @Input() emptyMessage: string | null = null;
+  @Input() ariaLabel: string | null = null;
   /** Global shortcut to toggle `open`. `null` disables the listener. */
   @Input() shortcut: KpCommandShortcut | null = { combo: 'mod+k' };
 
@@ -324,6 +325,9 @@ export class KpCommandPaletteComponent implements OnChanges, AfterViewInit, OnDe
   readonly listId = `kp-cmdk-list-${++uid}`;
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly doc = inject(DOCUMENT);
+  readonly strings = injectKpStrings();
+  /** Localized fallback used when consumers don't pass `[ariaLabel]`. */
+  readonly defaultAriaLabel = 'Command palette';
 
   get dialogSize(): 'sm' | 'md' | 'lg' {
     return this.size === 'sm' ? 'sm' : this.size === 'lg' ? 'lg' : 'md';

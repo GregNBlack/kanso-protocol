@@ -8,6 +8,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { injectKpStrings } from '@kanso-protocol/i18n';
 
 export type KpFileUploadSize = 'sm' | 'md' | 'lg';
 export type KpFileUploadAppearance = 'default' | 'compact';
@@ -69,7 +70,7 @@ let nextId = 0;
       role="button"
       [attr.tabindex]="disabled ? -1 : 0"
       [attr.aria-disabled]="disabled || null"
-      [attr.aria-label]="ariaLabel"
+      [attr.aria-label]="resolvedAriaLabel"
       (click)="openFilePicker()"
       (keydown)="onZoneKeydown($event)"
       (dragenter)="onDragEnter($event)"
@@ -83,7 +84,7 @@ let nextId = 0;
         </svg>
       </span>
       <span class="kp-file-upload__label">
-        <span class="kp-file-upload__title">{{ title }}</span>
+        <span class="kp-file-upload__title">{{ resolvedTitle }}</span>
         @if (hint) {
           <span class="kp-file-upload__hint">{{ hint }}</span>
         }
@@ -120,7 +121,7 @@ let nextId = 0;
                   <span class="kp-file-upload__item-error">{{ item.error }}</span>
                 }
                 @if (item.status === 'success') {
-                  <span class="kp-file-upload__item-success">Uploaded</span>
+                  <span class="kp-file-upload__item-success">{{ strings.dropzoneUploaded }}</span>
                 }
               </span>
               @if (item.status === 'uploading') {
@@ -139,7 +140,7 @@ let nextId = 0;
             <button
               type="button"
               class="kp-file-upload__item-remove"
-              [attr.aria-label]="'Remove ' + item.file.name"
+              [attr.aria-label]="strings.dropzoneRemove(item.file.name)"
               (click)="remove(item.id, $event)"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -335,9 +336,9 @@ export class KpFileUploadComponent {
   @Input() maxFiles: number | null = null;
   @Input() disabled = false;
 
-  @Input() title = 'Drop files here or click to browse';
+  @Input() title: string | null = null;
   @Input() hint: string | null = null;
-  @Input() ariaLabel: string | null = 'File upload';
+  @Input() ariaLabel: string | null = null;
 
   @Output() filesAdded = new EventEmitter<KpUploadFile[]>();
   @Output() filesRejected = new EventEmitter<KpFileRejection[]>();
@@ -347,6 +348,8 @@ export class KpFileUploadComponent {
 
   files: KpUploadFile[] = [];
   isDragOver = false;
+
+  readonly strings = injectKpStrings();
 
   private dragDepth = 0;
 
@@ -358,6 +361,14 @@ export class KpFileUploadComponent {
       `kp-file-upload--${this.size}`,
       `kp-file-upload--${this.appearance}`,
     ].join(' ');
+  }
+
+  get resolvedTitle(): string {
+    return this.title ?? this.strings.dropzoneTitle;
+  }
+
+  get resolvedAriaLabel(): string {
+    return this.ariaLabel ?? this.strings.dropzoneTitle;
   }
 
   openFilePicker(): void {
