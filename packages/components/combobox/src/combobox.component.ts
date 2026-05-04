@@ -286,9 +286,9 @@ export interface KpComboboxOption {
     }
     .kp-cb__option--selected {
       background: var(--kp-color-blue-50);
-      color: var(--kp-color-blue-700);
+      color: var(--kp-color-accent-primary-fg);
     }
-    .kp-cb__option--selected .kp-cb__check-single { color: var(--kp-color-blue-600); }
+    .kp-cb__option--selected .kp-cb__check-single { color: var(--kp-color-accent-primary-fg); }
     .kp-cb__option--disabled {
       color: var(--kp-color-gray-400);
       cursor: not-allowed;
@@ -314,7 +314,7 @@ export interface KpComboboxOption {
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      color: var(--kp-color-blue-600);
+      color: var(--kp-color-accent-primary-fg);
     }
     .kp-cb__check {
       width: 16px;
@@ -325,7 +325,7 @@ export interface KpComboboxOption {
     }
     .kp-cb__option--selected .kp-cb__check {
       background: var(--kp-color-blue-600);
-      border-color: var(--kp-color-blue-600);
+      border-color: var(--kp-color-accent-primary-fg);
       color: var(--kp-color-white);
     }
 

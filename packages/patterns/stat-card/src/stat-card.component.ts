@@ -97,7 +97,7 @@ export type KpStatTrendAppearance = 'positive' | 'negative';
       height: 36px;
       border-radius: 50%;
       background: var(--kp-color-blue-50, var(--kp-color-blue-50));
-      color: var(--kp-color-blue-600, var(--kp-color-blue-600));
+      color: var(--kp-color-accent-primary-fg);
     }
     .kp-stat__icon .ti { font-size: 18px; line-height: 1; }
 
@@ -117,8 +117,8 @@ export type KpStatTrendAppearance = 'positive' | 'negative';
     .kp-stat__trend-icon { font-size: 14px; line-height: 1; }
     .kp-stat__trend-value { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
     .kp-stat__trend-desc { font-size: 12px; color: var(--kp-color-gray-500, var(--kp-color-gray-500)); }
-    .kp-stat__trend[data-tone='good']    { color: var(--kp-color-green-600, var(--kp-color-green-600)); }
-    .kp-stat__trend[data-tone='bad']     { color: var(--kp-color-red-600, var(--kp-color-red-600)); }
+    .kp-stat__trend[data-tone='good']    { color: var(--kp-color-accent-success-fg); }
+    .kp-stat__trend[data-tone='bad']     { color: var(--kp-color-accent-danger-fg); }
     .kp-stat__trend[data-tone='neutral'] { color: var(--kp-color-gray-500, var(--kp-color-gray-500)); }
 
     .kp-stat__sparkline { margin-top: 4px; }

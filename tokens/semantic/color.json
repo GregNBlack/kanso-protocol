@@ -2,6 +2,15 @@
   "color": {
     "$type": "color",
 
+    "accent": {
+      "$description": "Foreground accent colors for text rendered on the page surface (selected tabs, active breadcrumb links, danger labels in user-menu, success/danger trend indicators in stat-card, etc.). In light mode they cascade through brand-600. In dark mode tokens/themes/dark.json overrides them to brand-400 — readable on the dark page bg without un-inverting the action ramp. This decouples accent text from solid-button bg, which lets each be tuned independently.",
+      "primary": { "fg": { "$value": "{color.blue.600}" } },
+      "danger":  { "fg": { "$value": "{color.red.600}" } },
+      "success": { "fg": { "$value": "{color.green.600}" } },
+      "warning": { "fg": { "$value": "{color.amber.600}" } },
+      "info":    { "fg": { "$value": "{color.cyan.600}" } }
+    },
+
     "primary": {
       "default": {
         "bg":     { "rest": { "$value": "{color.blue.600}" }, "hover": { "$value": "{color.blue.700}" }, "active": { "$value": "{color.blue.800}" }, "focus": { "$value": "{color.blue.600}" }, "disabled": { "$value": "{color.gray.200}" }, "loading": { "$value": "{color.blue.500}" } },

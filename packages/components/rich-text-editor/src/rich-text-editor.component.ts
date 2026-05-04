@@ -263,7 +263,7 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
     }
     .kp-rte__btn.is-active {
       background: var(--kp-color-blue-50);
-      color: var(--kp-color-blue-700);
+      color: var(--kp-color-accent-primary-fg);
     }
     .kp-rte__btn[disabled] {
       opacity: 0.4;
@@ -293,7 +293,7 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       outline: none;
     }
     .kp-rte__link-input:focus {
-      border-color: var(--kp-color-blue-600);
+      border-color: var(--kp-color-accent-primary-fg);
     }
     .kp-rte__link-btn {
       all: unset;
@@ -384,7 +384,7 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
     }
     ::ng-deep .kp-rte__editor .ProseMirror img { max-width: 100%; border-radius: 8px; }
     ::ng-deep .kp-rte__editor .ProseMirror a {
-      color: var(--kp-color-blue-600);
+      color: var(--kp-color-accent-primary-fg);
       text-decoration: underline;
     }
     ::ng-deep .kp-rte__editor .ProseMirror .is-editor-empty:first-child::before {

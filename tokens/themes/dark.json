@@ -699,6 +699,39 @@
         "$value": "#71717A",
         "$description": "designer-pass"
       }
+    },
+    "accent": {
+      "$description": "Dark-theme accent fg overrides \u2014 readable brand shades on dark page bg, decoupled from action-shade primitive inversion",
+      "primary": {
+        "fg": {
+          "$value": "#60A5FA",
+          "$description": "blue-400 light"
+        }
+      },
+      "danger": {
+        "fg": {
+          "$value": "#F87171",
+          "$description": "red-400 light"
+        }
+      },
+      "success": {
+        "fg": {
+          "$value": "#4ADE80",
+          "$description": "green-400 light"
+        }
+      },
+      "warning": {
+        "fg": {
+          "$value": "#FBBF24",
+          "$description": "amber-400 light"
+        }
+      },
+      "info": {
+        "fg": {
+          "$value": "#22D3EE",
+          "$description": "cyan-400 light"
+        }
+      }
     }
   }
 }

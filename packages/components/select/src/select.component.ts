@@ -263,7 +263,7 @@ export interface KpSelectOption {
     }
     .kp-select__clear:hover { background: var(--kp-color-gray-100); color: var(--kp-color-gray-700); }
     .kp-select__clear svg { width: var(--kp-input-clear-icon, 14px); height: var(--kp-input-clear-icon, 14px); }
-    :host(.kp-select--error) .kp-select__clear { color: var(--kp-color-red-600); }
+    :host(.kp-select--error) .kp-select__clear { color: var(--kp-color-accent-danger-fg); }
 
     /* --- Chevron --- */
     .kp-select__chevron {
@@ -327,9 +327,9 @@ export interface KpSelectOption {
     }
     .kp-select__option--selected {
       background: var(--kp-color-blue-50);
-      color: var(--kp-color-blue-700);
+      color: var(--kp-color-accent-primary-fg);
     }
-    .kp-select__option--selected .kp-select__check-single { color: var(--kp-color-blue-600); }
+    .kp-select__option--selected .kp-select__check-single { color: var(--kp-color-accent-primary-fg); }
     .kp-select__option--disabled {
       color: var(--kp-color-gray-400);
       cursor: not-allowed;
@@ -348,7 +348,7 @@ export interface KpSelectOption {
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      color: var(--kp-color-blue-600);
+      color: var(--kp-color-accent-primary-fg);
     }
     .kp-select__check {
       width: 16px;
@@ -359,7 +359,7 @@ export interface KpSelectOption {
     }
     .kp-select__option--selected .kp-select__check {
       background: var(--kp-color-blue-600);
-      border-color: var(--kp-color-blue-600);
+      border-color: var(--kp-color-accent-primary-fg);
       color: var(--kp-color-white);
     }
 

@@ -187,7 +187,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       width: var(--kp-input-clear-icon, 14px);
       height: var(--kp-input-clear-icon, 14px);
     }
-    :host(.kp-input--error) .kp-input__clear { color: var(--kp-color-red-600); }
+    :host(.kp-input--error) .kp-input__clear { color: var(--kp-color-accent-danger-fg); }
 
     /* --- Icons --- */
     .kp-input__icon {

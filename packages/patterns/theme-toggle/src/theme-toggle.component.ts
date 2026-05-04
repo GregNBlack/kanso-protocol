@@ -240,7 +240,7 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
     }
     .kp-theme-toggle__option-check {
       margin-inline-start: auto;
-      color: var(--kp-color-blue-600, var(--kp-color-blue-600));
+      color: var(--kp-color-accent-primary-fg);
     }
 
     /* Menu icons — match trigger size. Scoped by size class instead of :host

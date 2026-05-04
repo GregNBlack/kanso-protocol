@@ -180,4 +180,9 @@
   --kp-color-datepicker-day-fg-outside: #71717a;
   --kp-color-sidebar-section-label: #a1a1aa;
   --kp-color-notif-item-time: #71717a;
+  --kp-color-accent-primary-fg: #60a5fa;
+  --kp-color-accent-danger-fg: #f87171;
+  --kp-color-accent-success-fg: #4ade80;
+  --kp-color-accent-warning-fg: #fbbf24;
+  --kp-color-accent-info-fg: #22d3ee;
 }

@@ -12,6 +12,59 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-05-04 — semantic accent tokens + component migration (Step A of dark refactor)
+
+Step A of the proper dark theme architecture rebuild — set up the right token plumbing so Phase A (un-invert action shades) can land safely in Step B. Visually a no-op: same hex values resolve in both modes, just through a new semantic layer.
+
+### Bumps
+
+- `@kanso-protocol/core` `0.3.2` → `0.4.0` *(new `color.accent.*` semantic token family — minor)*
+- `@kanso-protocol/combobox` `0.1.1` → `0.1.2`
+- `@kanso-protocol/input` `0.1.0` → `0.1.1`
+- `@kanso-protocol/rich-text-editor` `0.1.2` → `0.1.3`
+- `@kanso-protocol/select` `0.1.0` → `0.1.1`
+- `@kanso-protocol/notification-center` `0.1.0` → `0.1.1`
+- `@kanso-protocol/stat-card` `0.1.0` → `0.1.1`
+- `@kanso-protocol/theme-toggle` `0.1.0` → `0.1.1`
+- `@kanso-protocol/user-menu` `0.2.0` → `0.2.1`
+
+### What changed
+
+**New token family `color.accent.*`** in `tokens/semantic/color.json`:
+
+- `accent.primary.fg` → `{color.blue.600}` (light) / `#60A5FA` (dark)
+- `accent.danger.fg` → `{color.red.600}` (light) / `#F87171` (dark)
+- `accent.success.fg` → `{color.green.600}` (light) / `#4ADE80` (dark)
+- `accent.warning.fg` → `{color.amber.600}` (light) / `#FBBF24` (dark)
+- `accent.info.fg` → `{color.cyan.600}` (light) / `#22D3EE` (dark)
+
+Designed for **text rendered on the page surface** (selected tabs, active breadcrumb links, danger labels in user-menu, success/danger trend indicators in stat-card, etc.). Decoupled from solid-button bg, which lets each be tuned independently in dark mode without contradiction.
+
+**Migrated 21 direct primitive references** in component / pattern CSS to the new accent tokens:
+
+- `combobox`, `input`, `rich-text-editor`, `select`, `notification-center` — option/error text colors
+- `stat-card` — trend indicators (good/bad → success/danger)
+- `theme-toggle` — active state
+- `user-menu` — danger row text
+
+Each `color: var(--kp-color-{blue,red,green}-600|700)` became `color: var(--kp-color-accent-{primary,danger,success}-fg)`. **Same hex value resolves in both themes** — visually a no-op confirmed by `visual-regression` CI gate (50/50 baselines pass).
+
+### Why this is Step A and not the full fix
+
+Step A is the no-op refactor — token plumbing is in place. Step B (the next release) will:
+
+1. Un-invert brand action shades `600/700/800` in `tokens/themes/dark.json`. Solid bg buttons get saturated dark-blue / dark-red bg, hover correctly darkens vs rest.
+2. Override `*.default.fg.*` for solid buttons back to `#FFFFFF` to match the saturated bgs.
+3. Components that use `--kp-color-accent-*-fg` are unaffected (they have explicit dark overrides). Components that still use brand primitives directly stay correct visually because step A's migration covered the text-color uses.
+
+VR catches anything I missed.
+
+### Migration
+
+If your own CSS reads brand primitives for accent text — switch to `--kp-color-accent-*-fg`. Existing direct-primitive uses keep working in this release; Step B won't break them either if they're for non-text uses (border, background icon).
+
+---
+
 ## 2026-05-04 — full revert of dark architecture phases A+B+C
 
 The phase A+B+C bundle landed at 168 failed / 163 passed — a 30-story regression vs the pre-refactor baseline of 138 / 193. Root cause: phase A un-inverted brand `600/700/800` stops, which fixed solid buttons but broke every component that references brand primitives DIRECTLY for accent text (`<kp-tab--selected>`, `<kp-breadcrumb>`, `<kp-pagination__item--active>`, etc.). Those switched from a readable light-blue (`#60A5FA`) to a saturated dark-blue (`#2563EB`) that fails contrast on the dark page bg.

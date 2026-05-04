@@ -176,7 +176,7 @@ export interface KpNotification {
       transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
     .kp-notif-center__filter:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); color: var(--kp-color-gray-900, var(--kp-color-gray-900)); }
-    .kp-notif-center__filter--active { background: var(--kp-color-blue-50, var(--kp-color-blue-50)); color: var(--kp-color-blue-700, var(--kp-color-blue-700)); }
+    .kp-notif-center__filter--active { background: var(--kp-color-blue-50, var(--kp-color-blue-50)); color: var(--kp-color-accent-primary-fg); }
     .kp-notif-center__count {
       display: inline-flex;
       align-items: center;

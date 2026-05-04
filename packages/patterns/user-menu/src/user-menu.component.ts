@@ -170,10 +170,10 @@ export interface KpUserMenuItem {
     .kp-user-menu__row-icon svg { width: 100%; height: 100%; }
 
     .kp-user-menu__row--danger {
-      color: var(--kp-color-red-600, var(--kp-color-red-600));
+      color: var(--kp-color-accent-danger-fg);
     }
     .kp-user-menu__row--danger .kp-user-menu__row-icon { color: var(--kp-color-red-500, var(--kp-color-red-500)); }
-    .kp-user-menu__row--danger:hover { background: var(--kp-color-red-50, var(--kp-color-red-50)); color: var(--kp-color-red-700, var(--kp-color-red-700)); }
+    .kp-user-menu__row--danger:hover { background: var(--kp-color-red-50, var(--kp-color-red-50)); color: var(--kp-color-accent-danger-fg); }
   `],
 })
 export class KpUserMenuComponent {
