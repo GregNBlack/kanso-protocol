@@ -297,12 +297,12 @@ export class MyComponent {
 
 ## Components
 
-39 components, each its own npm package — install only what you import. Tokens live in `@kanso-protocol/core` and need to be loaded once for any of them to render correctly.
+40 components, each its own npm package — install only what you import. Tokens live in `@kanso-protocol/core` and need to be loaded once for any of them to render correctly.
 
 Install all components in one shot (zsh / bash brace expansion):
 
 ```bash
-npm i @kanso-protocol/core @kanso-protocol/{accordion,alert,avatar,avatar-group,badge,breadcrumbs,button,card,checkbox,combobox,datepicker,dialog,divider,drawer,empty-state,file-upload,form-field,icon,input,markdown-viewer,menu,number-stepper,pagination,popover,progress,radio,rich-text-editor,segmented-control,select,skeleton,slider,table,tabs,textarea,timepicker,toast,toggle,tooltip,tree}
+npm i @kanso-protocol/core @kanso-protocol/{accordion,alert,avatar,avatar-group,badge,breadcrumbs,button,card,checkbox,combobox,command-palette,datepicker,dialog,divider,drawer,empty-state,file-upload,form-field,icon,input,markdown-viewer,menu,number-stepper,pagination,popover,progress,radio,rich-text-editor,segmented-control,select,skeleton,slider,table,tabs,textarea,timepicker,toast,toggle,tooltip,tree}
 ```
 
 Or pick what you need from the catalog. Every component has a formal API contract (props, variants, states, a11y rules) and a live Storybook page with controls.
@@ -319,6 +319,7 @@ Or pick what you need from the catalog. Every component has a formal API contrac
 | Card | [card.md](docs/components/card.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-card--docs) | `npm i @kanso-protocol/card` |
 | Checkbox | [checkbox.md](docs/components/checkbox.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-checkbox--docs) | `npm i @kanso-protocol/checkbox` |
 | Combobox | [combobox.md](docs/components/combobox.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-combobox--docs) | `npm i @kanso-protocol/combobox` |
+| CommandPalette | [command-palette.md](docs/components/command-palette.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-commandpalette--docs) | `npm i @kanso-protocol/command-palette` |
 | DatePicker | [datepicker.md](docs/components/datepicker.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-datepicker--docs) | `npm i @kanso-protocol/datepicker` |
 | Dialog | [dialog.md](docs/components/dialog.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-dialog--docs) | `npm i @kanso-protocol/dialog` |
 | Divider | [divider.md](docs/components/divider.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-divider--docs) | `npm i @kanso-protocol/divider` |

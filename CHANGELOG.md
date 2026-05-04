@@ -12,6 +12,31 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-04-28 — `@kanso-protocol/command-palette` — standalone ⌘K-style launcher
+
+Third gap-fill from `docs/1.0-readiness.md`. Modal command launcher composing `<kp-dialog>` (chromeless) with internal input + grouped result list. Owns keyboard navigation (↑/↓/Home/End/Enter/Esc) and a configurable global open-shortcut (default `mod+k` — ⌘ on Mac, Ctrl elsewhere).
+
+### New package
+
+- `@kanso-protocol/command-palette@0.1.0` *(experimental)*
+
+### Why a separate component from `search-bar` `variant="command-palette"`
+
+`search-bar`'s command-palette variant gives you the **panel UI** but not the rest: no modal wrapper, no global open-shortcut, no keyboard navigation across items, no focus-trap-on-open / restore-on-close. Anyone using it as a real ⌘K experience had to wire those themselves.
+
+`@kanso-protocol/command-palette` packages those concerns:
+- Composes `<kp-dialog>` (peer dep) → focus trap, backdrop, Esc-to-close come for free.
+- `[shortcut]` input registers a `window:keydown` listener that toggles `open` on the configured combo. `mod` resolves to ⌘ / Ctrl per platform; the kbd hint in the footer renders accordingly.
+- Internal `↑/↓/Home/End/Enter` handler walks visible items, **skipping disabled**, with `aria-activedescendant` for screen-reader users.
+- `(filterChange)` keystroke event lets the consumer own filter logic — local list, debounced API, fuzzy matcher, whatever.
+- `<kp-search-bar variant="command-palette">` stays for use inside an existing layout (e.g. embedded inside a docs sidebar). It's a panel, not a modal — different intent.
+
+### Migration
+
+None — new package. If you were building an ad-hoc ⌘K on top of `search-bar`, swap to `<kp-command-palette>` and drop the boilerplate.
+
+---
+
 ## 2026-04-28 — `@kanso-protocol/markdown-viewer` — read-only markdown renderer
 
 Second gap-fill from `docs/1.0-readiness.md`. CommonMark + GFM via bundled `marked@^7`, pluggable parser, three sizes (sm / md / lg), sanitized-by-default output via Angular's `[innerHTML]` automatic sanitizer.

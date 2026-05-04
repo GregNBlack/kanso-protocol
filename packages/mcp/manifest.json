@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-05-04T15:21:44.664Z",
+  "generatedAt": "2026-05-04T16:54:46.450Z",
   "version": "0.1.0",
   "totals": {
-    "components": 51,
+    "components": 52,
     "patterns": 22,
     "tokens": 900
   },
@@ -1000,6 +1000,96 @@
         "nodeId": "3805:11115",
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11115"
       }
+    },
+    {
+      "name": "command-palette",
+      "className": "KpCommandPaletteComponent",
+      "selector": "kp-command-palette",
+      "layer": "components",
+      "package": "@kanso-protocol/command-palette",
+      "description": "Kanso Protocol — CommandPalette\n\nModal command launcher (⌘K-style). Composes `<kp-dialog>` (chromeless)\nwith an internal input + grouped result list. Keyboard navigation:\n`↑` / `↓` highlight, `Enter` select, `Esc` close. The component owns\nthe open state when `[shortcut]` is set — the global keydown listener\ntoggles `open` on the configured combo (default `mod+k`).\n\nThe consumer supplies `[groups]`. Filtering is the consumer's job —\nthe component re-emits `(filterChange)` on every input keystroke.",
+      "examples": [
+        "<kp-command-palette\n  [(open)]=\"paletteOpen\"\n  [groups]=\"results\"\n  [shortcut]=\"{ combo: 'mod+k' }\"\n  (filterChange)=\"onFilter($event)\"\n  (itemSelect)=\"run($event)\"\n/>"
+      ],
+      "inputs": [
+        {
+          "name": "size",
+          "type": "KpCommandPaletteSize",
+          "default": "'md'",
+          "description": ""
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "default": "false",
+          "description": ""
+        },
+        {
+          "name": "groups",
+          "type": "KpCommandGroup[]",
+          "default": "[]",
+          "description": ""
+        },
+        {
+          "name": "filter",
+          "type": "string",
+          "default": "''",
+          "description": ""
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "'Type a command or search…'",
+          "description": ""
+        },
+        {
+          "name": "emptyMessage",
+          "type": "string",
+          "default": "'No results found'",
+          "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "type": "string",
+          "default": "'Command palette'",
+          "description": ""
+        },
+        {
+          "name": "shortcut",
+          "type": "KpCommandShortcut | null",
+          "default": "{ combo: 'mod+k' }",
+          "description": "Global shortcut to toggle `open`. `null` disables the listener."
+        }
+      ],
+      "outputs": [
+        {
+          "name": "openChange",
+          "payload": "boolean"
+        },
+        {
+          "name": "filterChange",
+          "payload": "string"
+        },
+        {
+          "name": "itemSelect",
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/components/command-palette/src/command-palette.component\").KpCommandItem"
+        }
+      ],
+      "ariaRole": null,
+      "sizeRamp": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "keyboardPatterns": [
+        "ArrowUp",
+        "ArrowDown",
+        "Home",
+        "End",
+        "Enter"
+      ],
+      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-commandpalette--docs",
+      "sourcePath": "packages/components/command-palette/src/command-palette.component.ts"
     },
     {
       "name": "datepicker",

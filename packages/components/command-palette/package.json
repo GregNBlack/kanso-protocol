@@ -1,0 +1,28 @@
+{
+  "name": "@kanso-protocol/command-palette",
+  "version": "0.1.0",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/core": "^18.0.0",
+    "@angular/common": "^18.0.0",
+    "@kanso-protocol/core": "^0.0.1",
+    "@kanso-protocol/dialog": "^0.0.1"
+  },
+  "description": "Kanso Protocol — command-palette (component).",
+  "author": "GregNBlack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GregNBlack/kanso-protocol.git",
+    "directory": "packages/components/command-palette"
+  },
+  "homepage": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-command-palette--docs",
+  "bugs": "https://github.com/GregNBlack/kanso-protocol/issues",
+  "keywords": [
+    "design-system",
+    "angular",
+    "kanso",
+    "command-palette",
+    "cmdk"
+  ],
+  "sideEffects": false
+}
