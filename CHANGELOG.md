@@ -12,6 +12,26 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-05-05 — feat(dialog): close button always rendered; header hugs content
+
+Iteration on the previous change. After the chromeless / Show-Header refactor, the close button was moved inside the header's flex flow. We're now removing the `[showClose]` toggle entirely — the close X is always present so the header's built-in dismiss path is consistent across every dialog. Header itself hugs its content (no min-height); the empty-header self-collapse rule from the prior commit still applies.
+
+### Bumps
+
+- `@kanso-protocol/dialog` (`0.2.0` published; this iteration ships in the next release — same minor since the API is still in flux)
+
+### What changed
+
+- `[showClose]: boolean` removed. Close button always renders inside the header.
+- Header had no min-height before and still doesn't — natural flex hug.
+- Figma component-set: `Show Close` boolean property removed (15 variants unbound + property deleted). Close button moved back inside the Header frame as a flex child. Added `Show Title` boolean property tied to the Title text node so designers can toggle title/description independently.
+
+### Migration
+
+If you were setting `[showClose]="false"` to hide the X, drop the prop. If you need a truly close-less dialog (rare — most modals should be dismissible), wrap your dialog and apply `display: none` to the close button via your own CSS using `::ng-deep` or a host-level modifier. The default behavior — close always available — matches every shipped dialog pattern in Kanso.
+
+---
+
 ## 2026-04-28 — feat(dialog): header always renders, title/description independently toggleable
 
 Removed the `[showHeader]` toggle. Header is now always rendered; its content (hero icon, title, description, close button) is controlled by individual flags. Without a title, the header collapses to "just the close X in the corner" via `:empty`-style CSS — no more crooked layout when the dialog is used chromeless.

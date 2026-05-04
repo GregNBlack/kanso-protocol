@@ -61,7 +61,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
           [attr.aria-label]="!title ? ariaLabel : null"
           tabindex="-1"
         >
-          <header class="kp-dialog__header" [class.kp-dialog__header--has-close]="showClose">
+          <header class="kp-dialog__header">
             @if (showHeroIcon) {
               <div class="kp-dialog__hero">
                 <ng-content select="[kpDialogHeroIcon]"/>
@@ -75,18 +75,16 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
                 <p class="kp-dialog__desc" [id]="descId">{{ description }}</p>
               }
             </div>
-            @if (showClose) {
-              <button
-                type="button"
-                class="kp-dialog__close"
-                aria-label="Close dialog"
-                (click)="close()"
-              >
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M18 6 L6 18 M6 6 L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-              </button>
-            }
+            <button
+              type="button"
+              class="kp-dialog__close"
+              aria-label="Close dialog"
+              (click)="close()"
+            >
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M18 6 L6 18 M6 6 L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
           </header>
 
           @if (showHeaderDivider) { <div class="kp-dialog__divider"></div> }
@@ -369,7 +367,6 @@ export class KpDialogComponent implements AfterViewInit, AfterViewChecked, OnDes
   @Input() description = '';
   @Input() showHeroIcon = false;
   @Input() showDescription = false;
-  @Input() showClose = true;
   @Input() showFooter = true;
   @Input() showHeaderDivider = false;
   @Input() showFooterDivider = false;
