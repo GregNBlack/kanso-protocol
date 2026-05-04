@@ -43,7 +43,16 @@ jobs:
       - name: Build Storybook
         run: npm run build-storybook
       - name: Unit tests (Vitest)
-        run: npm test
+        id: vitest
+        run: npm test 2>&1 | tee /tmp/vitest-output.log
+      - name: Upload Vitest output on failure
+        if: failure() && steps.vitest.conclusion == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: vitest-output
+          path: /tmp/vitest-output.log
+          retention-days: 7
+          if-no-files-found: ignore
 
   a11y:
     # Serve the built Storybook, then run `test-storybook` against it — the
