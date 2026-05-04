@@ -84,15 +84,21 @@ jobs:
     # (see e2e/visual.spec.ts), both light + dark. **Hard gate** — any diff
     # above maxDiffPixelRatio (1%) fails the build.
     #
-    # On intentional visual changes: locally run `npm run test:visual:update`
-    # and commit the new PNGs alongside the source change. Always inspect the
-    # diff before committing — easy way to catch unintentional bg shifts in
-    # token PRs.
+    # On intentional visual changes: include `[update-baselines]` in the
+    # commit message — this run will regenerate the snapshots in CI, commit
+    # them as a follow-up `chore(visual): refresh baselines [skip-release]`,
+    # and the next CI run on that follow-up will be green. Linux baselines
+    # have to come from a Linux runner, so this beats the "generate locally
+    # on macOS, fail in CI" loop.
     name: visual-regression
     runs-on: ubuntu-latest
     needs: build
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -102,13 +108,42 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Build tokens + Storybook
         run: npm run build:tokens && npm run build-storybook
+      - name: Detect baseline-refresh mode
+        id: mode
+        run: |
+          if echo "${{ github.event.head_commit.message }}" | grep -q "\[update-baselines\]"; then
+            echo "update=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "update=false" >> "$GITHUB_OUTPUT"
+          fi
       - name: Serve Storybook & run visual diffs
+        if: steps.mode.outputs.update == 'false'
         env:
           STORYBOOK_URL: http://localhost:6006
         run: |
           npx concurrently -k -s first -n "SB,VISUAL" \
             "npx http-server storybook-static --port 6006 --silent" \
             "npx wait-on tcp:6006 && npm run test:visual"
+      - name: Serve Storybook & regenerate baselines
+        if: steps.mode.outputs.update == 'true'
+        env:
+          STORYBOOK_URL: http://localhost:6006
+        run: |
+          npx concurrently -k -s first -n "SB,VISUAL" \
+            "npx http-server storybook-static --port 6006 --silent" \
+            "npx wait-on tcp:6006 && npm run test:visual:update"
+      - name: Commit refreshed baselines
+        if: steps.mode.outputs.update == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add e2e/visual.spec.ts-snapshots/
+          if git diff --cached --quiet; then
+            echo "No baseline diffs — nothing to commit."
+          else
+            git commit -m "chore(visual): refresh baselines [skip-release]"
+            git push origin HEAD:${{ github.ref_name }}
+          fi
       - name: Upload baselines / diffs as artifact
         if: always()
         uses: actions/upload-artifact@v4

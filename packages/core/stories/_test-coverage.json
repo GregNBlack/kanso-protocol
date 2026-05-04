@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-04-30T10:29:46.949Z",
-  "totalSpecs": 36,
-  "totalTests": 350,
-  "totalPackages": 57,
+  "generatedAt": "2026-05-04T15:00:41.258Z",
+  "totalSpecs": 37,
+  "totalTests": 363,
+  "totalPackages": 58,
   "items": [
     {
       "layer": "components",
@@ -179,6 +179,17 @@
         "packages/components/empty-state/src/empty-state.spec.ts"
       ],
       "tests": 4
+    },
+    {
+      "layer": "components",
+      "name": "file-upload",
+      "title": "Components/FileUpload",
+      "storybookId": "components-fileupload--docs",
+      "specFile": "packages/components/file-upload/src/file-upload.spec.ts",
+      "specFiles": [
+        "packages/components/file-upload/src/file-upload.spec.ts"
+      ],
+      "tests": 13
     },
     {
       "layer": "components",
