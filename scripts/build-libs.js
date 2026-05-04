@@ -116,7 +116,7 @@ function swapSymlink(name, distAbs) {
 
 function handlePackage(pkgDir, layer, folderName) {
   const destAbs = path.join(DIST,
-    layer === 'core' ? 'core' :
+    layer === 'core' ? folderName :
     layer === 'component' ? path.join('components', folderName) :
     path.join('patterns', folderName),
   );
@@ -146,6 +146,9 @@ function discoverPackages() {
     out.push({ layer, folder, name: pkg.name, pkgDir });
   };
   out.push({ layer: 'core', folder: 'core', name: '@kanso-protocol/core', pkgDir: path.join(ROOT, 'packages/core') });
+  if (fs.existsSync(path.join(ROOT, 'packages/i18n/package.json'))) {
+    out.push({ layer: 'core', folder: 'i18n', name: '@kanso-protocol/i18n', pkgDir: path.join(ROOT, 'packages/i18n') });
+  }
   for (const c of listDirs(path.join(ROOT, 'packages/components'))) {
     const pkgDir = path.join(ROOT, 'packages/components', c);
     const pkg = JSON.parse(fs.readFileSync(path.join(pkgDir, 'package.json'), 'utf8'));

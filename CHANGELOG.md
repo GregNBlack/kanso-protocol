@@ -12,6 +12,72 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-04-28 — `@kanso-protocol/i18n` + datepicker locale-aware
+
+First step on the i18n cross-cutting work in `docs/1.0-readiness.md`. Ships a small DI-backed i18n primitive layer and migrates the datepicker as proof.
+
+### New package
+
+- `@kanso-protocol/i18n@0.1.0` *(experimental)* — peer of `@angular/core` only.
+
+### What's in the box
+
+- **`KP_LOCALE`** injection token — BCP-47 tag (default: `navigator.language` || `'en-US'`).
+- **`KP_STRINGS`** injection token — `Partial<KpLocaleStrings>`. Override only the keys you need; missing ones fall through to `KP_DEFAULT_STRINGS_EN`.
+- **`injectKpLocale()`** / **`injectKpStrings()`** — convenience accessors for component constructors.
+- **Intl helpers** — `kpFormatDate`, `kpFormatTime`, `kpMonthNames`, `kpWeekdayNames`, `kpDayPeriod`. Each caches formatters per `(locale, options)` so they're cheap to call in render loops.
+
+### Why a small registry
+
+Anything that `Intl.DateTimeFormat` can derive (month names, day-period markers, time formats) is **not** a string in the registry — components call the helpers and they localize for free. The registry only holds chrome that has no Intl equivalent (button labels, ARIA fallbacks, dropzone copy).
+
+This keeps the registry small enough that a consumer can sensibly translate it inline without a full message-catalog framework.
+
+### Component migration
+
+- **`@kanso-protocol/datepicker` `0.1.0` → `0.2.0`** *(minor — new `@kanso-protocol/i18n` peer dep)*
+  - Month names (long + short) now from `kpMonthNames(locale)`.
+  - Weekday labels from `kpWeekdayNames(locale, firstDayOfWeek, 'narrow')`.
+  - Date format via `kpFormatDate(d, locale, { dateStyle: 'medium' })` — `dateFormatter` input still wins for custom needs.
+  - Default presets (Today / Yesterday / This week / Last week / This month / Last month) pulled from `KP_STRINGS` so they translate alongside the rest.
+  - ARIA labels (`Clear date`, `Previous`, `Next`) bound to `strings.clear` / `strings.previousMonth` / `strings.nextMonth`.
+
+### Doc
+
+- `docs/i18n.md` — usage + which components are migrated + roadmap.
+- `docs/1.0-readiness.md` cross-cutting (2) updated to reflect the in-progress migration.
+
+### Migration
+
+For datepicker consumers using English: **no action needed**. Default factory and string defaults match the previous hardcoded behavior.
+
+To switch the picker to another locale:
+
+```ts
+bootstrapApplication(AppComponent, {
+  providers: [
+    { provide: KP_LOCALE, useValue: 'fr-FR' },
+    { provide: KP_STRINGS, useValue: {
+        today: 'Aujourd\\'hui',
+        yesterday: 'Hier',
+        clear: 'Effacer',
+        previousMonth: 'Mois précédent',
+        nextMonth: 'Mois suivant',
+    }},
+  ],
+});
+```
+
+### Tooling
+
+- `scripts/build-libs.js` — adds discovery of `packages/i18n` and stops hardcoding `'core'` as the dist folder name for `core`-layer packages (now uses `folderName`). Lets future shared peers (e.g. `@kanso-protocol/utils`) drop into `packages/<name>` without code changes to the build script.
+
+### Remaining migrations
+
+`timepicker`, `file-upload`, `command-palette`, `search-bar` — all have keys defined in `KP_STRINGS` but components still hardcode them in `@Input` defaults. Tracked in `docs/1.0-readiness.md`.
+
+---
+
 ## 2026-04-28 — `@kanso-protocol/virtual-list` — fixed-height window virtualization
 
 Fourth and final gap-fill from `docs/1.0-readiness.md`. Generic window-mode virtual scroller for fixed-height rows. Renders only the visible window + an overscan buffer; below ~100 rows just render normally — virtualization adds complexity for nothing.

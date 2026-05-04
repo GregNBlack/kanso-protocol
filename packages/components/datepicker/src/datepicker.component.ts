@@ -17,6 +17,13 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DOCUMENT } from '@angular/common';
 
 import { KpSize, KpState } from '@kanso-protocol/core';
+import {
+  injectKpLocale,
+  injectKpStrings,
+  kpFormatDate,
+  kpMonthNames,
+  kpWeekdayNames,
+} from '@kanso-protocol/i18n';
 
 export type KpDatePickerMode = 'single' | 'range';
 export type KpDateRange = [Date | null, Date | null];
@@ -30,16 +37,8 @@ export interface KpDatePickerPreset {
 
 type View = 'day' | 'month' | 'year';
 
-const MONTH_NAMES_LONG = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December',
-];
-const MONTH_NAMES_SHORT = [
-  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
-];
-const WEEKDAY_LABELS_MON = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
-const WEEKDAY_LABELS_SUN = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+// Month / weekday labels are derived per-locale via `@kanso-protocol/i18n`
+// (see `monthNamesLong`, `monthNamesShort`, `weekdayLabels` getters below).
 
 function startOfDay(d: Date): Date { const x = new Date(d); x.setHours(0, 0, 0, 0); return x; }
 function sameDay(a: Date, b: Date): boolean {
@@ -52,14 +51,10 @@ function addMonths(d: Date, n: number): Date { const x = new Date(d); x.setMonth
 function startOfMonth(d: Date): Date { const x = new Date(d); x.setDate(1); x.setHours(0,0,0,0); return x; }
 function endOfMonth(d: Date): Date   { const x = new Date(d); x.setMonth(x.getMonth()+1); x.setDate(0); x.setHours(23,59,59,999); return x; }
 
-const DEFAULT_PRESETS: KpDatePickerPreset[] = [
-  { label: 'Today',         value: () => new Date() },
-  { label: 'Yesterday',     value: () => addDays(new Date(), -1) },
-  { label: 'Last 7 days',   value: () => [addDays(new Date(), -6), new Date()] },
-  { label: 'Last 30 days',  value: () => [addDays(new Date(), -29), new Date()] },
-  { label: 'This month',    value: () => [startOfMonth(new Date()), new Date()] },
-  { label: 'Last month',    value: () => [startOfMonth(addMonths(new Date(), -1)), endOfMonth(addMonths(new Date(), -1))] },
-];
+// Preset labels are pulled from `KP_STRINGS` via `defaultPresets()` below
+// so date-range shortcuts localize alongside the rest of the picker UI.
+// English defaults follow the consumer's expectations (Today / Yesterday /
+// 7 days / 30 days / This month / Last month).
 
 interface DayCell {
   date: Date;
@@ -116,7 +111,7 @@ interface DayCell {
         <span
           class="kp-dp__clear"
           role="button"
-          aria-label="Clear date"
+          [attr.aria-label]="strings.clear"
           (click)="clear($event)"
           (mousedown)="$event.preventDefault()"
         >
@@ -146,7 +141,7 @@ interface DayCell {
 
         <div class="kp-dp__calendar">
           <div class="kp-dp__header">
-            <button type="button" class="kp-dp__nav" aria-label="Previous" (click)="navigate(-1)">
+            <button type="button" class="kp-dp__nav" [attr.aria-label]="strings.previousMonth" (click)="navigate(-1)">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -156,7 +151,7 @@ interface DayCell {
               {{ headerLabel() }}
             </button>
 
-            <button type="button" class="kp-dp__nav" aria-label="Next" (click)="navigate(1)">
+            <button type="button" class="kp-dp__nav" [attr.aria-label]="strings.nextMonth" (click)="navigate(1)">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -516,7 +511,11 @@ export class KpDatePickerComponent implements ControlValueAccessor, AfterViewChe
   private rangeEnd: Date | null = null;
   private cvaDisabled = false;
 
-  readonly monthNamesShort = MONTH_NAMES_SHORT;
+  private readonly locale = injectKpLocale();
+  readonly strings = injectKpStrings();
+
+  readonly monthNamesShort = kpMonthNames(this.locale, 'short');
+  readonly monthNamesLong = kpMonthNames(this.locale, 'long');
 
   private readonly host = inject(ElementRef) as ElementRef<HTMLElement>;
   private readonly cdr = inject(ChangeDetectorRef);
@@ -535,11 +534,22 @@ export class KpDatePickerComponent implements ControlValueAccessor, AfterViewChe
   }
 
   get weekdayLabels(): string[] {
-    return this.firstDayOfWeek === 1 ? WEEKDAY_LABELS_MON : WEEKDAY_LABELS_SUN;
+    return kpWeekdayNames(this.locale, this.firstDayOfWeek, 'narrow');
   }
 
   get resolvedPresets(): KpDatePickerPreset[] {
-    return this.presets ?? DEFAULT_PRESETS;
+    return this.presets ?? this.defaultPresets;
+  }
+
+  private get defaultPresets(): KpDatePickerPreset[] {
+    return [
+      { label: this.strings.today,     value: () => new Date() },
+      { label: this.strings.yesterday, value: () => addDays(new Date(), -1) },
+      { label: this.strings.thisWeek,  value: () => [addDays(new Date(), -6), new Date()] },
+      { label: this.strings.lastWeek,  value: () => [addDays(new Date(), -29), new Date()] },
+      { label: this.strings.thisMonth, value: () => [startOfMonth(new Date()), new Date()] },
+      { label: this.strings.lastMonth, value: () => [startOfMonth(addMonths(new Date(), -1)), endOfMonth(addMonths(new Date(), -1))] },
+    ];
   }
 
   hasValue(): boolean {
@@ -556,11 +566,11 @@ export class KpDatePickerComponent implements ControlValueAccessor, AfterViewChe
 
   formatDate(d: Date): string {
     if (this.dateFormatter) return this.dateFormatter(d);
-    return `${MONTH_NAMES_SHORT[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+    return kpFormatDate(d, this.locale, { dateStyle: 'medium' });
   }
 
   headerLabel(): string {
-    if (this.view === 'day')   return `${MONTH_NAMES_LONG[this.viewDate.getMonth()]} ${this.viewDate.getFullYear()}`;
+    if (this.view === 'day')   return `${this.monthNamesLong[this.viewDate.getMonth()]} ${this.viewDate.getFullYear()}`;
     if (this.view === 'month') return `${this.viewDate.getFullYear()}`;
     const base = Math.floor(this.viewDate.getFullYear() / 12) * 12;
     return `${base} – ${base + 11}`;

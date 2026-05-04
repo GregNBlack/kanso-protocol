@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-04T17:30:14.785Z",
+  "generatedAt": "2026-05-04T17:56:57.469Z",
   "version": "0.1.0",
   "totals": {
     "components": 53,
@@ -715,7 +715,13 @@
       ],
       "outputs": [],
       "ariaRole": "button",
-      "sizeRamp": [],
+      "sizeRamp": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
       "keyboardPatterns": [
         "Enter",
         "Space"
@@ -983,7 +989,13 @@
         }
       ],
       "ariaRole": null,
-      "sizeRamp": [],
+      "sizeRamp": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
       "keyboardPatterns": [
         "ArrowUp",
         "ArrowDown",
@@ -1190,7 +1202,13 @@
         }
       ],
       "ariaRole": null,
-      "sizeRamp": [],
+      "sizeRamp": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
       "keyboardPatterns": [
         "ArrowRight",
         "ArrowLeft",
@@ -1825,7 +1843,13 @@
       ],
       "outputs": [],
       "ariaRole": null,
-      "sizeRamp": [],
+      "sizeRamp": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-input--docs",
       "sourcePath": "packages/components/input/src/input.component.ts",
@@ -2161,7 +2185,13 @@
       ],
       "outputs": [],
       "ariaRole": null,
-      "sizeRamp": [],
+      "sizeRamp": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-numberstepper--docs",
       "sourcePath": "packages/components/number-stepper/src/number-stepper.component.ts",
@@ -2946,7 +2976,13 @@
         }
       ],
       "ariaRole": "tablist",
-      "sizeRamp": [],
+      "sizeRamp": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
       "keyboardPatterns": [
         "ArrowRight",
         "ArrowLeft",
@@ -3034,7 +3070,13 @@
         }
       ],
       "ariaRole": null,
-      "sizeRamp": [],
+      "sizeRamp": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
       "keyboardPatterns": [
         "Escape"
       ],
