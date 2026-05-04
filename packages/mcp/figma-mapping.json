@@ -53,7 +53,10 @@
     "tree":              "3805:11135",
     "avatar":            "3805:11139",
     "avatar-group":      "3805:11139",
-    "rich-text-editor":  "3849:11648"
+    "rich-text-editor":  "3849:11648",
+    "markdown-viewer":   "4109:11282",
+    "file-upload":       "4110:11270",
+    "command-palette":   "4111:11234"
   },
   "patterns": {
     "app-shell":           "3822:7265",

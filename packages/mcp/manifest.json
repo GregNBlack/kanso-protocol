@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-04T18:58:32.461Z",
+  "generatedAt": "2026-05-04T20:30:24.902Z",
   "version": "0.1.0",
   "totals": {
     "components": 53,
@@ -1101,7 +1101,12 @@
         "Enter"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-commandpalette--docs",
-      "sourcePath": "packages/components/command-palette/src/command-palette.component.ts"
+      "sourcePath": "packages/components/command-palette/src/command-palette.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "4111:11234",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=4111-11234"
+      }
     },
     {
       "name": "datepicker",
@@ -1688,7 +1693,12 @@
         "Space"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-fileupload--docs",
-      "sourcePath": "packages/components/file-upload/src/file-upload.component.ts"
+      "sourcePath": "packages/components/file-upload/src/file-upload.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "4110:11270",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=4110-11270"
+      }
     },
     {
       "name": "form-field",
@@ -1905,7 +1915,12 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-markdownviewer--docs",
-      "sourcePath": "packages/components/markdown-viewer/src/markdown-viewer.component.ts"
+      "sourcePath": "packages/components/markdown-viewer/src/markdown-viewer.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "4109:11282",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=4109-11282"
+      }
     },
     {
       "name": "menu",
