@@ -77,3 +77,59 @@ jobs:
           npx concurrently -k -s first -n "SB,TEST" \
             "npx http-server storybook-static --port 6006 --silent" \
             "npx wait-on tcp:6006 && npm run test:storybook -- --url http://localhost:6006"
+
+  visual-regression:
+    # Pixel-level visual regression against committed baselines in
+    # e2e/visual.spec.ts-snapshots/. Curated set of representative stories
+    # (see e2e/visual.spec.ts), both light + dark.
+    #
+    # On intentional visual changes: locally run `npm run test:visual:update`
+    # and commit the new PNGs alongside the source change.
+    #
+    # First-run setup:
+    #   1. continue-on-error stays true while the snapshots dir is empty —
+    #      CI uploads the freshly-generated PNGs as `visual-diffs` artifacts.
+    #   2. Download those artifacts, commit them to e2e/visual.spec.ts-snapshots/.
+    #   3. Flip continue-on-error to false to make this a hard gate.
+    name: visual-regression
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: 'npm'
+      - run: npm ci --legacy-peer-deps
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+      - name: Build tokens + Storybook
+        run: npm run build:tokens && npm run build-storybook
+      - name: Serve Storybook & run visual diffs
+        env:
+          STORYBOOK_URL: http://localhost:6006
+        run: |
+          # Auto-generate baselines on first run if none committed yet.
+          # Detect by counting PNGs in snapshots dir.
+          PNG_COUNT=$(find e2e/visual.spec.ts-snapshots -name '*.png' 2>/dev/null | wc -l)
+          if [ "$PNG_COUNT" -eq 0 ]; then
+            echo "No baselines committed yet — generating with --update-snapshots."
+            UPDATE_FLAG="--update-snapshots"
+          else
+            UPDATE_FLAG=""
+          fi
+          npx concurrently -k -s first -n "SB,VISUAL" \
+            "npx http-server storybook-static --port 6006 --silent" \
+            "npx wait-on tcp:6006 && npx playwright test --config e2e/playwright.config.ts $UPDATE_FLAG"
+      - name: Upload baselines / diffs as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-snapshots
+          path: |
+            e2e/visual.spec.ts-snapshots/
+            e2e/test-results/
+            playwright-report/
+          retention-days: 7
+          if-no-files-found: ignore

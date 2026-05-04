@@ -30,7 +30,9 @@
     "lint": "nx run-many --target=lint --all",
     "test": "ng test",
     "test:watch": "ng test --watch",
-    "test:storybook": "test-storybook --config-dir .storybook"
+    "test:storybook": "test-storybook --config-dir .storybook",
+    "test:visual": "playwright test --config e2e/playwright.config.ts",
+    "test:visual:update": "playwright test --config e2e/playwright.config.ts --update-snapshots"
   },
   "dependencies": {
     "@angular/animations": "^21.2.0",
@@ -59,12 +61,14 @@
     "@nx/js": "^22.6.4",
     "@nx/storybook": "^22.6.4",
     "@nx/workspace": "^22.6.4",
+    "@playwright/test": "^1.59.1",
     "@storybook/addon-a11y": "^8.6.18",
     "@storybook/addon-essentials": "^8.3.0",
     "@storybook/addon-themes": "^8.6.18",
     "@storybook/angular": "^8.3.0",
     "@storybook/blocks": "^8.3.0",
     "@storybook/test-runner": "^0.19.1",
+    "@tabler/icons": "^3.41.1",
     "@tiptap/core": "^3.22.4",
     "@tiptap/extension-image": "^3.22.4",
     "@tiptap/extension-link": "^3.22.4",
@@ -79,7 +83,6 @@
     "ng-packagr": "^21.2.0",
     "nx": "^22.6.4",
     "storybook": "^8.3.0",
-    "@tabler/icons": "^3.41.1",
     "style-dictionary": "^4.1.0",
     "ts-morph": "^28.0.0",
     "typescript": "~5.9",

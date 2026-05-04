@@ -168,6 +168,22 @@ Switch themes by toggling `data-theme` on `<html>` or `<body>`:
 
 See the [Storybook](https://gregnblack.github.io/kanso-protocol) for the full API of every component — props, slots, variants, states, a11y notes.
 
+## Visual regression
+
+A small Playwright suite (`e2e/visual.spec.ts`) takes pixel-level screenshots of a curated set of representative stories — one per component family — in both light and dark themes. Baselines live in `e2e/visual.spec.ts-snapshots/` and are committed alongside source changes.
+
+```bash
+# Run against a locally-served Storybook
+npm run build-storybook
+npx http-server storybook-static --port 6006 --silent &
+npm run test:visual
+
+# Update baselines after an intentional visual change
+npm run test:visual:update
+```
+
+CI runs the same suite under the `visual-regression` job. On a clean PR diffs above `maxDiffPixelRatio` (1%) fail the build; on the very first run (no committed baselines) CI generates them and uploads as a `visual-snapshots` artifact for review.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for dev-environment setup, coding conventions, how to add a component, and the token workflow.
