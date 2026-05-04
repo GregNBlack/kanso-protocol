@@ -12,6 +12,25 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-04-28 — fix(dialog): body breathing room when header/footer is off
+
+When `[showHeader]=false` or `[showFooter]=false`, the body content sat flush against the panel edge. Now the body adds 16px padding only on the affected side — header/footer still own their own padding when present, so headered dialogs are unchanged.
+
+### Bumps
+
+- `@kanso-protocol/dialog` `0.1.1` → `0.1.2` *(patch — visible-only-with-no-chrome)*
+
+### What changed
+
+- `<div class="kp-dialog__body">` now toggles `--no-header` / `--no-footer` modifier classes when the corresponding chrome is hidden.
+- Two CSS rules added: `.kp-dialog__body--no-header { padding-top: 16px; }` and `.kp-dialog__body--no-footer { padding-bottom: 16px; }`.
+
+### Migration
+
+None. Existing headered+footered dialogs render identically.
+
+---
+
 ## 2026-04-28 — fix(alert): icon color matches title color
 
 In every Alert variant, the leading icon and the title text now share one color (`--kp-alert-fg-title`). Previously they were defined as separate tokens that often resolved to different shades — e.g. `subtle` variant had `title=blue-900` but `icon=blue-600`. Designers expected one visual identity per variant, not two.

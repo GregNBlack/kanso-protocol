@@ -92,7 +92,11 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
 
           @if (showHeader && showHeaderDivider) { <div class="kp-dialog__divider"></div> }
 
-          <div class="kp-dialog__body">
+          <div
+            class="kp-dialog__body"
+            [class.kp-dialog__body--no-header]="!showHeader"
+            [class.kp-dialog__body--no-footer]="!showFooter"
+          >
             <ng-content select="[kpDialogBody]"/>
           </div>
 
@@ -242,6 +246,12 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       overflow: auto;
       flex: 1 1 auto;
     }
+    /* Without a header above, the body sticks to the panel's top edge —
+       same problem at the bottom when the footer is off. Add 16px breathing
+       room only on the affected sides; header/footer still own their own
+       padding when present. */
+    .kp-dialog__body--no-header { padding-top: 16px; }
+    .kp-dialog__body--no-footer { padding-bottom: 16px; }
 
     .kp-dialog__footer {
       display: flex;
