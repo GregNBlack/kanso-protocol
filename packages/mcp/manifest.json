@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-04T20:30:24.902Z",
+  "generatedAt": "2026-05-04T22:59:09.761Z",
   "version": "0.1.0",
   "totals": {
     "components": 53,
@@ -1265,12 +1265,6 @@
           "description": ""
         },
         {
-          "name": "showHeader",
-          "type": "boolean",
-          "default": "true",
-          "description": ""
-        },
-        {
           "name": "showHeroIcon",
           "type": "boolean",
           "default": "false",
@@ -1280,12 +1274,6 @@
           "name": "showDescription",
           "type": "boolean",
           "default": "false",
-          "description": ""
-        },
-        {
-          "name": "showClose",
-          "type": "boolean",
-          "default": "true",
           "description": ""
         },
         {

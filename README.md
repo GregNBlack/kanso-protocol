@@ -397,7 +397,15 @@ only, not published to npm) and serve as the integration test for the system.
 
 ## Figma Integration
 
-Kanso Protocol syncs with Figma via [Tokens Studio](https://tokens.studio):
+The full design library is published on Figma Community — duplicate it into your team to use the components, variables, and example pages directly:
+
+**[→ Kanso Protocol on Figma Community](https://www.figma.com/community/file/1633266134559104948)**
+
+Inside: 41 components × variants, 22 patterns, 900 W3C DTCG variables (light + dark modes), Iconography, and 8 example pages (Dashboard, Detail View, List View, Login, Settings, Command Palette, File Upload, Markdown Viewer).
+
+### Token sync
+
+Tokens stay in lockstep with code via [Tokens Studio](https://tokens.studio):
 
 1. Tokens Studio reads DTCG JSON from this repository
 2. Changes to tokens create a Pull Request
