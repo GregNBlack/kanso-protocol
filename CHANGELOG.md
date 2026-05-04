@@ -12,6 +12,30 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-04-28 — fix(alert): icon color matches title color
+
+In every Alert variant, the leading icon and the title text now share one color (`--kp-alert-fg-title`). Previously they were defined as separate tokens that often resolved to different shades — e.g. `subtle` variant had `title=blue-900` but `icon=blue-600`. Designers expected one visual identity per variant, not two.
+
+### Bumps
+
+- `@kanso-protocol/alert` `0.1.2` → `0.1.3` *(patch — observable color shift in subtle / outline / left-accent variants)*
+
+### What changed
+
+- `.kp-alert__icon` CSS now reads `var(--kp-alert-fg-title)` instead of `var(--kp-alert-icon)`.
+- All 24 per-variant `--kp-alert-icon: ...` declarations removed — single source of truth, less drift surface.
+
+### Visual impact
+
+- `solid` and `warning` variants: no change (title and icon were already the same in these).
+- `subtle`, `outline`, `left-accent` variants: icon is now slightly darker to match the title's deeper shade. Contrast against the variant background goes UP.
+
+### Migration
+
+None. If a consumer was overriding `--kp-alert-icon` in custom CSS, that override no longer takes effect — switch to `--kp-alert-fg-title` (which also drives the title and close button).
+
+---
+
 ## 2026-04-28 — fix(dialog): clean up portal element on destroy
 
 `<kp-dialog>` portals its root into `<body>` via `appendChild` to escape transformed / clipped ancestors. The portal moves the element out of Angular's view tree, so `ngOnDestroy` was leaving the orphaned element in `<body>` after the component went away — a slow-grow DOM leak in long-lived apps that mount and unmount dialogs frequently, and the cause of test-isolation flakes when multiple `<kp-command-palette>` fixtures ran in sequence (the prior test's dialog stayed in body, polluting `document.body.textContent` queries).
