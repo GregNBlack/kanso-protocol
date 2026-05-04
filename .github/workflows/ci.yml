@@ -90,9 +90,6 @@ jobs:
     # token PRs.
     name: visual-regression
     runs-on: ubuntu-latest
-    # Temporarily continue-on-error while expanding coverage — flips to hard
-    # gate after the next commit lands the freshly-seeded baselines.
-    continue-on-error: true
     needs: build
     steps:
       - uses: actions/checkout@v4
@@ -109,14 +106,9 @@ jobs:
         env:
           STORYBOOK_URL: http://localhost:6006
         run: |
-          # When the visual-regression job is in continue-on-error mode (during
-          # coverage expansion), always run with --update-snapshots so newly-added
-          # test cases generate their baselines and end up in the uploaded artifact.
-          # Once the gate flips to hard, drop the flag — diffs become real failures.
-          UPDATE_FLAG="--update-snapshots"
           npx concurrently -k -s first -n "SB,VISUAL" \
             "npx http-server storybook-static --port 6006 --silent" \
-            "npx wait-on tcp:6006 && npx playwright test --config e2e/playwright.config.ts $UPDATE_FLAG"
+            "npx wait-on tcp:6006 && npm run test:visual"
       - name: Upload baselines / diffs as artifact
         if: always()
         uses: actions/upload-artifact@v4
