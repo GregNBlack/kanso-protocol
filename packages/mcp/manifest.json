@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-05-04T14:56:47.054Z",
+  "generatedAt": "2026-05-04T15:21:44.664Z",
   "version": "0.1.0",
   "totals": {
-    "components": 50,
+    "components": 51,
     "patterns": 22,
     "tokens": 900
   },
@@ -715,13 +715,7 @@
       ],
       "outputs": [],
       "ariaRole": "button",
-      "sizeRamp": [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl"
-      ],
+      "sizeRamp": [],
       "keyboardPatterns": [
         "Enter",
         "Space"
@@ -989,13 +983,7 @@
         }
       ],
       "ariaRole": null,
-      "sizeRamp": [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl"
-      ],
+      "sizeRamp": [],
       "keyboardPatterns": [
         "ArrowUp",
         "ArrowDown",
@@ -1112,13 +1100,7 @@
         }
       ],
       "ariaRole": null,
-      "sizeRamp": [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl"
-      ],
+      "sizeRamp": [],
       "keyboardPatterns": [
         "ArrowRight",
         "ArrowLeft",
@@ -1753,13 +1735,7 @@
       ],
       "outputs": [],
       "ariaRole": null,
-      "sizeRamp": [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl"
-      ],
+      "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-input--docs",
       "sourcePath": "packages/components/input/src/input.component.ts",
@@ -1768,6 +1744,54 @@
         "nodeId": "3805:10997",
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-10997"
       }
+    },
+    {
+      "name": "markdown-viewer",
+      "className": "KpMarkdownViewerComponent",
+      "selector": "kp-markdown-viewer",
+      "layer": "components",
+      "package": "@kanso-protocol/markdown-viewer",
+      "description": "Kanso Protocol — MarkdownViewer\n\nRead-only markdown renderer. Pairs with `<kp-rich-text-editor>` (which\nis HTML-only) for repos / docs / READMEs / changelog viewers.\n\nDefault parser is `marked` (already a dev-dep transitive in many Angular\nsetups; declared here as a runtime dep so the component is self-contained).\nPass `[parser]` to swap in `markdown-it`, `remark`, or a custom parser\nwhen you need plugin support beyond CommonMark + GFM.\n\nOutput is sanitized via `DomSanitizer.bypassSecurityTrustHtml` only when\n`[trusted]=true`. With `trusted=false` (default) the inner HTML goes\nthrough Angular's automatic sanitization, which strips `<script>`,\ninline event handlers, and `javascript:` URLs.",
+      "examples": [
+        "<kp-markdown-viewer\n  size=\"md\"\n  [content]=\"readme\"\n/>",
+        "// With a custom parser (e.g. markdown-it for GFM tables + plugins):\n<kp-markdown-viewer\n  [content]=\"readme\"\n  [parser]=\"myMarkdownIt.render.bind(myMarkdownIt)\"\n/>"
+      ],
+      "inputs": [
+        {
+          "name": "size",
+          "type": "KpMarkdownViewerSize",
+          "default": "'md'",
+          "description": ""
+        },
+        {
+          "name": "content",
+          "type": "string | null",
+          "default": "null",
+          "description": ""
+        },
+        {
+          "name": "parser",
+          "type": "KpMarkdownParser",
+          "default": "defaultParser",
+          "description": "Custom parser. Defaults to `marked.parse()`."
+        },
+        {
+          "name": "trusted",
+          "type": "boolean",
+          "default": "false",
+          "description": "When `true`, output is wrapped in `bypassSecurityTrustHtml` (raw HTML\npasses through). Use only with content from a controlled source —\nmarkdown that the user can author should keep `trusted=false`."
+        }
+      ],
+      "outputs": [],
+      "ariaRole": null,
+      "sizeRamp": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "keyboardPatterns": [],
+      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-markdownviewer--docs",
+      "sourcePath": "packages/components/markdown-viewer/src/markdown-viewer.component.ts"
     },
     {
       "name": "menu",
@@ -2047,13 +2071,7 @@
       ],
       "outputs": [],
       "ariaRole": null,
-      "sizeRamp": [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl"
-      ],
+      "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-numberstepper--docs",
       "sourcePath": "packages/components/number-stepper/src/number-stepper.component.ts",
@@ -2838,13 +2856,7 @@
         }
       ],
       "ariaRole": "tablist",
-      "sizeRamp": [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl"
-      ],
+      "sizeRamp": [],
       "keyboardPatterns": [
         "ArrowRight",
         "ArrowLeft",
@@ -2932,13 +2944,7 @@
         }
       ],
       "ariaRole": null,
-      "sizeRamp": [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl"
-      ],
+      "sizeRamp": [],
       "keyboardPatterns": [
         "Escape"
       ],

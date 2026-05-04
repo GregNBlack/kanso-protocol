@@ -12,6 +12,30 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-04-28 — `@kanso-protocol/markdown-viewer` — read-only markdown renderer
+
+Second gap-fill from `docs/1.0-readiness.md`. CommonMark + GFM via bundled `marked@^7`, pluggable parser, three sizes (sm / md / lg), sanitized-by-default output via Angular's `[innerHTML]` automatic sanitizer.
+
+### New package
+
+- `@kanso-protocol/markdown-viewer@0.1.0` *(experimental)*
+
+### Why a separate component from `rich-text-editor`
+
+`rich-text-editor` is the *write* path — TipTap-backed, emits HTML. `markdown-viewer` is the *read* path. They have different bundle sizes, different lifecycle constraints (the editor needs a dispose hook; the viewer doesn't), and different consumer mental models. Splitting them keeps each one small and intent-clear.
+
+### Why `marked` and not zero-dep
+
+A markdown viewer that doesn't parse markdown isn't a markdown viewer. `marked@7` is ~30 KB minified, MIT, and battle-tested. Declared as `dependencies` (not peer) so consumers don't have to install it; `allowedNonPeerDependencies` in `ng-package.json` whitelists it for ng-packagr.
+
+For consumers who want plugins (footnotes, KaTeX, embeds), `[parser]` accepts any `(md: string) => string` — drop in `markdown-it` + plugins, `remark`, or a custom function.
+
+### Migration
+
+None — new package.
+
+---
+
 ## 2026-04-28 — `@kanso-protocol/file-upload` — drag-and-drop dropzone
 
 First component closing a `1.0` gap from `docs/1.0-readiness.md`. Drag-and-drop + click-to-browse with constraint validation (`accept` / `maxSize` / `maxFiles`) and a managed file list. The component owns the row state; the consumer drives upload progress via `setProgress(id, n)` and finalizes via `setStatus(id, 'success' | 'error')`.

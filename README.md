@@ -297,12 +297,12 @@ export class MyComponent {
 
 ## Components
 
-38 components, each its own npm package — install only what you import. Tokens live in `@kanso-protocol/core` and need to be loaded once for any of them to render correctly.
+39 components, each its own npm package — install only what you import. Tokens live in `@kanso-protocol/core` and need to be loaded once for any of them to render correctly.
 
 Install all components in one shot (zsh / bash brace expansion):
 
 ```bash
-npm i @kanso-protocol/core @kanso-protocol/{accordion,alert,avatar,avatar-group,badge,breadcrumbs,button,card,checkbox,combobox,datepicker,dialog,divider,drawer,empty-state,file-upload,form-field,icon,input,menu,number-stepper,pagination,popover,progress,radio,rich-text-editor,segmented-control,select,skeleton,slider,table,tabs,textarea,timepicker,toast,toggle,tooltip,tree}
+npm i @kanso-protocol/core @kanso-protocol/{accordion,alert,avatar,avatar-group,badge,breadcrumbs,button,card,checkbox,combobox,datepicker,dialog,divider,drawer,empty-state,file-upload,form-field,icon,input,markdown-viewer,menu,number-stepper,pagination,popover,progress,radio,rich-text-editor,segmented-control,select,skeleton,slider,table,tabs,textarea,timepicker,toast,toggle,tooltip,tree}
 ```
 
 Or pick what you need from the catalog. Every component has a formal API contract (props, variants, states, a11y rules) and a live Storybook page with controls.
@@ -329,6 +329,7 @@ Or pick what you need from the catalog. Every component has a formal API contrac
 | FormField | [form-field.md](docs/components/form-field.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-formfield--docs) | `npm i @kanso-protocol/form-field` |
 | Icon | [icon.md](docs/components/icon.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-icon--docs) | `npm i @kanso-protocol/icon` |
 | Input | [input.md](docs/components/input.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-input--docs) | `npm i @kanso-protocol/input` |
+| MarkdownViewer | [markdown-viewer.md](docs/components/markdown-viewer.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-markdownviewer--docs) | `npm i @kanso-protocol/markdown-viewer` |
 | NumberStepper | [number-stepper.md](docs/components/number-stepper.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-numberstepper--docs) | `npm i @kanso-protocol/number-stepper` |
 | Pagination | [pagination.md](docs/components/pagination.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-pagination--docs) | `npm i @kanso-protocol/pagination` |
 | Popover | [popover.md](docs/components/popover.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-popover--docs) | `npm i @kanso-protocol/popover` |
