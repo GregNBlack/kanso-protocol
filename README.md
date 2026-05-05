@@ -428,7 +428,7 @@ What we ask for: a one-line description, a public link (live URL or GitHub repo)
 
 1. **Explicit over implicit.** No magic values — everything through tokens.
 2. **Architecture over agreements.** Rules are structural, not written.
-3. **Predictability over flexibility.** Limited but predictable API > flexible but chaotic.
+3. **Predictability over flexibility.** A small, opinionated API beats a configurable one — every consumer gets the same behavior instead of each team building their own dialect.
 4. **Single source of truth.** One change, one place.
 5. **Every component is equal.** Same anatomy, same contract, no exceptions without ADR.
 
