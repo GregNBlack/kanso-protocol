@@ -681,6 +681,16 @@
         "$description": "designer-pass"
       }
     },
+    "text": {
+      "$description": "Dark-theme overrides for the text family. `strong` and `default` cascade through primitive inversion automatically; `muted` and `disabled` need explicit lifts so they keep AA contrast and stay visually distinct from each other on the dark page bg.",
+      "muted":    { "$value": "{color.gray.600}", "$description": "gray-600 in dark = #A1A1AA — passes AA on gray-900 dark page bg (=#18181B)" },
+      "disabled": { "$value": "{color.gray.500}", "$description": "Stays a step less prominent than `muted` to preserve the disabled affordance" }
+    },
+    "surface": {
+      "$description": "Dark-theme overrides for the surface family. `base` (= white) and `subtle` (= gray.50) cascade correctly through primitive inversion; `muted` and `strong` need explicit lifts so hover / pressed states stay visually distinct from `base` (gray-100 inverts to the same hex as gray-900, which would collapse the elevation difference).",
+      "muted":  { "$value": "{color.gray.200}", "$description": "gray-200 dark = #27272A — sits one step lighter than `base` (=#18181B)" },
+      "strong": { "$value": "{color.gray.300}", "$description": "gray-300 dark = #3F3F46 — pressed / active row distinguishable from `muted`" }
+    },
     "accent": {
       "$description": "Dark-theme accent fg overrides — readable brand shades on dark page bg, decoupled from action-shade primitive inversion",
       "primary": {

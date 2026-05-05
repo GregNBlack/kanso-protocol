@@ -84,6 +84,29 @@
       "ring": { "$value": "{color.blue.400}", "$description": "Focus ring — 2px offset outline for all focusable elements" }
     },
 
+    "text": {
+      "$description": "Foreground colors for text and icons rendered on the page surface. Use these instead of direct primitive references — `muted` and `disabled` carry explicit dark-mode overrides for AA contrast that primitive inversion alone wouldn't provide.",
+      "strong":   { "$value": "{color.gray.900}", "$type": "color", "$description": "Headings and primary emphasized text" },
+      "default":  { "$value": "{color.gray.700}", "$type": "color", "$description": "Default body text" },
+      "muted":    { "$value": "{color.gray.500}", "$type": "color", "$description": "Secondary text — captions, helper, less important labels. Dark override → gray.600 for AA contrast against dark page bg." },
+      "disabled": { "$value": "{color.gray.400}", "$type": "color", "$description": "Disabled labels, placeholders. Dark override → gray.500 to stay visibly less prominent than `muted`." }
+    },
+
+    "surface": {
+      "$description": "Background colors for page chrome and elevated panels. `base` inverts cleanly via primitive flip; `muted` and `strong` carry explicit dark overrides so hover / pressed states stay visually distinct from `base` (in dark, gray-100 inverts to the same hex as gray-900, which would erase the elevation difference).",
+      "base":   { "$value": "{color.white}",    "$type": "color", "$description": "Top elevated surface — cards, dialogs, dropdowns. Inverts to gray-900 dark = #18181B" },
+      "subtle": { "$value": "{color.gray.50}",  "$type": "color", "$description": "Page background behind cards, recessed regions. Inverts to gray-950 dark = #09090B" },
+      "muted":  { "$value": "{color.gray.100}", "$type": "color", "$description": "Hover background, alternating rows, muted callouts. Dark override → gray.200 (= #27272A in dark, distinguishable from base)" },
+      "strong": { "$value": "{color.gray.200}", "$type": "color", "$description": "Active row, pressed state, more prominent muted bg. Dark override → gray.300" }
+    },
+
+    "border": {
+      "$description": "Border and divider colors. All three levels invert cleanly through primitive ramps — no dark overrides needed.",
+      "subtle":  { "$value": "{color.gray.100}", "$type": "color", "$description": "Faint internal dividers" },
+      "default": { "$value": "{color.gray.200}", "$type": "color", "$description": "Standard control and card borders" },
+      "strong":  { "$value": "{color.gray.300}", "$type": "color", "$description": "Emphasized borders — focused panels, table headers" }
+    },
+
     "icon": {
       "primary":     { "$value": "{color.gray.700}", "$type": "color", "$description": "Default icon color on light backgrounds — navigation, lists, labels" },
       "secondary":   { "$value": "{color.gray.400}", "$type": "color", "$description": "Decorative icons, placeholders, hints" },
