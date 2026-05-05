@@ -55,10 +55,10 @@ export type KpTooltipArrowPosition = 'none' | 'top' | 'right' | 'bottom' | 'left
       box-sizing: border-box;
       padding: var(--kp-tooltip-pad-y) var(--kp-tooltip-pad-x);
       gap: var(--kp-tooltip-gap);
-      border: 1px solid var(--kp-color-tooltip-border, var(--kp-color-gray-800));
+      border: 1px solid var(--kp-color-tooltip-border);
       border-radius: var(--kp-tooltip-radius);
-      background: var(--kp-color-tooltip-bg, var(--kp-color-gray-900));
-      color: var(--kp-color-tooltip-fg, var(--kp-color-white));
+      background: var(--kp-color-tooltip-bg);
+      color: var(--kp-color-tooltip-fg);
       max-width: 240px;
       box-shadow: var(--kp-elevation-overlay);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
@@ -73,7 +73,7 @@ export type KpTooltipArrowPosition = 'none' | 'top' | 'right' | 'bottom' | 'left
     .kp-tooltip__shortcut {
       display: inline-flex;
       align-items: center;
-      color: var(--kp-color-tooltip-shortcut, var(--kp-color-gray-400));
+      color: var(--kp-color-tooltip-shortcut);
       font-family: ui-monospace, SFMono-Regular, 'JetBrains Mono', Menlo, Consolas, monospace;
       font-size: var(--kp-tooltip-shortcut-size);
       font-weight: 500;
@@ -84,7 +84,7 @@ export type KpTooltipArrowPosition = 'none' | 'top' | 'right' | 'bottom' | 'left
     .kp-tooltip__arrow {
       position: absolute;
       display: block;
-      color: var(--kp-color-tooltip-bg, var(--kp-color-gray-900));
+      color: var(--kp-color-tooltip-bg);
     }
     .kp-tooltip__arrow path { fill: currentColor; }
 

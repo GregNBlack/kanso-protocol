@@ -294,7 +294,7 @@ export interface KpComboboxOption {
       cursor: not-allowed;
     }
     .kp-cb__option mark {
-      background: var(--kp-color-combobox-highlight, var(--kp-color-blue-50));
+      background: var(--kp-color-combobox-highlight);
       color: inherit;
       border-radius: 2px;
       padding: 0 1px;

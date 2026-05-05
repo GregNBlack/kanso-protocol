@@ -254,8 +254,8 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       flex-direction: column;
       gap: 12px;
       padding: 16px;
-      background: var(--kp-color-datepicker-panel-bg, var(--kp-color-white));
-      border: 1px solid var(--kp-color-datepicker-panel-border, var(--kp-color-gray-200));
+      background: var(--kp-color-datepicker-panel-bg);
+      border: 1px solid var(--kp-color-datepicker-panel-border);
       border-radius: 12px;
       box-shadow: var(--kp-elevation-overlay);
       box-sizing: border-box;
@@ -275,7 +275,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
     .kp-tp__col-label {
       font-size: 10px;
       font-weight: 500;
-      color: var(--kp-color-datepicker-weekday, var(--kp-color-gray-500));
+      color: var(--kp-color-datepicker-weekday);
       text-transform: uppercase;
       letter-spacing: 0.06em;
       text-align: center;
@@ -287,7 +287,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       height: 160px;
       width: 56px;
       padding: 4px;
-      border: 1px solid var(--kp-color-datepicker-panel-border, var(--kp-color-gray-200));
+      border: 1px solid var(--kp-color-datepicker-panel-border);
       border-radius: 8px;
       overflow-y: auto;
       scroll-behavior: smooth;
@@ -318,17 +318,17 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       border-radius: 6px;
       font-size: 14px;
       font-variant-numeric: tabular-nums;
-      color: var(--kp-color-datepicker-day-fg-rest, var(--kp-color-gray-900));
+      color: var(--kp-color-datepicker-day-fg-rest);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease, color 100ms ease;
       flex-shrink: 0;
     }
     .kp-tp__item:hover:not(.kp-tp__item--selected) {
-      background: var(--kp-color-datepicker-day-bg-hover, var(--kp-color-gray-100));
+      background: var(--kp-color-datepicker-day-bg-hover);
     }
     .kp-tp__item--selected {
-      background: var(--kp-color-datepicker-day-bg-selected, var(--kp-color-blue-600));
-      color: var(--kp-color-datepicker-day-fg-selected, var(--kp-color-white));
+      background: var(--kp-color-datepicker-day-bg-selected);
+      color: var(--kp-color-datepicker-day-fg-selected);
       font-weight: 500;
     }
 
@@ -338,7 +338,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       justify-content: space-between;
       gap: 8px;
       padding-top: 8px;
-      border-top: 1px solid var(--kp-color-datepicker-panel-border, var(--kp-color-gray-200));
+      border-top: 1px solid var(--kp-color-datepicker-panel-border);
     }
     .kp-tp__footer-right { display: flex; gap: 6px; }
 

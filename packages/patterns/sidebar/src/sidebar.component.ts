@@ -152,8 +152,8 @@ export interface KpSidebarSection {
       width: var(--kp-sidebar-w, 240px);
       height: 100%;
       min-height: 100vh;
-      background: var(--kp-color-sidebar-bg, var(--kp-color-white));
-      border-inline-end: 1px solid var(--kp-color-sidebar-border, var(--kp-color-gray-200));
+      background: var(--kp-color-sidebar-bg);
+      border-inline-end: 1px solid var(--kp-color-sidebar-border);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       transition: width var(--kp-motion-duration-fast) ease;
     }
@@ -161,7 +161,7 @@ export interface KpSidebarSection {
     :host(.kp-sidebar--collapsed) { --kp-sidebar-w: 64px; }
 
     :host(.kp-sidebar--dark) {
-      background: var(--kp-color-sidebar-bg-dark, var(--kp-color-gray-900));
+      background: var(--kp-color-sidebar-bg-dark);
             color: var(--kp-color-fg-on-dark-strong);
       border-right-color: var(--kp-color-gray-800);
     }
@@ -271,7 +271,7 @@ export interface KpSidebarSection {
       font-weight: 600;
       letter-spacing: 0.5px;
       text-transform: uppercase;
-      color: var(--kp-color-sidebar-section-label, var(--kp-color-gray-500));
+      color: var(--kp-color-sidebar-section-label);
     }
 
     .kp-sidebar__badge {
@@ -292,7 +292,7 @@ export interface KpSidebarSection {
       align-items: center;
       gap: 12px;
       padding: 16px;
-      border-top: 1px solid var(--kp-color-sidebar-border, var(--kp-color-gray-200));
+      border-top: 1px solid var(--kp-color-sidebar-border);
     }
     :host(.kp-sidebar--dark) .kp-sidebar__footer { border-top-color: var(--kp-color-gray-800); }
     .kp-sidebar__footer-text {

@@ -53,7 +53,7 @@ import { KpTabComponent, KpTabSize } from './tab.component';
       position: relative;
       display: flex;
       align-items: stretch;
-      border-bottom: 1px solid var(--kp-color-tabs-track-border, var(--kp-color-gray-200));
+      border-bottom: 1px solid var(--kp-color-tabs-track-border);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
 

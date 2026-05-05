@@ -105,7 +105,7 @@ export type KpToggleColor = 'primary' | 'danger';
     }
     :host(:focus-visible),
     :host(.kp-toggle--focus) {
-      outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
+      outline: 2px solid var(--kp-color-focus-ring);
       outline-offset: 2px;
       border-radius: var(--kp-toggle-track-h);
     }

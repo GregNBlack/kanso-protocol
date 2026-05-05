@@ -163,7 +163,7 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
     }
         .kp-th__action:hover { background: var(--kp-color-overlay-primary-hover); }
     .kp-th__action:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
+      outline: 2px solid var(--kp-color-focus-ring);
       outline-offset: 2px;
     }
 
@@ -176,7 +176,7 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
       width: 20px;
       height: 20px;
       border-radius: 4px;
-      color: var(--kp-color-toast-close, var(--kp-color-gray-400));
+      color: var(--kp-color-toast-close);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
@@ -184,13 +184,13 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
 
     /* Appearance tokens — shared with Alert */
     .kp-th__toast--primary {
-      --kp-toast-bg:       var(--kp-color-alert-primary-subtle-bg, var(--kp-color-blue-50));
-      --kp-toast-border:   var(--kp-color-alert-primary-subtle-border, var(--kp-color-blue-200));
-      --kp-toast-fg-title: var(--kp-color-alert-primary-subtle-fg-title, var(--kp-color-blue-900));
-      --kp-toast-fg-desc:  var(--kp-color-alert-primary-subtle-fg-desc, var(--kp-color-blue-700));
-      --kp-toast-fg-body:  var(--kp-color-alert-primary-subtle-fg-desc, var(--kp-color-blue-700));
-      --kp-toast-icon:     var(--kp-color-alert-primary-subtle-icon, var(--kp-color-blue-600));
-      --kp-toast-action:   var(--kp-color-alert-primary-subtle-icon, var(--kp-color-blue-600));
+      --kp-toast-bg:       var(--kp-color-alert-primary-subtle-bg);
+      --kp-toast-border:   var(--kp-color-alert-primary-subtle-border);
+      --kp-toast-fg-title: var(--kp-color-alert-primary-subtle-fg-title);
+      --kp-toast-fg-desc:  var(--kp-color-alert-primary-subtle-fg-desc);
+      --kp-toast-fg-body:  var(--kp-color-alert-primary-subtle-fg-desc);
+      --kp-toast-icon:     var(--kp-color-alert-primary-subtle-icon);
+      --kp-toast-action:   var(--kp-color-alert-primary-subtle-icon);
     }
     .kp-th__toast--success {
       --kp-toast-bg:       var(--kp-color-alert-success-subtle-bg, #ECFDF5);
@@ -202,31 +202,31 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
       --kp-toast-action:   var(--kp-color-alert-success-subtle-icon, #059669);
     }
     .kp-th__toast--danger {
-      --kp-toast-bg:       var(--kp-color-alert-danger-subtle-bg, var(--kp-color-red-50));
-      --kp-toast-border:   var(--kp-color-alert-danger-subtle-border, var(--kp-color-red-300));
-      --kp-toast-fg-title: var(--kp-color-alert-danger-subtle-fg-title, var(--kp-color-red-900));
-      --kp-toast-fg-desc:  var(--kp-color-alert-danger-subtle-fg-desc, var(--kp-color-red-700));
-      --kp-toast-fg-body:  var(--kp-color-alert-danger-subtle-fg-desc, var(--kp-color-red-700));
-      --kp-toast-icon:     var(--kp-color-alert-danger-subtle-icon, var(--kp-color-red-600));
-      --kp-toast-action:   var(--kp-color-alert-danger-subtle-icon, var(--kp-color-red-600));
+      --kp-toast-bg:       var(--kp-color-alert-danger-subtle-bg);
+      --kp-toast-border:   var(--kp-color-alert-danger-subtle-border);
+      --kp-toast-fg-title: var(--kp-color-alert-danger-subtle-fg-title);
+      --kp-toast-fg-desc:  var(--kp-color-alert-danger-subtle-fg-desc);
+      --kp-toast-fg-body:  var(--kp-color-alert-danger-subtle-fg-desc);
+      --kp-toast-icon:     var(--kp-color-alert-danger-subtle-icon);
+      --kp-toast-action:   var(--kp-color-alert-danger-subtle-icon);
     }
     .kp-th__toast--warning {
-      --kp-toast-bg:       var(--kp-color-alert-warning-subtle-bg, var(--kp-color-amber-50));
-      --kp-toast-border:   var(--kp-color-alert-warning-subtle-border, var(--kp-color-amber-300));
-      --kp-toast-fg-title: var(--kp-color-alert-warning-subtle-fg-title, var(--kp-color-amber-900));
-      --kp-toast-fg-desc:  var(--kp-color-alert-warning-subtle-fg-desc, var(--kp-color-amber-700));
-      --kp-toast-fg-body:  var(--kp-color-alert-warning-subtle-fg-desc, var(--kp-color-amber-700));
-      --kp-toast-icon:     var(--kp-color-alert-warning-subtle-icon, var(--kp-color-amber-600));
-      --kp-toast-action:   var(--kp-color-alert-warning-subtle-icon, var(--kp-color-amber-600));
+      --kp-toast-bg:       var(--kp-color-alert-warning-subtle-bg);
+      --kp-toast-border:   var(--kp-color-alert-warning-subtle-border);
+      --kp-toast-fg-title: var(--kp-color-alert-warning-subtle-fg-title);
+      --kp-toast-fg-desc:  var(--kp-color-alert-warning-subtle-fg-desc);
+      --kp-toast-fg-body:  var(--kp-color-alert-warning-subtle-fg-desc);
+      --kp-toast-icon:     var(--kp-color-alert-warning-subtle-icon);
+      --kp-toast-action:   var(--kp-color-alert-warning-subtle-icon);
     }
     .kp-th__toast--info {
-      --kp-toast-bg:       var(--kp-color-alert-info-subtle-bg, var(--kp-color-cyan-50));
-      --kp-toast-border:   var(--kp-color-alert-info-subtle-border, var(--kp-color-cyan-200));
-      --kp-toast-fg-title: var(--kp-color-alert-info-subtle-fg-title, var(--kp-color-cyan-900));
-      --kp-toast-fg-desc:  var(--kp-color-alert-info-subtle-fg-desc, var(--kp-color-cyan-700));
-      --kp-toast-fg-body:  var(--kp-color-alert-info-subtle-fg-desc, var(--kp-color-cyan-700));
-      --kp-toast-icon:     var(--kp-color-alert-info-subtle-icon, var(--kp-color-cyan-600));
-      --kp-toast-action:   var(--kp-color-alert-info-subtle-icon, var(--kp-color-cyan-600));
+      --kp-toast-bg:       var(--kp-color-alert-info-subtle-bg);
+      --kp-toast-border:   var(--kp-color-alert-info-subtle-border);
+      --kp-toast-fg-title: var(--kp-color-alert-info-subtle-fg-title);
+      --kp-toast-fg-desc:  var(--kp-color-alert-info-subtle-fg-desc);
+      --kp-toast-fg-body:  var(--kp-color-alert-info-subtle-fg-desc);
+      --kp-toast-icon:     var(--kp-color-alert-info-subtle-icon);
+      --kp-toast-action:   var(--kp-color-alert-info-subtle-icon);
     }
     .kp-th__toast--neutral {
       --kp-toast-bg:       var(--kp-color-white);

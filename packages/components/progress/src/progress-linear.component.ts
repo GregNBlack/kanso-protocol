@@ -71,13 +71,13 @@ export type KpProgressColor = 'primary' | 'success' | 'danger' | 'warning' | 'ne
     }
 
     .kp-progress-linear__label {
-      color: var(--kp-color-progress-label, var(--kp-color-gray-700));
+      color: var(--kp-color-progress-label);
       font-weight: 400;
       font-size: 14px;
       line-height: 20px;
     }
     .kp-progress-linear__value {
-      color: var(--kp-color-progress-value, var(--kp-color-gray-900));
+      color: var(--kp-color-progress-value);
       font-weight: 500;
       font-size: 14px;
       line-height: 20px;
@@ -89,7 +89,7 @@ export type KpProgressColor = 'primary' | 'success' | 'danger' | 'warning' | 'ne
       position: relative;
       flex: 1 1 auto;
       height: var(--kp-progress-h);
-      background: var(--kp-color-progress-track, var(--kp-color-gray-100));
+      background: var(--kp-color-progress-track);
       border-radius: calc(var(--kp-progress-h) / 2);
       overflow: hidden;
     }
@@ -127,11 +127,11 @@ export type KpProgressColor = 'primary' | 'success' | 'danger' | 'warning' | 'ne
     :host(.kp-progress-linear--lg) { --kp-progress-h: 8px; }
 
     /* Color roles */
-    :host(.kp-progress-linear--primary) { --kp-progress-fill: var(--kp-color-progress-primary-fill, var(--kp-color-blue-600)); }
-    :host(.kp-progress-linear--success) { --kp-progress-fill: var(--kp-color-progress-success-fill, var(--kp-color-green-600)); }
-    :host(.kp-progress-linear--danger)  { --kp-progress-fill: var(--kp-color-progress-danger-fill,  var(--kp-color-red-600)); }
-    :host(.kp-progress-linear--warning) { --kp-progress-fill: var(--kp-color-progress-warning-fill, var(--kp-color-amber-500)); }
-    :host(.kp-progress-linear--neutral) { --kp-progress-fill: var(--kp-color-progress-neutral-fill, var(--kp-color-gray-700)); }
+    :host(.kp-progress-linear--primary) { --kp-progress-fill: var(--kp-color-progress-primary-fill); }
+    :host(.kp-progress-linear--success) { --kp-progress-fill: var(--kp-color-progress-success-fill); }
+    :host(.kp-progress-linear--danger)  { --kp-progress-fill: var(--kp-color-progress-danger-fill); }
+    :host(.kp-progress-linear--warning) { --kp-progress-fill: var(--kp-color-progress-warning-fill); }
+    :host(.kp-progress-linear--neutral) { --kp-progress-fill: var(--kp-color-progress-neutral-fill); }
   `],
 })
 export class KpProgressLinearComponent {

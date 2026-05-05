@@ -291,8 +291,8 @@ interface DayCell {
       left: 0;
       z-index: 1000;
       display: flex;
-      background: var(--kp-color-datepicker-panel-bg, var(--kp-color-white));
-      border: 1px solid var(--kp-color-datepicker-panel-border, var(--kp-color-gray-200));
+      background: var(--kp-color-datepicker-panel-bg);
+      border: 1px solid var(--kp-color-datepicker-panel-border);
       border-radius: 12px;
       box-shadow: var(--kp-elevation-overlay);
       overflow: hidden;
@@ -304,7 +304,7 @@ interface DayCell {
       gap: 2px;
       width: 160px;
       padding: 12px 8px;
-      border-inline-end: 1px solid var(--kp-color-datepicker-panel-border, var(--kp-color-gray-200));
+      border-inline-end: 1px solid var(--kp-color-datepicker-panel-border);
       background: var(--kp-color-gray-50);
     }
     .kp-dp__preset {
@@ -342,7 +342,7 @@ interface DayCell {
       width: 28px;
       height: 28px;
       border-radius: 6px;
-      color: var(--kp-color-datepicker-header-nav-fg, var(--kp-color-gray-600));
+      color: var(--kp-color-datepicker-header-nav-fg);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
     }
@@ -355,7 +355,7 @@ interface DayCell {
       border-radius: 6px;
       font-size: 15px;
       font-weight: 500;
-      color: var(--kp-color-datepicker-header-fg, var(--kp-color-gray-900));
+      color: var(--kp-color-datepicker-header-fg);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
     }
@@ -370,7 +370,7 @@ interface DayCell {
       text-align: center;
       font-size: 11px;
       font-weight: 500;
-      color: var(--kp-color-datepicker-weekday, var(--kp-color-gray-500));
+      color: var(--kp-color-datepicker-weekday);
       text-transform: uppercase;
       letter-spacing: 0.04em;
       padding-bottom: 4px;
@@ -391,33 +391,33 @@ interface DayCell {
       border-radius: 8px;
       font-size: 13px;
       font-variant-numeric: tabular-nums;
-      color: var(--kp-color-datepicker-day-fg-rest, var(--kp-color-gray-900));
+      color: var(--kp-color-datepicker-day-fg-rest);
       cursor: pointer;
       box-sizing: border-box;
       transition: background var(--kp-motion-duration-fast) ease, color 100ms ease;
     }
     .kp-dp__day:hover:not([disabled]):not(.kp-dp__day--selected):not(.kp-dp__day--range-start):not(.kp-dp__day--range-end) {
-      background: var(--kp-color-datepicker-day-bg-hover, var(--kp-color-gray-100));
-      color: var(--kp-color-datepicker-day-fg-hover, var(--kp-color-gray-900));
+      background: var(--kp-color-datepicker-day-bg-hover);
+      color: var(--kp-color-datepicker-day-fg-hover);
     }
     .kp-dp__day--outside {
-      color: var(--kp-color-datepicker-day-fg-outside, var(--kp-color-gray-400));
+      color: var(--kp-color-datepicker-day-fg-outside);
     }
     .kp-dp__day--today {
-      box-shadow: inset 0 0 0 1.5px var(--kp-color-datepicker-day-today-ring, var(--kp-color-blue-600));
-      color: var(--kp-color-datepicker-day-fg-today, var(--kp-color-blue-600));
+      box-shadow: inset 0 0 0 1.5px var(--kp-color-datepicker-day-today-ring);
+      color: var(--kp-color-datepicker-day-fg-today);
       font-weight: 600;
     }
     .kp-dp__day--in-range {
-      background: var(--kp-color-datepicker-day-bg-in-range, var(--kp-color-blue-50));
-      color: var(--kp-color-datepicker-day-fg-in-range, var(--kp-color-blue-700));
+      background: var(--kp-color-datepicker-day-bg-in-range);
+      color: var(--kp-color-datepicker-day-fg-in-range);
       border-radius: 0;
     }
     .kp-dp__day--selected,
     .kp-dp__day--range-start,
     .kp-dp__day--range-end {
-      background: var(--kp-color-datepicker-day-bg-selected, var(--kp-color-blue-600));
-      color: var(--kp-color-datepicker-day-fg-selected, var(--kp-color-white));
+      background: var(--kp-color-datepicker-day-bg-selected);
+      color: var(--kp-color-datepicker-day-fg-selected);
       font-weight: 500;
       box-shadow: none;
     }
@@ -431,7 +431,7 @@ interface DayCell {
     }
     .kp-dp__day--range-start.kp-dp__day--range-end { border-radius: 8px; }
     .kp-dp__day[disabled] {
-      color: var(--kp-color-datepicker-day-fg-disabled, var(--kp-color-gray-300));
+      color: var(--kp-color-datepicker-day-fg-disabled);
       cursor: not-allowed;
     }
 
@@ -458,12 +458,12 @@ interface DayCell {
     }
     .kp-dp__month:hover,
     .kp-dp__year:hover {
-      background: var(--kp-color-datepicker-day-bg-hover, var(--kp-color-gray-100));
+      background: var(--kp-color-datepicker-day-bg-hover);
     }
     .kp-dp__month--selected,
     .kp-dp__year--selected {
-      background: var(--kp-color-datepicker-day-bg-selected, var(--kp-color-blue-600));
-      color: var(--kp-color-datepicker-day-fg-selected, var(--kp-color-white));
+      background: var(--kp-color-datepicker-day-bg-selected);
+      color: var(--kp-color-datepicker-day-fg-selected);
       font-weight: 500;
     }
 

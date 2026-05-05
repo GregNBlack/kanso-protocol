@@ -55,8 +55,8 @@ export type KpEmptyStateSize = 'sm' | 'md' | 'lg';
       width: var(--kp-es-ill-size);
       height: var(--kp-es-ill-size);
       border-radius: 50%;
-      background: var(--kp-color-empty-state-illustration-bg, var(--kp-color-gray-100));
-      color: var(--kp-color-empty-state-illustration-icon, var(--kp-color-gray-500));
+      background: var(--kp-color-empty-state-illustration-bg);
+      color: var(--kp-color-empty-state-illustration-icon);
     }
     .kp-es__illustration ::ng-deep svg {
       width: var(--kp-es-ill-icon);
@@ -76,13 +76,13 @@ export type KpEmptyStateSize = 'sm' | 'md' | 'lg';
       font-size: var(--kp-es-title-size);
       line-height: var(--kp-es-title-lh);
       font-weight: 500;
-      color: var(--kp-color-empty-state-fg-title, var(--kp-color-gray-900));
+      color: var(--kp-color-empty-state-fg-title);
     }
     .kp-es__desc {
       margin: 0;
       font-size: var(--kp-es-desc-size);
       line-height: var(--kp-es-desc-lh);
-      color: var(--kp-color-empty-state-fg-description, var(--kp-color-gray-600));
+      color: var(--kp-color-empty-state-fg-description);
     }
 
     .kp-es__actions {

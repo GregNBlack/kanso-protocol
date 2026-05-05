@@ -133,8 +133,8 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       width: var(--kp-dialog-w);
       max-width: calc(100vw - 32px);
       max-height: calc(100vh - 48px);
-      background: var(--kp-color-dialog-panel-bg, var(--kp-color-white));
-      border: 1px solid var(--kp-color-dialog-panel-border, var(--kp-color-gray-200));
+      background: var(--kp-color-dialog-panel-bg);
+      border: 1px solid var(--kp-color-dialog-panel-border);
       border-radius: var(--kp-dialog-radius);
       box-shadow: var(--kp-elevation-floating);
       animation: kp-dialog-pop var(--kp-motion-duration-normal) cubic-bezier(0.2, 1, 0.4, 1);
@@ -182,7 +182,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       height: var(--kp-dialog-hero-container);
       border-radius: 50%;
       background: var(--kp-color-gray-100, var(--kp-color-gray-100));
-      color: var(--kp-color-dialog-fg-title, var(--kp-color-gray-900));
+      color: var(--kp-color-dialog-fg-title);
     }
     .kp-dialog__hero ::ng-deep svg {
       width: var(--kp-dialog-hero-icon);
@@ -200,13 +200,13 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       font-size: var(--kp-dialog-title-size);
       line-height: var(--kp-dialog-title-lh);
       font-weight: 500;
-      color: var(--kp-color-dialog-fg-title, var(--kp-color-gray-900));
+      color: var(--kp-color-dialog-fg-title);
     }
     .kp-dialog__desc {
       margin: 0;
       font-size: var(--kp-dialog-desc-size);
       line-height: var(--kp-dialog-desc-lh);
-      color: var(--kp-color-dialog-fg-desc, var(--kp-color-gray-600));
+      color: var(--kp-color-dialog-fg-desc);
     }
     .kp-dialog__close {
       all: unset;
@@ -217,7 +217,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       width: var(--kp-dialog-close-btn);
       height: var(--kp-dialog-close-btn);
       border-radius: var(--kp-dialog-close-radius);
-      color: var(--kp-color-dialog-fg-desc, var(--kp-color-gray-600));
+      color: var(--kp-color-dialog-fg-desc);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
       /* Negative margin lets the close button sit flush with the panel
@@ -228,7 +228,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
     }
     .kp-dialog__close:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); }
     .kp-dialog__close:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
+      outline: 2px solid var(--kp-color-focus-ring);
       outline-offset: 2px;
     }
     .kp-dialog__close svg {
@@ -238,12 +238,12 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
 
     .kp-dialog__divider {
       height: 1px;
-      background: var(--kp-color-dialog-divider, var(--kp-color-gray-100));
+      background: var(--kp-color-dialog-divider);
     }
 
     .kp-dialog__body {
       padding: 0 var(--kp-dialog-pad);
-      color: var(--kp-color-dialog-fg-body, var(--kp-color-gray-700));
+      color: var(--kp-color-dialog-fg-body);
       font-size: var(--kp-dialog-body-size);
       line-height: var(--kp-dialog-body-lh);
       overflow: auto;

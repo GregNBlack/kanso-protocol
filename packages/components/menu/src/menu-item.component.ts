@@ -96,7 +96,7 @@ export type KpMenuItemSize = 'sm' | 'md' | 'lg';
     :host(:focus-visible),
     :host(.kp-menu-item--focus) {
       --kp-menu-item-bg: var(--kp-color-gray-50);
-      outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
+      outline: 2px solid var(--kp-color-focus-ring);
       outline-offset: -1px;
     }
     :host(.kp-menu-item--disabled) {

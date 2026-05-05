@@ -39,8 +39,8 @@ export type KpAccordionMode = 'single' | 'multi';
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
     :host(.kp-accordion--outer) {
-      background: var(--kp-color-accordion-bg, var(--kp-color-white));
-      border: 1px solid var(--kp-color-accordion-border, var(--kp-color-gray-200));
+      background: var(--kp-color-accordion-bg);
+      border: 1px solid var(--kp-color-accordion-border);
       border-radius: 12px;
       overflow: hidden;
     }

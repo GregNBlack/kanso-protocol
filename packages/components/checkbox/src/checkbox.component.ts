@@ -109,7 +109,7 @@ export type KpCheckboxColor = 'primary' | 'danger';
     }
     :host(:focus-visible),
     :host(.kp-checkbox--focus) {
-      outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
+      outline: 2px solid var(--kp-color-focus-ring);
       outline-offset: 2px;
     }
     :host(.kp-checkbox--disabled) {

@@ -106,7 +106,7 @@ export type KpRadioColor = 'primary' | 'danger';
     :host(.kp-radio--active) { --kp-radio-border: var(--kp-color-gray-500); }
     :host(:focus-visible),
     :host(.kp-radio--focus) {
-      outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
+      outline: 2px solid var(--kp-color-focus-ring);
       outline-offset: 2px;
     }
     :host(.kp-radio--disabled) {

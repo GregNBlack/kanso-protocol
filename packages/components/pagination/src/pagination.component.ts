@@ -118,7 +118,7 @@ type RangeCell = { kind: 'page'; page: number } | { kind: 'ellipsis'; key: strin
     }
 
     .kp-pg__info {
-      color: var(--kp-color-pagination-info, var(--kp-color-gray-600));
+      color: var(--kp-color-pagination-info);
       font-size: var(--kp-pg-font-size);
       line-height: var(--kp-pg-line-height);
       font-variant-numeric: tabular-nums;
@@ -145,7 +145,7 @@ type RangeCell = { kind: 'page'; page: number } | { kind: 'ellipsis'; key: strin
       flex: 0 0 auto;
     }
     .kp-pg__per-page-label {
-      color: var(--kp-color-pagination-info, var(--kp-color-gray-600));
+      color: var(--kp-color-pagination-info);
       font-size: var(--kp-pg-font-size);
       line-height: var(--kp-pg-line-height);
       white-space: nowrap;

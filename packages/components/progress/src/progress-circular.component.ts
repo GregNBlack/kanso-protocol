@@ -81,7 +81,7 @@ const SIZE_CFG: Record<KpProgressCircularSize, { d: number; s: number; valueFont
     }
 
     .kp-progress-circular__track {
-      stroke: var(--kp-color-progress-track, var(--kp-color-gray-100));
+      stroke: var(--kp-color-progress-track);
     }
     .kp-progress-circular__arc {
       stroke: var(--kp-progress-fill);
@@ -107,18 +107,18 @@ const SIZE_CFG: Record<KpProgressCircularSize, { d: number; s: number; valueFont
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: var(--kp-color-progress-value, var(--kp-color-gray-900));
+      color: var(--kp-color-progress-value);
       font-weight: 600;
       font-variant-numeric: tabular-nums;
       line-height: 1;
     }
 
     /* Color roles */
-    :host(.kp-progress-circular--primary) { --kp-progress-fill: var(--kp-color-progress-primary-fill, var(--kp-color-blue-600)); }
-    :host(.kp-progress-circular--success) { --kp-progress-fill: var(--kp-color-progress-success-fill, var(--kp-color-green-600)); }
-    :host(.kp-progress-circular--danger)  { --kp-progress-fill: var(--kp-color-progress-danger-fill,  var(--kp-color-red-600)); }
-    :host(.kp-progress-circular--warning) { --kp-progress-fill: var(--kp-color-progress-warning-fill, var(--kp-color-amber-500)); }
-    :host(.kp-progress-circular--neutral) { --kp-progress-fill: var(--kp-color-progress-neutral-fill, var(--kp-color-gray-700)); }
+    :host(.kp-progress-circular--primary) { --kp-progress-fill: var(--kp-color-progress-primary-fill); }
+    :host(.kp-progress-circular--success) { --kp-progress-fill: var(--kp-color-progress-success-fill); }
+    :host(.kp-progress-circular--danger)  { --kp-progress-fill: var(--kp-color-progress-danger-fill); }
+    :host(.kp-progress-circular--warning) { --kp-progress-fill: var(--kp-color-progress-warning-fill); }
+    :host(.kp-progress-circular--neutral) { --kp-progress-fill: var(--kp-color-progress-neutral-fill); }
   `],
 })
 export class KpProgressCircularComponent {

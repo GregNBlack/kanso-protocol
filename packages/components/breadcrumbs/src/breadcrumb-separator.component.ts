@@ -43,7 +43,7 @@ export type KpBreadcrumbSeparatorType = 'chevron' | 'slash' | 'dot';
       flex: 0 0 auto;
       width: var(--kp-bc-sep-size);
       height: var(--kp-bc-sep-size);
-      color: var(--kp-color-breadcrumbs-separator, var(--kp-color-gray-400));
+      color: var(--kp-color-breadcrumbs-separator);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       font-size: var(--kp-bc-sep-font-size);
       line-height: 1;
@@ -56,7 +56,7 @@ export type KpBreadcrumbSeparatorType = 'chevron' | 'slash' | 'dot';
       width: 3px;
       height: 3px;
       border-radius: 50%;
-      background: var(--kp-color-breadcrumbs-separator-dot, var(--kp-color-blue-600));
+      background: var(--kp-color-breadcrumbs-separator-dot);
     }
 
     :host(.kp-bc-sep--sm) {

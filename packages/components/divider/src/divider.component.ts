@@ -44,7 +44,7 @@ export type KpDividerLabelPosition = 'center' | 'start' | 'end';
 
     .kp-divider__line {
       display: block;
-      background: var(--kp-color-divider-line, var(--kp-color-gray-200));
+      background: var(--kp-color-divider-line);
       flex: 1 1 auto;
     }
     :host(.kp-divider--horizontal) .kp-divider__line { height: 1px; }
@@ -57,7 +57,7 @@ export type KpDividerLabelPosition = 'center' | 'start' | 'end';
 
     .kp-divider__label {
       flex: 0 0 auto;
-      color: var(--kp-color-divider-label, var(--kp-color-gray-500));
+      color: var(--kp-color-divider-label);
       font-size: 12px;
       line-height: 16px;
       font-weight: 500;

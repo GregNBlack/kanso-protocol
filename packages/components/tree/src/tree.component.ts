@@ -176,21 +176,21 @@ export interface KpTreeNode {
       padding-inline-end: var(--kp-tree-pad-x);
       border-radius: 6px;
       font-size: var(--kp-tree-fs);
-      color: var(--kp-color-tree-node-fg-rest, var(--kp-color-gray-900));
+      color: var(--kp-color-tree-node-fg-rest);
       cursor: pointer;
       user-select: none;
       transition: background var(--kp-motion-duration-fast) ease;
     }
     .kp-tree__row:hover:not(.kp-tree__row--selected):not(.kp-tree__row--disabled) {
-      background: var(--kp-color-tree-node-bg-hover, var(--kp-color-gray-50));
+      background: var(--kp-color-tree-node-bg-hover);
     }
     .kp-tree__row--selected {
-      background: var(--kp-color-tree-node-bg-selected, var(--kp-color-blue-50));
-      color: var(--kp-color-tree-node-fg-selected, var(--kp-color-blue-700));
+      background: var(--kp-color-tree-node-bg-selected);
+      color: var(--kp-color-tree-node-fg-selected);
       font-weight: 500;
     }
     .kp-tree__row--disabled {
-      color: var(--kp-color-tree-node-fg-disabled, var(--kp-color-gray-400));
+      color: var(--kp-color-tree-node-fg-disabled);
       cursor: not-allowed;
     }
 
@@ -201,7 +201,7 @@ export interface KpTreeNode {
       justify-content: center;
       width: 16px;
       height: 16px;
-      color: var(--kp-color-tree-node-chevron, var(--kp-color-gray-500));
+      color: var(--kp-color-tree-node-chevron);
       cursor: pointer;
       transition: transform var(--kp-motion-duration-fast) ease;
       flex: 0 0 auto;
@@ -216,11 +216,11 @@ export interface KpTreeNode {
 
     .kp-tree__icon {
       display: inline-flex;
-      color: var(--kp-color-tree-node-icon-rest, var(--kp-color-gray-600));
+      color: var(--kp-color-tree-node-icon-rest);
       flex: 0 0 auto;
     }
     .kp-tree__row--selected .kp-tree__icon {
-      color: var(--kp-color-tree-node-icon-selected, var(--kp-color-blue-600));
+      color: var(--kp-color-tree-node-icon-selected);
     }
 
     .kp-tree__label {

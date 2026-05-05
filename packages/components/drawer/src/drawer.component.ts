@@ -112,8 +112,8 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       position: absolute;
       display: flex;
       flex-direction: column;
-      background: var(--kp-color-dialog-panel-bg, var(--kp-color-white));
-      border: 1px solid var(--kp-color-dialog-panel-border, var(--kp-color-gray-200));
+      background: var(--kp-color-dialog-panel-bg);
+      border: 1px solid var(--kp-color-dialog-panel-border);
       box-shadow: var(--kp-elevation-floating);
       outline: none;
       max-width: 100vw;
@@ -187,7 +187,7 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       width: 40px;
       height: 4px;
       border-radius: 2px;
-      background: var(--kp-color-drawer-resize-handle, var(--kp-color-gray-300));
+      background: var(--kp-color-drawer-resize-handle);
     }
 
     .kp-drawer__header {
@@ -208,13 +208,13 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       font-size: 18px;
       line-height: 28px;
       font-weight: 500;
-      color: var(--kp-color-dialog-fg-title, var(--kp-color-gray-900));
+      color: var(--kp-color-dialog-fg-title);
     }
     .kp-drawer__desc {
       margin: 0;
       font-size: 16px;
       line-height: 24px;
-      color: var(--kp-color-dialog-fg-desc, var(--kp-color-gray-600));
+      color: var(--kp-color-dialog-fg-desc);
     }
     .kp-drawer__close {
       all: unset;
@@ -224,28 +224,28 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       width: 28px;
       height: 28px;
       border-radius: 8px;
-      color: var(--kp-color-dialog-fg-desc, var(--kp-color-gray-600));
+      color: var(--kp-color-dialog-fg-desc);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
       flex: 0 0 auto;
     }
     .kp-drawer__close:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); }
     .kp-drawer__close:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
+      outline: 2px solid var(--kp-color-focus-ring);
       outline-offset: 2px;
     }
     .kp-drawer__close svg { width: 18px; height: 18px; }
 
     .kp-drawer__divider {
       height: 1px;
-      background: var(--kp-color-dialog-divider, var(--kp-color-gray-100));
+      background: var(--kp-color-dialog-divider);
     }
 
     .kp-drawer__body {
       flex: 1 1 auto;
       padding: 0 20px;
       overflow-y: auto;
-      color: var(--kp-color-dialog-fg-body, var(--kp-color-gray-700));
+      color: var(--kp-color-dialog-fg-body);
       font-size: 16px;
       line-height: 24px;
     }

@@ -108,7 +108,7 @@ export type KpPopoverArrowPosition =
       flex-direction: column;
       gap: var(--kp-popover-gap);
       padding: var(--kp-popover-pad) 0;
-      background: var(--kp-color-popover-bg, var(--kp-color-white));
+      background: var(--kp-color-popover-bg);
       border-radius: var(--kp-popover-radius);
     }
 
@@ -128,14 +128,14 @@ export type KpPopoverArrowPosition =
     }
 
     .kp-popover__title {
-      color: var(--kp-color-popover-fg-title, var(--kp-color-gray-900));
+      color: var(--kp-color-popover-fg-title);
       font-weight: 500;
       font-size: var(--kp-popover-title-size);
       line-height: var(--kp-popover-title-lh);
     }
 
     .kp-popover__description {
-      color: var(--kp-color-popover-fg-desc, var(--kp-color-gray-600));
+      color: var(--kp-color-popover-fg-desc);
       font-weight: 400;
       font-size: var(--kp-popover-desc-size);
       line-height: var(--kp-popover-desc-lh);
@@ -150,14 +150,14 @@ export type KpPopoverArrowPosition =
       width: var(--kp-popover-close-size);
       height: var(--kp-popover-close-size);
       border-radius: var(--kp-popover-close-radius);
-      color: var(--kp-color-popover-fg-desc, var(--kp-color-gray-600));
+      color: var(--kp-color-popover-fg-desc);
       cursor: pointer;
       opacity: 0.75;
       transition: opacity var(--kp-motion-duration-fast) ease, background 120ms ease;
     }
     .kp-popover__close:hover { opacity: 1; background: var(--kp-color-overlay-hover-subtle); }
     .kp-popover__close:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring, var(--kp-color-blue-400));
+      outline: 2px solid var(--kp-color-focus-ring);
       outline-offset: 1px;
       opacity: 1;
     }
@@ -168,7 +168,7 @@ export type KpPopoverArrowPosition =
 
     .kp-popover__content {
       padding: 0 var(--kp-popover-pad);
-      color: var(--kp-color-popover-fg-body, var(--kp-color-gray-700));
+      color: var(--kp-color-popover-fg-body);
       font-weight: 400;
       font-size: var(--kp-popover-body-size);
       line-height: var(--kp-popover-body-lh);
@@ -192,14 +192,14 @@ export type KpPopoverArrowPosition =
       display: block;
       height: 1px;
       width: 100%;
-      background: var(--kp-color-popover-divider, var(--kp-color-gray-100));
+      background: var(--kp-color-popover-divider);
     }
 
     /* Arrow */
     .kp-popover__arrow {
       position: absolute;
       display: block;
-      color: var(--kp-color-popover-bg, var(--kp-color-white));
+      color: var(--kp-color-popover-bg);
     }
     .kp-popover__arrow path { fill: currentColor; }
 

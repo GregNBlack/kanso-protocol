@@ -142,7 +142,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
 
     .kp-number-stepper__affix {
       flex-shrink: 0;
-      color: var(--kp-color-stepper-affix-color, var(--kp-color-gray-500));
+      color: var(--kp-color-stepper-affix-color);
       font-weight: 400;
       font-variant-numeric: tabular-nums;
     }

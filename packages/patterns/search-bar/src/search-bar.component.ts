@@ -194,8 +194,8 @@ export interface KpSearchResultGroup {
       display: flex;
       flex-direction: column;
       border-radius: 12px;
-      border: 1px solid var(--kp-color-search-palette-border, var(--kp-color-gray-200));
-      background: var(--kp-color-search-palette-bg, var(--kp-color-white));
+      border: 1px solid var(--kp-color-search-palette-border);
+      background: var(--kp-color-search-palette-bg);
       box-shadow: var(--kp-elevation-floating);
       overflow: hidden;
     }
@@ -205,7 +205,7 @@ export interface KpSearchResultGroup {
       align-items: center;
       gap: 10px;
       padding: 14px 16px;
-      border-bottom: 1px solid var(--kp-color-search-palette-border, var(--kp-color-gray-200));
+      border-bottom: 1px solid var(--kp-color-search-palette-border);
     }
     .kp-search-bar__palette-header .kp-search-bar__leading { font-size: 20px; }
     .kp-search-bar__palette-input {
@@ -229,7 +229,7 @@ export interface KpSearchResultGroup {
       font-weight: 600;
       letter-spacing: 0.5px;
       text-transform: uppercase;
-      color: var(--kp-color-search-palette-group-label, var(--kp-color-gray-500));
+      color: var(--kp-color-search-palette-group-label);
     }
 
     .kp-search-bar__item {
@@ -254,7 +254,7 @@ export interface KpSearchResultGroup {
       align-items: center;
       gap: 16px;
       padding: 8px 14px;
-      border-top: 1px solid var(--kp-color-search-palette-border, var(--kp-color-gray-200));
+      border-top: 1px solid var(--kp-color-search-palette-border);
       background: var(--kp-color-gray-50, var(--kp-color-gray-50));
       font-size: 11px;
       color: var(--kp-color-gray-500, var(--kp-color-gray-500));

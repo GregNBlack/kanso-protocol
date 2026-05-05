@@ -139,9 +139,9 @@ export interface KpHeaderNavItem {
       width: 100%;
       height: var(--kp-header-h, 64px);
       padding-inline: var(--kp-header-pad, 24px);
-      background: var(--kp-header-bg, var(--kp-color-header-bg, var(--kp-color-white)));
-      color: var(--kp-header-fg, var(--kp-color-header-fg, var(--kp-color-gray-900)));
-      border-bottom: 1px solid var(--kp-color-header-border, var(--kp-color-gray-200));
+      background: var(--kp-header-bg, var(--kp-color-header-bg));
+      color: var(--kp-header-fg, var(--kp-color-header-fg));
+      border-bottom: 1px solid var(--kp-color-header-border);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
 
@@ -150,8 +150,8 @@ export interface KpHeaderNavItem {
     :host(.kp-header--lg) { --kp-header-h: 80px; --kp-header-pad: 32px; --kp-header-gap: 32px; --kp-header-logo: 40px; }
 
     :host(.kp-header--dark) {
-      --kp-header-bg: var(--kp-color-header-bg-dark, var(--kp-color-gray-900));
-      --kp-header-fg: var(--kp-color-header-fg-dark, var(--kp-color-white));
+      --kp-header-bg: var(--kp-color-header-bg-dark);
+      --kp-header-fg: var(--kp-color-header-fg-dark);
       color: var(--kp-header-fg);
       border-bottom-color: var(--kp-color-gray-800);
     }
@@ -212,16 +212,16 @@ export interface KpHeaderNavItem {
       border-radius: 6px;
       font-size: 14px;
       font-weight: 500;
-      color: var(--kp-color-header-nav-item-fg-rest, var(--kp-color-gray-700));
+      color: var(--kp-color-header-nav-item-fg-rest);
       text-decoration: none;
       transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
     .kp-header__nav-item:hover {
-      color: var(--kp-color-header-nav-item-fg-hover, var(--kp-color-gray-900));
-      background: var(--kp-color-header-nav-item-bg-hover, var(--kp-color-gray-50));
+      color: var(--kp-color-header-nav-item-fg-hover);
+      background: var(--kp-color-header-nav-item-bg-hover);
     }
     .kp-header__nav-item--active {
-      color: var(--kp-color-header-nav-item-fg-active, var(--kp-color-blue-600));
+      color: var(--kp-color-header-nav-item-fg-active);
     }
         :host(.kp-header--dark) .kp-header__nav-item { color: var(--kp-color-fg-on-dark-default); }
     :host(.kp-header--dark) .kp-header__nav-item:hover { background: var(--kp-color-gray-800); color: var(--kp-color-white); }
@@ -306,7 +306,7 @@ export interface KpHeaderNavItem {
       width: 1px;
       height: 24px;
       margin-inline: 4px;
-      background: var(--kp-color-header-divider, var(--kp-color-gray-200));
+      background: var(--kp-color-header-divider);
     }
     :host(.kp-header--dark) .kp-header__divider { background: var(--kp-color-gray-700); }
 
