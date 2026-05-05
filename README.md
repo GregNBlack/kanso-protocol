@@ -11,9 +11,7 @@
 
 Design tokens in W3C DTCG format serve as a single source of truth for both Figma and code. Rules are embedded in architecture, not in agreements.
 
-> **Status: `0.x` alpha.** Public API is intentionally unstable until `1.0`. Expect breaking changes in any minor bump — pin the exact version in production. Read the [changelog](CHANGELOG.md) before upgrading.
->
-> Current per-component status, open API questions and the path to `1.0` live in [`docs/1.0-readiness.md`](docs/1.0-readiness.md). Planning to upgrade? See [`docs/migration-1.0.md`](docs/migration-1.0.md). What's next overall: [`docs/roadmap.md`](docs/roadmap.md).
+> **Status: `0.x` beta.** Most surfaces are `stable` or `beta` per [`docs/1.0-readiness.md`](docs/1.0-readiness.md); a handful are still `experimental` and may break in minor releases. Pin exact versions in production. See [`docs/migration-1.0.md`](docs/migration-1.0.md) for known breaking changes en route to `1.0`, [`docs/roadmap.md`](docs/roadmap.md) for what's next, and the [changelog](CHANGELOG.md) for what landed.
 
 ---
 
