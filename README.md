@@ -2,7 +2,8 @@
 
 [![CI](https://github.com/GregNBlack/kanso-protocol/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/GregNBlack/kanso-protocol/actions/workflows/ci.yml)
 [![Storybook](https://img.shields.io/badge/Storybook-live-FF4785?logo=storybook&logoColor=white)](https://gregnblack.github.io/kanso-protocol)
-[![Tests](https://img.shields.io/badge/tests-352%20passing-brightgreen)](https://gregnblack.github.io/kanso-protocol/?path=/docs/foundations-test-coverage--docs)
+[![Figma Community](https://img.shields.io/badge/Figma-Community-F24E1E?logo=figma&logoColor=white)](https://www.figma.com/community/file/1633266134559104948)
+[![Tests](https://img.shields.io/badge/tests-413%20passing-brightgreen)](https://gregnblack.github.io/kanso-protocol/?path=/docs/foundations-test-coverage--docs)
 [![MCP](https://img.shields.io/badge/MCP-ready-7c3aed)](https://www.npmjs.com/package/@kanso-protocol/mcp)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
@@ -30,9 +31,8 @@ Design tokens in W3C DTCG format serve as a single source of truth for both Figm
 
 ## Live Preview
 
-**Storybook:** [gregnblack.github.io/kanso-protocol](https://gregnblack.github.io/kanso-protocol)
-
-Every component, pattern and example page is published there with autodocs, live controls, and a light/dark theme toggle.
+- **Storybook:** [gregnblack.github.io/kanso-protocol](https://gregnblack.github.io/kanso-protocol) — every component, pattern and example page with autodocs, live controls, and a light/dark theme toggle.
+- **Figma Community:** [figma.com/community/file/1633266134559104948](https://www.figma.com/community/file/1633266134559104948) — the full design library; duplicate it into your team to use the components, variables, and example pages directly.
 
 ## AI-native: ship with an MCP server
 
