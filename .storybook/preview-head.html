@@ -7,4 +7,37 @@
   html, body {
     font-family: 'Onest', system-ui, sans-serif;
   }
+
+  /* Storybook autodocs preview blocks (`<Canvas>` wrappers) ship with a
+     hardcoded light background from @storybook/blocks. When the theme
+     toggle flips to dark, follow through with a dark surface so the
+     preview canvas matches the rest of the rendered story instead of
+     leaving a white island under the components. */
+  [data-theme="dark"] .sbdocs.sbdocs-preview,
+  [data-theme="dark"] .sbdocs-preview {
+    background-color: var(--kp-color-surface-base);
+    border-color: var(--kp-color-border-default);
+  }
+  [data-theme="dark"] .sbdocs.sbdocs-content {
+    background-color: transparent;
+    color: var(--kp-color-text-default);
+  }
+  /* Code blocks ship with a light background too — same treatment. */
+  [data-theme="dark"] .sbdocs.sbdocs-pre,
+  [data-theme="dark"] .docblock-source {
+    background-color: var(--kp-color-surface-subtle);
+    border-color: var(--kp-color-border-default);
+    color: var(--kp-color-text-default);
+  }
+  /* Args / props tables. */
+  [data-theme="dark"] .docblock-argstable,
+  [data-theme="dark"] .docblock-argstable-head,
+  [data-theme="dark"] .docblock-argstable-body {
+    background-color: var(--kp-color-surface-base);
+    color: var(--kp-color-text-default);
+  }
+  [data-theme="dark"] .docblock-argstable th,
+  [data-theme="dark"] .docblock-argstable td {
+    border-color: var(--kp-color-border-subtle);
+  }
 </style>
