@@ -84,9 +84,9 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       align-items: stretch;
       box-sizing: border-box;
       width: 280px;
-      border: 1px solid var(--kp-input-border);
+      border: 1px solid var(--kp-color-input-border-rest);
       border-radius: var(--kp-input-radius);
-      background: var(--kp-input-bg);
+      background: var(--kp-color-input-bg-default);
       height: var(--kp-input-height);
       padding: 0 var(--kp-input-padding-x);
       gap: var(--kp-input-gap);
@@ -99,27 +99,27 @@ import { KpSize, KpState } from '@kanso-protocol/core';
     /* --- Interactive states --- */
     :host(:hover:not(.kp-input--disabled):not(.kp-input--error)),
     :host(.kp-input--hover) {
-      border-color: var(--kp-input-border-hover);
+      border-color: var(--kp-color-input-border-hover);
     }
 
     :host(:focus-within:not(.kp-input--disabled):not(.kp-input--error)),
     :host(.kp-input--focus) {
-      border-color: var(--kp-input-border-focus);
+      border-color: var(--kp-color-input-border-focus);
       outline: none;
     }
 
     :host(.kp-input--active) {
-      border-color: var(--kp-input-border-active);
+      border-color: var(--kp-color-input-border-hover);
     }
 
     :host(.kp-input--disabled) {
-      background: var(--kp-input-bg-disabled);
-      border-color: var(--kp-input-border-disabled);
+      background: var(--kp-color-input-bg-disabled);
+      border-color: var(--kp-color-input-border-disabled);
       cursor: not-allowed;
     }
 
     :host(.kp-input--error) {
-      border-color: var(--kp-input-border-error);
+      border-color: var(--kp-color-input-border-error);
     }
 
     /* --- Field wrap with overlay label --- */
@@ -138,7 +138,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       border: none;
       outline: none;
       background: transparent;
-      color: var(--kp-input-fg);
+      color: var(--kp-color-input-fg-default);
       font: inherit;
       font-size: var(--kp-input-font-size);
       line-height: var(--kp-input-line-height);
@@ -148,11 +148,11 @@ import { KpSize, KpState } from '@kanso-protocol/core';
     }
 
     .kp-input__field::placeholder {
-      color: var(--kp-input-placeholder);
+      color: var(--kp-color-input-placeholder-default);
     }
 
     .kp-input__field:disabled {
-      color: var(--kp-input-fg-disabled);
+      color: var(--kp-color-input-fg-disabled);
       cursor: not-allowed;
     }
 
@@ -195,7 +195,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      color: var(--kp-input-placeholder);
+      color: var(--kp-color-input-placeholder-default);
     }
     .kp-input__icon:empty { display: none; }
 
@@ -206,7 +206,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       left: 0;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--kp-input-placeholder);
+      color: var(--kp-color-input-placeholder-default);
       font-size: var(--kp-input-font-size);
       line-height: var(--kp-input-line-height);
       font-weight: var(--kp-input-font-weight, 400);
@@ -224,16 +224,16 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       transform: translateY(0);
       font-size: var(--kp-input-label-small-size, 10px);
       font-weight: 500;
-      color: var(--kp-floating-label);
+      color: var(--kp-color-form-floating-label-rest);
     }
 
     :host(.kp-input--focus) .kp-input__label--floated,
     :host(:focus-within) .kp-input__label--floated {
-      color: var(--kp-floating-label-focus);
+      color: var(--kp-color-form-floating-label-focus);
     }
 
     :host(.kp-input--error) .kp-input__label--floated {
-      color: var(--kp-floating-label-error);
+      color: var(--kp-color-form-floating-label-error);
     }
 
     /* When floating label is floated (at top), input text needs to leave room */

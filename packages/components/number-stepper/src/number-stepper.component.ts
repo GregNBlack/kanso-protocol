@@ -92,9 +92,9 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       display: inline-flex;
       align-items: stretch;
       box-sizing: border-box;
-      border: 1px solid var(--kp-input-border);
+      border: 1px solid var(--kp-color-input-border-rest);
       border-radius: var(--kp-stepper-radius);
-      background: var(--kp-input-bg);
+      background: var(--kp-color-input-bg-default);
       height: var(--kp-stepper-height);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       overflow: hidden;
@@ -103,19 +103,19 @@ import { KpButtonComponent } from '@kanso-protocol/button';
 
     :host(:hover:not(.kp-number-stepper--disabled):not(.kp-number-stepper--error)),
     :host(.kp-number-stepper--hover) {
-      border-color: var(--kp-input-border-hover);
+      border-color: var(--kp-color-input-border-hover);
     }
     :host(:focus-within:not(.kp-number-stepper--disabled):not(.kp-number-stepper--error)),
     :host(.kp-number-stepper--focus) {
-      border-color: var(--kp-input-border-focus);
+      border-color: var(--kp-color-input-border-focus);
     }
     :host(.kp-number-stepper--disabled) {
-      background: var(--kp-input-bg-disabled);
-      border-color: var(--kp-input-border-disabled);
+      background: var(--kp-color-input-bg-disabled);
+      border-color: var(--kp-color-input-border-disabled);
       cursor: not-allowed;
     }
     :host(.kp-number-stepper--error) {
-      border-color: var(--kp-input-border-error);
+      border-color: var(--kp-color-input-border-error);
     }
 
     /* Buttons fit the host height — neutralise the Button's own border so it sits flush */
@@ -134,7 +134,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       justify-content: center;
       gap: 4px;
       padding: 0 var(--kp-stepper-pad-x);
-      color: var(--kp-input-fg);
+      color: var(--kp-color-input-fg-default);
       font-size: var(--kp-stepper-fs);
       line-height: var(--kp-stepper-lh);
       font-variant-numeric: tabular-nums;
@@ -168,7 +168,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       padding: 0 2px;
     }
     .kp-number-stepper__input:disabled {
-      color: var(--kp-input-fg-disabled);
+      color: var(--kp-color-input-fg-disabled);
       cursor: not-allowed;
     }
 

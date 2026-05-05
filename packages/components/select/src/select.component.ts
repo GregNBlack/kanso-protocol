@@ -146,14 +146,14 @@ export interface KpSelectOption {
       align-items: stretch;
       box-sizing: border-box;
       width: 100%;
-      border: 1px solid var(--kp-input-border);
+      border: 1px solid var(--kp-color-input-border-rest);
       border-radius: var(--kp-input-radius);
-      background: var(--kp-input-bg);
+      background: var(--kp-color-input-bg-default);
       height: var(--kp-input-height);
       padding: 0 var(--kp-input-padding-x);
       gap: var(--kp-input-gap);
       font: inherit;
-      color: var(--kp-input-fg);
+      color: var(--kp-color-input-fg-default);
       text-align: start;
       cursor: pointer;
       transition:
@@ -163,24 +163,24 @@ export interface KpSelectOption {
 
     :host(:not(.kp-select--disabled):not(.kp-select--error)) .kp-select__trigger:hover,
     :host(.kp-select--hover) .kp-select__trigger {
-      border-color: var(--kp-input-border-hover);
+      border-color: var(--kp-color-input-border-hover);
     }
     :host(:not(.kp-select--disabled):not(.kp-select--error)) .kp-select__trigger:focus-visible,
     :host(.kp-select--focus) .kp-select__trigger {
-      border-color: var(--kp-input-border-focus);
+      border-color: var(--kp-color-input-border-focus);
       outline: none;
     }
     :host(.kp-select--open) .kp-select__trigger,
     :host(.kp-select--active) .kp-select__trigger {
-      border-color: var(--kp-input-border-focus);
+      border-color: var(--kp-color-input-border-focus);
     }
     :host(.kp-select--disabled) .kp-select__trigger {
-      background: var(--kp-input-bg-disabled);
-      border-color: var(--kp-input-border-disabled);
+      background: var(--kp-color-input-bg-disabled);
+      border-color: var(--kp-color-input-border-disabled);
       cursor: not-allowed;
     }
     :host(.kp-select--error) .kp-select__trigger {
-      border-color: var(--kp-input-border-error);
+      border-color: var(--kp-color-input-border-error);
     }
 
     .kp-select__field-wrap {
@@ -202,10 +202,10 @@ export interface KpSelectOption {
       font-weight: var(--kp-input-font-weight, 400);
     }
     .kp-select__value--placeholder {
-      color: var(--kp-input-placeholder);
+      color: var(--kp-color-input-placeholder-default);
     }
     :host(.kp-select--disabled) .kp-select__value {
-      color: var(--kp-input-fg-disabled);
+      color: var(--kp-color-input-fg-disabled);
     }
 
     /* --- Floating Label --- */
@@ -214,7 +214,7 @@ export interface KpSelectOption {
       left: 0;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--kp-input-placeholder);
+      color: var(--kp-color-input-placeholder-default);
       font-size: var(--kp-input-font-size);
       line-height: var(--kp-input-line-height);
       font-weight: var(--kp-input-font-weight, 400);
@@ -230,14 +230,14 @@ export interface KpSelectOption {
       transform: translateY(0);
       font-size: var(--kp-input-label-small-size, 10px);
       font-weight: 500;
-      color: var(--kp-floating-label);
+      color: var(--kp-color-form-floating-label-rest);
     }
     :host(.kp-select--open) .kp-select__label--floated,
     :host(.kp-select--focus) .kp-select__label--floated {
-      color: var(--kp-floating-label-focus);
+      color: var(--kp-color-form-floating-label-focus);
     }
     :host(.kp-select--error) .kp-select__label--floated {
-      color: var(--kp-floating-label-error);
+      color: var(--kp-color-form-floating-label-error);
     }
     :host(.kp-select--floating) .kp-select__field-wrap {
       align-items: flex-end;
@@ -271,18 +271,18 @@ export interface KpSelectOption {
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      color: var(--kp-select-chevron);
+      color: var(--kp-color-select-chevron-rest);
       transition: transform var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease, color var(--kp-motion-duration-fast, 150ms) ease;
     }
     :host(.kp-select--open) .kp-select__chevron {
       transform: rotate(180deg);
-      color: var(--kp-select-chevron-open);
+      color: var(--kp-color-select-chevron-open);
     }
     :host(.kp-select--disabled) .kp-select__chevron {
-      color: var(--kp-select-chevron-disabled);
+      color: var(--kp-color-select-chevron-disabled);
     }
     :host(.kp-select--error) .kp-select__chevron {
-      color: var(--kp-select-chevron-error);
+      color: var(--kp-color-select-chevron-error);
     }
 
     /* --- Dropdown panel (mirrors DropdownMenu) ---

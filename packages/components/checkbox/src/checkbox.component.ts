@@ -84,13 +84,13 @@ export type KpCheckboxColor = 'primary' | 'danger';
     .kp-checkbox__icon {
       position: absolute;
       width: 75%; height: 75%;
-      color: var(--kp-checkbox-fg);
+      color: var(--kp-color-foreground-on-saturated);
       opacity: 0;
       transition: opacity var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease;
     }
     .kp-checkbox__minus {
       position: absolute;
-      background: var(--kp-checkbox-fg);
+      background: var(--kp-color-foreground-on-saturated);
       border-radius: 1px;
       width: 50%;
       height: var(--kp-checkbox-minus-h, 2px);
@@ -102,10 +102,10 @@ export type KpCheckboxColor = 'primary' | 'danger';
 
     :host(:hover:not(.kp-checkbox--disabled)),
     :host(.kp-checkbox--hover) {
-      --kp-checkbox-border: var(--kp-checkbox-border-hover);
+      --kp-checkbox-border: var(--kp-color-input-border-hover);
     }
     :host(.kp-checkbox--active) {
-      --kp-checkbox-border: var(--kp-checkbox-border-active);
+      --kp-checkbox-border: var(--kp-color-input-border-hover);
     }
     :host(:focus-visible),
     :host(.kp-checkbox--focus) {
@@ -123,8 +123,8 @@ export type KpCheckboxColor = 'primary' | 'danger';
     /* --- Checked / Indeterminate --- */
     :host(.kp-checkbox--checked),
     :host(.kp-checkbox--indeterminate) {
-      --kp-checkbox-bg: var(--kp-checkbox-bg-checked);
-      --kp-checkbox-border: var(--kp-checkbox-bg-checked);
+      --kp-checkbox-bg: var(--kp-color-primary-default-bg-rest);
+      --kp-checkbox-border: var(--kp-color-primary-default-bg-rest);
     }
     :host(.kp-checkbox--checked:hover:not(.kp-checkbox--disabled)),
     :host(.kp-checkbox--checked.kp-checkbox--hover) {

@@ -65,9 +65,9 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
       display: inline-block;
       box-sizing: border-box;
       padding: 0;
-      border: 1px solid var(--kp-input-border);
+      border: 1px solid var(--kp-color-input-border-rest);
       border-radius: var(--kp-textarea-radius);
-      background: var(--kp-input-bg);
+      background: var(--kp-color-input-bg-default);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       transition:
         border-color var(--kp-motion-duration-fast, 100ms) ease,
@@ -75,16 +75,16 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
     }
 
     :host(:hover:not(.kp-textarea--disabled):not(.kp-textarea--error)),
-    :host(.kp-textarea--hover) { border-color: var(--kp-input-border-hover); }
+    :host(.kp-textarea--hover) { border-color: var(--kp-color-input-border-hover); }
     :host(:focus-within:not(.kp-textarea--disabled):not(.kp-textarea--error)),
-    :host(.kp-textarea--focus) { border-color: var(--kp-input-border-focus); }
-    :host(.kp-textarea--active) { border-color: var(--kp-input-border-active); }
+    :host(.kp-textarea--focus) { border-color: var(--kp-color-input-border-focus); }
+    :host(.kp-textarea--active) { border-color: var(--kp-color-input-border-hover); }
     :host(.kp-textarea--disabled) {
-      background: var(--kp-input-bg-disabled);
-      border-color: var(--kp-input-border-disabled);
+      background: var(--kp-color-input-bg-disabled);
+      border-color: var(--kp-color-input-border-disabled);
       cursor: not-allowed;
     }
-    :host(.kp-textarea--error) { border-color: var(--kp-input-border-error); }
+    :host(.kp-textarea--error) { border-color: var(--kp-color-input-border-error); }
     :host(.kp-textarea--filled) { background: var(--kp-color-surface-muted); border-color: transparent; }
 
     .kp-textarea__field {
@@ -95,7 +95,7 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
       border: none;
       outline: none;
       background: transparent;
-      color: var(--kp-input-fg);
+      color: var(--kp-color-input-fg-default);
       font: inherit;
       font-size: var(--kp-textarea-fs);
       line-height: var(--kp-textarea-lh);
@@ -111,8 +111,8 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
     :host(.kp-textarea--resize-vertical) .kp-textarea__field { resize: vertical; }
     :host(.kp-textarea--resize-horizontal) .kp-textarea__field { resize: horizontal; }
 
-    .kp-textarea__field::placeholder { color: var(--kp-input-placeholder); }
-    .kp-textarea__field:disabled { color: var(--kp-input-fg-disabled); cursor: not-allowed; }
+    .kp-textarea__field::placeholder { color: var(--kp-color-input-placeholder-default); }
+    .kp-textarea__field:disabled { color: var(--kp-color-input-fg-disabled); cursor: not-allowed; }
 
     /* Custom thin scrollbar on the textarea itself */
     .kp-textarea__field::-webkit-scrollbar {
@@ -172,7 +172,7 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
       color: var(--kp-color-text-disabled);
       font-variant-numeric: tabular-nums;
       pointer-events: none;
-      background: var(--kp-input-bg);
+      background: var(--kp-color-input-bg-default);
       padding-inline-start: 4px;
     }
     :host(.kp-textarea--filled) .kp-textarea__counter { background: var(--kp-color-surface-muted); }

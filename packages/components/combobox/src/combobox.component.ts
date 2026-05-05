@@ -161,9 +161,9 @@ export interface KpComboboxOption {
       align-items: center;
       box-sizing: border-box;
       width: 100%;
-      border: 1px solid var(--kp-input-border);
+      border: 1px solid var(--kp-color-input-border-rest);
       border-radius: var(--kp-input-radius);
-      background: var(--kp-input-bg);
+      background: var(--kp-color-input-bg-default);
       height: var(--kp-input-height);
       padding: 0 var(--kp-input-padding-x);
       gap: var(--kp-input-gap);
@@ -174,21 +174,21 @@ export interface KpComboboxOption {
     }
     :host(:not(.kp-cb--disabled):not(.kp-cb--error)) .kp-cb__trigger:hover,
     :host(.kp-cb--hover) .kp-cb__trigger {
-      border-color: var(--kp-input-border-hover);
+      border-color: var(--kp-color-input-border-hover);
     }
     :host(.kp-cb--open) .kp-cb__trigger,
     :host(.kp-cb--active) .kp-cb__trigger,
     :host(.kp-cb--focus) .kp-cb__trigger,
     :host(:not(.kp-cb--disabled):not(.kp-cb--error)) .kp-cb__trigger:focus-within {
-      border-color: var(--kp-input-border-focus);
+      border-color: var(--kp-color-input-border-focus);
     }
     :host(.kp-cb--disabled) .kp-cb__trigger {
-      background: var(--kp-input-bg-disabled);
-      border-color: var(--kp-input-border-disabled);
+      background: var(--kp-color-input-bg-disabled);
+      border-color: var(--kp-color-input-border-disabled);
       cursor: not-allowed;
     }
     :host(.kp-cb--error) .kp-cb__trigger {
-      border-color: var(--kp-input-border-error);
+      border-color: var(--kp-color-input-border-error);
     }
 
     .kp-cb__input {
@@ -201,17 +201,17 @@ export interface KpComboboxOption {
       font-size: var(--kp-input-font-size);
       line-height: var(--kp-input-line-height);
       font-weight: var(--kp-input-font-weight, 400);
-      color: var(--kp-input-fg);
+      color: var(--kp-color-input-fg-default);
       padding: 0;
     }
-    .kp-cb__input::placeholder { color: var(--kp-input-placeholder); }
-    .kp-cb__input:disabled { color: var(--kp-input-fg-disabled); cursor: not-allowed; }
+    .kp-cb__input::placeholder { color: var(--kp-color-input-placeholder-default); }
+    .kp-cb__input:disabled { color: var(--kp-color-input-fg-disabled); cursor: not-allowed; }
 
     .kp-cb__summary {
       flex-shrink: 0;
       font-size: var(--kp-input-font-size);
       font-weight: 500;
-      color: var(--kp-input-fg);
+      color: var(--kp-color-input-fg-default);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -244,7 +244,7 @@ export interface KpComboboxOption {
     }
     :host(.kp-cb--open) .kp-cb__chevron {
       transform: rotate(180deg);
-      color: var(--kp-input-border-focus);
+      color: var(--kp-color-input-border-focus);
     }
     :host(.kp-cb--disabled) .kp-cb__chevron { color: var(--kp-color-border-strong); }
     :host(.kp-cb--error) .kp-cb__chevron { color: var(--kp-color-input-border-error); }

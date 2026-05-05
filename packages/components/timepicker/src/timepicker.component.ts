@@ -189,29 +189,29 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       height: var(--kp-input-height);
       padding: 0 var(--kp-input-padding-x);
       gap: var(--kp-input-gap);
-      border: 1px solid var(--kp-input-border);
+      border: 1px solid var(--kp-color-input-border-rest);
       border-radius: var(--kp-input-radius);
-      background: var(--kp-input-bg);
-      color: var(--kp-input-fg);
+      background: var(--kp-color-input-bg-default);
+      color: var(--kp-color-input-fg-default);
       cursor: pointer;
       transition: border-color var(--kp-motion-duration-fast) ease, background 120ms ease;
     }
     :host(:not(.kp-tp--disabled):not(.kp-tp--error)) .kp-tp__trigger:hover,
     :host(.kp-tp--hover) .kp-tp__trigger {
-      border-color: var(--kp-input-border-hover);
+      border-color: var(--kp-color-input-border-hover);
     }
     :host(.kp-tp--open) .kp-tp__trigger,
     :host(.kp-tp--focus) .kp-tp__trigger,
     :host(:not(.kp-tp--disabled):not(.kp-tp--error)) .kp-tp__trigger:focus-visible {
-      border-color: var(--kp-input-border-focus);
+      border-color: var(--kp-color-input-border-focus);
     }
     :host(.kp-tp--disabled) .kp-tp__trigger {
-      background: var(--kp-input-bg-disabled);
-      border-color: var(--kp-input-border-disabled);
+      background: var(--kp-color-input-bg-disabled);
+      border-color: var(--kp-color-input-border-disabled);
       cursor: not-allowed;
     }
     :host(.kp-tp--error) .kp-tp__trigger {
-      border-color: var(--kp-input-border-error);
+      border-color: var(--kp-color-input-border-error);
     }
 
     .kp-tp__value {
@@ -225,7 +225,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       font-variant-numeric: tabular-nums;
       text-align: start;
     }
-    .kp-tp__value--placeholder { color: var(--kp-input-placeholder); }
+    .kp-tp__value--placeholder { color: var(--kp-color-input-placeholder-default); }
 
     .kp-tp__clear {
       display: inline-flex;

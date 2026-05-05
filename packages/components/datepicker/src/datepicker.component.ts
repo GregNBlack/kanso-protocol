@@ -230,29 +230,29 @@ interface DayCell {
       height: var(--kp-input-height);
       padding: 0 var(--kp-input-padding-x);
       gap: var(--kp-input-gap);
-      border: 1px solid var(--kp-input-border);
+      border: 1px solid var(--kp-color-input-border-rest);
       border-radius: var(--kp-input-radius);
-      background: var(--kp-input-bg);
-      color: var(--kp-input-fg);
+      background: var(--kp-color-input-bg-default);
+      color: var(--kp-color-input-fg-default);
       cursor: pointer;
       transition: border-color var(--kp-motion-duration-fast) ease, background 120ms ease;
     }
     :host(:not(.kp-dp--disabled):not(.kp-dp--error)) .kp-dp__trigger:hover,
     :host(.kp-dp--hover) .kp-dp__trigger {
-      border-color: var(--kp-input-border-hover);
+      border-color: var(--kp-color-input-border-hover);
     }
     :host(.kp-dp--open) .kp-dp__trigger,
     :host(.kp-dp--focus) .kp-dp__trigger,
     :host(:not(.kp-dp--disabled):not(.kp-dp--error)) .kp-dp__trigger:focus-visible {
-      border-color: var(--kp-input-border-focus);
+      border-color: var(--kp-color-input-border-focus);
     }
     :host(.kp-dp--disabled) .kp-dp__trigger {
-      background: var(--kp-input-bg-disabled);
-      border-color: var(--kp-input-border-disabled);
+      background: var(--kp-color-input-bg-disabled);
+      border-color: var(--kp-color-input-border-disabled);
       cursor: not-allowed;
     }
     :host(.kp-dp--error) .kp-dp__trigger {
-      border-color: var(--kp-input-border-error);
+      border-color: var(--kp-color-input-border-error);
     }
 
     .kp-dp__value {
@@ -265,7 +265,7 @@ interface DayCell {
       line-height: var(--kp-input-line-height);
       text-align: start;
     }
-    .kp-dp__value--placeholder { color: var(--kp-input-placeholder); }
+    .kp-dp__value--placeholder { color: var(--kp-color-input-placeholder-default); }
 
     .kp-dp__clear {
       display: inline-flex;

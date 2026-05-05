@@ -96,12 +96,12 @@ export type KpRequiredMode = 'none' | 'optional' | 'required-asterisk';
     .kp-form-field__optional {
       font-size: 13px;
       font-weight: 400;
-      color: var(--kp-form-optional);
+      color: var(--kp-color-form-required-optional);
     }
     .kp-form-field__required {
       font-size: 14px;
       font-weight: 500;
-      color: var(--kp-form-required);
+      color: var(--kp-color-form-required-marker);
     }
 
     .kp-form-field__control { display: block; }
