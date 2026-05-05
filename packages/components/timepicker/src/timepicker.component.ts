@@ -240,7 +240,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
-    .kp-tp__clear:hover { background: var(--kp-color-gray-100); color: var(--kp-color-text-default); }
+    .kp-tp__clear:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-default); }
     .kp-tp__clear svg { width: var(--kp-input-clear-icon, 14px); height: var(--kp-input-clear-icon, 14px); }
 
     .kp-tp__icon { display: inline-flex; color: var(--kp-color-text-muted); flex-shrink: 0; }
@@ -298,7 +298,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       justify-content: center;
     }
     .kp-tp__col-list::-webkit-scrollbar { width: 4px; }
-    .kp-tp__col-list::-webkit-scrollbar-thumb { background: var(--kp-color-gray-300); border-radius: 2px; }
+    .kp-tp__col-list::-webkit-scrollbar-thumb { background: var(--kp-color-border-strong); border-radius: 2px; }
 
     .kp-tp__sep {
       display: inline-flex;

@@ -98,7 +98,7 @@ const DEFAULTS: Record<KpPageErrorType, { title: string; description: string; ic
       font-size: 120px;
       font-weight: 700;
       line-height: 1;
-      color: var(--kp-color-gray-200);
+      color: var(--kp-color-border-default);
       letter-spacing: -0.02em;
       margin-bottom: 0;
     }

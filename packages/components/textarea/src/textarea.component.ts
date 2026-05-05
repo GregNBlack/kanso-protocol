@@ -85,7 +85,7 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
       cursor: not-allowed;
     }
     :host(.kp-textarea--error) { border-color: var(--kp-input-border-error); }
-    :host(.kp-textarea--filled) { background: var(--kp-color-gray-100); border-color: transparent; }
+    :host(.kp-textarea--filled) { background: var(--kp-color-surface-muted); border-color: transparent; }
 
     .kp-textarea__field {
       display: block;
@@ -121,12 +121,12 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
     }
     .kp-textarea__field::-webkit-scrollbar-track { background: transparent; }
     .kp-textarea__field::-webkit-scrollbar-thumb {
-      background: var(--kp-color-gray-300);
+      background: var(--kp-color-border-strong);
       border-radius: 3px;
       border-inline-end: 2px solid transparent;
       background-clip: padding-box;
     }
-    .kp-textarea__field::-webkit-scrollbar-thumb:hover { background: var(--kp-color-gray-400); background-clip: padding-box; }
+    .kp-textarea__field::-webkit-scrollbar-thumb:hover { background: var(--kp-color-text-disabled); background-clip: padding-box; }
 
     /* Hide native resize grip; we draw our own below */
     .kp-textarea__field::-webkit-resizer { background: transparent; }
@@ -175,7 +175,7 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
       background: var(--kp-input-bg);
       padding-inline-start: 4px;
     }
-    :host(.kp-textarea--filled) .kp-textarea__counter { background: var(--kp-color-gray-100); }
+    :host(.kp-textarea--filled) .kp-textarea__counter { background: var(--kp-color-surface-muted); }
     /* When the custom grip is hidden, align counter to the same inset as the bottom */
     :host(.kp-textarea--no-resize) .kp-textarea__counter { right: 6px; }
 

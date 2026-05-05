@@ -126,7 +126,7 @@ export interface KpUserMenuItem {
       align-items: center;
       padding: 2px 8px;
       border-radius: 999px;
-      background: var(--kp-color-blue-600);
+      background: var(--kp-color-primary-default-bg-rest);
       color: var(--kp-color-foreground-on-saturated);
       font-size: 11px;
       font-weight: 600;
@@ -158,7 +158,7 @@ export interface KpUserMenuItem {
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
     }
-    .kp-user-menu__row:hover { background: var(--kp-color-gray-100); color: var(--kp-color-text-strong); }
+    .kp-user-menu__row:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-strong); }
     .kp-user-menu__row-icon {
       display: inline-flex;
       align-items: center;
@@ -172,8 +172,8 @@ export interface KpUserMenuItem {
     .kp-user-menu__row--danger {
       color: var(--kp-color-accent-danger-fg);
     }
-    .kp-user-menu__row--danger .kp-user-menu__row-icon { color: var(--kp-color-red-500); }
-    .kp-user-menu__row--danger:hover { background: var(--kp-color-red-50); color: var(--kp-color-accent-danger-fg); }
+    .kp-user-menu__row--danger .kp-user-menu__row-icon { color: var(--kp-color-input-border-error); }
+    .kp-user-menu__row--danger:hover { background: var(--kp-color-danger-subtle-bg-rest); color: var(--kp-color-accent-danger-fg); }
   `],
 })
 export class KpUserMenuComponent {

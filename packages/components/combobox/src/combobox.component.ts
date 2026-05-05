@@ -231,7 +231,7 @@ export interface KpComboboxOption {
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease, color var(--kp-motion-duration-fast, 100ms) ease;
     }
-    .kp-cb__clear:hover { background: var(--kp-color-gray-100); color: var(--kp-color-text-default); }
+    .kp-cb__clear:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-default); }
     .kp-cb__clear svg { width: var(--kp-input-clear-icon, 14px); height: var(--kp-input-clear-icon, 14px); }
 
     .kp-cb__chevron {
@@ -246,8 +246,8 @@ export interface KpComboboxOption {
       transform: rotate(180deg);
       color: var(--kp-input-border-focus);
     }
-    :host(.kp-cb--disabled) .kp-cb__chevron { color: var(--kp-color-gray-300); }
-    :host(.kp-cb--error) .kp-cb__chevron { color: var(--kp-color-red-500); }
+    :host(.kp-cb--disabled) .kp-cb__chevron { color: var(--kp-color-border-strong); }
+    :host(.kp-cb--error) .kp-cb__chevron { color: var(--kp-color-input-border-error); }
 
     .kp-cb__dropdown {
       position: fixed;
@@ -285,7 +285,7 @@ export interface KpComboboxOption {
       background: var(--kp-color-surface-subtle);
     }
     .kp-cb__option--selected {
-      background: var(--kp-color-blue-50);
+      background: var(--kp-color-primary-subtle-bg-rest);
       color: var(--kp-color-accent-primary-fg);
     }
     .kp-cb__option--selected .kp-cb__check-single { color: var(--kp-color-accent-primary-fg); }
@@ -324,7 +324,7 @@ export interface KpComboboxOption {
       background: var(--kp-color-surface-base);
     }
     .kp-cb__option--selected .kp-cb__check {
-      background: var(--kp-color-blue-600);
+      background: var(--kp-color-primary-default-bg-rest);
       border-color: var(--kp-color-accent-primary-fg);
       color: var(--kp-color-foreground-on-saturated);
     }

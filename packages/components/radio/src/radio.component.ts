@@ -101,9 +101,9 @@ export type KpRadioColor = 'primary' | 'danger';
 
     :host(:hover:not(.kp-radio--disabled)),
     :host(.kp-radio--hover) {
-      --kp-radio-border: var(--kp-color-gray-400);
+      --kp-radio-border: var(--kp-color-input-border-hover);
     }
-    :host(.kp-radio--active) { --kp-radio-border: var(--kp-color-gray-500); }
+    :host(.kp-radio--active) { --kp-radio-border: var(--kp-color-text-muted); }
     :host(:focus-visible),
     :host(.kp-radio--focus) {
       outline: 2px solid var(--kp-color-focus-ring);
@@ -113,29 +113,29 @@ export type KpRadioColor = 'primary' | 'danger';
       --kp-radio-bg: var(--kp-color-surface-subtle);
       --kp-radio-border: var(--kp-color-border-default);
     }
-    :host(.kp-radio--error) { --kp-radio-border: var(--kp-color-red-500); }
+    :host(.kp-radio--error) { --kp-radio-border: var(--kp-color-input-border-error); }
 
     :host(.kp-radio--checked) {
-      --kp-radio-border: var(--kp-color-blue-600);
-      --kp-radio-dot-bg: var(--kp-color-blue-600);
+      --kp-radio-border: var(--kp-color-primary-default-bg-rest);
+      --kp-radio-dot-bg: var(--kp-color-primary-default-bg-rest);
     }
     :host(.kp-radio--checked:hover:not(.kp-radio--disabled)),
     :host(.kp-radio--checked.kp-radio--hover) {
-      --kp-radio-border: var(--kp-color-blue-700);
-      --kp-radio-dot-bg: var(--kp-color-blue-700);
+      --kp-radio-border: var(--kp-color-primary-default-bg-hover);
+      --kp-radio-dot-bg: var(--kp-color-primary-default-bg-hover);
     }
     :host(.kp-radio--checked.kp-radio--disabled) {
-      --kp-radio-border: var(--kp-color-gray-400);
-      --kp-radio-dot-bg: var(--kp-color-gray-400);
+      --kp-radio-border: var(--kp-color-input-fg-disabled);
+      --kp-radio-dot-bg: var(--kp-color-input-fg-disabled);
     }
     :host(.kp-radio--checked.kp-radio--error) {
-      --kp-radio-border: var(--kp-color-red-500);
-      --kp-radio-dot-bg: var(--kp-color-red-500);
+      --kp-radio-border: var(--kp-color-input-border-error);
+      --kp-radio-dot-bg: var(--kp-color-input-border-error);
     }
 
     :host(.kp-radio--danger.kp-radio--checked) {
-      --kp-radio-border: var(--kp-color-red-600);
-      --kp-radio-dot-bg: var(--kp-color-red-600);
+      --kp-radio-border: var(--kp-color-danger-default-bg-rest);
+      --kp-radio-dot-bg: var(--kp-color-danger-default-bg-rest);
     }
 
     :host(.kp-radio--sm) { --kp-radio-size: 16px; --kp-radio-border-width: 1px;   --kp-radio-dot-size: 6px; }

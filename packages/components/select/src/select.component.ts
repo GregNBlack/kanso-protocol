@@ -261,7 +261,7 @@ export interface KpSelectOption {
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease, color var(--kp-motion-duration-fast, 100ms) ease;
     }
-    .kp-select__clear:hover { background: var(--kp-color-gray-100); color: var(--kp-color-text-default); }
+    .kp-select__clear:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-default); }
     .kp-select__clear svg { width: var(--kp-input-clear-icon, 14px); height: var(--kp-input-clear-icon, 14px); }
     :host(.kp-select--error) .kp-select__clear { color: var(--kp-color-accent-danger-fg); }
 
@@ -326,7 +326,7 @@ export interface KpSelectOption {
       background: var(--kp-color-surface-subtle);
     }
     .kp-select__option--selected {
-      background: var(--kp-color-blue-50);
+      background: var(--kp-color-primary-subtle-bg-rest);
       color: var(--kp-color-accent-primary-fg);
     }
     .kp-select__option--selected .kp-select__check-single { color: var(--kp-color-accent-primary-fg); }
@@ -358,7 +358,7 @@ export interface KpSelectOption {
       background: var(--kp-color-surface-base);
     }
     .kp-select__option--selected .kp-select__check {
-      background: var(--kp-color-blue-600);
+      background: var(--kp-color-primary-default-bg-rest);
       border-color: var(--kp-color-accent-primary-fg);
       color: var(--kp-color-foreground-on-saturated);
     }

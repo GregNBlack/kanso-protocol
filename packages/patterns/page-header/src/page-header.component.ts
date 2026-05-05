@@ -120,7 +120,7 @@ export type KpPageHeaderSize = 'sm' | 'md' | 'lg';
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
     }
-    .kp-page-header__back:hover { background: var(--kp-color-gray-100); color: var(--kp-color-text-strong); }
+    .kp-page-header__back:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-strong); }
     .kp-page-header__back svg { width: 20px; height: 20px; }
 
     .kp-page-header__text {

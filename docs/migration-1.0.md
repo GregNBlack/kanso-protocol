@@ -63,18 +63,23 @@ affected.
 
 ### 3. Direct primitive references in component CSS removed
 
-**What** — components currently contain ~220 direct
-`var(--kp-color-blue-600)`-style references in their inline styles.
-Those will all be migrated to semantic accent tokens
-(`color.accent.primary.fg`, etc.) before 1.0 ships.
+**What** — done in `0.5.x`. Every component and pattern now references
+only semantic tokens (`color.primary.default.bg.rest`,
+`color.text.muted`, `color.surface.muted`, `color.border.default`,
+`color.foreground.on-saturated`, etc.). The `color.surface.on-dark.*`
+and `color.border.on-dark.*` invariant families exist for the always-
+dark variants of Header / Sidebar that should not follow the host
+theme.
 
-**Why** — primitive references defeat the whole point of the semantic
-layer; they bypass dark-mode overrides and brand-color customization.
+**Why** — primitive references defeated the whole point of the semantic
+layer; they bypassed dark-mode overrides and brand-color customization.
 
 **How to migrate (consumer side)** — none, if you're using Kanso
 components as published packages. **If you fork or override component
-templates**, mirror the same migration: replace primitive `--kp-color-<hue>-<step>`
-references in your overrides with the corresponding semantic token.
+templates**, mirror the same migration: replace primitive
+`--kp-color-<hue>-<step>` references in your overrides with the
+corresponding semantic token. The lint rule `kanso-lint-tokens`
+enforces this for upstream code.
 
 ## Likely breaking changes (still under decision)
 

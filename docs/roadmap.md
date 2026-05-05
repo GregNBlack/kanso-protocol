@@ -13,9 +13,12 @@ For known breaking changes that 1.0 will introduce, see
 
 Active work targeted for the next minor release.
 
-- **Token cleanup before 1.0.** Migrate the ~220 direct primitive references
-  in component CSS to semantic accent tokens. Tracked as the headline
-  open question in `1.0-readiness.md`.
+- ~~**Token cleanup before 1.0.**~~ **Done** (2026-05-05). 1334 direct
+  primitive references across 60 files migrated to semantic tokens
+  (`color.text.*`, `color.surface.*`, `color.border.*`, with an
+  `*.on-dark.*` invariant family for always-dark Header / Sidebar
+  variants). Zero primitives remain in component or pattern CSS.
+  Dark theme promoted from `experimental` to `stable`.
 - **Performance budget + CI gate.** Per-package gzipped bundle-size
   baseline plus a CI check that fails on >10 % regression. Surfaces
   drift before it reaches consumers.
@@ -30,11 +33,11 @@ Active work targeted for the next minor release.
 
 Required to graduate `1.0`.
 
-- **Dark theme architecture stabilization.** Resolve the surface-vs-text
-  double duty on `--kp-color-white`; ship `color.text.muted` as a
-  proper semantic; finish the audit of direct primitive references in
-  components. Drives the "Confirmed breaking changes" list in the
-  migration guide.
+- ~~**Dark theme architecture stabilization.**~~ **Done** (2026-05-05).
+  Surface-vs-text double duty on `--kp-color-white` resolved (split via
+  `color.foreground.on-saturated` in `0.5.x`); `color.text.muted` and
+  the rest of the `text.*` / `surface.*` / `border.*` semantic families
+  shipped; primitive-reference audit complete. Dark theme is `stable`.
 - **RTL validation.** A Playwright suite that visits every story under
   `dir="rtl"` and snapshots, since components use logical properties
   but no automated check exists today.

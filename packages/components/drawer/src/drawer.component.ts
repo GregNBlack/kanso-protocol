@@ -229,7 +229,7 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       transition: background var(--kp-motion-duration-fast) ease;
       flex: 0 0 auto;
     }
-    .kp-drawer__close:hover { background: var(--kp-color-gray-100); }
+    .kp-drawer__close:hover { background: var(--kp-color-surface-muted); }
     .kp-drawer__close:focus-visible {
       outline: 2px solid var(--kp-color-focus-ring);
       outline-offset: 2px;

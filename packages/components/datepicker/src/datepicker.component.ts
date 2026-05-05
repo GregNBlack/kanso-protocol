@@ -280,7 +280,7 @@ interface DayCell {
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
-    .kp-dp__clear:hover { background: var(--kp-color-gray-100); color: var(--kp-color-text-default); }
+    .kp-dp__clear:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-default); }
     .kp-dp__clear svg { width: var(--kp-input-clear-icon, 14px); height: var(--kp-input-clear-icon, 14px); }
 
     .kp-dp__icon { display: inline-flex; color: var(--kp-color-text-muted); flex-shrink: 0; }
@@ -317,7 +317,7 @@ interface DayCell {
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
     }
-    .kp-dp__preset:hover { background: var(--kp-color-gray-100); }
+    .kp-dp__preset:hover { background: var(--kp-color-surface-muted); }
 
     .kp-dp__calendar {
       display: flex;
@@ -346,7 +346,7 @@ interface DayCell {
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
     }
-    .kp-dp__nav:hover { background: var(--kp-color-gray-100); }
+    .kp-dp__nav:hover { background: var(--kp-color-surface-muted); }
     .kp-dp__title {
       all: unset;
       flex: 1;
@@ -359,7 +359,7 @@ interface DayCell {
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
     }
-    .kp-dp__title:hover { background: var(--kp-color-gray-100); }
+    .kp-dp__title:hover { background: var(--kp-color-surface-muted); }
 
     .kp-dp__weekdays {
       display: grid;

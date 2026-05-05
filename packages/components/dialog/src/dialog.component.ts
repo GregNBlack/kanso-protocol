@@ -226,7 +226,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       margin-block-start: -4px;
       margin-inline-end: -4px;
     }
-    .kp-dialog__close:hover { background: var(--kp-color-gray-100); }
+    .kp-dialog__close:hover { background: var(--kp-color-surface-muted); }
     .kp-dialog__close:focus-visible {
       outline: 2px solid var(--kp-color-focus-ring);
       outline-offset: 2px;

@@ -89,19 +89,19 @@ export type KpToggleColor = 'primary' | 'danger';
     }
 
     :host(.kp-toggle--on) {
-      --kp-toggle-track-bg: var(--kp-color-blue-600);
+      --kp-toggle-track-bg: var(--kp-color-primary-default-bg-rest);
     }
     :host(.kp-toggle--on:hover:not(.kp-toggle--disabled)),
     :host(.kp-toggle--on.kp-toggle--hover) {
-      --kp-toggle-track-bg: var(--kp-color-blue-700);
+      --kp-toggle-track-bg: var(--kp-color-primary-default-bg-hover);
     }
-    :host(.kp-toggle--on.kp-toggle--active) { --kp-toggle-track-bg: var(--kp-color-blue-800); }
-    :host(.kp-toggle--on.kp-toggle--disabled) { --kp-toggle-track-bg: var(--kp-color-gray-400); }
-    :host(.kp-toggle--on.kp-toggle--error) { --kp-toggle-track-bg: var(--kp-color-red-500); }
+    :host(.kp-toggle--on.kp-toggle--active) { --kp-toggle-track-bg: var(--kp-color-primary-default-bg-active); }
+    :host(.kp-toggle--on.kp-toggle--disabled) { --kp-toggle-track-bg: var(--kp-color-input-fg-disabled); }
+    :host(.kp-toggle--on.kp-toggle--error) { --kp-toggle-track-bg: var(--kp-color-input-border-error); }
 
     :host(:hover:not(.kp-toggle--disabled):not(.kp-toggle--on)),
     :host(.kp-toggle--hover:not(.kp-toggle--on)) {
-      --kp-toggle-track-bg: var(--kp-color-gray-400);
+      --kp-toggle-track-bg: var(--kp-color-input-border-hover);
     }
     :host(:focus-visible),
     :host(.kp-toggle--focus) {
@@ -113,11 +113,11 @@ export type KpToggleColor = 'primary' | 'danger';
       --kp-toggle-track-bg: var(--kp-color-surface-strong);
     }
     :host(.kp-toggle--error:not(.kp-toggle--on)) {
-      --kp-toggle-track-bg: var(--kp-color-red-500);
+      --kp-toggle-track-bg: var(--kp-color-input-border-error);
     }
 
     :host(.kp-toggle--danger.kp-toggle--on) {
-      --kp-toggle-track-bg: var(--kp-color-red-600);
+      --kp-toggle-track-bg: var(--kp-color-danger-default-bg-rest);
     }
 
     /* Sizes */

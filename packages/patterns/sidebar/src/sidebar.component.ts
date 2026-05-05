@@ -163,7 +163,7 @@ export interface KpSidebarSection {
     :host(.kp-sidebar--dark) {
       background: var(--kp-color-sidebar-bg-dark);
             color: var(--kp-color-fg-on-dark-strong);
-      border-right-color: var(--kp-color-gray-800);
+      border-right-color: var(--kp-color-border-on-dark-default);
     }
 
     .kp-sidebar__top {
@@ -214,7 +214,7 @@ export interface KpSidebarSection {
       width: 32px;
       height: 32px;
       border-radius: 8px;
-      background: var(--kp-color-blue-600);
+      background: var(--kp-color-primary-default-bg-rest);
       color: var(--kp-color-foreground-on-saturated);
       flex: 0 0 auto;
     }
@@ -246,7 +246,7 @@ export interface KpSidebarSection {
     .kp-sidebar__toggle svg { width: 16px; height: 16px; }
         :host(.kp-sidebar--dark) .kp-sidebar__toggle { color: var(--kp-color-fg-on-dark-muted); }
     :host(.kp-sidebar--dark) .kp-sidebar__toggle:hover {
-      background: var(--kp-color-gray-800);
+      background: var(--kp-color-surface-on-dark-muted);
       color: var(--kp-color-foreground-on-saturated);
     }
 
@@ -294,7 +294,7 @@ export interface KpSidebarSection {
       padding: 16px;
       border-top: 1px solid var(--kp-color-sidebar-border);
     }
-    :host(.kp-sidebar--dark) .kp-sidebar__footer { border-top-color: var(--kp-color-gray-800); }
+    :host(.kp-sidebar--dark) .kp-sidebar__footer { border-top-color: var(--kp-color-border-on-dark-default); }
     .kp-sidebar__footer-text {
       display: flex;
       flex-direction: column;
@@ -310,7 +310,7 @@ export interface KpSidebarSection {
       text-overflow: ellipsis;
       overflow: hidden;
     }
-    :host(.kp-sidebar--dark) .kp-sidebar__footer-name { color: var(--kp-color-white); }
+    :host(.kp-sidebar--dark) .kp-sidebar__footer-name { color: var(--kp-color-fg-on-dark-strong); }
     .kp-sidebar__footer-email {
       font-size: 11px;
       color: var(--kp-color-text-muted);
@@ -329,7 +329,7 @@ export interface KpSidebarSection {
       color: var(--kp-color-text-muted);
       cursor: pointer;
     }
-    .kp-sidebar__footer-menu:hover { color: var(--kp-color-gray-900); background: var(--kp-color-surface-muted); }
+    .kp-sidebar__footer-menu:hover { color: var(--kp-color-text-strong); background: var(--kp-color-surface-muted); }
     .kp-sidebar__footer-menu svg { width: 18px; height: 18px; }
 
     :host(.kp-sidebar--collapsed) .kp-sidebar__footer { justify-content: center; padding-inline: 0; }

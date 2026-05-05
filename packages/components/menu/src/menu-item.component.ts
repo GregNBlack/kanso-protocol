@@ -105,25 +105,25 @@ export type KpMenuItemSize = 'sm' | 'md' | 'lg';
     }
     :host(.kp-menu-item--disabled) .kp-menu-item__icon,
     :host(.kp-menu-item--disabled) .kp-menu-item__trailing {
-      --kp-menu-item-icon: var(--kp-color-gray-300);
+      --kp-menu-item-icon: var(--kp-color-border-strong);
     }
 
     /* Selected (blue tint) */
     :host(.kp-menu-item--selected) {
-      --kp-menu-item-bg: var(--kp-color-blue-50);
-      --kp-menu-item-fg: var(--kp-color-blue-700);
-      --kp-menu-item-icon: var(--kp-color-blue-600);
+      --kp-menu-item-bg: var(--kp-color-primary-subtle-bg-rest);
+      --kp-menu-item-fg: var(--kp-color-primary-default-bg-hover);
+      --kp-menu-item-icon: var(--kp-color-primary-default-bg-rest);
     }
 
     /* Danger (red fg, white bg; hover = light red bg) */
     :host(.kp-menu-item--danger) {
-      --kp-menu-item-fg: var(--kp-color-red-600);
-      --kp-menu-item-icon: var(--kp-color-red-600);
+      --kp-menu-item-fg: var(--kp-color-danger-default-bg-rest);
+      --kp-menu-item-icon: var(--kp-color-danger-default-bg-rest);
     }
     :host(.kp-menu-item--danger:hover:not(.kp-menu-item--disabled)),
     :host(.kp-menu-item--danger.kp-menu-item--hover) {
-      --kp-menu-item-bg: var(--kp-color-red-50);
-      --kp-menu-item-fg: var(--kp-color-red-700);
+      --kp-menu-item-bg: var(--kp-color-danger-subtle-bg-rest);
+      --kp-menu-item-fg: var(--kp-color-danger-default-bg-hover);
     }
 
     .kp-menu-item__leading,

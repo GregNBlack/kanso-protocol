@@ -61,8 +61,8 @@ export type KpNotificationAppearance =
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
     }
-    :host(.kp-notif-item--unread) { background: var(--kp-color-gray-50); }
-    :host(:hover) { background: var(--kp-color-gray-100); }
+    :host(.kp-notif-item--unread) { background: var(--kp-color-surface-subtle); }
+    :host(:hover) { background: var(--kp-color-surface-muted); }
 
     kp-avatar { flex: 0 0 auto; }
     kp-avatar ::ng-deep .ti { font-size: 18px; line-height: 1; }

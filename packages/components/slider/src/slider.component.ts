@@ -183,19 +183,19 @@ export type KpSliderValue = number | readonly [number, number];
       touch-action: none;
     }
     .kp-sl__thumb:active { cursor: grabbing; }
-    .kp-sl__thumb:hover { border-color: var(--kp-color-blue-700); }
+    .kp-sl__thumb:hover { border-color: var(--kp-color-primary-default-bg-hover); }
     .kp-sl__thumb:focus-visible {
       box-shadow: 0 0 0 4px var(--kp-color-slider-thumb-ring-focus), 0 2px 4px rgba(0, 0, 0, 0.08);
     }
     .kp-sl__thumb[disabled] {
       cursor: not-allowed;
       background: var(--kp-color-surface-muted);
-      border-color: var(--kp-color-gray-400);
+      border-color: var(--kp-color-text-disabled);
       box-shadow: none;
     }
 
     :host(.kp-sl--disabled) .kp-sl__track-fill {
-      background: var(--kp-color-gray-400);
+      background: var(--kp-color-text-disabled);
     }
     :host(.kp-sl--disabled) .kp-sl__track {
       background: var(--kp-color-surface-muted);

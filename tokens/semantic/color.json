@@ -93,18 +93,27 @@
     },
 
     "surface": {
-      "$description": "Background colors for page chrome and elevated panels. `base` inverts cleanly via primitive flip; `muted` and `strong` carry explicit dark overrides so hover / pressed states stay visually distinct from `base` (in dark, gray-100 inverts to the same hex as gray-900, which would erase the elevation difference).",
+      "$description": "Background colors for page chrome and elevated panels. `base` inverts cleanly via primitive flip; `muted` and `strong` carry explicit dark overrides so hover / pressed states stay visually distinct from `base` (in dark, gray-100 inverts to the same hex as gray-900, which would erase the elevation difference). The `on-dark` group is invariant — same value in light and dark — for surfaces that should always render dark regardless of the host theme (Header / Sidebar `.dark` variants).",
       "base":   { "$value": "{color.white}",    "$type": "color", "$description": "Top elevated surface — cards, dialogs, dropdowns. Inverts to gray-900 dark = #18181B" },
       "subtle": { "$value": "{color.gray.50}",  "$type": "color", "$description": "Page background behind cards, recessed regions. Inverts to gray-950 dark = #09090B" },
       "muted":  { "$value": "{color.gray.100}", "$type": "color", "$description": "Hover background, alternating rows, muted callouts. Dark override → gray.200 (= #27272A in dark, distinguishable from base)" },
-      "strong": { "$value": "{color.gray.200}", "$type": "color", "$description": "Active row, pressed state, more prominent muted bg. Dark override → gray.300" }
+      "strong": { "$value": "{color.gray.200}", "$type": "color", "$description": "Active row, pressed state, more prominent muted bg. Dark override → gray.300" },
+      "on-dark": {
+        "base":   { "$value": "#18181B", "$type": "color", "$description": "Always-dark elevated surface (e.g. .kp-header--dark, .kp-sidebar--dark). No dark override — value is fixed across themes." },
+        "muted":  { "$value": "#27272A", "$type": "color", "$description": "Always-dark hover/muted surface" },
+        "strong": { "$value": "#3F3F46", "$type": "color", "$description": "Always-dark active/pressed surface" }
+      }
     },
 
     "border": {
-      "$description": "Border and divider colors. All three levels invert cleanly through primitive ramps — no dark overrides needed.",
+      "$description": "Border and divider colors. The default trio inverts cleanly through primitive ramps; the `on-dark` group stays the same in both themes for the always-dark variants of patterns like Header and Sidebar.",
       "subtle":  { "$value": "{color.gray.100}", "$type": "color", "$description": "Faint internal dividers" },
       "default": { "$value": "{color.gray.200}", "$type": "color", "$description": "Standard control and card borders" },
-      "strong":  { "$value": "{color.gray.300}", "$type": "color", "$description": "Emphasized borders — focused panels, table headers" }
+      "strong":  { "$value": "{color.gray.300}", "$type": "color", "$description": "Emphasized borders — focused panels, table headers" },
+      "on-dark": {
+        "subtle":  { "$value": "#27272A", "$type": "color", "$description": "Faint divider on always-dark surfaces" },
+        "default": { "$value": "#3F3F46", "$type": "color", "$description": "Standard border on always-dark surfaces" }
+      }
     },
 
     "icon": {

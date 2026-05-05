@@ -246,7 +246,7 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
       cursor: pointer;
       font: inherit;
     }
-    .kp-tt__density-btn:hover { color: var(--kp-color-gray-900); }
+    .kp-tt__density-btn:hover { color: var(--kp-color-text-strong); }
     .kp-tt__density-btn--active {
       background: var(--kp-color-surface-base);
       color: var(--kp-color-text-strong);

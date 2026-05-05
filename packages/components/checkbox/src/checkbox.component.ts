@@ -117,7 +117,7 @@ export type KpCheckboxColor = 'primary' | 'danger';
       --kp-checkbox-border: var(--kp-color-border-default);
     }
     :host(.kp-checkbox--error) {
-      --kp-checkbox-border: var(--kp-color-red-500);
+      --kp-checkbox-border: var(--kp-color-input-border-error);
     }
 
     /* --- Checked / Indeterminate --- */
@@ -128,26 +128,26 @@ export type KpCheckboxColor = 'primary' | 'danger';
     }
     :host(.kp-checkbox--checked:hover:not(.kp-checkbox--disabled)),
     :host(.kp-checkbox--checked.kp-checkbox--hover) {
-      --kp-checkbox-bg: var(--kp-color-blue-700);
-      --kp-checkbox-border: var(--kp-color-blue-700);
+      --kp-checkbox-bg: var(--kp-color-primary-default-bg-hover);
+      --kp-checkbox-border: var(--kp-color-primary-default-bg-hover);
     }
     :host(.kp-checkbox--checked.kp-checkbox--active) {
-      --kp-checkbox-bg: var(--kp-color-blue-800);
-      --kp-checkbox-border: var(--kp-color-blue-800);
+      --kp-checkbox-bg: var(--kp-color-primary-default-bg-active);
+      --kp-checkbox-border: var(--kp-color-primary-default-bg-active);
     }
     :host(.kp-checkbox--checked.kp-checkbox--disabled) {
-      --kp-checkbox-bg: var(--kp-color-gray-400);
-      --kp-checkbox-border: var(--kp-color-gray-400);
+      --kp-checkbox-bg: var(--kp-color-input-fg-disabled);
+      --kp-checkbox-border: var(--kp-color-input-fg-disabled);
     }
     :host(.kp-checkbox--checked.kp-checkbox--error) {
-      --kp-checkbox-bg: var(--kp-color-red-500);
-      --kp-checkbox-border: var(--kp-color-red-500);
+      --kp-checkbox-bg: var(--kp-color-input-border-error);
+      --kp-checkbox-border: var(--kp-color-input-border-error);
     }
 
     /* --- Danger color --- */
     :host(.kp-checkbox--danger.kp-checkbox--checked) {
-      --kp-checkbox-bg: var(--kp-color-red-600);
-      --kp-checkbox-border: var(--kp-color-red-600);
+      --kp-checkbox-bg: var(--kp-color-danger-default-bg-rest);
+      --kp-checkbox-border: var(--kp-color-danger-default-bg-rest);
     }
 
     /* --- Sizes --- */

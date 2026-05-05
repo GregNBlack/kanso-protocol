@@ -194,7 +194,7 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
       font-size: 15px;
       color: var(--kp-color-text-strong);
     }
-    .kp-cmdk__input::placeholder { color: var(--kp-color-gray-500); }
+    .kp-cmdk__input::placeholder { color: var(--kp-color-text-muted); }
 
     .kp-cmdk__clear {
       all: unset;
@@ -208,7 +208,7 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
     }
-    .kp-cmdk__clear:hover { background: var(--kp-color-gray-100); color: var(--kp-color-text-default); }
+    .kp-cmdk__clear:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-default); }
     .kp-cmdk__clear svg { width: 14px; height: 14px; }
 
     .kp-cmdk__list {

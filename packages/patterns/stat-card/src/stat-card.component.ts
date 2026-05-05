@@ -96,7 +96,7 @@ export type KpStatTrendAppearance = 'positive' | 'negative';
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: var(--kp-color-blue-50);
+      background: var(--kp-color-primary-subtle-bg-rest);
       color: var(--kp-color-accent-primary-fg);
     }
     .kp-stat__icon .ti { font-size: 18px; line-height: 1; }
@@ -119,7 +119,7 @@ export type KpStatTrendAppearance = 'positive' | 'negative';
     .kp-stat__trend-desc { font-size: 12px; color: var(--kp-color-text-muted); }
     .kp-stat__trend[data-tone='good']    { color: var(--kp-color-accent-success-fg); }
     .kp-stat__trend[data-tone='bad']     { color: var(--kp-color-accent-danger-fg); }
-    .kp-stat__trend[data-tone='neutral'] { color: var(--kp-color-gray-500); }
+    .kp-stat__trend[data-tone='neutral'] { color: var(--kp-color-text-muted); }
 
     .kp-stat__sparkline { margin-top: 4px; }
     .kp-stat__sparkline-placeholder {

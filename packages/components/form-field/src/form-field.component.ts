@@ -115,18 +115,18 @@ export type KpRequiredMode = 'none' | 'optional' | 'required-asterisk';
 
     /* Error state */
     :host(.kp-form-field--error) .kp-form-field__label {
-      --kp-form-label: var(--kp-color-red-600);
+      --kp-form-label: var(--kp-color-danger-default-bg-rest);
     }
     :host(.kp-form-field--error) .kp-form-field__helper {
-      --kp-form-helper: var(--kp-color-red-500);
+      --kp-form-helper: var(--kp-color-input-border-error);
     }
 
     /* Disabled state */
     :host(.kp-form-field--disabled) .kp-form-field__label {
-      --kp-form-label: var(--kp-color-gray-400);
+      --kp-form-label: var(--kp-color-text-disabled);
     }
     :host(.kp-form-field--disabled) .kp-form-field__helper {
-      --kp-form-helper: var(--kp-color-gray-400);
+      --kp-form-helper: var(--kp-color-text-disabled);
     }
   `]
 })

@@ -8,6 +8,10 @@
  *
  *   raw-color           — a hex / rgb / rgba / hsl / hsla literal that
  *                         should be a `var(--kp-color-*)` token
+ *   primitive-color     — a `var(--kp-color-{gray|blue|red|...}-{step})`
+ *                         reference; primitives should only be aliased by
+ *                         the semantic layer, never reached for directly
+ *                         from component / pattern CSS
  *   physical-css        — margin-/padding-/border-{left,right} or
  *                         text-align:{left,right} (use logical instead)
  *   raw-motion-duration — a transition/animation duration that should
@@ -149,6 +153,23 @@ const RULES = [
       return {
         column: m.index + 1,
         message: `Raw color "${m[0]}" — use a var(--kp-color-*) token (or wrap it as a fallback inside an existing var()).`,
+      };
+    },
+  },
+  {
+    id: 'primitive-color',
+    severity: 'error',
+    check(line) {
+      // Match var(--kp-color-{primitive-name}) where primitive-name is one
+      // of the primitive ramp identifiers (gray-50..950, blue-50..950, etc.).
+      // Component / pattern CSS must consume semantic tokens only — primitives
+      // exist to be aliased by the semantic layer, never referenced directly.
+      const re = /var\(\s*--kp-color-((?:gray|blue|red|green|amber|cyan|white|black)(?:-\d+)?)\s*\)/;
+      const m = line.match(re);
+      if (!m) return null;
+      return {
+        column: m.index + 1,
+        message: `Primitive token "${m[0]}" — use a semantic alias (e.g. var(--kp-color-text-default), var(--kp-color-surface-base), var(--kp-color-primary-default-bg-rest)). Primitives are for the semantic layer only.`,
       };
     },
   },

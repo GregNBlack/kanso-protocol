@@ -218,7 +218,7 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       overflow: hidden;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
-    :host(.kp-rte--error) { border-color: var(--kp-color-red-500); }
+    :host(.kp-rte--error) { border-color: var(--kp-color-input-border-error); }
     :host(.kp-rte--disabled) {
       background: var(--kp-color-surface-subtle);
       color: var(--kp-color-text-muted);
@@ -258,11 +258,11 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       color: var(--kp-color-text-strong);
     }
     .kp-rte__btn:focus-visible {
-      outline: 2px solid var(--kp-color-blue-400);
+      outline: 2px solid var(--kp-color-accent-primary-fg);
       outline-offset: -2px;
     }
     .kp-rte__btn.is-active {
-      background: var(--kp-color-blue-50);
+      background: var(--kp-color-primary-subtle-bg-rest);
       color: var(--kp-color-accent-primary-fg);
     }
     .kp-rte__btn[disabled] {
@@ -314,11 +314,11 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       color: var(--kp-color-text-strong);
     }
     .kp-rte__link-btn--primary {
-      background: var(--kp-color-blue-600);
+      background: var(--kp-color-primary-default-bg-rest);
       color: var(--kp-color-foreground-on-saturated);
     }
     .kp-rte__link-btn--primary:hover:not([disabled]) {
-      background: var(--kp-color-blue-700);
+      background: var(--kp-color-primary-default-bg-hover);
       color: var(--kp-color-foreground-on-saturated);
     }
     .kp-rte__link-btn[disabled] {
@@ -367,8 +367,8 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       font-size: 0.9em;
     }
     ::ng-deep .kp-rte__editor .ProseMirror pre {
-      background: var(--kp-color-gray-900);
-      color: var(--kp-color-gray-50);
+      background: var(--kp-color-text-strong);
+      color: var(--kp-color-surface-subtle);
       padding: 12px 16px;
       border-radius: 8px;
       overflow-x: auto;

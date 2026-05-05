@@ -175,8 +175,8 @@ export interface KpNotification {
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
-    .kp-notif-center__filter:hover { background: var(--kp-color-gray-100); color: var(--kp-color-text-strong); }
-    .kp-notif-center__filter--active { background: var(--kp-color-blue-50); color: var(--kp-color-accent-primary-fg); }
+    .kp-notif-center__filter:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-strong); }
+    .kp-notif-center__filter--active { background: var(--kp-color-primary-subtle-bg-rest); color: var(--kp-color-accent-primary-fg); }
     .kp-notif-center__count {
       display: inline-flex;
       align-items: center;
@@ -188,7 +188,7 @@ export interface KpNotification {
       font-weight: 500;
     }
     .kp-notif-center__filter--active .kp-notif-center__count {
-      background: var(--kp-color-blue-600);
+      background: var(--kp-color-primary-default-bg-rest);
       color: var(--kp-color-foreground-on-saturated);
     }
 

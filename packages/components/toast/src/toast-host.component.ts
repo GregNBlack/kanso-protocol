@@ -180,7 +180,7 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
-    .kp-th__close:hover { background: var(--kp-color-gray-100); color: var(--kp-color-text-default); }
+    .kp-th__close:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-default); }
 
     /* Appearance tokens — shared with Alert */
     .kp-th__toast--primary {
@@ -234,8 +234,8 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
       --kp-toast-fg-title: var(--kp-color-text-strong);
       --kp-toast-fg-desc:  var(--kp-color-text-muted);
       --kp-toast-fg-body:  var(--kp-color-text-default);
-      --kp-toast-icon:     var(--kp-color-gray-500);
-      --kp-toast-action:   var(--kp-color-blue-600);
+      --kp-toast-icon:     var(--kp-color-text-muted);
+      --kp-toast-action:   var(--kp-color-primary-default-bg-rest);
     }
   `],
 })

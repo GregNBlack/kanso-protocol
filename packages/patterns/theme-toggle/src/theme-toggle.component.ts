@@ -150,7 +150,7 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
-    .kp-theme-toggle__icon-btn:hover { background: var(--kp-color-gray-100); color: var(--kp-color-text-strong); }
+    .kp-theme-toggle__icon-btn:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-strong); }
 
     /* Segmented variant */
     .kp-theme-toggle__segments {
@@ -174,7 +174,7 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
-    .kp-theme-toggle__segment:hover { color: var(--kp-color-gray-900); }
+    .kp-theme-toggle__segment:hover { color: var(--kp-color-text-strong); }
     .kp-theme-toggle__segment--selected {
       background: var(--kp-color-surface-base);
       color: var(--kp-color-text-strong);
