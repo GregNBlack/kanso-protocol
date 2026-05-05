@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-05-04T15:00:41.258Z",
-  "totalSpecs": 37,
-  "totalTests": 363,
-  "totalPackages": 58,
+  "generatedAt": "2026-05-05T10:08:36.199Z",
+  "totalSpecs": 40,
+  "totalTests": 400,
+  "totalPackages": 61,
   "items": [
     {
       "layer": "components",
@@ -116,6 +116,17 @@
     },
     {
       "layer": "components",
+      "name": "command-palette",
+      "title": "Components/CommandPalette",
+      "storybookId": "components-commandpalette--docs",
+      "specFile": "packages/components/command-palette/src/command-palette.spec.ts",
+      "specFiles": [
+        "packages/components/command-palette/src/command-palette.spec.ts"
+      ],
+      "tests": 14
+    },
+    {
+      "layer": "components",
       "name": "datepicker",
       "title": "Components/DatePicker",
       "storybookId": "components-datepicker--docs",
@@ -212,6 +223,17 @@
         "packages/components/input/src/input.spec.ts"
       ],
       "tests": 9
+    },
+    {
+      "layer": "components",
+      "name": "markdown-viewer",
+      "title": "Components/MarkdownViewer",
+      "storybookId": "components-markdownviewer--docs",
+      "specFile": "packages/components/markdown-viewer/src/markdown-viewer.spec.ts",
+      "specFiles": [
+        "packages/components/markdown-viewer/src/markdown-viewer.spec.ts"
+      ],
+      "tests": 10
     },
     {
       "layer": "components",
@@ -401,6 +423,17 @@
         "packages/components/tree/src/tree.spec.ts"
       ],
       "tests": 22
+    },
+    {
+      "layer": "components",
+      "name": "virtual-list",
+      "title": "Components/VirtualList",
+      "storybookId": "components-virtuallist--docs",
+      "specFile": "packages/components/virtual-list/src/virtual-list.spec.ts",
+      "specFiles": [
+        "packages/components/virtual-list/src/virtual-list.spec.ts"
+      ],
+      "tests": 13
     },
     {
       "layer": "components",

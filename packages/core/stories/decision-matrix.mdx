@@ -1,0 +1,94 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Foundations/Decision Matrix" />
+
+# Component Decision Matrix
+
+When two Kanso components solve overlapping problems, here's how to pick.
+Each row points to the deciding question — read the right column first,
+then the left.
+
+## Selection inputs
+
+| Picking between | Pick **A** when… | Pick **B** when… |
+|-----------------|-----------------|------------------|
+| **Select** vs **Combobox** | The list is short (≤ 20 items) and the user just picks one | The list is long, async, or needs free-text search |
+| **Combobox** vs **CommandPalette** | The control is part of a form and the picked value is the field's `value` | The control is global / app-level and the picked value triggers an *action* |
+| **Radio** vs **SegmentedControl** | The set is mutually exclusive *and* expected to live in a form | The set is mutually exclusive *and* feels like a tab-style mode toggle |
+| **Checkbox** vs **Toggle** | The state is a form value that gets submitted on save | The state is a setting that takes effect immediately |
+| **Select** vs **Tree** | The data is flat | The data is hierarchical and depth matters to the user |
+| **DatePicker** (`mode="single"`) vs **DatePicker** (`mode="range"`) | One date is enough (birthday, deadline) | The user picks a span (booking, report range) |
+
+## Surfaces & overlays
+
+| Picking between | Pick **A** when… | Pick **B** when… |
+|-----------------|-----------------|------------------|
+| **Dialog** vs **Drawer** | The interaction is *short* and *modal* — confirm, edit one field, alert | The interaction is *long* — multi-step form, side detail panel, navigation drawer |
+| **Drawer** vs **Sidebar (pattern)** | The side panel is contextual — opens for a specific action and closes | The side panel is the app's persistent navigation |
+| **Popover** vs **Tooltip** | The content is interactive (links, buttons, form bits) | The content is purely informational text |
+| **Popover** vs **DropdownMenu** | The content is custom (filters, embedded form) | The content is a list of menu items / actions |
+| **Toast** vs **Alert** | The message is transient and confirms a recent action ("Saved") | The message is persistent and warns about state ("Disk full") |
+| **Toast** vs **Banner** | The message is per-action | The message is global and applies to the whole page or session |
+| **CommandPalette** vs **DropdownMenu** | The actions form a searchable global catalog (⌘K) | The actions are 3–10 contextual items off a single trigger |
+
+## Layout & content
+
+| Picking between | Pick **A** when… | Pick **B** when… |
+|-----------------|-----------------|------------------|
+| **Card** vs **Container** | The content is a discrete unit that should feel grouped (border, padding, elevation) | The content is just centered + padded inside the page |
+| **Stack** vs **Row** | Items flow vertically | Items flow horizontally |
+| **Grid** vs **Stack/Row** | The layout has equal-width columns that wrap responsively | A 1-D flow is enough |
+| **Skeleton** vs **Progress** | The page is loading and you can predict the final shape | An action is in progress and you want to show how far it's gotten |
+| **Skeleton** vs **Spinner** (Progress circular) | You can mock the layout while data is fetched | The wait is short (< 1 s) or the layout is unknown |
+| **EmptyState** vs **PageError** | Data legitimately doesn't exist yet ("No tasks — create one") | Something *broke* (404, 500, network error) |
+
+## Tables & lists
+
+| Picking between | Pick **A** when… | Pick **B** when… |
+|-----------------|-----------------|------------------|
+| **Table** vs **VirtualList** | < 500 rows, you want sort/select, and rows have multiple columns | > 500 rows, performance matters, and a single-column item template is enough |
+| **Table** + **VirtualList** combined | > 500 rows *and* you need columns/sort | (Compose; future `<kp-table-virtual>` will bake this in) |
+| **Tabs** vs **SegmentedControl** | The content under each item is a *page* | The content is a single value (filter, view mode) |
+| **Pagination** vs **VirtualList** | The user benefits from explicit page boundaries (search results) | Continuous scrolling is the natural model (feeds, logs) |
+| **Tree** vs **Accordion** | The data is hierarchical and can be deeply nested | The data is a flat list of foldable sections (FAQ, settings groups) |
+
+## Forms & validation
+
+| Picking between | Pick **A** when… | Pick **B** when… |
+|-----------------|-----------------|------------------|
+| **Input** vs **Textarea** | One line of text | Multi-line, free-form text |
+| **Input** vs **NumberStepper** | Free-form numeric entry where the user types | Fixed range with discrete steps the user nudges |
+| **NumberStepper** vs **Slider** | Precision matters (price, quantity) | Approximate value, visual feedback matters more (volume, brightness) |
+| **FormField** vs **inline labels** | Validation, helper text, and error state matter | Pure layout-only labeling (e.g. login screen with no async validation) |
+
+## Notification surfaces — full hierarchy
+
+When you have a "tell the user something" job, the question is mostly
+about *scope* and *persistence*:
+
+```
+                    GLOBAL                 PER-INTERACTION
+                    ──────                 ───────────────
+PERSISTENT      Banner                 Alert
+TRANSIENT       Toast (corner)         FormField error / Tooltip
+```
+
+- **Banner** — top-of-page, applies to the whole session ("You're in
+  read-only mode").
+- **Alert** — sits inside content, applies to a specific area ("This
+  workspace has 47 errors").
+- **Toast** — corner, fades on its own, confirms an action ("Saved").
+- **FormField error** — inline below a field, scoped to that input.
+- **Tooltip** — explains a single trigger on hover/focus, never errors.
+
+## When in doubt
+
+- The component you're considering doesn't fit any row above? Start with
+  the per-component doc — every page in [`docs/components/`](https://github.com/GregNBlack/kanso-protocol/tree/main/docs/components)
+  has a "Do / Don't" section that handles edge cases.
+- Two components could *both* work? Pick the one with the more
+  conservative API surface (fewer inputs, smaller bundle, marked
+  `stable` in `1.0-readiness.md`).
+- Still stuck? Open a discussion on GitHub — questions like "X vs Y"
+  often surface real ambiguity that this matrix should be updated to
+  cover.

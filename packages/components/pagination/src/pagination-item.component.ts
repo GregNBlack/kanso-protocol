@@ -6,6 +6,8 @@ import {
   Output,
 } from '@angular/core';
 
+import { injectKpStrings } from '@kanso-protocol/i18n';
+
 export type KpPaginationItemSize = 'sm' | 'md' | 'lg';
 export type KpPaginationItemType = 'page' | 'nav' | 'ellipsis';
 export type KpPaginationNavMode = 'icon' | 'text' | 'icon-text';
@@ -215,22 +217,28 @@ export class KpPaginationItemComponent {
 
   @Output() readonly itemClick = new EventEmitter<MouseEvent>();
 
+  readonly strings = injectKpStrings();
+
   get isIconOnly(): boolean {
     return this.type === 'nav' && this.navMode === 'icon';
   }
 
   get effectiveNavLabel(): string {
     if (this.navLabel) return this.navLabel;
-    return this.navDirection === 'next' ? 'Next' : 'Previous';
+    return this.navDirection === 'next' ? this.strings.paginationNext : this.strings.paginationPrevious;
   }
 
   get effectiveAriaLabel(): string | null {
     if (this.ariaLabel) return this.ariaLabel;
     if (this.type === 'page' && this.page != null) {
-      return this.selected ? `Page ${this.page}, current page` : `Go to page ${this.page}`;
+      return this.selected
+        ? this.strings.paginationCurrentPage(this.page)
+        : this.strings.paginationGotoPage(this.page);
     }
     if (this.type === 'nav') {
-      return this.navDirection === 'prev' ? 'Previous page' : 'Next page';
+      return this.navDirection === 'prev'
+        ? this.strings.paginationPreviousPage
+        : this.strings.paginationNextPage;
     }
     return null;
   }

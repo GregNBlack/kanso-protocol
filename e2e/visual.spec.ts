@@ -20,36 +20,72 @@ interface StorySpec {
   name: string;
 }
 
-// One representative story per component family. Add more as components
-// stabilize — the goal is "visual contract", not "exhaustive coverage".
+// One representative story per component / pattern family. Goal is
+// "visual contract" coverage — every component + pattern + example has
+// at least one snapshot pair (light + dark) that catches token drift,
+// dark-mode regressions, and unintentional layout changes. Avoid
+// animation-heavy or DOM-non-deterministic stories (toasts mid-fade,
+// rich-text editors with caret state) — those are noise factories.
 const STORIES: StorySpec[] = [
-  // Atoms
-  { id: 'components-button--default',         name: 'button — default' },
-  { id: 'components-button--all-variants',    name: 'button — all variants' },
-  { id: 'components-badge--default',          name: 'badge — default' },
-  { id: 'components-input--default',          name: 'input — default' },
-  { id: 'components-checkbox--default',       name: 'checkbox — default' },
-  { id: 'components-radio--default',          name: 'radio — default' },
-  { id: 'components-toggle--default',         name: 'toggle — default' },
-  { id: 'components-select--default',         name: 'select — default' },
-  { id: 'components-card--default',           name: 'card — default' },
-  { id: 'components-alert--default',          name: 'alert — default' },
-  { id: 'components-tabs--default',           name: 'tabs — default' },
-  { id: 'components-table--default',          name: 'table — default' },
-  { id: 'components-breadcrumbs--default',    name: 'breadcrumbs — default' },
-  { id: 'components-datepicker--default',     name: 'datepicker — default' },
-  { id: 'components-dialog--default',         name: 'dialog — default' },
-  { id: 'components-drawer--default',         name: 'drawer — default' },
-  { id: 'components-dropdownmenu--default',   name: 'dropdown menu — default' },
-  { id: 'components-pagination--default',     name: 'pagination — default' },
-  { id: 'components-popover--default',        name: 'popover — default' },
-  { id: 'components-skeleton--default',       name: 'skeleton — default' },
-  { id: 'components-timepicker--default',     name: 'timepicker — default' },
-  { id: 'components-tooltip--default',        name: 'tooltip — default' },
-  { id: 'components-tree--default',           name: 'tree — default' },
-  // Patterns / examples
-  { id: 'patterns-header--saa-s-app',         name: 'header — SaaS app shell' },
-  { id: 'examples-dashboard--default',        name: 'dashboard example' },
+  // ─── Components ──────────────────────────────────────────────────────
+  { id: 'components-accordion--default',          name: 'accordion — default' },
+  { id: 'components-alert--default',              name: 'alert — default' },
+  { id: 'components-avatar--playground',          name: 'avatar — playground' },
+  { id: 'components-avatargroup--playground',     name: 'avatar group — playground' },
+  { id: 'components-badge--default',              name: 'badge — default' },
+  { id: 'components-breadcrumbs--default',        name: 'breadcrumbs — default' },
+  { id: 'components-button--default',             name: 'button — default' },
+  { id: 'components-button--all-variants',        name: 'button — all variants' },
+  { id: 'components-card--default',               name: 'card — default' },
+  { id: 'components-checkbox--default',           name: 'checkbox — default' },
+  { id: 'components-combobox--default',           name: 'combobox — default' },
+  { id: 'components-datepicker--default',         name: 'datepicker — default' },
+  { id: 'components-dialog--default',             name: 'dialog — default' },
+  { id: 'components-divider--orientations',       name: 'divider — orientations' },
+  { id: 'components-drawer--default',             name: 'drawer — default' },
+  { id: 'components-dropdownmenu--default',       name: 'dropdown menu — default' },
+  { id: 'components-emptystate--default',         name: 'empty state — default' },
+  { id: 'components-formfield--states',           name: 'form field — states' },
+  { id: 'components-icon--sizes',                 name: 'icon — sizes' },
+  { id: 'components-input--default',              name: 'input — default' },
+  { id: 'components-markdownviewer--changelog-preview', name: 'markdown viewer — changelog preview' },
+  { id: 'components-numberstepper--default',      name: 'number stepper — default' },
+  { id: 'components-pagination--default',         name: 'pagination — default' },
+  { id: 'components-popover--default',            name: 'popover — default' },
+  { id: 'components-progress-circular--values',   name: 'progress circular — values' },
+  { id: 'components-progress-linear--with-label', name: 'progress linear — with label' },
+  { id: 'components-radio--default',              name: 'radio — default' },
+  { id: 'components-segmentedcontrol--default',   name: 'segmented control — default' },
+  { id: 'components-select--default',             name: 'select — default' },
+  { id: 'components-skeleton--default',           name: 'skeleton — default' },
+  { id: 'components-slider--default',             name: 'slider — default' },
+  { id: 'components-table--default',              name: 'table — default' },
+  { id: 'components-tabs--default',               name: 'tabs — default' },
+  { id: 'components-textarea--default',           name: 'textarea — default' },
+  { id: 'components-timepicker--default',         name: 'timepicker — default' },
+  { id: 'components-toggle--default',             name: 'toggle — default' },
+  { id: 'components-tooltip--default',            name: 'tooltip — default' },
+  { id: 'components-tree--default',               name: 'tree — default' },
+
+  // ─── Patterns ────────────────────────────────────────────────────────
+  { id: 'patterns-banner--appearances',           name: 'banner — appearances' },
+  { id: 'patterns-filterbar--features',           name: 'filter bar — features' },
+  { id: 'patterns-header--saa-s-app',             name: 'header — SaaS app shell' },
+  { id: 'patterns-pageerror--not-found',          name: 'page error — not found' },
+  { id: 'patterns-pageheader--composition',       name: 'page header — composition' },
+  { id: 'patterns-searchbar--sizes',              name: 'search bar — sizes' },
+  { id: 'patterns-sidebar--dark-variant',         name: 'sidebar — dark variant' },
+  { id: 'patterns-statcard--compositions',        name: 'stat card — compositions' },
+  { id: 'patterns-tabletoolbar--compositions',    name: 'table toolbar — compositions' },
+  { id: 'patterns-themetoggle--variants',         name: 'theme toggle — variants' },
+  { id: 'patterns-usermenu--with-plan-badge',     name: 'user menu — with plan badge' },
+
+  // ─── Examples ────────────────────────────────────────────────────────
+  { id: 'examples-dashboard--default',            name: 'dashboard example' },
+  { id: 'examples-detail-view--default',          name: 'detail view example' },
+  { id: 'examples-list-view--default',            name: 'list view example' },
+  { id: 'examples-login--default',                name: 'login example' },
+  { id: 'examples-settings--default',             name: 'settings example' },
 ];
 
 const THEMES = ['light', 'dark'] as const;

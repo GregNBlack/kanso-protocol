@@ -2,6 +2,8 @@
 
 > One-line purpose — what this component is for.
 
+> Read [Component Anatomy](../component-anatomy.md) first — it defines the shared parts (Container / Content / Slots), the 5-size scale, and the 6-state model that this template assumes.
+
 ## Contract
 
 Short description of what the component does and what problem it solves. 2-3 sentences.

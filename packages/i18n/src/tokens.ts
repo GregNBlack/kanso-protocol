@@ -65,6 +65,20 @@ export interface KpLocaleStrings {
   searchPlaceholder: string;
   commandPaletteHint: string;
   commandPalettePlaceholder: string;
+
+  // Pagination — host label, nav buttons, page-cell ARIA, items-per-page UI
+  paginationLabel: string;
+  paginationPrevious: string;
+  paginationNext: string;
+  paginationPreviousPage: string;
+  paginationNextPage: string;
+  paginationGotoPage: (page: number) => string;
+  paginationCurrentPage: (page: number) => string;
+  paginationItemsPerPage: string;
+  paginationShowing: (from: number, to: number, total: number) => string;
+
+  // Toast — close button on every queued toast
+  toastDismiss: string;
 }
 
 /**
@@ -103,6 +117,18 @@ export const KP_DEFAULT_STRINGS_EN: KpLocaleStrings = {
   searchPlaceholder: 'Search…',
   commandPaletteHint: '⌘K',
   commandPalettePlaceholder: 'Type a command or search…',
+
+  paginationLabel: 'Pagination',
+  paginationPrevious: 'Previous',
+  paginationNext: 'Next',
+  paginationPreviousPage: 'Previous page',
+  paginationNextPage: 'Next page',
+  paginationGotoPage: (page) => `Go to page ${page}`,
+  paginationCurrentPage: (page) => `Page ${page}, current page`,
+  paginationItemsPerPage: 'Per page',
+  paginationShowing: (from, to, total) => `Showing ${from}–${to} of ${total}`,
+
+  toastDismiss: 'Dismiss',
 };
 
 /**

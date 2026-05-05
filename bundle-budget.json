@@ -1,0 +1,258 @@
+{
+  "$comment": "Per-package gzipped fesm2022 bundle-size budget. The check script measures dist/packages/<pkg>/fesm2022/*.mjs and fails CI if any package exceeds its maxGz. Update with `node scripts/check-bundle-size.js --update` after an intentional growth and commit the diff in the same PR. Headroom is ~15% above the size at the time the entry was added (or +500B for tiny bundles), rounded to the nearest 100B — enough to absorb noise from re-exports / minor refactors but not enough to absorb a regression.",
+  "headroomNote": "Tiny bundles (<2KB gz) get +500B; larger ones get ~15% rounded to nearest 100B.",
+  "packages": {
+    "components/accordion": {
+      "currentGz": 3686,
+      "maxGz": 4300
+    },
+    "components/alert": {
+      "currentGz": 3471,
+      "maxGz": 4000
+    },
+    "components/avatar": {
+      "currentGz": 2529,
+      "maxGz": 3000
+    },
+    "components/avatar-group": {
+      "currentGz": 1986,
+      "maxGz": 2486
+    },
+    "components/badge": {
+      "currentGz": 3137,
+      "maxGz": 3700
+    },
+    "components/breadcrumbs": {
+      "currentGz": 4726,
+      "maxGz": 5500
+    },
+    "components/button": {
+      "currentGz": 3461,
+      "maxGz": 4000
+    },
+    "components/card": {
+      "currentGz": 2446,
+      "maxGz": 2900
+    },
+    "components/checkbox": {
+      "currentGz": 2606,
+      "maxGz": 3000
+    },
+    "components/combobox": {
+      "currentGz": 6147,
+      "maxGz": 7100
+    },
+    "components/command-palette": {
+      "currentGz": 5080,
+      "maxGz": 5900
+    },
+    "components/datepicker": {
+      "currentGz": 8383,
+      "maxGz": 9700
+    },
+    "components/dialog": {
+      "currentGz": 4401,
+      "maxGz": 5100
+    },
+    "components/divider": {
+      "currentGz": 1358,
+      "maxGz": 1858
+    },
+    "components/drawer": {
+      "currentGz": 4310,
+      "maxGz": 5000
+    },
+    "components/empty-state": {
+      "currentGz": 1563,
+      "maxGz": 2063
+    },
+    "components/file-upload": {
+      "currentGz": 4909,
+      "maxGz": 5700
+    },
+    "components/form-field": {
+      "currentGz": 3380,
+      "maxGz": 3900
+    },
+    "components/icon": {
+      "currentGz": 11530,
+      "maxGz": 13300
+    },
+    "components/input": {
+      "currentGz": 3316,
+      "maxGz": 3900
+    },
+    "components/markdown-viewer": {
+      "currentGz": 2418,
+      "maxGz": 2800
+    },
+    "components/menu": {
+      "currentGz": 3808,
+      "maxGz": 4400
+    },
+    "components/number-stepper": {
+      "currentGz": 3925,
+      "maxGz": 4600
+    },
+    "components/pagination": {
+      "currentGz": 5210,
+      "maxGz": 6000
+    },
+    "components/popover": {
+      "currentGz": 3240,
+      "maxGz": 3800
+    },
+    "components/progress": {
+      "currentGz": 3998,
+      "maxGz": 4600
+    },
+    "components/radio": {
+      "currentGz": 3171,
+      "maxGz": 3700
+    },
+    "components/rich-text-editor": {
+      "currentGz": 6572,
+      "maxGz": 7600
+    },
+    "components/segmented-control": {
+      "currentGz": 3687,
+      "maxGz": 4300
+    },
+    "components/select": {
+      "currentGz": 5282,
+      "maxGz": 6100
+    },
+    "components/skeleton": {
+      "currentGz": 2044,
+      "maxGz": 2400
+    },
+    "components/slider": {
+      "currentGz": 4407,
+      "maxGz": 5100
+    },
+    "components/table": {
+      "currentGz": 3987,
+      "maxGz": 4600
+    },
+    "components/tabs": {
+      "currentGz": 3661,
+      "maxGz": 4300
+    },
+    "components/textarea": {
+      "currentGz": 2719,
+      "maxGz": 3200
+    },
+    "components/timepicker": {
+      "currentGz": 6578,
+      "maxGz": 7600
+    },
+    "components/toast": {
+      "currentGz": 4094,
+      "maxGz": 4800
+    },
+    "components/toggle": {
+      "currentGz": 2204,
+      "maxGz": 2600
+    },
+    "components/tooltip": {
+      "currentGz": 2074,
+      "maxGz": 2400
+    },
+    "components/tree": {
+      "currentGz": 4684,
+      "maxGz": 5400
+    },
+    "components/virtual-list": {
+      "currentGz": 3058,
+      "maxGz": 3600
+    },
+    "core": {
+      "currentGz": 486,
+      "maxGz": 986
+    },
+    "i18n": {
+      "currentGz": 2564,
+      "maxGz": 3000
+    },
+    "patterns/app-shell": {
+      "currentGz": 1522,
+      "maxGz": 2022
+    },
+    "patterns/banner": {
+      "currentGz": 2334,
+      "maxGz": 2700
+    },
+    "patterns/container": {
+      "currentGz": 1059,
+      "maxGz": 1559
+    },
+    "patterns/filter-bar": {
+      "currentGz": 1843,
+      "maxGz": 2343
+    },
+    "patterns/form-section": {
+      "currentGz": 1736,
+      "maxGz": 2236
+    },
+    "patterns/grid": {
+      "currentGz": 1152,
+      "maxGz": 1652
+    },
+    "patterns/header": {
+      "currentGz": 3994,
+      "maxGz": 4600
+    },
+    "patterns/nav-item": {
+      "currentGz": 3283,
+      "maxGz": 3800
+    },
+    "patterns/notification-center": {
+      "currentGz": 3811,
+      "maxGz": 4400
+    },
+    "patterns/page-error": {
+      "currentGz": 2253,
+      "maxGz": 2600
+    },
+    "patterns/page-header": {
+      "currentGz": 2169,
+      "maxGz": 2500
+    },
+    "patterns/row": {
+      "currentGz": 1181,
+      "maxGz": 1681
+    },
+    "patterns/search-bar": {
+      "currentGz": 3279,
+      "maxGz": 3800
+    },
+    "patterns/settings-panel": {
+      "currentGz": 2180,
+      "maxGz": 2600
+    },
+    "patterns/sidebar": {
+      "currentGz": 3610,
+      "maxGz": 4200
+    },
+    "patterns/stack": {
+      "currentGz": 984,
+      "maxGz": 1484
+    },
+    "patterns/stat-card": {
+      "currentGz": 2119,
+      "maxGz": 2500
+    },
+    "patterns/table-toolbar": {
+      "currentGz": 3161,
+      "maxGz": 3700
+    },
+    "patterns/theme-toggle": {
+      "currentGz": 3575,
+      "maxGz": 4200
+    },
+    "patterns/user-menu": {
+      "currentGz": 2526,
+      "maxGz": 3000
+    }
+  }
+}

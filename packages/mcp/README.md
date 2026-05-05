@@ -23,8 +23,8 @@ Eleven tools, all running locally over stdio.
 | Tool | What it returns |
 | --- | --- |
 | `figma_context` | File key + URL of the Kanso Figma library, IDs of the Components / Patterns / Foundations / Examples pages, and the linked Tabler Icon Pack file. |
-| `figma_for_component` | `{ fileKey, nodeId, url }` for the component's master frame — feed straight into Figma MCP's `get_design_context` or `get_screenshot`. |
-| `figma_for_pattern` | Same shape for higher-level patterns. |
+| `figma_for_component` | `{ fileKey, nodeId, url, codeConnect }` for the component's master frame — feed `nodeId` into Figma MCP's `get_design_context` / `get_screenshot`, and `codeConnect` (`{ npm, primaryClass, selector, import, docs, storybook }`) into your code-generation step so the assistant emits the right import statement and selector without a second lookup. |
+| `figma_for_pattern` | Same shape for higher-level patterns; includes the same `codeConnect` block. |
 | `figma_for_icon` | Tabler icon library context + a search hint the assistant uses with Figma MCP's `search_design_system`. |
 
 The data comes from a manifest baked at build time — no network calls, deterministic, fast.

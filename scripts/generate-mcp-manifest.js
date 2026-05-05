@@ -248,25 +248,30 @@ function loadFigmaMapping() {
 }
 
 /**
- * Attach `figma: { fileKey, nodeId, url }` to every component / pattern record
- * for which we have a node id in the mapping. The MCP server uses this so
- * `figma_for_component(name)` can return a one-shot context the assistant
- * feeds straight into Figma's MCP tools (get_design_context, get_screenshot)
- * without an intermediate search step.
+ * Attach `figma: { fileKey, nodeId, url }` and (when available) `codeConnect: {
+ * npm, primaryClass, selector, import, docs, storybook }` to every component /
+ * pattern record. The MCP server uses figma so `figma_for_component(name)` can
+ * return a one-shot context the assistant feeds straight into Figma's MCP
+ * tools, and codeConnect so the same lookup can return the Angular import
+ * statement / npm package without a second round trip.
  */
-function attachFigmaContext(items, mappingForLayer, fileKey, fileUrl) {
-  if (!mappingForLayer) return items;
+function attachFigmaContext(items, mappingForLayer, fileKey, fileUrl, codeConnectForLayer) {
+  if (!mappingForLayer && !codeConnectForLayer) return items;
   return items.map((item) => {
-    const nodeId = mappingForLayer[item.name];
-    if (!nodeId) return item;
-    return {
-      ...item,
-      figma: {
+    const nodeId = mappingForLayer?.[item.name];
+    const cc = codeConnectForLayer?.[item.name];
+    const out = { ...item };
+    if (nodeId) {
+      out.figma = {
         fileKey,
         nodeId,
         url: `${fileUrl}?node-id=${nodeId.replace(':', '-')}`,
-      },
-    };
+      };
+    }
+    if (cc) {
+      out.codeConnect = cc;
+    }
+    return out;
   });
 }
 
@@ -285,8 +290,8 @@ function main() {
   const fileKey = figmaMap?.fileKey ?? null;
   const fileUrl = figmaMap?.url ?? null;
 
-  const componentsWithFigma = attachFigmaContext(components, figmaMap?.components, fileKey, fileUrl);
-  const patternsWithFigma   = attachFigmaContext(patterns,   figmaMap?.patterns,   fileKey, fileUrl);
+  const componentsWithFigma = attachFigmaContext(components, figmaMap?.components, fileKey, fileUrl, figmaMap?.codeConnect?.components);
+  const patternsWithFigma   = attachFigmaContext(patterns,   figmaMap?.patterns,   fileKey, fileUrl, figmaMap?.codeConnect?.patterns);
 
   const manifest = {
     generatedAt: new Date().toISOString(),

@@ -46,6 +46,15 @@ interface FigmaRef {
   url: string;
 }
 
+interface CodeConnectRef {
+  npm: string;
+  primaryClass: string;
+  selector: string;
+  import: string;
+  docs: string;
+  storybook: string;
+}
+
 interface ComponentMeta {
   name: string;
   className: string;
@@ -62,6 +71,7 @@ interface ComponentMeta {
   docsUrl: string;
   sourcePath: string;
   figma?: FigmaRef;
+  codeConnect?: CodeConnectRef;
 }
 
 interface TokenMeta {
@@ -330,6 +340,7 @@ const tools: ToolDef[] = [
         fileKey: figma.fileKey,
         nodeId: hit.figma.nodeId,
         url: nodeUrl(figma.fileKey, hit.figma.nodeId),
+        codeConnect: hit.codeConnect ?? null,
         relatedFigmaTools: [
           { tool: 'get_design_context', purpose: 'Pull the master frame as code + screenshot.' },
           { tool: 'get_screenshot',     purpose: 'Plain PNG of the master frame (no code).' },
@@ -362,6 +373,7 @@ const tools: ToolDef[] = [
         fileKey: figma.fileKey,
         nodeId: hit.figma.nodeId,
         url: nodeUrl(figma.fileKey, hit.figma.nodeId),
+        codeConnect: hit.codeConnect ?? null,
       }, null, 2);
     },
   },

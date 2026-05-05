@@ -10,6 +10,8 @@ import {
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
+import { injectKpStrings } from '@kanso-protocol/i18n';
+
 import { KpToastService } from './toast.service';
 import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
 
@@ -60,7 +62,7 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
               }
             </div>
 
-            <button type="button" class="kp-th__close" aria-label="Dismiss" (click)="dismiss(t.id)">
+            <button type="button" class="kp-th__close" [attr.aria-label]="strings.toastDismiss" (click)="dismiss(t.id)">
               <svg viewBox="0 0 24 24" fill="none" width="14" height="14" aria-hidden="true">
                 <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
               </svg>
@@ -250,6 +252,7 @@ export class KpToastHostComponent implements AfterViewChecked, OnDestroy {
   private readonly host = inject(ElementRef) as ElementRef<HTMLElement>;
   private readonly doc = inject(DOCUMENT);
   readonly toasts = this.toastSvc.toasts;
+  readonly strings = injectKpStrings();
 
   stackClasses(): string {
     return `kp-th__stack--${this.position} kp-th__stack--${this.size}`;

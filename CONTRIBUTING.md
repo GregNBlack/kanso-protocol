@@ -53,6 +53,8 @@ Read [`docs/architecture-decision-record.md`](docs/architecture-decision-record.
 
 Tokens live in `tokens/**/*.json` in W3C DTCG format. They are the single source of truth for both CSS and Figma.
 
+> Quick version below. Full guide — naming conventions, primitive-vs-semantic decision, dark-mode rules, lint suppression syntax — lives in [`docs/tokens.md`](docs/tokens.md).
+
 **Adding or changing a token:**
 
 1. Edit the relevant JSON file in `tokens/primitive/` or `tokens/semantic/`.
@@ -138,8 +140,13 @@ We do **not** use the `Co-Authored-By: Claude` trailer in this repo.
    ```bash
    npm run build:tokens
    npm run lint
+   npm run build:libs        # required before bundle-size check
+   npm run check:bundle-size # gzipped fesm2022 budget gate
    npm run build-storybook   # catches most compilation issues
    ```
+   If a bundle grew on purpose (new dep, expanded API), run
+   `npm run check:bundle-size:update` and commit the refreshed
+   `bundle-budget.json` in the same PR.
 3. Open PR against `main`. Describe **what** changed, **why**, and link the relevant issue / ADR if any.
 4. A screenshot / screen recording is appreciated for any visual change.
 5. CI must be green before merge.

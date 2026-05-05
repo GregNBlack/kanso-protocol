@@ -38,6 +38,12 @@ jobs:
         run: npm run build:tokens
       - name: Build libraries
         run: npm run build:libs
+      - name: Bundle-size budget gate
+        # Per-package gzipped fesm2022 size check against bundle-budget.json.
+        # Fails on regressions over the recorded headroom; if growth is
+        # intentional, run `npm run check:bundle-size:update` locally and
+        # commit the refreshed budget in the same PR. See scripts/check-bundle-size.js.
+        run: npm run check:bundle-size
       - name: Build MCP server
         run: npm run build:mcp
       - name: Build Storybook

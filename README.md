@@ -13,7 +13,7 @@ Design tokens in W3C DTCG format serve as a single source of truth for both Figm
 
 > **Status: `0.x` alpha.** Public API is intentionally unstable until `1.0`. Expect breaking changes in any minor bump — pin the exact version in production. Read the [changelog](CHANGELOG.md) before upgrading.
 >
-> Current per-component status, open API questions and the path to `1.0` live in [`docs/1.0-readiness.md`](docs/1.0-readiness.md).
+> Current per-component status, open API questions and the path to `1.0` live in [`docs/1.0-readiness.md`](docs/1.0-readiness.md). Planning to upgrade? See [`docs/migration-1.0.md`](docs/migration-1.0.md). What's next overall: [`docs/roadmap.md`](docs/roadmap.md).
 
 ---
 
@@ -248,6 +248,8 @@ Every component follows a unified three-layer model:
 └──────────────────────────────────────┘
 ```
 
+> Full vocabulary, naming rules, and the variant-vs-state model live in [`docs/component-anatomy.md`](docs/component-anatomy.md).
+
 ## Component Sizes
 
 | Size | Height | Radius | Use case                  |
@@ -411,6 +413,18 @@ Tokens stay in lockstep with code via [Tokens Studio](https://tokens.studio):
 2. Changes to tokens create a Pull Request
 3. After merge, tokens update in both code and Figma Variables
 4. Components in Figma use Variables — theme switching works automatically
+
+## Built with Kanso
+
+Shipping something built on Kanso Protocol? We'd love to feature it here.
+
+Open a PR adding your project to this list, or [open an issue](https://github.com/GregNBlack/kanso-protocol/issues/new) with `[showcase]` in the title and we'll add it for you.
+
+| Project | What it is | Link |
+|---|---|---|
+| _Be the first._ | Open-source app, internal tool, side project — anything counts. | [Add yours →](https://github.com/GregNBlack/kanso-protocol/issues/new?title=%5Bshowcase%5D+) |
+
+What we ask for: a one-line description, a public link (live URL or GitHub repo), and a single screenshot or short clip.
 
 ## Guiding Principles
 

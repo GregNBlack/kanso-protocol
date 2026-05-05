@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 
 import { KpSelectComponent, KpSelectOption } from '@kanso-protocol/select';
+import { injectKpStrings } from '@kanso-protocol/i18n';
 
 import {
   KpPaginationItemComponent,
@@ -46,7 +47,7 @@ type RangeCell = { kind: 'page'; page: number } | { kind: 'ellipsis'; key: strin
   selector: 'kp-pagination',
   imports: [KpPaginationItemComponent, KpSelectComponent, FormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { '[class]': 'hostClasses', role: 'navigation', '[attr.aria-label]': 'ariaLabel' },
+  host: { '[class]': 'hostClasses', role: 'navigation', '[attr.aria-label]': 'effectiveAriaLabel' },
   template: `
     <div class="kp-pg__controls">
       @if (showPrevNext) {
@@ -90,7 +91,7 @@ type RangeCell = { kind: 'page'; page: number } | { kind: 'ellipsis'; key: strin
       <div class="kp-pg__trailing">
         @if (showItemsPerPage) {
           <div class="kp-pg__per-page">
-            <span class="kp-pg__per-page-label">{{ itemsPerPageLabel }}</span>
+            <span class="kp-pg__per-page-label">{{ effectiveItemsPerPageLabel }}</span>
             <div class="kp-pg__per-page-select-wrap">
               <kp-select
                 [size]="size"
@@ -192,14 +193,24 @@ export class KpPaginationComponent implements OnChanges {
   @Input() itemsPerPage = 50;
   @Input() itemsTotal = 0;
   @Input() itemsPerPageOptions: number[] = [25, 50, 75, 100];
-  @Input() itemsPerPageLabel = 'Per page';
+  @Input() itemsPerPageLabel: string | null = null;
 
   /** Sibling count on each side of the current page (in middle-truncation mode). Default 1. */
   @Input() siblingCount = 1;
   /** Pages pinned at each boundary. Default 1 — first and last always show. */
   @Input() boundaryCount = 1;
 
-  @Input() ariaLabel = 'Pagination';
+  @Input() ariaLabel: string | null = null;
+
+  readonly strings = injectKpStrings();
+
+  get effectiveAriaLabel(): string {
+    return this.ariaLabel ?? this.strings.paginationLabel;
+  }
+
+  get effectiveItemsPerPageLabel(): string {
+    return this.itemsPerPageLabel ?? this.strings.paginationItemsPerPage;
+  }
 
   @Output() readonly pageChange = new EventEmitter<number>();
   @Output() readonly itemsPerPageChange = new EventEmitter<number>();
@@ -244,7 +255,7 @@ export class KpPaginationComponent implements OnChanges {
   infoText(): string {
     const from = (this.currentPage - 1) * this.itemsPerPage + 1;
     const to = Math.min(this.currentPage * this.itemsPerPage, this.itemsTotal);
-    return `Showing ${from}–${to} of ${this.itemsTotal}`;
+    return this.strings.paginationShowing(from, to, this.itemsTotal);
   }
 
   /**
