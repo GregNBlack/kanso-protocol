@@ -55,14 +55,14 @@ export type KpNotificationAppearance =
       align-items: flex-start;
       gap: 12px;
       padding: 12px 16px;
-      border-bottom: 1px solid var(--kp-color-gray-100, var(--kp-color-gray-100));
-      background: var(--kp-color-white, var(--kp-color-white));
+      border-bottom: 1px solid var(--kp-color-border-subtle);
+      background: var(--kp-color-surface-base);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
     }
-    :host(.kp-notif-item--unread) { background: var(--kp-color-gray-50, var(--kp-color-gray-50)); }
-    :host(:hover) { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); }
+    :host(.kp-notif-item--unread) { background: var(--kp-color-gray-50); }
+    :host(:hover) { background: var(--kp-color-gray-100); }
 
     kp-avatar { flex: 0 0 auto; }
     kp-avatar ::ng-deep .ti { font-size: 18px; line-height: 1; }
@@ -77,11 +77,11 @@ export type KpNotificationAppearance =
     .kp-notif-item__title {
       font-size: 13px;
       font-weight: 500;
-      color: var(--kp-color-gray-900, var(--kp-color-gray-900));
+      color: var(--kp-color-text-strong);
     }
     .kp-notif-item__message {
       font-size: 13px;
-      color: var(--kp-color-gray-600, var(--kp-color-gray-600));
+      color: var(--kp-color-text-muted);
       line-height: 1.4;
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -90,7 +90,7 @@ export type KpNotificationAppearance =
     }
     .kp-notif-item__time {
       font-size: 11px;
-      color: var(--kp-color-gray-500, var(--kp-color-gray-500));
+      color: var(--kp-color-text-muted);
       margin-top: 2px;
     }
   `],

@@ -146,14 +146,14 @@ export interface KpSelectOption {
       align-items: stretch;
       box-sizing: border-box;
       width: 100%;
-      border: 1px solid var(--kp-input-border, var(--kp-color-gray-300));
+      border: 1px solid var(--kp-input-border);
       border-radius: var(--kp-input-radius);
-      background: var(--kp-input-bg, var(--kp-color-white));
+      background: var(--kp-input-bg);
       height: var(--kp-input-height);
       padding: 0 var(--kp-input-padding-x);
       gap: var(--kp-input-gap);
       font: inherit;
-      color: var(--kp-input-fg, var(--kp-color-gray-900));
+      color: var(--kp-input-fg);
       text-align: start;
       cursor: pointer;
       transition:
@@ -163,24 +163,24 @@ export interface KpSelectOption {
 
     :host(:not(.kp-select--disabled):not(.kp-select--error)) .kp-select__trigger:hover,
     :host(.kp-select--hover) .kp-select__trigger {
-      border-color: var(--kp-input-border-hover, var(--kp-color-gray-400));
+      border-color: var(--kp-input-border-hover);
     }
     :host(:not(.kp-select--disabled):not(.kp-select--error)) .kp-select__trigger:focus-visible,
     :host(.kp-select--focus) .kp-select__trigger {
-      border-color: var(--kp-input-border-focus, var(--kp-color-blue-600));
+      border-color: var(--kp-input-border-focus);
       outline: none;
     }
     :host(.kp-select--open) .kp-select__trigger,
     :host(.kp-select--active) .kp-select__trigger {
-      border-color: var(--kp-input-border-focus, var(--kp-color-blue-600));
+      border-color: var(--kp-input-border-focus);
     }
     :host(.kp-select--disabled) .kp-select__trigger {
-      background: var(--kp-input-bg-disabled, var(--kp-color-gray-50));
-      border-color: var(--kp-input-border-disabled, var(--kp-color-gray-200));
+      background: var(--kp-input-bg-disabled);
+      border-color: var(--kp-input-border-disabled);
       cursor: not-allowed;
     }
     :host(.kp-select--error) .kp-select__trigger {
-      border-color: var(--kp-input-border-error, var(--kp-color-red-500));
+      border-color: var(--kp-input-border-error);
     }
 
     .kp-select__field-wrap {
@@ -202,10 +202,10 @@ export interface KpSelectOption {
       font-weight: var(--kp-input-font-weight, 400);
     }
     .kp-select__value--placeholder {
-      color: var(--kp-input-placeholder, var(--kp-color-gray-400));
+      color: var(--kp-input-placeholder);
     }
     :host(.kp-select--disabled) .kp-select__value {
-      color: var(--kp-input-fg-disabled, var(--kp-color-gray-400));
+      color: var(--kp-input-fg-disabled);
     }
 
     /* --- Floating Label --- */
@@ -214,7 +214,7 @@ export interface KpSelectOption {
       left: 0;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--kp-input-placeholder, var(--kp-color-gray-400));
+      color: var(--kp-input-placeholder);
       font-size: var(--kp-input-font-size);
       line-height: var(--kp-input-line-height);
       font-weight: var(--kp-input-font-weight, 400);
@@ -230,14 +230,14 @@ export interface KpSelectOption {
       transform: translateY(0);
       font-size: var(--kp-input-label-small-size, 10px);
       font-weight: 500;
-      color: var(--kp-floating-label, var(--kp-color-gray-600));
+      color: var(--kp-floating-label);
     }
     :host(.kp-select--open) .kp-select__label--floated,
     :host(.kp-select--focus) .kp-select__label--floated {
-      color: var(--kp-floating-label-focus, var(--kp-color-blue-600));
+      color: var(--kp-floating-label-focus);
     }
     :host(.kp-select--error) .kp-select__label--floated {
-      color: var(--kp-floating-label-error, var(--kp-color-red-500));
+      color: var(--kp-floating-label-error);
     }
     :host(.kp-select--floating) .kp-select__field-wrap {
       align-items: flex-end;
@@ -257,11 +257,11 @@ export interface KpSelectOption {
       padding: 2px;
       border-radius: 4px;
       background: transparent;
-      color: var(--kp-color-gray-500);
+      color: var(--kp-color-text-muted);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease, color var(--kp-motion-duration-fast, 100ms) ease;
     }
-    .kp-select__clear:hover { background: var(--kp-color-gray-100); color: var(--kp-color-gray-700); }
+    .kp-select__clear:hover { background: var(--kp-color-gray-100); color: var(--kp-color-text-default); }
     .kp-select__clear svg { width: var(--kp-input-clear-icon, 14px); height: var(--kp-input-clear-icon, 14px); }
     :host(.kp-select--error) .kp-select__clear { color: var(--kp-color-accent-danger-fg); }
 
@@ -271,18 +271,18 @@ export interface KpSelectOption {
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      color: var(--kp-select-chevron, var(--kp-color-gray-500));
+      color: var(--kp-select-chevron);
       transition: transform var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease, color var(--kp-motion-duration-fast, 150ms) ease;
     }
     :host(.kp-select--open) .kp-select__chevron {
       transform: rotate(180deg);
-      color: var(--kp-select-chevron-open, var(--kp-color-blue-600));
+      color: var(--kp-select-chevron-open);
     }
     :host(.kp-select--disabled) .kp-select__chevron {
-      color: var(--kp-select-chevron-disabled, var(--kp-color-gray-300));
+      color: var(--kp-select-chevron-disabled);
     }
     :host(.kp-select--error) .kp-select__chevron {
-      color: var(--kp-select-chevron-error, var(--kp-color-red-500));
+      color: var(--kp-select-chevron-error);
     }
 
     /* --- Dropdown panel (mirrors DropdownMenu) ---
@@ -299,8 +299,8 @@ export interface KpSelectOption {
       flex-direction: column;
       max-height: 280px;
       padding: 4px;
-      background: var(--kp-color-white);
-      border: 1px solid var(--kp-color-gray-200);
+      background: var(--kp-color-surface-base);
+      border: 1px solid var(--kp-color-border-default);
       border-radius: 12px;
       box-shadow: var(--kp-elevation-overlay);
       overflow-y: auto;
@@ -317,13 +317,13 @@ export interface KpSelectOption {
       border-radius: 6px;
       font-size: 14px;
       font-weight: 500;
-      color: var(--kp-color-gray-900);
+      color: var(--kp-color-text-strong);
       cursor: pointer;
       user-select: none;
       transition: background var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease;
     }
     .kp-select__option:hover:not(.kp-select__option--disabled) {
-      background: var(--kp-color-gray-50);
+      background: var(--kp-color-surface-subtle);
     }
     .kp-select__option--selected {
       background: var(--kp-color-blue-50);
@@ -331,7 +331,7 @@ export interface KpSelectOption {
     }
     .kp-select__option--selected .kp-select__check-single { color: var(--kp-color-accent-primary-fg); }
     .kp-select__option--disabled {
-      color: var(--kp-color-gray-400);
+      color: var(--kp-color-text-disabled);
       cursor: not-allowed;
     }
 
@@ -353,20 +353,20 @@ export interface KpSelectOption {
     .kp-select__check {
       width: 16px;
       height: 16px;
-      border: 1.5px solid var(--kp-color-gray-300);
+      border: 1.5px solid var(--kp-color-border-strong);
       border-radius: 4px;
-      background: var(--kp-color-white);
+      background: var(--kp-color-surface-base);
     }
     .kp-select__option--selected .kp-select__check {
       background: var(--kp-color-blue-600);
       border-color: var(--kp-color-accent-primary-fg);
-      color: var(--kp-color-white);
+      color: var(--kp-color-foreground-on-saturated);
     }
 
     .kp-select__empty {
       padding: 12px;
       font-size: 13px;
-      color: var(--kp-color-gray-400);
+      color: var(--kp-color-text-disabled);
       text-align: center;
     }
 

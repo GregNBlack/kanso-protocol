@@ -126,7 +126,7 @@ export type KpAccordionItemSize = 'sm' | 'md' | 'lg';
     .kp-ai__desc {
       font-size: var(--kp-ai-desc-size);
       line-height: var(--kp-ai-desc-lh);
-      color: var(--kp-color-gray-500, var(--kp-color-gray-500));
+      color: var(--kp-color-text-muted);
     }
 
     .kp-ai__chevron {

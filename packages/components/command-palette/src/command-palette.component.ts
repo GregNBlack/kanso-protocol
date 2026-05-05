@@ -178,13 +178,13 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
       align-items: center;
       gap: 10px;
       padding: 12px 16px;
-      border-block-end: 1px solid var(--kp-color-gray-200);
+      border-block-end: 1px solid var(--kp-color-border-default);
     }
     .kp-cmdk__icon {
       display: inline-flex;
       width: 18px;
       height: 18px;
-      color: var(--kp-color-gray-500);
+      color: var(--kp-color-text-muted);
     }
     .kp-cmdk__icon svg { width: 100%; height: 100%; }
 
@@ -192,7 +192,7 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
       all: unset;
       flex: 1 1 auto;
       font-size: 15px;
-      color: var(--kp-color-gray-900);
+      color: var(--kp-color-text-strong);
     }
     .kp-cmdk__input::placeholder { color: var(--kp-color-gray-500); }
 
@@ -204,11 +204,11 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
       width: 22px;
       height: 22px;
       border-radius: 6px;
-      color: var(--kp-color-gray-500);
+      color: var(--kp-color-text-muted);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
     }
-    .kp-cmdk__clear:hover { background: var(--kp-color-gray-100); color: var(--kp-color-gray-700); }
+    .kp-cmdk__clear:hover { background: var(--kp-color-gray-100); color: var(--kp-color-text-default); }
     .kp-cmdk__clear svg { width: 14px; height: 14px; }
 
     .kp-cmdk__list {
@@ -223,7 +223,7 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
     .kp-cmdk__empty {
       padding: 24px 16px;
       text-align: center;
-      color: var(--kp-color-gray-500);
+      color: var(--kp-color-text-muted);
       font-size: 13px;
     }
 
@@ -233,7 +233,7 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
       font-weight: 600;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: var(--kp-color-gray-500);
+      color: var(--kp-color-text-muted);
     }
 
     .kp-cmdk__item {
@@ -245,7 +245,7 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
       padding: 8px 10px;
       border-radius: 6px;
       font-size: 13px;
-      color: var(--kp-color-gray-900);
+      color: var(--kp-color-text-strong);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
     }
@@ -254,25 +254,25 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
       outline-offset: -2px;
     }
     .kp-cmdk__item--active {
-      background: var(--kp-color-gray-100);
+      background: var(--kp-color-surface-muted);
     }
     .kp-cmdk__item[disabled] {
       opacity: 0.45;
       cursor: not-allowed;
     }
     .kp-cmdk__item-label { flex: 1 1 auto; }
-    .kp-cmdk__item-hint { font-size: 12px; color: var(--kp-color-gray-500); }
+    .kp-cmdk__item-hint { font-size: 12px; color: var(--kp-color-text-muted); }
     .kp-cmdk__item-shortcut {
       font-family: var(--kp-font-family-mono, ui-monospace, SFMono-Regular, monospace);
       font-size: 11px;
       padding: 2px 6px;
       border-radius: 4px;
-      background: var(--kp-color-gray-100);
-      color: var(--kp-color-gray-700);
-      border: 1px solid var(--kp-color-gray-200);
+      background: var(--kp-color-surface-muted);
+      color: var(--kp-color-text-default);
+      border: 1px solid var(--kp-color-border-default);
     }
     .kp-cmdk__item--active .kp-cmdk__item-shortcut {
-      background: var(--kp-color-white);
+      background: var(--kp-color-surface-base);
     }
 
     .kp-cmdk__footer {
@@ -280,9 +280,9 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
       align-items: center;
       gap: 16px;
       padding: 10px 16px;
-      border-block-start: 1px solid var(--kp-color-gray-200);
+      border-block-start: 1px solid var(--kp-color-border-default);
       font-size: 11px;
-      color: var(--kp-color-gray-500);
+      color: var(--kp-color-text-muted);
     }
     .kp-cmdk__footer-spacer { flex: 1 1 auto; }
     .kp-cmdk__footer kbd {
@@ -290,9 +290,9 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
       font-size: 10px;
       padding: 2px 5px;
       border-radius: 3px;
-      background: var(--kp-color-gray-100);
-      color: var(--kp-color-gray-700);
-      border: 1px solid var(--kp-color-gray-200);
+      background: var(--kp-color-surface-muted);
+      color: var(--kp-color-text-default);
+      border: 1px solid var(--kp-color-border-default);
       margin-inline-end: 2px;
     }
 

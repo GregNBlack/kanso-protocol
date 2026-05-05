@@ -98,7 +98,7 @@ const DEFAULTS: Record<KpPageErrorType, { title: string; description: string; ic
       font-size: 120px;
       font-weight: 700;
       line-height: 1;
-      color: var(--kp-color-gray-200, var(--kp-color-gray-200));
+      color: var(--kp-color-gray-200);
       letter-spacing: -0.02em;
       margin-bottom: 0;
     }
@@ -110,8 +110,8 @@ const DEFAULTS: Record<KpPageErrorType, { title: string; description: string; ic
       width: 96px;
       height: 96px;
       border-radius: 50%;
-      background: var(--kp-color-gray-100, var(--kp-color-gray-100));
-      color: var(--kp-color-gray-500, var(--kp-color-gray-500));
+      background: var(--kp-color-surface-muted);
+      color: var(--kp-color-text-muted);
     }
     .kp-page-error__illustration .ti { font-size: 48px; line-height: 1; }
 
@@ -125,13 +125,13 @@ const DEFAULTS: Record<KpPageErrorType, { title: string; description: string; ic
       margin: 0;
       font-size: 24px;
       font-weight: 500;
-      color: var(--kp-color-gray-900, var(--kp-color-gray-900));
+      color: var(--kp-color-text-strong);
     }
     .kp-page-error__desc {
       margin: 0;
       font-size: 16px;
       line-height: 1.5;
-      color: var(--kp-color-gray-600, var(--kp-color-gray-600));
+      color: var(--kp-color-text-muted);
     }
 
     .kp-page-error__actions {

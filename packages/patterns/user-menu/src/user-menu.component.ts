@@ -104,8 +104,8 @@ export interface KpUserMenuItem {
       width: var(--kp-user-menu-w, 280px);
       padding: 4px 0;
       border-radius: 12px;
-      background: var(--kp-color-white, var(--kp-color-white));
-      border: 1px solid var(--kp-color-gray-200, var(--kp-color-gray-200));
+      background: var(--kp-color-surface-base);
+      border: 1px solid var(--kp-color-border-default);
       box-shadow: var(--kp-elevation-overlay);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
@@ -120,21 +120,21 @@ export interface KpUserMenuItem {
     }
     .kp-user-menu__text { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1 1 auto; }
     .kp-user-menu__name-row { display: inline-flex; align-items: center; gap: 6px; }
-    .kp-user-menu__name { font-size: 14px; font-weight: 500; color: var(--kp-color-gray-900, var(--kp-color-gray-900)); }
+    .kp-user-menu__name { font-size: 14px; font-weight: 500; color: var(--kp-color-text-strong); }
     .kp-user-menu__plan {
       display: inline-flex;
       align-items: center;
       padding: 2px 8px;
       border-radius: 999px;
-      background: var(--kp-color-blue-600, var(--kp-color-blue-600));
-      color: var(--kp-color-white);
+      background: var(--kp-color-blue-600);
+      color: var(--kp-color-foreground-on-saturated);
       font-size: 11px;
       font-weight: 600;
       line-height: 1;
     }
-    .kp-user-menu__email { font-size: 12px; color: var(--kp-color-gray-500, var(--kp-color-gray-500)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .kp-user-menu__email { font-size: 12px; color: var(--kp-color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    .kp-user-menu__divider { height: 1px; background: var(--kp-color-gray-200, var(--kp-color-gray-200)); }
+    .kp-user-menu__divider { height: 1px; background: var(--kp-color-surface-strong); }
 
     .kp-user-menu__group { padding: 4px; display: flex; flex-direction: column; gap: 0; }
 
@@ -144,7 +144,7 @@ export interface KpUserMenuItem {
       gap: 8px;
       padding: var(--kp-user-menu-pad, 12px) calc(var(--kp-user-menu-pad, 12px) + 4px);
     }
-    .kp-user-menu__theme-label { flex: 1 1 auto; font-size: 14px; color: var(--kp-color-gray-700, var(--kp-color-gray-700)); }
+    .kp-user-menu__theme-label { flex: 1 1 auto; font-size: 14px; color: var(--kp-color-text-default); }
 
     .kp-user-menu__row {
       all: unset;
@@ -154,26 +154,26 @@ export interface KpUserMenuItem {
       padding: 6px 8px;
       border-radius: 6px;
       font-size: 13px;
-      color: var(--kp-color-gray-700, var(--kp-color-gray-700));
+      color: var(--kp-color-text-default);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
     }
-    .kp-user-menu__row:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); color: var(--kp-color-gray-900, var(--kp-color-gray-900)); }
+    .kp-user-menu__row:hover { background: var(--kp-color-gray-100); color: var(--kp-color-text-strong); }
     .kp-user-menu__row-icon {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       width: 16px;
       height: 16px;
-      color: var(--kp-color-gray-500, var(--kp-color-gray-500));
+      color: var(--kp-color-text-muted);
     }
     .kp-user-menu__row-icon svg { width: 100%; height: 100%; }
 
     .kp-user-menu__row--danger {
       color: var(--kp-color-accent-danger-fg);
     }
-    .kp-user-menu__row--danger .kp-user-menu__row-icon { color: var(--kp-color-red-500, var(--kp-color-red-500)); }
-    .kp-user-menu__row--danger:hover { background: var(--kp-color-red-50, var(--kp-color-red-50)); color: var(--kp-color-accent-danger-fg); }
+    .kp-user-menu__row--danger .kp-user-menu__row-icon { color: var(--kp-color-red-500); }
+    .kp-user-menu__row--danger:hover { background: var(--kp-color-red-50); color: var(--kp-color-accent-danger-fg); }
   `],
 })
 export class KpUserMenuComponent {

@@ -230,29 +230,29 @@ interface DayCell {
       height: var(--kp-input-height);
       padding: 0 var(--kp-input-padding-x);
       gap: var(--kp-input-gap);
-      border: 1px solid var(--kp-input-border, var(--kp-color-gray-300));
+      border: 1px solid var(--kp-input-border);
       border-radius: var(--kp-input-radius);
-      background: var(--kp-input-bg, var(--kp-color-white));
-      color: var(--kp-input-fg, var(--kp-color-gray-900));
+      background: var(--kp-input-bg);
+      color: var(--kp-input-fg);
       cursor: pointer;
       transition: border-color var(--kp-motion-duration-fast) ease, background 120ms ease;
     }
     :host(:not(.kp-dp--disabled):not(.kp-dp--error)) .kp-dp__trigger:hover,
     :host(.kp-dp--hover) .kp-dp__trigger {
-      border-color: var(--kp-input-border-hover, var(--kp-color-gray-400));
+      border-color: var(--kp-input-border-hover);
     }
     :host(.kp-dp--open) .kp-dp__trigger,
     :host(.kp-dp--focus) .kp-dp__trigger,
     :host(:not(.kp-dp--disabled):not(.kp-dp--error)) .kp-dp__trigger:focus-visible {
-      border-color: var(--kp-input-border-focus, var(--kp-color-blue-600));
+      border-color: var(--kp-input-border-focus);
     }
     :host(.kp-dp--disabled) .kp-dp__trigger {
-      background: var(--kp-input-bg-disabled, var(--kp-color-gray-50));
-      border-color: var(--kp-input-border-disabled, var(--kp-color-gray-200));
+      background: var(--kp-input-bg-disabled);
+      border-color: var(--kp-input-border-disabled);
       cursor: not-allowed;
     }
     :host(.kp-dp--error) .kp-dp__trigger {
-      border-color: var(--kp-input-border-error, var(--kp-color-red-500));
+      border-color: var(--kp-input-border-error);
     }
 
     .kp-dp__value {
@@ -265,7 +265,7 @@ interface DayCell {
       line-height: var(--kp-input-line-height);
       text-align: start;
     }
-    .kp-dp__value--placeholder { color: var(--kp-input-placeholder, var(--kp-color-gray-400)); }
+    .kp-dp__value--placeholder { color: var(--kp-input-placeholder); }
 
     .kp-dp__clear {
       display: inline-flex;
@@ -276,14 +276,14 @@ interface DayCell {
       height: var(--kp-input-clear-size, 20px);
       padding: 2px;
       border-radius: 4px;
-      color: var(--kp-color-gray-500);
+      color: var(--kp-color-text-muted);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
-    .kp-dp__clear:hover { background: var(--kp-color-gray-100); color: var(--kp-color-gray-700); }
+    .kp-dp__clear:hover { background: var(--kp-color-gray-100); color: var(--kp-color-text-default); }
     .kp-dp__clear svg { width: var(--kp-input-clear-icon, 14px); height: var(--kp-input-clear-icon, 14px); }
 
-    .kp-dp__icon { display: inline-flex; color: var(--kp-color-gray-500); flex-shrink: 0; }
+    .kp-dp__icon { display: inline-flex; color: var(--kp-color-text-muted); flex-shrink: 0; }
 
     .kp-dp__panel {
       position: fixed;
@@ -305,7 +305,7 @@ interface DayCell {
       width: 160px;
       padding: 12px 8px;
       border-inline-end: 1px solid var(--kp-color-datepicker-panel-border);
-      background: var(--kp-color-gray-50);
+      background: var(--kp-color-surface-subtle);
     }
     .kp-dp__preset {
       all: unset;
@@ -313,7 +313,7 @@ interface DayCell {
       padding: 8px 12px;
       border-radius: 6px;
       font-size: 13px;
-      color: var(--kp-color-gray-700);
+      color: var(--kp-color-text-default);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
     }
@@ -452,7 +452,7 @@ interface DayCell {
       height: 40px;
       border-radius: 8px;
       font-size: 13px;
-      color: var(--kp-color-gray-700);
+      color: var(--kp-color-text-default);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease, color 100ms ease;
     }

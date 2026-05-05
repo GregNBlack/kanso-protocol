@@ -53,7 +53,7 @@ const defaultParser: KpMarkdownParser = (md) => marked.parse(md, { async: false 
     :host {
       display: block;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
-      color: var(--kp-color-gray-900);
+      color: var(--kp-color-text-strong);
       --kp-md-fs: 14px;
       --kp-md-h1: 28px;
       --kp-md-h2: 22px;
@@ -90,7 +90,7 @@ const defaultParser: KpMarkdownParser = (md) => marked.parse(md, { async: false 
     .kp-markdown-viewer__prose h5,
     .kp-markdown-viewer__prose h6 {
       font-weight: 600;
-      color: var(--kp-color-gray-900);
+      color: var(--kp-color-text-strong);
       margin-block: 1.5em 0.5em;
       line-height: 1.25;
     }
@@ -108,23 +108,23 @@ const defaultParser: KpMarkdownParser = (md) => marked.parse(md, { async: false 
     }
     .kp-markdown-viewer__prose a:hover { text-decoration-thickness: 2px; }
 
-    .kp-markdown-viewer__prose strong { font-weight: 600; color: var(--kp-color-gray-900); }
+    .kp-markdown-viewer__prose strong { font-weight: 600; color: var(--kp-color-text-strong); }
     .kp-markdown-viewer__prose em { font-style: italic; }
-    .kp-markdown-viewer__prose del { text-decoration: line-through; color: var(--kp-color-gray-500); }
+    .kp-markdown-viewer__prose del { text-decoration: line-through; color: var(--kp-color-text-muted); }
 
     .kp-markdown-viewer__prose code {
       font-family: var(--kp-font-family-mono, ui-monospace, SFMono-Regular, monospace);
       font-size: 0.9em;
       padding: 0.125em 0.375em;
       border-radius: 4px;
-      background: var(--kp-color-gray-100);
-      color: var(--kp-color-gray-900);
+      background: var(--kp-color-surface-muted);
+      color: var(--kp-color-text-strong);
     }
     .kp-markdown-viewer__prose pre {
       margin-block: 0 1em;
       padding: 12px 16px;
       border-radius: 8px;
-      background: var(--kp-color-gray-100);
+      background: var(--kp-color-surface-muted);
       overflow-x: auto;
       line-height: 1.5;
     }
@@ -138,8 +138,8 @@ const defaultParser: KpMarkdownParser = (md) => marked.parse(md, { async: false 
     .kp-markdown-viewer__prose blockquote {
       margin: 0 0 1em;
       padding-inline-start: 12px;
-      border-inline-start: 3px solid var(--kp-color-gray-300);
-      color: var(--kp-color-gray-700);
+      border-inline-start: 3px solid var(--kp-color-border-strong);
+      color: var(--kp-color-text-default);
     }
 
     .kp-markdown-viewer__prose ul,
@@ -155,7 +155,7 @@ const defaultParser: KpMarkdownParser = (md) => marked.parse(md, { async: false 
 
     .kp-markdown-viewer__prose hr {
       border: none;
-      border-block-start: 1px solid var(--kp-color-gray-200);
+      border-block-start: 1px solid var(--kp-color-border-default);
       margin-block: 2em;
     }
 
@@ -173,13 +173,13 @@ const defaultParser: KpMarkdownParser = (md) => marked.parse(md, { async: false 
     .kp-markdown-viewer__prose th,
     .kp-markdown-viewer__prose td {
       padding: 8px 12px;
-      border-block-end: 1px solid var(--kp-color-gray-200);
+      border-block-end: 1px solid var(--kp-color-border-default);
       text-align: start;
     }
     .kp-markdown-viewer__prose th {
       font-weight: 600;
-      background: var(--kp-color-gray-50);
-      color: var(--kp-color-gray-900);
+      background: var(--kp-color-surface-subtle);
+      color: var(--kp-color-text-strong);
     }
 
     .kp-markdown-viewer__prose input[type="checkbox"] {

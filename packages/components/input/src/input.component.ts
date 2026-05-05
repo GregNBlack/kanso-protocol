@@ -84,9 +84,9 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       align-items: stretch;
       box-sizing: border-box;
       width: 280px;
-      border: 1px solid var(--kp-input-border, var(--kp-color-gray-300));
+      border: 1px solid var(--kp-input-border);
       border-radius: var(--kp-input-radius);
-      background: var(--kp-input-bg, var(--kp-color-white));
+      background: var(--kp-input-bg);
       height: var(--kp-input-height);
       padding: 0 var(--kp-input-padding-x);
       gap: var(--kp-input-gap);
@@ -99,27 +99,27 @@ import { KpSize, KpState } from '@kanso-protocol/core';
     /* --- Interactive states --- */
     :host(:hover:not(.kp-input--disabled):not(.kp-input--error)),
     :host(.kp-input--hover) {
-      border-color: var(--kp-input-border-hover, var(--kp-color-gray-400));
+      border-color: var(--kp-input-border-hover);
     }
 
     :host(:focus-within:not(.kp-input--disabled):not(.kp-input--error)),
     :host(.kp-input--focus) {
-      border-color: var(--kp-input-border-focus, var(--kp-color-blue-600));
+      border-color: var(--kp-input-border-focus);
       outline: none;
     }
 
     :host(.kp-input--active) {
-      border-color: var(--kp-input-border-active, var(--kp-color-gray-500));
+      border-color: var(--kp-input-border-active);
     }
 
     :host(.kp-input--disabled) {
-      background: var(--kp-input-bg-disabled, var(--kp-color-gray-50));
-      border-color: var(--kp-input-border-disabled, var(--kp-color-gray-200));
+      background: var(--kp-input-bg-disabled);
+      border-color: var(--kp-input-border-disabled);
       cursor: not-allowed;
     }
 
     :host(.kp-input--error) {
-      border-color: var(--kp-input-border-error, var(--kp-color-red-500));
+      border-color: var(--kp-input-border-error);
     }
 
     /* --- Field wrap with overlay label --- */
@@ -138,7 +138,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       border: none;
       outline: none;
       background: transparent;
-      color: var(--kp-input-fg, var(--kp-color-gray-900));
+      color: var(--kp-input-fg);
       font: inherit;
       font-size: var(--kp-input-font-size);
       line-height: var(--kp-input-line-height);
@@ -148,11 +148,11 @@ import { KpSize, KpState } from '@kanso-protocol/core';
     }
 
     .kp-input__field::placeholder {
-      color: var(--kp-input-placeholder, var(--kp-color-gray-400));
+      color: var(--kp-input-placeholder);
     }
 
     .kp-input__field:disabled {
-      color: var(--kp-input-fg-disabled, var(--kp-color-gray-400));
+      color: var(--kp-input-fg-disabled);
       cursor: not-allowed;
     }
 
@@ -169,19 +169,19 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       border: none;
       border-radius: 4px;
       background: transparent;
-      color: var(--kp-color-gray-500);
+      color: var(--kp-color-text-muted);
       cursor: pointer;
       transition:
         background var(--kp-motion-duration-fast, 100ms) ease,
         color var(--kp-motion-duration-fast, 100ms) ease;
     }
     .kp-input__clear:hover {
-      background: var(--kp-color-gray-100);
-      color: var(--kp-color-gray-700);
+      background: var(--kp-color-surface-muted);
+      color: var(--kp-color-text-default);
     }
     .kp-input__clear:active {
-      background: var(--kp-color-gray-200);
-      color: var(--kp-color-gray-900);
+      background: var(--kp-color-surface-strong);
+      color: var(--kp-color-text-strong);
     }
     .kp-input__clear svg {
       width: var(--kp-input-clear-icon, 14px);
@@ -195,7 +195,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      color: var(--kp-input-placeholder, var(--kp-color-gray-400));
+      color: var(--kp-input-placeholder);
     }
     .kp-input__icon:empty { display: none; }
 
@@ -206,7 +206,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       left: 0;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--kp-input-placeholder, var(--kp-color-gray-400));
+      color: var(--kp-input-placeholder);
       font-size: var(--kp-input-font-size);
       line-height: var(--kp-input-line-height);
       font-weight: var(--kp-input-font-weight, 400);
@@ -224,16 +224,16 @@ import { KpSize, KpState } from '@kanso-protocol/core';
       transform: translateY(0);
       font-size: var(--kp-input-label-small-size, 10px);
       font-weight: 500;
-      color: var(--kp-floating-label, var(--kp-color-gray-600));
+      color: var(--kp-floating-label);
     }
 
     :host(.kp-input--focus) .kp-input__label--floated,
     :host(:focus-within) .kp-input__label--floated {
-      color: var(--kp-floating-label-focus, var(--kp-color-blue-600));
+      color: var(--kp-floating-label-focus);
     }
 
     :host(.kp-input--error) .kp-input__label--floated {
-      color: var(--kp-floating-label-error, var(--kp-color-red-500));
+      color: var(--kp-floating-label-error);
     }
 
     /* When floating label is floated (at top), input text needs to leave room */

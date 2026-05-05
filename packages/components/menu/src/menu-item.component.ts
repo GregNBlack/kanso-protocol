@@ -76,8 +76,8 @@ export type KpMenuItemSize = 'sm' | 'md' | 'lg';
       padding: 0 var(--kp-menu-item-pad-x);
       gap: var(--kp-menu-item-gap);
       border-radius: 6px;
-      background: var(--kp-menu-item-bg, var(--kp-color-white));
-      color: var(--kp-menu-item-fg, var(--kp-color-gray-900));
+      background: var(--kp-menu-item-bg);
+      color: var(--kp-menu-item-fg);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       font-size: var(--kp-menu-item-fs);
       font-weight: 500;
@@ -88,20 +88,20 @@ export type KpMenuItemSize = 'sm' | 'md' | 'lg';
 
     :host(:hover:not(.kp-menu-item--disabled)),
     :host(.kp-menu-item--hover) {
-      --kp-menu-item-bg: var(--kp-color-gray-50);
+      --kp-menu-item-bg: var(--kp-color-surface-subtle);
     }
     :host(.kp-menu-item--active) {
-      --kp-menu-item-bg: var(--kp-color-gray-100);
+      --kp-menu-item-bg: var(--kp-color-surface-muted);
     }
     :host(:focus-visible),
     :host(.kp-menu-item--focus) {
-      --kp-menu-item-bg: var(--kp-color-gray-50);
+      --kp-menu-item-bg: var(--kp-color-surface-subtle);
       outline: 2px solid var(--kp-color-focus-ring);
       outline-offset: -1px;
     }
     :host(.kp-menu-item--disabled) {
       cursor: not-allowed;
-      --kp-menu-item-fg: var(--kp-color-gray-400);
+      --kp-menu-item-fg: var(--kp-color-text-disabled);
     }
     :host(.kp-menu-item--disabled) .kp-menu-item__icon,
     :host(.kp-menu-item--disabled) .kp-menu-item__trailing {
@@ -133,7 +133,7 @@ export type KpMenuItemSize = 'sm' | 'md' | 'lg';
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      color: var(--kp-menu-item-icon, var(--kp-color-gray-500));
+      color: var(--kp-menu-item-icon);
     }
     .kp-menu-item__leading:empty,
     .kp-menu-item__icon:empty { display: none; }
@@ -153,7 +153,7 @@ export type KpMenuItemSize = 'sm' | 'md' | 'lg';
     .kp-menu-item__description {
       font-size: 12px;
       font-weight: 400;
-      color: var(--kp-color-gray-500);
+      color: var(--kp-color-text-muted);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -161,7 +161,7 @@ export type KpMenuItemSize = 'sm' | 'md' | 'lg';
     .kp-menu-item__shortcut {
       font-size: var(--kp-menu-item-shortcut-fs);
       font-weight: 400;
-      color: var(--kp-color-gray-400);
+      color: var(--kp-color-text-disabled);
       font-variant-numeric: tabular-nums;
     }
 

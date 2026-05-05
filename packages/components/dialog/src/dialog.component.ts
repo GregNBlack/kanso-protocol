@@ -181,7 +181,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       width: var(--kp-dialog-hero-container);
       height: var(--kp-dialog-hero-container);
       border-radius: 50%;
-      background: var(--kp-color-gray-100, var(--kp-color-gray-100));
+      background: var(--kp-color-surface-muted);
       color: var(--kp-color-dialog-fg-title);
     }
     .kp-dialog__hero ::ng-deep svg {
@@ -226,7 +226,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       margin-block-start: -4px;
       margin-inline-end: -4px;
     }
-    .kp-dialog__close:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); }
+    .kp-dialog__close:hover { background: var(--kp-color-gray-100); }
     .kp-dialog__close:focus-visible {
       outline: 2px solid var(--kp-color-focus-ring);
       outline-offset: 2px;

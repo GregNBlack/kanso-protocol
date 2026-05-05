@@ -59,7 +59,7 @@ export type KpFormSectionSize = 'sm' | 'md' | 'lg';
       display: block;
       width: 100%;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
-      color: var(--kp-color-gray-900, var(--kp-color-gray-900));
+      color: var(--kp-color-text-strong);
     }
 
     .kp-fs__body {
@@ -89,13 +89,13 @@ export type KpFormSectionSize = 'sm' | 'md' | 'lg';
       font-size: var(--kp-fs-title, 18px);
       font-weight: 500;
       line-height: 1.3;
-      color: var(--kp-color-gray-900, var(--kp-color-gray-900));
+      color: var(--kp-color-text-strong);
     }
     .kp-fs__description {
       margin: 4px 0 0;
       font-size: var(--kp-fs-desc, 13px);
       line-height: 1.45;
-      color: var(--kp-color-gray-600, var(--kp-color-gray-600));
+      color: var(--kp-color-text-muted);
     }
 
     .kp-fs__fields {

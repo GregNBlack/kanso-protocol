@@ -169,10 +169,10 @@ let nextId = 0;
       justify-content: center;
       gap: 12px;
       padding: var(--kp-file-upload-zone-pad, 32px) 24px;
-      border: 2px dashed var(--kp-color-gray-300);
+      border: 2px dashed var(--kp-color-border-strong);
       border-radius: 12px;
-      background: var(--kp-color-gray-50);
-      color: var(--kp-color-gray-700);
+      background: var(--kp-color-surface-subtle);
+      color: var(--kp-color-text-default);
       cursor: pointer;
       text-align: center;
       transition:
@@ -181,7 +181,7 @@ let nextId = 0;
     }
     .kp-file-upload__zone:hover:not(.kp-file-upload__zone--disabled) {
       border-color: var(--kp-color-gray-400);
-      background: var(--kp-color-gray-100);
+      background: var(--kp-color-surface-muted);
     }
     .kp-file-upload__zone:focus-visible {
       outline: 2px solid var(--kp-color-accent-primary-fg);
@@ -213,13 +213,13 @@ let nextId = 0;
       justify-content: center;
       width: 32px;
       height: 32px;
-      color: var(--kp-color-gray-500);
+      color: var(--kp-color-text-muted);
     }
     .kp-file-upload__icon svg { width: 100%; height: 100%; }
 
     .kp-file-upload__label { display: inline-flex; flex-direction: column; gap: 2px; }
-    .kp-file-upload__title { font-size: 14px; font-weight: 500; color: var(--kp-color-gray-900); }
-    .kp-file-upload__hint { font-size: 12px; color: var(--kp-color-gray-500); }
+    .kp-file-upload__title { font-size: 14px; font-weight: 500; color: var(--kp-color-text-strong); }
+    .kp-file-upload__hint { font-size: 12px; color: var(--kp-color-text-muted); }
 
     .kp-file-upload__input {
       position: absolute;
@@ -247,15 +247,15 @@ let nextId = 0;
       gap: 10px;
       padding: 8px 12px;
       border-radius: 8px;
-      border: 1px solid var(--kp-color-gray-200);
-      background: var(--kp-color-white);
+      border: 1px solid var(--kp-color-border-default);
+      background: var(--kp-color-surface-base);
     }
     .kp-file-upload__item[data-status="error"] {
-      border-color: var(--kp-color-red-300, var(--kp-color-red-200));
+      border-color: var(--kp-color-red-300);
       background: var(--kp-color-red-50);
     }
     .kp-file-upload__item[data-status="success"] {
-      border-color: var(--kp-color-green-300, var(--kp-color-green-200));
+      border-color: var(--kp-color-green-300);
     }
 
     .kp-file-upload__item-icon {
@@ -264,7 +264,7 @@ let nextId = 0;
       justify-content: center;
       width: 20px;
       height: 20px;
-      color: var(--kp-color-gray-500);
+      color: var(--kp-color-text-muted);
     }
     .kp-file-upload__item-icon svg { width: 100%; height: 100%; }
 
@@ -272,12 +272,12 @@ let nextId = 0;
     .kp-file-upload__item-name {
       font-size: 13px;
       font-weight: 500;
-      color: var(--kp-color-gray-900);
+      color: var(--kp-color-text-strong);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .kp-file-upload__item-sub { display: inline-flex; gap: 8px; font-size: 11px; color: var(--kp-color-gray-500); }
+    .kp-file-upload__item-sub { display: inline-flex; gap: 8px; font-size: 11px; color: var(--kp-color-text-muted); }
     .kp-file-upload__item-progress { color: var(--kp-color-accent-primary-fg); font-variant-numeric: tabular-nums; }
     .kp-file-upload__item-error { color: var(--kp-color-accent-danger-fg); }
     .kp-file-upload__item-success { color: var(--kp-color-accent-success-fg); }
@@ -288,7 +288,7 @@ let nextId = 0;
       height: 3px;
       margin-top: 6px;
       border-radius: 999px;
-      background: var(--kp-color-gray-200);
+      background: var(--kp-color-surface-strong);
       overflow: hidden;
     }
     .kp-file-upload__bar-fill {
@@ -306,11 +306,11 @@ let nextId = 0;
       width: 24px;
       height: 24px;
       border-radius: 6px;
-      color: var(--kp-color-gray-500);
+      color: var(--kp-color-text-muted);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
     }
-    .kp-file-upload__item-remove:hover { background: var(--kp-color-gray-100); color: var(--kp-color-gray-700); }
+    .kp-file-upload__item-remove:hover { background: var(--kp-color-gray-100); color: var(--kp-color-text-default); }
     .kp-file-upload__item-remove:focus-visible {
       outline: 2px solid var(--kp-color-accent-primary-fg);
       outline-offset: 1px;

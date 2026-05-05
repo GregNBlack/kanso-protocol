@@ -237,8 +237,8 @@ export interface KpTreeNode {
       border-radius: 999px;
       font-size: 11px;
       font-weight: 500;
-      background: var(--kp-color-gray-100, var(--kp-color-gray-100));
-      color: var(--kp-color-gray-700, var(--kp-color-gray-700));
+      background: var(--kp-color-surface-muted);
+      color: var(--kp-color-text-default);
     }
   `],
 })

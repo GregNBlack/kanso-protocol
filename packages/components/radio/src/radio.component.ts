@@ -84,8 +84,8 @@ export type KpRadioColor = 'primary' | 'danger';
       width: var(--kp-radio-size);
       height: var(--kp-radio-size);
       border-radius: 50%;
-      border: var(--kp-radio-border-width) solid var(--kp-radio-border, var(--kp-color-gray-300));
-      background: var(--kp-radio-bg, var(--kp-color-white));
+      border: var(--kp-radio-border-width) solid var(--kp-radio-border);
+      background: var(--kp-radio-bg);
       transition: border-color var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease;
     }
 
@@ -93,7 +93,7 @@ export type KpRadioColor = 'primary' | 'danger';
       width: var(--kp-radio-dot-size);
       height: var(--kp-radio-dot-size);
       border-radius: 50%;
-      background: var(--kp-radio-dot-bg, var(--kp-color-blue-600));
+      background: var(--kp-radio-dot-bg);
       opacity: 0;
       transition: opacity var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease;
     }
@@ -110,8 +110,8 @@ export type KpRadioColor = 'primary' | 'danger';
       outline-offset: 2px;
     }
     :host(.kp-radio--disabled) {
-      --kp-radio-bg: var(--kp-color-gray-50);
-      --kp-radio-border: var(--kp-color-gray-200);
+      --kp-radio-bg: var(--kp-color-surface-subtle);
+      --kp-radio-border: var(--kp-color-border-default);
     }
     :host(.kp-radio--error) { --kp-radio-border: var(--kp-color-red-500); }
 
@@ -142,7 +142,7 @@ export type KpRadioColor = 'primary' | 'danger';
     :host(.kp-radio--md) { --kp-radio-size: 20px; --kp-radio-border-width: 1.5px; --kp-radio-dot-size: 8px; }
     :host(.kp-radio--lg) { --kp-radio-size: 24px; --kp-radio-border-width: 1.5px; --kp-radio-dot-size: 10px; }
 
-    .kp-radio__label { font-size: 14px; color: var(--kp-color-gray-700); }
+    .kp-radio__label { font-size: 14px; color: var(--kp-color-text-default); }
   `]
 })
 export class KpRadioComponent implements OnInit, OnDestroy, ControlValueAccessor {

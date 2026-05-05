@@ -22,7 +22,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
       display: block;
       flex: 1;
       height: 1px;
-      background: var(--kp-color-gray-100);
+      background: var(--kp-color-surface-muted);
     }
   `]
 })

@@ -214,8 +214,8 @@ export interface KpSidebarSection {
       width: 32px;
       height: 32px;
       border-radius: 8px;
-      background: var(--kp-color-blue-600, var(--kp-color-blue-600));
-      color: var(--kp-color-white);
+      background: var(--kp-color-blue-600);
+      color: var(--kp-color-foreground-on-saturated);
       flex: 0 0 auto;
     }
     .kp-sidebar__logo-mark svg { width: 60%; height: 60%; }
@@ -235,19 +235,19 @@ export interface KpSidebarSection {
       width: 28px;
       height: 28px;
       border-radius: 6px;
-      color: var(--kp-color-gray-500, var(--kp-color-gray-500));
+      color: var(--kp-color-text-muted);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
     .kp-sidebar__toggle:hover {
-      background: var(--kp-color-gray-100, var(--kp-color-gray-100));
-      color: var(--kp-color-gray-900, var(--kp-color-gray-900));
+      background: var(--kp-color-surface-muted);
+      color: var(--kp-color-text-strong);
     }
     .kp-sidebar__toggle svg { width: 16px; height: 16px; }
         :host(.kp-sidebar--dark) .kp-sidebar__toggle { color: var(--kp-color-fg-on-dark-muted); }
     :host(.kp-sidebar--dark) .kp-sidebar__toggle:hover {
       background: var(--kp-color-gray-800);
-      color: var(--kp-color-white);
+      color: var(--kp-color-foreground-on-saturated);
     }
 
     :host(.kp-sidebar--collapsed) .kp-sidebar__logo { justify-content: center; }
@@ -281,8 +281,8 @@ export interface KpSidebarSection {
       padding: 1px 8px;
       height: 20px;
       border-radius: 999px;
-      background: var(--kp-color-gray-100, var(--kp-color-gray-100));
-      color: var(--kp-color-gray-700, var(--kp-color-gray-700));
+      background: var(--kp-color-surface-muted);
+      color: var(--kp-color-text-default);
       font-size: 11px;
       font-weight: 500;
     }
@@ -305,7 +305,7 @@ export interface KpSidebarSection {
     .kp-sidebar__footer-name {
       font-size: 13px;
       font-weight: 500;
-      color: var(--kp-color-gray-900, var(--kp-color-gray-900));
+      color: var(--kp-color-text-strong);
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
@@ -313,7 +313,7 @@ export interface KpSidebarSection {
     :host(.kp-sidebar--dark) .kp-sidebar__footer-name { color: var(--kp-color-white); }
     .kp-sidebar__footer-email {
       font-size: 11px;
-      color: var(--kp-color-gray-500, var(--kp-color-gray-500));
+      color: var(--kp-color-text-muted);
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
@@ -326,10 +326,10 @@ export interface KpSidebarSection {
       width: 28px;
       height: 28px;
       border-radius: 4px;
-      color: var(--kp-color-gray-500, var(--kp-color-gray-500));
+      color: var(--kp-color-text-muted);
       cursor: pointer;
     }
-    .kp-sidebar__footer-menu:hover { color: var(--kp-color-gray-900, var(--kp-color-gray-900)); background: var(--kp-color-gray-100, var(--kp-color-gray-100)); }
+    .kp-sidebar__footer-menu:hover { color: var(--kp-color-gray-900); background: var(--kp-color-surface-muted); }
     .kp-sidebar__footer-menu svg { width: 18px; height: 18px; }
 
     :host(.kp-sidebar--collapsed) .kp-sidebar__footer { justify-content: center; padding-inline: 0; }

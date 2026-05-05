@@ -131,8 +131,8 @@ export interface KpNotification {
       width: 400px;
       max-height: 600px;
       border-radius: 12px;
-      background: var(--kp-color-white, var(--kp-color-white));
-      border: 1px solid var(--kp-color-gray-200, var(--kp-color-gray-200));
+      background: var(--kp-color-surface-base);
+      border: 1px solid var(--kp-color-border-default);
       box-shadow: var(--kp-elevation-floating);
       overflow: hidden;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
@@ -143,12 +143,12 @@ export interface KpNotification {
       align-items: center;
       justify-content: space-between;
       padding: 12px 16px;
-      border-bottom: 1px solid var(--kp-color-gray-200, var(--kp-color-gray-200));
+      border-bottom: 1px solid var(--kp-color-border-default);
     }
     .kp-notif-center__title {
       font-size: 15px;
       font-weight: 600;
-      color: var(--kp-color-gray-900, var(--kp-color-gray-900));
+      color: var(--kp-color-text-strong);
     }
     .kp-notif-center__header-actions {
       display: flex;
@@ -160,7 +160,7 @@ export interface KpNotification {
       display: flex;
       gap: 4px;
       padding: 8px;
-      border-bottom: 1px solid var(--kp-color-gray-200, var(--kp-color-gray-200));
+      border-bottom: 1px solid var(--kp-color-border-default);
     }
     .kp-notif-center__filter {
       all: unset;
@@ -171,25 +171,25 @@ export interface KpNotification {
       border-radius: 6px;
       font-size: 13px;
       font-weight: 500;
-      color: var(--kp-color-gray-600, var(--kp-color-gray-600));
+      color: var(--kp-color-text-muted);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
-    .kp-notif-center__filter:hover { background: var(--kp-color-gray-100, var(--kp-color-gray-100)); color: var(--kp-color-gray-900, var(--kp-color-gray-900)); }
-    .kp-notif-center__filter--active { background: var(--kp-color-blue-50, var(--kp-color-blue-50)); color: var(--kp-color-accent-primary-fg); }
+    .kp-notif-center__filter:hover { background: var(--kp-color-gray-100); color: var(--kp-color-text-strong); }
+    .kp-notif-center__filter--active { background: var(--kp-color-blue-50); color: var(--kp-color-accent-primary-fg); }
     .kp-notif-center__count {
       display: inline-flex;
       align-items: center;
       padding: 1px 6px;
       border-radius: 999px;
-      background: var(--kp-color-gray-200, var(--kp-color-gray-200));
-      color: var(--kp-color-gray-700, var(--kp-color-gray-700));
+      background: var(--kp-color-surface-strong);
+      color: var(--kp-color-text-default);
       font-size: 11px;
       font-weight: 500;
     }
     .kp-notif-center__filter--active .kp-notif-center__count {
-      background: var(--kp-color-blue-600, var(--kp-color-blue-600));
-      color: var(--kp-color-white);
+      background: var(--kp-color-blue-600);
+      color: var(--kp-color-foreground-on-saturated);
     }
 
     .kp-notif-center__body {
@@ -214,19 +214,19 @@ export interface KpNotification {
       width: 48px;
       height: 48px;
       border-radius: 50%;
-      background: var(--kp-color-gray-100, var(--kp-color-gray-100));
-      color: var(--kp-color-gray-500, var(--kp-color-gray-500));
+      background: var(--kp-color-surface-muted);
+      color: var(--kp-color-text-muted);
       margin-bottom: 8px;
     }
     .kp-notif-center__empty-icon .ti { font-size: 24px; }
     .kp-notif-center__empty-title {
       font-size: 14px;
       font-weight: 500;
-      color: var(--kp-color-gray-900, var(--kp-color-gray-900));
+      color: var(--kp-color-text-strong);
     }
     .kp-notif-center__empty-desc {
       font-size: 13px;
-      color: var(--kp-color-gray-500, var(--kp-color-gray-500));
+      color: var(--kp-color-text-muted);
       max-width: 260px;
       line-height: 1.4;
     }
@@ -235,13 +235,13 @@ export interface KpNotification {
       display: flex;
       gap: 12px;
       padding: 12px 16px;
-      border-bottom: 1px solid var(--kp-color-gray-100, var(--kp-color-gray-100));
+      border-bottom: 1px solid var(--kp-color-border-subtle);
     }
     .kp-notif-center__skel-avatar {
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: var(--kp-color-gray-100, var(--kp-color-gray-100));
+      background: var(--kp-color-surface-muted);
       flex: 0 0 auto;
     }
     .kp-notif-center__skel-lines {
@@ -254,14 +254,14 @@ export interface KpNotification {
     .kp-notif-center__skel-line {
       height: 10px;
       border-radius: 4px;
-      background: var(--kp-color-gray-100, var(--kp-color-gray-100));
+      background: var(--kp-color-surface-muted);
     }
 
     .kp-notif-center__footer {
       display: flex;
       justify-content: center;
       padding: 8px 16px;
-      border-top: 1px solid var(--kp-color-gray-200, var(--kp-color-gray-200));
+      border-top: 1px solid var(--kp-color-border-default);
     }
   `],
 })

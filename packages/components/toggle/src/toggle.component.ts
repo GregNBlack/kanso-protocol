@@ -68,7 +68,7 @@ export type KpToggleColor = 'primary' | 'danger';
       width: var(--kp-toggle-track-w);
       height: var(--kp-toggle-track-h);
       border-radius: var(--kp-toggle-track-h);
-      background: var(--kp-toggle-track-bg, var(--kp-color-gray-300));
+      background: var(--kp-toggle-track-bg);
       transition: background var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease;
     }
 
@@ -79,7 +79,7 @@ export type KpToggleColor = 'primary' | 'danger';
       width: var(--kp-toggle-thumb);
       height: var(--kp-toggle-thumb);
       border-radius: 50%;
-      background: var(--kp-color-white);
+      background: var(--kp-color-surface-base);
       box-shadow: var(--kp-elevation-raised);
       transition: left var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease;
     }
@@ -110,7 +110,7 @@ export type KpToggleColor = 'primary' | 'danger';
       border-radius: var(--kp-toggle-track-h);
     }
     :host(.kp-toggle--disabled:not(.kp-toggle--on)) {
-      --kp-toggle-track-bg: var(--kp-color-gray-200);
+      --kp-toggle-track-bg: var(--kp-color-surface-strong);
     }
     :host(.kp-toggle--error:not(.kp-toggle--on)) {
       --kp-toggle-track-bg: var(--kp-color-red-500);
@@ -136,7 +136,7 @@ export type KpToggleColor = 'primary' | 'danger';
 
     .kp-toggle__label {
       font-size: 14px;
-      color: var(--kp-color-gray-700);
+      color: var(--kp-color-text-default);
     }
   `]
 })

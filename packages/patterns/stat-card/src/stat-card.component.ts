@@ -68,8 +68,8 @@ export type KpStatTrendAppearance = 'positive' | 'negative';
       flex-direction: column;
       gap: var(--kp-stat-gap, 12px);
       padding: var(--kp-stat-pad, 20px);
-      background: var(--kp-color-white, var(--kp-color-white));
-      border: 1px solid var(--kp-color-gray-200, var(--kp-color-gray-200));
+      background: var(--kp-color-surface-base);
+      border: 1px solid var(--kp-color-border-default);
       border-radius: 12px;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
@@ -86,7 +86,7 @@ export type KpStatTrendAppearance = 'positive' | 'negative';
     }
     .kp-stat__label {
       font-size: var(--kp-stat-label-size, 13px);
-      color: var(--kp-color-gray-600, var(--kp-color-gray-600));
+      color: var(--kp-color-text-muted);
       font-weight: 500;
     }
     .kp-stat__icon {
@@ -96,7 +96,7 @@ export type KpStatTrendAppearance = 'positive' | 'negative';
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: var(--kp-color-blue-50, var(--kp-color-blue-50));
+      background: var(--kp-color-blue-50);
       color: var(--kp-color-accent-primary-fg);
     }
     .kp-stat__icon .ti { font-size: 18px; line-height: 1; }
@@ -104,7 +104,7 @@ export type KpStatTrendAppearance = 'positive' | 'negative';
     .kp-stat__value {
       font-size: var(--kp-stat-value-size, 24px);
       font-weight: 600;
-      color: var(--kp-color-gray-900, var(--kp-color-gray-900));
+      color: var(--kp-color-text-strong);
       font-variant-numeric: tabular-nums;
       line-height: 1.1;
     }
@@ -116,15 +116,15 @@ export type KpStatTrendAppearance = 'positive' | 'negative';
     }
     .kp-stat__trend-icon { font-size: 14px; line-height: 1; }
     .kp-stat__trend-value { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
-    .kp-stat__trend-desc { font-size: 12px; color: var(--kp-color-gray-500, var(--kp-color-gray-500)); }
+    .kp-stat__trend-desc { font-size: 12px; color: var(--kp-color-text-muted); }
     .kp-stat__trend[data-tone='good']    { color: var(--kp-color-accent-success-fg); }
     .kp-stat__trend[data-tone='bad']     { color: var(--kp-color-accent-danger-fg); }
-    .kp-stat__trend[data-tone='neutral'] { color: var(--kp-color-gray-500, var(--kp-color-gray-500)); }
+    .kp-stat__trend[data-tone='neutral'] { color: var(--kp-color-gray-500); }
 
     .kp-stat__sparkline { margin-top: 4px; }
     .kp-stat__sparkline-placeholder {
       height: 32px;
-      background: var(--kp-color-gray-100, var(--kp-color-gray-100));
+      background: var(--kp-color-surface-muted);
       border-radius: 4px;
     }
   `],

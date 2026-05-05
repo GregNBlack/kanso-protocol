@@ -91,17 +91,17 @@ export type KpRequiredMode = 'none' | 'optional' | 'required-asterisk';
       font-size: 14px;
       line-height: 20px;
       font-weight: 500;
-      color: var(--kp-form-label, var(--kp-color-gray-700));
+      color: var(--kp-form-label);
     }
     .kp-form-field__optional {
       font-size: 13px;
       font-weight: 400;
-      color: var(--kp-form-optional, var(--kp-color-gray-500));
+      color: var(--kp-form-optional);
     }
     .kp-form-field__required {
       font-size: 14px;
       font-weight: 500;
-      color: var(--kp-form-required, var(--kp-color-red-600));
+      color: var(--kp-form-required);
     }
 
     .kp-form-field__control { display: block; }
@@ -110,7 +110,7 @@ export type KpRequiredMode = 'none' | 'optional' | 'required-asterisk';
       font-size: 12px;
       line-height: 16px;
       font-weight: 400;
-      color: var(--kp-form-helper, var(--kp-color-gray-500));
+      color: var(--kp-form-helper);
     }
 
     /* Error state */
