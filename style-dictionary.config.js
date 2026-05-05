@@ -1,4 +1,53 @@
 /**
+ * Render a token value, preserving alias references as `var(--kp-…)` when
+ * `outputReferences` is on. Mirrors the built-in css/variables behavior so
+ * our custom formats keep the same alias chain.
+ */
+const renderRefValue = function (token) {
+  const orig = token.original?.$value ?? token.original?.value;
+  if (typeof orig === 'string' && /^\{[^}]+\}$/.test(orig)) {
+    const path = orig.slice(1, -1).split('.');
+    return `var(--kp-${path.join('-')})`;
+  }
+  return token.$value ?? token.value;
+};
+
+/**
+ * Custom format for tokens.css (light).
+ *
+ * Built-in `css/variables` only writes to `:root {}`. We need light values to
+ * also bind to `[data-theme="light"]` so a nested wrapper can restore light
+ * inside a globally-dark page (used by the Foundations / Dark Theme Audit
+ * page that puts side-by-side `[data-theme="light"]` and `[data-theme="dark"]`
+ * columns).
+ *
+ * Selector list: `:root, :root[data-theme="light"], [data-theme="light"]`.
+ * The bare `:root` keeps default-to-light behavior; the two `[data-theme=
+ * "light"]` selectors handle nested restoration regardless of whether
+ * `:root` itself carries the attribute.
+ */
+const cssVariablesLight = function ({ dictionary, options }) {
+  const useRefs = options?.outputReferences;
+  const lines = dictionary.allTokens.map((t) => {
+    const value = useRefs ? renderRefValue(t) : (t.$value ?? t.value);
+    const desc = t.$description ? ` /** ${t.$description} */` : '';
+    return `  --kp-${t.path.join('-')}: ${value};${desc}`;
+  });
+  return [
+    '/**',
+    ' * Do not edit directly, this file was auto-generated.',
+    ' */',
+    '',
+    ':root,',
+    ':root[data-theme="light"],',
+    '[data-theme="light"] {',
+    ...lines,
+    '}',
+    '',
+  ].join('\n');
+};
+
+/**
  * Custom format for dark.css.
  *
  * Built-in `css/variables` writes to `:root {}`. Dark theme needs:
@@ -37,10 +86,11 @@ const cssVariablesDark = function ({ dictionary }) {
   ].join('\n');
 };
 
-// Shared hook: registers the dark-mode format on every Style Dictionary
-// instance. Both configs (light + dark) inherit it.
+// Shared hook: registers both custom formats on every Style Dictionary
+// instance. Both configs (light + dark) inherit them.
 const hooks = {
   formats: {
+    'css/variables-light': cssVariablesLight,
     'css/variables-dark': cssVariablesDark,
   },
 };
@@ -59,7 +109,7 @@ module.exports = {
       files: [
         {
           destination: 'tokens.css',
-          format: 'css/variables',
+          format: 'css/variables-light',
           options: {
             outputReferences: true,
           },
