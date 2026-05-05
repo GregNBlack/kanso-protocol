@@ -147,16 +147,31 @@ jobs:
         # `github-actions[bot]` in the Contributors sidebar — the email
         # has to be the one tied to your GitHub account so attribution
         # maps back to it.
+        #
+        # Push retries up to 3 times with rebase to survive the race where
+        # another commit lands on `main` while the snapshot regeneration
+        # was running. Without the retry the push gets rejected as
+        # non-fast-forward and the new baselines silently never land.
         run: |
           git config user.name "Greg N Black"
           git config user.email "orekhovgn@gmail.com"
           git add e2e/visual.spec.ts-snapshots/
           if git diff --cached --quiet; then
             echo "No baseline diffs — nothing to commit."
-          else
-            git commit -m "chore(visual): refresh baselines [skip-release]"
-            git push origin HEAD:${{ github.ref_name }}
+            exit 0
           fi
+          git commit -m "chore(visual): refresh baselines [skip-release]"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:${{ github.ref_name }}; then
+              echo "Pushed on attempt $attempt"
+              exit 0
+            fi
+            echo "Push attempt $attempt failed; rebasing on latest origin and retrying"
+            git fetch origin ${{ github.ref_name }}
+            git rebase origin/${{ github.ref_name }} || { git rebase --abort; exit 1; }
+          done
+          echo "::error::Failed to push baseline refresh after 3 attempts"
+          exit 1
       - name: Upload baselines / diffs as artifact
         if: always()
         uses: actions/upload-artifact@v4
