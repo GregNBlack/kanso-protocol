@@ -72,6 +72,10 @@ export type KpRadioColor = 'primary' | 'danger';
       cursor: pointer;
       user-select: none;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
+      /* Rest-state default — same logic as Checkbox: kept on :host so the
+         hover / active / disabled / checked / error rules below win the
+         cascade. Setting it directly on .kp-radio__box would shadow them. */
+      --kp-radio-border: var(--kp-color-checkbox-border-rest);
     }
     :host(.kp-radio--disabled) { cursor: not-allowed; }
 

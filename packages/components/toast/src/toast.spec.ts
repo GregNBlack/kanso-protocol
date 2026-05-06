@@ -126,7 +126,10 @@ describe('KpToastHostComponent', () => {
     svc.dismissAll();
     svc.show({ title: 'go away' });
     fix.detectChanges();
-    const closeBtn = renderedToasts()[0].querySelector('.kp-th__close') as HTMLButtonElement;
+    // .kp-th__close is now an <kp-icon-button> wrapper; the actual button
+    // sits inside it as .kp-icon-button__btn. Click that to fire the
+    // (buttonClick) → dismiss handler.
+    const closeBtn = renderedToasts()[0].querySelector('.kp-th__close .kp-icon-button__btn') as HTMLButtonElement;
     closeBtn.click();
     fix.detectChanges();
     expect(svc.toasts().length).toBe(0);

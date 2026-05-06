@@ -36,7 +36,7 @@ export const Default: Story = {
     placeholder: 'Write your message here. Multi-line text is supported — it grows as you type if you keep resize enabled.',
     maxLength: 500,
     showCounter: false,
-    resize: 'vertical',
+    resize: 'both',
   },
   render: (args) => ({
     props: args,

@@ -57,6 +57,11 @@ export type KpToggleColor = 'primary' | 'danger';
       cursor: pointer;
       user-select: none;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
+      /* OFF rest default — same fix shape as Checkbox / Radio: define
+         the track-bg on :host so the on / hover / disabled / error
+         rules below win the cascade and the OFF state is visible at
+         rest in both light and dark themes. */
+      --kp-toggle-track-bg: var(--kp-color-text-disabled);
     }
     :host(.kp-toggle--disabled) { cursor: not-allowed; }
 

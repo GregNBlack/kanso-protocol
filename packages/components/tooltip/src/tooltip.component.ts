@@ -74,7 +74,7 @@ export type KpTooltipArrowPosition = 'none' | 'top' | 'right' | 'bottom' | 'left
       display: inline-flex;
       align-items: center;
       color: var(--kp-color-tooltip-shortcut);
-      font-family: ui-monospace, SFMono-Regular, 'JetBrains Mono', Menlo, Consolas, monospace;
+      font-family: inherit;
       font-size: var(--kp-tooltip-shortcut-size);
       font-weight: 500;
       font-variant-numeric: tabular-nums;

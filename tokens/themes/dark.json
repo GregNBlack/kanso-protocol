@@ -796,6 +796,17 @@
         }
       }
     },
+    "segmented": {
+      "$description": "Dark-mode SegmentedControl. Track inherited gray.100-inv = #18181B (= surface-base, blended with page bg). Bumped to gray.200-inv (#27272A) so the track outline reads, and selected segment lifted further (#3F3F46) so the selected affordance reads above the track.",
+      "track": {
+        "bg": { "$value": "#27272A" }
+      },
+      "segment": {
+        "bg": {
+          "selected": { "$value": "#3F3F46", "$description": "audit-2026-05-06 — gray.300 dark; one step above track for clear elevation" }
+        }
+      }
+    },
     "input": {
       "$description": "Dark-mode input chrome. bg.default was inheriting color.white (= surface-base = #18181B) which read as 'still light' against the page bg in dark; pulled to a deliberately darker value so the field surface is unmistakably dark in dark mode. r2 (2026-05-05): border / fg / placeholder values realigned with Button outline-neutral so input chrome reads with the same visual weight as that button on a dark surface.",
       "bg": {
@@ -820,6 +831,14 @@
       "fg-desc": {
         "$value": "#A1A1AA",
         "$description": "designer-pass"
+      },
+      "bg": {
+        "$value": "#1F1F22",
+        "$description": "audit-2026-05-06 — slight lift above surface-base (#18181B); was inheriting white-inv = #18181B which read indistinguishable from the page bg layered behind it"
+      },
+      "border": {
+        "$value": "#3F3F46",
+        "$description": "audit-2026-05-06 — gray.300 dark, matches the popover trigger surfaces (input / button outline / card / dropdown-menu* — *menu uses gray.200 still)"
       }
     },
     "tabs": {

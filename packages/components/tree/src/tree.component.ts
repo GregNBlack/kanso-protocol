@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { KpCheckboxComponent } from '@kanso-protocol/checkbox';
+import { KpIconComponent } from '@kanso-protocol/icon';
 
 export type KpTreeSize = 'sm' | 'md';
 
@@ -45,7 +46,7 @@ export interface KpTreeNode {
  */
 @Component({
   selector: 'kp-tree',
-  imports: [NgTemplateOutlet, KpCheckboxComponent],
+  imports: [NgTemplateOutlet, KpCheckboxComponent, KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses' },
   template: `
@@ -103,16 +104,9 @@ export interface KpTreeNode {
           @if (showIcons) {
             <span class="kp-tree__icon" aria-hidden="true">
               @if (isExpandable(node)) {
-                @if (isExpanded(node.id)) {
-                  <!-- open folder -->
-                  <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M1 4a1 1 0 0 1 1-1h3.5l1.5 1.5H14a1 1 0 0 1 1 1V6H2l-1 6V4z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M2 6h13l-1 6H1l1-6z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
-                } @else {
-                  <!-- closed folder -->
-                  <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M1 4a1 1 0 0 1 1-1h3.5l1.5 1.5H14a1 1 0 0 1 1 1V12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
-                }
+                <kp-icon size="sm" [name]="isExpanded(node.id) ? 'folder-open' : 'folder'"/>
               } @else {
-                <!-- file -->
-                <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M3 2h6l4 4v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M9 2v4h4" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+                <kp-icon size="sm" name="file-text"/>
               }
             </span>
           }

@@ -11,6 +11,7 @@ import {
 import { DOCUMENT } from '@angular/common';
 
 import { injectKpStrings } from '@kanso-protocol/i18n';
+import { KpIconButtonComponent } from '@kanso-protocol/button';
 
 import { KpToastService } from './toast.service';
 import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
@@ -27,7 +28,7 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
  */
 @Component({
   selector: 'kp-toast-host',
-  imports: [],
+  imports: [KpIconButtonComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[attr.aria-live]': '"polite"', '[attr.aria-atomic]': '"false"' },
   template: `
@@ -62,11 +63,16 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
               }
             </div>
 
-            <button type="button" class="kp-th__close" [attr.aria-label]="strings.toastDismiss" (click)="dismiss(t.id)">
-              <svg viewBox="0 0 24 24" fill="none" width="14" height="14" aria-hidden="true">
+            <kp-icon-button
+              class="kp-th__close"
+              size="xs"
+              [ariaLabel]="strings.toastDismiss"
+              (buttonClick)="dismiss(t.id)"
+            >
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
               </svg>
-            </button>
+            </kp-icon-button>
           </div>
         }
       }
@@ -167,20 +173,10 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
       outline-offset: 2px;
     }
 
-    .kp-th__close {
-      all: unset;
-      flex: 0 0 auto;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 20px;
-      height: 20px;
-      border-radius: 4px;
-      color: var(--kp-color-toast-close);
-      cursor: pointer;
-      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
-    }
-    .kp-th__close:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-default); }
+    /* The close button is rendered as kp-icon-button. Color is bound to
+       the toast title fg so the X reads at the same weight as the
+       title in every appearance — same pattern as Alert closable. */
+    .kp-th__close { color: var(--kp-toast-fg-title); }
 
     /* Appearance tokens — shared with Alert */
     .kp-th__toast--primary {
