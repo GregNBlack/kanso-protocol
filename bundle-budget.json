@@ -3,75 +3,75 @@
   "headroomNote": "Tiny bundles (<2KB gz) get +500B; larger ones get ~15% rounded to nearest 100B.",
   "packages": {
     "components/accordion": {
-      "currentGz": 3686,
-      "maxGz": 4300
+      "currentGz": 3632,
+      "maxGz": 4200
     },
     "components/alert": {
-      "currentGz": 3471,
-      "maxGz": 4000
-    },
-    "components/avatar": {
-      "currentGz": 2529,
-      "maxGz": 3000
-    },
-    "components/avatar-group": {
-      "currentGz": 1986,
-      "maxGz": 2486
-    },
-    "components/badge": {
-      "currentGz": 3137,
+      "currentGz": 3133,
       "maxGz": 3700
     },
-    "components/breadcrumbs": {
-      "currentGz": 4726,
-      "maxGz": 5500
-    },
-    "components/button": {
-      "currentGz": 3461,
-      "maxGz": 4000
-    },
-    "components/card": {
-      "currentGz": 2446,
+    "components/avatar": {
+      "currentGz": 2449,
       "maxGz": 2900
     },
+    "components/avatar-group": {
+      "currentGz": 2023,
+      "maxGz": 2400
+    },
+    "components/badge": {
+      "currentGz": 2888,
+      "maxGz": 3400
+    },
+    "components/breadcrumbs": {
+      "currentGz": 4670,
+      "maxGz": 5400
+    },
+    "components/button": {
+      "currentGz": 4866,
+      "maxGz": 5600
+    },
+    "components/card": {
+      "currentGz": 2425,
+      "maxGz": 2800
+    },
     "components/checkbox": {
-      "currentGz": 2606,
-      "maxGz": 3000
+      "currentGz": 2610,
+      "maxGz": 3100
     },
     "components/combobox": {
-      "currentGz": 6147,
+      "currentGz": 6129,
       "maxGz": 7100
     },
     "components/command-palette": {
-      "currentGz": 5080,
+      "currentGz": 5083,
       "maxGz": 5900
     },
     "components/datepicker": {
-      "currentGz": 8383,
-      "maxGz": 9700
+      "currentGz": 8297,
+      "maxGz": 9600
     },
     "components/dialog": {
-      "currentGz": 4401,
+      "currentGz": 4350,
       "maxGz": 5100
     },
     "components/divider": {
-      "currentGz": 1358,
-      "maxGz": 1858
+      "currentGz": 1340,
+      "maxGz": 1840
     },
     "components/drawer": {
-      "currentGz": 4310,
+      "currentGz": 4261,
       "maxGz": 5000
     },
     "components/empty-state": {
-      "currentGz": 1563,
-      "maxGz": 2063
+      "currentGz": 1536,
+      "maxGz": 2036
     },
     "components/file-upload": {
-      "currentGz": 4909,
+      "currentGz": 4926,
       "maxGz": 5700
     },
     "components/form-field": {
-      "currentGz": 3380,
+      "currentGz": 3386,
       "maxGz": 3900
     },
     "components/icon": {
@@ -79,143 +79,143 @@
       "maxGz": 13300
     },
     "components/input": {
-      "currentGz": 3316,
-      "maxGz": 3900
+      "currentGz": 3269,
+      "maxGz": 3800
     },
     "components/markdown-viewer": {
-      "currentGz": 2418,
+      "currentGz": 2432,
       "maxGz": 2800
     },
     "components/menu": {
-      "currentGz": 3808,
-      "maxGz": 4400
+      "currentGz": 3843,
+      "maxGz": 4500
     },
     "components/number-stepper": {
-      "currentGz": 3925,
-      "maxGz": 4600
+      "currentGz": 3869,
+      "maxGz": 4500
     },
     "components/pagination": {
-      "currentGz": 5210,
+      "currentGz": 5200,
       "maxGz": 6000
     },
     "components/popover": {
-      "currentGz": 3240,
-      "maxGz": 3800
+      "currentGz": 3130,
+      "maxGz": 3600
     },
     "components/progress": {
-      "currentGz": 3998,
+      "currentGz": 3944,
       "maxGz": 4600
     },
     "components/radio": {
-      "currentGz": 3171,
+      "currentGz": 3193,
       "maxGz": 3700
     },
     "components/rich-text-editor": {
-      "currentGz": 6572,
+      "currentGz": 6589,
       "maxGz": 7600
     },
     "components/segmented-control": {
-      "currentGz": 3687,
-      "maxGz": 4300
+      "currentGz": 3644,
+      "maxGz": 4200
     },
     "components/select": {
-      "currentGz": 5282,
+      "currentGz": 5263,
       "maxGz": 6100
     },
     "components/skeleton": {
-      "currentGz": 2044,
+      "currentGz": 2017,
       "maxGz": 2400
     },
     "components/slider": {
-      "currentGz": 4407,
+      "currentGz": 4363,
       "maxGz": 5100
     },
     "components/table": {
-      "currentGz": 3987,
+      "currentGz": 3923,
       "maxGz": 4600
     },
     "components/tabs": {
-      "currentGz": 3661,
-      "maxGz": 4300
+      "currentGz": 3605,
+      "maxGz": 4200
     },
     "components/textarea": {
-      "currentGz": 2719,
-      "maxGz": 3200
+      "currentGz": 2672,
+      "maxGz": 3100
     },
     "components/timepicker": {
-      "currentGz": 6578,
-      "maxGz": 7600
+      "currentGz": 6508,
+      "maxGz": 7500
     },
     "components/toast": {
-      "currentGz": 4094,
-      "maxGz": 4800
+      "currentGz": 4045,
+      "maxGz": 4700
     },
     "components/toggle": {
-      "currentGz": 2204,
+      "currentGz": 2230,
       "maxGz": 2600
     },
     "components/tooltip": {
-      "currentGz": 2074,
+      "currentGz": 2008,
       "maxGz": 2400
     },
     "components/tree": {
-      "currentGz": 4684,
-      "maxGz": 5400
+      "currentGz": 4512,
+      "maxGz": 5200
     },
     "components/virtual-list": {
-      "currentGz": 3058,
-      "maxGz": 3600
+      "currentGz": 3178,
+      "maxGz": 3700
     },
     "core": {
       "currentGz": 486,
       "maxGz": 986
     },
     "i18n": {
-      "currentGz": 2564,
-      "maxGz": 3000
+      "currentGz": 2718,
+      "maxGz": 3200
     },
     "patterns/app-shell": {
-      "currentGz": 1522,
-      "maxGz": 2022
+      "currentGz": 1515,
+      "maxGz": 2015
     },
     "patterns/banner": {
-      "currentGz": 2334,
-      "maxGz": 2700
+      "currentGz": 2186,
+      "maxGz": 2600
     },
     "patterns/container": {
       "currentGz": 1059,
       "maxGz": 1559
     },
     "patterns/filter-bar": {
-      "currentGz": 1843,
-      "maxGz": 2343
+      "currentGz": 1836,
+      "maxGz": 2336
     },
     "patterns/form-section": {
-      "currentGz": 1736,
-      "maxGz": 2236
+      "currentGz": 1731,
+      "maxGz": 2231
     },
     "patterns/grid": {
       "currentGz": 1152,
       "maxGz": 1652
     },
     "patterns/header": {
-      "currentGz": 3994,
+      "currentGz": 3953,
       "maxGz": 4600
     },
     "patterns/nav-item": {
-      "currentGz": 3283,
+      "currentGz": 3232,
       "maxGz": 3800
     },
     "patterns/notification-center": {
-      "currentGz": 3811,
+      "currentGz": 3779,
       "maxGz": 4400
     },
     "patterns/page-error": {
-      "currentGz": 2253,
+      "currentGz": 2237,
       "maxGz": 2600
     },
     "patterns/page-header": {
-      "currentGz": 2169,
+      "currentGz": 2153,
       "maxGz": 2500
     },
     "patterns/row": {
@@ -223,15 +223,15 @@
       "maxGz": 1681
     },
     "patterns/search-bar": {
-      "currentGz": 3279,
+      "currentGz": 3223,
       "maxGz": 3800
     },
     "patterns/settings-panel": {
-      "currentGz": 2180,
-      "maxGz": 2600
+      "currentGz": 2164,
+      "maxGz": 2500
     },
     "patterns/sidebar": {
-      "currentGz": 3610,
+      "currentGz": 3583,
       "maxGz": 4200
     },
     "patterns/stack": {
@@ -239,16 +239,16 @@
       "maxGz": 1484
     },
     "patterns/stat-card": {
-      "currentGz": 2119,
+      "currentGz": 2104,
       "maxGz": 2500
     },
     "patterns/table-toolbar": {
-      "currentGz": 3161,
+      "currentGz": 3140,
       "maxGz": 3700
     },
     "patterns/theme-toggle": {
-      "currentGz": 3575,
-      "maxGz": 4200
+      "currentGz": 3546,
+      "maxGz": 4100
     },
     "patterns/user-menu": {
       "currentGz": 2526,

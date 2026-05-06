@@ -134,7 +134,10 @@ export interface KpSearchResultGroup {
     }
     :host(.kp-search-bar--command-palette) { display: block; width: 640px; max-width: 100%; }
 
-    /* --- inline variant --- */
+    /* --- inline variant ---
+       SearchBar IS an input, so the chrome — radius, bg, border —
+       follows the Input contract directly. Sizes mirror Input
+       sm / md / lg radius scale (10 / 12 / 14 px). */
     .kp-search-bar__wrap {
       display: inline-flex;
       align-items: center;
@@ -142,21 +145,20 @@ export interface KpSearchResultGroup {
       width: var(--kp-search-w, 400px);
       height: var(--kp-search-h, 36px);
       padding: 0 10px;
-      border: 1px solid var(--kp-color-border-default);
-      border-radius: 8px;
-      background: var(--kp-color-surface-subtle);
+      border: 1px solid var(--kp-color-input-border-rest);
+      border-radius: var(--kp-search-radius, 12px);
+      background: var(--kp-color-input-bg-default);
       transition: background var(--kp-motion-duration-fast) ease, border-color 120ms ease, box-shadow 120ms ease;
     }
     .kp-search-bar__wrap--focused,
     .kp-search-bar__wrap:focus-within {
-      background: var(--kp-color-surface-base);
-      border-color: var(--kp-color-primary-default-bg-loading);
+      border-color: var(--kp-color-input-border-focus);
             box-shadow: 0 0 0 3px var(--kp-color-overlay-focus-ring);
     }
 
-    :host(.kp-search-bar--sm) { --kp-search-w: 320px; --kp-search-h: 32px; --kp-search-fs: 13px; }
-    :host(.kp-search-bar--md) { --kp-search-w: 400px; --kp-search-h: 36px; --kp-search-fs: 14px; }
-    :host(.kp-search-bar--lg) { --kp-search-w: 480px; --kp-search-h: 44px; --kp-search-fs: 15px; }
+    :host(.kp-search-bar--sm) { --kp-search-w: 320px; --kp-search-h: 32px; --kp-search-fs: 13px; --kp-search-radius: 10px; }
+    :host(.kp-search-bar--md) { --kp-search-w: 400px; --kp-search-h: 36px; --kp-search-fs: 14px; --kp-search-radius: 12px; }
+    :host(.kp-search-bar--lg) { --kp-search-w: 480px; --kp-search-h: 44px; --kp-search-fs: 15px; --kp-search-radius: 14px; }
 
     .kp-search-bar__leading {
       flex: 0 0 auto;
@@ -184,7 +186,7 @@ export interface KpSearchResultGroup {
       border-radius: 4px;
       background: var(--kp-color-surface-base);
       color: var(--kp-color-text-muted);
-      font-family: var(--kp-font-family-mono, 'JetBrains Mono', ui-monospace, monospace);
+      font-family: inherit;
       font-size: 11px;
       font-weight: 500;
     }
