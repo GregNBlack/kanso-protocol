@@ -61,7 +61,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       max-height: 480px;
       padding: 4px;
       background: var(--kp-color-surface-base);
-      border: 1px solid var(--kp-color-border-default);
+      border: 1px solid var(--kp-color-menu-panel-border);
       border-radius: 12px;
       box-shadow: var(--kp-elevation-overlay);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);

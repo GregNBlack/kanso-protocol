@@ -7,6 +7,12 @@ import { KpAlertComponent } from '@kanso-protocol/alert';
 import { KpAvatarComponent } from '@kanso-protocol/avatar';
 import { KpAvatarGroupComponent } from '@kanso-protocol/avatar-group';
 import { KpCardComponent } from '@kanso-protocol/card';
+import {
+  KpDropdownMenuComponent,
+  KpMenuItemComponent,
+  KpMenuDividerComponent,
+  KpMenuSectionLabelComponent,
+} from '@kanso-protocol/menu';
 
 /**
  * Foundations / Dark Theme Audit
@@ -1184,6 +1190,208 @@ export class KpDarkAuditCardComponent {
   }
 }
 
+// ─── Dropdown Menu audit ────────────────────────────────────────────────
+
+const MENU_VARIANTS = ['simple', 'rich', 'sectioned', 'with-search-footer'] as const;
+const MENU_STORAGE_KEY = 'kanso:dark-audit:dropdown-menu';
+
+@Component({
+  selector: 'kp-dark-audit-menu',
+  imports: [
+    KpDropdownMenuComponent,
+    KpMenuItemComponent,
+    KpMenuDividerComponent,
+    KpMenuSectionLabelComponent,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <div class="audit">
+      <div class="audit__col audit__col--light" [attr.data-theme]="'light'">
+        <h3 class="audit__theme">Light</h3>
+        <div class="audit__row audit__row--menu">
+          <div class="audit__cell">
+            <kp-dropdown-menu>
+              <kp-menu-item label="Default item"/>
+              <kp-menu-item label="Hovered item" forceState="hover"/>
+              <kp-menu-item label="Selected item" [selected]="true"/>
+              <kp-menu-item label="With shortcut" shortcut="⌘K"/>
+              <kp-menu-divider/>
+              <kp-menu-item label="Disabled" [disabled]="true"/>
+              <kp-menu-item label="Delete" [danger]="true"/>
+            </kp-dropdown-menu>
+            <span class="audit__cell-label">Simple</span>
+          </div>
+
+          <div class="audit__cell">
+            <kp-dropdown-menu>
+              <kp-menu-item label="Profile" description="View and edit your profile" hasChevron="true"/>
+              <kp-menu-item label="Settings" description="Account preferences"/>
+              <kp-menu-item label="Billing" description="Plan, payment, invoices"/>
+              <kp-menu-divider/>
+              <kp-menu-item label="Sign out" [danger]="true"/>
+            </kp-dropdown-menu>
+            <span class="audit__cell-label">Rich (with description)</span>
+          </div>
+
+          <div class="audit__cell">
+            <kp-dropdown-menu>
+              <kp-menu-section-label label="Account"/>
+              <kp-menu-item label="Profile"/>
+              <kp-menu-item label="Settings"/>
+              <kp-menu-divider/>
+              <kp-menu-section-label label="Workspace"/>
+              <kp-menu-item label="Members"/>
+              <kp-menu-item label="Integrations"/>
+            </kp-dropdown-menu>
+            <span class="audit__cell-label">Sectioned</span>
+          </div>
+
+          <div class="audit__cell">
+            <kp-dropdown-menu [hasSearch]="true" [hasFooter]="true" searchPlaceholder="Search…">
+              <kp-menu-item label="Result one"/>
+              <kp-menu-item label="Result two"/>
+              <kp-menu-item label="Result three" [selected]="true"/>
+            </kp-dropdown-menu>
+            <span class="audit__cell-label">With search + footer</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="audit__col audit__col--dark" [attr.data-theme]="'dark'">
+        <div class="audit__bar">
+          <h3 class="audit__theme">Dark · {{ filledCount() }} note(s)</h3>
+          <button type="button" class="audit__action" (click)="copyNotes()" [disabled]="filledCount() === 0">{{ copyState() }}</button>
+          <button type="button" class="audit__action audit__action--ghost" (click)="clearNotes()" [disabled]="filledCount() === 0">Clear all</button>
+        </div>
+        <div class="audit__row audit__row--menu">
+          <div class="audit__cell">
+            <kp-dropdown-menu>
+              <kp-menu-item label="Default item"/>
+              <kp-menu-item label="Hovered item" forceState="hover"/>
+              <kp-menu-item label="Selected item" [selected]="true"/>
+              <kp-menu-item label="With shortcut" shortcut="⌘K"/>
+              <kp-menu-divider/>
+              <kp-menu-item label="Disabled" [disabled]="true"/>
+              <kp-menu-item label="Delete" [danger]="true"/>
+            </kp-dropdown-menu>
+            <span class="audit__cell-label">Simple</span>
+            <textarea class="audit__note" rows="2" placeholder="что не так?"
+              [value]="getNote('simple')" (input)="setNote('simple', $any($event.target).value)"></textarea>
+          </div>
+
+          <div class="audit__cell">
+            <kp-dropdown-menu>
+              <kp-menu-item label="Profile" description="View and edit your profile" hasChevron="true"/>
+              <kp-menu-item label="Settings" description="Account preferences"/>
+              <kp-menu-item label="Billing" description="Plan, payment, invoices"/>
+              <kp-menu-divider/>
+              <kp-menu-item label="Sign out" [danger]="true"/>
+            </kp-dropdown-menu>
+            <span class="audit__cell-label">Rich (with description)</span>
+            <textarea class="audit__note" rows="2" placeholder="что не так?"
+              [value]="getNote('rich')" (input)="setNote('rich', $any($event.target).value)"></textarea>
+          </div>
+
+          <div class="audit__cell">
+            <kp-dropdown-menu>
+              <kp-menu-section-label label="Account"/>
+              <kp-menu-item label="Profile"/>
+              <kp-menu-item label="Settings"/>
+              <kp-menu-divider/>
+              <kp-menu-section-label label="Workspace"/>
+              <kp-menu-item label="Members"/>
+              <kp-menu-item label="Integrations"/>
+            </kp-dropdown-menu>
+            <span class="audit__cell-label">Sectioned</span>
+            <textarea class="audit__note" rows="2" placeholder="что не так?"
+              [value]="getNote('sectioned')" (input)="setNote('sectioned', $any($event.target).value)"></textarea>
+          </div>
+
+          <div class="audit__cell">
+            <kp-dropdown-menu [hasSearch]="true" [hasFooter]="true" searchPlaceholder="Search…">
+              <kp-menu-item label="Result one"/>
+              <kp-menu-item label="Result two"/>
+              <kp-menu-item label="Result three" [selected]="true"/>
+            </kp-dropdown-menu>
+            <span class="audit__cell-label">With search + footer</span>
+            <textarea class="audit__note" rows="2" placeholder="что не так?"
+              [value]="getNote('with-search-footer')" (input)="setNote('with-search-footer', $any($event.target).value)"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+  styles: [`
+    :host { display: block; font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif); }
+
+    .audit { display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-items: stretch; min-height: 100vh; }
+    .audit__col { padding: 24px; box-sizing: border-box; }
+    .audit__col--light { background: #FFFFFF; color: #18181B; } /* kanso-lint-disable raw-color -- audit chrome */
+    .audit__col--dark  { background: #09090B; color: #FAFAFA; } /* kanso-lint-disable raw-color -- audit chrome */
+
+    .audit__bar { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; border-bottom: 1px solid var(--kp-color-border-default); padding-bottom: 8px; }
+    .audit__theme { margin: 0; flex: 1; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--kp-color-text-muted); }
+    .audit__col--light .audit__theme { margin: 0 0 24px; border-bottom: 1px solid var(--kp-color-border-default); padding-bottom: 8px; }
+    .audit__action { all: unset; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 500; cursor: pointer; background: #FAFAFA; color: #18181B; transition: opacity 120ms ease; } /* kanso-lint-disable raw-color -- audit chrome */
+    .audit__action:disabled { opacity: 0.4; cursor: not-allowed; }
+    .audit__action--ghost { background: transparent; color: #FAFAFA; border: 1px solid #3F3F46; } /* kanso-lint-disable raw-color -- audit chrome */
+
+    .audit__row--menu { display: grid; grid-template-columns: 1fr; gap: 24px; align-items: start; }
+    @media (min-width: 900px)  { .audit__row--menu { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (min-width: 1600px) { .audit__row--menu { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    .audit__cell { display: flex; flex-direction: column; align-items: stretch; gap: 8px; min-width: 0; }
+    .audit__cell kp-dropdown-menu { width: 100%; max-width: 100%; }
+    .audit__cell-label { font-size: 11px; color: var(--kp-color-text-muted); }
+    .audit__note { box-sizing: border-box; width: 100%; margin-top: 4px; padding: 6px 8px; border-radius: 6px; font-family: inherit; font-size: 11px; line-height: 1.4; resize: vertical; background: #18181B; color: #FAFAFA; border: 1px solid #3F3F46; } /* kanso-lint-disable raw-color -- audit chrome */
+    .audit__col--light .audit__note { background: #FAFAFA; color: #18181B; border-color: #E4E4E7; } /* kanso-lint-disable raw-color -- audit chrome */
+    .audit__note:focus { outline: 2px solid var(--kp-color-focus-ring); outline-offset: 1px; }
+    .audit__note::placeholder { color: #71717A; } /* kanso-lint-disable raw-color -- audit chrome */
+  `],
+})
+export class KpDarkAuditMenuComponent {
+  readonly variants = MENU_VARIANTS;
+
+  private readonly notes = signal<Record<string, string>>(this.loadNotes());
+  protected readonly copyState = signal<'Copy notes' | 'Copied!' | 'Copy failed'>('Copy notes');
+  protected readonly filledCount = computed(
+    () => Object.values(this.notes()).filter((v) => v.trim().length > 0).length,
+  );
+
+  getNote(key: string): string { return this.notes()[key] ?? ''; }
+  setNote(key: string, value: string): void {
+    this.notes.update((m) => ({ ...m, [key]: value }));
+    this.persist();
+  }
+  async copyNotes(): Promise<void> {
+    const lines: string[] = [];
+    for (const v of this.variants) {
+      const n = this.getNote(v).trim();
+      if (n) lines.push(`${v} — ${n}`);
+    }
+    try {
+      await navigator.clipboard.writeText(lines.join('\n'));
+      this.copyState.set('Copied!');
+      setTimeout(() => this.copyState.set('Copy notes'), 1500);
+    } catch {
+      this.copyState.set('Copy failed');
+      setTimeout(() => this.copyState.set('Copy notes'), 1500);
+    }
+  }
+  clearNotes(): void {
+    if (!confirm('Clear all notes?')) return;
+    this.notes.set({});
+    this.persist();
+  }
+  private loadNotes(): Record<string, string> {
+    if (typeof localStorage === 'undefined') return {};
+    try { const raw = localStorage.getItem(MENU_STORAGE_KEY); return raw ? JSON.parse(raw) : {}; } catch { return {}; }
+  }
+  private persist(): void {
+    if (typeof localStorage === 'undefined') return;
+    try { localStorage.setItem(MENU_STORAGE_KEY, JSON.stringify(this.notes())); } catch {}
+  }
+}
+
 // ─── Storybook meta + exports ───────────────────────────────────────────
 
 const meta: Meta = {
@@ -1201,6 +1409,7 @@ const meta: Meta = {
         KpDarkAuditAlertComponent,
         KpDarkAuditAvatarComponent,
         KpDarkAuditCardComponent,
+        KpDarkAuditMenuComponent,
       ],
     }),
   ],
@@ -1235,5 +1444,11 @@ export const Avatar: StoryObj = {
 export const Card: StoryObj = {
   render: () => ({
     template: `<kp-dark-audit-card/>`,
+  }),
+};
+
+export const DropdownMenu: StoryObj = {
+  render: () => ({
+    template: `<kp-dark-audit-menu/>`,
   }),
 };

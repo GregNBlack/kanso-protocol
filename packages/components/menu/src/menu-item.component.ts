@@ -187,10 +187,25 @@ export type KpMenuItemSize = 'sm' | 'md' | 'lg';
       --kp-menu-item-fs: 14px;
       --kp-menu-item-shortcut-fs: 12px;
     }
-    :host(.kp-menu-item--lg.kp-menu-item--has-description) {
-      --kp-menu-item-height: 52px;
+    /* When description is rendered we drop the fixed item height and
+       expand vertically so title + description have breathing room.
+       Previously this rule existed only for the lg size, so md/sm
+       items with a description were squeezed into their no-description
+       height. */
+    :host(.kp-menu-item--sm.kp-menu-item--has-description) {
+      --kp-menu-item-height: auto;
       padding-top: 8px;
       padding-bottom: 8px;
+    }
+    :host(.kp-menu-item--md.kp-menu-item--has-description) {
+      --kp-menu-item-height: auto;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    :host(.kp-menu-item--lg.kp-menu-item--has-description) {
+      --kp-menu-item-height: auto;
+      padding-top: 12px;
+      padding-bottom: 12px;
     }
   `]
 })
