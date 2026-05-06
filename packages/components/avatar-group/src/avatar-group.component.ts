@@ -59,9 +59,16 @@ export interface KpAvatarGroupItem {
     :host {
       display: inline-flex;
       align-items: center;
-      gap: var(--kp-avatar-group-gap);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
+
+    /* Overlap via negative inline-start margin on every child past the
+       first. Negative flex-gap is poorly supported (Safari clamps to 0,
+       Chromium accepts but inconsistently); negative margin is the
+       bulletproof avatar-stack pattern. */
+    :host > * { position: relative; }
+    :host > *:not(:first-child) { margin-inline-start: var(--kp-avatar-group-overlap); }
+    :host > .kp-avatar-group__count { z-index: 2; }
 
     .kp-avatar-group__count {
       box-sizing: border-box;
@@ -79,51 +86,55 @@ export interface KpAvatarGroupItem {
       box-shadow: 0 0 0 var(--kp-avatar-group-ring-w) var(--kp-color-avatar-ring);
     }
 
-    /* Size (drives count chip dimensions and base overlap) */
+    /* Size (drives count chip dimensions and base overlap).
+       Overlap targets, by size: tight ≈ 70% of avatar diameter,
+       normal ≈ 55%, loose ≈ 35%. Each value is negative because it's
+       a margin-inline-start pulling the next avatar back over the
+       previous one. */
     :host(.kp-avatar-group--xs) {
       --kp-avatar-group-count-size: 20px;
       --kp-avatar-group-count-font: 10px;
       --kp-avatar-group-ring-w: 1.5px;
-      --kp-avatar-group-gap-tight: -10px;
-      --kp-avatar-group-gap-normal: -8px;
-      --kp-avatar-group-gap-loose: -4px;
+      --kp-avatar-group-overlap-tight: -6px;
+      --kp-avatar-group-overlap-normal: -3px;
+      --kp-avatar-group-overlap-loose: 1px;
     }
     :host(.kp-avatar-group--sm) {
       --kp-avatar-group-count-size: 24px;
       --kp-avatar-group-count-font: 11px;
       --kp-avatar-group-ring-w: 1.5px;
-      --kp-avatar-group-gap-tight: -12px;
-      --kp-avatar-group-gap-normal: -10px;
-      --kp-avatar-group-gap-loose: -6px;
+      --kp-avatar-group-overlap-tight: -9px;
+      --kp-avatar-group-overlap-normal: -5px;
+      --kp-avatar-group-overlap-loose: 0;
     }
     :host(.kp-avatar-group--md) {
       --kp-avatar-group-count-size: 32px;
       --kp-avatar-group-count-font: 12px;
       --kp-avatar-group-ring-w: 2px;
-      --kp-avatar-group-gap-tight: -16px;
-      --kp-avatar-group-gap-normal: -12px;
-      --kp-avatar-group-gap-loose: -8px;
+      --kp-avatar-group-overlap-tight: -14px;
+      --kp-avatar-group-overlap-normal: -10px;
+      --kp-avatar-group-overlap-loose: -3px;
     }
     :host(.kp-avatar-group--lg) {
       --kp-avatar-group-count-size: 40px;
       --kp-avatar-group-count-font: 14px;
       --kp-avatar-group-ring-w: 2px;
-      --kp-avatar-group-gap-tight: -20px;
-      --kp-avatar-group-gap-normal: -14px;
-      --kp-avatar-group-gap-loose: -8px;
+      --kp-avatar-group-overlap-tight: -20px;
+      --kp-avatar-group-overlap-normal: -14px;
+      --kp-avatar-group-overlap-loose: -6px;
     }
     :host(.kp-avatar-group--xl) {
       --kp-avatar-group-count-size: 56px;
       --kp-avatar-group-count-font: 18px;
       --kp-avatar-group-ring-w: 2.5px;
-      --kp-avatar-group-gap-tight: -28px;
-      --kp-avatar-group-gap-normal: -20px;
-      --kp-avatar-group-gap-loose: -10px;
+      --kp-avatar-group-overlap-tight: -31px;
+      --kp-avatar-group-overlap-normal: -23px;
+      --kp-avatar-group-overlap-loose: -12px;
     }
 
-    :host(.kp-avatar-group--tight)  { --kp-avatar-group-gap: var(--kp-avatar-group-gap-tight); }
-    :host(.kp-avatar-group--normal) { --kp-avatar-group-gap: var(--kp-avatar-group-gap-normal); }
-    :host(.kp-avatar-group--loose)  { --kp-avatar-group-gap: var(--kp-avatar-group-gap-loose); }
+    :host(.kp-avatar-group--tight)  { --kp-avatar-group-overlap: var(--kp-avatar-group-overlap-tight); }
+    :host(.kp-avatar-group--normal) { --kp-avatar-group-overlap: var(--kp-avatar-group-overlap-normal); }
+    :host(.kp-avatar-group--loose)  { --kp-avatar-group-overlap: var(--kp-avatar-group-overlap-loose); }
   `],
 })
 export class KpAvatarGroupComponent {

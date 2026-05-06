@@ -4,6 +4,8 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { KpButtonComponent } from '@kanso-protocol/button';
 import { KpInputComponent } from '@kanso-protocol/input';
 import { KpAlertComponent } from '@kanso-protocol/alert';
+import { KpAvatarComponent } from '@kanso-protocol/avatar';
+import { KpAvatarGroupComponent } from '@kanso-protocol/avatar-group';
 
 /**
  * Foundations / Dark Theme Audit
@@ -754,6 +756,300 @@ export class KpDarkAuditAlertComponent {
   }
 }
 
+// ─── Avatar audit ───────────────────────────────────────────────────────
+
+const AVATAR_APPEARANCES = ['default', 'primary', 'success', 'warning', 'danger', 'info', 'neutral'] as const;
+const AVATAR_ROWS = ['initials', 'icon', 'with-status'] as const;
+const AVATAR_STORAGE_KEY = 'kanso:dark-audit:avatar';
+
+@Component({
+  selector: 'kp-dark-audit-avatar',
+  imports: [KpAvatarComponent, KpAvatarGroupComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <div class="audit">
+      <div class="audit__col audit__col--light" [attr.data-theme]="'light'">
+        <h3 class="audit__theme">Light</h3>
+        @for (row of rows; track row) {
+          <div class="audit__variant">
+            <h4 class="audit__variant-title">{{ rowLabel(row) }}</h4>
+            <div class="audit__row audit__row--avatar">
+              @for (appearance of appearances; track appearance) {
+                <div class="audit__cell">
+                  <kp-avatar
+                    size="lg"
+                    shape="circle"
+                    [appearance]="appearance"
+                    [initials]="row === 'initials' ? 'AK' : null"
+                    [showStatus]="row === 'with-status'"
+                    status="online"
+                  />
+                  <span class="audit__cell-label">{{ appearance }}</span>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        <div class="audit__variant">
+          <h4 class="audit__variant-title">Avatar Group</h4>
+          <div class="audit__row audit__row--avatar-group">
+            <div class="audit__cell">
+              <kp-avatar-group [items]="groupItems" [max]="3" [total]="12"/>
+              <span class="audit__cell-label">3 of 12</span>
+            </div>
+            <div class="audit__cell">
+              <kp-avatar-group [items]="groupItems" [max]="5" overlap="tight"/>
+              <span class="audit__cell-label">tight</span>
+            </div>
+            <div class="audit__cell">
+              <kp-avatar-group [items]="groupItems" [max]="5" overlap="loose"/>
+              <span class="audit__cell-label">loose</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="audit__col audit__col--dark" [attr.data-theme]="'dark'">
+        <div class="audit__bar">
+          <h3 class="audit__theme">Dark · {{ filledCount() }} note(s)</h3>
+          <button
+            type="button"
+            class="audit__action"
+            (click)="copyNotes()"
+            [disabled]="filledCount() === 0"
+          >{{ copyState() }}</button>
+          <button
+            type="button"
+            class="audit__action audit__action--ghost"
+            (click)="clearNotes()"
+            [disabled]="filledCount() === 0"
+          >Clear all</button>
+        </div>
+        @for (row of rows; track row) {
+          <div class="audit__variant">
+            <h4 class="audit__variant-title">{{ rowLabel(row) }}</h4>
+            <div class="audit__row audit__row--avatar">
+              @for (appearance of appearances; track appearance) {
+                <div class="audit__cell">
+                  <kp-avatar
+                    size="lg"
+                    shape="circle"
+                    [appearance]="appearance"
+                    [initials]="row === 'initials' ? 'AK' : null"
+                    [showStatus]="row === 'with-status'"
+                    status="online"
+                  />
+                  <span class="audit__cell-label">{{ appearance }}</span>
+                  <textarea
+                    class="audit__note"
+                    rows="2"
+                    placeholder="что не так?"
+                    [value]="getNote(row, appearance)"
+                    (input)="setNote(row, appearance, $any($event.target).value)"
+                  ></textarea>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        <div class="audit__variant">
+          <h4 class="audit__variant-title">Avatar Group</h4>
+          <div class="audit__row audit__row--avatar-group">
+            @for (group of groupCases; track group.key) {
+              <div class="audit__cell">
+                <kp-avatar-group
+                  [items]="groupItems"
+                  [max]="group.max"
+                  [total]="group.total"
+                  [overlap]="group.overlap"
+                />
+                <span class="audit__cell-label">{{ group.label }}</span>
+                <textarea
+                  class="audit__note"
+                  rows="2"
+                  placeholder="что не так?"
+                  [value]="getNote('group', group.key)"
+                  (input)="setNote('group', group.key, $any($event.target).value)"
+                ></textarea>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+  styles: [`
+    :host { display: block; font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif); }
+
+    .audit {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: stretch;
+      min-height: 100vh;
+    }
+    .audit__col { padding: 24px; box-sizing: border-box; }
+    .audit__col--light { background: #FFFFFF; color: #18181B; } /* kanso-lint-disable raw-color -- audit chrome */
+    .audit__col--dark  { background: #09090B; color: #FAFAFA; } /* kanso-lint-disable raw-color -- audit chrome */
+
+    .audit__bar {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--kp-color-border-default);
+      padding-bottom: 8px;
+    }
+    .audit__theme {
+      margin: 0; flex: 1;
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--kp-color-text-muted);
+    }
+    .audit__col--light .audit__theme {
+      margin: 0 0 24px;
+      border-bottom: 1px solid var(--kp-color-border-default);
+      padding-bottom: 8px;
+    }
+    .audit__action {
+      all: unset;
+      padding: 6px 12px; border-radius: 8px;
+      font-size: 12px; font-weight: 500; cursor: pointer;
+      background: #FAFAFA; color: #18181B; /* kanso-lint-disable raw-color -- audit chrome */
+      transition: opacity 120ms ease;
+    }
+    .audit__action:disabled { opacity: 0.4; cursor: not-allowed; }
+    .audit__action--ghost {
+      background: transparent; color: #FAFAFA; /* kanso-lint-disable raw-color -- audit chrome */
+      border: 1px solid #3F3F46; /* kanso-lint-disable raw-color -- audit chrome */
+    }
+
+    .audit__variant { margin-bottom: 32px; }
+    .audit__variant-title {
+      margin: 0 0 12px;
+      font-size: 14px; font-weight: 500;
+      color: inherit; text-transform: capitalize;
+    }
+    .audit__row--avatar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+    .audit__row--avatar-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+    .audit__cell {
+      display: flex; flex-direction: column;
+      align-items: flex-start; gap: 4px;
+    }
+    .audit__cell-label {
+      font-size: 11px;
+      color: var(--kp-color-text-muted);
+    }
+    .audit__note {
+      box-sizing: border-box;
+      width: 100%; margin-top: 4px;
+      padding: 6px 8px; border-radius: 6px;
+      font-family: inherit; font-size: 11px; line-height: 1.4;
+      resize: vertical;
+      background: #18181B; color: #FAFAFA; /* kanso-lint-disable raw-color -- audit chrome */
+      border: 1px solid #3F3F46; /* kanso-lint-disable raw-color -- audit chrome */
+    }
+    .audit__col--light .audit__note {
+      background: #FAFAFA; color: #18181B; border-color: #E4E4E7; /* kanso-lint-disable raw-color -- audit chrome */
+    }
+    .audit__note:focus { outline: 2px solid var(--kp-color-focus-ring); outline-offset: 1px; }
+    .audit__note::placeholder { color: #71717A; } /* kanso-lint-disable raw-color -- audit chrome */
+  `],
+})
+export class KpDarkAuditAvatarComponent {
+  readonly appearances = AVATAR_APPEARANCES;
+  readonly rows = AVATAR_ROWS;
+
+  readonly groupItems = [
+    { initials: 'AK' },
+    { initials: 'JS' },
+    { initials: 'MG' },
+    { initials: 'RP' },
+    { initials: 'TZ' },
+    { initials: 'LE' },
+  ];
+
+  readonly groupCases = [
+    { key: 'count-3-of-12', label: '3 of 12 (with overflow)', max: 3, total: 12, overlap: 'normal' as const },
+    { key: 'tight-5',       label: 'tight overlap',           max: 5, total: null as unknown as number, overlap: 'tight' as const },
+    { key: 'loose-5',       label: 'loose overlap',           max: 5, total: null as unknown as number, overlap: 'loose' as const },
+  ];
+
+  private readonly notes = signal<Record<string, string>>(this.loadNotes());
+  protected readonly copyState = signal<'Copy notes' | 'Copied!' | 'Copy failed'>('Copy notes');
+
+  protected readonly filledCount = computed(
+    () => Object.values(this.notes()).filter((v) => v.trim().length > 0).length,
+  );
+
+  rowLabel(row: typeof AVATAR_ROWS[number]): string {
+    if (row === 'initials') return 'With initials';
+    if (row === 'icon') return 'Default (icon fallback)';
+    return 'With status indicator';
+  }
+
+  getNote(rowOrSection: string, key: string): string {
+    return this.notes()[`${rowOrSection}.${key}`] ?? '';
+  }
+
+  setNote(rowOrSection: string, key: string, value: string): void {
+    const composite = `${rowOrSection}.${key}`;
+    this.notes.update((map) => ({ ...map, [composite]: value }));
+    this.persist();
+  }
+
+  async copyNotes(): Promise<void> {
+    const lines: string[] = [];
+    for (const row of this.rows) {
+      for (const appearance of this.appearances) {
+        const note = this.getNote(row, appearance).trim();
+        if (note) lines.push(`${row}.${appearance} — ${note}`);
+      }
+    }
+    for (const g of this.groupCases) {
+      const note = this.getNote('group', g.key).trim();
+      if (note) lines.push(`group.${g.key} — ${note}`);
+    }
+    try {
+      await navigator.clipboard.writeText(lines.join('\n'));
+      this.copyState.set('Copied!');
+      setTimeout(() => this.copyState.set('Copy notes'), 1500);
+    } catch {
+      this.copyState.set('Copy failed');
+      setTimeout(() => this.copyState.set('Copy notes'), 1500);
+    }
+  }
+
+  clearNotes(): void {
+    if (!confirm('Clear all notes?')) return;
+    this.notes.set({});
+    this.persist();
+  }
+
+  private loadNotes(): Record<string, string> {
+    if (typeof localStorage === 'undefined') return {};
+    try {
+      const raw = localStorage.getItem(AVATAR_STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch { return {}; }
+  }
+
+  private persist(): void {
+    if (typeof localStorage === 'undefined') return;
+    try { localStorage.setItem(AVATAR_STORAGE_KEY, JSON.stringify(this.notes())); } catch {}
+  }
+}
+
 // ─── Storybook meta + exports ───────────────────────────────────────────
 
 const meta: Meta = {
@@ -765,7 +1061,12 @@ const meta: Meta = {
   },
   decorators: [
     moduleMetadata({
-      imports: [KpDarkAuditButtonComponent, KpDarkAuditInputComponent, KpDarkAuditAlertComponent],
+      imports: [
+        KpDarkAuditButtonComponent,
+        KpDarkAuditInputComponent,
+        KpDarkAuditAlertComponent,
+        KpDarkAuditAvatarComponent,
+      ],
     }),
   ],
 };
@@ -787,5 +1088,11 @@ export const Input: StoryObj = {
 export const Alert: StoryObj = {
   render: () => ({
     template: `<kp-dark-audit-alert/>`,
+  }),
+};
+
+export const Avatar: StoryObj = {
+  render: () => ({
+    template: `<kp-dark-audit-avatar/>`,
   }),
 };

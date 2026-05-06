@@ -743,6 +743,41 @@
       "fg-desc": {
         "$value": "#A1A1AA",
         "$description": "designer-pass"
+      },
+      "border": {
+        "$value": "#3F3F46",
+        "$description": "audit-2026-05-06 — match button outline-neutral border (gray.300 dark); was gray.200-inv (#27272A) which was too subtle to define the card outline against the page bg in dark"
+      }
+    },
+    "avatar": {
+      "$description": "Dark-mode avatar chrome. Default bg/fg cascade (gray.200/gray.700) was OK but other appearances aliased X.100 / X.700 — the dark inversions (X.100 dark = saturated mid-darks like #1E3A8A, #14532D) read as 'too saturated / too light' against the dark page bg. Pulled bgs down to muted-dark variants matching the audit-tuned button subtle palette. neutral was the worst: bg.neutral aliased gray.900 → #F4F4F5 (near-white), now lifted to gray.300 dark.",
+      "bg": {
+        "default":  { "$value": "#27272A", "$description": "audit-2026-05-06 r2 — gray.200 dark; tried surface-base #18181B but felt too dark for an avatar; back to gray-200" },
+        "primary":  { "$value": "#1E2A4F", "$description": "audit-2026-05-06 — match button primary.subtle.bg.rest" },
+        "success":  { "$value": "#14392A", "$description": "audit-2026-05-06 — muted dark green" },
+        "warning":  { "$value": "#4A2E0A", "$description": "audit-2026-05-06 — muted dark amber" },
+        "danger":   { "$value": "#3A1518", "$description": "audit-2026-05-06 — match button danger.subtle.bg.rest" },
+        "info":     { "$value": "#13384B", "$description": "audit-2026-05-06 — muted dark cyan" },
+        "neutral":  { "$value": "#3F3F46", "$description": "audit-2026-05-06 — gray-300 dark; was gray.900-inv (#F4F4F5) which left a near-white avatar in dark mode" }
+      },
+      "fg": {
+        "default":  { "$value": "#D4D4D8" },
+        "primary":  { "$value": "#93C5FD", "$description": "audit-2026-05-06 — blue-300 light, readable on the new muted dark bg" },
+        "success":  { "$value": "#86EFAC", "$description": "audit-2026-05-06 — green-300 light" },
+        "warning":  { "$value": "#FCD34D", "$description": "audit-2026-05-06 — amber-300 light" },
+        "danger":   { "$value": "#FCA5A5", "$description": "audit-2026-05-06 — red-300 light" },
+        "info":     { "$value": "#67E8F9", "$description": "audit-2026-05-06 — cyan-300 light" },
+        "neutral":  { "$value": "#FAFAFA", "$description": "audit-2026-05-06 — light text on the new gray-300-dark neutral bg" }
+      },
+      "ring": {
+        "$value": "#09090B",
+        "$description": "audit-2026-05-06 — page bg; was color.white inverted = #18181B which left a visible 'lifted' ring around the avatar in dark mode. Page-matching ring is invisible against the page so the avatar looks like a clean disc."
+      },
+      "group": {
+        "count": {
+          "bg": { "$value": "#27272A", "$description": "audit-2026-05-06 r2 — gray.200 dark; same logic as avatar.bg.default — surface-base felt too dark" },
+          "fg": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 r2 — bright white; gray.700-inv (#D4D4D8) read 'too pale' for the +N number on a dark count chip" }
+        }
       }
     },
     "input": {
