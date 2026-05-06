@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, signal, computed } from '@angular/c
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 
 import { KpButtonComponent } from '@kanso-protocol/button';
+import { KpInputComponent } from '@kanso-protocol/input';
 
 /**
  * Foundations / Dark Theme Audit
@@ -305,9 +306,232 @@ export class KpDarkAuditButtonComponent {
   }
 }
 
+// ─── Input audit ────────────────────────────────────────────────────────
+
+const INPUT_STATES = ['rest', 'hover', 'active', 'focus', 'disabled', 'error'] as const;
+const INPUT_ROWS = ['empty', 'filled'] as const;
+const INPUT_STORAGE_KEY = 'kanso:dark-audit:input';
+
+@Component({
+  selector: 'kp-dark-audit-input',
+  imports: [KpInputComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <div class="audit">
+      <div class="audit__col audit__col--light" [attr.data-theme]="'light'">
+        <h3 class="audit__theme">Light</h3>
+        @for (row of rows; track row) {
+          <div class="audit__variant">
+            <h4 class="audit__variant-title">{{ rowLabel(row) }}</h4>
+            <div class="audit__row audit__row--input">
+              @for (state of states; track state) {
+                <div class="audit__cell">
+                  <kp-input
+                    placeholder="Type something…"
+                    [value]="row === 'filled' ? 'value' : null"
+                    [forceState]="state"
+                    size="md"
+                  />
+                  <span class="audit__cell-label">{{ state }}</span>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="audit__col audit__col--dark" [attr.data-theme]="'dark'">
+        <div class="audit__bar">
+          <h3 class="audit__theme">Dark · {{ filledCount() }} note(s)</h3>
+          <button
+            type="button"
+            class="audit__action"
+            (click)="copyNotes()"
+            [disabled]="filledCount() === 0"
+          >{{ copyState() }}</button>
+          <button
+            type="button"
+            class="audit__action audit__action--ghost"
+            (click)="clearNotes()"
+            [disabled]="filledCount() === 0"
+          >Clear all</button>
+        </div>
+        @for (row of rows; track row) {
+          <div class="audit__variant">
+            <h4 class="audit__variant-title">{{ rowLabel(row) }}</h4>
+            <div class="audit__row audit__row--input">
+              @for (state of states; track state) {
+                <div class="audit__cell">
+                  <kp-input
+                    placeholder="Type something…"
+                    [value]="row === 'filled' ? 'value' : null"
+                    [forceState]="state"
+                    size="md"
+                  />
+                  <span class="audit__cell-label">{{ state }}</span>
+                  <textarea
+                    class="audit__note"
+                    rows="2"
+                    placeholder="что не так?"
+                    [value]="getNote(row, state)"
+                    (input)="setNote(row, state, $any($event.target).value)"
+                  ></textarea>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  `,
+  styles: [`
+    :host { display: block; font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif); }
+
+    .audit {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: stretch;
+      min-height: 100vh;
+    }
+    .audit__col { padding: 24px; box-sizing: border-box; }
+    .audit__col--light { background: #FFFFFF; color: #18181B; } /* kanso-lint-disable raw-color -- audit chrome */
+    .audit__col--dark  { background: #09090B; color: #FAFAFA; } /* kanso-lint-disable raw-color -- audit chrome */
+
+    .audit__bar {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--kp-color-border-default);
+      padding-bottom: 8px;
+    }
+    .audit__theme {
+      margin: 0; flex: 1;
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--kp-color-text-muted);
+    }
+    .audit__col--light .audit__theme {
+      margin: 0 0 24px;
+      border-bottom: 1px solid var(--kp-color-border-default);
+      padding-bottom: 8px;
+    }
+    .audit__action {
+      all: unset;
+      padding: 6px 12px; border-radius: 8px;
+      font-size: 12px; font-weight: 500; cursor: pointer;
+      background: #FAFAFA; color: #18181B; /* kanso-lint-disable raw-color -- audit chrome */
+      transition: opacity 120ms ease;
+    }
+    .audit__action:disabled { opacity: 0.4; cursor: not-allowed; }
+    .audit__action--ghost {
+      background: transparent; color: #FAFAFA; /* kanso-lint-disable raw-color -- audit chrome */
+      border: 1px solid #3F3F46; /* kanso-lint-disable raw-color -- audit chrome */
+    }
+
+    .audit__variant { margin-bottom: 32px; }
+    .audit__variant-title {
+      margin: 0 0 12px;
+      font-size: 14px; font-weight: 500;
+      color: inherit; text-transform: capitalize;
+    }
+    .audit__row--input {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      align-items: start;
+    }
+    .audit__cell {
+      display: flex; flex-direction: column;
+      align-items: stretch; gap: 4px;
+    }
+    .audit__cell kp-input { width: 100%; }
+    .audit__cell-label {
+      font-size: 11px;
+      color: var(--kp-color-text-muted);
+    }
+    .audit__note {
+      box-sizing: border-box;
+      width: 100%; margin-top: 4px;
+      padding: 6px 8px; border-radius: 6px;
+      font-family: inherit; font-size: 11px; line-height: 1.4;
+      resize: vertical;
+      background: #18181B; color: #FAFAFA; /* kanso-lint-disable raw-color -- audit chrome */
+      border: 1px solid #3F3F46; /* kanso-lint-disable raw-color -- audit chrome */
+    }
+    .audit__col--light .audit__note {
+      background: #FAFAFA; color: #18181B; border-color: #E4E4E7; /* kanso-lint-disable raw-color -- audit chrome */
+    }
+    .audit__note:focus { outline: 2px solid var(--kp-color-focus-ring); outline-offset: 1px; }
+    .audit__note::placeholder { color: #71717A; } /* kanso-lint-disable raw-color -- audit chrome */
+  `],
+})
+export class KpDarkAuditInputComponent {
+  readonly states = INPUT_STATES;
+  readonly rows = INPUT_ROWS;
+
+  private readonly notes = signal<Record<string, string>>(this.loadNotes());
+  protected readonly copyState = signal<'Copy notes' | 'Copied!' | 'Copy failed'>('Copy notes');
+
+  protected readonly filledCount = computed(
+    () => Object.values(this.notes()).filter((v) => v.trim().length > 0).length,
+  );
+
+  rowLabel(row: typeof INPUT_ROWS[number]): string {
+    return row === 'empty' ? 'Empty (placeholder)' : 'Filled (with value)';
+  }
+
+  getNote(row: string, state: string): string {
+    return this.notes()[`${row}.${state}`] ?? '';
+  }
+
+  setNote(row: string, state: string, value: string): void {
+    const key = `${row}.${state}`;
+    this.notes.update((map) => ({ ...map, [key]: value }));
+    this.persist();
+  }
+
+  async copyNotes(): Promise<void> {
+    const lines: string[] = [];
+    for (const row of this.rows) {
+      for (const state of this.states) {
+        const note = this.getNote(row, state).trim();
+        if (note) lines.push(`${row}.${state} — ${note}`);
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(lines.join('\n'));
+      this.copyState.set('Copied!');
+      setTimeout(() => this.copyState.set('Copy notes'), 1500);
+    } catch {
+      this.copyState.set('Copy failed');
+      setTimeout(() => this.copyState.set('Copy notes'), 1500);
+    }
+  }
+
+  clearNotes(): void {
+    if (!confirm('Clear all notes?')) return;
+    this.notes.set({});
+    this.persist();
+  }
+
+  private loadNotes(): Record<string, string> {
+    if (typeof localStorage === 'undefined') return {};
+    try {
+      const raw = localStorage.getItem(INPUT_STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch { return {}; }
+  }
+
+  private persist(): void {
+    if (typeof localStorage === 'undefined') return;
+    try { localStorage.setItem(INPUT_STORAGE_KEY, JSON.stringify(this.notes())); } catch {}
+  }
+}
+
+// ─── Storybook meta + exports ───────────────────────────────────────────
+
 const meta: Meta = {
   title: 'Foundations/Dark Theme Audit',
-  component: KpDarkAuditButtonComponent,
   parameters: {
     layout: 'fullscreen',
     docs: { disable: true },
@@ -315,7 +539,7 @@ const meta: Meta = {
   },
   decorators: [
     moduleMetadata({
-      imports: [KpDarkAuditButtonComponent],
+      imports: [KpDarkAuditButtonComponent, KpDarkAuditInputComponent],
     }),
   ],
 };
@@ -325,5 +549,11 @@ export default meta;
 export const Button: StoryObj = {
   render: () => ({
     template: `<kp-dark-audit-button/>`,
+  }),
+};
+
+export const Input: StoryObj = {
+  render: () => ({
+    template: `<kp-dark-audit-input/>`,
   }),
 };

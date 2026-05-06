@@ -657,11 +657,23 @@
       }
     },
     "input": {
+      "$description": "Dark-mode input chrome. bg.default was inheriting color.white (= surface-base = #18181B) which read as 'still light' against the page bg in dark; pulled to a deliberately darker value so the field surface is unmistakably dark in dark mode. r2 (2026-05-05): border / fg / placeholder values realigned with Button outline-neutral so input chrome reads with the same visual weight as that button on a dark surface.",
+      "bg": {
+        "default":  { "$value": "#0E0F13", "$description": "audit-2026-05-05 — distinctly darker than surface-base (#18181B); slight lift from page (#09090B) so the field is still defined" },
+        "filled":   { "$value": "#18181B", "$description": "audit-2026-05-05 — filled variant gets a more visible lift (= surface-base)" },
+        "disabled": { "$value": "#09090B", "$description": "audit-2026-05-05 — disabled blends with page bg, recessed look" }
+      },
+      "border": {
+        "rest":     { "$value": "#3F3F46", "$description": "audit-2026-05-05 r3 — gray-300 dark; on the deeper input bg #0E0F13 this lands at the same perceived weight as button outline-neutral border on transparent bg" },
+        "hover":    { "$value": "#52525B", "$description": "audit-2026-05-05 r3 — gray-400 dark, one step up for clear hover affordance" },
+        "disabled": { "$value": "#27272A", "$description": "audit-2026-05-05 r3 — gray-200 dark; barely-there but visible enough that the disabled field still reads as a field" }
+      },
       "fg": {
-        "default": {
-          "$value": "#71717A",
-          "$description": "designer-pass"
-        }
+        "default":  { "$value": "#E4E4E7", "$description": "audit-2026-05-05 r2 — gray-800 light, matches button outline-neutral rest fg; was #71717A which read 'too pale' for typed input value" },
+        "disabled": { "$value": "#3F3F46", "$description": "audit-2026-05-05 r2 — match button outline disabled fg, low-prominence disabled label" }
+      },
+      "placeholder": {
+        "default":  { "$value": "#52525B", "$description": "audit-2026-05-05 r3 — gray-400 dark; on the deeper input bg this reads as a hint without being either invisible (#3F3F46) or too prominent" }
       }
     },
     "popover": {
