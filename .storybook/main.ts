@@ -25,23 +25,7 @@ const config: StorybookConfig = {
     '../packages/core/stories/*.mdx',
   ],
   addons: [
-    {
-      name: getAbsolutePath("@storybook/addon-essentials"),
-      // Enable GitHub-flavored markdown (tables, strikethrough, autolinks)
-      // in MDX docs pages. Storybook 8 ships MDX 3 but doesn't bundle
-      // remark-gfm — without this the markdown tables in
-      // packages/core/stories/decision-matrix.mdx render as plain text
-      // with literal `|` separators.
-      options: {
-        docs: {
-          mdxPluginOptions: {
-            mdxCompileOptions: {
-              remarkPlugins: [require('remark-gfm')],
-            },
-          },
-        },
-      },
-    },
+    getAbsolutePath("@storybook/addon-essentials"),
     getAbsolutePath("@storybook/addon-themes"),
     getAbsolutePath("@storybook/addon-a11y"),
   ],

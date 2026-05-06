@@ -2,6 +2,28 @@ import { Meta } from '@storybook/blocks';
 
 <Meta title="Foundations/Decision Matrix" />
 
+<style>{`
+  .kp-dm-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 24px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .kp-dm-table th,
+  .kp-dm-table td {
+    padding: 8px 12px;
+    border: 1px solid var(--kp-color-border-default, #e4e4e7);
+    text-align: left;
+    vertical-align: top;
+  }
+  .kp-dm-table th {
+    background: var(--kp-color-surface-muted, #f4f4f5);
+    font-weight: 600;
+  }
+  .kp-dm-table td:first-child { font-weight: 500; white-space: nowrap; }
+`}</style>
+
 # Component Decision Matrix
 
 When two Kanso components solve overlapping problems, here's how to pick.
@@ -10,56 +32,81 @@ then the left.
 
 ## Selection inputs
 
-| Picking between | Pick **A** when… | Pick **B** when… |
-|-----------------|-----------------|------------------|
-| **Select** vs **Combobox** | The list is short (≤ 20 items) and the user just picks one | The list is long, async, or needs free-text search |
-| **Combobox** vs **CommandPalette** | The control is part of a form and the picked value is the field's `value` | The control is global / app-level and the picked value triggers an *action* |
-| **Radio** vs **SegmentedControl** | The set is mutually exclusive *and* expected to live in a form | The set is mutually exclusive *and* feels like a tab-style mode toggle |
-| **Checkbox** vs **Toggle** | The state is a form value that gets submitted on save | The state is a setting that takes effect immediately |
-| **Select** vs **Tree** | The data is flat | The data is hierarchical and depth matters to the user |
-| **DatePicker** (`mode="single"`) vs **DatePicker** (`mode="range"`) | One date is enough (birthday, deadline) | The user picks a span (booking, report range) |
+<table className="kp-dm-table">
+  <thead>
+    <tr><th>Picking between</th><th>Pick A when…</th><th>Pick B when…</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Select</strong> vs <strong>Combobox</strong></td><td>The list is short (≤ 20 items) and the user just picks one</td><td>The list is long, async, or needs free-text search</td></tr>
+    <tr><td><strong>Combobox</strong> vs <strong>CommandPalette</strong></td><td>The control is part of a form and the picked value is the field's <code>value</code></td><td>The control is global / app-level and the picked value triggers an <em>action</em></td></tr>
+    <tr><td><strong>Radio</strong> vs <strong>SegmentedControl</strong></td><td>The set is mutually exclusive <em>and</em> expected to live in a form</td><td>The set is mutually exclusive <em>and</em> feels like a tab-style mode toggle</td></tr>
+    <tr><td><strong>Checkbox</strong> vs <strong>Toggle</strong></td><td>The state is a form value that gets submitted on save</td><td>The state is a setting that takes effect immediately</td></tr>
+    <tr><td><strong>Select</strong> vs <strong>Tree</strong></td><td>The data is flat</td><td>The data is hierarchical and depth matters to the user</td></tr>
+    <tr><td><strong>DatePicker</strong> (<code>mode="single"</code>) vs <strong>DatePicker</strong> (<code>mode="range"</code>)</td><td>One date is enough (birthday, deadline)</td><td>The user picks a span (booking, report range)</td></tr>
+  </tbody>
+</table>
 
 ## Surfaces & overlays
 
-| Picking between | Pick **A** when… | Pick **B** when… |
-|-----------------|-----------------|------------------|
-| **Dialog** vs **Drawer** | The interaction is *short* and *modal* — confirm, edit one field, alert | The interaction is *long* — multi-step form, side detail panel, navigation drawer |
-| **Drawer** vs **Sidebar (pattern)** | The side panel is contextual — opens for a specific action and closes | The side panel is the app's persistent navigation |
-| **Popover** vs **Tooltip** | The content is interactive (links, buttons, form bits) | The content is purely informational text |
-| **Popover** vs **DropdownMenu** | The content is custom (filters, embedded form) | The content is a list of menu items / actions |
-| **Toast** vs **Alert** | The message is transient and confirms a recent action ("Saved") | The message is persistent and warns about state ("Disk full") |
-| **Toast** vs **Banner** | The message is per-action | The message is global and applies to the whole page or session |
-| **CommandPalette** vs **DropdownMenu** | The actions form a searchable global catalog (⌘K) | The actions are 3–10 contextual items off a single trigger |
+<table className="kp-dm-table">
+  <thead>
+    <tr><th>Picking between</th><th>Pick A when…</th><th>Pick B when…</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Dialog</strong> vs <strong>Drawer</strong></td><td>The interaction is <em>short</em> and <em>modal</em> — confirm, edit one field, alert</td><td>The interaction is <em>long</em> — multi-step form, side detail panel, navigation drawer</td></tr>
+    <tr><td><strong>Drawer</strong> vs <strong>Sidebar</strong> (pattern)</td><td>The side panel is contextual — opens for a specific action and closes</td><td>The side panel is the app's persistent navigation</td></tr>
+    <tr><td><strong>Popover</strong> vs <strong>Tooltip</strong></td><td>The content is interactive (links, buttons, form bits)</td><td>The content is purely informational text</td></tr>
+    <tr><td><strong>Popover</strong> vs <strong>DropdownMenu</strong></td><td>The content is custom (filters, embedded form)</td><td>The content is a list of menu items / actions</td></tr>
+    <tr><td><strong>Toast</strong> vs <strong>Alert</strong></td><td>The message is transient and confirms a recent action ("Saved")</td><td>The message is persistent and warns about state ("Disk full")</td></tr>
+    <tr><td><strong>Toast</strong> vs <strong>Banner</strong></td><td>The message is per-action</td><td>The message is global and applies to the whole page or session</td></tr>
+    <tr><td><strong>CommandPalette</strong> vs <strong>DropdownMenu</strong></td><td>The actions form a searchable global catalog (⌘K)</td><td>The actions are 3–10 contextual items off a single trigger</td></tr>
+  </tbody>
+</table>
 
 ## Layout & content
 
-| Picking between | Pick **A** when… | Pick **B** when… |
-|-----------------|-----------------|------------------|
-| **Card** vs **Container** | The content is a discrete unit that should feel grouped (border, padding, elevation) | The content is just centered + padded inside the page |
-| **Stack** vs **Row** | Items flow vertically | Items flow horizontally |
-| **Grid** vs **Stack/Row** | The layout has equal-width columns that wrap responsively | A 1-D flow is enough |
-| **Skeleton** vs **Progress** | The page is loading and you can predict the final shape | An action is in progress and you want to show how far it's gotten |
-| **Skeleton** vs **Spinner** (Progress circular) | You can mock the layout while data is fetched | The wait is short (under 1 s) or the layout is unknown |
-| **EmptyState** vs **PageError** | Data legitimately doesn't exist yet ("No tasks — create one") | Something *broke* (404, 500, network error) |
+<table className="kp-dm-table">
+  <thead>
+    <tr><th>Picking between</th><th>Pick A when…</th><th>Pick B when…</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Card</strong> vs <strong>Container</strong></td><td>The content is a discrete unit that should feel grouped (border, padding, elevation)</td><td>The content is just centered + padded inside the page</td></tr>
+    <tr><td><strong>Stack</strong> vs <strong>Row</strong></td><td>Items flow vertically</td><td>Items flow horizontally</td></tr>
+    <tr><td><strong>Grid</strong> vs <strong>Stack/Row</strong></td><td>The layout has equal-width columns that wrap responsively</td><td>A 1-D flow is enough</td></tr>
+    <tr><td><strong>Skeleton</strong> vs <strong>Progress</strong></td><td>The page is loading and you can predict the final shape</td><td>An action is in progress and you want to show how far it's gotten</td></tr>
+    <tr><td><strong>Skeleton</strong> vs <strong>Spinner</strong> (Progress circular)</td><td>You can mock the layout while data is fetched</td><td>The wait is short (under 1 s) or the layout is unknown</td></tr>
+    <tr><td><strong>EmptyState</strong> vs <strong>PageError</strong></td><td>Data legitimately doesn't exist yet ("No tasks — create one")</td><td>Something <em>broke</em> (404, 500, network error)</td></tr>
+  </tbody>
+</table>
 
 ## Tables & lists
 
-| Picking between | Pick **A** when… | Pick **B** when… |
-|-----------------|-----------------|------------------|
-| **Table** vs **VirtualList** | Under 500 rows, you want sort/select, and rows have multiple columns | Over 500 rows, performance matters, and a single-column item template is enough |
-| **Table** + **VirtualList** combined | Over 500 rows *and* you need columns/sort | (Compose; future `<kp-table-virtual>` will bake this in) |
-| **Tabs** vs **SegmentedControl** | The content under each item is a *page* | The content is a single value (filter, view mode) |
-| **Pagination** vs **VirtualList** | The user benefits from explicit page boundaries (search results) | Continuous scrolling is the natural model (feeds, logs) |
-| **Tree** vs **Accordion** | The data is hierarchical and can be deeply nested | The data is a flat list of foldable sections (FAQ, settings groups) |
+<table className="kp-dm-table">
+  <thead>
+    <tr><th>Picking between</th><th>Pick A when…</th><th>Pick B when…</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Table</strong> vs <strong>VirtualList</strong></td><td>Under 500 rows, you want sort/select, and rows have multiple columns</td><td>Over 500 rows, performance matters, and a single-column item template is enough</td></tr>
+    <tr><td><strong>Table</strong> + <strong>VirtualList</strong> combined</td><td>Over 500 rows <em>and</em> you need columns/sort</td><td>(Compose; future <code>&lt;kp-table-virtual&gt;</code> will bake this in)</td></tr>
+    <tr><td><strong>Tabs</strong> vs <strong>SegmentedControl</strong></td><td>The content under each item is a <em>page</em></td><td>The content is a single value (filter, view mode)</td></tr>
+    <tr><td><strong>Pagination</strong> vs <strong>VirtualList</strong></td><td>The user benefits from explicit page boundaries (search results)</td><td>Continuous scrolling is the natural model (feeds, logs)</td></tr>
+    <tr><td><strong>Tree</strong> vs <strong>Accordion</strong></td><td>The data is hierarchical and can be deeply nested</td><td>The data is a flat list of foldable sections (FAQ, settings groups)</td></tr>
+  </tbody>
+</table>
 
 ## Forms & validation
 
-| Picking between | Pick **A** when… | Pick **B** when… |
-|-----------------|-----------------|------------------|
-| **Input** vs **Textarea** | One line of text | Multi-line, free-form text |
-| **Input** vs **NumberStepper** | Free-form numeric entry where the user types | Fixed range with discrete steps the user nudges |
-| **NumberStepper** vs **Slider** | Precision matters (price, quantity) | Approximate value, visual feedback matters more (volume, brightness) |
-| **FormField** vs **inline labels** | Validation, helper text, and error state matter | Pure layout-only labeling (e.g. login screen with no async validation) |
+<table className="kp-dm-table">
+  <thead>
+    <tr><th>Picking between</th><th>Pick A when…</th><th>Pick B when…</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Input</strong> vs <strong>Textarea</strong></td><td>One line of text</td><td>Multi-line, free-form text</td></tr>
+    <tr><td><strong>Input</strong> vs <strong>NumberStepper</strong></td><td>Free-form numeric entry where the user types</td><td>Fixed range with discrete steps the user nudges</td></tr>
+    <tr><td><strong>NumberStepper</strong> vs <strong>Slider</strong></td><td>Precision matters (price, quantity)</td><td>Approximate value, visual feedback matters more (volume, brightness)</td></tr>
+    <tr><td><strong>FormField</strong> vs <strong>inline labels</strong></td><td>Validation, helper text, and error state matter</td><td>Pure layout-only labeling (e.g. login screen with no async validation)</td></tr>
+  </tbody>
+</table>
 
 ## Notification surfaces — full hierarchy
 
