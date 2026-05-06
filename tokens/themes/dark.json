@@ -400,10 +400,15 @@
         },
         "outline": {
           "bg":       { "$value": "#09090B", "$description": "audit-2026-05-06 — outline alerts were on surface-base (#18181B); dropped to page bg so the colored border carries identity" },
-          "fg-title": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 r3 — plain white, was blue.900 inversion = #DBEAFE which read indistinct" }
+          "fg-title": { "$value": "#BFDBFE", "$description": "audit-2026-05-06 r5 — blue-200 light, brand-tinted title (was plain white #FAFAFA but user wants colored title for outline)" },
+          "fg-desc":  { "$value": "#A1A1AA", "$description": "audit-2026-05-06 r5 — gray-800 light, brighter than gray.700-inv #D4D4D8 which was barely visible" }
         },
         "left-accent": {
-          "bg": { "$value": "#09090B", "$description": "audit-2026-05-06 — same as outline; left-accent identity comes from the colored bar" }
+          "bg":       { "$value": "#09090B", "$description": "audit-2026-05-06 — same as outline; left-accent identity comes from the colored bar" },
+          "fg-title": { "$value": "#BFDBFE", "$description": "audit-2026-05-06 r5 — blue-200 light, visible brand title" },
+          "fg-desc":  { "$value": "#A1A1AA", "$description": "audit-2026-05-06 r5 — gray-800 light, brighter body text" },
+          "border":   { "$value": "#27272A", "$description": "audit-2026-05-06 r5 — surface-base level; border was gray.200-inv #27272A which felt too prominent" },
+          "accent":   { "$value": "#3A4F88", "$description": "audit-2026-05-06 r5 — muted brand bar (was blue.600 dark = #2563EB, too saturated/bright for accent)" }
         }
       },
       "danger": {
@@ -418,9 +423,16 @@
         },
         "outline": {
           "bg":       { "$value": "#09090B" },
-          "fg-title": { "$value": "#FAFAFA" }
+          "fg-title": { "$value": "#FECACA", "$description": "audit-2026-05-06 r5 — red-200 light" },
+          "fg-desc":  { "$value": "#A1A1AA" }
         },
-        "left-accent":  { "bg": { "$value": "#09090B" } }
+        "left-accent": {
+          "bg":       { "$value": "#09090B" },
+          "fg-title": { "$value": "#FECACA" },
+          "fg-desc":  { "$value": "#A1A1AA" },
+          "border":   { "$value": "#27272A" },
+          "accent":   { "$value": "#7A2A2D", "$description": "audit-2026-05-06 r5 — muted dark red bar" }
+        }
       },
       "success": {
         "subtle": {
@@ -434,9 +446,16 @@
         },
         "outline": {
           "bg":       { "$value": "#09090B" },
-          "fg-title": { "$value": "#FAFAFA" }
+          "fg-title": { "$value": "#BBF7D0", "$description": "audit-2026-05-06 r5 — green-200 light" },
+          "fg-desc":  { "$value": "#A1A1AA" }
         },
-        "left-accent":  { "bg": { "$value": "#09090B" } }
+        "left-accent": {
+          "bg":       { "$value": "#09090B" },
+          "fg-title": { "$value": "#BBF7D0" },
+          "fg-desc":  { "$value": "#A1A1AA" },
+          "border":   { "$value": "#27272A" },
+          "accent":   { "$value": "#1F6336", "$description": "audit-2026-05-06 r5 — muted dark green bar" }
+        }
       },
       "warning": {
         "subtle": {
@@ -447,9 +466,16 @@
         },
         "outline": {
           "bg":       { "$value": "#09090B" },
-          "fg-title": { "$value": "#FAFAFA" }
+          "fg-title": { "$value": "#FDE68A", "$description": "audit-2026-05-06 r5 — amber-200 light" },
+          "fg-desc":  { "$value": "#A1A1AA" }
         },
-        "left-accent":  { "bg": { "$value": "#09090B" } }
+        "left-accent": {
+          "bg":       { "$value": "#09090B" },
+          "fg-title": { "$value": "#FDE68A" },
+          "fg-desc":  { "$value": "#A1A1AA" },
+          "border":   { "$value": "#27272A" },
+          "accent":   { "$value": "#8A4A0E", "$description": "audit-2026-05-06 r5 — muted dark amber bar" }
+        }
       },
       "info": {
         "subtle": {
@@ -463,9 +489,16 @@
         },
         "outline": {
           "bg":       { "$value": "#09090B" },
-          "fg-title": { "$value": "#FAFAFA" }
+          "fg-title": { "$value": "#A5F3FC", "$description": "audit-2026-05-06 r5 — cyan-200 light" },
+          "fg-desc":  { "$value": "#A1A1AA" }
         },
-        "left-accent":  { "bg": { "$value": "#09090B" } }
+        "left-accent": {
+          "bg":       { "$value": "#09090B" },
+          "fg-title": { "$value": "#A5F3FC" },
+          "fg-desc":  { "$value": "#A1A1AA" },
+          "border":   { "$value": "#27272A" },
+          "accent":   { "$value": "#155E75", "$description": "audit-2026-05-06 r5 — muted dark cyan bar" }
+        }
       },
       "neutral": {
         "subtle": {
@@ -480,8 +513,19 @@
           "fg-desc":  { "$value": "#A1A1AA" },
           "border":   { "$value": "#27272A", "$description": "audit-2026-05-06 r4 — match bg so the border disappears; other solid alerts naturally have border = bg, but neutral was using gray.900-inv = #F4F4F5 which left a bright outline on the new dark bg" }
         },
-        "outline":      { "bg": { "$value": "#09090B" } },
-        "left-accent":  { "bg": { "$value": "#09090B" } }
+        "outline": {
+          "bg":       { "$value": "#09090B" },
+          "fg-title": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 r5 — explicit white title (cascade gave gray.900 inverted = #F4F4F5 which user reported as 'not visible' — likely a perception issue from the bordered card; explicit value to be safe)" },
+          "fg-desc":  { "$value": "#A1A1AA" },
+          "border":   { "$value": "#27272A", "$description": "audit-2026-05-06 r5 — gray-200 dark, less bright than gray.300 inversion #3F3F46" }
+        },
+        "left-accent": {
+          "bg":       { "$value": "#09090B" },
+          "fg-title": { "$value": "#FAFAFA" },
+          "fg-desc":  { "$value": "#A1A1AA" },
+          "border":   { "$value": "#27272A" },
+          "accent":   { "$value": "#3F3F46", "$description": "audit-2026-05-06 r5 — gray-300 dark, muted neutral bar" }
+        }
       }
     },
     "primary": {
