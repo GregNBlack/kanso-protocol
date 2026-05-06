@@ -387,56 +387,100 @@
       }
     },
     "alert": {
-      "$description": "Subtle backgrounds — same logic as badge.",
+      "$description": "Subtle backgrounds — same logic as badge. r3 (audit-2026-05-06): titles for ALL subtle / outline appearances pulled to plain white so they read 'distinct' rather than 'tinted-but-similar'. Subtle desc for danger/success/warning/info bumped one step lighter so body text is readable. Solid desc explicitly held at light X.100 instead of inverting to dark X.50 (which produced dark-on-bright text in dark mode). Solid neutral bg pulled to subtle-neutral level so it stops reading as a near-white card.",
       "primary": {
         "subtle": {
-          "bg": {
-            "$value": "#1E3A8A"
-          },
-          "fg-title": {
-            "$value": "#DBEAFE",
-            "$description": "designer-pass"
-          },
-          "fg-desc": {
-            "$value": "#BFDBFE",
-            "$description": "designer-pass"
-          }
+          "bg":       { "$value": "#1E3A8A" },
+          "fg-title": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 r3 — plain white, was #DBEAFE which read as same-toned as desc" },
+          "fg-desc":  { "$value": "#BFDBFE", "$description": "designer-pass" },
+          "border":   { "$value": "transparent", "$description": "audit-2026-05-06 — subtle alerts in dark feel cleaner without a border; the tinted bg defines the box" }
+        },
+        "solid": {
+          "fg-desc":  { "$value": "#DBEAFE", "$description": "audit-2026-05-06 r3 — hold at blue-100 light; without override the alias cascades to blue.50 dark = #172554 which is dark text on bright bg — wrong" }
+        },
+        "outline": {
+          "bg":       { "$value": "#09090B", "$description": "audit-2026-05-06 — outline alerts were on surface-base (#18181B); dropped to page bg so the colored border carries identity" },
+          "fg-title": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 r3 — plain white, was blue.900 inversion = #DBEAFE which read indistinct" }
+        },
+        "left-accent": {
+          "bg": { "$value": "#09090B", "$description": "audit-2026-05-06 — same as outline; left-accent identity comes from the colored bar" }
         }
       },
       "danger": {
         "subtle": {
-          "bg": {
-            "$value": "#7F1D1D"
-          }
-        }
+          "bg":       { "$value": "#7F1D1D" },
+          "fg-title": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 r3 — plain white" },
+          "fg-desc":  { "$value": "#FECACA", "$description": "audit-2026-05-06 r3 — red-200 light; readable on dark red bg" },
+          "border":   { "$value": "transparent" }
+        },
+        "solid": {
+          "fg-desc":  { "$value": "#FEE2E2", "$description": "audit-2026-05-06 r3 — red-100 light" }
+        },
+        "outline": {
+          "bg":       { "$value": "#09090B" },
+          "fg-title": { "$value": "#FAFAFA" }
+        },
+        "left-accent":  { "bg": { "$value": "#09090B" } }
       },
       "success": {
         "subtle": {
-          "bg": {
-            "$value": "#14532D"
-          }
-        }
+          "bg":       { "$value": "#14532D" },
+          "fg-title": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 r3 — plain white" },
+          "fg-desc":  { "$value": "#BBF7D0", "$description": "audit-2026-05-06 r3 — green-200 light" },
+          "border":   { "$value": "transparent" }
+        },
+        "solid": {
+          "fg-desc":  { "$value": "#DCFCE7", "$description": "audit-2026-05-06 r3 — green-100 light" }
+        },
+        "outline": {
+          "bg":       { "$value": "#09090B" },
+          "fg-title": { "$value": "#FAFAFA" }
+        },
+        "left-accent":  { "bg": { "$value": "#09090B" } }
       },
       "warning": {
         "subtle": {
-          "bg": {
-            "$value": "#78350F"
-          }
-        }
+          "bg":       { "$value": "#78350F" },
+          "fg-title": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 r3 — plain white" },
+          "fg-desc":  { "$value": "#FDE68A", "$description": "audit-2026-05-06 r3 — amber-200 light" },
+          "border":   { "$value": "transparent" }
+        },
+        "outline": {
+          "bg":       { "$value": "#09090B" },
+          "fg-title": { "$value": "#FAFAFA" }
+        },
+        "left-accent":  { "bg": { "$value": "#09090B" } }
       },
       "info": {
         "subtle": {
-          "bg": {
-            "$value": "#164E63"
-          }
-        }
+          "bg":       { "$value": "#164E63" },
+          "fg-title": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 r3 — plain white" },
+          "fg-desc":  { "$value": "#A5F3FC", "$description": "audit-2026-05-06 r3 — cyan-200 light" },
+          "border":   { "$value": "transparent" }
+        },
+        "solid": {
+          "fg-desc":  { "$value": "#CFFAFE", "$description": "audit-2026-05-06 r3 — cyan-100 light" }
+        },
+        "outline": {
+          "bg":       { "$value": "#09090B" },
+          "fg-title": { "$value": "#FAFAFA" }
+        },
+        "left-accent":  { "bg": { "$value": "#09090B" } }
       },
       "neutral": {
         "subtle": {
-          "bg": {
-            "$value": "#27272A"
-          }
-        }
+          "bg":       { "$value": "#27272A" },
+          "fg-title": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 — near-white title on the gray-200 dark subtle bg" },
+          "fg-desc":  { "$value": "#A1A1AA", "$description": "audit-2026-05-06 — gray-400 light, readable secondary on gray-200 dark" },
+          "border":   { "$value": "transparent" }
+        },
+        "solid": {
+          "bg":       { "$value": "#27272A", "$description": "audit-2026-05-06 r3 — match subtle.neutral; default cascade gave gray.900 inverted = #F4F4F5 (near-white card) which read as 'light bg' in dark mode" },
+          "fg-title": { "$value": "#FAFAFA" },
+          "fg-desc":  { "$value": "#A1A1AA" }
+        },
+        "outline":      { "bg": { "$value": "#09090B" } },
+        "left-accent":  { "bg": { "$value": "#09090B" } }
       }
     },
     "primary": {

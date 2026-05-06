@@ -3,6 +3,7 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 
 import { KpButtonComponent } from '@kanso-protocol/button';
 import { KpInputComponent } from '@kanso-protocol/input';
+import { KpAlertComponent } from '@kanso-protocol/alert';
 
 /**
  * Foundations / Dark Theme Audit
@@ -528,6 +529,231 @@ export class KpDarkAuditInputComponent {
   }
 }
 
+// ─── Alert audit ────────────────────────────────────────────────────────
+
+const ALERT_APPEARANCES = ['subtle', 'solid', 'outline', 'left-accent'] as const;
+const ALERT_COLORS = ['primary', 'danger', 'success', 'warning', 'info', 'neutral'] as const;
+const ALERT_STORAGE_KEY = 'kanso:dark-audit:alert';
+
+@Component({
+  selector: 'kp-dark-audit-alert',
+  imports: [KpAlertComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <div class="audit">
+      <div class="audit__col audit__col--light" [attr.data-theme]="'light'">
+        <h3 class="audit__theme">Light</h3>
+        @for (appearance of appearances; track appearance) {
+          <div class="audit__variant">
+            <h4 class="audit__variant-title">{{ appearance }}</h4>
+            <div class="audit__row audit__row--alert">
+              @for (color of colors; track color) {
+                <div class="audit__cell">
+                  <kp-alert
+                    size="md"
+                    [appearance]="appearance"
+                    [color]="color"
+                    title="Alert title"
+                    description="Short body text for the alert."
+                    [closable]="true"
+                  />
+                  <span class="audit__cell-label">{{ color }}</span>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="audit__col audit__col--dark" [attr.data-theme]="'dark'">
+        <div class="audit__bar">
+          <h3 class="audit__theme">Dark · {{ filledCount() }} note(s)</h3>
+          <button
+            type="button"
+            class="audit__action"
+            (click)="copyNotes()"
+            [disabled]="filledCount() === 0"
+          >{{ copyState() }}</button>
+          <button
+            type="button"
+            class="audit__action audit__action--ghost"
+            (click)="clearNotes()"
+            [disabled]="filledCount() === 0"
+          >Clear all</button>
+        </div>
+        @for (appearance of appearances; track appearance) {
+          <div class="audit__variant">
+            <h4 class="audit__variant-title">{{ appearance }}</h4>
+            <div class="audit__row audit__row--alert">
+              @for (color of colors; track color) {
+                <div class="audit__cell">
+                  <kp-alert
+                    size="md"
+                    [appearance]="appearance"
+                    [color]="color"
+                    title="Alert title"
+                    description="Short body text for the alert."
+                    [closable]="true"
+                  />
+                  <span class="audit__cell-label">{{ color }}</span>
+                  <textarea
+                    class="audit__note"
+                    rows="2"
+                    placeholder="что не так?"
+                    [value]="getNote(appearance, color)"
+                    (input)="setNote(appearance, color, $any($event.target).value)"
+                  ></textarea>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  `,
+  styles: [`
+    :host { display: block; font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif); }
+
+    .audit {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: stretch;
+      min-height: 100vh;
+    }
+    .audit__col { padding: 24px; box-sizing: border-box; }
+    .audit__col--light { background: #FFFFFF; color: #18181B; } /* kanso-lint-disable raw-color -- audit chrome */
+    .audit__col--dark  { background: #09090B; color: #FAFAFA; } /* kanso-lint-disable raw-color -- audit chrome */
+
+    .audit__bar {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--kp-color-border-default);
+      padding-bottom: 8px;
+    }
+    .audit__theme {
+      margin: 0; flex: 1;
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--kp-color-text-muted);
+    }
+    .audit__col--light .audit__theme {
+      margin: 0 0 24px;
+      border-bottom: 1px solid var(--kp-color-border-default);
+      padding-bottom: 8px;
+    }
+    .audit__action {
+      all: unset;
+      padding: 6px 12px; border-radius: 8px;
+      font-size: 12px; font-weight: 500; cursor: pointer;
+      background: #FAFAFA; color: #18181B; /* kanso-lint-disable raw-color -- audit chrome */
+      transition: opacity 120ms ease;
+    }
+    .audit__action:disabled { opacity: 0.4; cursor: not-allowed; }
+    .audit__action--ghost {
+      background: transparent; color: #FAFAFA; /* kanso-lint-disable raw-color -- audit chrome */
+      border: 1px solid #3F3F46; /* kanso-lint-disable raw-color -- audit chrome */
+    }
+
+    .audit__variant { margin-bottom: 32px; }
+    .audit__variant-title {
+      margin: 0 0 12px;
+      font-size: 14px; font-weight: 500;
+      color: inherit; text-transform: capitalize;
+    }
+    .audit__row--alert {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+    @media (min-width: 1400px) {
+      .audit__row--alert { grid-template-columns: repeat(6, 1fr); }
+    }
+    .audit__cell {
+      display: flex; flex-direction: column;
+      align-items: stretch; gap: 4px;
+    }
+    .audit__cell kp-alert { width: 100%; }
+    .audit__cell-label {
+      font-size: 11px;
+      color: var(--kp-color-text-muted);
+    }
+    .audit__note {
+      box-sizing: border-box;
+      width: 100%; margin-top: 4px;
+      padding: 6px 8px; border-radius: 6px;
+      font-family: inherit; font-size: 11px; line-height: 1.4;
+      resize: vertical;
+      background: #18181B; color: #FAFAFA; /* kanso-lint-disable raw-color -- audit chrome */
+      border: 1px solid #3F3F46; /* kanso-lint-disable raw-color -- audit chrome */
+    }
+    .audit__col--light .audit__note {
+      background: #FAFAFA; color: #18181B; border-color: #E4E4E7; /* kanso-lint-disable raw-color -- audit chrome */
+    }
+    .audit__note:focus { outline: 2px solid var(--kp-color-focus-ring); outline-offset: 1px; }
+    .audit__note::placeholder { color: #71717A; } /* kanso-lint-disable raw-color -- audit chrome */
+  `],
+})
+export class KpDarkAuditAlertComponent {
+  readonly appearances = ALERT_APPEARANCES;
+  readonly colors = ALERT_COLORS;
+
+  private readonly notes = signal<Record<string, string>>(this.loadNotes());
+  protected readonly copyState = signal<'Copy notes' | 'Copied!' | 'Copy failed'>('Copy notes');
+
+  protected readonly filledCount = computed(
+    () => Object.values(this.notes()).filter((v) => v.trim().length > 0).length,
+  );
+
+  getNote(appearance: string, color: string): string {
+    return this.notes()[`${appearance}.${color}`] ?? '';
+  }
+
+  setNote(appearance: string, color: string, value: string): void {
+    const key = `${appearance}.${color}`;
+    this.notes.update((map) => ({ ...map, [key]: value }));
+    this.persist();
+  }
+
+  async copyNotes(): Promise<void> {
+    const lines: string[] = [];
+    for (const appearance of this.appearances) {
+      for (const color of this.colors) {
+        const note = this.getNote(appearance, color).trim();
+        if (note) lines.push(`${appearance}.${color} — ${note}`);
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(lines.join('\n'));
+      this.copyState.set('Copied!');
+      setTimeout(() => this.copyState.set('Copy notes'), 1500);
+    } catch {
+      this.copyState.set('Copy failed');
+      setTimeout(() => this.copyState.set('Copy notes'), 1500);
+    }
+  }
+
+  clearNotes(): void {
+    if (!confirm('Clear all notes?')) return;
+    this.notes.set({});
+    this.persist();
+  }
+
+  private loadNotes(): Record<string, string> {
+    if (typeof localStorage === 'undefined') return {};
+    try {
+      const raw = localStorage.getItem(ALERT_STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch { return {}; }
+  }
+
+  private persist(): void {
+    if (typeof localStorage === 'undefined') return;
+    try { localStorage.setItem(ALERT_STORAGE_KEY, JSON.stringify(this.notes())); } catch {}
+  }
+}
+
 // ─── Storybook meta + exports ───────────────────────────────────────────
 
 const meta: Meta = {
@@ -539,7 +765,7 @@ const meta: Meta = {
   },
   decorators: [
     moduleMetadata({
-      imports: [KpDarkAuditButtonComponent, KpDarkAuditInputComponent],
+      imports: [KpDarkAuditButtonComponent, KpDarkAuditInputComponent, KpDarkAuditAlertComponent],
     }),
   ],
 };
@@ -555,5 +781,11 @@ export const Button: StoryObj = {
 export const Input: StoryObj = {
   render: () => ({
     template: `<kp-dark-audit-input/>`,
+  }),
+};
+
+export const Alert: StoryObj = {
+  render: () => ({
+    template: `<kp-dark-audit-alert/>`,
   }),
 };
