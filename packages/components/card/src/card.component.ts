@@ -192,8 +192,18 @@ export type KpCardAppearance = 'default' | 'muted' | 'elevated' | 'outline';
       --kp-card-bg: var(--kp-color-card-bg-muted);
       --kp-card-border: var(--kp-color-card-border);
     }
+    /* Muted: text fades all the way down to text.muted / text.disabled
+       so the card reads as "secondary content" or "preview" — at one-step
+       dimming muted was still readable at the same visual weight as
+       default, which defeated the purpose. Both light and dark cascades
+       through the new tokens so the muting stays consistent across
+       themes. */
+    :host(.kp-card--muted) .kp-card__title { color: var(--kp-color-text-muted); }
+    :host(.kp-card--muted) .kp-card__desc  { color: var(--kp-color-text-disabled); }
+    :host(.kp-card--muted) .kp-card__body  { color: var(--kp-color-text-disabled); }
+
     :host(.kp-card--elevated) {
-      --kp-card-bg: var(--kp-color-card-bg);
+      --kp-card-bg: var(--kp-color-card-bg-elevated);
       --kp-card-border: transparent;
             box-shadow: 0 1px 2px var(--kp-color-overlay-hover-subtle), 0 2px 4px rgba(0,0,0,0.06);
     }

@@ -209,6 +209,14 @@
       }
     },
 
+    "checkbox": {
+      "$description": "Checkbox-scoped border tokens. Same as input.border in light, but the dark-mode override pushes hover one step lighter (gray.500 dark vs input's gray.400 dark) — checkbox box is much smaller than an input row, so the hover affordance needs more contrast to read.",
+      "border": {
+        "rest":  { "$value": "{color.gray.300}", "$type": "color" },
+        "hover": { "$value": "{color.gray.400}", "$type": "color" }
+      }
+    },
+
     "select": {
       "chevron": {
         "rest":     { "$value": "{color.gray.500}", "$type": "color" },
@@ -705,13 +713,14 @@
     },
 
     "card": {
-      "bg":       { "$value": "{color.white}", "$type": "color" },
-      "bg-muted": { "$value": "{color.gray.50}", "$type": "color", "$description": "Alternative muted background" },
-      "border":   { "$value": "{color.gray.200}", "$type": "color" },
-      "fg-title": { "$value": "{color.gray.900}", "$type": "color" },
-      "fg-desc":  { "$value": "{color.gray.600}", "$type": "color" },
-      "fg-body":  { "$value": "{color.gray.700}", "$type": "color" },
-      "divider":  { "$value": "{color.gray.100}", "$type": "color" }
+      "bg":          { "$value": "{color.white}", "$type": "color" },
+      "bg-muted":    { "$value": "{color.gray.50}", "$type": "color", "$description": "Alternative muted background" },
+      "bg-elevated": { "$value": "{color.white}", "$type": "color", "$description": "Same as bg in light. Dark override (#1F1F22) lifts the elevated card one step above default so the elevation reads against the dark page bg." },
+      "border":      { "$value": "{color.gray.200}", "$type": "color" },
+      "fg-title":    { "$value": "{color.gray.900}", "$type": "color" },
+      "fg-desc":     { "$value": "{color.gray.600}", "$type": "color" },
+      "fg-body":     { "$value": "{color.gray.700}", "$type": "color" },
+      "divider":     { "$value": "{color.gray.100}", "$type": "color" }
     },
 
     "dialog": {

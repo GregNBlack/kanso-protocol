@@ -747,6 +747,10 @@
       "border": {
         "$value": "#3F3F46",
         "$description": "audit-2026-05-06 — match button outline-neutral border (gray.300 dark); was gray.200-inv (#27272A) which was too subtle to define the card outline against the page bg in dark"
+      },
+      "bg-elevated": {
+        "$value": "#1F1F22",
+        "$description": "audit-2026-05-06 — slight lift above card.bg (#18181B) so elevated cards visually sit above default ones in dark; was the same hex which made elevated indistinguishable"
       }
     },
     "avatar": {
@@ -778,6 +782,11 @@
           "bg": { "$value": "#27272A", "$description": "audit-2026-05-06 r2 — gray.200 dark; same logic as avatar.bg.default — surface-base felt too dark" },
           "fg": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 r2 — bright white; gray.700-inv (#D4D4D8) read 'too pale' for the +N number on a dark count chip" }
         }
+      }
+    },
+    "checkbox": {
+      "border": {
+        "hover": { "$value": "#71717A", "$description": "audit-2026-05-06 — gray.500 dark, brighter than input.border.hover (#52525B); the small checkbox box needs more contrast on hover" }
       }
     },
     "input": {

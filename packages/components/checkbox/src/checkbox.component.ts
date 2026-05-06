@@ -61,6 +61,12 @@ export type KpCheckboxColor = 'primary' | 'danger';
       cursor: pointer;
       user-select: none;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
+      /* Rest-state default for the checkbox box border. Set on :host so the
+         hover / active / disabled / checked / error rules below — also on
+         :host — can override it via cascade. Setting it on .kp-checkbox__box
+         directly would shadow those overrides because a property set on
+         the consuming element always beats an inherited one. */
+      --kp-checkbox-border: var(--kp-color-checkbox-border-rest);
     }
     :host(.kp-checkbox--disabled) { cursor: not-allowed; }
 
@@ -102,10 +108,10 @@ export type KpCheckboxColor = 'primary' | 'danger';
 
     :host(:hover:not(.kp-checkbox--disabled)),
     :host(.kp-checkbox--hover) {
-      --kp-checkbox-border: var(--kp-color-input-border-hover);
+      --kp-checkbox-border: var(--kp-color-checkbox-border-hover);
     }
     :host(.kp-checkbox--active) {
-      --kp-checkbox-border: var(--kp-color-input-border-hover);
+      --kp-checkbox-border: var(--kp-color-checkbox-border-hover);
     }
     :host(:focus-visible),
     :host(.kp-checkbox--focus) {
