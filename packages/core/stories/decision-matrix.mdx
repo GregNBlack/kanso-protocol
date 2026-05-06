@@ -39,15 +39,15 @@ then the left.
 | **Stack** vs **Row** | Items flow vertically | Items flow horizontally |
 | **Grid** vs **Stack/Row** | The layout has equal-width columns that wrap responsively | A 1-D flow is enough |
 | **Skeleton** vs **Progress** | The page is loading and you can predict the final shape | An action is in progress and you want to show how far it's gotten |
-| **Skeleton** vs **Spinner** (Progress circular) | You can mock the layout while data is fetched | The wait is short (< 1 s) or the layout is unknown |
+| **Skeleton** vs **Spinner** (Progress circular) | You can mock the layout while data is fetched | The wait is short (under 1 s) or the layout is unknown |
 | **EmptyState** vs **PageError** | Data legitimately doesn't exist yet ("No tasks — create one") | Something *broke* (404, 500, network error) |
 
 ## Tables & lists
 
 | Picking between | Pick **A** when… | Pick **B** when… |
 |-----------------|-----------------|------------------|
-| **Table** vs **VirtualList** | < 500 rows, you want sort/select, and rows have multiple columns | > 500 rows, performance matters, and a single-column item template is enough |
-| **Table** + **VirtualList** combined | > 500 rows *and* you need columns/sort | (Compose; future `<kp-table-virtual>` will bake this in) |
+| **Table** vs **VirtualList** | Under 500 rows, you want sort/select, and rows have multiple columns | Over 500 rows, performance matters, and a single-column item template is enough |
+| **Table** + **VirtualList** combined | Over 500 rows *and* you need columns/sort | (Compose; future `<kp-table-virtual>` will bake this in) |
 | **Tabs** vs **SegmentedControl** | The content under each item is a *page* | The content is a single value (filter, view mode) |
 | **Pagination** vs **VirtualList** | The user benefits from explicit page boundaries (search results) | Continuous scrolling is the natural model (feeds, logs) |
 | **Tree** vs **Accordion** | The data is hierarchical and can be deeply nested | The data is a flat list of foldable sections (FAQ, settings groups) |
