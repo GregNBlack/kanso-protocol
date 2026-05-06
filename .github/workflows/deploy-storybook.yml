@@ -31,6 +31,11 @@ jobs:
       - name: Build tokens
         run: npm run build:tokens
       - name: Build Storybook
+        # Drop internal-only stories (e.g. Foundations / Dark Theme Audit)
+        # from the public deployed Storybook. Those pages exist for
+        # in-development token tuning, not for end-user browsing.
+        env:
+          KANSO_HIDE_AUDIT: '1'
         run: npx ng run kanso-protocol:build-storybook
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

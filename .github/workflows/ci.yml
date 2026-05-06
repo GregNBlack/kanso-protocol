@@ -47,6 +47,12 @@ jobs:
       - name: Build MCP server
         run: npm run build:mcp
       - name: Build Storybook
+        # KANSO_HIDE_AUDIT=1 drops the internal Foundations / Dark Theme Audit
+        # page from CI builds — same flag used by deploy-storybook.yml so all
+        # CI artifacts (a11y, visual-regression, deployed gh-pages) stay
+        # consistent.
+        env:
+          KANSO_HIDE_AUDIT: '1'
         run: npm run build-storybook
       - name: Unit tests (Vitest)
         id: vitest
@@ -86,6 +92,12 @@ jobs:
       - name: Build tokens
         run: npm run build:tokens
       - name: Build Storybook
+        # KANSO_HIDE_AUDIT=1 drops the internal Foundations / Dark Theme Audit
+        # page from CI builds — same flag used by deploy-storybook.yml so all
+        # CI artifacts (a11y, visual-regression, deployed gh-pages) stay
+        # consistent.
+        env:
+          KANSO_HIDE_AUDIT: '1'
         run: npm run build-storybook
       - name: Serve Storybook & run a11y + dark-mode checks
         run: |
@@ -122,6 +134,8 @@ jobs:
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
       - name: Build tokens + Storybook
+        env:
+          KANSO_HIDE_AUDIT: '1'
         run: npm run build:tokens && npm run build-storybook
       - name: Detect baseline-refresh mode
         id: mode
