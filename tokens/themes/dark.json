@@ -235,82 +235,6 @@
         "$value": "#ECFEFF"
       }
     },
-    "orange": {
-      "50": {
-        "$value": "#431407"
-      },
-      "100": {
-        "$value": "#7C2D12"
-      },
-      "200": {
-        "$value": "#9A3412"
-      },
-      "300": {
-        "$value": "#C2410C"
-      },
-      "400": {
-        "$value": "#EA580C"
-      },
-      "500": {
-        "$value": "#F97316"
-      },
-      "600": {
-        "$value": "#EA580C",
-        "$description": "orange-600 kept at LIGHT value in dark — preserves \"hover darker than rest\" semantics for action shades"
-      },
-      "700": {
-        "$value": "#C2410C",
-        "$description": "orange-700 kept at LIGHT value in dark — preserves \"hover darker than rest\" semantics for action shades"
-      },
-      "800": {
-        "$value": "#9A3412",
-        "$description": "orange-800 kept at LIGHT value in dark — preserves \"hover darker than rest\" semantics for action shades"
-      },
-      "900": {
-        "$value": "#FFEDD5"
-      },
-      "950": {
-        "$value": "#FFF7ED"
-      }
-    },
-    "violet": {
-      "50": {
-        "$value": "#2E1065"
-      },
-      "100": {
-        "$value": "#4C1D95"
-      },
-      "200": {
-        "$value": "#5B21B6"
-      },
-      "300": {
-        "$value": "#6D28D9"
-      },
-      "400": {
-        "$value": "#7C3AED"
-      },
-      "500": {
-        "$value": "#8B5CF6"
-      },
-      "600": {
-        "$value": "#7C3AED",
-        "$description": "violet-600 kept at LIGHT value in dark — preserves \"hover darker than rest\" semantics for action shades"
-      },
-      "700": {
-        "$value": "#6D28D9",
-        "$description": "violet-700 kept at LIGHT value in dark — preserves \"hover darker than rest\" semantics for action shades"
-      },
-      "800": {
-        "$value": "#5B21B6",
-        "$description": "violet-800 kept at LIGHT value in dark — preserves \"hover darker than rest\" semantics for action shades"
-      },
-      "900": {
-        "$value": "#EDE9FE"
-      },
-      "950": {
-        "$value": "#F5F3FF"
-      }
-    },
     "badge": {
       "$description": "Subtle backgrounds — the inverted primitive ramp lands too close to page bg (#09090B). Bump one step brighter so subtle badges read as tinted surfaces. Subtle fg's were picked by the designer-pass on 2026-05-01 against axe-flagged contrast violations.",
       "primary": {
@@ -885,36 +809,6 @@
         }
       }
     },
-    "form": {
-      "helper": {
-        "$value": "#A1A1AA",
-        "$description": "designer-pass"
-      },
-      "label": {
-        "$value": "#D4D4D8",
-        "$description": "designer-pass"
-      }
-    },
-    "stat-card": {
-      "trend-value-good": {
-        "$value": "#4ADE80",
-        "$description": "designer-pass"
-      },
-      "trend-value-bad": {
-        "$value": "#F87171",
-        "$description": "designer-pass"
-      },
-      "trend-value-neutral": {
-        "$value": "#A1A1AA",
-        "$description": "designer-pass"
-      }
-    },
-    "textarea": {
-      "counter": {
-        "$value": "#71717A",
-        "$description": "designer-pass"
-      }
-    },
     "divider": {
       "label": {
         "$value": "#A1A1AA",
@@ -938,12 +832,6 @@
     "sidebar": {
       "section-label": {
         "$value": "#A1A1AA",
-        "$description": "designer-pass"
-      }
-    },
-    "notif-item": {
-      "time": {
-        "$value": "#71717A",
         "$description": "designer-pass"
       }
     },
