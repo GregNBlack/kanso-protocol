@@ -1,0 +1,10 @@
+# @kanso-protocol/notification-center
+
+## 0.5.2
+
+### Patch Changes
+
+- Updated dependencies [e7b9808]
+  - @kanso-protocol/button@0.5.2
+  - @kanso-protocol/avatar@0.5.2
+  - @kanso-protocol/core@0.5.2

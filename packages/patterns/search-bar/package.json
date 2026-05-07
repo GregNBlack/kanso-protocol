@@ -1,13 +1,13 @@
 {
   "name": "@kanso-protocol/search-bar",
-  "version": "0.2.0",
+  "version": "0.5.2",
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": "^18.0.0",
     "@angular/common": "^18.0.0",
-    "@kanso-protocol/core": ">=0.5.1",
-    "@kanso-protocol/button": ">=0.3.1",
-    "@kanso-protocol/i18n": ">=0.2.0"
+    "@kanso-protocol/core": ">=0.5.2",
+    "@kanso-protocol/button": ">=0.5.2",
+    "@kanso-protocol/i18n": ">=0.5.2"
   },
   "description": "Kanso Protocol — search-bar (pattern).",
   "author": "GregNBlack",
