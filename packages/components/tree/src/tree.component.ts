@@ -291,6 +291,16 @@ export class KpTreeComponent {
     this.selected = node.id;
     this.focusedId = node.id;
     this.selectedChange.emit(node.id);
+    // Row click on an expandable node also toggles expansion — chevron
+    // is small and not always easy to hit. Selection is unaffected by
+    // collapse so the node stays selected if you re-click to fold it.
+    if (this.isExpandable(node)) {
+      const next = this.isExpanded(node.id)
+        ? this.expanded.filter((id) => id !== node.id)
+        : [...this.expanded, node.id];
+      this.expanded = next;
+      this.expandedChange.emit(next);
+    }
   }
 
   /**
