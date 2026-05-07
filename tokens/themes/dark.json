@@ -792,7 +792,7 @@
     "menu": {
       "item": {
         "fg": {
-          "selected": { "$value": "#BFDBFE", "$description": "audit-2026-05-06 — blue-200 light; was blue.700-inv = #1D4ED8 which read as the same blue as the selected bg (#172554) — low contrast" }
+          "selected": { "$value": "#DBEAFE", "$description": "audit-2026-05-07 r2 — blue-100 light, one step brighter than the r1 #BFDBFE which was still hard to read on the dark selected bg" }
         }
       }
     },
@@ -852,11 +852,13 @@
       }
     },
     "nav-item": {
+      "$description": "Dark-mode active nav-item fg/icon — light brand tints so the active state is unmistakable on the dark sidebar bg.",
       "fg": {
-        "disabled": {
-          "$value": "#71717A",
-          "$description": "designer-pass"
-        }
+        "active":   { "$value": "#DBEAFE", "$description": "audit-2026-05-07 — blue-100 light; was blue.700-inv = #1D4ED8 (same blue tone as the active bg #172554)" },
+        "disabled": { "$value": "#71717A", "$description": "designer-pass" }
+      },
+      "icon": {
+        "active": { "$value": "#BFDBFE", "$description": "audit-2026-05-07 — blue-200 light; one step less prominent than the label so the icon doesn't dominate" }
       }
     },
     "breadcrumbs": {

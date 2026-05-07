@@ -332,7 +332,7 @@
   --kp-color-avatar-group-count-bg: #27272a;
   --kp-color-avatar-group-count-fg: #fafafa;
   --kp-color-checkbox-border-hover: #71717a;
-  --kp-color-menu-item-fg-selected: #bfdbfe;
+  --kp-color-menu-item-fg-selected: #dbeafe;
   --kp-color-segmented-track-bg: #27272a;
   --kp-color-segmented-segment-bg-selected: #3f3f46;
   --kp-color-input-bg-default: #0e0f13;
@@ -348,7 +348,9 @@
   --kp-color-popover-bg: #1f1f22;
   --kp-color-popover-border: #3f3f46;
   --kp-color-tabs-tab-fg-rest: #a1a1aa;
+  --kp-color-nav-item-fg-active: #dbeafe;
   --kp-color-nav-item-fg-disabled: #71717a;
+  --kp-color-nav-item-icon-active: #bfdbfe;
   --kp-color-breadcrumbs-item-fg-link-rest: #93c5fd;
   --kp-color-table-header-fg: #a1a1aa;
   --kp-color-table-row-fg: #f4f4f5;
