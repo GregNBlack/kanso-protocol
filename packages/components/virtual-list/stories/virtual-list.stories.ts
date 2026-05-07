@@ -50,7 +50,7 @@ export const TenThousandRows: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <div style="border:1px solid #e4e4e7;border-radius:8px;overflow:hidden">
+      <div style="border:1px solid var(--kp-color-border-default);border-radius:8px;overflow:hidden">
         <kp-virtual-list
           [items]="items"
           [itemHeight]="itemHeight"
@@ -58,12 +58,12 @@ export const TenThousandRows: Story = {
           [overscan]="overscan"
         >
           <ng-template kpVirtualRow let-row let-i="index">
-            <div style="display:grid;grid-template-columns:60px 1fr 1fr 100px;align-items:center;gap:12px;padding:0 16px;height:100%;border-bottom:1px solid #f4f4f5;font-size:13px"
-                 [style.background]="i % 2 ? '#fafafa' : '#ffffff'">
-              <span style="color:#a1a1aa;font-variant-numeric:tabular-nums">#{{ row.id + 1 }}</span>
-              <span style="font-weight:500;color:#27272a">{{ row.name }}</span>
-              <span style="color:#71717a">{{ row.email }}</span>
-              <span style="display:inline-block;padding:2px 8px;border-radius:999px;background:#f4f4f5;color:#52525b;font-size:11px;text-align:center">{{ row.role }}</span>
+            <div style="display:grid;grid-template-columns:60px 1fr 1fr 100px;align-items:center;gap:12px;padding:0 16px;height:100%;border-bottom:1px solid var(--kp-color-surface-muted);font-size:13px"
+                 [style.background]="i % 2 ? 'var(--kp-color-surface-subtle)' : 'var(--kp-color-surface-base)'">
+              <span style="color:var(--kp-color-text-disabled);font-variant-numeric:tabular-nums">#{{ row.id + 1 }}</span>
+              <span style="font-weight:500;color:var(--kp-color-text-strong)">{{ row.name }}</span>
+              <span style="color:var(--kp-color-text-muted)">{{ row.email }}</span>
+              <span style="display:inline-block;padding:2px 8px;border-radius:999px;background:var(--kp-color-surface-muted);color:var(--kp-color-text-default);font-size:11px;text-align:center">{{ row.role }}</span>
             </div>
           </ng-template>
         </kp-virtual-list>
@@ -87,7 +87,7 @@ export const ChatLog: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <div style="border:1px solid #e4e4e7;border-radius:8px;overflow:hidden;width:560px">
+      <div style="border:1px solid var(--kp-color-border-default);border-radius:8px;overflow:hidden;width:560px">
         <kp-virtual-list
           [items]="items"
           [itemHeight]="itemHeight"
@@ -95,11 +95,11 @@ export const ChatLog: Story = {
           [overscan]="overscan"
         >
           <ng-template kpVirtualRow let-msg>
-            <div style="display:grid;grid-template-columns:auto 1fr;gap:10px;padding:8px 14px;height:100%;border-bottom:1px solid #f4f4f5">
-              <div style="width:32px;height:32px;border-radius:50%;background:#e4e4e7;color:#52525b;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">{{ msg.author[0] }}</div>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:10px;padding:8px 14px;height:100%;border-bottom:1px solid var(--kp-color-surface-muted)">
+              <div style="width:32px;height:32px;border-radius:50%;background:var(--kp-color-border-default);color:var(--kp-color-text-default);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">{{ msg.author[0] }}</div>
               <div style="display:flex;flex-direction:column;gap:2px;min-width:0">
-                <div style="display:flex;justify-content:space-between;font-size:12px"><strong style="color:#27272a">{{ msg.author }}</strong><span style="color:#a1a1aa">{{ msg.time }}</span></div>
-                <div style="font-size:13px;color:#52525b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ msg.text }}</div>
+                <div style="display:flex;justify-content:space-between;font-size:12px"><strong style="color:var(--kp-color-text-strong)">{{ msg.author }}</strong><span style="color:var(--kp-color-text-disabled)">{{ msg.time }}</span></div>
+                <div style="font-size:13px;color:var(--kp-color-text-default);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ msg.text }}</div>
               </div>
             </div>
           </ng-template>
@@ -129,10 +129,10 @@ export const ScrollToIndex: Story = {
     },
     template: `
       <div style="display:flex;flex-direction:column;gap:8px;width:480px">
-        <p style="font-size:12px;color:#71717a;margin:0">
+        <p style="font-size:12px;color:var(--kp-color-text-muted);margin:0">
           Real consumer code: <code>@ViewChild() list; this.list.scrollToIndex(5000, 'center')</code>
         </p>
-        <div style="border:1px solid #e4e4e7;border-radius:8px;overflow:hidden">
+        <div style="border:1px solid var(--kp-color-border-default);border-radius:8px;overflow:hidden">
           <kp-virtual-list
             id="vlist"
             [items]="items"
@@ -141,7 +141,7 @@ export const ScrollToIndex: Story = {
             [overscan]="overscan"
           >
             <ng-template kpVirtualRow let-row let-i="index">
-              <div style="padding:0 16px;height:100%;display:flex;align-items:center;border-bottom:1px solid #f4f4f5;font-size:13px;color:#27272a">
+              <div style="padding:0 16px;height:100%;display:flex;align-items:center;border-bottom:1px solid var(--kp-color-surface-muted);font-size:13px;color:var(--kp-color-text-strong)">
                 {{ row.name }}
               </div>
             </ng-template>
@@ -157,13 +157,13 @@ export const EmptyState: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <div style="border:1px solid #e4e4e7;border-radius:8px;overflow:hidden">
+      <div style="border:1px solid var(--kp-color-border-default);border-radius:8px;overflow:hidden">
         <kp-virtual-list [items]="items" [itemHeight]="itemHeight" [viewportHeight]="viewportHeight" [overscan]="overscan">
           <ng-template kpVirtualRow let-row>
             <div>{{ row }}</div>
           </ng-template>
         </kp-virtual-list>
-        <div style="padding:32px;text-align:center;color:#a1a1aa;font-size:13px">No items</div>
+        <div style="padding:32px;text-align:center;color:var(--kp-color-text-disabled);font-size:13px">No items</div>
       </div>
     `,
   }),
