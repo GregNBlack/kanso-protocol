@@ -6,6 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { KpAvatarComponent } from '@kanso-protocol/avatar';
+import { KpMenuItemComponent } from '@kanso-protocol/menu';
 
 export type KpUserMenuSize = 'sm' | 'md';
 
@@ -42,7 +43,7 @@ export interface KpUserMenuItem {
  */
 @Component({
   selector: 'kp-user-menu',
-  imports: [KpAvatarComponent],
+  imports: [KpAvatarComponent, KpMenuItemComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   // Host is a floating panel containing menuitems alongside non-menu chrome
   // (user info card, theme toggle, divider). role="menu" is scoped to each
@@ -88,12 +89,9 @@ export interface KpUserMenuItem {
     }
 
     <div class="kp-user-menu__group" role="menu">
-      <button type="button" role="menuitem" class="kp-user-menu__row kp-user-menu__row--danger" (click)="signOut.emit()">
-        <span class="kp-user-menu__row-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h12l-3-3m0 6 3-3M15 17v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg>
-        </span>
-        <span>Sign out</span>
-      </button>
+      <kp-menu-item label="Sign out" [danger]="true" (click)="signOut.emit()">
+        <svg kpMenuItemIcon viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h12l-3-3m0 6 3-3M15 17v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg>
+      </kp-menu-item>
     </div>
   `,
   styles: [`
@@ -158,7 +156,12 @@ export interface KpUserMenuItem {
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
     }
-    .kp-user-menu__row:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-strong); }
+    /* Match DropdownMenu menu-item hover exactly: bg → surface-subtle,
+       fg unchanged. The user-menu-row was previously using
+       surface-muted (one step darker) which read differently from
+       regular menu items. Architectural follow-up: replace
+       .kp-user-menu__row with <kp-menu-item>. */
+    .kp-user-menu__row:hover { background: var(--kp-color-surface-subtle); }
     .kp-user-menu__row-icon {
       display: inline-flex;
       align-items: center;
@@ -170,10 +173,10 @@ export interface KpUserMenuItem {
     .kp-user-menu__row-icon svg { width: 100%; height: 100%; }
 
     .kp-user-menu__row--danger {
-      color: var(--kp-color-accent-danger-fg);
+      color: var(--kp-color-menu-item-fg-danger-rest);
     }
-    .kp-user-menu__row--danger .kp-user-menu__row-icon { color: var(--kp-color-input-border-error); }
-    .kp-user-menu__row--danger:hover { background: var(--kp-color-danger-subtle-bg-rest); color: var(--kp-color-accent-danger-fg); }
+    .kp-user-menu__row--danger .kp-user-menu__row-icon { color: var(--kp-color-menu-item-fg-danger-rest); }
+    .kp-user-menu__row--danger:hover { background: var(--kp-color-danger-subtle-bg-rest); color: var(--kp-color-menu-item-fg-danger-hover); }
   `],
 })
 export class KpUserMenuComponent {

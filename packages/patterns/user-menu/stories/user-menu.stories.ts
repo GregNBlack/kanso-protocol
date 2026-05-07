@@ -1,11 +1,12 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { KpUserMenuComponent } from '../src/user-menu.component';
 import { KpAvatarComponent } from '@kanso-protocol/avatar';
+import { KpMenuItemComponent } from '@kanso-protocol/menu';
 
 const meta: Meta<KpUserMenuComponent> = {
   title: 'Patterns/UserMenu',
   component: KpUserMenuComponent,
-  decorators: [moduleMetadata({ imports: [KpAvatarComponent] })],
+  decorators: [moduleMetadata({ imports: [KpAvatarComponent, KpMenuItemComponent] })],
   tags: ['autodocs'],
   argTypes: {
     size: { control: 'inline-radio', options: ['sm','md'], table: { defaultValue: { summary: 'md' } } },
@@ -16,12 +17,9 @@ export default meta;
 type Story = StoryObj<KpUserMenuComponent>;
 
 const ROW = (icon: string, label: string) => `
-  <button style="all:unset;display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;font-size:13px;color: var(--kp-color-gray-700);cursor:pointer;font-family:Onest,system-ui,sans-serif" onmouseover="this.style.background='#F4F4F5'" onmouseout="this.style.background='transparent'">
-    <span style="display:inline-flex;width:16px;height:16px;color: var(--kp-color-gray-600)">
-      ${icon}
-    </span>
-    <span>${label}</span>
-  </button>
+  <kp-menu-item label="${label}" size="sm">
+    <span kpMenuItemIcon>${icon}</span>
+  </kp-menu-item>
 `;
 
 const USER_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>';
