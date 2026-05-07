@@ -92,14 +92,24 @@ if (versionBumps.length === 0) {
   process.exit(0);
 }
 
-// At least one package version moved — CHANGELOG.md must be in the diff.
-const changelogTouched = changedFiles.includes('CHANGELOG.md');
+// At least one package version moved — a CHANGELOG.md must be in the diff.
+// Accept either the root CHANGELOG.md (manual releases, umbrella notes) or
+// any per-package packages/**/CHANGELOG.md (the changesets default — every
+// bumped package writes its own changelog file).
+const rootChangelogTouched = changedFiles.includes('CHANGELOG.md');
+const pkgChangelogsTouched = changedFiles.filter(
+  (f) => f.startsWith('packages/') && f.endsWith('/CHANGELOG.md'),
+);
+const changelogTouched = rootChangelogTouched || pkgChangelogsTouched.length > 0;
 
 if (changelogTouched) {
+  const where = rootChangelogTouched
+    ? 'CHANGELOG.md updated'
+    : `${pkgChangelogsTouched.length} per-package CHANGELOG.md updated (changesets)`;
   console.log(
     `[check-changelog] ${versionBumps.length} package${
       versionBumps.length === 1 ? '' : 's'
-    } bumped, CHANGELOG.md updated. ✔`,
+    } bumped, ${where}. ✔`,
   );
   process.exit(0);
 }
