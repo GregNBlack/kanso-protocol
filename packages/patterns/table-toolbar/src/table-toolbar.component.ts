@@ -54,9 +54,9 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
         @if (showFilter) {
           <kp-button variant="outline" size="sm" (click)="filterClick.emit()">
             <kp-icon kpButtonIconLeft name="filter" />
-            <span>Filters</span>
+            Filters
             @if (activeFilterCount > 0) {
-              <kp-badge size="xs" color="primary" appearance="subtle">{{ activeFilterCount }}</kp-badge>
+              <kp-badge kpButtonIconRight size="xs" color="primary" appearance="subtle">{{ activeFilterCount }}</kp-badge>
             }
           </kp-button>
         }

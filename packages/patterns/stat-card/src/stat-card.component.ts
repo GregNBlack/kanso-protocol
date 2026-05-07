@@ -69,7 +69,7 @@ export type KpStatTrendAppearance = 'positive' | 'negative';
       gap: var(--kp-stat-gap, 12px);
       padding: var(--kp-stat-pad, 20px);
       background: var(--kp-color-surface-base);
-      border: 1px solid var(--kp-color-border-default);
+      border: 1px solid var(--kp-color-border-strong);
       border-radius: 12px;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }

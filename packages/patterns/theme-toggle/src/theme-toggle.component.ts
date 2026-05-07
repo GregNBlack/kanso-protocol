@@ -61,6 +61,7 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
         <span class="kp-theme-toggle__label">Theme</span>
       }
       <div class="kp-theme-toggle__segments" role="tablist" aria-label="Theme">
+        <span class="kp-theme-toggle__pill" aria-hidden="true"></span>
         @for (t of themes; track t) {
           <button
             type="button"
@@ -152,8 +153,12 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
     }
     .kp-theme-toggle__icon-btn:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-strong); }
 
-    /* Segmented variant */
+    /* Segmented variant — same sliding-pill pattern as
+       SegmentedControl: one pill element sits behind the 3 segments
+       and translates between them on selection change. The segments
+       themselves only swap text color. */
     .kp-theme-toggle__segments {
+      position: relative;
       display: inline-flex;
       align-items: center;
       gap: 2px;
@@ -162,8 +167,29 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       border-radius: 8px;
       background: var(--kp-color-surface-subtle);
     }
+    .kp-theme-toggle__pill {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: var(--kp-theme-seg, 28px);
+      height: var(--kp-theme-seg, 28px);
+      border-radius: 6px;
+      background: var(--kp-color-surface-base);
+      box-shadow: var(--kp-elevation-raised);
+      transform: translateX(var(--kp-theme-pill-x, 0));
+      transition: transform 240ms cubic-bezier(0.32, 0.72, 0, 1);
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* Pill stride = segment width + gap (2px). */
+    :host(.kp-theme-toggle--theme-light)  { --kp-theme-pill-x: 0; }
+    :host(.kp-theme-toggle--theme-dark)   { --kp-theme-pill-x: calc(var(--kp-theme-seg, 28px) + 2px); }
+    :host(.kp-theme-toggle--theme-system) { --kp-theme-pill-x: calc((var(--kp-theme-seg, 28px) + 2px) * 2); }
+
     .kp-theme-toggle__segment {
       all: unset;
+      position: relative;
+      z-index: 1;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -172,14 +198,10 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       border-radius: 6px;
       color: var(--kp-color-text-muted);
       cursor: pointer;
-      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
+      transition: color 120ms ease;
     }
     .kp-theme-toggle__segment:hover { color: var(--kp-color-text-strong); }
-    .kp-theme-toggle__segment--selected {
-      background: var(--kp-color-surface-base);
-      color: var(--kp-color-text-strong);
-      box-shadow: var(--kp-elevation-raised);
-    }
+    .kp-theme-toggle__segment--selected { color: var(--kp-color-text-strong); }
 
     /* Dropdown variant */
     .kp-theme-toggle__dropdown {
@@ -365,7 +387,7 @@ export class KpThemeToggleComponent implements AfterViewChecked, OnDestroy {
   }
 
   get hostClasses(): string {
-    return `kp-theme-toggle kp-theme-toggle--${this.variant} kp-theme-toggle--${this.size}`;
+    return `kp-theme-toggle kp-theme-toggle--${this.variant} kp-theme-toggle--${this.size} kp-theme-toggle--theme-${this.currentTheme}`;
   }
 
   cycle(): void {
