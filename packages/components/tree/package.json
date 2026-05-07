@@ -1,13 +1,13 @@
 {
   "name": "@kanso-protocol/tree",
-  "version": "0.2.0",
+  "version": "0.5.2",
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": "^18.0.0",
     "@angular/common": "^18.0.0",
-    "@kanso-protocol/core": ">=0.5.1",
-    "@kanso-protocol/checkbox": ">=0.2.0",
-    "@kanso-protocol/icon": ">=0.1.0"
+    "@kanso-protocol/core": ">=0.5.2",
+    "@kanso-protocol/checkbox": ">=0.5.2",
+    "@kanso-protocol/icon": ">=0.5.2"
   },
   "description": "Kanso Protocol — tree (component).",
   "author": "GregNBlack",
