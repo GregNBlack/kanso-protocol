@@ -401,7 +401,7 @@ The full design library is published on Figma Community — duplicate it into yo
 
 **[→ Kanso Protocol on Figma Community](https://www.figma.com/community/file/1633266134559104948)**
 
-Inside: 41 components × variants, 22 patterns, 900 W3C DTCG variables (light + dark modes), Iconography, and 8 example pages (Dashboard, Detail View, List View, Login, Settings, Command Palette, File Upload, Markdown Viewer).
+Inside: 41 components × variants, 20 patterns, 840 W3C DTCG variables (light + dark modes), Iconography, and 5 example pages (Login, Dashboard, Settings, List View, Detail View).
 
 ### Token sync
 
