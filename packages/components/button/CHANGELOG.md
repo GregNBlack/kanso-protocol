@@ -6,8 +6,8 @@
 
 - e7b9808: **Dark-theme audit r1 + shared kp-icon-button atom + Figma library sync.**
 
-  Aligns every `@kanso-protocol/*` package on `0.6.0` under the existing
-  fixed-group rule. The actual code surface that moved since `0.5.x`:
+  Aligns every `@kanso-protocol/*` package on `0.5.2` under the existing
+  fixed-group rule. The actual code surface that moved since `0.5.1`:
 
   **New public API (`@kanso-protocol/button`)**
   - `<kp-icon-button>` — shared atom for close / clear / dismiss buttons
