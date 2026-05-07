@@ -24,11 +24,11 @@
     "@angular/core": ">=18.0.0",
     "@angular/common": ">=18.0.0",
     "@angular/forms": ">=18.0.0",
-    "@kanso-protocol/core": ">=0.1.0",
-    "@kanso-protocol/button": ">=0.1.0",
+    "@kanso-protocol/core": ">=0.5.1",
+    "@kanso-protocol/button": ">=0.3.1",
     "@kanso-protocol/divider": ">=0.1.0",
-    "@kanso-protocol/popover": ">=0.1.0",
-    "@kanso-protocol/input": ">=0.1.0"
+    "@kanso-protocol/popover": ">=0.2.2",
+    "@kanso-protocol/input": ">=0.1.1"
   },
   "dependencies": {
     "@tiptap/core": "^3.22.4",
