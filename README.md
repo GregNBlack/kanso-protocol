@@ -395,6 +395,62 @@ only, not published to npm) and serve as the integration test for the system.
 | List View | Team members table — toolbar, filters, paginated table | [docs/examples/list-view.md](docs/examples/list-view.md) |
 | Detail View | Project record — rich PageHeader + 2/1 grid of cards | [docs/examples/detail-view.md](docs/examples/detail-view.md) |
 
+## Templates
+
+Reusable application scaffolds — composed entirely from `@kanso-protocol/*`
+components and patterns, but **distributed as code, not as npm packages.**
+Drop the file into your project, install peer packages, own the copy.
+Same convention as Material UI templates, Vercel templates, shadcn-ui.
+
+> **Why not npm-publish them?** Templates are compositions, and every
+> consumer ends up tweaking the layout. Stable layout APIs are hard
+> (one project wants 3 panes, another wants RTL drawer, a third wants
+> a mobile-first stack). Code-as-template lets you take it as a
+> starting point without inheriting our opinions.
+
+| Template | What it is | Docs |
+|---|---|---|
+| Workspace | Productivity / admin scaffold — transparent header (logo + breadcrumbs + theme toggle + notifications + user menu), collapsible sidebar with smooth animation, 1-or-2-pane content area with drag-to-resize, light / dark / system theme handling, `prefers-color-scheme` live-tracking | [docs/templates/workspace.md](docs/templates/workspace.md) |
+
+### Quick start (Workspace)
+
+```bash
+# 1. Install peer packages once (skip the ones you already have):
+npm i @kanso-protocol/{core,app-shell,sidebar,nav-item,avatar,user-menu,\
+menu,theme-toggle,popover,notification-center,icon,button,badge,breadcrumbs}
+
+# 2. Copy the template file into your project:
+mkdir -p src/templates
+curl -o src/templates/template-workspace.component.ts \
+  https://raw.githubusercontent.com/GregNBlack/kanso-protocol/main/packages/examples/template-modern/template-workspace.component.ts
+```
+
+Then drop it into a route or page component:
+
+```ts
+import { KpTemplateWorkspaceComponent } from './templates/template-workspace.component';
+
+@Component({
+  standalone: true,
+  imports: [KpTemplateWorkspaceComponent],
+  template: `
+    <kp-template-workspace
+      [navSections]="sections"
+      [user]="user"
+      [breadcrumbs]="crumbs"
+      [(theme)]="theme"
+      (signOut)="logout()"
+    >
+      <div kpWsMain><!-- your main content --></div>
+      <div kpWsSide><!-- optional side pane --></div>
+    </kp-template-workspace>
+  `,
+})
+```
+
+Live demo: [Storybook → Templates / Workspace](https://gregnblack.github.io/kanso-protocol/?path=/story/templates-workspace--default).
+Public API contract: [docs/templates/workspace.md](docs/templates/workspace.md).
+
 ## Figma Integration
 
 The full design library is published on Figma Community — duplicate it into your team to use the components, variables, and example pages directly:
