@@ -562,28 +562,20 @@ export class KpTemplateWorkspaceComponent implements OnInit, OnDestroy {
     this.themeChange.emit(t);
   }
 
-  /** Apply the resolved palette to the document. Storybook globals are
-   *  synced ONLY for explicit light/dark — for "system" we keep the
-   *  toolbar untouched (Storybook's enum has no representation for
-   *  "system", and emitting the resolved value would lose the user's
-   *  intent on the next render when the mirror decorator re-applies).
+  /** Apply the resolved palette to the document.
    *
-   *  The globals emit is deferred ~260ms (just past the segmented
-   *  toggle's pill transition) — synchronously emitting forces the
-   *  addon-themes decorator to re-render the story mid-click, which
-   *  destroys the toggle component and aborts the pill slide animation.
-   *  Letting the visual transition complete first keeps the slide
-   *  smooth, then the toolbar catches up a frame later. */
+   *  Storybook globals are NOT synced from here. addon-themes responds
+   *  to global changes by re-rendering the entire story, which would
+   *  destroy the live toggle component mid-click and break the pill
+   *  slide animation. The Storybook toolbar will show stale state
+   *  while the page reflects the correct theme — but Storybook is the
+   *  only context where that mismatch is visible. In a real consumer
+   *  app there's no toolbar, so the page-correct, smooth animation
+   *  wins. */
   private applyResolvedTheme(resolved: 'light' | 'dark', original: KpWsTheme): void {
     if (typeof document === 'undefined') return;
     document.documentElement.setAttribute('data-theme', resolved);
     document.body.setAttribute('data-theme', resolved);
-    if (original === 'system') return;
-    const ch = (globalThis as { __STORYBOOK_ADDONS_CHANNEL__?: { emit?: (e: string, p: unknown) => void } })
-      .__STORYBOOK_ADDONS_CHANNEL__;
-    if (ch?.emit) {
-      setTimeout(() => ch.emit?.('updateGlobals', { globals: { theme: resolved } }), 260);
-    }
   }
 
   // ===== Layout toggle / sidebar / popover handlers =====================
