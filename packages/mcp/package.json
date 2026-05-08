@@ -1,6 +1,6 @@
 {
   "name": "@kanso-protocol/mcp",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "license": "MIT",
   "description": "Kanso Protocol — Model Context Protocol server. Exposes the component / pattern / token catalog to AI agents so they can author Kanso UI without leaving the editor.",
   "author": "GregNBlack",

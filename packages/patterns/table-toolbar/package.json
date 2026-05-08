@@ -1,14 +1,14 @@
 {
   "name": "@kanso-protocol/table-toolbar",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": "^18.0.0",
     "@angular/common": "^18.0.0",
-    "@kanso-protocol/core": ">=0.5.2",
-    "@kanso-protocol/button": ">=0.5.2",
-    "@kanso-protocol/badge": ">=0.5.2",
-    "@kanso-protocol/search-bar": ">=0.5.2"
+    "@kanso-protocol/core": ">=0.5.3",
+    "@kanso-protocol/button": ">=0.5.3",
+    "@kanso-protocol/badge": ">=0.5.3",
+    "@kanso-protocol/search-bar": ">=0.5.3"
   },
   "description": "Kanso Protocol — table-toolbar (pattern).",
   "author": "GregNBlack",

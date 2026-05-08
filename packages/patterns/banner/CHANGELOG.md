@@ -1,5 +1,13 @@
 # @kanso-protocol/banner
 
+## 0.5.3
+
+### Patch Changes
+
+- Updated dependencies [e98ed74]
+  - @kanso-protocol/button@0.5.3
+  - @kanso-protocol/core@0.5.3
+
 ## 0.5.2
 
 ### Patch Changes

@@ -1,12 +1,12 @@
 {
   "name": "@kanso-protocol/combobox",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": "^18.0.0",
     "@angular/common": "^18.0.0",
     "@angular/forms": "^18.0.0",
-    "@kanso-protocol/core": ">=0.5.2"
+    "@kanso-protocol/core": ">=0.5.3"
   },
   "description": "Kanso Protocol — combobox (component).",
   "author": "GregNBlack",
