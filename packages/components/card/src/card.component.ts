@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 export type KpCardSize = 'sm' | 'md' | 'lg';
-export type KpCardAppearance = 'default' | 'muted' | 'elevated' | 'outline';
+export type KpCardAppearance = 'default' | 'muted' | 'subtle' | 'elevated' | 'outline';
 
 /**
  * Kanso Protocol — Card
@@ -17,9 +17,12 @@ export type KpCardAppearance = 'default' | 'muted' | 'elevated' | 'outline';
  * dividers can be added between sections for visual grouping.
  *
  * Set `appearance="elevated"` for a shadowed surface, `"muted"` for a
- * gray background, or `"outline"` for a transparent panel with just a
- * border. Setting `[clickable]="true"` adds a hover state and emits
- * `(cardClick)` — wire it to navigate, expand, or run any action.
+ * gray background with dimmed text (secondary / preview content),
+ * `"subtle"` for a gray background with full-strength text and no
+ * border (primary content visually separated from the page), or
+ * `"outline"` for a transparent panel with just a border. Setting
+ * `[clickable]="true"` adds a hover state and emits `(cardClick)` —
+ * wire it to navigate, expand, or run any action.
  */
 @Component({
   selector: 'kp-card',
@@ -210,6 +213,19 @@ export type KpCardAppearance = 'default' | 'muted' | 'elevated' | 'outline';
     :host(.kp-card--outline) {
       --kp-card-bg: transparent;
       --kp-card-border: var(--kp-color-card-border);
+    }
+    /* Subtle: gray surface, no border, full-strength text. Reads as a
+       primary content surface that has been visually lifted off the
+       page without the chrome of a border or a shadow. surface-muted
+       gives the right step in both themes (gray-100 light, gray-200
+       dark — distinct against the respective page bg). Clickable hover
+       moves to surface-strong so the hover affordance still reads. */
+    :host(.kp-card--subtle) {
+      --kp-card-bg: var(--kp-color-surface-muted);
+      --kp-card-border: transparent;
+    }
+    :host(.kp-card--subtle.kp-card--clickable:hover) {
+      background: var(--kp-color-surface-strong);
     }
   `],
 })

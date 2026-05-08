@@ -11,7 +11,7 @@ const meta: Meta<KpCardComponent> = {
   decorators: [moduleMetadata({ imports: [KpCardComponent] })],
   argTypes: {
     size: { control: 'inline-radio', options: ['sm', 'md', 'lg'] },
-    appearance: { control: 'inline-radio', options: ['default', 'muted', 'elevated', 'outline'] },
+    appearance: { control: 'inline-radio', options: ['default', 'muted', 'subtle', 'elevated', 'outline'] },
   },
 };
 export default meta;
@@ -43,7 +43,8 @@ export const Appearances: Story = {
     template: `
       <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;background: var(--kp-color-gray-100);padding:32px;border-radius:12px">
         <kp-card appearance="default"  title="Default"  [showDescription]="true" description="White bg, gray border.">Body</kp-card>
-        <kp-card appearance="muted"    title="Muted"    [showDescription]="true" description="Gray bg, gray border.">Body</kp-card>
+        <kp-card appearance="muted"    title="Muted"    [showDescription]="true" description="Gray bg, gray border, dimmed text.">Body</kp-card>
+        <kp-card appearance="subtle"   title="Subtle"   [showDescription]="true" description="Gray bg, no border, full text.">Body</kp-card>
         <kp-card appearance="elevated" title="Elevated" [showDescription]="true" description="Shadow, no border.">Body</kp-card>
         <kp-card appearance="outline"  title="Outline"  [showDescription]="true" description="Transparent bg, just border.">Body</kp-card>
       </div>`,

@@ -1,6 +1,6 @@
 # Card
 
-> Universal container with optional header, body, and footer. Four appearances cover the common surface patterns: white default, gray muted, shadowed elevated, transparent outline.
+> Universal container with optional header, body, and footer. Five appearances cover the common surface patterns: white default, gray muted (dimmed text), gray subtle (full text, borderless), shadowed elevated, transparent outline.
 
 ## Contract
 
@@ -32,12 +32,23 @@
 
 ### Appearances
 
-| Appearance | Background | Border | Shadow |
-|------------|------------|--------|--------|
-| `default`  | `card/bg` (white) | `card/border` (gray.200) | none |
-| `muted`    | `card/bg-muted` (gray.50) | `card/border` | none |
-| `elevated` | `card/bg` (white) | transparent | 2-layer subtle shadow |
-| `outline`  | transparent | `card/border` | none |
+| Appearance | Background | Border | Shadow | Text |
+|------------|------------|--------|--------|------|
+| `default`  | `card/bg` (white) | `card/border` (gray.200) | none | full |
+| `muted`    | `card/bg-muted` (gray.50) | `card/border` | none | dimmed (`text.muted` / `text.disabled`) |
+| `subtle`   | `surface/muted` (gray.100 light · gray-200 dark) | transparent | none | full |
+| `elevated` | `card/bg-elevated` (white light · #1F1F22 dark) | transparent | 2-layer subtle shadow | full |
+| `outline`  | transparent | `card/border` | none | full |
+
+`muted` vs `subtle` — both use a gray surface, but they signal different things:
+
+- **`muted`** — secondary / preview content. The text is also dimmed
+  to `text.muted` / `text.disabled`, so the whole card visually recedes
+  (a card showing a draft, an archived item, a "see also" reference).
+- **`subtle`** — primary content that just needs visual separation
+  from the page. Text stays at full strength; border is gone. Use for
+  the main container of a page section when you want it to read as
+  "lifted off the page" without a hard border or a shadow.
 
 ## API
 
@@ -46,7 +57,7 @@
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Width + padding + typography ramp |
-| `appearance` | `'default' \| 'muted' \| 'elevated' \| 'outline'` | `'default'` | Surface treatment |
+| `appearance` | `'default' \| 'muted' \| 'subtle' \| 'elevated' \| 'outline'` | `'default'` | Surface treatment |
 | `title` | `string` | `''` | Header title |
 | `description` | `string` | `''` | Header description |
 | `showHeader` | `boolean` | `true` | Render the header section |
