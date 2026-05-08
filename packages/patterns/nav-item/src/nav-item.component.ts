@@ -63,9 +63,9 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
           <ng-content select="[kpNavItemIcon]"/>
         </span>
       }
-      <span class="kp-nav-item__label">{{ label }}</span>
+      <span class="kp-nav-item__label" [attr.aria-hidden]="collapsed || null">{{ label }}</span>
       @if (showBadge) {
-        <span class="kp-nav-item__badge">
+        <span class="kp-nav-item__badge" [attr.aria-hidden]="collapsed || null">
           <ng-content select="[kpNavItemBadge]"/>
         </span>
       }
