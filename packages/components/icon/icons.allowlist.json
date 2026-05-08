@@ -1,6 +1,7 @@
 {
   "$comment": "Tabler icon names bundled by default into @kanso-protocol/icon. Outlined + filled lists must match the Figma 'Tabler Icons' page. To add more icons in your own app, use KP_ICON_REGISTRY.register(name, svgString). Regenerate the map with `npm run generate:icons` after editing this list.",
   "outlined": [
+    "adjustments-horizontal",
     "alert-circle", "alert-triangle", "align-center", "align-left", "align-right",
     "arrow-back-up", "arrow-forward-up", "arrow-left", "arrows-up-down",
     "bell", "bell-off", "blockquote", "bookmark", "brand-github", "brand-google",

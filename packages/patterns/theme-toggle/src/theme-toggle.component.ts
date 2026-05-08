@@ -153,19 +153,20 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
     }
     .kp-theme-toggle__icon-btn:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-strong); }
 
-    /* Segmented variant — same sliding-pill pattern as
-       SegmentedControl: one pill element sits behind the 3 segments
-       and translates between them on selection change. The segments
-       themselves only swap text color. */
+    /* Segmented variant — adopts the same look as <kp-segmented-control>:
+       borderless track, sliding-pill behind 3 icon segments, colors
+       sourced from the segmented design tokens (so light/dark theme
+       and any future re-tuning of segmented stays in sync between
+       both surfaces). */
     .kp-theme-toggle__segments {
       position: relative;
       display: inline-flex;
       align-items: center;
       gap: 2px;
       padding: 2px;
-      border: 1px solid var(--kp-color-border-default);
-      border-radius: 8px;
-      background: var(--kp-color-surface-subtle);
+      border: none;
+      border-radius: var(--kp-segmented-radius, 10px);
+      background: var(--kp-color-segmented-track-bg);
     }
     .kp-theme-toggle__pill {
       position: absolute;
@@ -173,8 +174,8 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       left: 2px;
       width: var(--kp-theme-seg, 28px);
       height: var(--kp-theme-seg, 28px);
-      border-radius: 6px;
-      background: var(--kp-color-surface-base);
+      border-radius: var(--kp-segmented-segment-radius, 8px);
+      background: var(--kp-color-segmented-segment-bg-selected);
       box-shadow: var(--kp-elevation-raised);
       transform: translateX(var(--kp-theme-pill-x, 0));
       transition: transform 240ms cubic-bezier(0.32, 0.72, 0, 1);
@@ -195,13 +196,40 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       justify-content: center;
       width: var(--kp-theme-seg, 28px);
       height: var(--kp-theme-seg, 28px);
-      border-radius: 6px;
-      color: var(--kp-color-text-muted);
+      border-radius: var(--kp-segmented-segment-radius, 8px);
+      color: var(--kp-color-segmented-segment-fg-unselected-rest);
       cursor: pointer;
-      transition: color 120ms ease;
+      transition: color var(--kp-motion-duration-normal) cubic-bezier(0.32, 0.72, 0, 1);
     }
-    .kp-theme-toggle__segment:hover { color: var(--kp-color-text-strong); }
-    .kp-theme-toggle__segment--selected { color: var(--kp-color-text-strong); }
+    .kp-theme-toggle__segment:hover:not(.kp-theme-toggle__segment--selected) {
+      color: var(--kp-color-segmented-segment-fg-unselected-hover);
+    }
+    .kp-theme-toggle__segment:focus-visible {
+      outline: 2px solid var(--kp-color-focus-ring);
+      outline-offset: 1px;
+    }
+    .kp-theme-toggle__segment--selected {
+      color: var(--kp-color-segmented-segment-fg-selected);
+    }
+
+    /* Sizes — drive segment dimensions + radius via the same token
+       names that <kp-segmented-control> uses, so the matching is
+       guaranteed even if those values move later. */
+    :host(.kp-theme-toggle--sm) {
+      --kp-theme-seg: 24px;
+      --kp-segmented-radius: 10px;
+      --kp-segmented-segment-radius: 8px;
+    }
+    :host(.kp-theme-toggle--md) {
+      --kp-theme-seg: 28px;
+      --kp-segmented-radius: 12px;
+      --kp-segmented-segment-radius: 10px;
+    }
+    :host(.kp-theme-toggle--lg) {
+      --kp-theme-seg: 32px;
+      --kp-segmented-radius: 14px;
+      --kp-segmented-segment-radius: 12px;
+    }
 
     /* Dropdown variant */
     .kp-theme-toggle__dropdown {

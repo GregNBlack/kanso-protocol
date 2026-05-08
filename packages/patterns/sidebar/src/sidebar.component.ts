@@ -66,9 +66,10 @@ export interface KpSidebarSection {
                   <path d="M3 7l9-4 9 4v10l-9 4-9-4V7zM3 7l9 4 9-4M12 11v10"/>
                 </svg>
               </span>
-              @if (widthState !== 'collapsed') {
-                <span class="kp-sidebar__logo-text">{{ logoText }}</span>
-              }
+              <span
+                class="kp-sidebar__logo-text"
+                [class.kp-sidebar__logo-text--hidden]="widthState === 'collapsed'"
+                [attr.aria-hidden]="widthState === 'collapsed' || null">{{ logoText }}</span>
             </ng-content>
           </div>
         }
@@ -89,8 +90,11 @@ export interface KpSidebarSection {
     <nav class="kp-sidebar__nav">
       @for (section of sections; track $index) {
         <div class="kp-sidebar__section">
-          @if (showSectionLabels && section.label && widthState !== 'collapsed') {
-            <div class="kp-sidebar__section-label">{{ section.label }}</div>
+          @if (showSectionLabels && section.label) {
+            <div
+              class="kp-sidebar__section-label"
+              [class.kp-sidebar__section-label--hidden]="widthState === 'collapsed'"
+              [attr.aria-hidden]="widthState === 'collapsed' || null">{{ section.label }}</div>
           }
           @for (item of section.items; track item.label) {
             <kp-nav-item
@@ -130,17 +134,21 @@ export interface KpSidebarSection {
     </nav>
 
     @if (showUserFooter && (userName || userInitials)) {
-      <div class="kp-sidebar__footer">
+      <div class="kp-sidebar__footer" [class.kp-sidebar__footer--collapsed]="widthState === 'collapsed'">
         <kp-avatar size="md" [initials]="userInitials || null" [showStatus]="true" status="online"/>
-        @if (widthState !== 'collapsed') {
-          <div class="kp-sidebar__footer-text">
-            @if (userName) { <span class="kp-sidebar__footer-name">{{ userName }}</span> }
-            @if (userEmail) { <span class="kp-sidebar__footer-email">{{ userEmail }}</span> }
-          </div>
-          <button type="button" class="kp-sidebar__footer-menu" aria-label="User options" (click)="userMenuClick.emit()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
-          </button>
-        }
+        <div class="kp-sidebar__footer-text" [attr.aria-hidden]="widthState === 'collapsed' || null">
+          @if (userName) { <span class="kp-sidebar__footer-name">{{ userName }}</span> }
+          @if (userEmail) { <span class="kp-sidebar__footer-email">{{ userEmail }}</span> }
+        </div>
+        <button
+          type="button"
+          class="kp-sidebar__footer-menu"
+          aria-label="User options"
+          [attr.aria-hidden]="widthState === 'collapsed' || null"
+          [tabindex]="widthState === 'collapsed' ? -1 : 0"
+          (click)="userMenuClick.emit()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+        </button>
       </div>
     }
   `,
@@ -155,7 +163,11 @@ export interface KpSidebarSection {
       background: var(--kp-color-sidebar-bg);
       border-inline-end: 1px solid var(--kp-color-sidebar-border);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
-      transition: width var(--kp-motion-duration-fast) ease;
+      /* Width animates with the same cubic-bezier + duration that
+         drives every inner element's collapse (labels fade + max-width
+         to 0 in nav-item, logo text / footer chrome below). All pieces
+         move in lockstep — no twitch. */
+      transition: width var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
     }
     :host(.kp-sidebar--expanded)  { --kp-sidebar-w: 240px; }
     :host(.kp-sidebar--collapsed) { --kp-sidebar-w: 64px; }
@@ -170,7 +182,10 @@ export interface KpSidebarSection {
       display: flex;
       flex-direction: column;
       gap: 16px;
-      padding: 16px;
+      /* Bottom padding tightened (16 → 8) to reduce the vertical gap
+         between the collapse toggle and the first nav section — the
+         original 16+nav-pad+label-pad stack felt too airy. */
+      padding: 16px 16px 8px;
     }
     .kp-sidebar__top-row {
       display: flex;
@@ -226,6 +241,16 @@ export interface KpSidebarSection {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+      opacity: 1;
+      max-width: 200px;
+      transition:
+        opacity var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
+        max-width var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .kp-sidebar__logo-text--hidden {
+      opacity: 0;
+      max-width: 0;
+      pointer-events: none;
     }
     .kp-sidebar__toggle {
       all: unset;
@@ -265,6 +290,28 @@ export interface KpSidebarSection {
       flex-direction: column;
       gap: 2px;
     }
+    /* The icon slot inside each nav-item ends up wrapped in a <span>
+       (the directive carrier for [kpNavItemIcon]). Span defaults to
+       inline display, which adds a baseline gap that visually shifts
+       the icon down by ~1-2px relative to the label. Force inline-flex
+       on the wrapper so the icon centers exactly with the row text. */
+    .kp-sidebar__nav ::ng-deep [kpNavItemIcon] {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 0;
+    }
+    /* In collapsed mode the label text fades out but the box still
+       reserves vertical space, so nav-items stay at the same Y offset
+       as in the expanded layout (no jumping when toggling). Opacity
+       transitioned together with the host width animation. */
+    .kp-sidebar__section-label {
+      transition: opacity var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .kp-sidebar__section-label--hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
     .kp-sidebar__section-label {
       padding: 8px 12px 4px;
       font-size: 11px;
@@ -301,6 +348,16 @@ export interface KpSidebarSection {
       gap: 2px;
       flex: 1 1 auto;
       min-width: 0;
+      opacity: 1;
+      max-width: 200px;
+      transition:
+        opacity var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
+        max-width var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    :host(.kp-sidebar--collapsed) .kp-sidebar__footer-text {
+      opacity: 0;
+      max-width: 0;
+      pointer-events: none;
     }
     .kp-sidebar__footer-name {
       font-size: 13px;
@@ -328,10 +385,25 @@ export interface KpSidebarSection {
       border-radius: 4px;
       color: var(--kp-color-text-muted);
       cursor: pointer;
+      opacity: 1;
+      max-width: 28px;
+      transition:
+        opacity var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
+        max-width var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
+        background var(--kp-motion-duration-fast) ease,
+        color var(--kp-motion-duration-fast) ease;
     }
     .kp-sidebar__footer-menu:hover { color: var(--kp-color-text-strong); background: var(--kp-color-surface-muted); }
     .kp-sidebar__footer-menu svg { width: 18px; height: 18px; }
+    :host(.kp-sidebar--collapsed) .kp-sidebar__footer-menu {
+      opacity: 0;
+      max-width: 0;
+      pointer-events: none;
+    }
 
+    .kp-sidebar__footer {
+      transition: padding var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
+    }
     :host(.kp-sidebar--collapsed) .kp-sidebar__footer { justify-content: center; padding-inline: 0; }
   `],
 })

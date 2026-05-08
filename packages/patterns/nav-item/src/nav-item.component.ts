@@ -112,7 +112,12 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
       color: var(--kp-color-nav-item-fg-rest);
       background: var(--kp-color-nav-item-bg-rest, transparent);
       cursor: pointer;
-      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
+      transition:
+        background var(--kp-motion-duration-fast) ease,
+        color 120ms ease,
+        padding-inline-start var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
+        padding-inline-end var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
+        gap var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
     }
     .kp-nav-item__content:hover:not(:disabled) {
       color: var(--kp-color-nav-item-fg-hover);
@@ -151,11 +156,21 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
       font-size: var(--kp-nav-item-fs, 14px);
       font-weight: 500;
       text-align: start;
+      opacity: 1;
+      max-width: 100%;
+      transition:
+        opacity var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
+        max-width var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .kp-nav-item__badge {
       display: inline-flex;
       flex: 0 0 auto;
+      opacity: 1;
+      max-width: 100%;
+      transition:
+        opacity var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
+        max-width var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .kp-nav-item__chevron {
@@ -166,7 +181,11 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
       width: var(--kp-nav-item-chev-size, 14px);
       height: var(--kp-nav-item-chev-size, 14px);
       color: var(--kp-color-nav-item-icon-rest);
-      transition: transform var(--kp-motion-duration-fast) ease;
+      opacity: 1;
+      transition:
+        transform var(--kp-motion-duration-fast) ease,
+        opacity var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
+        max-width var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
     }
     .kp-nav-item__chevron--expanded { transform: rotate(90deg); }
     .kp-nav-item__chevron svg { width: 100%; height: 100%; }
@@ -203,12 +222,21 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
       --kp-nav-item-fs: 15px;
     }
 
+    /* Collapsed mode: label / badge / chevron fade out and shrink to
+       zero width together with the host width transition, instead of
+       popping via display:none. Pointer-events disabled so screen
+       readers / clicks don't catch the now-invisible elements. */
     :host(.kp-nav-item--collapsed) .kp-nav-item__label,
     :host(.kp-nav-item--collapsed) .kp-nav-item__badge,
-    :host(.kp-nav-item--collapsed) .kp-nav-item__chevron { display: none; }
+    :host(.kp-nav-item--collapsed) .kp-nav-item__chevron {
+      opacity: 0;
+      max-width: 0;
+      pointer-events: none;
+    }
     :host(.kp-nav-item--collapsed) .kp-nav-item__content {
       padding-inline-start: 0;
       padding-inline-end: 0;
+      gap: 0;
       justify-content: center;
     }
   `],
