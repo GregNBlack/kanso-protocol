@@ -47,6 +47,14 @@ const meta: Meta<KpBreadcrumbsComponent> = {
       ],
     }),
   ],
+  parameters: {
+    // The Sizes / Variants stories render multiple <kp-breadcrumbs>
+    // side-by-side for visual comparison. Each renders <nav aria-label=
+    // "Breadcrumb">, which axe flags as a `landmark-unique` violation.
+    // Real consumers always have one Breadcrumb per page; the demo
+    // legitimately needs to show several at once.
+    a11y: { config: { rules: [{ id: 'landmark-unique', enabled: false }] } },
+  },
   argTypes: {
     size: { control: 'inline-radio', options: ['sm', 'md'], table: { defaultValue: { summary: 'md' } } },
   },
