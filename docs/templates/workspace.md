@@ -302,6 +302,69 @@ onNav(item: KpSidebarNavItem): void {
 > bind `(navItemClick)` at all, the default mutation runs — harmless but
 > redundant.
 
+#### Side pane with routing
+
+Content projection is **static** — it's evaluated at template
+instantiation, before routing decides what to render. This means a
+`[kpWsSide]` slot at the workspace level can't change per-route by
+itself. You have three options:
+
+**A. Routed page owns its own split** (recommended, simplest). Keep
+only `<router-outlet>` in `[kpWsMain]`, drop `[kpWsSide]` from the
+workspace, and let each routed page render its own split if it wants
+one. You lose the workspace's drag-resize / responsive-stack machinery
+in exchange for full per-route freedom.
+
+```html
+<kp-template-workspace ...>
+  <div kpWsMain>
+    <router-outlet/>
+    <!-- no [kpWsSide] — each routed page renders main + side itself -->
+  </div>
+</kp-template-workspace>
+```
+
+**B. Static side pane shared across routes**. The side pane is the same
+context inspector / activity log / mini-chat on every page. Project a
+single component into `[kpWsSide]` once at the workspace level — it
+stays mounted as routes change.
+
+```html
+<kp-template-workspace ...>
+  <div kpWsMain><router-outlet/></div>
+  <app-context-inspector kpWsSide/>
+</kp-template-workspace>
+```
+
+**C. Per-route side via Angular named outlets** (keeps the workspace's
+drag-resize). Define a `side` outlet alongside the primary one, route
+each path to two components — one in primary, one in `side`. `kpWsSide`
+becomes `<router-outlet name="side"/>`.
+
+```ts
+export const routes = [
+  { path: 'dashboard', component: DashboardPage },
+  { path: 'dashboard', component: DashboardSide, outlet: 'side' },
+  { path: 'projects',  component: ProjectsPage  },
+  { path: 'projects',  component: ProjectsSide, outlet: 'side' },
+];
+```
+```html
+<kp-template-workspace ...>
+  <div kpWsMain><router-outlet/></div>
+  <div kpWsSide><router-outlet name="side"/></div>
+</kp-template-workspace>
+```
+URLs become `(...)/dashboard(side:dashboard)` — if that's too noisy,
+prefer A or B.
+
+**Decision shortcut:**
+| Side-pane content per route | Want template's drag-resize? | Pick |
+|---|---|---|
+| Same on every route | — | B |
+| Different per route | No  | A |
+| Different per route | Yes | C |
+
 ### 2. Persist sidebar collapse / pane width / theme
 
 Persist the three two-way-bound state inputs to `localStorage` (or your
