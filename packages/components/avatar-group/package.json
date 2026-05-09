@@ -1,12 +1,12 @@
 {
   "name": "@kanso-protocol/avatar-group",
-  "version": "0.5.3",
+  "version": "1.0.0",
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": ">=21.0.0",
     "@angular/common": ">=21.0.0",
-    "@kanso-protocol/core": ">=0.5.3",
-    "@kanso-protocol/avatar": ">=0.5.3"
+    "@kanso-protocol/core": ">=1.0.0",
+    "@kanso-protocol/avatar": ">=1.0.0"
   },
   "description": "Kanso Protocol — avatar-group (component).",
   "author": "GregNBlack",
