@@ -446,7 +446,10 @@ export type KpWsSidebarState = 'expanded' | 'collapsed';
       .kp-tpl__action-btn { padding: 0; width: 32px; justify-content: center; }
     }
     @media (max-width: 1023px) {
-      .kp-tpl__content { flex-direction: column; }
+      /* Stacked vertically — drag handle is hidden, so gap doesn't get
+         doubled. Reuse the same panesGap so the vertical breathing
+         space matches the horizontal one in two-pane mode. */
+      .kp-tpl__content { flex-direction: column; gap: var(--kp-ws-pane-gap, 8px); }
       .kp-tpl__pane--side { flex: 1 1 auto; }
       .kp-tpl__resize-handle { display: none; }
     }
