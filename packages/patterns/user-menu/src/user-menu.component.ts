@@ -102,8 +102,8 @@ export interface KpUserMenuItem {
       width: var(--kp-user-menu-w, 280px);
       padding: 4px 0;
       border-radius: 12px;
-      background: var(--kp-color-surface-base);
-      border: 1px solid var(--kp-color-border-default);
+      background: var(--kp-color-popover-bg);
+      border: 1px solid var(--kp-color-popover-border);
       box-shadow: var(--kp-elevation-overlay);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
@@ -161,7 +161,7 @@ export interface KpUserMenuItem {
        surface-muted (one step darker) which read differently from
        regular menu items. Architectural follow-up: replace
        .kp-user-menu__row with <kp-menu-item>. */
-    .kp-user-menu__row:hover { background: var(--kp-color-surface-subtle); }
+    .kp-user-menu__row:hover { background: var(--kp-color-surface-muted); }
     .kp-user-menu__row-icon {
       display: inline-flex;
       align-items: center;

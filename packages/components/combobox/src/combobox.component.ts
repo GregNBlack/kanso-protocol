@@ -258,8 +258,8 @@ export interface KpComboboxOption {
       flex-direction: column;
       max-height: 280px;
       padding: 4px;
-      background: var(--kp-color-surface-base);
-      border: 1px solid var(--kp-color-border-default);
+      background: var(--kp-color-popover-bg);
+      border: 1px solid var(--kp-color-popover-border);
       border-radius: 12px;
       box-shadow: var(--kp-elevation-overlay);
       overflow-y: auto;

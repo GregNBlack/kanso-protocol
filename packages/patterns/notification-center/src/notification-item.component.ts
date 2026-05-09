@@ -56,7 +56,7 @@ export type KpNotificationAppearance =
       gap: 12px;
       padding: 12px 16px;
       border-bottom: 1px solid var(--kp-color-border-subtle);
-      background: var(--kp-color-surface-base);
+      background: transparent;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;

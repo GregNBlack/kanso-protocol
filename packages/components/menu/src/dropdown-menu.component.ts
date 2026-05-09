@@ -60,7 +60,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       max-width: 320px;
       max-height: 480px;
       padding: 4px;
-      background: var(--kp-color-surface-base);
+      background: var(--kp-color-popover-bg);
       border: 1px solid var(--kp-color-menu-panel-border);
       border-radius: 12px;
       box-shadow: var(--kp-elevation-overlay);

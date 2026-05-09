@@ -225,8 +225,8 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
       --kp-toast-action:   var(--kp-color-alert-info-subtle-icon);
     }
     .kp-th__toast--neutral {
-      --kp-toast-bg:       var(--kp-color-surface-base);
-      --kp-toast-border:   var(--kp-color-border-default);
+      --kp-toast-bg:       var(--kp-color-popover-bg);
+      --kp-toast-border:   var(--kp-color-popover-border);
       --kp-toast-fg-title: var(--kp-color-text-strong);
       --kp-toast-fg-desc:  var(--kp-color-text-muted);
       --kp-toast-fg-body:  var(--kp-color-text-default);

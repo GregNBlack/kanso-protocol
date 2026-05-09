@@ -1,5 +1,15 @@
 # @kanso-protocol/select
 
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @kanso-protocol/core@1.0.1
+  - @kanso-protocol/checkbox@1.0.1
+  - @kanso-protocol/input@1.0.1
+  - @kanso-protocol/menu@1.0.1
+
 ## 1.0.0
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @kanso-protocol/user-menu
 
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @kanso-protocol/core@1.0.1
+  - @kanso-protocol/avatar@1.0.1
+  - @kanso-protocol/menu@1.0.1
+
 ## 1.0.0
 
 ### Patch Changes

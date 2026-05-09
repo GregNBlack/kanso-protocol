@@ -131,8 +131,8 @@ export interface KpNotification {
       width: 400px;
       max-height: 600px;
       border-radius: 12px;
-      background: var(--kp-color-surface-base);
-      border: 1px solid var(--kp-color-border-default);
+      background: var(--kp-color-popover-bg);
+      border: 1px solid var(--kp-color-popover-border);
       box-shadow: var(--kp-elevation-floating);
       overflow: hidden;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
