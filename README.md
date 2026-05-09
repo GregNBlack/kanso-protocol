@@ -410,7 +410,7 @@ Same convention as Material UI templates, Vercel templates, shadcn-ui.
 
 | Template | What it is | Docs |
 |---|---|---|
-| Workspace | Productivity / admin scaffold — transparent header (logo + breadcrumbs + theme toggle + notifications + user menu), collapsible sidebar with smooth animation, 1-or-2-pane content area with drag-to-resize, light / dark / system theme handling, `prefers-color-scheme` live-tracking | [docs/templates/workspace.md](docs/templates/workspace.md) |
+| Workspace | Productivity / admin scaffold — transparent header (logo + flexible header-nav + theme toggle + notifications + user menu), collapsible sidebar with smooth animation, 1-or-2-pane content area with drag-to-resize, light / dark / system theme handling, `prefers-color-scheme` live-tracking. Slot-first API: header-nav / notifications / user-menu items are content-projection slots, so each projected element keeps its own `routerLink` / `(click)` / `*ngIf`. | [docs/templates/workspace.md](docs/templates/workspace.md) |
 
 ### Quick start (Workspace)
 
@@ -429,18 +429,46 @@ Then drop it into a route or page component:
 
 ```ts
 import { KpTemplateWorkspaceComponent } from './templates/template-workspace.component';
+import {
+  KpBreadcrumbsComponent,
+  KpBreadcrumbItemComponent,
+  KpBreadcrumbSeparatorComponent,
+} from '@kanso-protocol/breadcrumbs';
+import { KpMenuItemComponent } from '@kanso-protocol/menu';
+import { KpIconComponent } from '@kanso-protocol/icon';
 
 @Component({
   standalone: true,
-  imports: [KpTemplateWorkspaceComponent],
+  imports: [
+    KpTemplateWorkspaceComponent,
+    KpBreadcrumbsComponent,
+    KpBreadcrumbItemComponent,
+    KpBreadcrumbSeparatorComponent,
+    KpMenuItemComponent,
+    KpIconComponent,
+  ],
   template: `
     <kp-template-workspace
       [navSections]="sections"
       [user]="user"
-      [breadcrumbs]="crumbs"
       [(theme)]="theme"
-      (signOut)="logout()"
-    >
+      (signOut)="logout()">
+
+      <!-- Header-nav slot — breadcrumbs (or a tenant select / tabs / search). -->
+      <kp-breadcrumbs kpWsHeaderNav size="md">
+        <kp-breadcrumb-item type="link" href="/">Workspace</kp-breadcrumb-item>
+        <kp-breadcrumb-separator/>
+        <kp-breadcrumb-item type="current">Dashboard</kp-breadcrumb-item>
+      </kp-breadcrumbs>
+
+      <!-- User-menu items — each is a real Angular element with own routerLink / click. -->
+      <kp-menu-item kpWsUserMenuItems label="Profile"  routerLink="/profile">
+        <kp-icon kpMenuItemIcon name="user" size="md"/>
+      </kp-menu-item>
+      <kp-menu-item kpWsUserMenuItems label="Settings" routerLink="/settings">
+        <kp-icon kpMenuItemIcon name="settings" size="md"/>
+      </kp-menu-item>
+
       <div kpWsMain><!-- your main content --></div>
       <div kpWsSide><!-- optional side pane --></div>
     </kp-template-workspace>
