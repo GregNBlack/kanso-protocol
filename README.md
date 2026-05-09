@@ -518,7 +518,7 @@ What we ask for: a one-line description, a public link (live URL or GitHub repo)
 
 ## Tech Stack
 
-- **Framework:** Angular 18+
+- **Framework:** Angular 21+
 - **Monorepo:** Nx
 - **Tokens:** W3C DTCG + Style Dictionary 4 (emits CSS custom properties as the primary runtime, plus equivalent SCSS variables and TS constants for compile-time consumers)
 - **Docs:** Storybook 8
