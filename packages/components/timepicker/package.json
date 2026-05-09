@@ -1,14 +1,14 @@
 {
   "name": "@kanso-protocol/timepicker",
-  "version": "0.5.3",
+  "version": "1.0.0",
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": ">=21.0.0",
     "@angular/common": ">=21.0.0",
     "@angular/forms": ">=21.0.0",
-    "@kanso-protocol/core": ">=0.5.3",
-    "@kanso-protocol/button": ">=0.5.3",
-    "@kanso-protocol/i18n": ">=0.5.3"
+    "@kanso-protocol/core": ">=1.0.0",
+    "@kanso-protocol/button": ">=1.0.0",
+    "@kanso-protocol/i18n": ">=1.0.0"
   },
   "description": "Kanso Protocol — timepicker (component).",
   "author": "GregNBlack",

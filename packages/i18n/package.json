@@ -1,6 +1,6 @@
 {
   "name": "@kanso-protocol/i18n",
-  "version": "0.5.3",
+  "version": "1.0.0",
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": ">=21.0.0"
