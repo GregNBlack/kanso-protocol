@@ -1,13 +1,17 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { FormsModule } from '@angular/forms';
 
-import {
-  KpTemplateWorkspaceComponent,
-  KpWsBreadcrumb,
-  KpWsUser,
-  KpWsUserMenuItem,
-} from '../template-workspace.component';
+import { KpTemplateWorkspaceComponent, KpWsUser } from '../template-workspace.component';
 import { KpSidebarSection } from '@kanso-protocol/sidebar';
-import { KpNotification } from '@kanso-protocol/notification-center';
+import {
+  KpBreadcrumbsComponent,
+  KpBreadcrumbItemComponent,
+  KpBreadcrumbSeparatorComponent,
+} from '@kanso-protocol/breadcrumbs';
+import { KpNotificationCenterComponent, KpNotification } from '@kanso-protocol/notification-center';
+import { KpMenuItemComponent } from '@kanso-protocol/menu';
+import { KpIconComponent } from '@kanso-protocol/icon';
+import { KpSelectComponent, KpSelectOption } from '@kanso-protocol/select';
 
 // ============================================================================
 // Mock data — replace with your own when copying the template into a project.
@@ -39,12 +43,6 @@ const NOTIFICATIONS: KpNotification[] = [
   { id: '4', icon: 'alert-circle', appearance: 'danger',  title: 'Build failed',        message: 'TS errors in template-modern.stories.ts',         time: 'yesterday', read: true },
 ];
 
-const CRUMBS: KpWsBreadcrumb[] = [
-  { label: 'Workspace',  href: '#' },
-  { label: 'Projects',   href: '#' },
-  { label: 'Kanso v0.5.2' },
-];
-
 const USER: KpWsUser = {
   name: 'Greg Black',
   email: 'greg@example.com',
@@ -53,12 +51,6 @@ const USER: KpWsUser = {
   showPlanBadge: true,
 };
 
-const USER_MENU: KpWsUserMenuItem[] = [
-  { label: 'Profile',  icon: 'user' },
-  { label: 'Settings', icon: 'settings' },
-  { label: 'Billing',  icon: 'credit-card' },
-];
-
 // ============================================================================
 // Storybook config
 // ============================================================================
@@ -66,7 +58,19 @@ const USER_MENU: KpWsUserMenuItem[] = [
 const meta: Meta<KpTemplateWorkspaceComponent> = {
   title: 'Templates/Workspace',
   component: KpTemplateWorkspaceComponent,
-  decorators: [moduleMetadata({ imports: [KpTemplateWorkspaceComponent] })],
+  decorators: [moduleMetadata({
+    imports: [
+      KpTemplateWorkspaceComponent,
+      KpBreadcrumbsComponent,
+      KpBreadcrumbItemComponent,
+      KpBreadcrumbSeparatorComponent,
+      KpNotificationCenterComponent,
+      KpMenuItemComponent,
+      KpIconComponent,
+      KpSelectComponent,
+      FormsModule,
+    ],
+  })],
   parameters: {
     layout: 'fullscreen',
     a11y: {
@@ -94,15 +98,43 @@ type Story = StoryObj<KpTemplateWorkspaceComponent>;
 
 const BASE_ARGS = {
   navSections: SECTIONS,
-  notifications: NOTIFICATIONS,
-  breadcrumbs: CRUMBS,
   user: USER,
-  userMenuItems: USER_MENU,
   unreadCount: 3,
   showInviteAction: true,
 };
 
-const SAMPLE_CONTENT = `
+// ─── Reusable slot fragments ──────────────────────────────────────────────────
+// These mirror the slot-first API: each is a real Kanso component instance
+// with its own bindings, projected into a named slot on the template.
+
+const HEADER_NAV_BREADCRUMBS = `
+  <kp-breadcrumbs kpWsHeaderNav size="md">
+    <kp-breadcrumb-item type="link" href="#">Workspace</kp-breadcrumb-item>
+    <kp-breadcrumb-separator/>
+    <kp-breadcrumb-item type="link" href="#">Projects</kp-breadcrumb-item>
+    <kp-breadcrumb-separator/>
+    <kp-breadcrumb-item type="current">Kanso v0.5.3</kp-breadcrumb-item>
+  </kp-breadcrumbs>
+`;
+
+const NOTIFICATIONS_SLOT = `
+  <kp-notification-center kpWsNotifications
+    state="with-items" [notifications]="notifications"/>
+`;
+
+const USER_MENU_ITEMS = `
+  <kp-menu-item kpWsUserMenuItems label="Profile" size="md">
+    <kp-icon kpMenuItemIcon name="user" size="md"/>
+  </kp-menu-item>
+  <kp-menu-item kpWsUserMenuItems label="Settings" size="md">
+    <kp-icon kpMenuItemIcon name="settings" size="md"/>
+  </kp-menu-item>
+  <kp-menu-item kpWsUserMenuItems label="Billing" size="md">
+    <kp-icon kpMenuItemIcon name="credit-card" size="md"/>
+  </kp-menu-item>
+`;
+
+const SAMPLE_PANES = `
   <div kpWsMain>
     <header style="display:flex;flex-direction:column;gap:4px;margin-bottom:16px">
       <h2 style="margin:0;font-size:18px;font-weight:500;color:var(--kp-color-text-strong)">Section A</h2>
@@ -120,28 +152,50 @@ const SAMPLE_CONTENT = `
   </div>
 `;
 
+/** Map every prop on `args` to an Angular [prop]="prop" binding string. */
+function propBindings(args: Record<string, unknown>): string {
+  return Object.keys(args)
+    .filter((k) => k !== 'theme' && k !== 'notifications')
+    .map((k) => `[${k}]="${k}"`).join(' ');
+}
+
+const fullStory = (args: Record<string, unknown>): string => `
+  <kp-template-workspace ${propBindings(args)}>
+    ${HEADER_NAV_BREADCRUMBS}
+    ${NOTIFICATIONS_SLOT}
+    ${USER_MENU_ITEMS}
+    ${SAMPLE_PANES}
+  </kp-template-workspace>
+`;
+
 export const Default: Story = {
   args: { ...BASE_ARGS, twoPanes: true, sidebarState: 'expanded' },
-  render: (args) => ({ props: args, template: `<kp-template-workspace ${propBindings(args)}>${SAMPLE_CONTENT}</kp-template-workspace>` }),
+  render: (args) => ({
+    props: { ...args, notifications: NOTIFICATIONS },
+    template: fullStory(args as Record<string, unknown>),
+  }),
 };
 
 export const SinglePane: Story = {
   args: { ...BASE_ARGS, twoPanes: false, sidebarState: 'expanded', unreadCount: 0 },
-  render: (args) => ({ props: args, template: `<kp-template-workspace ${propBindings(args)}>${SAMPLE_CONTENT}</kp-template-workspace>` }),
+  render: (args) => ({
+    props: { ...args, notifications: NOTIFICATIONS },
+    template: fullStory(args as Record<string, unknown>),
+  }),
 };
 
 export const SidebarCollapsed: Story = {
   args: { ...BASE_ARGS, twoPanes: true, sidebarState: 'collapsed' },
-  render: (args) => ({ props: args, template: `<kp-template-workspace ${propBindings(args)}>${SAMPLE_CONTENT}</kp-template-workspace>` }),
+  render: (args) => ({
+    props: { ...args, notifications: NOTIFICATIONS },
+    template: fullStory(args as Record<string, unknown>),
+  }),
 };
 
 export const Minimal: Story = {
   args: {
     navSections: SECTIONS.slice(0, 1),
-    notifications: [],
-    breadcrumbs: [],
     user: USER,
-    userMenuItems: USER_MENU,
     unreadCount: null,
     twoPanes: false,
     sidebarState: 'expanded',
@@ -149,19 +203,54 @@ export const Minimal: Story = {
     showLayoutToggle: false,
     showNotifications: false,
   },
-  render: (args) => ({ props: args, template: `<kp-template-workspace ${propBindings(args)}>${SAMPLE_CONTENT}</kp-template-workspace>` }),
+  render: (args) => ({
+    props: args,
+    template: `
+      <kp-template-workspace ${propBindings(args)}>
+        ${USER_MENU_ITEMS}
+        ${SAMPLE_PANES}
+      </kp-template-workspace>
+    `,
+  }),
 };
 
-/** Map every prop on `args` to an Angular [prop]="prop" binding string,
- *  so Storybook controls reach the component (instead of hard-coding
- *  bindings in every story template).
- *
- *  Excludes `theme` — that one is owned by the in-template toggle
- *  (which lives + dies with each story render). Binding it from
- *  Storybook args would create a second source of truth and the
- *  toolbar / segmented toggle could fight each other on every CD. */
-function propBindings(args: Record<string, unknown>): string {
-  return Object.keys(args)
-    .filter((k) => k !== 'theme')
-    .map((k) => `[${k}]="${k}"`).join(' ');
-}
+const TENANT_OPTIONS: KpSelectOption[] = [
+  { value: 'acme-eng',     label: 'Acme Corp / Engineering' },
+  { value: 'acme-mkt',     label: 'Acme Corp / Marketing' },
+  { value: 'acme-fin',     label: 'Acme Corp / Finance' },
+  { value: 'globex-plat',  label: 'Globex / Platform' },
+];
+
+/**
+ * Demonstrates that `[kpWsHeaderNav]` is a generic slot — anything can go
+ * there, not just breadcrumbs. This story projects a `<kp-select>`
+ * acting as a tenant/OU switcher (typical pattern in admin UIs where
+ * users jump laterally between siblings rather than drill down).
+ */
+export const HeaderNavCustomSelect: Story = {
+  name: 'Header nav: custom (OU selector)',
+  args: { ...BASE_ARGS, twoPanes: true, sidebarState: 'expanded' },
+  render: (args) => ({
+    props: { ...args, notifications: NOTIFICATIONS, tenantOptions: TENANT_OPTIONS, tenant: 'acme-eng' },
+    template: `
+      <kp-template-workspace ${propBindings(args)}>
+
+        <!-- The kpWsHeaderNav slot accepts ANY content. Here: a tenant
+             selector — common in admin UIs where users jump laterally
+             between OUs instead of drilling into a hierarchy. -->
+        <div kpWsHeaderNav style="display:flex;align-items:center;gap:8px;min-width:0">
+          <span style="font-size:13px;color:var(--kp-color-text-muted);flex:0 0 auto">Tenant:</span>
+          <kp-select
+            size="sm"
+            style="width:fit-content;min-width:220px"
+            [options]="tenantOptions"
+            [(ngModel)]="tenant"/>
+        </div>
+
+        ${NOTIFICATIONS_SLOT}
+        ${USER_MENU_ITEMS}
+        ${SAMPLE_PANES}
+      </kp-template-workspace>
+    `,
+  }),
+};

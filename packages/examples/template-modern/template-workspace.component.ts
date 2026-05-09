@@ -13,6 +13,14 @@
  *   │      │  └────────────────┘ └─────────────────────────┘      │
  *   └──────┴──────────────────────────────────────────────────────┘
  *
+ * SLOT-FIRST API
+ * ──────────────
+ * Most consumer-customised pieces are content-projection slots, not
+ * @Inputs — that gives every projected element its own routerLink /
+ * (click) / *ngIf / etc. without forcing this template to grow a
+ * config-shape per concern. Only fixed-shape data (the small `user`
+ * object) and bool feature flags / presentation knobs stay as Inputs.
+ *
  * USAGE
  * ─────
  * 1. Install Kanso peer packages once (if not already):
@@ -26,14 +34,34 @@
  *      import { KpTemplateWorkspaceComponent } from './templates/template-workspace.component';
  *
  *      <kp-template-workspace
- *        [navSections]="navSections"
+ *        [navSections]="sections"
  *        [user]="user"
- *        [breadcrumbs]="crumbs"
- *        [(theme)]="theme"
- *        (signOut)="logout()"
- *      >
- *        <div kpWsMain>...your main content...</div>
- *        <div kpWsSide>...optional side pane...</div>
+ *        [unreadCount]="3"
+ *        [(theme)]="theme">
+ *
+ *        <!-- Breadcrumbs (consumer composes — router or static) -->
+ *        <kp-breadcrumbs kpWsHeaderNav size="md">
+ *          <kp-breadcrumb-item type="link" href="/">Workspace</kp-breadcrumb-item>
+ *          <kp-breadcrumb-separator/>
+ *          <kp-breadcrumb-item type="current">Dashboard</kp-breadcrumb-item>
+ *        </kp-breadcrumbs>
+ *
+ *        <!-- Bell popover content -->
+ *        <kp-notification-center kpWsNotifications
+ *          state="with-items" [notifications]="notifications"/>
+ *
+ *        <!-- User menu items (each is a real Angular element with own
+ *             routerLink / click / *ngIf — no config-array needed) -->
+ *        <kp-menu-item kpWsUserMenuItems label="Profile" size="md" routerLink="/profile">
+ *          <kp-icon kpMenuItemIcon name="user" size="md"/>
+ *        </kp-menu-item>
+ *        <kp-menu-item kpWsUserMenuItems label="Settings" size="md" routerLink="/settings">
+ *          <kp-icon kpMenuItemIcon name="settings" size="md"/>
+ *        </kp-menu-item>
+ *
+ *        <!-- Main + side pane content -->
+ *        <div kpWsMain>...</div>
+ *        <div kpWsSide>...</div>
  *      </kp-template-workspace>
  *
  * 4. Customize freely — this file is yours. Re-pull from upstream if
@@ -55,30 +83,14 @@ import { KpAppShellComponent } from '@kanso-protocol/app-shell';
 import { KpSidebarComponent, KpSidebarNavItem, KpSidebarSection } from '@kanso-protocol/sidebar';
 import { KpAvatarComponent } from '@kanso-protocol/avatar';
 import { KpUserMenuComponent } from '@kanso-protocol/user-menu';
-import { KpMenuItemComponent } from '@kanso-protocol/menu';
 import { KpThemeToggleComponent } from '@kanso-protocol/theme-toggle';
-import {
-  KpNotificationCenterComponent,
-  KpNotification,
-} from '@kanso-protocol/notification-center';
 import { KpIconComponent } from '@kanso-protocol/icon';
 import { KpIconButtonComponent } from '@kanso-protocol/button';
 import { KpBadgeComponent } from '@kanso-protocol/badge';
-import {
-  KpBreadcrumbsComponent,
-  KpBreadcrumbItemComponent,
-  KpBreadcrumbSeparatorComponent,
-} from '@kanso-protocol/breadcrumbs';
 
 // ============================================================================
 // Public types
 // ============================================================================
-
-export interface KpWsBreadcrumb {
-  label: string;
-  /** Omit for the last (current) item — renders as plain text. */
-  href?: string;
-}
 
 export interface KpWsUser {
   name: string;
@@ -86,13 +98,6 @@ export interface KpWsUser {
   initials: string;
   planName?: string;
   showPlanBadge?: boolean;
-}
-
-export interface KpWsUserMenuItem {
-  label: string;
-  /** Tabler icon name (must be present in the consumer's icon registry). */
-  icon: string;
-  danger?: boolean;
 }
 
 export type KpWsTheme = 'light' | 'dark' | 'system';
@@ -114,15 +119,10 @@ export type KpWsSidebarState = 'expanded' | 'collapsed';
     KpSidebarComponent,
     KpAvatarComponent,
     KpUserMenuComponent,
-    KpMenuItemComponent,
     KpThemeToggleComponent,
-    KpNotificationCenterComponent,
     KpIconComponent,
     KpIconButtonComponent,
     KpBadgeComponent,
-    KpBreadcrumbsComponent,
-    KpBreadcrumbItemComponent,
-    KpBreadcrumbSeparatorComponent,
   ],
   template: `
     <kp-app-shell layout="sidebar-left" class="kp-tpl-workspace"
@@ -141,21 +141,13 @@ export type KpWsSidebarState = 'expanded' | 'collapsed';
           @if (brandText) { <span class="kp-tpl__logo-text">{{ brandText }}</span> }
         </div>
 
-        <!-- Breadcrumbs (stretches when present, spacer otherwise) -->
-        @if (breadcrumbs.length) {
-          <kp-breadcrumbs class="kp-tpl__breadcrumbs" size="md">
-            @for (bc of breadcrumbs; track bc.label; let last = $last) {
-              @if (last || !bc.href) {
-                <kp-breadcrumb-item type="current">{{ bc.label }}</kp-breadcrumb-item>
-              } @else {
-                <kp-breadcrumb-item type="link" [href]="bc.href!">{{ bc.label }}</kp-breadcrumb-item>
-                <kp-breadcrumb-separator/>
-              }
-            }
-          </kp-breadcrumbs>
-        } @else {
-          <span class="kp-tpl__breadcrumbs-spacer"></span>
-        }
+        <!-- Header-nav slot — always rendered as flex-grow spacer.
+             Project anything: breadcrumbs, an OU/app selector, tabs,
+             a search input, etc. Empty content just means the right
+             cluster gets pushed flush right. -->
+        <div class="kp-tpl__header-nav-slot">
+          <ng-content select="[kpWsHeaderNav]"/>
+        </div>
 
         <!-- Right cluster -->
         <div class="kp-tpl__header-right">
@@ -193,10 +185,7 @@ export type KpWsSidebarState = 'expanded' | 'collapsed';
               }
               @if (notifOpen) {
                 <div class="kp-tpl__popover kp-tpl__popover--notif">
-                  <kp-notification-center
-                    state="with-items"
-                    [notifications]="notifications"
-                    (close)="notifOpen = false"/>
+                  <ng-content select="[kpWsNotifications]"/>
                 </div>
               }
             </div>
@@ -230,16 +219,10 @@ export type KpWsSidebarState = 'expanded' | 'collapsed';
                     [planName]="user.planName || ''"
                     [showHelpLink]="false"
                     (signOut)="onSignOut()">
+                    <!-- Re-project consumer-supplied [kpWsUserMenuItems]
+                         into kp-user-menu's own [kpUserMenuItems] slot. -->
                     <div kpUserMenuItems style="display:flex;flex-direction:column">
-                      @for (it of userMenuItems; track it.label) {
-                        <kp-menu-item
-                          [label]="it.label"
-                          size="md"
-                          [danger]="!!it.danger"
-                          (click)="onUserMenuItem(it)">
-                          <kp-icon kpMenuItemIcon [name]="it.icon" size="md"/>
-                        </kp-menu-item>
-                      }
+                      <ng-content select="[kpWsUserMenuItems]"/>
                     </div>
                   </kp-user-menu>
                 </div>
@@ -327,17 +310,18 @@ export type KpWsSidebarState = 'expanded' | 'collapsed';
       font-weight: 500;
       white-space: nowrap;
     }
-    .kp-tpl__breadcrumbs {
+    .kp-tpl__header-nav-slot {
       flex: 1 1 0;
       min-width: 0;
       overflow: hidden;
+      display: flex;
+      align-items: center;
     }
-    .kp-tpl__breadcrumbs ::ng-deep kp-breadcrumb-item { min-width: 0; }
-    .kp-tpl__breadcrumbs ::ng-deep .kp-bc-item__label {
+    .kp-tpl__header-nav-slot ::ng-deep kp-breadcrumb-item { min-width: 0; }
+    .kp-tpl__header-nav-slot ::ng-deep .kp-bc-item__label {
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .kp-tpl__breadcrumbs-spacer { flex: 1 1 auto; }
     .kp-tpl__header-right {
       display: inline-flex;
       align-items: center;
@@ -389,11 +373,20 @@ export type KpWsSidebarState = 'expanded' | 'collapsed';
       outline-offset: 2px;
     }
 
-    /* ===== Content area ===== */
+    /* ===== Content area =====
+       Left padding is 0 on purpose: <kp-sidebar>'s nav area already has
+       8px internal padding-right, so a left-pad here would double up to
+       16px and break the 8px rhythm of the rest of the page (outer
+       page edges + gap between panes). Assumes sidebar-left layout
+       (canonical case); fork if you flip to layout="no-sidebar". */
     .kp-tpl__content {
       display: flex;
       gap: 0;
-      padding: var(--kp-ws-pane-pad, 8px);
+      padding:
+        var(--kp-ws-pane-pad, 8px)
+        var(--kp-ws-pane-pad, 8px)
+        var(--kp-ws-pane-pad, 8px)
+        0;
       box-sizing: border-box;
       height: 100%;
       min-height: 0;
@@ -463,8 +456,8 @@ export type KpWsSidebarState = 'expanded' | 'collapsed';
     @media (max-width: 767px) {
       .kp-tpl__header { gap: 12px; padding: 10px 12px; }
       .kp-tpl__logo-text { display: none; }
-      .kp-tpl__breadcrumbs ::ng-deep kp-breadcrumb-item:not(:last-of-type),
-      .kp-tpl__breadcrumbs ::ng-deep kp-breadcrumb-separator { display: none; }
+      .kp-tpl__header-nav-slot ::ng-deep kp-breadcrumb-item:not(:last-of-type),
+      .kp-tpl__header-nav-slot ::ng-deep kp-breadcrumb-separator { display: none; }
     }
     @media (max-width: 639px) {
       .kp-tpl__header-right { gap: 4px; }
@@ -475,16 +468,13 @@ export type KpWsSidebarState = 'expanded' | 'collapsed';
 })
 export class KpTemplateWorkspaceComponent implements OnInit, OnDestroy {
 
-  // ===== Inputs (data) ==================================================
+  // ===== Inputs (data — small fixed shapes) =============================
   @Input() brandMark: string | null = '簡素';
   @Input() brandText: string | null = 'Kanso Protocol';
-  @Input() breadcrumbs: KpWsBreadcrumb[] = [];
   @Input() navSections: KpSidebarSection[] = [];
-  @Input() notifications: KpNotification[] = [];
   /** When `null` the bell badge is hidden. */
   @Input() unreadCount: number | null = null;
   @Input() user: KpWsUser | null = null;
-  @Input() userMenuItems: KpWsUserMenuItem[] = [];
 
   // ===== Inputs (UI knobs / feature flags) ==============================
   @Input() showInviteAction = false;
@@ -518,7 +508,6 @@ export class KpTemplateWorkspaceComponent implements OnInit, OnDestroy {
   // ===== Outputs (events) ===============================================
   @Output() navItemClick = new EventEmitter<KpSidebarNavItem>();
   @Output() inviteClick = new EventEmitter<void>();
-  @Output() userMenuItemClick = new EventEmitter<KpWsUserMenuItem>();
   @Output() signOut = new EventEmitter<void>();
 
   // ===== Internal state =================================================
@@ -531,7 +520,7 @@ export class KpTemplateWorkspaceComponent implements OnInit, OnDestroy {
   private prefersDark?: MediaQueryList;
   private readonly onSystemChange = (e: MediaQueryListEvent | MediaQueryList): void => {
     if (this.theme !== 'system') return;
-    this.applyResolvedTheme(e.matches ? 'dark' : 'light', 'system');
+    this.applyResolvedTheme(e.matches ? 'dark' : 'light');
   };
 
   // ===== Lifecycle ======================================================
@@ -558,21 +547,17 @@ export class KpTemplateWorkspaceComponent implements OnInit, OnDestroy {
       t === 'system'
         ? (this.prefersDark?.matches ? 'dark' : 'light')
         : t;
-    this.applyResolvedTheme(resolved, t);
+    this.applyResolvedTheme(resolved);
     this.themeChange.emit(t);
   }
 
-  /** Apply the resolved palette to the document.
-   *
-   *  Storybook globals are NOT synced from here. addon-themes responds
-   *  to global changes by re-rendering the entire story, which would
-   *  destroy the live toggle component mid-click and break the pill
-   *  slide animation. The Storybook toolbar will show stale state
-   *  while the page reflects the correct theme — but Storybook is the
-   *  only context where that mismatch is visible. In a real consumer
-   *  app there's no toolbar, so the page-correct, smooth animation
-   *  wins. */
-  private applyResolvedTheme(resolved: 'light' | 'dark', original: KpWsTheme): void {
+  /** Apply the resolved palette to the document. Storybook globals are
+   *  intentionally NOT synced — addon-themes responds to global changes
+   *  by re-rendering the entire story, which destroys the live toggle
+   *  component mid-click and breaks the pill slide animation. The
+   *  Storybook toolbar can show stale state; in a real consumer app
+   *  there's no toolbar, so the page-correct, smooth animation wins. */
+  private applyResolvedTheme(resolved: 'light' | 'dark'): void {
     if (typeof document === 'undefined') return;
     document.documentElement.setAttribute('data-theme', resolved);
     document.body.setAttribute('data-theme', resolved);
@@ -603,11 +588,6 @@ export class KpTemplateWorkspaceComponent implements OnInit, OnDestroy {
       items: s.items.map((it) => ({ ...it, active: it.label === item.label })),
     }));
     this.navItemClick.emit(item);
-  }
-
-  onUserMenuItem(it: KpWsUserMenuItem): void {
-    this.userMenuItemClick.emit(it);
-    this.userMenuOpen = false;
   }
 
   onSignOut(): void {
