@@ -20,6 +20,6 @@
   ],
   "sideEffects": false,
   "peerDependencies": {
-    "@angular/core": ">=18.0.0"
+    "@angular/core": ">=21.0.0"
   }
 }

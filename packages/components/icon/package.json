@@ -20,8 +20,8 @@
   ],
   "sideEffects": false,
   "peerDependencies": {
-    "@angular/core": ">=18.0.0",
-    "@angular/common": ">=18.0.0",
+    "@angular/core": ">=21.0.0",
+    "@angular/common": ">=21.0.0",
     "@kanso-protocol/core": ">=0.5.3",
     "@tabler/icons": ">=3.0.0"
   },
