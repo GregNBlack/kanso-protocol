@@ -3,7 +3,7 @@
   "version": "0.5.3",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/core": "^18.0.0"
+    "@angular/core": ">=21.0.0"
   },
   "description": "Kanso Protocol — i18n primitives (locale token + string registry + Intl helpers).",
   "author": "GregNBlack",
