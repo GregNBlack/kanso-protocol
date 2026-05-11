@@ -1,5 +1,14 @@
 # @kanso-protocol/timepicker
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @kanso-protocol/core@2.0.1
+  - @kanso-protocol/button@2.0.1
+  - @kanso-protocol/i18n@2.0.1
+
 ## 2.0.0
 
 ### Patch Changes

@@ -1,5 +1,28 @@
 # @kanso-protocol/core
 
+## 2.0.1
+
+### Patch Changes
+
+- Fix a11y regression in radio-based controls (checkbox, radio,
+  segmented-control, theme-toggle, toggle) introduced in 2.0.0.
+
+  The native `<input>` elements wrapped by the visual controls were
+  hidden via `opacity: 0; position: absolute`. Axe-core (and some
+  screen-reader heuristics) treat opacity-0 elements as removed from
+  the accessibility tree — so `role="radiogroup"` was flagged as
+  `aria-required-children: critical` because axe couldn't see the
+  implicit `role="radio"` on the hidden inputs.
+
+  Replaced with the canonical sr-only `clip-path: inset(50%)` pattern:
+  the input stays in the layout flow and the a11y tree, but is clipped
+  to 1×1 px off-screen. Label-wrapping forwards click to the input
+  natively (no behaviour change). Visual rendering unchanged.
+
+  Also refreshes visual-regression baselines — many component visuals
+  shifted slightly when 2.0.0 swapped custom elements for native HTML
+  primitives (inner `<label>` wrapping, native `<button>` defaults, etc.).
+
 ## 2.0.0
 
 ### Major Changes

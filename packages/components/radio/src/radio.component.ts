@@ -84,13 +84,18 @@ export type KpRadioColor = 'primary' | 'danger';
       user-select: none;
     }
 
+    /* sr-only clip — input stays in a11y tree (axe + screen readers see
+       it as the radio); label-wrapping forwards click. */
     .kp-radio__input {
       position: absolute;
-      width: var(--kp-radio-size);
-      height: var(--kp-radio-size);
-      margin: 0;
-      opacity: 0;
-      cursor: inherit;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
     }
 
     .kp-radio__box {

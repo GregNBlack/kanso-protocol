@@ -78,13 +78,17 @@ export type KpToggleColor = 'primary' | 'danger';
       user-select: none;
     }
 
+    /* sr-only clip — input stays in a11y tree, label forwards click. */
     .kp-toggle__input {
       position: absolute;
-      width: var(--kp-toggle-track-w);
-      height: var(--kp-toggle-track-h);
-      margin: 0;
-      opacity: 0;
-      cursor: inherit;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
     }
 
     .kp-toggle__track {

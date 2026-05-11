@@ -165,12 +165,18 @@ let nextGroupId = 0;
       cursor: not-allowed;
     }
 
+    /* sr-only clip — input stays in a11y tree so axe sees the
+       radiogroup's required children; label-wrapping forwards click. */
     .kp-segmented-control__input {
       position: absolute;
-      inset: 0;
-      opacity: 0;
-      margin: 0;
-      cursor: inherit;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
     }
     .kp-segmented-control__input:focus-visible + .kp-segmented-control__icon,
     .kp-segmented-control__segment:has(.kp-segmented-control__input:focus-visible) {

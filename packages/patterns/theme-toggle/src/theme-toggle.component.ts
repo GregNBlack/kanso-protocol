@@ -205,12 +205,18 @@ let nextRadioGroupId = 0;
       cursor: pointer;
       transition: color var(--kp-motion-duration-normal) cubic-bezier(0.32, 0.72, 0, 1);
     }
+    /* sr-only clip — input stays in a11y tree so axe sees the
+       radiogroup's required children; label-wrapping forwards click. */
     .kp-theme-toggle__radio {
       position: absolute;
-      inset: 0;
-      opacity: 0;
-      margin: 0;
-      cursor: inherit;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
     }
     .kp-theme-toggle__segment:hover:not(.kp-theme-toggle__segment--selected) {
       color: var(--kp-color-segmented-segment-fg-unselected-hover);

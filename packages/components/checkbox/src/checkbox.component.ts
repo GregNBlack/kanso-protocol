@@ -84,15 +84,21 @@ export type KpCheckboxColor = 'primary' | 'danger';
       user-select: none;
     }
 
-    /* Native input — visually hidden but focusable. Sits on top of the
-       visual box so click hit-testing and focus-visible go through it. */
+    /* Native input — clipped off-screen but still in the a11y tree and
+       focusable. opacity:0 was hiding it from axe (which treated it as
+       missing children of the radiogroup); clip-path keeps it visible
+       to the platform / screen readers. Label-wrapping means click on
+       the visual box still triggers the input natively. */
     .kp-checkbox__input {
       position: absolute;
-      width: var(--kp-checkbox-size);
-      height: var(--kp-checkbox-size);
-      margin: 0;
-      opacity: 0;
-      cursor: inherit;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
     }
 
     .kp-checkbox__box {

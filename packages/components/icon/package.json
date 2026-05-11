@@ -1,6 +1,6 @@
 {
   "name": "@kanso-protocol/icon",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Kanso Protocol — Icon component. Ships with 115 curated Tabler Icons inline; install @tabler/icons and KP_ICON_REGISTRY.register() for the full set.",
   "license": "MIT",
   "author": "GregNBlack",
@@ -22,7 +22,7 @@
   "peerDependencies": {
     "@angular/core": ">=21.0.0",
     "@angular/common": ">=21.0.0",
-    "@kanso-protocol/core": ">=2.0.0",
+    "@kanso-protocol/core": ">=2.0.1",
     "@tabler/icons": ">=3.0.0"
   },
   "peerDependenciesMeta": {

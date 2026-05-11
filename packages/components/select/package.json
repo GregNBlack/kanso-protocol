@@ -1,15 +1,15 @@
 {
   "name": "@kanso-protocol/select",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": ">=21.0.0",
     "@angular/common": ">=21.0.0",
     "@angular/forms": ">=21.0.0",
-    "@kanso-protocol/core": ">=2.0.0",
-    "@kanso-protocol/input": ">=2.0.0",
-    "@kanso-protocol/menu": ">=2.0.0",
-    "@kanso-protocol/checkbox": ">=2.0.0"
+    "@kanso-protocol/core": ">=2.0.1",
+    "@kanso-protocol/input": ">=2.0.1",
+    "@kanso-protocol/menu": ">=2.0.1",
+    "@kanso-protocol/checkbox": ">=2.0.1"
   },
   "description": "Kanso Protocol — select (component).",
   "author": "GregNBlack",

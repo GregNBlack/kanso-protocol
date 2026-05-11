@@ -1,5 +1,15 @@
 # @kanso-protocol/table-toolbar
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @kanso-protocol/core@2.0.1
+  - @kanso-protocol/badge@2.0.1
+  - @kanso-protocol/button@2.0.1
+  - @kanso-protocol/search-bar@2.0.1
+
 ## 2.0.0
 
 ### Patch Changes
