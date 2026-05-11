@@ -127,3 +127,17 @@ const manifest = {
 
 fs.writeFileSync(OUT, JSON.stringify(manifest, null, 2) + '\n');
 console.log(`test coverage: ${manifest.totalSpecs}/${manifest.totalPackages} packages have specs, ${manifest.totalTests} tests total → ${path.relative(ROOT, OUT)}`);
+
+// Also emit a shields.io custom-endpoint JSON consumed by the
+// README badge — keeps the badge number in sync with the actual
+// spec count instead of relying on manual edits.
+const BADGE_OUT = path.join(ROOT, '.github', 'badges', 'tests.json');
+fs.mkdirSync(path.dirname(BADGE_OUT), { recursive: true });
+const badge = {
+  schemaVersion: 1,
+  label: 'tests',
+  message: `${manifest.totalTests} passing`,
+  color: 'brightgreen',
+};
+fs.writeFileSync(BADGE_OUT, JSON.stringify(badge, null, 2) + '\n');
+console.log(`badge endpoint: ${path.relative(ROOT, BADGE_OUT)} → "${badge.message}"`);
