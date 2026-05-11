@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-05-11T04:59:06.304Z",
-  "totalSpecs": 41,
-  "totalTests": 414,
-  "totalPackages": 61,
+  "generatedAt": "2026-05-11T05:53:28.790Z",
+  "totalSpecs": 42,
+  "totalTests": 427,
+  "totalPackages": 62,
   "items": [
     {
       "layer": "components",
@@ -432,6 +432,17 @@
       "specFile": "packages/components/virtual-list/src/virtual-list.spec.ts",
       "specFiles": [
         "packages/components/virtual-list/src/virtual-list.spec.ts"
+      ],
+      "tests": 13
+    },
+    {
+      "layer": "utilities",
+      "name": "i18n",
+      "title": null,
+      "storybookId": null,
+      "specFile": "packages/i18n/src/i18n.spec.ts",
+      "specFiles": [
+        "packages/i18n/src/i18n.spec.ts"
       ],
       "tests": 13
     },

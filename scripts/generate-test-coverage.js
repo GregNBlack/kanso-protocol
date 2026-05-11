@@ -66,6 +66,7 @@ function findSpecFiles(srcDir) {
 const items = [];
 const missing = [];
 
+// Multi-package layers (every direct child is its own library).
 for (const layer of ['components', 'patterns']) {
   for (const pkg of listDirs(path.join(ROOT, 'packages', layer))) {
     const srcDir = path.join(pkg.full, 'src');
@@ -90,6 +91,26 @@ for (const layer of ['components', 'patterns']) {
       tests,
     });
   }
+}
+
+// Top-level single-package layers (e.g. packages/i18n, packages/core).
+// Each is one library, not a directory of libraries.
+for (const singleton of ['i18n']) {
+  const pkgDir = path.join(ROOT, 'packages', singleton);
+  const srcDir = path.join(pkgDir, 'src');
+  if (!fs.existsSync(srcDir)) continue;
+  const specs = findSpecFiles(srcDir);
+  if (specs.length === 0) continue;
+  const tests = specs.reduce((sum, s) => sum + countTests(s), 0);
+  items.push({
+    layer: 'utilities',
+    name: singleton,
+    title: null,
+    storybookId: null,
+    specFile: path.relative(ROOT, specs[0]),
+    specFiles: specs.map((s) => path.relative(ROOT, s)),
+    tests,
+  });
 }
 
 items.sort((a, b) => (a.title || a.name).localeCompare(b.title || b.name));
