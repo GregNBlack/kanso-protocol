@@ -78,25 +78,25 @@ interface MemberCard {
             </div>
 
             <div kpPageHeaderActions class="actions">
-              <kp-button variant="outline" color="neutral" size="sm">
+              <button kpButton variant="outline" color="neutral" size="sm">
                 <kp-icon kpButtonIconLeft name="share" />
                 <span>Share</span>
-              </kp-button>
-              <kp-button variant="default" color="primary" size="sm">
+              </button>
+              <button kpButton variant="default" color="primary" size="sm">
                 <kp-icon kpButtonIconLeft name="edit" />
                 <span>Edit</span>
-              </kp-button>
-              <kp-button variant="ghost" color="neutral" size="sm" [iconOnly]="true" aria-label="More">
+              </button>
+              <button kpButton variant="ghost" color="neutral" size="sm" [iconOnly]="true" aria-label="More">
                 <kp-icon kpButtonIconLeft name="dots" />
-              </kp-button>
+              </button>
             </div>
 
             <kp-tabs kpPageHeaderTabs size="md">
-              <kp-tab label="Overview" [selected]="true"/>
-              <kp-tab label="Activity"/>
-              <kp-tab label="Files"/>
-              <kp-tab label="Members"/>
-              <kp-tab label="Settings"/>
+              <button kpTab label="Overview" [selected]="true"></button>
+              <button kpTab label="Activity"></button>
+              <button kpTab label="Files"></button>
+              <button kpTab label="Members"></button>
+              <button kpTab label="Settings"></button>
             </kp-tabs>
           </kp-page-header>
 

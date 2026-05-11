@@ -137,13 +137,30 @@ describe('KpFileUploadComponent', () => {
     expect(cmp.formatSize(2 * 1024 * 1024 * 1024)).toBe('2.0 GB');
   });
 
-  it('ignores ingest when disabled', () => {
-    const { fix, cmp } = setup();
+  it('disables the native file input when [disabled]=true', () => {
+    const { fix } = setup();
     fix.componentRef.setInput('disabled', true);
     fix.detectChanges();
-    const zone = (fix.nativeElement as HTMLElement).querySelector('.kp-file-upload__zone') as HTMLElement;
-    cmp.openFilePicker();
-    expect(zone.getAttribute('aria-disabled')).toBe('true');
-    expect(zone.getAttribute('tabindex')).toBe('-1');
+    const input = (fix.nativeElement as HTMLElement).querySelector('input[type="file"]') as HTMLInputElement;
+    expect(input.disabled).toBe(true);
+  });
+
+  it('drop zone is a native <label> wrapping a real <input type="file">', () => {
+    const { fix } = setup();
+    const root = fix.nativeElement as HTMLElement;
+    const label = root.querySelector('label.kp-file-upload__zone');
+    expect(label).toBeTruthy();
+    const input = label!.querySelector('input[type="file"]');
+    expect(input).toBeTruthy();
+  });
+
+  it('forwards [required] and [name] to the native file input', () => {
+    const { fix } = setup();
+    fix.componentRef.setInput('required', true);
+    fix.componentRef.setInput('name', 'attachment');
+    fix.detectChanges();
+    const input = (fix.nativeElement as HTMLElement).querySelector('input[type="file"]') as HTMLInputElement;
+    expect(input.required).toBe(true);
+    expect(input.getAttribute('name')).toBe('attachment');
   });
 });

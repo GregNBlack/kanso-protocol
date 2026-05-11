@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-05T10:08:36.199Z",
-  "totalSpecs": 40,
-  "totalTests": 400,
+  "generatedAt": "2026-05-11T04:59:06.304Z",
+  "totalSpecs": 41,
+  "totalTests": 414,
   "totalPackages": 61,
   "items": [
     {
@@ -79,7 +79,7 @@
       "specFiles": [
         "packages/components/button/src/button.spec.ts"
       ],
-      "tests": 9
+      "tests": 10
     },
     {
       "layer": "components",
@@ -101,7 +101,7 @@
       "specFiles": [
         "packages/components/checkbox/src/checkbox.spec.ts"
       ],
-      "tests": 9
+      "tests": 8
     },
     {
       "layer": "components",
@@ -145,7 +145,7 @@
       "specFiles": [
         "packages/components/dialog/src/dialog.spec.ts"
       ],
-      "tests": 7
+      "tests": 9
     },
     {
       "layer": "components",
@@ -200,7 +200,7 @@
       "specFiles": [
         "packages/components/file-upload/src/file-upload.spec.ts"
       ],
-      "tests": 13
+      "tests": 15
     },
     {
       "layer": "components",
@@ -290,7 +290,7 @@
       "specFiles": [
         "packages/components/radio/src/radio.spec.ts"
       ],
-      "tests": 5
+      "tests": 6
     },
     {
       "layer": "components",
@@ -312,7 +312,7 @@
       "specFiles": [
         "packages/components/segmented-control/src/segmented-control.spec.ts"
       ],
-      "tests": 5
+      "tests": 6
     },
     {
       "layer": "components",
@@ -323,7 +323,7 @@
       "specFiles": [
         "packages/components/select/src/select.spec.ts"
       ],
-      "tests": 13
+      "tests": 16
     },
     {
       "layer": "components",
@@ -400,7 +400,7 @@
       "specFiles": [
         "packages/components/toggle/src/toggle.spec.ts"
       ],
-      "tests": 6
+      "tests": 5
     },
     {
       "layer": "components",
@@ -434,6 +434,17 @@
         "packages/components/virtual-list/src/virtual-list.spec.ts"
       ],
       "tests": 13
+    },
+    {
+      "layer": "patterns",
+      "name": "theme-toggle",
+      "title": "Patterns/ThemeToggle",
+      "storybookId": "patterns-themetoggle--docs",
+      "specFile": "packages/patterns/theme-toggle/src/theme-toggle.spec.ts",
+      "specFiles": [
+        "packages/patterns/theme-toggle/src/theme-toggle.spec.ts"
+      ],
+      "tests": 6
     },
     {
       "layer": "components",
@@ -537,11 +548,6 @@
       "layer": "patterns",
       "name": "table-toolbar",
       "title": "Patterns/TableToolbar"
-    },
-    {
-      "layer": "patterns",
-      "name": "theme-toggle",
-      "title": "Patterns/ThemeToggle"
     },
     {
       "layer": "patterns",

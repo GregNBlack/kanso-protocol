@@ -3,56 +3,51 @@ import { KpToggleComponent } from './toggle.component';
 
 describe('KpToggleComponent', () => {
   let fixture: ComponentFixture<KpToggleComponent>;
-  let component: KpToggleComponent;
   let host: HTMLElement;
+  let input: HTMLInputElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({ imports: [KpToggleComponent] }).compileComponents();
     fixture = TestBed.createComponent(KpToggleComponent);
-    component = fixture.componentInstance;
     host = fixture.nativeElement as HTMLElement;
-  });
-
-  it('exposes role="switch" on the host', () => {
     fixture.detectChanges();
-    expect(host.getAttribute('role')).toBe('switch');
+    input = host.querySelector('input[type="checkbox"]') as HTMLInputElement;
   });
 
-  it('aria-checked follows the `on` input', () => {
+  it('renders <input type="checkbox" role="switch">', () => {
+    expect(input).toBeTruthy();
+    expect(input.type).toBe('checkbox');
+    expect(input.getAttribute('role')).toBe('switch');
+  });
+
+  it('forwards [on] to native input.checked', () => {
     fixture.componentRef.setInput('on', true);
     fixture.detectChanges();
-    expect(host.getAttribute('aria-checked')).toBe('true');
+    expect(input.checked).toBe(true);
   });
 
-  it('reflects disabled via aria-disabled + tabindex=-1', () => {
+  it('forwards [disabled] to native input', () => {
     fixture.componentRef.setInput('disabled', true);
     fixture.detectChanges();
-    expect(host.getAttribute('aria-disabled')).toBe('true');
-    expect(host.getAttribute('tabindex')).toBe('-1');
+    expect(input.disabled).toBe(true);
   });
 
-  it('click toggles state and emits (onChangeEvent)', () => {
+  it('forwards required / name / value for FormData participation', () => {
+    fixture.componentRef.setInput('required', true);
+    fixture.componentRef.setInput('name', 'notif');
+    fixture.componentRef.setInput('value', '1');
     fixture.detectChanges();
+    expect(input.required).toBe(true);
+    expect(input.getAttribute('name')).toBe('notif');
+    expect(input.getAttribute('value')).toBe('1');
+  });
+
+  it('native change drives (onChangeEvent) and updates `on`', () => {
     const spy = vi.fn();
-    component.onChangeEvent.subscribe(spy);
-    host.click();
+    fixture.componentInstance.onChangeEvent.subscribe(spy);
+    input.checked = true;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
     expect(spy).toHaveBeenCalledWith(true);
-    host.click();
-    expect(spy).toHaveBeenNthCalledWith(2, false);
-  });
-
-  it('click is a no-op when disabled', () => {
-    fixture.componentRef.setInput('disabled', true);
-    fixture.detectChanges();
-    const spy = vi.fn();
-    component.onChangeEvent.subscribe(spy);
-    host.click();
-    expect(spy).not.toHaveBeenCalled();
-  });
-
-  it('ControlValueAccessor: writeValue updates `on`', () => {
-    component.writeValue(true);
-    fixture.detectChanges();
-    expect(component.on).toBe(true);
+    expect(fixture.componentInstance.on).toBe(true);
   });
 });

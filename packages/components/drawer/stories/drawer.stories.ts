@@ -20,12 +20,12 @@ export const Default: Story = {
   render: (args) => ({
     props: { ...args, open: false },
     template: `
-      <kp-button (click)="open = true">Open drawer</kp-button>
+      <button kpButton (click)="open = true">Open drawer</button>
       <kp-drawer [(open)]="open" [size]="size" [side]="side" [title]="title" [description]="description" [showDescription]="showDescription" [showFooter]="showFooter">
         <p kpDrawerBody>Drawer body content. Replace this slot with forms, lists, or any layout.</p>
         <ng-container kpDrawerFooter>
-          <kp-button variant="ghost" color="neutral" (click)="open = false">Cancel</kp-button>
-          <kp-button (click)="open = false">Confirm</kp-button>
+          <button kpButton variant="ghost" color="neutral" (click)="open = false">Cancel</button>
+          <button kpButton (click)="open = false">Confirm</button>
         </ng-container>
       </kp-drawer>`,
   }),
@@ -36,16 +36,16 @@ export const Sides: Story = {
     props: { openSide: '' as string },
     template: `
       <div style="display:flex;flex-wrap:wrap;gap:8px">
-        <kp-button (click)="openSide = 'right'">Right</kp-button>
-        <kp-button (click)="openSide = 'left'">Left</kp-button>
-        <kp-button (click)="openSide = 'top'">Top</kp-button>
-        <kp-button (click)="openSide = 'bottom'">Bottom</kp-button>
+        <button kpButton (click)="openSide = 'right'">Right</button>
+        <button kpButton (click)="openSide = 'left'">Left</button>
+        <button kpButton (click)="openSide = 'top'">Top</button>
+        <button kpButton (click)="openSide = 'bottom'">Bottom</button>
       </div>
       <kp-drawer [open]="openSide !== ''" [side]="openSide || 'right'" size="md" [title]="'Drawer from ' + (openSide || 'right')" [showDescription]="true" description="Content slides in from this edge." [showFooter]="true" (openChange)="openSide = ''">
         <p kpDrawerBody>Body content. Esc or backdrop click to close.</p>
         <ng-container kpDrawerFooter>
-          <kp-button variant="ghost" color="neutral" (click)="openSide = ''">Cancel</kp-button>
-          <kp-button (click)="openSide = ''">OK</kp-button>
+          <button kpButton variant="ghost" color="neutral" (click)="openSide = ''">Cancel</button>
+          <button kpButton (click)="openSide = ''">OK</button>
         </ng-container>
       </kp-drawer>`,
   }),
@@ -56,16 +56,16 @@ export const Sizes: Story = {
     props: { openSize: '' as string },
     template: `
       <div style="display:flex;flex-wrap:wrap;gap:8px">
-        <kp-button (click)="openSize = 'sm'">sm</kp-button>
-        <kp-button (click)="openSize = 'md'">md</kp-button>
-        <kp-button (click)="openSize = 'lg'">lg</kp-button>
-        <kp-button (click)="openSize = 'xl'">xl</kp-button>
+        <button kpButton (click)="openSize = 'sm'">sm</button>
+        <button kpButton (click)="openSize = 'md'">md</button>
+        <button kpButton (click)="openSize = 'lg'">lg</button>
+        <button kpButton (click)="openSize = 'xl'">xl</button>
       </div>
       <kp-drawer [open]="openSize !== ''" side="right" [size]="openSize || 'md'" [title]="(openSize || 'md').toUpperCase() + ' drawer'" [showFooter]="true" (openChange)="openSize = ''">
         <p kpDrawerBody>Different sizes per side: right/left use width (320/480/640/800), top/bottom use height (240/400/560/720).</p>
         <ng-container kpDrawerFooter>
-          <kp-button variant="ghost" color="neutral" (click)="openSize = ''">Cancel</kp-button>
-          <kp-button (click)="openSize = ''">OK</kp-button>
+          <button kpButton variant="ghost" color="neutral" (click)="openSize = ''">Cancel</button>
+          <button kpButton (click)="openSize = ''">OK</button>
         </ng-container>
       </kp-drawer>`,
   }),
@@ -77,10 +77,10 @@ export const UseCases: Story = {
     props: { openKey: '' as string },
     template: `
       <div style="display:flex;flex-wrap:wrap;gap:8px">
-        <kp-button (click)="openKey = 'settings'">Settings panel</kp-button>
-        <kp-button (click)="openKey = 'filters'">Filter sidebar</kp-button>
-        <kp-button (click)="openKey = 'share'">Bottom sheet</kp-button>
-        <kp-button (click)="openKey = 'notif'">Top notifications</kp-button>
+        <button kpButton (click)="openKey = 'settings'">Settings panel</button>
+        <button kpButton (click)="openKey = 'filters'">Filter sidebar</button>
+        <button kpButton (click)="openKey = 'share'">Bottom sheet</button>
+        <button kpButton (click)="openKey = 'notif'">Top notifications</button>
       </div>
 
       <kp-drawer [open]="openKey === 'settings'" side="right" size="md" title="Settings" [showDescription]="true" description="Manage your preferences" [showFooter]="true" (openChange)="openKey = ''">
@@ -91,8 +91,8 @@ export const UseCases: Story = {
           <label style="display:flex;justify-content:space-between"><span>Auto-save</span><span>◉</span></label>
         </div>
         <ng-container kpDrawerFooter>
-          <kp-button variant="ghost" color="neutral" (click)="openKey = ''">Cancel</kp-button>
-          <kp-button (click)="openKey = ''">Save</kp-button>
+          <button kpButton variant="ghost" color="neutral" (click)="openKey = ''">Cancel</button>
+          <button kpButton (click)="openKey = ''">Save</button>
         </ng-container>
       </kp-drawer>
 
@@ -102,8 +102,8 @@ export const UseCases: Story = {
           <div><strong style="font-size:13px">Price</strong><div style="margin-top:6px;font-size:14px;color: var(--kp-color-gray-600)">☐ Under $50<br>☐ $50 — $200<br>☐ Over $200</div></div>
         </div>
         <ng-container kpDrawerFooter>
-          <kp-button variant="ghost" color="neutral" (click)="openKey = ''">Clear</kp-button>
-          <kp-button (click)="openKey = ''">Apply</kp-button>
+          <button kpButton variant="ghost" color="neutral" (click)="openKey = ''">Clear</button>
+          <button kpButton (click)="openKey = ''">Apply</button>
         </ng-container>
       </kp-drawer>
 

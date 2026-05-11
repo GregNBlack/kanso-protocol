@@ -31,7 +31,7 @@ Mount a Banner inside `AppShell`'s `[kpAppShellBanner]` slot for global messages
 
 | Selector | Slot |
 |----------|------|
-| `[kpBannerAction]` | Trailing CTA (use `<kp-button size="sm">`) |
+| `[kpBannerAction]` | Trailing CTA (use `<button kpButton size="sm">`) |
 
 ## Do / Don't
 

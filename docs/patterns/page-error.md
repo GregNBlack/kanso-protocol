@@ -26,7 +26,7 @@ Typically mounted in place of the page body (inside `Container` or bare inside `
 
 | Selector | Slot |
 |----------|------|
-| `[kpPageErrorPrimary]` | Primary CTA (`<kp-button>`) |
+| `[kpPageErrorPrimary]` | Primary CTA (`<button kpButton>`) |
 | `[kpPageErrorSecondary]` | Secondary CTA (typically `variant="ghost"`) |
 
 ### Defaults per `type`

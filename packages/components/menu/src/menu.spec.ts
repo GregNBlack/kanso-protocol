@@ -95,7 +95,7 @@ describe('Menu (DropdownMenu + MenuItem)', () => {
 
     it('hides the cancel button when showCancel=false', () => {
       const { host } = setupWith({ hasFooter: true, showCancel: false });
-      const buttons = host.querySelectorAll('.kp-dropdown-menu__buttons kp-button');
+      const buttons = host.querySelectorAll('.kp-dropdown-menu__buttons button[kpButton]');
       expect(buttons.length).toBe(1);
     });
 
@@ -103,7 +103,7 @@ describe('Menu (DropdownMenu + MenuItem)', () => {
       const { host, cmp } = setupWith({ hasFooter: true });
       // kp-button is the host that listens for (click); fire on it, not on
       // an inner <button> element (which may not exist in the test harness).
-      const primary = host.querySelector('.kp-dropdown-menu__buttons kp-button') as HTMLElement;
+      const primary = host.querySelector('.kp-dropdown-menu__buttons button[kpButton]') as HTMLElement;
       primary.dispatchEvent(new MouseEvent('click', { bubbles: true }));
       expect(cmp.onPrimary).toHaveBeenCalled();
     });

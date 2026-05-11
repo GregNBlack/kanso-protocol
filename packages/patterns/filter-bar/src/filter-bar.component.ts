@@ -59,25 +59,25 @@ export interface KpFilterChip {
       }
 
       @if (showAddFilter) {
-        <kp-button variant="ghost" size="sm" (click)="addFilter.emit()">
+        <button kpButton variant="ghost" size="sm" (click)="addFilter.emit()">
           <kp-icon name="plus" />
           <span>Add filter</span>
-        </kp-button>
+        </button>
       }
     </div>
 
     <div class="kp-fb__actions">
       @if (showSaveFilter) {
-        <kp-button variant="ghost" size="sm" (click)="saveFilter.emit()">
+        <button kpButton variant="ghost" size="sm" (click)="saveFilter.emit()">
           <kp-icon name="bookmark" />
           <span>Save filter</span>
-        </kp-button>
+        </button>
       }
 
       @if (showClearAll && filters.length > 0) {
-        <kp-button variant="ghost" size="sm" (click)="clearAll.emit()">
+        <button kpButton variant="ghost" size="sm" (click)="clearAll.emit()">
           <span>Clear all</span>
-        </kp-button>
+        </button>
       }
     </div>
   `,

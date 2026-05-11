@@ -771,6 +771,16 @@
           "rest": {
             "$value": "#A1A1AA",
             "$description": "designer-pass"
+          },
+          "selected": {
+            "$value": "#FAFAFA",
+            "$description": "Near-white for max readability on dark page bg. Saturated blue-600 from the light theme has poor contrast against #09090b page bg; underline still carries the brand-blue accent."
+          }
+        },
+        "icon": {
+          "selected": {
+            "$value": "#FAFAFA",
+            "$description": "Match selected fg for consistent dark-mode tab read."
           }
         }
       }

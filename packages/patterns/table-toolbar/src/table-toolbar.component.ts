@@ -52,20 +52,20 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
         }
 
         @if (showFilter) {
-          <kp-button variant="outline" size="sm" (click)="filterClick.emit()">
+          <button kpButton variant="outline" size="sm" (click)="filterClick.emit()">
             <kp-icon kpButtonIconLeft name="filter" />
             Filters
             @if (activeFilterCount > 0) {
               <kp-badge kpButtonIconRight size="xs" color="primary" appearance="subtle">{{ activeFilterCount }}</kp-badge>
             }
-          </kp-button>
+          </button>
         }
 
         @if (showSort) {
-          <kp-button variant="outline" size="sm" (click)="sortClick.emit()">
+          <button kpButton variant="outline" size="sm" (click)="sortClick.emit()">
             <kp-icon kpButtonIconLeft name="arrows-up-down" />
             <span>Sort</span>
-          </kp-button>
+          </button>
         }
       </div>
 
@@ -100,16 +100,16 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
         }
 
         @if (showColumnPicker) {
-          <kp-button variant="outline" size="sm" [iconOnly]="true" aria-label="Columns" (click)="columnsClick.emit()">
+          <button kpButton variant="outline" size="sm" [iconOnly]="true" aria-label="Columns" (click)="columnsClick.emit()">
             <kp-icon kpButtonIconLeft name="layout-columns" />
-          </kp-button>
+          </button>
         }
 
         @if (showExport) {
-          <kp-button variant="ghost" size="sm" (click)="exportClick.emit()">
+          <button kpButton variant="ghost" size="sm" (click)="exportClick.emit()">
             <kp-icon kpButtonIconLeft name="download" />
             <span>Export</span>
-          </kp-button>
+          </button>
         }
 
         @if (hasRightActions && showCreate) {
@@ -117,10 +117,10 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
         }
 
         @if (showCreate) {
-          <kp-button variant="default" color="primary" size="sm" (click)="createClick.emit()">
+          <button kpButton variant="default" color="primary" size="sm" (click)="createClick.emit()">
             <kp-icon kpButtonIconLeft name="plus" />
             <span>{{ createLabel }}</span>
-          </kp-button>
+          </button>
         }
       </div>
     } @else {
@@ -128,30 +128,30 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
         <span class="kp-tt__selected">
           <strong>{{ selectedCount }}</strong> {{ selectedCount === 1 ? 'item' : 'items' }} selected
         </span>
-        <kp-button variant="ghost" size="sm" (click)="clearSelection.emit()">
+        <button kpButton variant="ghost" size="sm" (click)="clearSelection.emit()">
           <kp-icon kpButtonIconLeft name="x" />
           <span>Clear selection</span>
-        </kp-button>
+        </button>
       </div>
 
       <div class="kp-tt__right">
-        <kp-button variant="outline" size="sm" (click)="bulkExport.emit()">
+        <button kpButton variant="outline" size="sm" (click)="bulkExport.emit()">
           <kp-icon kpButtonIconLeft name="download" />
           <span>Export selected</span>
-        </kp-button>
-        <kp-button variant="outline" size="sm" (click)="bulkTag.emit()">
+        </button>
+        <button kpButton variant="outline" size="sm" (click)="bulkTag.emit()">
           <kp-icon kpButtonIconLeft name="tag" />
           <span>Tag</span>
-        </kp-button>
-        <kp-button variant="outline" size="sm" (click)="bulkMove.emit()">
+        </button>
+        <button kpButton variant="outline" size="sm" (click)="bulkMove.emit()">
           <kp-icon kpButtonIconLeft name="folder" />
           <span>Move to…</span>
-        </kp-button>
+        </button>
         <span class="kp-tt__divider" aria-hidden="true"></span>
-        <kp-button variant="outline" color="danger" size="sm" (click)="bulkDelete.emit()">
+        <button kpButton variant="outline" color="danger" size="sm" (click)="bulkDelete.emit()">
           <kp-icon kpButtonIconLeft name="trash" />
           <span>Delete</span>
-        </kp-button>
+        </button>
       </div>
     }
   `,

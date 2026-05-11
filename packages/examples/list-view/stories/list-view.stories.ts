@@ -56,14 +56,14 @@ interface TeamMember {
             [showActions]="true"
             [showBottomDivider]="false">
             <div kpPageHeaderActions class="ph-actions">
-              <kp-button variant="ghost" color="neutral" size="sm">
+              <button kpButton variant="ghost" color="neutral" size="sm">
                 <kp-icon kpButtonIconLeft name="download" />
                 <span>Export</span>
-              </kp-button>
-              <kp-button variant="default" color="primary" size="sm">
+              </button>
+              <button kpButton variant="default" color="primary" size="sm">
                 <kp-icon kpButtonIconLeft name="plus" />
                 <span>Invite</span>
-              </kp-button>
+              </button>
             </div>
           </kp-page-header>
 
@@ -95,9 +95,9 @@ interface TeamMember {
               </ng-template>
 
               <ng-template kpTableCell="actions">
-                <kp-button variant="ghost" color="neutral" size="sm" [iconOnly]="true" aria-label="More">
+                <button kpButton variant="ghost" color="neutral" size="sm" [iconOnly]="true" aria-label="More">
                   <kp-icon kpButtonIconLeft name="dots" />
-                </kp-button>
+                </button>
               </ng-template>
             </kp-table>
 

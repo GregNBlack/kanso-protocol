@@ -1,16 +1,16 @@
 # Tabs
 
-> Horizontal underline tabs — a container (`<kp-tabs>`) plus individual tab atoms (`<kp-tab>`). Visual chrome only; selection state lives in the caller.
+> Horizontal underline tabs — a container (`<kp-tabs>`) plus individual tab atoms (`<button kpTab>`). Visual chrome only; selection state lives in the caller.
 
 ## Contract
 
-Tabs are a two-part component: `<kp-tabs>` is the strip (the shared bottom border, layout mode, and size propagation), and `<kp-tab>` is each tab inside it (label, optional icon slot, optional badge slot, and the active-underline). The container does **not** own selection — callers bind `[selected]` on each tab and react to `(selectedChange)` to update their own state. This keeps the component composable with whatever router / store / local signal you already use.
+Tabs are a two-part component: `<kp-tabs>` is the strip (the shared bottom border, layout mode, and size propagation), and `<button kpTab>` is each tab inside it (label, optional icon slot, optional badge slot, and the active-underline). The container does **not** own selection — callers bind `[selected]` on each tab and react to `(selectedChange)` to update their own state. This keeps the component composable with whatever router / store / local signal you already use.
 
 ### Anatomy
 
 ```
 <kp-tabs> (role="tablist", border-bottom 1px)
-├─ <kp-tab> (role="tab")
+├─ <button kpTab> (role="tab")
 │   ├─ [kpTabIcon]   (optional leading icon)
 │   ├─ Label         (input)
 │   └─ [kpTabBadge]  (optional trailing badge)
@@ -29,7 +29,7 @@ Tabs are a two-part component: `<kp-tabs>` is the strip (the shared bottom borde
 | md   | 40     | 16        | 8   | 14   | 16   |
 | lg   | 48     | 20        | 8   | 16   | 16   |
 
-`<kp-tabs>` cascades `size` and `fullWidth` to every projected `<kp-tab>` via `@ContentChildren`, so you set them in one place on the container and the children follow.
+`<kp-tabs>` cascades `size` and `fullWidth` to every projected `<button kpTab>` via `@ContentChildren`, so you set them in one place on the container and the children follow.
 
 ## API — `<kp-tabs>`
 
@@ -37,15 +37,15 @@ Tabs are a two-part component: `<kp-tabs>` is the strip (the shared bottom borde
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Cascades to all projected `<kp-tab>` children |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Cascades to all projected `<button kpTab>` children |
 | `fullWidth` | `boolean` | `false` | When `true`, each tab becomes `flex: 1 0 0` — all tabs share the container width equally. Use for modals and narrow strips |
 
 ### Slots
 
-- **Default** — place `<kp-tab>` children here.
+- **Default** — place `<button kpTab>` children here.
 - **`[kpTabsMore]`** — a single element (typically a `<button>`) rendered at the right edge of the strip. Common use: an overflow "More ▾" menu that opens a Popover or DropdownMenu with the hidden tabs.
 
-## API — `<kp-tab>`
+## API — `<button kpTab>`
 
 ### Inputs
 
@@ -82,7 +82,7 @@ Focus is handled by `:focus-visible` on the underlying `<button>` with a standar
 ## Accessibility
 
 - `<kp-tabs>` carries `role="tablist"`.
-- Each `<kp-tab>` carries `role="tab"`, `aria-selected`, and `aria-disabled` where applicable.
+- Each `<button kpTab>` carries `role="tab"`, `aria-selected`, and `aria-disabled` where applicable.
 - Tabs participate in a roving tabindex: the selected tab has `tabindex="0"`, the others `tabindex="-1"`. Callers who need arrow-key navigation between tabs should wire it up themselves — this component intentionally doesn't own keyboard nav so it plays nicely with different focus-management strategies (CDK `FocusKeyManager`, custom, etc.).
 - The underlying interactive element is a real `<button>`, so screen readers announce tabs as buttons within a tablist.
 
@@ -115,4 +115,4 @@ Focus is handled by `:focus-visible` on the underlying `<button>` with a standar
 
 ## Changelog
 
-- `0.1.0` — Initial release. `<kp-tabs>` container with `size` + `fullWidth` + optional `[kpTabsMore]` slot. `<kp-tab>` atom with `[selected]` / `[disabled]` inputs, `[kpTabIcon]` / `[kpTabBadge]` slots, and a 2 px bottom-border active underline that matches the tab's exact width (including the full-width flex case).
+- `0.1.0` — Initial release. `<kp-tabs>` container with `size` + `fullWidth` + optional `[kpTabsMore]` slot. `<button kpTab>` atom with `[selected]` / `[disabled]` inputs, `[kpTabIcon]` / `[kpTabBadge]` slots, and a 2 px bottom-border active underline that matches the tab's exact width (including the full-width flex case).

@@ -326,6 +326,8 @@
   --kp-color-popover-bg: #1f1f22;
   --kp-color-popover-border: #3f3f46;
   --kp-color-tabs-tab-fg-rest: #a1a1aa;
+  --kp-color-tabs-tab-fg-selected: #fafafa;
+  --kp-color-tabs-tab-icon-selected: #fafafa;
   --kp-color-nav-item-fg-active: #dbeafe;
   --kp-color-nav-item-fg-disabled: #71717a;
   --kp-color-nav-item-icon-active: #bfdbfe;

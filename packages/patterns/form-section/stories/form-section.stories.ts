@@ -122,12 +122,12 @@ export const ProfileSettings: Story = {
         </kp-form-section>
 
         <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:24px">
-          <kp-button variant="ghost" color="neutral" size="sm">
+          <button kpButton variant="ghost" color="neutral" size="sm">
             <span>Cancel</span>
-          </kp-button>
-          <kp-button variant="default" color="primary" size="sm">
+          </button>
+          <button kpButton variant="default" color="primary" size="sm">
             <span>Save changes</span>
-          </kp-button>
+          </button>
         </div>
       </div>
     `,
@@ -151,8 +151,8 @@ export const OnboardingWizard: Story = {
         </kp-form-section>
 
         <div style="display:flex;justify-content:space-between;margin-top:32px">
-          <kp-button variant="ghost" color="neutral" size="md"><span>Back</span></kp-button>
-          <kp-button variant="default" color="primary" size="md"><span>Continue</span></kp-button>
+          <button kpButton variant="ghost" color="neutral" size="md"><span>Back</span></button>
+          <button kpButton variant="default" color="primary" size="md"><span>Continue</span></button>
         </div>
       </div>
     `,

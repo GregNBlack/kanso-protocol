@@ -52,6 +52,19 @@ export interface KpSelectOption {
     '[attr.aria-disabled]': 'isDisabled || null',
   },
   template: `
+    <!-- Hidden mirror — gives the select a real form value (FormData
+         + HTML5 validation) without changing the visual trigger. -->
+    <input
+      class="kp-select__form-mirror"
+      type="text"
+      tabindex="-1"
+      aria-hidden="true"
+      [attr.name]="name"
+      [value]="formValue"
+      [required]="required"
+      [disabled]="isDisabled"
+      (focus)="trigger.focus()"
+    />
     <button
       #trigger
       type="button"
@@ -138,6 +151,23 @@ export interface KpSelectOption {
       position: relative;
       width: 280px;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
+    }
+
+    /* Hidden form-mirror: invisible but in DOM so the select participates
+       in FormData and HTML5 validation. Focusing it (e.g. via implicit
+       form validation flow) bounces focus to the real trigger. */
+    .kp-select__form-mirror {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      pointer-events: none;
+      z-index: -1;
+      border: 0;
+      padding: 0;
+      margin: 0;
     }
 
     /* --- Trigger matches Input styling --- */
@@ -415,6 +445,9 @@ export class KpSelectComponent implements ControlValueAccessor, AfterViewChecked
   @Input() multiple = false;
   @Input() showClear = true;
   @Input() disabled = false;
+  @Input() required = false;
+  /** Native form name. Required for FormData submission inside a `<form>`. */
+  @Input() name: string | null = null;
   /** Force visual state for showcase/documentation purposes */
   @Input() forceState: KpState | null = null;
 
@@ -479,6 +512,12 @@ export class KpSelectComponent implements ControlValueAccessor, AfterViewChecked
 
   hasValue(): boolean {
     return this.multiple ? this.multiValue.length > 0 : this.singleValue !== null && this.singleValue !== '';
+  }
+
+  /** Value used by the hidden form-mirror input. Multi-select joins values with comma. */
+  get formValue(): string {
+    if (this.multiple) return this.multiValue.join(',');
+    return this.singleValue ?? '';
   }
 
   isPlaceholderShown(): boolean {

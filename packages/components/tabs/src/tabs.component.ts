@@ -16,8 +16,8 @@ import { KpTabComponent, KpTabSize } from './tab.component';
 /**
  * Kanso Protocol — Tabs (container)
  *
- * Horizontal strip of `<kp-tab>` children with a shared bottom border.
- * Cascades `size` and `fullWidth` down to every projected `<kp-tab>`
+ * Horizontal strip of `<button kpTab>` children with a shared bottom border.
+ * Cascades `size` and `fullWidth` down to every projected `<button kpTab>`
  * automatically, so callers only set those two inputs in one place.
  *
  * A `[kpTabsMore]` slot projects an optional "More ▾" affordance to the
@@ -26,9 +26,9 @@ import { KpTabComponent, KpTabSize } from './tab.component';
  *
  * @example
  * <kp-tabs size="md" [fullWidth]="false">
- *   <kp-tab label="Overview" [selected]="tab === 'overview'" (selectedChange)="tab = 'overview'"/>
- *   <kp-tab label="Activity" [selected]="tab === 'activity'" (selectedChange)="tab = 'activity'"/>
- *   <kp-tab label="Settings" [selected]="tab === 'settings'" (selectedChange)="tab = 'settings'"/>
+ *   <button kpTab label="Overview" [selected]="tab === 'overview'" (selectedChange)="tab = 'overview'"></button>
+ *   <button kpTab label="Activity" [selected]="tab === 'activity'" (selectedChange)="tab = 'activity'"></button>
+ *   <button kpTab label="Settings" [selected]="tab === 'settings'" (selectedChange)="tab = 'settings'"></button>
  *
  *   <button kpTabsMore>More ▾</button>
  * </kp-tabs>
@@ -41,7 +41,7 @@ import { KpTabComponent, KpTabSize } from './tab.component';
     '[class]': 'hostClasses',
     '(keydown)': 'onKeyDown($event)',
   },
-  // role="tablist" lives on the row that holds the projected <kp-tab> elements.
+  // role="tablist" lives on the row that holds the projected <button kpTab> elements.
   // The host also carries an optional [kpTabsMore] sibling slot which is not a
   // tab, so role=tablist on the host would fail axe's aria-required-children.
   template: `

@@ -136,4 +136,28 @@ describe('KpSelectComponent', () => {
     fix.detectChanges();
     expect(host.classList.contains('kp-select--open')).toBe(true);
   });
+
+  it('renders a hidden form-mirror <input> alongside the trigger', () => {
+    const { host } = setup({ name: 'fruit', required: true });
+    const mirror = host.querySelector('input.kp-select__form-mirror') as HTMLInputElement;
+    expect(mirror).toBeTruthy();
+    expect(mirror.getAttribute('name')).toBe('fruit');
+    expect(mirror.required).toBe(true);
+  });
+
+  it('form-mirror value tracks single-mode selection', () => {
+    const { fix, host, cmp } = setup({ name: 'fruit' });
+    cmp.writeValue('apple');
+    fix.detectChanges();
+    const mirror = host.querySelector('input.kp-select__form-mirror') as HTMLInputElement;
+    expect(mirror.value).toBe('apple');
+  });
+
+  it('form-mirror value comma-joins multi-mode selection', () => {
+    const { fix, host, cmp } = setup({ name: 'fruit', multiple: true });
+    cmp.writeValue(['apple', 'banana']);
+    fix.detectChanges();
+    const mirror = host.querySelector('input.kp-select__form-mirror') as HTMLInputElement;
+    expect(mirror.value).toBe('apple,banana');
+  });
 });

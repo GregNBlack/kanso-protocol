@@ -26,7 +26,7 @@ export type KpStackAlign = 'start' | 'center' | 'end' | 'stretch';
  * <kp-stack gap="md">
  *   <kp-input/>
  *   <kp-input/>
- *   <kp-button>Save</kp-button>
+ *   <button kpButton>Save</button>
  * </kp-stack>
  */
 @Component({

@@ -29,8 +29,8 @@ export const NotFound: Story = {
     props: args,
     template: SHELL(`
       <kp-page-error [type]="type">
-        <kp-button kpPageErrorPrimary>Go home</kp-button>
-        <kp-button kpPageErrorSecondary variant="ghost">Report broken link</kp-button>
+        <button kpButton kpPageErrorPrimary>Go home</button>
+        <button kpButton kpPageErrorSecondary variant="ghost">Report broken link</button>
       </kp-page-error>
     `),
   }),
@@ -42,8 +42,8 @@ export const ServerError: Story = {
     props: args,
     template: SHELL(`
       <kp-page-error [type]="type">
-        <kp-button kpPageErrorPrimary>Try again</kp-button>
-        <kp-button kpPageErrorSecondary variant="ghost">Contact support</kp-button>
+        <button kpButton kpPageErrorPrimary>Try again</button>
+        <button kpButton kpPageErrorSecondary variant="ghost">Contact support</button>
       </kp-page-error>
     `),
   }),
@@ -55,8 +55,8 @@ export const Offline: Story = {
     props: args,
     template: SHELL(`
       <kp-page-error [type]="type">
-        <kp-button kpPageErrorPrimary>Retry</kp-button>
-        <kp-button kpPageErrorSecondary variant="ghost">Work offline</kp-button>
+        <button kpButton kpPageErrorPrimary>Retry</button>
+        <button kpButton kpPageErrorSecondary variant="ghost">Work offline</button>
       </kp-page-error>
     `),
   }),
@@ -68,8 +68,8 @@ export const AccessDenied: Story = {
     props: args,
     template: SHELL(`
       <kp-page-error [type]="type">
-        <kp-button kpPageErrorPrimary>Request access</kp-button>
-        <kp-button kpPageErrorSecondary variant="ghost">Go home</kp-button>
+        <button kpButton kpPageErrorPrimary>Request access</button>
+        <button kpButton kpPageErrorSecondary variant="ghost">Go home</button>
       </kp-page-error>
     `),
   }),
@@ -82,8 +82,8 @@ export const WithSupportId: Story = {
         type="500"
         description="We're experiencing issues. Error ID: #A7F3B2"
       >
-        <kp-button kpPageErrorPrimary>Try again</kp-button>
-        <kp-button kpPageErrorSecondary variant="ghost">Contact support with ID</kp-button>
+        <button kpButton kpPageErrorPrimary>Try again</button>
+        <button kpButton kpPageErrorSecondary variant="ghost">Contact support with ID</button>
       </kp-page-error>
     `),
   }),
@@ -97,8 +97,8 @@ export const AccessDeniedPaywall: Story = {
         title="Team analytics is a Pro feature"
         description="This section is available on the Pro plan. Upgrade to access team analytics and advanced reporting."
       >
-        <kp-button kpPageErrorPrimary>Upgrade plan</kp-button>
-        <kp-button kpPageErrorSecondary variant="ghost">Go home</kp-button>
+        <button kpButton kpPageErrorPrimary>Upgrade plan</button>
+        <button kpButton kpPageErrorSecondary variant="ghost">Go home</button>
       </kp-page-error>
     `),
   }),

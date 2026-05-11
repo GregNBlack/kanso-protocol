@@ -51,14 +51,14 @@ import { KpIconComponent } from '@kanso-protocol/icon';
             [showActions]="true"
             [showBottomDivider]="false">
             <div kpPageHeaderActions style="display:flex;gap:8px">
-              <kp-button variant="ghost" color="neutral" size="sm">
+              <button kpButton variant="ghost" color="neutral" size="sm">
                 <kp-icon kpButtonIconLeft name="download" />
                 <span>Export</span>
-              </kp-button>
-              <kp-button variant="default" color="primary" size="sm">
+              </button>
+              <button kpButton variant="default" color="primary" size="sm">
                 <kp-icon kpButtonIconLeft name="plus" />
                 <span>Create report</span>
-              </kp-button>
+              </button>
             </div>
           </kp-page-header>
 

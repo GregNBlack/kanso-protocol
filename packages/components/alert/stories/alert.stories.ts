@@ -103,20 +103,20 @@ export const WithActions: Story = {
       <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
         <kp-alert color="info" title="Update available" description="Version 2.3 is ready.">
           ${icon(ICON.infoCircle)}
-          <kp-button kpAlertAction size="sm" variant="subtle" color="primary" (click)="onAction()">Update</kp-button>
+          <button kpButton kpAlertAction size="sm" variant="subtle" color="primary" (click)="onAction()">Update</button>
         </kp-alert>
 
         <kp-alert color="danger" actionPlacement="stacked"
                   title="Unable to save"
                   description="Please check your internet connection and try again. If the problem persists, contact support.">
           ${icon(ICON.alertCircle)}
-          <kp-button kpAlertAction size="sm" variant="ghost" color="danger" (click)="onAction()">Retry</kp-button>
+          <button kpButton kpAlertAction size="sm" variant="ghost" color="danger" (click)="onAction()">Retry</button>
         </kp-alert>
 
         <kp-alert color="warning" appearance="left-accent"
                   title="Review required" description="3 items need your approval.">
           ${icon(ICON.alertTriangle)}
-          <kp-button kpAlertAction size="sm" variant="subtle" color="primary" (click)="onAction()">Review</kp-button>
+          <button kpButton kpAlertAction size="sm" variant="subtle" color="primary" (click)="onAction()">Review</button>
         </kp-alert>
       </div>`,
   }),
@@ -160,7 +160,7 @@ export const FullFeatured: Story = {
                 title="Your subscription expires in 3 days"
                 description="To continue using premium features, please renew your subscription. You won't lose any data if you renew within 30 days of expiration.">
         ${icon(ICON.alertTriangle)}
-        <kp-button kpAlertAction size="md" variant="default" color="primary" (click)="onRenew()">Renew now</kp-button>
+        <button kpButton kpAlertAction size="md" variant="default" color="primary" (click)="onRenew()">Renew now</button>
       </kp-alert>`,
   }),
 };

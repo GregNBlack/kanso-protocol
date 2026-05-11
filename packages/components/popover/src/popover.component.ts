@@ -30,8 +30,8 @@ export type KpPopoverArrowPosition =
  * <kp-popover size="md" arrowPosition="top-center"
  *             title="Delete this item?" description="This action cannot be undone."
  *             [closable]="true" (close)="cancel()">
- *   <kp-button kpPopoverFooter size="sm" variant="ghost">Cancel</kp-button>
- *   <kp-button kpPopoverFooter size="sm" color="danger">Delete</kp-button>
+ *   <button kpButton kpPopoverFooter size="sm" variant="ghost">Cancel</button>
+ *   <button kpButton kpPopoverFooter size="sm" color="danger">Delete</button>
  * </kp-popover>
  */
 @Component({

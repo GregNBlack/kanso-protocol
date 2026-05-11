@@ -70,7 +70,7 @@ Text scales with size: Title uses `text/sm` / `text/md` / `text/lg` (medium weig
        stroke-linecap="round" stroke-linejoin="round">
     <path d="M12 9v4M12 17v.01M10.24 3.957L3.2 16.104a2 2 0 0 0 1.737 3h14.118a2 2 0 0 0 1.737-3L13.76 3.957a2 2 0 0 0-3.52 0z"/>
   </svg>
-  <kp-button kpAlertAction size="sm" variant="subtle" color="primary">Review</kp-button>
+  <button kpButton kpAlertAction size="sm" variant="subtle" color="primary">Review</button>
 </kp-alert>
 ```
 

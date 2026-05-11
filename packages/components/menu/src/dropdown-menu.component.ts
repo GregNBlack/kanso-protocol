@@ -44,9 +44,9 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       <div class="kp-dropdown-menu__footer">
         <div class="kp-dropdown-menu__divider"></div>
         <div class="kp-dropdown-menu__buttons">
-          <kp-button size="sm" variant="default" color="primary" style="flex:1" (click)="primary.emit()">{{ primaryLabel }}</kp-button>
+          <button kpButton size="sm" variant="default" color="primary" style="flex:1" (click)="primary.emit()">{{ primaryLabel }}</button>
           @if (showCancel) {
-            <kp-button size="sm" variant="ghost" color="neutral" style="flex:1" (click)="cancel.emit()">{{ cancelLabel }}</kp-button>
+            <button kpButton size="sm" variant="ghost" color="neutral" style="flex:1" (click)="cancel.emit()">{{ cancelLabel }}</button>
           }
         </div>
       </div>

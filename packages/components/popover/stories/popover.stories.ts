@@ -109,15 +109,15 @@ export const Composition: Story = {
 
         <kp-popover [showHeader]="false" [showFooter]="true">
           Only body and footer. No header. Useful for confirmation dialogs.
-          <kp-button kpPopoverFooter size="sm" variant="ghost" color="neutral">Cancel</kp-button>
-          <kp-button kpPopoverFooter size="sm">Confirm</kp-button>
+          <button kpButton kpPopoverFooter size="sm" variant="ghost" color="neutral">Cancel</button>
+          <button kpButton kpPopoverFooter size="sm">Confirm</button>
         </kp-popover>
 
         <kp-popover title="Full composition" description="Header, body and footer with dividers."
                     [closable]="true" [showHeaderDivider]="true" [showFooter]="true" [showFooterDivider]="true">
           Body content with dividers above and below.
-          <kp-button kpPopoverFooter size="sm" variant="ghost" color="neutral">Cancel</kp-button>
-          <kp-button kpPopoverFooter size="sm">Confirm</kp-button>
+          <button kpButton kpPopoverFooter size="sm" variant="ghost" color="neutral">Cancel</button>
+          <button kpButton kpPopoverFooter size="sm">Confirm</button>
         </kp-popover>
       </div>`,
   }),
@@ -132,8 +132,8 @@ export const UseCases: Story = {
         <kp-popover size="sm" arrowPosition="top-center"
                     title="Delete this item?" description="This action cannot be undone."
                     [closable]="false" [showFooter]="true">
-          <kp-button kpPopoverFooter size="sm" variant="ghost" color="neutral" (click)="onCancel()">Cancel</kp-button>
-          <kp-button kpPopoverFooter size="sm" color="danger" (click)="onDelete()">Delete</kp-button>
+          <button kpButton kpPopoverFooter size="sm" variant="ghost" color="neutral" (click)="onCancel()">Cancel</button>
+          <button kpButton kpPopoverFooter size="sm" color="danger" (click)="onDelete()">Delete</button>
         </kp-popover>
 
         <kp-popover size="md" arrowPosition="right-start"

@@ -9,7 +9,6 @@ import {
   ElementRef,
   OnDestroy,
   forwardRef,
-  ViewChild,
   ViewChildren,
   QueryList,
 } from '@angular/core';
@@ -28,12 +27,16 @@ export interface KpSegmentOption {
 
 export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
 
+let nextGroupId = 0;
+
 /**
  * Kanso Protocol — SegmentedControl
  *
- * Pill-style switcher. One white "pill" lives behind the segments and slides
- * horizontally to the selected segment's position. Segments have transparent
- * background; they only change text color when selected.
+ * Pill-style switcher backed by real native `<input type="radio">` group.
+ * Browser handles mutual-exclusion + arrow-key navigation; in a `<form>`
+ * the checked radio's value goes into FormData. The visual "pill" is a
+ * separate absolutely-positioned element that animates to the selected
+ * segment.
  *
  * @example
  * <kp-segmented-control
@@ -54,27 +57,29 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
   ],
   host: {
     '[class]': 'hostClasses',
-    '[attr.role]': '"tablist"',
+    '[attr.role]': '"radiogroup"',
     '[attr.aria-disabled]': 'isDisabled || null',
   },
   template: `
     <span #pill class="kp-segmented-control__pill" aria-hidden="true"></span>
 
     @for (opt of options; track opt.value; let i = $index) {
-      <button
+      <label
         #seg
-        type="button"
         class="kp-segmented-control__segment"
         [class.kp-segmented-control__segment--selected]="opt.value === value"
-        [class.kp-segmented-control__segment--disabled]="opt.disabled"
-        [disabled]="isDisabled || opt.disabled"
-        role="tab"
-        [attr.aria-selected]="opt.value === value"
-        [attr.aria-label]="showLabel && opt.label ? null : (opt.label || opt.value)"
-        [attr.tabindex]="opt.value === value && !isDisabled && !opt.disabled ? 0 : -1"
-        (click)="select(opt)"
-        (keydown)="onKey($event, i)">
-
+        [class.kp-segmented-control__segment--disabled]="opt.disabled">
+        <input
+          type="radio"
+          class="kp-segmented-control__input"
+          [name]="groupName"
+          [value]="opt.value"
+          [checked]="opt.value === value"
+          [disabled]="isDisabled || !!opt.disabled"
+          [attr.aria-label]="showLabel && opt.label ? null : (opt.label || opt.value)"
+          (change)="select(opt)"
+          (focus)="onTouched()"
+        />
         @if (showIcon && opt.icon) {
           <svg
             class="kp-segmented-control__icon"
@@ -91,7 +96,7 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
         @if (showLabel && opt.label) {
           <span class="kp-segmented-control__label">{{ opt.label }}</span>
         }
-      </button>
+      </label>
     }
   `,
   styles: [`
@@ -106,13 +111,8 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
       background: var(--kp-color-segmented-track-bg);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
-    :host(.kp-segmented-control--disabled) {
-      opacity: 0.6;
-      pointer-events: none;
-    }
+    :host(.kp-segmented-control--disabled) { opacity: 0.6; }
 
-    /* The one-and-only pill. Starts hidden; positions via --kp-pill-x/w
-       set imperatively so the transition smoothly animates when they change. */
     .kp-segmented-control__pill {
       position: absolute;
       top: 2px;
@@ -144,11 +144,8 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
       gap: var(--kp-segmented-gap);
       height: var(--kp-segmented-segment-h);
       padding: 0 var(--kp-segmented-pad-x);
-      border: none;
       border-radius: var(--kp-segmented-segment-radius);
-      background: transparent;
       color: var(--kp-color-segmented-segment-fg-unselected-rest);
-      font: inherit;
       font-size: var(--kp-segmented-fs);
       font-weight: 500;
       line-height: var(--kp-segmented-lh);
@@ -157,26 +154,33 @@ export type KpSegmentedDisplay = 'text' | 'icon' | 'icon-text';
       white-space: nowrap;
       transition: color var(--kp-motion-duration-normal) cubic-bezier(0.32, 0.72, 0, 1);
     }
-
-    .kp-segmented-control__segment:hover:not(.kp-segmented-control__segment--selected):not(:disabled) {
+    .kp-segmented-control__segment:hover:not(.kp-segmented-control__segment--selected):not(.kp-segmented-control__segment--disabled) {
       color: var(--kp-color-segmented-segment-fg-unselected-hover);
-    }
-    .kp-segmented-control__segment:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring);
-      outline-offset: 1px;
-    }
-    .kp-segmented-control__segment:disabled {
-      color: var(--kp-color-segmented-segment-fg-disabled);
-      cursor: not-allowed;
     }
     .kp-segmented-control__segment--selected {
       color: var(--kp-color-segmented-segment-fg-selected);
+    }
+    .kp-segmented-control__segment--disabled {
+      color: var(--kp-color-segmented-segment-fg-disabled);
+      cursor: not-allowed;
+    }
+
+    .kp-segmented-control__input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      margin: 0;
+      cursor: inherit;
+    }
+    .kp-segmented-control__input:focus-visible + .kp-segmented-control__icon,
+    .kp-segmented-control__segment:has(.kp-segmented-control__input:focus-visible) {
+      outline: 2px solid var(--kp-color-focus-ring);
+      outline-offset: 1px;
     }
 
     .kp-segmented-control__icon { flex-shrink: 0; display: block; }
     .kp-segmented-control__label { display: inline-block; }
 
-    /* Icon sized via the per-variant --kp-segmented-icon-size token below. */
     .kp-segmented-control__icon {
       width: var(--kp-segmented-icon-size);
       height: var(--kp-segmented-icon-size);
@@ -227,6 +231,8 @@ export class KpSegmentedControlComponent
   @Input() options: KpSegmentOption[] = [];
   @Input() display: KpSegmentedDisplay = 'text';
   @Input() disabled = false;
+  /** Native radio-group name. Required for FormData when in a `<form>`. Auto-generated if omitted. */
+  @Input() name: string | null = null;
 
   @Output() valueChange = new EventEmitter<string>();
 
@@ -234,8 +240,9 @@ export class KpSegmentedControlComponent
   private cvaDisabled = false;
   private ready = false;
   private ro: ResizeObserver | null = null;
+  private readonly autoName = `kp-segmented-${++nextGroupId}`;
 
-  @ViewChildren('seg') private segEls!: QueryList<ElementRef<HTMLButtonElement>>;
+  @ViewChildren('seg') private segEls!: QueryList<ElementRef<HTMLElement>>;
 
   private readonly destroyed$ = new Subject<void>();
 
@@ -247,6 +254,7 @@ export class KpSegmentedControlComponent
   get isDisabled(): boolean { return this.disabled || this.cvaDisabled; }
   get showIcon(): boolean { return this.display === 'icon' || this.display === 'icon-text'; }
   get showLabel(): boolean { return this.display === 'text' || this.display === 'icon-text'; }
+  get groupName(): string { return this.name || this.autoName; }
 
   get hostClasses(): string {
     const c = ['kp-segmented-control', `kp-segmented-control--${this.size}`];
@@ -256,8 +264,6 @@ export class KpSegmentedControlComponent
   }
 
   ngAfterViewInit(): void {
-    // Place the pill at the currently-selected segment BEFORE enabling
-    // transitions, so the initial render doesn't animate a slide from 0,0.
     this.updatePill();
     requestAnimationFrame(() =>
       requestAnimationFrame(() => {
@@ -265,10 +271,8 @@ export class KpSegmentedControlComponent
         this.cdr.markForCheck();
       }),
     );
-    // Re-measure if anything resizes (window, font load, responsive label change)
     this.ro = new ResizeObserver(() => this.updatePill());
     this.ro.observe(this.host.nativeElement);
-    // Also recompute when options change after init
     this.segEls.changes
       .pipe(takeUntil(this.destroyed$))
       .subscribe(() => queueMicrotask(() => this.updatePill()));
@@ -290,27 +294,6 @@ export class KpSegmentedControlComponent
     queueMicrotask(() => this.updatePill());
   }
 
-  onKey(event: KeyboardEvent, index: number): void {
-    const enabled = this.options
-      .map((o, i) => ({ o, i }))
-      .filter(({ o }) => !o.disabled);
-    const pos = enabled.findIndex(({ i }) => i === index);
-    if (pos < 0) return;
-
-    let nextPos = pos;
-    switch (event.key) {
-      case 'ArrowRight': nextPos = (pos + 1) % enabled.length; break;
-      case 'ArrowLeft':  nextPos = (pos - 1 + enabled.length) % enabled.length; break;
-      case 'Home':       nextPos = 0; break;
-      case 'End':        nextPos = enabled.length - 1; break;
-      default: return;
-    }
-    event.preventDefault();
-    const { o, i } = enabled[nextPos];
-    this.select(o);
-    queueMicrotask(() => this.segEls.get(i)?.nativeElement.focus());
-  }
-
   private updatePill(): void {
     if (!this.segEls) return;
     const host = this.host.nativeElement;
@@ -329,7 +312,6 @@ export class KpSegmentedControlComponent
     host.style.setProperty('--kp-pill-opacity', '1');
   }
 
-  // ControlValueAccessor
   onChange: (v: string | null) => void = () => { /* no-op */ };
   onTouched: () => void = () => { /* no-op */ };
 

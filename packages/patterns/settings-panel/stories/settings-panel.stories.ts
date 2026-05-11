@@ -118,9 +118,9 @@ export const ControlTypes: Story = {
         <kp-settings-row title="Delete account"
                          description="Permanently remove your account and all data."
                          [showDivider]="false">
-          <kp-button variant="outline" color="danger" size="sm">
+          <button kpButton variant="outline" color="danger" size="sm">
             <span>Delete</span>
-          </kp-button>
+          </button>
         </kp-settings-row>
       </kp-settings-panel>
     `),
@@ -180,7 +180,7 @@ export const PrivacySettings: Story = {
         <kp-settings-row title="Active sessions"
                          description="3 devices currently signed in."
                          [showDivider]="false">
-          <kp-button variant="outline" size="sm"><span>Manage</span></kp-button>
+          <button kpButton variant="outline" size="sm"><span>Manage</span></button>
         </kp-settings-row>
       </kp-settings-panel>
     `),

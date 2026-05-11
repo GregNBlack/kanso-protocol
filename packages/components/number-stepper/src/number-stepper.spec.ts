@@ -11,7 +11,7 @@ describe('KpNumberStepperComponent', () => {
   it('renders − and + buttons plus an input', () => {
     const { fix, host } = setup();
     fix.detectChanges();
-    expect(host.querySelectorAll('kp-button').length).toBeGreaterThanOrEqual(2);
+    expect(host.querySelectorAll('button[kpButton]').length).toBeGreaterThanOrEqual(2);
     expect(host.querySelector('input')).not.toBeNull();
   });
 
@@ -21,7 +21,7 @@ describe('KpNumberStepperComponent', () => {
     fix.detectChanges();
     fix.componentInstance.writeValue(10);
     fix.detectChanges();
-    const incBtn = host.querySelectorAll('kp-button')[1] as HTMLButtonElement;
+    const incBtn = host.querySelectorAll('button[kpButton]')[1] as HTMLButtonElement;
     incBtn.click();
     fix.detectChanges();
     expect(fix.componentInstance.value).toBe(15);
@@ -31,7 +31,7 @@ describe('KpNumberStepperComponent', () => {
     const { fix, host } = setup();
     fix.componentInstance.writeValue(10);
     fix.detectChanges();
-    const decBtn = host.querySelectorAll('kp-button')[0] as HTMLButtonElement;
+    const decBtn = host.querySelectorAll('button[kpButton]')[0] as HTMLButtonElement;
     decBtn.click();
     fix.detectChanges();
     expect(fix.componentInstance.value).toBe(9);
@@ -44,12 +44,12 @@ describe('KpNumberStepperComponent', () => {
     fix.detectChanges();
     fix.componentInstance.writeValue(10);
     fix.detectChanges();
-    (host.querySelectorAll('kp-button')[1] as HTMLButtonElement).click(); // +
+    (host.querySelectorAll('button[kpButton]')[1] as HTMLButtonElement).click(); // +
     fix.detectChanges();
     expect(fix.componentInstance.value).toBe(10);
     fix.componentInstance.writeValue(0);
     fix.detectChanges();
-    (host.querySelectorAll('kp-button')[0] as HTMLButtonElement).click(); // −
+    (host.querySelectorAll('button[kpButton]')[0] as HTMLButtonElement).click(); // −
     fix.detectChanges();
     expect(fix.componentInstance.value).toBe(0);
   });
@@ -58,8 +58,8 @@ describe('KpNumberStepperComponent', () => {
     const { fix, host } = setup();
     fix.componentRef.setInput('disabled', true);
     fix.detectChanges();
-    host.querySelectorAll('kp-button').forEach((b) =>
-      expect(b.getAttribute('aria-disabled')).toBe('true'),
+    host.querySelectorAll<HTMLButtonElement>('button[kpButton]').forEach((b) =>
+      expect(b.disabled).toBe(true),
     );
     expect((host.querySelector('input') as HTMLInputElement).disabled).toBe(true);
   });

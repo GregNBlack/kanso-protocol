@@ -29,7 +29,7 @@ const trash = `<svg kpDialogHeroIcon viewBox="0 0 24 24" fill="none" stroke="cur
 </svg>`;
 
 const openButton = (label: string, onClick = 'open = true') => `
-  <kp-button (click)="${onClick}">${label}</kp-button>
+  <button kpButton (click)="${onClick}">${label}</button>
 `;
 
 export const Default: Story = {
@@ -37,7 +37,7 @@ export const Default: Story = {
   render: (args) => ({
     props: { ...args, open: false },
     template: `
-      <kp-button (click)="open = true">Open dialog</kp-button>
+      <button kpButton (click)="open = true">Open dialog</button>
       <kp-dialog
         [(open)]="open"
         [size]="size"
@@ -48,8 +48,8 @@ export const Default: Story = {
       >
         <p kpDialogBody>Dialog body content. Replace this slot with forms, lists, or any layout.</p>
         <ng-container kpDialogFooter>
-          <kp-button variant="ghost" color="neutral" (click)="open = false">Cancel</kp-button>
-          <kp-button (click)="open = false">Confirm</kp-button>
+          <button kpButton variant="ghost" color="neutral" (click)="open = false">Cancel</button>
+          <button kpButton (click)="open = false">Confirm</button>
         </ng-container>
       </kp-dialog>`,
   }),
@@ -60,11 +60,11 @@ export const Sizes: Story = {
     props: { openSize: '' as string },
     template: `
       <div style="display:flex;flex-wrap:wrap;gap:8px">
-        <kp-button (click)="openSize = 'xs'">xs</kp-button>
-        <kp-button (click)="openSize = 'sm'">sm</kp-button>
-        <kp-button (click)="openSize = 'md'">md (default)</kp-button>
-        <kp-button (click)="openSize = 'lg'">lg</kp-button>
-        <kp-button (click)="openSize = 'xl'">xl</kp-button>
+        <button kpButton (click)="openSize = 'xs'">xs</button>
+        <button kpButton (click)="openSize = 'sm'">sm</button>
+        <button kpButton (click)="openSize = 'md'">md (default)</button>
+        <button kpButton (click)="openSize = 'lg'">lg</button>
+        <button kpButton (click)="openSize = 'xl'">xl</button>
       </div>
       <kp-dialog
         [open]="openSize !== ''"
@@ -76,8 +76,8 @@ export const Sizes: Story = {
       >
         <p kpDialogBody>Body content. The panel width changes per size: xs=320, sm=400, md=560, lg=720, xl=960.</p>
         <ng-container kpDialogFooter>
-          <kp-button variant="ghost" color="neutral" (click)="openSize = ''">Cancel</kp-button>
-          <kp-button (click)="openSize = ''">Confirm</kp-button>
+          <button kpButton variant="ghost" color="neutral" (click)="openSize = ''">Cancel</button>
+          <button kpButton (click)="openSize = ''">Confirm</button>
         </ng-container>
       </kp-dialog>`,
   }),
@@ -88,10 +88,10 @@ export const Composition: Story = {
     props: { openKey: '' as string },
     template: `
       <div style="display:flex;flex-wrap:wrap;gap:8px">
-        <kp-button (click)="openKey = 'header'">Header only</kp-button>
-        <kp-button (click)="openKey = 'hb'">Header + Body</kp-button>
-        <kp-button (click)="openKey = 'bf'">Body + Footer</kp-button>
-        <kp-button (click)="openKey = 'full'">Full (with dividers)</kp-button>
+        <button kpButton (click)="openKey = 'header'">Header only</button>
+        <button kpButton (click)="openKey = 'hb'">Header + Body</button>
+        <button kpButton (click)="openKey = 'bf'">Body + Footer</button>
+        <button kpButton (click)="openKey = 'full'">Full (with dividers)</button>
       </div>
 
       <kp-dialog [open]="openKey === 'header'" size="md" title="Header only dialog" [showClose]="false" [showFooter]="false" (openChange)="openKey = ''">
@@ -105,16 +105,16 @@ export const Composition: Story = {
       <kp-dialog [open]="openKey === 'bf'" size="md" [showHeader]="false" ariaLabel="Confirm action" (openChange)="openKey = ''">
         <p kpDialogBody>Are you sure you want to proceed? This action will affect multiple items.</p>
         <ng-container kpDialogFooter>
-          <kp-button variant="ghost" color="neutral" (click)="openKey = ''">Cancel</kp-button>
-          <kp-button (click)="openKey = ''">Proceed</kp-button>
+          <button kpButton variant="ghost" color="neutral" (click)="openKey = ''">Cancel</button>
+          <button kpButton (click)="openKey = ''">Proceed</button>
         </ng-container>
       </kp-dialog>
 
       <kp-dialog [open]="openKey === 'full'" size="md" title="Full dialog" [showDescription]="true" description="Header, body and footer with dividers." [showHeaderDivider]="true" [showFooterDivider]="true" (openChange)="openKey = ''">
         <p kpDialogBody>Dividers separate header/body/footer for data-heavy dialogs where visual grouping matters.</p>
         <ng-container kpDialogFooter>
-          <kp-button variant="ghost" color="neutral" (click)="openKey = ''">Cancel</kp-button>
-          <kp-button (click)="openKey = ''">Confirm</kp-button>
+          <button kpButton variant="ghost" color="neutral" (click)="openKey = ''">Cancel</button>
+          <button kpButton (click)="openKey = ''">Confirm</button>
         </ng-container>
       </kp-dialog>`,
   }),
@@ -126,26 +126,26 @@ export const FooterLayouts: Story = {
     props: { openLayout: '' as string },
     template: `
       <div style="display:flex;flex-wrap:wrap;gap:8px">
-        <kp-button (click)="openLayout = 'end'">End-aligned</kp-button>
-        <kp-button (click)="openLayout = 'between'">Space-between</kp-button>
-        <kp-button (click)="openLayout = 'stacked'">Stacked</kp-button>
+        <button kpButton (click)="openLayout = 'end'">End-aligned</button>
+        <button kpButton (click)="openLayout = 'between'">Space-between</button>
+        <button kpButton (click)="openLayout = 'stacked'">Stacked</button>
       </div>
 
       <kp-dialog [open]="openLayout === 'end'" size="md" footerLayout="end" title="Update available" [showDescription]="true" description="Version 2.3 is ready to install." (openChange)="openLayout = ''">
         <p kpDialogBody>Install now or later — we'll remind you in a day.</p>
         <ng-container kpDialogFooter>
-          <kp-button variant="ghost" color="neutral" (click)="openLayout = ''">Cancel</kp-button>
-          <kp-button (click)="openLayout = ''">Install</kp-button>
+          <button kpButton variant="ghost" color="neutral" (click)="openLayout = ''">Cancel</button>
+          <button kpButton (click)="openLayout = ''">Install</button>
         </ng-container>
       </kp-dialog>
 
       <kp-dialog [open]="openLayout === 'between'" size="md" footerLayout="between" title="Update available" [showDescription]="true" description="Version 2.3 is ready to install." (openChange)="openLayout = ''">
         <p kpDialogBody>Install now or later — we'll remind you in a day.</p>
         <ng-container kpDialogFooter>
-          <kp-button variant="ghost" color="neutral" (click)="openLayout = ''">Learn more</kp-button>
+          <button kpButton variant="ghost" color="neutral" (click)="openLayout = ''">Learn more</button>
           <div style="display:inline-flex;gap:12px">
-            <kp-button variant="ghost" color="neutral" (click)="openLayout = ''">Cancel</kp-button>
-            <kp-button (click)="openLayout = ''">Install</kp-button>
+            <button kpButton variant="ghost" color="neutral" (click)="openLayout = ''">Cancel</button>
+            <button kpButton (click)="openLayout = ''">Install</button>
           </div>
         </ng-container>
       </kp-dialog>
@@ -153,8 +153,8 @@ export const FooterLayouts: Story = {
       <kp-dialog [open]="openLayout === 'stacked'" size="sm" footerLayout="stacked" title="Update available" [showDescription]="true" description="Version 2.3 is ready to install." (openChange)="openLayout = ''">
         <p kpDialogBody>On narrow surfaces, stacked buttons improve thumb-reach on mobile.</p>
         <ng-container kpDialogFooter>
-          <kp-button (click)="openLayout = ''">Install</kp-button>
-          <kp-button variant="ghost" color="neutral" (click)="openLayout = ''">Cancel</kp-button>
+          <button kpButton (click)="openLayout = ''">Install</button>
+          <button kpButton variant="ghost" color="neutral" (click)="openLayout = ''">Cancel</button>
         </ng-container>
       </kp-dialog>`,
   }),
@@ -166,17 +166,17 @@ export const HeroIcon: Story = {
     props: { openKey: '' as string, alertTriangle, alertCircle, checkCircle },
     template: `
       <div style="display:flex;flex-wrap:wrap;gap:8px">
-        <kp-button color="warning" (click)="openKey = 'warn'">Warning</kp-button>
-        <kp-button color="danger"  (click)="openKey = 'destroy'">Destructive</kp-button>
-        <kp-button color="success" (click)="openKey = 'done'">Success</kp-button>
+        <button kpButton color="warning" (click)="openKey = 'warn'">Warning</button>
+        <button kpButton color="danger"  (click)="openKey = 'destroy'">Destructive</button>
+        <button kpButton color="success" (click)="openKey = 'done'">Success</button>
       </div>
 
       <kp-dialog [open]="openKey === 'warn'" size="sm" [showHeroIcon]="true" title="Unsaved changes" [showDescription]="true" description="Your changes will be lost if you leave now." (openChange)="openKey = ''">
         <span style="color:#D97706;display:contents" [innerHTML]="alertTriangle"></span>
         <span kpDialogBody>You have pending edits in 3 fields. Leave now and they'll be discarded.</span>
         <ng-container kpDialogFooter>
-          <kp-button variant="ghost" color="neutral" (click)="openKey = ''">Cancel</kp-button>
-          <kp-button color="warning" (click)="openKey = ''">Leave anyway</kp-button>
+          <button kpButton variant="ghost" color="neutral" (click)="openKey = ''">Cancel</button>
+          <button kpButton color="warning" (click)="openKey = ''">Leave anyway</button>
         </ng-container>
       </kp-dialog>
 
@@ -184,8 +184,8 @@ export const HeroIcon: Story = {
         <span style="color:#DC2626;display:contents" [innerHTML]="alertCircle"></span>
         <span kpDialogBody>Deleting is irreversible and will sign you out of every device.</span>
         <ng-container kpDialogFooter>
-          <kp-button variant="ghost" color="neutral" (click)="openKey = ''">Cancel</kp-button>
-          <kp-button color="danger" (click)="openKey = ''">Delete</kp-button>
+          <button kpButton variant="ghost" color="neutral" (click)="openKey = ''">Cancel</button>
+          <button kpButton color="danger" (click)="openKey = ''">Delete</button>
         </ng-container>
       </kp-dialog>
 
@@ -193,8 +193,8 @@ export const HeroIcon: Story = {
         <span style="color:#059669;display:contents" [innerHTML]="checkCircle"></span>
         <span kpDialogBody>Share the link with your audience or continue editing.</span>
         <ng-container kpDialogFooter>
-          <kp-button variant="ghost" color="neutral" (click)="openKey = ''">Share</kp-button>
-          <kp-button (click)="openKey = ''">View post</kp-button>
+          <button kpButton variant="ghost" color="neutral" (click)="openKey = ''">Share</button>
+          <button kpButton (click)="openKey = ''">View post</button>
         </ng-container>
       </kp-dialog>`,
   }),
@@ -206,17 +206,17 @@ export const UseCases: Story = {
     props: { openKey: '' as string, trash },
     template: `
       <div style="display:flex;flex-wrap:wrap;gap:8px">
-        <kp-button color="danger" (click)="openKey = 'repo'">Confirm destructive</kp-button>
-        <kp-button (click)="openKey = 'invite'">Form dialog</kp-button>
-        <kp-button variant="ghost" color="neutral" (click)="openKey = 'info'">Info dialog</kp-button>
+        <button kpButton color="danger" (click)="openKey = 'repo'">Confirm destructive</button>
+        <button kpButton (click)="openKey = 'invite'">Form dialog</button>
+        <button kpButton variant="ghost" color="neutral" (click)="openKey = 'info'">Info dialog</button>
       </div>
 
       <kp-dialog [open]="openKey === 'repo'" size="sm" [showHeroIcon]="true" title="Delete repository?" [showDescription]="true" description="This will permanently delete kanso-protocol and all its contents. 247 files and 18 contributors will be affected." (openChange)="openKey = ''">
         <span style="color:#DC2626;display:contents" [innerHTML]="trash"></span>
         <span kpDialogBody>Type the repository name below to confirm — this cannot be undone.</span>
         <ng-container kpDialogFooter>
-          <kp-button variant="ghost" color="neutral" (click)="openKey = ''">Cancel</kp-button>
-          <kp-button color="danger" (click)="openKey = ''">Delete forever</kp-button>
+          <button kpButton variant="ghost" color="neutral" (click)="openKey = ''">Cancel</button>
+          <button kpButton color="danger" (click)="openKey = ''">Delete forever</button>
         </ng-container>
       </kp-dialog>
 
@@ -227,10 +227,10 @@ export const UseCases: Story = {
           <p style="font-size:12px;color: var(--kp-color-gray-600);margin:0">Members will receive an invite email with a link to join.</p>
         </div>
         <ng-container kpDialogFooter>
-          <kp-button variant="ghost" color="neutral" (click)="openKey = ''">Send template link</kp-button>
+          <button kpButton variant="ghost" color="neutral" (click)="openKey = ''">Send template link</button>
           <div style="display:inline-flex;gap:12px">
-            <kp-button variant="ghost" color="neutral" (click)="openKey = ''">Cancel</kp-button>
-            <kp-button (click)="openKey = ''">Send invites</kp-button>
+            <button kpButton variant="ghost" color="neutral" (click)="openKey = ''">Cancel</button>
+            <button kpButton (click)="openKey = ''">Send invites</button>
           </div>
         </ng-container>
       </kp-dialog>
@@ -251,7 +251,7 @@ export const UseCases: Story = {
           </div>
         </div>
         <ng-container kpDialogFooter>
-          <kp-button (click)="openKey = ''">Got it</kp-button>
+          <button kpButton (click)="openKey = ''">Got it</button>
         </ng-container>
       </kp-dialog>`,
   }),

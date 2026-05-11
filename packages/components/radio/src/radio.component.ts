@@ -19,18 +19,17 @@ export type KpRadioSize = 'sm' | 'md' | 'lg';
 export type KpRadioColor = 'primary' | 'danger';
 
 /**
- * Kanso Protocol — Radio Component
+ * Kanso Protocol — Radio
  *
- * When placed inside <kp-radio-group>, clicking a radio updates the group's
- * value and deselects siblings. Outside a group, it behaves as a standalone
- * two-state control with its own CVA.
- *
- * Outer circle stays white when checked; only the border and inner dot become colored.
+ * Wraps a real native `<input type="radio">` inside a styled `<label>`.
+ * Inside a `<kp-radio-group>`, radios share a `name` and the browser
+ * enforces single-selection natively (no manual deselection logic).
+ * In a `<form>`, FormData picks up the checked radio's value.
  *
  * @example
- * <kp-radio-group [(value)]="selected">
- *   <kp-radio value="a">Option A</kp-radio>
- *   <kp-radio value="b">Option B</kp-radio>
+ * <kp-radio-group [(value)]="selected" name="plan">
+ *   <kp-radio value="free">Free</kp-radio>
+ *   <kp-radio value="pro">Pro</kp-radio>
  * </kp-radio-group>
  */
 @Component({
@@ -44,40 +43,55 @@ export type KpRadioColor = 'primary' | 'danger';
       multi: true,
     },
   ],
-  host: {
-    '[class]': 'hostClasses',
-    '[attr.role]': '"radio"',
-    '[attr.aria-checked]': 'checked',
-    '[attr.aria-disabled]': 'isDisabled || null',
-    '[attr.tabindex]': 'isDisabled ? -1 : 0',
-    '[attr.aria-label]': 'effectiveAriaLabel',
-    '(click)': 'select()',
-    '(keydown.space)': 'onSpace($event)',
-  },
+  host: { '[class]': 'hostClasses' },
   template: `
-    <span class="kp-radio__box">
-      <span class="kp-radio__dot" aria-hidden="true"></span>
-    </span>
-    @if (hasLabel) {
-      <span class="kp-radio__label"><ng-content/></span>
-    }
+    <label class="kp-radio__root">
+      <input
+        type="radio"
+        class="kp-radio__input"
+        [checked]="checked"
+        [disabled]="isDisabled"
+        [required]="required"
+        [attr.name]="effectiveName"
+        [attr.value]="stringValue"
+        [attr.aria-label]="effectiveAriaLabel"
+        (change)="onNativeChange()"
+        (blur)="onTouched()"
+      />
+      <span class="kp-radio__box" aria-hidden="true">
+        <span class="kp-radio__dot"></span>
+      </span>
+      @if (hasLabel) {
+        <span class="kp-radio__label"><ng-content/></span>
+      }
+    </label>
   `,
   styles: [`
     :host {
       display: inline-flex;
-      align-items: center;
       vertical-align: middle;
       line-height: 1;
+      font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
+      --kp-radio-border: var(--kp-color-checkbox-border-rest);
+    }
+
+    .kp-radio__root {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
       gap: 8px;
       cursor: pointer;
       user-select: none;
-      font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
-      /* Rest-state default — same logic as Checkbox: kept on :host so the
-         hover / active / disabled / checked / error rules below win the
-         cascade. Setting it directly on .kp-radio__box would shadow them. */
-      --kp-radio-border: var(--kp-color-checkbox-border-rest);
     }
-    :host(.kp-radio--disabled) { cursor: not-allowed; }
+
+    .kp-radio__input {
+      position: absolute;
+      width: var(--kp-radio-size);
+      height: var(--kp-radio-size);
+      margin: 0;
+      opacity: 0;
+      cursor: inherit;
+    }
 
     .kp-radio__box {
       display: inline-flex;
@@ -90,7 +104,7 @@ export type KpRadioColor = 'primary' | 'danger';
       border-radius: 50%;
       border: var(--kp-radio-border-width) solid var(--kp-radio-border);
       background: var(--kp-radio-bg);
-      transition: border-color var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease;
+      transition: border-color var(--kp-motion-duration-fast, 100ms) ease;
     }
 
     .kp-radio__dot {
@@ -99,35 +113,42 @@ export type KpRadioColor = 'primary' | 'danger';
       border-radius: 50%;
       background: var(--kp-radio-dot-bg);
       opacity: 0;
-      transition: opacity var(--kp-motion-duration-fast, var(--kp-motion-duration-fast)) ease;
+      transition: opacity var(--kp-motion-duration-fast, 100ms) ease;
     }
+
+    :host(:has(.kp-radio__input:checked)) .kp-radio__dot,
     :host(.kp-radio--checked) .kp-radio__dot { opacity: 1; }
 
-    :host(:hover:not(.kp-radio--disabled)),
+    :host(:has(.kp-radio__input:hover:not(:disabled))),
     :host(.kp-radio--hover) {
       --kp-radio-border: var(--kp-color-input-border-hover);
     }
     :host(.kp-radio--active) { --kp-radio-border: var(--kp-color-text-muted); }
-    :host(:focus-visible),
-    :host(.kp-radio--focus) {
+    :host(:has(.kp-radio__input:focus-visible)) .kp-radio__box,
+    :host(.kp-radio--focus) .kp-radio__box {
       outline: 2px solid var(--kp-color-focus-ring);
       outline-offset: 2px;
     }
+    :host(:has(.kp-radio__input:disabled)),
     :host(.kp-radio--disabled) {
       --kp-radio-bg: var(--kp-color-surface-subtle);
       --kp-radio-border: var(--kp-color-border-default);
     }
+    :host(:has(.kp-radio__input:disabled)) .kp-radio__root,
+    :host(.kp-radio--disabled) .kp-radio__root { cursor: not-allowed; }
     :host(.kp-radio--error) { --kp-radio-border: var(--kp-color-input-border-error); }
 
+    :host(:has(.kp-radio__input:checked)),
     :host(.kp-radio--checked) {
       --kp-radio-border: var(--kp-color-primary-default-bg-rest);
       --kp-radio-dot-bg: var(--kp-color-primary-default-bg-rest);
     }
-    :host(.kp-radio--checked:hover:not(.kp-radio--disabled)),
+    :host(:has(.kp-radio__input:checked:hover:not(:disabled))),
     :host(.kp-radio--checked.kp-radio--hover) {
       --kp-radio-border: var(--kp-color-primary-default-bg-hover);
       --kp-radio-dot-bg: var(--kp-color-primary-default-bg-hover);
     }
+    :host(:has(.kp-radio__input:checked:disabled)),
     :host(.kp-radio--checked.kp-radio--disabled) {
       --kp-radio-border: var(--kp-color-input-fg-disabled);
       --kp-radio-dot-bg: var(--kp-color-input-fg-disabled);
@@ -137,6 +158,7 @@ export type KpRadioColor = 'primary' | 'danger';
       --kp-radio-dot-bg: var(--kp-color-input-border-error);
     }
 
+    :host(.kp-radio--danger:has(.kp-radio__input:checked)),
     :host(.kp-radio--danger.kp-radio--checked) {
       --kp-radio-border: var(--kp-color-danger-default-bg-rest);
       --kp-radio-dot-bg: var(--kp-color-danger-default-bg-rest);
@@ -147,7 +169,7 @@ export type KpRadioColor = 'primary' | 'danger';
     :host(.kp-radio--lg) { --kp-radio-size: 24px; --kp-radio-border-width: 1.5px; --kp-radio-dot-size: 10px; }
 
     .kp-radio__label { font-size: 14px; color: var(--kp-color-text-default); }
-  `]
+  `],
 })
 export class KpRadioComponent implements OnInit, OnDestroy, ControlValueAccessor {
   @Input() size: KpRadioSize = 'md';
@@ -155,15 +177,12 @@ export class KpRadioComponent implements OnInit, OnDestroy, ControlValueAccessor
   @Input() value: unknown = null;
   @Input() checked = false;
   @Input() disabled = false;
+  @Input() required = false;
+  @Input() name: string | null = null;
   @Input() forceState: KpState | null = null;
   @Input() hasLabel = true;
-  /** Accessible name for screen readers when no visible label is projected. */
   @Input() ariaLabel: string | null = null;
 
-  get effectiveAriaLabel(): string | null {
-    if (this.ariaLabel) return this.ariaLabel;
-    return this.hasLabel ? null : 'Radio';
-  }
   @Output() checkedChange = new EventEmitter<boolean>();
 
   private registration: { value: unknown; setChecked: (c: boolean) => void } | null = null;
@@ -189,13 +208,24 @@ export class KpRadioComponent implements OnInit, OnDestroy, ControlValueAccessor
   }
 
   ngOnDestroy(): void {
-    if (this.group && this.registration) {
-      this.group.unregister(this.registration);
-    }
+    if (this.group && this.registration) this.group.unregister(this.registration);
   }
 
   get isDisabled(): boolean {
     return this.disabled || !!(this.group && this.group.disabled);
+  }
+
+  get effectiveName(): string | null {
+    return this.group?.name || this.name;
+  }
+
+  get stringValue(): string {
+    return this.value == null ? '' : String(this.value);
+  }
+
+  get effectiveAriaLabel(): string | null {
+    if (this.ariaLabel) return this.ariaLabel;
+    return this.hasLabel ? null : 'Radio';
   }
 
   get hostClasses(): string {
@@ -209,7 +239,7 @@ export class KpRadioComponent implements OnInit, OnDestroy, ControlValueAccessor
     return classes.join(' ');
   }
 
-  select(): void {
+  onNativeChange(): void {
     if (this.isDisabled) return;
     if (this.group) {
       this.group.select(this.value);
@@ -222,15 +252,10 @@ export class KpRadioComponent implements OnInit, OnDestroy, ControlValueAccessor
     }
   }
 
-  onSpace(event: Event): void {
-    event.preventDefault();
-    this.select();
-  }
-
   onChange: (v: boolean) => void = () => { /* no-op */ };
   onTouched: () => void = () => { /* no-op */ };
-  writeValue(v: boolean): void { this.checked = !!v; }
+  writeValue(v: boolean): void { this.checked = !!v; this.cdr.markForCheck(); }
   registerOnChange(fn: (v: boolean) => void): void { this.onChange = fn; }
   registerOnTouched(fn: () => void): void { this.onTouched = fn; }
-  setDisabledState(d: boolean): void { this.disabled = d; }
+  setDisabledState(d: boolean): void { this.disabled = d; this.cdr.markForCheck(); }
 }

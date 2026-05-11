@@ -14,9 +14,9 @@ Inside the card, top to bottom:
 4. **Email field** — `<kp-form-field label="Email">` wrapping a `<kp-input type="email" placeholder="you@example.com">`.
 5. **Password field** — `<kp-form-field label="Password">` wrapping a `<kp-input type="password">`.
 6. **Options row** — `<kp-checkbox checked>` + "Remember me" on the left, "Forgot password?" link in `color/blue/600` on the right.
-7. **Primary action** — `<kp-button variant="default" color="primary" size="md">` *"Sign in"*, stretched to full card width.
+7. **Primary action** — `<button kpButton variant="default" color="primary" size="md">` *"Sign in"*, stretched to full card width.
 8. **Divider** — `<kp-divider>` with the label *"Or continue with"*.
-9. **Social row** — two outline `<kp-button>`s side-by-side with `brand-google` and `brand-github` Tabler icons.
+9. **Social row** — two outline `<button kpButton>`s side-by-side with `brand-google` and `brand-github` Tabler icons.
 10. **Sign-up link** — *"Don't have an account?"* + a *"Sign up"* link in `color/blue/600`.
 
 ## Composition principles

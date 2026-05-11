@@ -38,7 +38,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
     '[attr.aria-invalid]': 'forceState === "error" || null',
   },
   template: `
-    <kp-button
+    <button kpButton
       [size]="size"
       variant="ghost"
       color="neutral"
@@ -50,7 +50,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       <svg kpButtonIconLeft viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
       </svg>
-    </kp-button>
+    </button>
 
     <span class="kp-number-stepper__field">
       @if (prefix) {
@@ -73,7 +73,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       }
     </span>
 
-    <kp-button
+    <button kpButton
       [size]="size"
       variant="ghost"
       color="neutral"
@@ -85,7 +85,7 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       <svg kpButtonIconLeft viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
       </svg>
-    </kp-button>
+    </button>
   `,
   styles: [`
     :host {

@@ -42,21 +42,21 @@ import { KpIconComponent } from '@kanso-protocol/icon';
           <a class="link" href="#">Forgot password?</a>
         </div>
 
-        <kp-button variant="default" color="primary" size="md" style="display:flex;width:100%">
+        <button kpButton variant="default" color="primary" size="md" style="display:flex;width:100%">
           <span>Sign in</span>
-        </kp-button>
+        </button>
 
         <kp-divider label="Or continue with"/>
 
         <div class="social">
-          <kp-button variant="outline" color="neutral" size="md" style="display:flex;flex:1 1 0;width:100%">
+          <button kpButton variant="outline" color="neutral" size="md" style="display:flex;flex:1 1 0;width:100%">
             <kp-icon kpButtonIconLeft name="brand-google" />
             <span>Google</span>
-          </kp-button>
-          <kp-button variant="outline" color="neutral" size="md" style="display:flex;flex:1 1 0;width:100%">
+          </button>
+          <button kpButton variant="outline" color="neutral" size="md" style="display:flex;flex:1 1 0;width:100%">
             <kp-icon kpButtonIconLeft name="brand-github" />
             <span>GitHub</span>
-          </kp-button>
+          </button>
         </div>
 
         <p class="signup">

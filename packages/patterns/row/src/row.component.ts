@@ -30,8 +30,8 @@ export type KpRowJustify =
  *
  * @example
  * <kp-row gap="sm" justify="end">
- *   <kp-button appearance="ghost">Cancel</kp-button>
- *   <kp-button>Save</kp-button>
+ *   <button kpButton appearance="ghost">Cancel</button>
+ *   <button kpButton>Save</button>
  * </kp-row>
  */
 @Component({

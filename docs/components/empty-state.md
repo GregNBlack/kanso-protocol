@@ -14,7 +14,7 @@
   │   ├─ <h3 class="kp-es__title">…</h3>
   │   └─ <p class="kp-es__desc">…</p>     (Show Description = true)
   └─ <div class="kp-es__actions">
-      └─ [kpEmptyStateActions]            (slot — usually <kp-button> instances)
+      └─ [kpEmptyStateActions]            (slot — usually <button kpButton> instances)
 ```
 
 The illustration is a circular gray container; project an icon SVG into the `[kpEmptyStateIcon]` slot — color it via inline `color:` on a wrapping span for warning/error variants. Actions are a flex row beneath the text — slot 1-2 buttons.
@@ -42,7 +42,7 @@ The illustration is a circular gray container; project an icon SVG into the `[kp
 ### Slots
 
 - **`[kpEmptyStateIcon]`** — illustration content. Use a 24×24 SVG with `stroke="currentColor"` so it inherits the illustration container's color. Wrap in a span with `color:` style for color overrides (red for errors, etc.).
-- **`[kpEmptyStateActions]`** — action buttons. Typically 1-2 `<kp-button>` instances (Primary + Secondary ghost). The slot is hidden when empty.
+- **`[kpEmptyStateActions]`** — action buttons. Typically 1-2 `<button kpButton>` instances (Primary + Secondary ghost). The slot is hidden when empty.
 
 ## Do / Don't
 

@@ -29,8 +29,8 @@ export type KpPageHeaderSize = 'sm' | 'md' | 'lg';
  * >
  *   <kp-breadcrumbs kpPageHeaderBreadcrumbs [items]="crumbs"/>
  *   <div kpPageHeaderActions>
- *     <kp-button appearance="ghost">Import</kp-button>
- *     <kp-button>Create</kp-button>
+ *     <button kpButton appearance="ghost">Import</button>
+ *     <button kpButton>Create</button>
  *   </div>
  * </kp-page-header>
  */

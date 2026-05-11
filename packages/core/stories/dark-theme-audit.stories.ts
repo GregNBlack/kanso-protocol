@@ -51,12 +51,12 @@ const STORAGE_KEY = 'kanso:dark-audit:button';
                 <span class="audit__row-label">{{ color }}</span>
                 @for (state of states; track state) {
                   <div class="audit__cell">
-                    <kp-button
+                    <button kpButton
                       [variant]="variant"
                       [color]="color"
                       [forceState]="state"
                       size="md"
-                    >Button</kp-button>
+                    >Button</button>
                     <span class="audit__cell-label">{{ state }}</span>
                   </div>
                 }
@@ -90,12 +90,12 @@ const STORAGE_KEY = 'kanso:dark-audit:button';
                 <span class="audit__row-label">{{ color }}</span>
                 @for (state of states; track state) {
                   <div class="audit__cell">
-                    <kp-button
+                    <button kpButton
                       [variant]="variant"
                       [color]="color"
                       [forceState]="state"
                       size="md"
-                    >Button</kp-button>
+                    >Button</button>
                     <span class="audit__cell-label">{{ state }}</span>
                     <textarea
                       class="audit__note"

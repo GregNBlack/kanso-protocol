@@ -203,7 +203,7 @@
       "package": "@kanso-protocol/alert",
       "description": "Kanso Protocol — Alert\n\nIn-page banner for statuses, errors, warnings, and short messages. 3 sizes ×\n4 appearances (subtle / solid / outline / left-accent) × 6 color roles, plus\nan optional leading icon, an action slot (inline right or stacked below),\nand a close button.",
       "examples": [
-        "<kp-alert color=\"success\" title=\"Changes saved\" description=\"Profile updated.\">\n  <svg kpAlertIcon .../>\n</kp-alert>\n\n<kp-alert color=\"warning\" appearance=\"left-accent\" title=\"Review required\"\n          description=\"3 items need your approval.\">\n  <kp-button kpAlertAction size=\"sm\" variant=\"subtle\">Review</kp-button>\n</kp-alert>"
+        "<kp-alert color=\"success\" title=\"Changes saved\" description=\"Profile updated.\">\n  <svg kpAlertIcon .../>\n</kp-alert>\n\n<kp-alert color=\"warning\" appearance=\"left-accent\" title=\"Review required\"\n          description=\"3 items need your approval.\">\n  <button kpButton kpAlertAction size=\"sm\" variant=\"subtle\">Review</button>\n</kp-alert>"
       ],
       "inputs": [
         {
@@ -745,7 +745,7 @@
       "package": "@kanso-protocol/button",
       "description": "Kanso Protocol — Button Component\n\nAnatomy: Container → Content → Elements (icon-left, label, icon-right)\nSupports: 5 sizes × 4 variants × 3+ color roles × 6 states",
       "examples": [
-        "<kp-button size=\"md\" variant=\"default\" color=\"primary\">Click me</kp-button>\n<kp-button size=\"lg\" variant=\"outline\" color=\"danger\" [loading]=\"true\">Delete</kp-button>"
+        "<button kpButton size=\"md\" variant=\"default\" color=\"primary\">Click me</button>\n<button kpButton size=\"lg\" variant=\"outline\" color=\"danger\" [loading]=\"true\">Delete</button>"
       ],
       "inputs": [
         {
@@ -2672,7 +2672,7 @@
       "package": "@kanso-protocol/popover",
       "description": "Kanso Protocol — Popover\n\nFloating panel with optional header / body / footer and an optional\ndirectional arrow (4 sides × 3 anchors). Visual chrome only —\npositioning, show/hide and portaling are the caller's responsibility.\n\nThe host container uses `filter: drop-shadow()` so the shadow follows\nthe combined silhouette of body + arrow, and grows automatically with\ncontent.",
       "examples": [
-        "<kp-popover size=\"md\" arrowPosition=\"top-center\"\n            title=\"Delete this item?\" description=\"This action cannot be undone.\"\n            [closable]=\"true\" (close)=\"cancel()\">\n  <kp-button kpPopoverFooter size=\"sm\" variant=\"ghost\">Cancel</kp-button>\n  <kp-button kpPopoverFooter size=\"sm\" color=\"danger\">Delete</kp-button>\n</kp-popover>"
+        "<kp-popover size=\"md\" arrowPosition=\"top-center\"\n            title=\"Delete this item?\" description=\"This action cannot be undone.\"\n            [closable]=\"true\" (close)=\"cancel()\">\n  <button kpButton kpPopoverFooter size=\"sm\" variant=\"ghost\">Cancel</button>\n  <button kpButton kpPopoverFooter size=\"sm\" color=\"danger\">Delete</button>\n</kp-popover>"
       ],
       "inputs": [
         {
@@ -3732,7 +3732,7 @@
       "package": "@kanso-protocol/tabs",
       "description": "Kanso Protocol — Tab (atom)\n\nSingle tab for use inside `<kp-tabs>`. Projects an optional leading icon\nand an optional trailing badge. The `selected` / `disabled` inputs drive\nthe visual state; hover is handled in CSS and focus via `:focus-visible`\non the underlying button.",
       "examples": [
-        "<kp-tab label=\"Inbox\" [selected]=\"current === 'inbox'\" (click)=\"current='inbox'\">\n  <svg kpTabIcon .../>\n  <kp-badge kpTabBadge>12</kp-badge>\n</kp-tab>"
+        "<button kpTab label=\"Inbox\" [selected]=\"current === 'inbox'\" (click)=\"current='inbox'\">\n  <svg kpTabIcon .../>\n  <kp-badge kpTabBadge>12</kp-badge>\n</button>"
       ],
       "inputs": [
         {
@@ -3804,9 +3804,9 @@
       "selector": "kp-tabs",
       "layer": "components",
       "package": "@kanso-protocol/tabs",
-      "description": "Kanso Protocol — Tabs (container)\n\nHorizontal strip of `<kp-tab>` children with a shared bottom border.\nCascades `size` and `fullWidth` down to every projected `<kp-tab>`\nautomatically, so callers only set those two inputs in one place.\n\nA `[kpTabsMore]` slot projects an optional \"More ▾\" affordance to the\nright of the strip — useful when tabs overflow and you want a dropdown\nto hold the rest.",
+      "description": "Kanso Protocol — Tabs (container)\n\nHorizontal strip of `<button kpTab>` children with a shared bottom border.\nCascades `size` and `fullWidth` down to every projected `<button kpTab>`\nautomatically, so callers only set those two inputs in one place.\n\nA `[kpTabsMore]` slot projects an optional \"More ▾\" affordance to the\nright of the strip — useful when tabs overflow and you want a dropdown\nto hold the rest.",
       "examples": [
-        "<kp-tabs size=\"md\" [fullWidth]=\"false\">\n  <kp-tab label=\"Overview\" [selected]=\"tab === 'overview'\" (selectedChange)=\"tab = 'overview'\"/>\n  <kp-tab label=\"Activity\" [selected]=\"tab === 'activity'\" (selectedChange)=\"tab = 'activity'\"/>\n  <kp-tab label=\"Settings\" [selected]=\"tab === 'settings'\" (selectedChange)=\"tab = 'settings'\"/>\n\n  <button kpTabsMore>More ▾</button>\n</kp-tabs>"
+        "<kp-tabs size=\"md\" [fullWidth]=\"false\">\n  <button kpTab label=\"Overview\" [selected]=\"tab === 'overview'\" (selectedChange)=\"tab = 'overview'\"></button>\n  <button kpTab label=\"Activity\" [selected]=\"tab === 'activity'\" (selectedChange)=\"tab = 'activity'\"></button>\n  <button kpTab label=\"Settings\" [selected]=\"tab === 'settings'\" (selectedChange)=\"tab = 'settings'\"></button>\n\n  <button kpTabsMore>More ▾</button>\n</kp-tabs>"
       ],
       "inputs": [
         {
@@ -4475,9 +4475,9 @@
       "selector": "kp-banner",
       "layer": "patterns",
       "package": "@kanso-protocol/banner",
-      "description": "Kanso Protocol — Banner\n\nGlobal top strip under the app Header. Used for system messages:\ntrial status, maintenance, payment alerts, feature launches.\nReuses alert semantic tokens (subtle appearance) so color roles\nmatch Alert / Toast.\n\nSlot: `[kpBannerAction]` for a trailing CTA (typically `<kp-button size=\"sm\">`).",
+      "description": "Kanso Protocol — Banner\n\nGlobal top strip under the app Header. Used for system messages:\ntrial status, maintenance, payment alerts, feature launches.\nReuses alert semantic tokens (subtle appearance) so color roles\nmatch Alert / Toast.\n\nSlot: `[kpBannerAction]` for a trailing CTA (typically `<button kpButton size=\"sm\">`).",
       "examples": [
-        "<kp-banner color=\"warning\" title=\"Your trial ends in 3 days\">\n  <kp-button kpBannerAction size=\"sm\">Upgrade</kp-button>\n</kp-banner>"
+        "<kp-banner color=\"warning\" title=\"Your trial ends in 3 days\">\n  <button kpButton kpBannerAction size=\"sm\">Upgrade</button>\n</kp-banner>"
       ],
       "inputs": [
         {
@@ -5232,7 +5232,7 @@
       "package": "@kanso-protocol/page-error",
       "description": "Kanso Protocol — PageError\n\nFull-page error state for 404, 500, offline, and access-denied\nscenarios. Composes an illustration, optional hero error code,\ntitle + description, and primary/secondary action slots.\n\nTitles/descriptions/icon default to the `type` preset; override\nany of them via individual inputs.\n\nSlots:\n- `[kpPageErrorPrimary]` — primary CTA (Button, default)\n- `[kpPageErrorSecondary]` — secondary CTA (Button, ghost)",
       "examples": [
-        "<kp-page-error type=\"404\">\n  <kp-button kpPageErrorPrimary>Go home</kp-button>\n  <kp-button kpPageErrorSecondary variant=\"ghost\">Report broken link</kp-button>\n</kp-page-error>"
+        "<kp-page-error type=\"404\">\n  <button kpButton kpPageErrorPrimary>Go home</button>\n  <button kpButton kpPageErrorSecondary variant=\"ghost\">Report broken link</button>\n</kp-page-error>"
       ],
       "inputs": [
         {
@@ -5306,7 +5306,7 @@
       "package": "@kanso-protocol/page-header",
       "description": "Kanso Protocol — PageHeader\n\nContent-area header. Three sizes, optional breadcrumbs, back button,\ndescription, actions slot, tabs slot, and bottom divider.\n\nSlots (all optional):\n- `[kpPageHeaderBreadcrumbs]` — Breadcrumbs instance\n- `[kpPageHeaderTitle]` — custom title (e.g. title + inline Badge)\n- `[kpPageHeaderActions]` — action buttons on the right\n- `[kpPageHeaderTabs]` — Tabs instance under the header",
       "examples": [
-        "<kp-page-header\n  size=\"md\"\n  title=\"All projects\"\n  description=\"12 active projects\"\n  [showActions]=\"true\"\n>\n  <kp-breadcrumbs kpPageHeaderBreadcrumbs [items]=\"crumbs\"/>\n  <div kpPageHeaderActions>\n    <kp-button appearance=\"ghost\">Import</kp-button>\n    <kp-button>Create</kp-button>\n  </div>\n</kp-page-header>"
+        "<kp-page-header\n  size=\"md\"\n  title=\"All projects\"\n  description=\"12 active projects\"\n  [showActions]=\"true\"\n>\n  <kp-breadcrumbs kpPageHeaderBreadcrumbs [items]=\"crumbs\"/>\n  <div kpPageHeaderActions>\n    <button kpButton appearance=\"ghost\">Import</button>\n    <button kpButton>Create</button>\n  </div>\n</kp-page-header>"
       ],
       "inputs": [
         {
@@ -5401,7 +5401,7 @@
       "package": "@kanso-protocol/row",
       "description": "Kanso Protocol — Row\n\nHorizontal Auto Layout wrapper with a preset gap scale, cross-axis\nalignment, and main-axis justification. Optional wrap on overflow.",
       "examples": [
-        "<kp-row gap=\"sm\" justify=\"end\">\n  <kp-button appearance=\"ghost\">Cancel</kp-button>\n  <kp-button>Save</kp-button>\n</kp-row>"
+        "<kp-row gap=\"sm\" justify=\"end\">\n  <button kpButton appearance=\"ghost\">Cancel</button>\n  <button kpButton>Save</button>\n</kp-row>"
       ],
       "inputs": [
         {
@@ -5797,7 +5797,7 @@
       "package": "@kanso-protocol/stack",
       "description": "Kanso Protocol — Stack\n\nVertical Auto Layout wrapper with a preset gap scale and cross-axis\nalignment. Semantic counterpart to `<div style=\"display:flex;flex-direction:column\">`.",
       "examples": [
-        "<kp-stack gap=\"md\">\n  <kp-input/>\n  <kp-input/>\n  <kp-button>Save</kp-button>\n</kp-stack>"
+        "<kp-stack gap=\"md\">\n  <kp-input/>\n  <kp-input/>\n  <button kpButton>Save</button>\n</kp-stack>"
       ],
       "inputs": [
         {

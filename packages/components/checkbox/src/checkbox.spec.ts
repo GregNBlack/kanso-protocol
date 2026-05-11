@@ -2,28 +2,33 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { KpCheckboxComponent } from './checkbox.component';
 
 /**
- * Checkbox is a custom element — no nested <input>. Semantics come from
- * host attributes (`role="checkbox"`, `aria-checked`, `aria-disabled`,
- * tabindex), state toggles on click / Space.
+ * Checkbox wraps a real native <input type="checkbox"> inside a <label>.
+ * Form participation (FormData, required validation, label-association,
+ * indeterminate property) is delegated to the native input; the component
+ * mirrors state into host classes for CSS targeting.
  */
 describe('KpCheckboxComponent', () => {
   let fixture: ComponentFixture<KpCheckboxComponent>;
-  let component: KpCheckboxComponent;
   let host: HTMLElement;
+  let input: HTMLInputElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({ imports: [KpCheckboxComponent] }).compileComponents();
     fixture = TestBed.createComponent(KpCheckboxComponent);
-    component = fixture.componentInstance;
     host = fixture.nativeElement as HTMLElement;
-  });
-
-  it('exposes role="checkbox" on the host', () => {
     fixture.detectChanges();
-    expect(host.getAttribute('role')).toBe('checkbox');
+    input = host.querySelector('input[type="checkbox"]') as HTMLInputElement;
   });
 
-  it('applies size + color classes', () => {
+  it('renders a real <input type="checkbox"> inside a <label>', () => {
+    expect(input).toBeTruthy();
+    expect(input.type).toBe('checkbox');
+    const label = host.querySelector('label');
+    expect(label).toBeTruthy();
+    expect(label!.contains(input)).toBe(true);
+  });
+
+  it('applies size + color classes on the host', () => {
     fixture.componentRef.setInput('size', 'lg');
     fixture.componentRef.setInput('color', 'danger');
     fixture.detectChanges();
@@ -31,51 +36,49 @@ describe('KpCheckboxComponent', () => {
     expect(host.className).toContain('kp-checkbox--danger');
   });
 
-  it('reflects checked via aria-checked and kp-checkbox--checked class', () => {
+  it('forwards [checked] to the native input', () => {
     fixture.componentRef.setInput('checked', true);
     fixture.detectChanges();
-    expect(host.getAttribute('aria-checked')).toBe('true');
+    expect(input.checked).toBe(true);
     expect(host.className).toContain('kp-checkbox--checked');
   });
 
-  it('reflects indeterminate via aria-checked="mixed"', () => {
+  it('forwards [indeterminate] as a DOM property', () => {
     fixture.componentRef.setInput('indeterminate', true);
     fixture.detectChanges();
-    expect(host.getAttribute('aria-checked')).toBe('mixed');
+    expect(input.indeterminate).toBe(true);
   });
 
-  it('reflects disabled via aria-disabled + tabindex=-1', () => {
+  it('forwards [disabled] to the native input', () => {
     fixture.componentRef.setInput('disabled', true);
     fixture.detectChanges();
-    expect(host.getAttribute('aria-disabled')).toBe('true');
-    expect(host.getAttribute('tabindex')).toBe('-1');
+    expect(input.disabled).toBe(true);
   });
 
-  it('is keyboard-focusable (tabindex=0) when enabled', () => {
+  it('forwards [required] / [name] / [value] for FormData participation', () => {
+    fixture.componentRef.setInput('required', true);
+    fixture.componentRef.setInput('name', 'agree');
+    fixture.componentRef.setInput('value', 'yes');
     fixture.detectChanges();
-    expect(host.getAttribute('tabindex')).toBe('0');
+    expect(input.required).toBe(true);
+    expect(input.getAttribute('name')).toBe('agree');
+    expect(input.getAttribute('value')).toBe('yes');
   });
 
-  it('emits (checkedChange)=true when clicked from rest', () => {
-    fixture.detectChanges();
+  it('emits (checkedChange) when the native input fires change', () => {
     const spy = vi.fn();
-    component.checkedChange.subscribe(spy);
-    host.click();
+    fixture.componentInstance.checkedChange.subscribe(spy);
+    input.checked = true;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
     expect(spy).toHaveBeenCalledWith(true);
   });
 
-  it('does not toggle when disabled', () => {
-    fixture.componentRef.setInput('disabled', true);
+  it('clears indeterminate when user toggles', () => {
+    fixture.componentRef.setInput('indeterminate', true);
     fixture.detectChanges();
-    const spy = vi.fn();
-    component.checkedChange.subscribe(spy);
-    host.click();
-    expect(spy).not.toHaveBeenCalled();
-  });
-
-  it('ControlValueAccessor: writeValue updates checked', () => {
-    component.writeValue(true);
-    fixture.detectChanges();
-    expect(component.checked).toBe(true);
+    expect(input.indeterminate).toBe(true);
+    input.checked = true;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+    expect(fixture.componentInstance.indeterminate).toBe(false);
   });
 });

@@ -16,19 +16,19 @@ import { KpButtonComponent } from '@kanso-protocol/button';
       </div>
 
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <kp-button size="sm" (click)="primary()">Primary</kp-button>
-        <kp-button size="sm" color="success" (click)="success()">Success</kp-button>
-        <kp-button size="sm" color="danger" (click)="danger()">Danger</kp-button>
-        <kp-button size="sm" variant="outline" (click)="warning()">Warning</kp-button>
-        <kp-button size="sm" variant="outline" (click)="info()">Info</kp-button>
-        <kp-button size="sm" variant="ghost" color="neutral" (click)="neutral()">Neutral</kp-button>
+        <button kpButton size="sm" (click)="primary()">Primary</button>
+        <button kpButton size="sm" color="success" (click)="success()">Success</button>
+        <button kpButton size="sm" color="danger" (click)="danger()">Danger</button>
+        <button kpButton size="sm" variant="outline" (click)="warning()">Warning</button>
+        <button kpButton size="sm" variant="outline" (click)="info()">Info</button>
+        <button kpButton size="sm" variant="ghost" color="neutral" (click)="neutral()">Neutral</button>
       </div>
 
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <kp-button size="sm" variant="outline" (click)="withAction()">Toast with action (Undo)</kp-button>
-        <kp-button size="sm" variant="outline" (click)="sticky()">Sticky (no auto-dismiss)</kp-button>
-        <kp-button size="sm" variant="ghost" color="neutral" (click)="burst()">Burst of 5</kp-button>
-        <kp-button size="sm" variant="ghost" color="danger" (click)="svc.dismissAll()">Dismiss all</kp-button>
+        <button kpButton size="sm" variant="outline" (click)="withAction()">Toast with action (Undo)</button>
+        <button kpButton size="sm" variant="outline" (click)="sticky()">Sticky (no auto-dismiss)</button>
+        <button kpButton size="sm" variant="ghost" color="neutral" (click)="burst()">Burst of 5</button>
+        <button kpButton size="sm" variant="ghost" color="danger" (click)="svc.dismissAll()">Dismiss all</button>
       </div>
     </div>
   `,

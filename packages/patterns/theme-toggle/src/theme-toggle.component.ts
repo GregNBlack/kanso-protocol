@@ -21,6 +21,8 @@ export type KpThemeValue = 'light' | 'dark' | 'system';
 
 const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
 
+let nextRadioGroupId = 0;
+
 /**
  * Kanso Protocol — ThemeToggle
  *
@@ -60,20 +62,23 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       @if (showLabel) {
         <span class="kp-theme-toggle__label">Theme</span>
       }
-      <div class="kp-theme-toggle__segments" role="tablist" aria-label="Theme">
+      <div class="kp-theme-toggle__segments" role="radiogroup" aria-label="Theme">
         <span class="kp-theme-toggle__pill" aria-hidden="true"></span>
         @for (t of themes; track t) {
-          <button
-            type="button"
-            role="tab"
+          <label
             class="kp-theme-toggle__segment"
-            [class.kp-theme-toggle__segment--selected]="currentTheme === t"
-            [attr.aria-selected]="currentTheme === t"
-            [attr.aria-label]="t"
-            (click)="select(t)"
-          >
+            [class.kp-theme-toggle__segment--selected]="currentTheme === t">
+            <input
+              type="radio"
+              class="kp-theme-toggle__radio"
+              [name]="radioGroupName"
+              [value]="t"
+              [checked]="currentTheme === t"
+              [attr.aria-label]="t"
+              (change)="select(t)"
+            />
             <kp-icon [name]="iconName(t)" />
-          </button>
+          </label>
         }
       </div>
     } @else {
@@ -188,7 +193,6 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
     :host(.kp-theme-toggle--theme-system) { --kp-theme-pill-x: calc((var(--kp-theme-seg, 28px) + 2px) * 2); }
 
     .kp-theme-toggle__segment {
-      all: unset;
       position: relative;
       z-index: 1;
       display: inline-flex;
@@ -201,10 +205,17 @@ const THEMES: KpThemeValue[] = ['light', 'dark', 'system'];
       cursor: pointer;
       transition: color var(--kp-motion-duration-normal) cubic-bezier(0.32, 0.72, 0, 1);
     }
+    .kp-theme-toggle__radio {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      margin: 0;
+      cursor: inherit;
+    }
     .kp-theme-toggle__segment:hover:not(.kp-theme-toggle__segment--selected) {
       color: var(--kp-color-segmented-segment-fg-unselected-hover);
     }
-    .kp-theme-toggle__segment:focus-visible {
+    .kp-theme-toggle__segment:has(.kp-theme-toggle__radio:focus-visible) {
       outline: 2px solid var(--kp-color-focus-ring);
       outline-offset: 1px;
     }
@@ -330,6 +341,7 @@ export class KpThemeToggleComponent implements AfterViewChecked, OnDestroy {
 
   readonly themes = THEMES;
   readonly isOpen = signal(false);
+  readonly radioGroupName = `kp-theme-toggle-${++nextRadioGroupId}`;
 
   @ViewChild('menu') menuEl?: ElementRef<HTMLElement>;
 

@@ -1,18 +1,16 @@
 import {
-  AfterViewChecked,
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
-  HostListener,
   Input,
+  OnChanges,
   OnDestroy,
   Output,
+  SimpleChanges,
   ViewChild,
   inject,
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 
 export type KpDialogSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
@@ -20,15 +18,10 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
 /**
  * Kanso Protocol — Dialog
  *
- * Modal dialog with backdrop, focus trap, and Esc-to-close. Composition
- * is slot-driven: `[kpDialogHeroIcon]` for the optional hero icon above
- * the title, `[kpDialogBody]` for body content (default is a projected
- * text node), and `[kpDialogFooter]` for footer actions (default is a
- * 2-button Cancel/Confirm layout).
- *
- * The component is a controlled view — callers bind `[open]` and react
- * to `(openChange)` / `(closed)`. Opening the dialog locks body scroll
- * and moves focus to the first interactive element inside the panel.
+ * Wraps a real native `<dialog>` element. Focus trap, top-layer
+ * stacking, ESC-to-close, body-scroll inertness, and `::backdrop`
+ * styling are all browser-native. Composition is slot-driven:
+ * `[kpDialogHeroIcon]` / `[kpDialogBody]` / `[kpDialogFooter]`.
  *
  * @example
  * <kp-dialog
@@ -44,116 +37,99 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
   selector: 'kp-dialog',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[class]': 'hostClasses',
-  },
+  host: { '[class]': 'hostClasses' },
   template: `
-    @if (open) {
-      <div #root class="kp-dialog__root" [class]="rootClasses">
-        <div class="kp-dialog__backdrop" (click)="onBackdropClick()"></div>
-        <div
-          #panel
-          class="kp-dialog__panel"
-          role="dialog"
-          aria-modal="true"
-          [attr.aria-labelledby]="title ? titleId : null"
-          [attr.aria-describedby]="showDescription ? descId : null"
-          [attr.aria-label]="!title ? ariaLabel : null"
-          tabindex="-1"
-        >
-          <header class="kp-dialog__header">
-            @if (showHeroIcon) {
-              <div class="kp-dialog__hero">
-                <ng-content select="[kpDialogHeroIcon]"/>
-              </div>
-            }
-            <div class="kp-dialog__text-group">
-              @if (title) {
-                <h2 class="kp-dialog__title" [id]="titleId">{{ title }}</h2>
-              }
-              @if (showDescription && description) {
-                <p class="kp-dialog__desc" [id]="descId">{{ description }}</p>
-              }
-            </div>
-            <button
-              type="button"
-              class="kp-dialog__close"
-              aria-label="Close dialog"
-              (click)="close()"
-            >
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M18 6 L6 18 M6 6 L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </button>
-          </header>
-
-          @if (showHeaderDivider) { <div class="kp-dialog__divider"></div> }
-
-          <div
-            class="kp-dialog__body"
-            [class.kp-dialog__body--no-footer]="!showFooter"
-          >
-            <ng-content select="[kpDialogBody]"/>
+    <dialog
+      #dlg
+      class="kp-dialog__el"
+      [class]="dialogClasses"
+      [attr.aria-labelledby]="title ? titleId : null"
+      [attr.aria-describedby]="showDescription ? descId : null"
+      [attr.aria-label]="!title ? ariaLabel : null"
+      (click)="onDialogClick($event)"
+      (cancel)="onCancel($event)"
+      (close)="onNativeClose()"
+    >
+      <header class="kp-dialog__header">
+        @if (showHeroIcon) {
+          <div class="kp-dialog__hero">
+            <ng-content select="[kpDialogHeroIcon]"/>
           </div>
-
-          @if (showFooter && showFooterDivider) { <div class="kp-dialog__divider"></div> }
-
-          @if (showFooter) {
-            <footer class="kp-dialog__footer" [class]="footerLayoutClass">
-              <ng-content select="[kpDialogFooter]"/>
-            </footer>
+        }
+        <div class="kp-dialog__text-group">
+          @if (title) {
+            <h2 class="kp-dialog__title" [id]="titleId">{{ title }}</h2>
+          }
+          @if (showDescription && description) {
+            <p class="kp-dialog__desc" [id]="descId">{{ description }}</p>
           }
         </div>
+        <button
+          type="button"
+          class="kp-dialog__close"
+          aria-label="Close dialog"
+          (click)="close()"
+        >
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M18 6 L6 18 M6 6 L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </header>
+
+      @if (showHeaderDivider) { <div class="kp-dialog__divider"></div> }
+
+      <div
+        class="kp-dialog__body"
+        [class.kp-dialog__body--no-footer]="!showFooter"
+      >
+        <ng-content select="[kpDialogBody]"/>
       </div>
-    }
+
+      @if (showFooter && showFooterDivider) { <div class="kp-dialog__divider"></div> }
+
+      @if (showFooter) {
+        <footer class="kp-dialog__footer" [class]="footerLayoutClass">
+          <ng-content select="[kpDialogFooter]"/>
+        </footer>
+      }
+    </dialog>
   `,
   styles: [`
     :host { display: contents; }
 
-    .kp-dialog__root {
+    .kp-dialog__el {
       position: fixed;
-      inset: 0;
-      z-index: 1000;
-      display: grid;
-      place-items: center;
-      font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
-    }
-
-    .kp-dialog__backdrop {
-      position: absolute;
-      inset: 0;
-      background: var(--kp-color-dialog-backdrop, rgba(0, 0, 0, 0.5));
-      animation: kp-dialog-fade var(--kp-motion-duration-fast) ease;
-    }
-
-    .kp-dialog__panel {
-      position: relative;
-      display: flex;
-      flex-direction: column;
+      padding: 0;
       width: var(--kp-dialog-w);
       max-width: calc(100vw - 32px);
       max-height: calc(100vh - 48px);
       background: var(--kp-color-dialog-panel-bg);
+      color: var(--kp-color-dialog-fg-body);
       border: 1px solid var(--kp-color-dialog-panel-border);
       border-radius: var(--kp-dialog-radius);
       box-shadow: var(--kp-elevation-floating);
+      font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
+      overflow: visible;
+    }
+    .kp-dialog__el:not([open]) { display: none; }
+    .kp-dialog__el[open] {
+      display: flex;
+      flex-direction: column;
       animation: kp-dialog-pop var(--kp-motion-duration-normal) cubic-bezier(0.2, 1, 0.4, 1);
-      outline: none;
+    }
+    .kp-dialog__el::backdrop {
+      background: var(--kp-color-dialog-backdrop, rgba(0, 0, 0, 0.5));
+      animation: kp-dialog-fade var(--kp-motion-duration-fast) ease;
     }
 
-    @keyframes kp-dialog-fade {
-      from { opacity: 0; } to { opacity: 1; }
-    }
+    @keyframes kp-dialog-fade { from { opacity: 0; } to { opacity: 1; } }
     @keyframes kp-dialog-pop {
       from { opacity: 0; transform: translateY(8px) scale(0.98); }
       to   { opacity: 1; transform: translateY(0) scale(1); }
     }
-
-    /* Respect OS-level reduce-motion preference: skip entrance choreography
-       and use a near-instant duration (a full 0 confuses some motion libraries). */
     @media (prefers-reduced-motion: reduce) {
-      .kp-dialog__backdrop,
-      .kp-dialog__panel { animation-duration: 0.01ms; }
+      .kp-dialog__el[open],
+      .kp-dialog__el::backdrop { animation-duration: 0.01ms; }
     }
 
     .kp-dialog__header {
@@ -162,16 +138,8 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       align-items: flex-start;
       gap: 12px;
       padding: var(--kp-dialog-pad);
-      /* Hug close-only headers tightly so dialogs without title/description
-         don't show a giant empty bar. The text-group below has flex:1 so it
-         stays empty + zero-height when there's no title or description; the
-         flex layout collapses to just the close button on the right. */
     }
-    /* Empty text-group (no title, no description) collapses — header
-       becomes "just the close X" sized only by its own padding. */
     .kp-dialog__text-group:empty { display: none; }
-    /* If the entire header is empty (no hero, no text-group, no close
-       button), collapse it so it doesn't push body down. */
     .kp-dialog__header:empty { padding: 0; }
     .kp-dialog__hero {
       display: inline-flex;
@@ -220,8 +188,6 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       color: var(--kp-color-dialog-fg-desc);
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
-      /* Negative margin lets the close button sit flush with the panel
-         edge inside the header, while still flowing as a flex child. */
       margin-inline-start: auto;
       margin-block-start: -4px;
       margin-inline-end: -4px;
@@ -249,10 +215,6 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       overflow: auto;
       flex: 1 1 auto;
     }
-    /* Header always renders; if empty (no title, description, hero, close)
-       it self-collapses via the :empty rules above — body still gets
-       natural padding. When the footer is off, body would otherwise stick
-       to the panel bottom — keep an explicit 16px there. */
     .kp-dialog__body--no-footer { padding-bottom: 16px; }
 
     .kp-dialog__footer {
@@ -266,7 +228,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
     .kp-dialog__footer--stacked { flex-direction: column; align-items: stretch; }
 
     /* Sizes */
-    .kp-dialog__root.kp-dialog--xs {
+    .kp-dialog__el.kp-dialog--xs {
       --kp-dialog-w: 320px;
       --kp-dialog-pad: 16px;
       --kp-dialog-head-gap: 4px;
@@ -284,7 +246,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       --kp-dialog-body-lh: 20px;
       --kp-dialog-footer-gap: 8px;
     }
-    .kp-dialog__root.kp-dialog--sm {
+    .kp-dialog__el.kp-dialog--sm {
       --kp-dialog-w: 400px;
       --kp-dialog-pad: 16px;
       --kp-dialog-head-gap: 4px;
@@ -302,7 +264,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       --kp-dialog-body-lh: 20px;
       --kp-dialog-footer-gap: 8px;
     }
-    .kp-dialog__root.kp-dialog--md {
+    .kp-dialog__el.kp-dialog--md {
       --kp-dialog-w: 560px;
       --kp-dialog-pad: 20px;
       --kp-dialog-head-gap: 6px;
@@ -320,7 +282,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       --kp-dialog-body-lh: 24px;
       --kp-dialog-footer-gap: 12px;
     }
-    .kp-dialog__root.kp-dialog--lg {
+    .kp-dialog__el.kp-dialog--lg {
       --kp-dialog-w: 720px;
       --kp-dialog-pad: 24px;
       --kp-dialog-head-gap: 6px;
@@ -338,7 +300,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       --kp-dialog-body-lh: 24px;
       --kp-dialog-footer-gap: 12px;
     }
-    .kp-dialog__root.kp-dialog--xl {
+    .kp-dialog__el.kp-dialog--xl {
       --kp-dialog-w: 960px;
       --kp-dialog-pad: 32px;
       --kp-dialog-head-gap: 8px;
@@ -358,7 +320,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
     }
   `],
 })
-export class KpDialogComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
+export class KpDialogComponent implements OnChanges, OnDestroy {
   private static idCounter = 0;
   private readonly uid = ++KpDialogComponent.idCounter;
 
@@ -382,13 +344,7 @@ export class KpDialogComponent implements AfterViewInit, AfterViewChecked, OnDes
   @Output() readonly openChange = new EventEmitter<boolean>();
   @Output() readonly closed = new EventEmitter<void>();
 
-  @ViewChild('panel') panel?: ElementRef<HTMLElement>;
-  @ViewChild('root')  root?: ElementRef<HTMLElement>;
-
-  private readonly host = inject(ElementRef<HTMLElement>);
-  private readonly doc = inject(DOCUMENT);
-  private prevBodyOverflow = '';
-  private prevFocused: Element | null = null;
+  @ViewChild('dlg', { static: false }) dlg?: ElementRef<HTMLDialogElement>;
 
   readonly titleId = `kp-dialog-title-${this.uid}`;
   readonly descId  = `kp-dialog-desc-${this.uid}`;
@@ -396,86 +352,76 @@ export class KpDialogComponent implements AfterViewInit, AfterViewChecked, OnDes
   get hostClasses(): string {
     return `kp-dialog kp-dialog--${this.size}`;
   }
-  get rootClasses(): string {
-    return `kp-dialog__root kp-dialog--${this.size}`;
+  get dialogClasses(): string {
+    return `kp-dialog__el kp-dialog--${this.size}`;
   }
   get footerLayoutClass(): string {
     return `kp-dialog__footer--${this.footerLayout}`;
   }
 
-  ngAfterViewInit(): void {
-    if (this.open) this.onOpened();
-  }
-
-  ngAfterViewChecked(): void {
-    // Portal: ensure the open dialog's root lives at <body>, not
-    // inside some transformed / clipped ancestor (common in Storybook
-    // story previews and modals-inside-CSS-grid layouts).
-    const el = this.root?.nativeElement;
-    if (el && this.doc?.body && el.parentElement !== this.doc.body) {
-      this.doc.body.appendChild(el);
-    }
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('open' in changes) this.syncOpen();
   }
 
   ngOnDestroy(): void {
-    if (this.open) this.restoreBodyScroll();
-    // The portal in ngAfterViewChecked moves our root into <body>; Angular
-    // tears down the component but doesn't follow that move, so the element
-    // is left orphaned in <body>. Remove it explicitly to prevent DOM leaks
-    // (and test-isolation flakes when multiple fixtures portal in sequence).
-    const el = this.root?.nativeElement;
-    if (el && el.parentElement === this.doc?.body) {
-      this.doc.body.removeChild(el);
+    const el = this.dlg?.nativeElement;
+    if (el?.open) {
+      if (typeof el.close === 'function') el.close();
+      else el.removeAttribute('open');
     }
   }
 
-  ngOnChanges(): void {
-    // When [open] toggles from outside, re-apply scroll lock + focus.
-    if (this.open) this.onOpened();
-    else this.restoreBodyScroll();
-  }
-
-  private onOpened(): void {
-    if (!this.doc?.body) return;
-    this.prevFocused = this.doc.activeElement;
-    this.prevBodyOverflow = this.doc.body.style.overflow;
-    this.doc.body.style.overflow = 'hidden';
-    // Defer focus so the panel is in the DOM
-    queueMicrotask(() => this.focusPanel());
-  }
-
-  private restoreBodyScroll(): void {
-    if (!this.doc?.body) return;
-    this.doc.body.style.overflow = this.prevBodyOverflow;
-    if (this.prevFocused instanceof HTMLElement) this.prevFocused.focus();
-  }
-
-  private focusPanel(): void {
-    const panel = this.panel?.nativeElement;
-    if (!panel) return;
-    const focusable = panel.querySelector<HTMLElement>(
-      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
-    );
-    (focusable ?? panel).focus();
+  private syncOpen(): void {
+    queueMicrotask(() => {
+      const el = this.dlg?.nativeElement;
+      if (!el) return;
+      // showModal / close are missing in jsdom and very old browsers.
+      // Fall back to the `open` attribute so the component still renders.
+      if (this.open && !el.open) {
+        if (typeof el.showModal === 'function') el.showModal();
+        else el.setAttribute('open', '');
+      } else if (!this.open && el.open) {
+        if (typeof el.close === 'function') el.close();
+        else el.removeAttribute('open');
+      }
+    });
   }
 
   close(): void {
     if (!this.open) return;
     this.open = false;
     this.openChange.emit(false);
-    this.closed.emit();
-    this.restoreBodyScroll();
-  }
-
-  onBackdropClick(): void {
-    if (this.closeOnBackdrop) this.close();
-  }
-
-  @HostListener('document:keydown.escape', ['$event'])
-  onEscape(event: Event): void {
-    if (this.open && this.closeOnEsc) {
-      event.stopPropagation();
-      this.close();
+    const el = this.dlg?.nativeElement;
+    if (el?.open) {
+      if (typeof el.close === 'function') el.close();
+      else { el.removeAttribute('open'); this.closed.emit(); }
+    } else {
+      this.closed.emit();
     }
+  }
+
+  /** Native `<dialog>` `cancel` event fires on Esc. Suppress when closeOnEsc=false. */
+  onCancel(event: Event): void {
+    if (!this.closeOnEsc) {
+      event.preventDefault();
+      return;
+    }
+    // Native default: dialog closes. We emit our open=false in onNativeClose below.
+  }
+
+  /** Native `<dialog>` `close` event — fires after Esc, .close(), or form-method=dialog submit. */
+  onNativeClose(): void {
+    if (this.open) {
+      this.open = false;
+      this.openChange.emit(false);
+    }
+    this.closed.emit();
+  }
+
+  /** Native `<dialog>.showModal()` makes the dialog itself the click-target
+   *  on backdrop hits (clicks on real children bubble through normally). */
+  onDialogClick(event: MouseEvent): void {
+    if (!this.closeOnBackdrop) return;
+    if (event.target === this.dlg?.nativeElement) this.close();
   }
 }

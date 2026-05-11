@@ -3,15 +3,20 @@ import { TestBed } from '@angular/core/testing';
 import { KpRadioComponent } from './radio.component';
 import { KpRadioGroupComponent } from './radio-group.component';
 
+/**
+ * Radios wrap real native <input type="radio"> elements. Inside a
+ * <kp-radio-group>, browser-native mutual exclusion via shared name
+ * does the work; the group only tracks the selected value.
+ */
 describe('KpRadioGroup + KpRadio', () => {
   @Component({
     standalone: true,
     imports: [KpRadioGroupComponent, KpRadioComponent],
     template: `
       <kp-radio-group [value]="value" (valueChange)="value = $event" name="color">
-        <kp-radio [value]="'red'" label="Red"/>
-        <kp-radio [value]="'blue'" label="Blue"/>
-        <kp-radio [value]="'green'" label="Green" [disabled]="true"/>
+        <kp-radio [value]="'red'">Red</kp-radio>
+        <kp-radio [value]="'blue'">Blue</kp-radio>
+        <kp-radio [value]="'green'" [disabled]="true">Green</kp-radio>
       </kp-radio-group>
     `,
   })
@@ -31,37 +36,41 @@ describe('KpRadioGroup + KpRadio', () => {
     expect(root.querySelector('kp-radio-group')?.getAttribute('role')).toBe('radiogroup');
   });
 
-  it('each radio has role="radio" and reflects selection via aria-checked', () => {
+  it('each <kp-radio> contains a native <input type="radio">', () => {
     const { root } = setup();
-    const radios = root.querySelectorAll('kp-radio');
-    expect(radios.length).toBe(3);
-    expect(radios[0].getAttribute('role')).toBe('radio');
-    expect(radios[0].getAttribute('aria-checked')).toBe('true');
-    expect(radios[1].getAttribute('aria-checked')).toBe('false');
+    const inputs = root.querySelectorAll('input[type="radio"]');
+    expect(inputs.length).toBe(3);
   });
 
-  it('clicking a radio updates the group value', () => {
+  it('all radios in a group share the same name (browser handles mutual exclusion)', () => {
+    const { root } = setup();
+    const inputs = Array.from(root.querySelectorAll('input[type="radio"]')) as HTMLInputElement[];
+    expect(inputs[0].name).toBe('color');
+    expect(inputs[1].name).toBe('color');
+    expect(inputs[2].name).toBe('color');
+  });
+
+  it('selected radio reflects in native input.checked', () => {
+    const { root } = setup();
+    const inputs = Array.from(root.querySelectorAll('input[type="radio"]')) as HTMLInputElement[];
+    expect(inputs[0].checked).toBe(true);
+    expect(inputs[1].checked).toBe(false);
+  });
+
+  it('changing radio selection updates the group value', () => {
     const { fix, root } = setup();
-    const radios = root.querySelectorAll('kp-radio');
-    (radios[1] as HTMLElement).click();
+    const inputs = Array.from(root.querySelectorAll('input[type="radio"]')) as HTMLInputElement[];
+    inputs[1].checked = true;
+    inputs[1].dispatchEvent(new Event('change', { bubbles: true }));
     fix.detectChanges();
     expect(fix.componentInstance.value).toBe('blue');
-    expect(radios[1].getAttribute('aria-checked')).toBe('true');
-    expect(radios[0].getAttribute('aria-checked')).toBe('false');
+    expect(inputs[1].checked).toBe(true);
+    expect(inputs[0].checked).toBe(false);
   });
 
-  it('disabled radio does not change selection on click', () => {
-    const { fix, root } = setup();
-    const radios = root.querySelectorAll('kp-radio');
-    (radios[2] as HTMLElement).click();
-    fix.detectChanges();
-    expect(fix.componentInstance.value).toBe('red');
-  });
-
-  it('disabled radio has aria-disabled + tabindex=-1', () => {
+  it('disabled radio has the native disabled attribute', () => {
     const { root } = setup();
-    const last = root.querySelectorAll('kp-radio')[2];
-    expect(last.getAttribute('aria-disabled')).toBe('true');
-    expect(last.getAttribute('tabindex')).toBe('-1');
+    const inputs = Array.from(root.querySelectorAll('input[type="radio"]')) as HTMLInputElement[];
+    expect(inputs[2].disabled).toBe(true);
   });
 });

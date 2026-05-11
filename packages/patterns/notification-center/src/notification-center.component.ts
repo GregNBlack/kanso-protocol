@@ -51,10 +51,10 @@ export interface KpNotification {
     <div class="kp-notif-center__header">
       <span class="kp-notif-center__title">Notifications</span>
       <div class="kp-notif-center__header-actions">
-        <kp-button size="sm" variant="ghost" color="neutral" (click)="markAllRead.emit()">Mark all as read</kp-button>
-        <kp-button size="sm" variant="ghost" color="neutral" [iconOnly]="true" aria-label="Settings" (click)="settingsClick.emit()">
+        <button kpButton size="sm" variant="ghost" color="neutral" (click)="markAllRead.emit()">Mark all as read</button>
+        <button kpButton size="sm" variant="ghost" color="neutral" [iconOnly]="true" aria-label="Settings" (click)="settingsClick.emit()">
           <kp-icon kpButtonIconLeft name="settings" />
-        </kp-button>
+        </button>
       </div>
     </div>
 
@@ -119,7 +119,7 @@ export interface KpNotification {
 
     @if (showFooter) {
       <div class="kp-notif-center__footer">
-        <kp-button size="sm" variant="ghost" color="neutral" (click)="viewAll.emit()">View all notifications</kp-button>
+        <button kpButton size="sm" variant="ghost" color="neutral" (click)="viewAll.emit()">View all notifications</button>
       </div>
     }
   `,

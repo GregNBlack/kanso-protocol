@@ -32,7 +32,7 @@ export type KpAlertActionPlacement = 'inline' | 'stacked';
  *
  * <kp-alert color="warning" appearance="left-accent" title="Review required"
  *           description="3 items need your approval.">
- *   <kp-button kpAlertAction size="sm" variant="subtle">Review</kp-button>
+ *   <button kpButton kpAlertAction size="sm" variant="subtle">Review</button>
  * </kp-alert>
  */
 @Component({

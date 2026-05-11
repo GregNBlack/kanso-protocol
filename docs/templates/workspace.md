@@ -444,9 +444,9 @@ one):
 **Page tabs** — when the workspace's main pane has multiple sub-views:
 ```html
 <kp-tabs kpWsHeaderNav size="sm" [activeId]="activeTab" (tabChange)="activeTab = $event">
-  <kp-tab id="overview" label="Overview"/>
-  <kp-tab id="activity" label="Activity"/>
-  <kp-tab id="members"  label="Members"/>
+  <button kpTab id="overview" label="Overview"></button>
+  <button kpTab id="activity" label="Activity"></button>
+  <button kpTab id="members"  label="Members"></button>
 </kp-tabs>
 ```
 

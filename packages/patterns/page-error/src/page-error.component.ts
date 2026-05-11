@@ -50,8 +50,8 @@ const DEFAULTS: Record<KpPageErrorType, { title: string; description: string; ic
  *
  * @example
  * <kp-page-error type="404">
- *   <kp-button kpPageErrorPrimary>Go home</kp-button>
- *   <kp-button kpPageErrorSecondary variant="ghost">Report broken link</kp-button>
+ *   <button kpButton kpPageErrorPrimary>Go home</button>
+ *   <button kpButton kpPageErrorSecondary variant="ghost">Report broken link</button>
  * </kp-page-error>
  */
 @Component({

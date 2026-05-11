@@ -7,29 +7,28 @@ import {
 import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
 
 /**
- * Kanso Protocol — Button Component
+ * Kanso Protocol — Button
  *
- * Anatomy: Container → Content → Elements (icon-left, label, icon-right)
- * Supports: 5 sizes × 4 variants × 3+ color roles × 6 states
+ * Attribute-selector on a real native `<button>`. Gets `type` / `form` /
+ * `name` / `value` / `formaction` / native disabled / Enter+Space /
+ * form submission / HTML5 validation for free.
  *
  * @example
- * <kp-button size="md" variant="default" color="primary">Click me</kp-button>
- * <kp-button size="lg" variant="outline" color="danger" [loading]="true">Delete</kp-button>
+ * <button kpButton size="md" variant="default" color="primary">Click me</button>
+ * <button kpButton type="submit" color="primary">Save</button>
+ * <button kpButton variant="outline" color="danger" [loading]="true">Delete</button>
  */
 @Component({
-    selector: 'kp-button',
-    imports: [],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    host: {
-        '[class]': 'hostClasses',
-        '[attr.role]': '"button"',
-        '[attr.tabindex]': 'disabled ? -1 : 0',
-        '[attr.aria-busy]': 'loading || null',
-        '[attr.aria-disabled]': 'disabled || null',
-        '(click)': 'handleClick($event)',
-        '(keydown)': 'handleKey($event)',
-    },
-    template: `
+  selector: 'button[kpButton]',
+  imports: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class]': 'hostClasses',
+    '[attr.type]': 'type',
+    '[disabled]': 'disabled || loading',
+    '[attr.aria-busy]': 'loading || null',
+  },
+  template: `
     <span class="kp-button__content">
       @if (loading || forceState === 'loading') {
         <span class="kp-button__spinner" aria-hidden="true">
@@ -59,7 +58,7 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       }
     </span>
     `,
-    styles: [`
+  styles: [`
     :host {
       display: inline-flex;
       align-items: center;
@@ -79,6 +78,9 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       cursor: pointer;
       user-select: none;
       white-space: nowrap;
+      /* Native button defaults override */
+      appearance: none;
+      -webkit-appearance: none;
       transition:
         background var(--kp-motion-duration-fast, 100ms) var(--kp-motion-ease-in-out, cubic-bezier(0.4, 0, 0.2, 1)),
         border-color var(--kp-motion-duration-fast, 100ms) var(--kp-motion-ease-in-out, cubic-bezier(0.4, 0, 0.2, 1)),
@@ -86,14 +88,14 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
     }
 
     /* --- Interactive states --- */
-    :host(:hover:not(.kp-button--disabled):not(.kp-button--loading)),
+    :host(:hover:not([disabled]):not(.kp-button--loading)),
     :host(.kp-button--hover) {
       background: var(--kp-button-bg-hover);
       border-color: var(--kp-button-border-hover);
       color: var(--kp-button-fg-hover);
     }
 
-    :host(:active:not(.kp-button--disabled):not(.kp-button--loading)),
+    :host(:active:not([disabled]):not(.kp-button--loading)),
     :host(.kp-button--active) {
       background: var(--kp-button-bg-active);
       border-color: var(--kp-button-border-active);
@@ -106,6 +108,7 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       outline-offset: 2px;
     }
 
+    :host([disabled]),
     :host(.kp-button--disabled) {
       cursor: not-allowed;
       pointer-events: none;
@@ -130,8 +133,6 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       justify-content: center;
       flex-shrink: 0;
     }
-    /* Sized via the per-variant --kp-button-icon-size token below; covers
-       both the loading spinner SVG and any consumer-provided projected icon. */
     .kp-button__icon ::ng-deep svg,
     .kp-button__spinner svg {
       width: var(--kp-button-icon-size);
@@ -145,9 +146,7 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       align-items: center;
     }
 
-    /* Visually hidden during loading but still part of the accessibility
-       tree — without this, axe flags the loading button as having no
-       accessible name (aria-command-name). The spinner overlays the label. */
+    /* Loading: hide label visually but keep accessible name. */
     .kp-button__label--hidden {
       position: absolute;
       width: 1px;
@@ -164,18 +163,16 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       display: inline-flex;
       align-items: center;
       justify-content: center;
-            animation: kp-spin var(--kp-motion-duration-spin) linear infinite;
+      animation: kp-spin var(--kp-motion-duration-spin) linear infinite;
     }
 
     @keyframes kp-spin { to { transform: rotate(360deg); } }
 
-    /* Reduce-motion: slow the loading spinner to avoid triggering vestibular
-       issues, but keep it rotating so the "busy" state stays visible. */
     @media (prefers-reduced-motion: reduce) {
       .kp-button__spinner { animation-duration: 3s; }
     }
 
-    /* === SIZE TOKENS === synced from Figma Button master component */
+    /* === SIZE TOKENS === */
     :host(.kp-button--xs) {
       --kp-button-height: 24px; --kp-button-radius: 8px; --kp-button-padding: 6px;
       --kp-button-font-size: 12px; --kp-button-line-height: 1.333;
@@ -207,7 +204,6 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       --kp-button-icon-size: 24px;
     }
 
-    /* Icon-only: square hit-area, symmetric padding, no label */
     :host(.kp-button--icon-only) {
       width: var(--kp-button-height);
       min-width: var(--kp-button-height);
@@ -226,6 +222,7 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       --kp-button-border-hover: var(--kp-color-primary-default-border-hover);
       --kp-button-border-active: var(--kp-color-primary-default-border-active);
     }
+    :host(.kp-button--primary.kp-button--default[disabled]),
     :host(.kp-button--primary.kp-button--default.kp-button--disabled) {
       --kp-button-bg: var(--kp-color-primary-default-bg-disabled);
       --kp-button-fg: var(--kp-color-primary-default-fg-disabled);
@@ -249,6 +246,7 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       --kp-button-border-hover: var(--kp-color-primary-subtle-border-hover);
       --kp-button-border-active: var(--kp-color-primary-subtle-border-active);
     }
+    :host(.kp-button--primary.kp-button--subtle[disabled]),
     :host(.kp-button--primary.kp-button--subtle.kp-button--disabled) {
       --kp-button-bg: var(--kp-color-primary-subtle-bg-disabled);
       --kp-button-fg: var(--kp-color-primary-subtle-fg-disabled);
@@ -267,6 +265,7 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       --kp-button-border-hover: var(--kp-color-primary-outline-border-hover);
       --kp-button-border-active: var(--kp-color-primary-outline-border-active);
     }
+    :host(.kp-button--primary.kp-button--outline[disabled]),
     :host(.kp-button--primary.kp-button--outline.kp-button--disabled) {
       --kp-button-bg: var(--kp-color-primary-outline-bg-disabled);
       --kp-button-fg: var(--kp-color-primary-outline-fg-disabled);
@@ -285,6 +284,7 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       --kp-button-border-hover: var(--kp-color-primary-ghost-border-hover);
       --kp-button-border-active: var(--kp-color-primary-ghost-border-active);
     }
+    :host(.kp-button--primary.kp-button--ghost[disabled]),
     :host(.kp-button--primary.kp-button--ghost.kp-button--disabled) {
       --kp-button-bg: var(--kp-color-primary-ghost-bg-disabled);
       --kp-button-fg: var(--kp-color-primary-ghost-fg-disabled);
@@ -303,6 +303,7 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       --kp-button-border-hover: var(--kp-color-danger-default-border-hover);
       --kp-button-border-active: var(--kp-color-danger-default-border-active);
     }
+    :host(.kp-button--danger.kp-button--default[disabled]),
     :host(.kp-button--danger.kp-button--default.kp-button--disabled) {
       --kp-button-bg: var(--kp-color-danger-default-bg-disabled);
       --kp-button-fg: var(--kp-color-danger-default-fg-disabled);
@@ -365,6 +366,7 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       --kp-button-border-hover: var(--kp-color-neutral-default-border-hover);
       --kp-button-border-active: var(--kp-color-neutral-default-border-active);
     }
+    :host(.kp-button--neutral.kp-button--default[disabled]),
     :host(.kp-button--neutral.kp-button--default.kp-button--disabled) {
       --kp-button-bg: var(--kp-color-neutral-default-bg-disabled);
       --kp-button-fg: var(--kp-color-neutral-default-fg-disabled);
@@ -415,15 +417,8 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       --kp-button-border-active: var(--kp-color-neutral-ghost-border-active);
     }
 
-    /* === Generic disabled fallbacks ===
-       Catch-all for combos without an explicit .{color}.{variant}.disabled
-       rule (e.g. neutral.ghost, used by NumberStepper for its + / − buttons).
-       Higher-specificity 3-class rules above continue to win where defined.
-       fg is repeated on every 2-class rule so it beats the rest-color
-       rest-state rules (which are also 2-class and would otherwise win).
-       Backed by primary.{variant}.{prop}.disabled as the canonical
-       disabled values — the variant family carries the right dark-mode
-       overrides automatically. */
+    /* Generic disabled fallbacks (catch combos lacking an explicit color-variant rule) */
+    :host([disabled].kp-button--default),
     :host(.kp-button--disabled.kp-button--default) {
       --kp-button-bg: var(--kp-color-primary-default-bg-disabled);
       --kp-button-bg-hover: var(--kp-color-primary-default-bg-disabled);
@@ -435,6 +430,7 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       --kp-button-fg-hover: var(--kp-color-primary-default-fg-disabled);
       --kp-button-fg-active: var(--kp-color-primary-default-fg-disabled);
     }
+    :host([disabled].kp-button--subtle),
     :host(.kp-button--disabled.kp-button--subtle) {
       --kp-button-bg: var(--kp-color-primary-subtle-bg-disabled);
       --kp-button-bg-hover: var(--kp-color-primary-subtle-bg-disabled);
@@ -443,6 +439,7 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       --kp-button-fg-hover: var(--kp-color-primary-subtle-fg-disabled);
       --kp-button-fg-active: var(--kp-color-primary-subtle-fg-disabled);
     }
+    :host([disabled].kp-button--outline),
     :host(.kp-button--disabled.kp-button--outline) {
       --kp-button-bg: var(--kp-color-primary-outline-bg-disabled);
       --kp-button-bg-hover: var(--kp-color-primary-outline-bg-disabled);
@@ -454,6 +451,7 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
       --kp-button-fg-hover: var(--kp-color-primary-outline-fg-disabled);
       --kp-button-fg-active: var(--kp-color-primary-outline-fg-disabled);
     }
+    :host([disabled].kp-button--ghost),
     :host(.kp-button--disabled.kp-button--ghost) {
       --kp-button-bg: var(--kp-color-primary-ghost-bg-disabled);
       --kp-button-bg-hover: var(--kp-color-primary-ghost-bg-disabled);
@@ -465,14 +463,16 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
   `]
 })
 export class KpButtonComponent {
+  /** Native button type. Defaults to "button" (safer than browser default "submit"). */
+  @Input() type: 'button' | 'submit' | 'reset' = 'button';
   @Input() size: KpSize = 'md';
   @Input() variant: KpVariant = 'default';
   @Input() color: KpColorRole = 'primary';
   @Input() disabled = false;
   @Input() loading = false;
-  /** Hides the label and makes the button square (height × height) — pair with an icon and `aria-label` */
+  /** Hides the label and makes the button square — pair with an icon and `aria-label`. */
   @Input() iconOnly = false;
-  /** Force a visual state for showcase/documentation purposes */
+  /** Force a visual state for showcase/documentation purposes. */
   @Input() forceState: KpState | null = null;
 
   get hostClasses(): string {
@@ -485,27 +485,9 @@ export class KpButtonComponent {
     if (this.iconOnly) classes.push('kp-button--icon-only');
     if (this.forceState) {
       classes.push(`kp-button--${this.forceState}`);
-    } else {
-      if (this.disabled) classes.push('kp-button--disabled');
-      if (this.loading) classes.push('kp-button--loading');
+    } else if (this.loading) {
+      classes.push('kp-button--loading');
     }
     return classes.join(' ');
-  }
-
-  handleClick(event: MouseEvent): void {
-    if (this.disabled || this.loading) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-  }
-
-  handleKey(event: KeyboardEvent): void {
-    // role="button" needs explicit Enter/Space handling — native buttons get
-    // this for free, but we're a custom element. Translate to a click so the
-    // (click) handler / consumer (click) bindings fire identically.
-    if (event.key !== 'Enter' && event.key !== ' ') return;
-    if (this.disabled || this.loading) return;
-    event.preventDefault();
-    (event.target as HTMLElement).click();
   }
 }

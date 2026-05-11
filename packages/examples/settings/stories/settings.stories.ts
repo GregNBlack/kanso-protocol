@@ -52,11 +52,11 @@ import { KpTextareaComponent } from '@kanso-protocol/textarea';
             [showTabs]="true"
             [showBottomDivider]="true">
             <kp-tabs kpPageHeaderTabs size="md">
-              <kp-tab label="General"      [selected]="true"/>
-              <kp-tab label="Notifications"/>
-              <kp-tab label="Billing"/>
-              <kp-tab label="Team"/>
-              <kp-tab label="Security"/>
+              <button kpTab label="General"      [selected]="true"></button>
+              <button kpTab label="Notifications"></button>
+              <button kpTab label="Billing"></button>
+              <button kpTab label="Team"></button>
+              <button kpTab label="Security"></button>
             </kp-tabs>
           </kp-page-header>
 
@@ -67,9 +67,9 @@ import { KpTextareaComponent } from '@kanso-protocol/textarea';
                                description="Shown next to your name in mentions, comments, and lists.">
                 <div class="avatar-row">
                   <kp-avatar size="lg" content="initials" initials="GB"/>
-                  <kp-button variant="outline" color="neutral" size="sm">
+                  <button kpButton variant="outline" color="neutral" size="sm">
                     <span>Change</span>
-                  </kp-button>
+                  </button>
                 </div>
               </kp-settings-row>
               <kp-settings-row title="Full name"
@@ -110,9 +110,9 @@ import { KpTextareaComponent } from '@kanso-protocol/textarea';
               <kp-settings-row title="Delete account"
                                description="Permanently remove your account and all data. This action cannot be undone."
                                [showDivider]="false">
-                <kp-button variant="outline" color="danger" size="sm">
+                <button kpButton variant="outline" color="danger" size="sm">
                   <span>Delete account</span>
-                </kp-button>
+                </button>
               </kp-settings-row>
             </kp-settings-panel>
           </div>

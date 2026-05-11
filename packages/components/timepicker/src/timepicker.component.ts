@@ -162,10 +162,10 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
         </div>
 
         <div class="kp-tp__footer">
-          <kp-button variant="ghost" size="sm" color="neutral" (click)="setNow()">{{ strings.timeNow }}</kp-button>
+          <button kpButton variant="ghost" size="sm" color="neutral" (click)="setNow()">{{ strings.timeNow }}</button>
           <div class="kp-tp__footer-right">
-            <kp-button variant="ghost" size="sm" color="neutral" (click)="cancel()">{{ strings.cancel }}</kp-button>
-            <kp-button size="sm" (click)="apply()">{{ strings.confirm }}</kp-button>
+            <button kpButton variant="ghost" size="sm" color="neutral" (click)="cancel()">{{ strings.cancel }}</button>
+            <button kpButton size="sm" (click)="apply()">{{ strings.confirm }}</button>
           </div>
         </div>
       </div>

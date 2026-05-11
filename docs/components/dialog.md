@@ -79,7 +79,7 @@ Dialog is a single component (`<kp-dialog>`) that renders a modal panel centered
 
 - **`[kpDialogHeroIcon]`** — icon rendered in the circular hero container above the title. Recommended: 24 px SVG with `stroke="currentColor"` so it picks up the hero container's color. Override the color inline (e.g. `style="color: #DC2626"`) for danger/warning/success variants.
 - **`[kpDialogBody]`** — body content. Default typography comes from the size variant, but you can drop in a form, list, alert, or any custom layout.
-- **`[kpDialogFooter]`** — footer actions. Typically one or more `<kp-button>` instances. The wrapping `<footer>` applies the `footerLayout` class.
+- **`[kpDialogFooter]`** — footer actions. Typically one or more `<button kpButton>` instances. The wrapping `<footer>` applies the `footerLayout` class.
 
 ## Footer layouts
 

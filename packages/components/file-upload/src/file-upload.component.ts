@@ -63,21 +63,27 @@ let nextId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses' },
   template: `
-    <div
+    <label
       class="kp-file-upload__zone"
       [class.kp-file-upload__zone--dragover]="isDragOver"
       [class.kp-file-upload__zone--disabled]="disabled"
-      role="button"
-      [attr.tabindex]="disabled ? -1 : 0"
-      [attr.aria-disabled]="disabled || null"
       [attr.aria-label]="resolvedAriaLabel"
-      (click)="openFilePicker()"
-      (keydown)="onZoneKeydown($event)"
       (dragenter)="onDragEnter($event)"
       (dragover)="onDragOver($event)"
       (dragleave)="onDragLeave($event)"
       (drop)="onDrop($event)"
     >
+      <input
+        #fileInput
+        type="file"
+        class="kp-file-upload__input"
+        [multiple]="multiple"
+        [accept]="accept || ''"
+        [disabled]="disabled"
+        [required]="required"
+        [attr.name]="name"
+        (change)="onFileInputChange($event)"
+      />
       <span class="kp-file-upload__icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 16V4m0 0-4 4m4-4 4 4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>
@@ -89,16 +95,7 @@ let nextId = 0;
           <span class="kp-file-upload__hint">{{ hint }}</span>
         }
       </span>
-      <input
-        #fileInput
-        type="file"
-        class="kp-file-upload__input"
-        [multiple]="multiple"
-        [accept]="accept || ''"
-        [disabled]="disabled"
-        (change)="onFileInputChange($event)"
-      />
-    </div>
+    </label>
 
     @if (files.length > 0) {
       <ul class="kp-file-upload__list" role="list">
@@ -183,7 +180,7 @@ let nextId = 0;
       border-color: var(--kp-color-text-disabled);
       background: var(--kp-color-surface-muted);
     }
-    .kp-file-upload__zone:focus-visible {
+    .kp-file-upload__zone:has(.kp-file-upload__input:focus-visible) {
       outline: 2px solid var(--kp-color-accent-primary-fg);
       outline-offset: 2px;
     }
@@ -335,6 +332,8 @@ export class KpFileUploadComponent {
   /** Max total file count. `null` = no limit. */
   @Input() maxFiles: number | null = null;
   @Input() disabled = false;
+  @Input() required = false;
+  @Input() name: string | null = null;
 
   @Input() title: string | null = null;
   @Input() hint: string | null = null;
@@ -369,19 +368,6 @@ export class KpFileUploadComponent {
 
   get resolvedAriaLabel(): string {
     return this.ariaLabel ?? this.strings.dropzoneTitle;
-  }
-
-  openFilePicker(): void {
-    if (this.disabled) return;
-    this.fileInput.nativeElement.click();
-  }
-
-  onZoneKeydown(event: KeyboardEvent): void {
-    if (this.disabled) return;
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      this.openFilePicker();
-    }
   }
 
   onFileInputChange(event: Event): void {

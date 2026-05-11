@@ -53,13 +53,13 @@ export const WithAction: Story = {
     template: `
       <div style="display:flex;flex-direction:column">
         <kp-banner color="warning" title="Your trial ends in 3 days">
-          <kp-button kpBannerAction size="sm">Upgrade now</kp-button>
+          <button kpButton kpBannerAction size="sm">Upgrade now</button>
         </kp-banner>
         <kp-banner color="danger" title="Payment failed">
-          <kp-button kpBannerAction size="sm" color="danger">Fix now</kp-button>
+          <button kpButton kpBannerAction size="sm" color="danger">Fix now</button>
         </kp-banner>
         <kp-banner color="info" title="New feature — AI-powered search">
-          <kp-button kpBannerAction size="sm" variant="outline">Learn more</kp-button>
+          <button kpButton kpBannerAction size="sm" variant="outline">Learn more</button>
         </kp-banner>
       </div>
     `,

@@ -85,8 +85,8 @@ The "start / center / end" anchor shifts the arrow along that edge (16 px from t
             (close)="cancel()">
   Body content goes here.
 
-  <kp-button kpPopoverFooter size="sm" variant="ghost" color="neutral">Cancel</kp-button>
-  <kp-button kpPopoverFooter size="sm" color="danger">Delete</kp-button>
+  <button kpButton kpPopoverFooter size="sm" variant="ghost" color="neutral">Cancel</button>
+  <button kpButton kpPopoverFooter size="sm" color="danger">Delete</button>
 </kp-popover>
 ```
 

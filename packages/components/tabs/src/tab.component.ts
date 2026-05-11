@@ -13,72 +13,61 @@ export type KpTabSize = 'sm' | 'md' | 'lg';
 /**
  * Kanso Protocol — Tab (atom)
  *
- * Single tab for use inside `<kp-tabs>`. Projects an optional leading icon
- * and an optional trailing badge. The `selected` / `disabled` inputs drive
- * the visual state; hover is handled in CSS and focus via `:focus-visible`
- * on the underlying button.
+ * Attribute-selector on a real native `<button role="tab">`. Sits inside
+ * a `<kp-tabs role="tablist">`. Native button gives Enter+Space
+ * activation, focus-visible, and disabled. Arrow-key navigation between
+ * tabs is owned by the parent `<kp-tabs>` via roving tabindex.
  *
  * @example
- * <kp-tab label="Inbox" [selected]="current === 'inbox'" (click)="current='inbox'">
+ * <button kpTab label="Inbox" [selected]="current === 'inbox'" (click)="current='inbox'">
  *   <svg kpTabIcon .../>
  *   <kp-badge kpTabBadge>12</kp-badge>
- * </kp-tab>
+ * </button>
  */
 @Component({
-  selector: 'kp-tab',
+  selector: 'button[kpTab]',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class]': 'hostClasses',
+    '[attr.type]': '"button"',
     '[attr.role]': '"tab"',
     '[attr.aria-selected]': 'selected',
-    '[attr.aria-disabled]': 'disabled || null',
+    '[disabled]': 'disabled',
     '[attr.tabindex]': 'disabled ? -1 : (selected ? 0 : -1)',
-    '(click)': 'handleClick($event)',
-    '(keydown)': 'handleKey($event)',
+    '(click)': 'handleClick()',
   },
-  // Inner content is a non-interactive span. The previous <button> inside the
-  // role="tab" host triggered axe's nested-interactive rule. Click + keyboard
-  // activation now live on the host directly; arrow-key navigation between
-  // tabs is owned by the parent <kp-tabs> via roving tabindex (see tabs.component.ts).
   template: `
-    <span class="kp-tab__btn">
-      <span class="kp-tab__icon" aria-hidden="true">
-        <ng-content select="[kpTabIcon]"/>
-      </span>
-      <span class="kp-tab__label">{{ label }}</span>
-      <span class="kp-tab__badge">
-        <ng-content select="[kpTabBadge]"/>
-      </span>
+    <span class="kp-tab__icon" aria-hidden="true">
+      <ng-content select="[kpTabIcon]"/>
+    </span>
+    <span class="kp-tab__label">{{ label }}</span>
+    <span class="kp-tab__badge">
+      <ng-content select="[kpTabBadge]"/>
     </span>
   `,
   styles: [`
     :host {
-      display: inline-flex;
-      box-sizing: border-box;
-      height: var(--kp-tab-h);
-      border-bottom: 2px solid var(--kp-color-tabs-tab-underline-rest, transparent);
-      font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
-      transition: border-color var(--kp-motion-duration-fast) ease, color 120ms ease;
-    }
-    :host(.kp-tab--full-width) { flex: 1 1 0; }
-
-    .kp-tab__btn {
       all: unset;
+      box-sizing: border-box;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: var(--kp-tab-gap);
+      height: var(--kp-tab-h);
       padding: 0 var(--kp-tab-pad-x);
-      height: 100%;
-      width: 100%;
+      border-bottom: 2px solid var(--kp-color-tabs-tab-underline-rest, transparent);
       color: var(--kp-color-tabs-tab-fg-rest);
       cursor: pointer;
+      font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       font-size: var(--kp-tab-font-size);
       line-height: var(--kp-tab-line-height);
       font-weight: 500;
+      transition: border-color var(--kp-motion-duration-fast) ease, color 120ms ease;
     }
-    .kp-tab__btn:focus-visible {
+    :host(.kp-tab--full-width) { flex: 1 1 0; }
+
+    :host(:focus-visible) {
       outline: 2px solid var(--kp-color-focus-ring);
       outline-offset: -2px;
     }
@@ -97,37 +86,31 @@ export type KpTabSize = 'sm' | 'md' | 'lg';
     .kp-tab__badge { display: inline-flex; }
     .kp-tab__badge:empty { display: none; }
 
-    /* Hover (rest only — disabled / selected handled explicitly) */
-    :host(:not(.kp-tab--selected):not(.kp-tab--disabled):hover) {
+    /* Hover (rest only) */
+    :host(:hover:not(.kp-tab--selected):not([disabled])) {
       border-bottom-color: var(--kp-color-tabs-tab-underline-hover);
-    }
-    :host(:not(.kp-tab--selected):not(.kp-tab--disabled):hover) .kp-tab__btn {
       color: var(--kp-color-tabs-tab-fg-hover);
     }
-    :host(:not(.kp-tab--selected):not(.kp-tab--disabled):hover) .kp-tab__icon {
+    :host(:hover:not(.kp-tab--selected):not([disabled])) .kp-tab__icon {
       color: var(--kp-color-tabs-tab-icon-hover);
     }
 
     /* Selected */
     :host(.kp-tab--selected) {
       border-bottom-color: var(--kp-color-tabs-tab-underline-selected);
-    }
-    :host(.kp-tab--selected) .kp-tab__btn {
       color: var(--kp-color-tabs-tab-fg-selected);
     }
     :host(.kp-tab--selected) .kp-tab__icon {
       color: var(--kp-color-tabs-tab-icon-selected);
     }
 
-    /* Disabled */
-    :host(.kp-tab--disabled) {
+    /* Disabled (native [disabled]) */
+    :host([disabled]) {
       border-bottom-color: var(--kp-color-tabs-tab-underline-disabled, transparent);
-    }
-    :host(.kp-tab--disabled) .kp-tab__btn {
       color: var(--kp-color-tabs-tab-fg-disabled);
       cursor: not-allowed;
     }
-    :host(.kp-tab--disabled) .kp-tab__icon {
+    :host([disabled]) .kp-tab__icon {
       color: var(--kp-color-tabs-tab-icon-disabled);
     }
 
@@ -168,31 +151,18 @@ export class KpTabComponent {
 
   @Output() selectedChange = new EventEmitter<boolean>();
 
-  /** @internal — exposed so the parent `<kp-tabs>` can focus this tab's
-   *  inner button as part of its arrow-key roving-tabindex navigation. */
+  /** @internal — parent `<kp-tabs>` focuses this for arrow-key roving-tabindex navigation. */
   readonly elementRef = inject(ElementRef) as ElementRef<HTMLElement>;
 
   get hostClasses(): string {
     const c = ['kp-tab', `kp-tab--${this.size}`];
     if (this.selected) c.push('kp-tab--selected');
-    if (this.disabled) c.push('kp-tab--disabled');
     if (this.fullWidth) c.push('kp-tab--full-width');
     return c.join(' ');
   }
 
-  handleClick(event: MouseEvent): void {
-    if (this.disabled) {
-      event.preventDefault();
-      event.stopPropagation();
-      return;
-    }
-    this.selectedChange.emit(true);
-  }
-
-  handleKey(event: KeyboardEvent): void {
-    if (event.key !== 'Enter' && event.key !== ' ') return;
+  handleClick(): void {
     if (this.disabled) return;
-    event.preventDefault();
     this.selectedChange.emit(true);
   }
 }

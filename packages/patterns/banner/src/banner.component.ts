@@ -25,11 +25,11 @@ export type KpBannerColor =
  * Reuses alert semantic tokens (subtle appearance) so color roles
  * match Alert / Toast.
  *
- * Slot: `[kpBannerAction]` for a trailing CTA (typically `<kp-button size="sm">`).
+ * Slot: `[kpBannerAction]` for a trailing CTA (typically `<button kpButton size="sm">`).
  *
  * @example
  * <kp-banner color="warning" title="Your trial ends in 3 days">
- *   <kp-button kpBannerAction size="sm">Upgrade</kp-button>
+ *   <button kpButton kpBannerAction size="sm">Upgrade</button>
  * </kp-banner>
  */
 @Component({
@@ -50,7 +50,7 @@ export type KpBannerColor =
     <div class="kp-banner__right">
       <ng-content select="[kpBannerAction]"/>
       @if (showClose) {
-        <kp-button
+        <button kpButton
           size="xs"
           variant="ghost"
           color="neutral"
@@ -59,7 +59,7 @@ export type KpBannerColor =
           (click)="close.emit()"
         >
           <svg kpButtonIconLeft viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        </kp-button>
+        </button>
       }
     </div>
   `,
