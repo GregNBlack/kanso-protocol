@@ -116,7 +116,10 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
           }
         </div>
 
-        <div class="kp-cmdk__list" role="listbox" [id]="listId">
+        <!-- role="listbox" only when we actually have option children;
+             an empty listbox with just a "No results" text node fails
+             axe's aria-required-children. -->
+        <div class="kp-cmdk__list" [attr.role]="totalItems > 0 ? 'listbox' : null" [id]="listId">
           @if (totalItems === 0) {
             <div class="kp-cmdk__empty">{{ emptyMessage ?? strings.noResults }}</div>
           }
