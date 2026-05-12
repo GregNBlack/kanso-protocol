@@ -16,7 +16,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DOCUMENT } from '@angular/common';
 
-import { KpState } from '@kanso-protocol/core';
+import { KpState, findPortalTarget } from '@kanso-protocol/core';
 import { KpButtonComponent } from '@kanso-protocol/button';
 import { injectKpLocale, injectKpStrings, kpDayPeriod } from '@kanso-protocol/i18n';
 
@@ -548,8 +548,10 @@ export class KpTimePickerComponent implements ControlValueAccessor, AfterViewChe
   ngAfterViewChecked(): void {
     if (!this.isOpen) return;
     const pan = this.panelEl?.nativeElement;
-    if (pan && this.doc?.body && pan.parentElement !== this.doc.body) {
-      this.doc.body.appendChild(pan);
+    // Portal to body normally; to nearest open <dialog> when inside one.
+    if (pan && this.doc) {
+      const target = findPortalTarget(this.host.nativeElement, this.doc);
+      if (pan.parentElement !== target) target.appendChild(pan);
     }
     this.positionPanel();
     // Scroll each column to its selected value once per open.

@@ -50,6 +50,11 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       (cancel)="onCancel($event)"
       (close)="onNativeClose()"
     >
+      <!-- Inner panel holds visual chrome + entrance animation.
+           The <dialog> itself stays transform-free so portaled
+           descendants (select listboxes, popovers) keep position: fixed
+           against the viewport, not against a transformed container. -->
+      <div class="kp-dialog__panel">
       <header class="kp-dialog__header">
         @if (showHeroIcon) {
           <div class="kp-dialog__hero">
@@ -92,34 +97,54 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
           <ng-content select="[kpDialogFooter]"/>
         </footer>
       }
+      </div>
     </dialog>
   `,
   styles: [`
     :host { display: contents; }
 
+    /* The <dialog> itself is a transform-free positioning shell. Browser
+       puts it in the top-layer via showModal(); portaled descendants
+       (select listbox, popover panel) that target this dialog land in
+       the top-layer too, with position:fixed evaluating against the
+       viewport since no ancestor has transform. */
     .kp-dialog__el {
       position: fixed;
+      inset: 0;
+      margin: auto;
       padding: 0;
-      width: var(--kp-dialog-w);
-      max-width: calc(100vw - 32px);
-      max-height: calc(100vh - 48px);
-      background: var(--kp-color-dialog-panel-bg);
+      background: transparent;
+      border: none;
+      max-width: none;
+      max-height: none;
+      width: fit-content;
+      height: fit-content;
       color: var(--kp-color-dialog-fg-body);
-      border: 1px solid var(--kp-color-dialog-panel-border);
-      border-radius: var(--kp-dialog-radius);
-      box-shadow: var(--kp-elevation-floating);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       overflow: visible;
     }
     .kp-dialog__el:not([open]) { display: none; }
-    .kp-dialog__el[open] {
-      display: flex;
-      flex-direction: column;
-      animation: kp-dialog-pop var(--kp-motion-duration-normal) cubic-bezier(0.2, 1, 0.4, 1);
-    }
+    .kp-dialog__el[open] { display: block; }
     .kp-dialog__el::backdrop {
       background: var(--kp-color-dialog-backdrop, rgba(0, 0, 0, 0.5));
       animation: kp-dialog-fade var(--kp-motion-duration-fast) ease;
+    }
+
+    /* Inner panel — visual chrome + entrance animation live here.
+       Transform on this child doesn't create a containing-block for
+       sibling portaled descendants of <dialog>. */
+    .kp-dialog__panel {
+      display: flex;
+      flex-direction: column;
+      width: var(--kp-dialog-w);
+      max-width: calc(100vw - 32px);
+      max-height: calc(100vh - 48px);
+      background: var(--kp-color-dialog-panel-bg);
+      border: 1px solid var(--kp-color-dialog-panel-border);
+      border-radius: var(--kp-dialog-radius);
+      box-shadow: var(--kp-elevation-floating);
+      overflow: hidden;
+      animation: kp-dialog-pop var(--kp-motion-duration-normal) cubic-bezier(0.2, 1, 0.4, 1);
     }
 
     @keyframes kp-dialog-fade { from { opacity: 0; } to { opacity: 1; } }
@@ -128,7 +153,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       to   { opacity: 1; transform: translateY(0) scale(1); }
     }
     @media (prefers-reduced-motion: reduce) {
-      .kp-dialog__el[open],
+      .kp-dialog__panel,
       .kp-dialog__el::backdrop { animation-duration: 0.01ms; }
     }
 

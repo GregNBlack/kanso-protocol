@@ -16,7 +16,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DOCUMENT } from '@angular/common';
 
-import { KpSize, KpState } from '@kanso-protocol/core';
+import { KpSize, KpState, findPortalTarget } from '@kanso-protocol/core';
 import {
   injectKpLocale,
   injectKpStrings,
@@ -840,8 +840,10 @@ export class KpDatePickerComponent implements ControlValueAccessor, AfterViewChe
   ngAfterViewChecked(): void {
     if (!this.isOpen) return;
     const pan = this.panelEl?.nativeElement;
-    if (pan && this.doc?.body && pan.parentElement !== this.doc.body) {
-      this.doc.body.appendChild(pan);
+    // Portal to body normally; to nearest open <dialog> when inside one.
+    if (pan && this.doc) {
+      const target = findPortalTarget(this.host.nativeElement, this.doc);
+      if (pan.parentElement !== target) target.appendChild(pan);
     }
     this.positionPanel();
   }

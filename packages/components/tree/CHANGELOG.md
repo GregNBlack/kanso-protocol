@@ -1,5 +1,14 @@
 # @kanso-protocol/tree
 
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @kanso-protocol/core@2.0.2
+  - @kanso-protocol/checkbox@2.0.2
+  - @kanso-protocol/icon@2.0.2
+
 ## 2.0.1
 
 ### Patch Changes

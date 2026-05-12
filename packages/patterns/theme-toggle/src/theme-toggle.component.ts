@@ -14,6 +14,7 @@ import {
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { KpIconComponent } from '@kanso-protocol/icon';
+import { findPortalTarget } from '@kanso-protocol/core';
 
 export type KpThemeToggleVariant = 'icon' | 'segmented' | 'dropdown';
 export type KpThemeToggleSize = 'sm' | 'md' | 'lg';
@@ -359,13 +360,16 @@ export class KpThemeToggleComponent implements AfterViewChecked, OnDestroy {
     if (!this.isOpen()) return;
     const menu = this.menuEl?.nativeElement;
     // Portal menu to <body> so transformed/clipped ancestors can't clip it.
-    if (menu && this.doc?.body && menu.parentElement !== this.doc.body) {
-      // Tag the menu with the current size so size-scoped CSS applies after portal
-      menu.classList.add(`kp-theme-toggle__menu--${this.size}`);
-      this.doc.body.appendChild(menu);
-      this.portaledMenu = menu;
-      window.addEventListener('scroll', this.reposition, true);
-      window.addEventListener('resize', this.reposition);
+    // Portal to body normally; to nearest open <dialog> when inside one.
+    if (menu && this.doc) {
+      const target = findPortalTarget(this.hostRef.nativeElement, this.doc);
+      if (menu.parentElement !== target) {
+        menu.classList.add(`kp-theme-toggle__menu--${this.size}`);
+        target.appendChild(menu);
+        this.portaledMenu = menu;
+        window.addEventListener('scroll', this.reposition, true);
+        window.addEventListener('resize', this.reposition);
+      }
     }
     this.positionMenu();
   }

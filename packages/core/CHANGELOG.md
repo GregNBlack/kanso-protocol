@@ -1,5 +1,11 @@
 # @kanso-protocol/core
 
+## 2.0.2
+
+### Patch Changes
+
+- new `[arrowAlign]` input + dialog top-layer fix + findPortalTarget helper.
+
 ## 2.0.1
 
 ### Patch Changes

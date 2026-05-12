@@ -16,7 +16,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DOCUMENT } from '@angular/common';
 
-import { KpSize, KpState } from '@kanso-protocol/core';
+import { KpSize, KpState, findPortalTarget } from '@kanso-protocol/core';
 
 export interface KpSelectOption {
   value: string;
@@ -470,8 +470,12 @@ export class KpSelectComponent implements ControlValueAccessor, AfterViewChecked
     // Portal to <body> so transformed / clipped ancestors can't catch the
     // dropdown. Fixed-positioning alone isn't enough — an ancestor with
     // `transform` re-roots the containing block for fixed descendants.
-    if (dd && this.doc?.body && dd.parentElement !== this.doc.body) {
-      this.doc.body.appendChild(dd);
+    // Portal to <body> normally; nearest open <dialog> when inside one
+    // (so the listbox stays in the browser top-layer instead of being
+    // hidden behind the dialog).
+    if (dd && this.doc) {
+      const target = findPortalTarget(this.host.nativeElement, this.doc);
+      if (dd.parentElement !== target) target.appendChild(dd);
     }
     this.positionDropdown();
   }

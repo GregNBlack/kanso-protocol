@@ -1,13 +1,13 @@
 {
   "name": "@kanso-protocol/sidebar",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": ">=21.0.0",
     "@angular/common": ">=21.0.0",
-    "@kanso-protocol/core": ">=2.0.1",
-    "@kanso-protocol/avatar": ">=2.0.1",
-    "@kanso-protocol/nav-item": ">=2.0.1"
+    "@kanso-protocol/core": ">=2.0.2",
+    "@kanso-protocol/avatar": ">=2.0.2",
+    "@kanso-protocol/nav-item": ">=2.0.2"
   },
   "description": "Kanso Protocol — sidebar (pattern).",
   "author": "GregNBlack",

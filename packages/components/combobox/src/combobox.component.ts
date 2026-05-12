@@ -16,7 +16,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DOCUMENT } from '@angular/common';
 
-import { KpSize, KpState } from '@kanso-protocol/core';
+import { KpSize, KpState, findPortalTarget } from '@kanso-protocol/core';
 
 export interface KpComboboxOption {
   value: string;
@@ -613,8 +613,10 @@ export class KpComboboxComponent implements ControlValueAccessor, AfterViewCheck
     // ancestor (Storybook docs containers, modal panels, etc.). Fixed
     // positioning alone isn't enough — an ancestor with `transform` reroots
     // the containing block for fixed-positioned descendants.
-    if (dd && this.doc?.body && dd.parentElement !== this.doc.body) {
-      this.doc.body.appendChild(dd);
+    // Portal to body normally; to nearest open <dialog> when inside one.
+    if (dd && this.doc) {
+      const target = findPortalTarget(this.host.nativeElement, this.doc);
+      if (dd.parentElement !== target) target.appendChild(dd);
     }
     this.positionDropdown();
   }

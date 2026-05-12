@@ -5,3 +5,4 @@
 // import { kpColorPrimaryDefaultBgRest } from './_generated/tokens';
 
 export * from './lib/types';
+export * from './lib/portal';

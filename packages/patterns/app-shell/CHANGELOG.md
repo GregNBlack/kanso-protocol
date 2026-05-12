@@ -1,5 +1,12 @@
 # @kanso-protocol/app-shell
 
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @kanso-protocol/core@2.0.2
+
 ## 2.0.1
 
 ### Patch Changes
