@@ -197,7 +197,11 @@
   --kp-color-primary-subtle-border-disabled: rgba(0, 0, 0, 0);
   --kp-color-primary-outline-bg-hover: #1e2a4f;
   --kp-color-primary-outline-bg-active: #27395e;
+  --kp-color-primary-outline-fg-rest: #93c5fd;
+  --kp-color-primary-outline-fg-hover: #bfdbfe;
   --kp-color-primary-outline-fg-active: #bfdbfe;
+  --kp-color-primary-outline-fg-focus: #93c5fd;
+  --kp-color-primary-outline-fg-loading: #93c5fd;
   --kp-color-primary-outline-fg-disabled: #3f3f46;
   --kp-color-primary-outline-border-rest: #3a4f88;
   --kp-color-primary-outline-border-hover: #4a60a0;
@@ -207,7 +211,11 @@
   --kp-color-primary-outline-border-loading: #3a4f88;
   --kp-color-primary-ghost-bg-hover: #1e2a4f;
   --kp-color-primary-ghost-bg-active: #27395e;
+  --kp-color-primary-ghost-fg-rest: #93c5fd;
+  --kp-color-primary-ghost-fg-hover: #bfdbfe;
   --kp-color-primary-ghost-fg-active: #bfdbfe;
+  --kp-color-primary-ghost-fg-focus: #93c5fd;
+  --kp-color-primary-ghost-fg-loading: #93c5fd;
   --kp-color-primary-ghost-fg-disabled: #3f3f46;
   --kp-color-danger-default-bg-disabled: #18181b;
   --kp-color-danger-default-bg-loading: #ef4444;
@@ -230,7 +238,11 @@
   --kp-color-danger-subtle-border-disabled: rgba(0, 0, 0, 0);
   --kp-color-danger-outline-bg-hover: #3a1518;
   --kp-color-danger-outline-bg-active: #4d1b1f;
+  --kp-color-danger-outline-fg-rest: #fca5a5;
+  --kp-color-danger-outline-fg-hover: #fecaca;
   --kp-color-danger-outline-fg-active: #fecaca;
+  --kp-color-danger-outline-fg-focus: #fca5a5;
+  --kp-color-danger-outline-fg-loading: #fca5a5;
   --kp-color-danger-outline-fg-disabled: #3f3f46;
   --kp-color-danger-outline-border-rest: #7a2a2d;
   --kp-color-danger-outline-border-hover: #933338;
@@ -240,7 +252,11 @@
   --kp-color-danger-outline-border-loading: #7a2a2d;
   --kp-color-danger-ghost-bg-hover: #3a1518;
   --kp-color-danger-ghost-bg-active: #4d1b1f;
+  --kp-color-danger-ghost-fg-rest: #fca5a5;
+  --kp-color-danger-ghost-fg-hover: #fecaca;
   --kp-color-danger-ghost-fg-active: #fecaca;
+  --kp-color-danger-ghost-fg-focus: #fca5a5;
+  --kp-color-danger-ghost-fg-loading: #fca5a5;
   --kp-color-danger-ghost-fg-disabled: #3f3f46;
   --kp-color-neutral-default-bg-rest: #3f3f46;
   --kp-color-neutral-default-bg-hover: #52525b;

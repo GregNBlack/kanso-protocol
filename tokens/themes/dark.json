@@ -495,7 +495,11 @@
           "active": { "$value": "#27395E" }
         },
         "fg": {
+          "rest":     { "$value": "#93C5FD", "$description": "audit-2026-05-12 — blue-300 light; was inheriting blue.600 dark (#2563EB) which gave 3.77:1 on surface-base (fails AA). Matches subtle.fg.rest." },
+          "hover":    { "$value": "#BFDBFE", "$description": "audit-2026-05-12 — blue-200 light, lighter than rest for hover affordance on tinted bg #1E2A4F" },
           "active":   { "$value": "#BFDBFE", "$description": "audit-2026-05-05 r2 — blue-200 light, readable on darker active bg" },
+          "focus":    { "$value": "#93C5FD", "$description": "audit-2026-05-12 — match rest" },
+          "loading":  { "$value": "#93C5FD", "$description": "audit-2026-05-12 — match rest" },
           "disabled": { "$value": "#3F3F46", "$description": "audit-2026-05-05 r2 — much more muted disabled fg, not 'too bright' for a disabled state" }
         },
         "border": {
@@ -513,7 +517,11 @@
           "active": { "$value": "#27395E" }
         },
         "fg": {
+          "rest":     { "$value": "#93C5FD", "$description": "audit-2026-05-12 — match primary.outline.fg.rest; was inheriting blue.600 dark (#2563EB) which fails AA on surface-base" },
+          "hover":    { "$value": "#BFDBFE", "$description": "audit-2026-05-12 — match primary.outline.fg.hover" },
           "active":   { "$value": "#BFDBFE", "$description": "audit-2026-05-05 r2 — match outline.fg.active" },
+          "focus":    { "$value": "#93C5FD", "$description": "audit-2026-05-12 — match rest" },
+          "loading":  { "$value": "#93C5FD", "$description": "audit-2026-05-12 — match rest" },
           "disabled": { "$value": "#3F3F46", "$description": "audit-2026-05-05 r2 — match outline.fg.disabled" }
         }
       }
@@ -560,7 +568,11 @@
           "active": { "$value": "#4D1B1F" }
         },
         "fg": {
+          "rest":     { "$value": "#FCA5A5", "$description": "audit-2026-05-12 — red-300 light; was inheriting red.600 dark (#DC2626) which gave ~4.0:1 on surface-base (fails AA). Matches subtle.fg.rest." },
+          "hover":    { "$value": "#FECACA", "$description": "audit-2026-05-12 — red-200 light, lighter than rest for hover on tinted bg #3A1518" },
           "active":   { "$value": "#FECACA", "$description": "audit-2026-05-05 r2 — red-200 light, readable on darker active bg" },
+          "focus":    { "$value": "#FCA5A5", "$description": "audit-2026-05-12 — match rest" },
+          "loading":  { "$value": "#FCA5A5", "$description": "audit-2026-05-12 — match rest" },
           "disabled": { "$value": "#3F3F46", "$description": "audit-2026-05-05 r2 — muted disabled fg" }
         },
         "border": {
@@ -578,7 +590,11 @@
           "active": { "$value": "#4D1B1F" }
         },
         "fg": {
+          "rest":     { "$value": "#FCA5A5", "$description": "audit-2026-05-12 — match danger.outline.fg.rest; was inheriting red.600 dark (#DC2626) which fails AA on surface-base" },
+          "hover":    { "$value": "#FECACA", "$description": "audit-2026-05-12 — match danger.outline.fg.hover" },
           "active":   { "$value": "#FECACA", "$description": "audit-2026-05-05 r2 — match outline.fg.active" },
+          "focus":    { "$value": "#FCA5A5", "$description": "audit-2026-05-12 — match rest" },
+          "loading":  { "$value": "#FCA5A5", "$description": "audit-2026-05-12 — match rest" },
           "disabled": { "$value": "#3F3F46", "$description": "audit-2026-05-05 r2 — match outline.fg.disabled" }
         }
       }
