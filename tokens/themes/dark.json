@@ -748,7 +748,7 @@
         "disabled": { "$value": "#3F3F46", "$description": "audit-2026-05-05 r2 — match button outline disabled fg, low-prominence disabled label" }
       },
       "placeholder": {
-        "default":  { "$value": "#52525B", "$description": "audit-2026-05-05 r3 — gray-400 dark; on the deeper input bg this reads as a hint without being either invisible (#3F3F46) or too prominent" }
+        "default":  { "$value": "#A1A1AA", "$description": "audit-2026-05-12 — bumped from #52525B to zinc-400. The deeper input bg (#0E0F13) gave only 2.4:1 against the old #52525B; #A1A1AA gives ~6.5:1, meeting AA without making the placeholder look like real input text." }
       }
     },
     "popover": {
