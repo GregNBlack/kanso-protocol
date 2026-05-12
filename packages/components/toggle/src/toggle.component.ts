@@ -44,6 +44,7 @@ export type KpToggleColor = 'primary' | 'danger';
         role="switch"
         class="kp-toggle__input"
         [checked]="on"
+        [attr.aria-checked]="on"
         [disabled]="disabled"
         [required]="required"
         [attr.name]="name"

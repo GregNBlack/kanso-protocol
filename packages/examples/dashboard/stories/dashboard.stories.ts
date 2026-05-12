@@ -93,7 +93,7 @@ import { KpIconComponent } from '@kanso-protocol/icon';
           </div>
 
           <kp-card title="Recent activity" [showHeaderDivider]="true">
-            <div class="activity">
+            <div class="activity" role="list">
               <kp-notification-item
                 appearance="success" icon="circle-check"
                 title="Build completed"

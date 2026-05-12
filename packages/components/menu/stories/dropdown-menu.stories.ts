@@ -229,22 +229,25 @@ export const CheckboxesAndRadios: Story = {
           </kp-menu-item>
         </kp-dropdown-menu>
 
+        <!-- Note: radios are managed individually here (not wrapped in
+             <kp-radio-group>) so that <kp-menu-item role="menuitem">
+             stays a direct child of role="menu". A radio-group wrapper
+             would inject role="radiogroup" between menu and menuitem,
+             breaking aria-required-children / aria-required-parent. -->
         <kp-dropdown-menu>
           <kp-menu-section-label label="Size"></kp-menu-section-label>
-          <kp-radio-group [(value)]="selectedSize">
-            <kp-menu-item label="Small">
-              <kp-radio kpMenuItemLeading size="sm" value="sm" [hasLabel]="false"></kp-radio>
-            </kp-menu-item>
-            <kp-menu-item label="Medium">
-              <kp-radio kpMenuItemLeading size="sm" value="md" [hasLabel]="false"></kp-radio>
-            </kp-menu-item>
-            <kp-menu-item label="Large">
-              <kp-radio kpMenuItemLeading size="sm" value="lg" [hasLabel]="false"></kp-radio>
-            </kp-menu-item>
-            <kp-menu-item label="X-Large">
-              <kp-radio kpMenuItemLeading size="sm" value="xl" [hasLabel]="false"></kp-radio>
-            </kp-menu-item>
-          </kp-radio-group>
+          <kp-menu-item label="Small" (click)="selectedSize = 'sm'">
+            <kp-radio kpMenuItemLeading size="sm" value="sm" [hasLabel]="false" [checked]="selectedSize === 'sm'"></kp-radio>
+          </kp-menu-item>
+          <kp-menu-item label="Medium" (click)="selectedSize = 'md'">
+            <kp-radio kpMenuItemLeading size="sm" value="md" [hasLabel]="false" [checked]="selectedSize === 'md'"></kp-radio>
+          </kp-menu-item>
+          <kp-menu-item label="Large" (click)="selectedSize = 'lg'">
+            <kp-radio kpMenuItemLeading size="sm" value="lg" [hasLabel]="false" [checked]="selectedSize === 'lg'"></kp-radio>
+          </kp-menu-item>
+          <kp-menu-item label="X-Large" (click)="selectedSize = 'xl'">
+            <kp-radio kpMenuItemLeading size="sm" value="xl" [hasLabel]="false" [checked]="selectedSize === 'xl'"></kp-radio>
+          </kp-menu-item>
         </kp-dropdown-menu>
       </div>`,
   }),
