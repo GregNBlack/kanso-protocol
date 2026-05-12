@@ -283,6 +283,12 @@
             "$value": "#FDE68A",
             "$description": "designer-pass"
           }
+        },
+        "filled": {
+          "fg": {
+            "$value": "#18181B",
+            "$description": "audit-2026-05-12 — force gray.900 LIGHT value. Semantic cascade resolves filled.fg = {color.gray.900} which inverts to #FAFAFA in dark, giving ~2:1 on amber.500 bg. Hardcoding the dark hex keeps the dark-text-on-yellow contrast (~12:1) consistent with the light theme rendering."
+          }
         }
       },
       "info": {

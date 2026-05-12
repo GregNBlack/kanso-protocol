@@ -4,11 +4,11 @@
 
     "accent": {
       "$description": "Foreground accent colors for text rendered on the page surface (selected tabs, active breadcrumb links, danger labels in user-menu, success/danger trend indicators in stat-card, etc.). In light mode they cascade through brand-600. In dark mode tokens/themes/dark.json overrides them to brand-400 — readable on the dark page bg without un-inverting the action ramp. This decouples accent text from solid-button bg, which lets each be tuned independently.",
-      "primary": { "fg": { "$value": "{color.blue.600}" } },
-      "danger":  { "fg": { "$value": "{color.red.600}" } },
-      "success": { "fg": { "$value": "{color.green.600}" } },
-      "warning": { "fg": { "$value": "{color.amber.600}" } },
-      "info":    { "fg": { "$value": "{color.cyan.600}" } }
+      "primary": { "fg": { "$value": "{color.blue.700}", "$description": "audit-2026-05-12 — was blue.600 #2563EB (4.55:1 on white, borderline AA). blue.700 #1D4ED8 → 7.46:1." } },
+      "danger":  { "fg": { "$value": "{color.red.700}", "$description": "audit-2026-05-12 — was red.600 #DC2626 (4.95:1 on white, borderline AA). red.700 #B91C1C → 6.27:1." } },
+      "success": { "fg": { "$value": "{color.green.700}", "$description": "audit-2026-05-12 — was green.600 #16A34A (2.94:1 on white, fails AA). green.700 #15803D → 4.74:1." } },
+      "warning": { "fg": { "$value": "{color.amber.700}", "$description": "audit-2026-05-12 — was amber.600 #D97706 (3.04:1 on white, fails AA). amber.700 #B45309 → 5.53:1." } },
+      "info":    { "fg": { "$value": "{color.cyan.700}", "$description": "audit-2026-05-12 — was cyan.600 #0891B2 (4.16:1 on white, fails AA). cyan.700 #0E7490 → 5.54:1." } }
     },
 
     "primary": {
@@ -204,7 +204,7 @@
         "error":    { "$value": "{color.red.500}", "$type": "color" }
       },
       "placeholder": {
-        "default":  { "$value": "{color.gray.400}", "$type": "color" },
+        "default":  { "$value": "{color.gray.500}", "$type": "color", "$description": "audit-2026-05-12 — was gray.400 #A1A1AA (2.62:1 on white, fails AA). gray.500 #71717A → 4.84:1. Dark override (#A1A1AA) preserves prior dark contrast." },
         "disabled": { "$value": "{color.gray.300}", "$type": "color" }
       }
     },
@@ -282,7 +282,7 @@
         "dot":     { "bg": { "$value": "transparent", "$type": "color" },      "fg": { "$value": "{color.gray.700}", "$type": "color" },    "border": { "$value": "transparent", "$type": "color" },      "dot": { "$value": "{color.red.600}", "$type": "color" } }
       },
       "success": {
-        "filled":  { "bg": { "$value": "{color.green.600}", "$type": "color" }, "fg": { "$value": "{color.foreground.on-saturated}", "$type": "color" },      "border": { "$value": "{color.green.600}", "$type": "color" }, "dot": { "$value": "{color.foreground.on-saturated}", "$type": "color" } },
+        "filled":  { "bg": { "$value": "{color.green.700}", "$type": "color" }, "fg": { "$value": "{color.foreground.on-saturated}", "$type": "color" },      "border": { "$value": "{color.green.700}", "$type": "color" }, "dot": { "$value": "{color.foreground.on-saturated}", "$type": "color" } },
         "subtle":  { "bg": { "$value": "{color.green.50}", "$type": "color" },  "fg": { "$value": "{color.green.700}", "$type": "color" },  "border": { "$value": "transparent", "$type": "color" },        "dot": { "$value": "{color.green.600}", "$type": "color" } },
         "outline": { "bg": { "$value": "transparent", "$type": "color" },       "fg": { "$value": "{color.green.700}", "$type": "color" },  "border": { "$value": "{color.green.300}", "$type": "color" }, "dot": { "$value": "{color.green.600}", "$type": "color" } },
         "dot":     { "bg": { "$value": "transparent", "$type": "color" },       "fg": { "$value": "{color.gray.700}", "$type": "color" },   "border": { "$value": "transparent", "$type": "color" },        "dot": { "$value": "{color.green.600}", "$type": "color" } }
@@ -294,7 +294,7 @@
         "dot":     { "bg": { "$value": "transparent", "$type": "color" },       "fg": { "$value": "{color.gray.700}", "$type": "color" },   "border": { "$value": "transparent", "$type": "color" },        "dot": { "$value": "{color.amber.500}", "$type": "color" } }
       },
       "info": {
-        "filled":  { "bg": { "$value": "{color.cyan.600}", "$type": "color" },  "fg": { "$value": "{color.foreground.on-saturated}", "$type": "color" },      "border": { "$value": "{color.cyan.600}", "$type": "color" },  "dot": { "$value": "{color.foreground.on-saturated}", "$type": "color" } },
+        "filled":  { "bg": { "$value": "{color.cyan.700}", "$type": "color" },  "fg": { "$value": "{color.foreground.on-saturated}", "$type": "color" },      "border": { "$value": "{color.cyan.700}", "$type": "color" },  "dot": { "$value": "{color.foreground.on-saturated}", "$type": "color" } },
         "subtle":  { "bg": { "$value": "{color.cyan.50}", "$type": "color" },   "fg": { "$value": "{color.cyan.700}", "$type": "color" },   "border": { "$value": "transparent", "$type": "color" },        "dot": { "$value": "{color.cyan.600}", "$type": "color" } },
         "outline": { "bg": { "$value": "transparent", "$type": "color" },       "fg": { "$value": "{color.cyan.700}", "$type": "color" },   "border": { "$value": "{color.cyan.300}", "$type": "color" },  "dot": { "$value": "{color.cyan.600}", "$type": "color" } },
         "dot":     { "bg": { "$value": "transparent", "$type": "color" },       "fg": { "$value": "{color.gray.700}", "$type": "color" },   "border": { "$value": "transparent", "$type": "color" },        "dot": { "$value": "{color.cyan.600}", "$type": "color" } }
