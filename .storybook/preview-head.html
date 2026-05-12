@@ -7,6 +7,15 @@
   html, body {
     font-family: 'Onest', system-ui, sans-serif;
   }
+  /* Paint body in the active theme's base surface so transparent-bg
+     elements (badges, list rows, nav items) inherit a correct parent
+     background when axe-core computes contrast. Without this, body
+     stays browser-default white in dark mode and axe reports false
+     "light text on white" contrast failures for any element that
+     doesn't paint its own opaque background. */
+  body {
+    background-color: var(--kp-color-surface-base);
+  }
 
   /* Storybook autodocs preview blocks (`<Canvas>` wrappers) ship with a
      hardcoded light background from @storybook/blocks. When the theme

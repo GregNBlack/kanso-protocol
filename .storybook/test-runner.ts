@@ -62,9 +62,27 @@ async function setTheme(
     document.documentElement.setAttribute('data-theme', t);
     document.body.setAttribute('data-theme', t);
   }, theme);
-  // Give the browser a frame to repaint after the attribute flip — axe reads
-  // computed styles, so it has to see the post-swap colors.
-  await page.waitForTimeout(50);
+  // Give the browser time to repaint after the attribute flip — axe reads
+  // computed styles, so it has to see the post-swap colors. Components use
+  // 100-150ms bg/color transitions; if axe samples mid-transition it sees
+  // an interpolated color and reports a false-positive contrast violation.
+  await page.waitForTimeout(200);
+}
+
+// Disable CSS transitions/animations so axe never samples mid-flight
+// interpolated colors (see setTheme comment).
+async function freezeAnimations(
+  page: Parameters<NonNullable<TestRunnerConfig['postVisit']>>[0],
+) {
+  await page.addStyleTag({
+    content: `
+      *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+        caret-color: transparent !important;
+      }
+    `,
+  });
 }
 
 const config: TestRunnerConfig = {
@@ -86,6 +104,8 @@ const config: TestRunnerConfig = {
       storyRules.filter((r) => r.enabled === true).map((r) => [r.id, true]),
     );
     const opts = axeOptions(buildRules(storyDisabled, storyEnabled));
+
+    await freezeAnimations(page);
 
     // Light pass — story already rendered in default theme.
     await checkA11y(page, '#storybook-root', opts);
