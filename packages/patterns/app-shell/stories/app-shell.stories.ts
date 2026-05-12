@@ -57,30 +57,44 @@ const meta: Meta<KpAppShellComponent> = {
 export default meta;
 type Story = StoryObj<KpAppShellComponent>;
 
+// Stat-card with semantic tokens (matches both light + dark modes).
+const STAT_CARD = (label: string, value: string, delta: string, tone: 'success' | 'danger') => `
+  <div style="padding:20px;background:var(--kp-color-surface-base);border:1px solid var(--kp-color-border-default);border-radius:14px">
+    <div style="font-size:12px;color:var(--kp-color-text-muted)">${label}</div>
+    <div style="font-size:28px;font-weight:600;margin-top:4px;color:var(--kp-color-text-strong)">${value}</div>
+    <div style="font-size:12px;margin-top:8px;color:var(--kp-color-alert-${tone}-subtle-fg-title)">${delta}</div>
+  </div>
+`;
+
+// 12-bar mock chart — semantic primary fill, alternating heights for
+// a real "data over time" feel. No repeating-gradient zebra.
+const CHART_BARS = [62, 48, 70, 55, 80, 68, 90, 72, 85, 78, 95, 88];
+const CHART = `
+  <div style="display:flex;align-items:flex-end;gap:6px;height:180px;padding:8px 4px">
+    ${CHART_BARS.map((h) => `
+      <div style="
+        flex:1;
+        height:${h}%;
+        background:var(--kp-color-primary-default-bg-rest);
+        border-radius:4px 4px 0 0;
+        opacity:0.85;
+      "></div>
+    `).join('')}
+  </div>
+`;
+
 const BODY = `
   <div kpAppShellBody>
     <kp-container width="wide" padding="md" style="padding-top:24px;padding-bottom:48px">
       <kp-page-header title="Dashboard" description="Welcome back, Greg" [showDescription]="true"/>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px">
-        <div style="padding:20px;background: var(--kp-color-white);border: 1px solid var(--kp-color-gray-200);border-radius:12px">
-          <div style="font-size:12px;color: var(--kp-color-gray-600)">Revenue</div>
-          <div style="font-size:28px;font-weight:600;margin-top:4px">$48,329</div>
-          <div style="font-size:12px;color:#16A34A;margin-top:8px">+12.5% from last month</div>
-        </div>
-        <div style="padding:20px;background: var(--kp-color-white);border: 1px solid var(--kp-color-gray-200);border-radius:12px">
-          <div style="font-size:12px;color: var(--kp-color-gray-600)">Active users</div>
-          <div style="font-size:28px;font-weight:600;margin-top:4px">2,451</div>
-          <div style="font-size:12px;color:#16A34A;margin-top:8px">+4.2% from last week</div>
-        </div>
-        <div style="padding:20px;background: var(--kp-color-white);border: 1px solid var(--kp-color-gray-200);border-radius:12px">
-          <div style="font-size:12px;color: var(--kp-color-gray-600)">Conversion</div>
-          <div style="font-size:28px;font-weight:600;margin-top:4px">3.8%</div>
-          <div style="font-size:12px;color:#DC2626;margin-top:8px">−0.3% from last week</div>
-        </div>
+        ${STAT_CARD('Revenue',      '$48,329', '+12.5% from last month', 'success')}
+        ${STAT_CARD('Active users', '2,451',   '+4.2% from last week',    'success')}
+        ${STAT_CARD('Conversion',   '3.8%',    '−0.3% from last week',    'danger')}
       </div>
-      <div style="margin-top:16px;padding:20px;background: var(--kp-color-white);border: 1px solid var(--kp-color-gray-200);border-radius:12px;height:240px">
-        <div style="font-size:14px;font-weight:500;margin-bottom:8px">Revenue over time</div>
-        <div style="height:180px;background:repeating-linear-gradient(90deg,#F4F4F5,#F4F4F5 8px,transparent 8px,transparent 20px);border-radius:6px"></div>
+      <div style="margin-top:16px;padding:20px;background:var(--kp-color-surface-base);border:1px solid var(--kp-color-border-default);border-radius:14px">
+        <div style="font-size:14px;font-weight:500;margin-bottom:12px;color:var(--kp-color-text-strong)">Revenue over time</div>
+        ${CHART}
       </div>
     </kp-container>
   </div>

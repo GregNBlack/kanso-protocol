@@ -6,6 +6,20 @@ import {
 
 export type KpTooltipSize = 'sm' | 'md';
 export type KpTooltipArrowPosition = 'none' | 'top' | 'right' | 'bottom' | 'left';
+/**
+ * Where along the tooltip's edge the arrow attaches.
+ * - `center` — arrow at the geometric centre (default; classic tooltip)
+ * - `start`  — arrow near the leading edge of the tooltip
+ *              (top/bottom: left side; left/right: top side)
+ * - `end`    — arrow near the trailing edge
+ *              (top/bottom: right side; left/right: bottom side)
+ *
+ * Use `start` / `end` when the trigger sits near a viewport edge: the
+ * tooltip body shifts inward while the arrow stays anchored to the
+ * trigger, instead of wrapping the body to two lines or pushing it
+ * off-screen.
+ */
+export type KpTooltipArrowAlign = 'start' | 'center' | 'end';
 
 /**
  * Kanso Protocol — Tooltip
@@ -18,6 +32,11 @@ export type KpTooltipArrowPosition = 'none' | 'top' | 'right' | 'bottom' | 'left
  * @example
  * <!-- Bare body (for Storybook / layout playgrounds) -->
  * <kp-tooltip label="Search" shortcut="⌘K" arrowPosition="bottom"/>
+ *
+ * @example
+ * <!-- Edge-of-viewport: trigger near the right edge.
+ *      Arrow stays at the trigger; body extends to the LEFT. -->
+ * <kp-tooltip label="Save changes" arrowPosition="bottom" arrowAlign="end"/>
  *
  * @example
  * <!-- Wired up in a portal above a trigger (pseudocode) -->
@@ -88,18 +107,33 @@ export type KpTooltipArrowPosition = 'none' | 'top' | 'right' | 'bottom' | 'left
     }
     .kp-tooltip__arrow path { fill: currentColor; }
 
+    /* Arrow placement. The cross-axis offset is driven by --kp-tooltip-arrow-offset:
+       align=center → 50%, align=start → kp-tooltip-arrow-inset (e.g. 12px),
+       align=end    → calc(100% - arrow-inset).
+       Inset is computed against the corresponding tooltip edge so the
+       arrow sits just inside the rounded corner. */
     :host(.kp-tooltip--arrow-top) .kp-tooltip__arrow {
-      left: 50%; top: 0; transform: translate(-50%, -100%);
+      left: var(--kp-tooltip-arrow-offset, 50%); top: 0;
+      transform: translate(-50%, -100%);
     }
     :host(.kp-tooltip--arrow-bottom) .kp-tooltip__arrow {
-      left: 50%; bottom: 0; transform: translate(-50%, 100%);
+      left: var(--kp-tooltip-arrow-offset, 50%); bottom: 0;
+      transform: translate(-50%, 100%);
     }
     :host(.kp-tooltip--arrow-left) .kp-tooltip__arrow {
-      top: 50%; left: 0; transform: translate(-100%, -50%);
+      top: var(--kp-tooltip-arrow-offset, 50%); left: 0;
+      transform: translate(-100%, -50%);
     }
     :host(.kp-tooltip--arrow-right) .kp-tooltip__arrow {
-      top: 50%; right: 0; transform: translate(100%, -50%);
+      top: var(--kp-tooltip-arrow-offset, 50%); right: 0;
+      transform: translate(100%, -50%);
     }
+    /* Align modifiers — set the offset based on the tooltip's own edge.
+       arrow-inset is the distance from corner to arrow centre — picked to
+       sit just inside the rounded corner without colliding with padding. */
+    :host(.kp-tooltip--align-center) { --kp-tooltip-arrow-offset: 50%; }
+    :host(.kp-tooltip--align-start)  { --kp-tooltip-arrow-offset: var(--kp-tooltip-arrow-inset); }
+    :host(.kp-tooltip--align-end)    { --kp-tooltip-arrow-offset: calc(100% - var(--kp-tooltip-arrow-inset)); }
 
     /* Sizes */
     :host(.kp-tooltip--sm) {
@@ -110,6 +144,7 @@ export type KpTooltipArrowPosition = 'none' | 'top' | 'right' | 'bottom' | 'left
       --kp-tooltip-font-size: 12px;
       --kp-tooltip-line-height: 16px;
       --kp-tooltip-shortcut-size: 11px;
+      --kp-tooltip-arrow-inset: 10px;
     }
     :host(.kp-tooltip--md) {
       --kp-tooltip-pad-x: 12px;
@@ -119,12 +154,15 @@ export type KpTooltipArrowPosition = 'none' | 'top' | 'right' | 'bottom' | 'left
       --kp-tooltip-font-size: 14px;
       --kp-tooltip-line-height: 18px;
       --kp-tooltip-shortcut-size: 12px;
+      --kp-tooltip-arrow-inset: 12px;
     }
   `],
 })
 export class KpTooltipComponent {
   @Input() size: KpTooltipSize = 'md';
   @Input() arrowPosition: KpTooltipArrowPosition = 'none';
+  /** Where along the tooltip edge the arrow attaches. See `KpTooltipArrowAlign`. */
+  @Input() arrowAlign: KpTooltipArrowAlign = 'center';
   @Input() label = '';
   @Input() shortcut: string | null = null;
 
@@ -156,6 +194,7 @@ export class KpTooltipComponent {
       'kp-tooltip',
       `kp-tooltip--${this.size}`,
       `kp-tooltip--arrow-${this.arrowPosition}`,
+      `kp-tooltip--align-${this.arrowAlign}`,
     ].join(' ');
   }
 }

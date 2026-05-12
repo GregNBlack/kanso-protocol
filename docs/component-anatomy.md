@@ -60,6 +60,26 @@ Mixing sizes in the same row is a contract violation — Input `md` next to
 Button `sm` will never line up correctly because radius, padding, and font-size
 all scale together.
 
+### Concentric radius (containers built from components)
+
+When a container is composed of components (Dialog, DropdownMenu,
+Popover, Card, NotificationCenter, Toast, …), its `border-radius`
+must be **one step larger** than the radius of the components inside.
+Inner elements then sit visually nested instead of poking corners
+into the container's corners.
+
+| Inner components | Container radius token |
+|---|---|
+| `xs` (8px) | `radius.comp.sm` (10px) |
+| `sm` (10px) | `radius.comp.md` (12px) |
+| `md` (12px) — **default** | `radius.comp.lg` (14px) |
+| `lg` (14px) | `radius.comp.xl` (16px) |
+| `xl` (16px) | `radius.comp.xl` (16px — ramp cap) |
+
+The default size across the system is `md`, so most containers
+end up at `radius.comp.lg` (14px). Full rule + edge cases:
+[ADR §7.3 — Concentric radius rule](architecture-decision-record.md#73-concentric-radius-rule).
+
 ## State model
 
 Every interactive component implements the same six states:
