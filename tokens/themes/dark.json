@@ -870,7 +870,7 @@
     "text": {
       "$description": "Dark-theme overrides for the text family. `strong` and `default` cascade through primitive inversion automatically; `muted` and `disabled` need explicit lifts so they keep AA contrast and stay visually distinct from each other on the dark page bg.",
       "muted":    { "$value": "{color.gray.600}", "$description": "gray-600 in dark = #A1A1AA — passes AA on gray-900 dark page bg (=#18181B)" },
-      "disabled": { "$value": "{color.gray.500}", "$description": "Stays a step less prominent than `muted` to preserve the disabled affordance" }
+      "disabled": { "$value": "{color.gray.600}", "$description": "audit-2026-05-12 — bumped from gray.500 (=#71717A in dark, 3.46:1 fails AA) to gray.600 (=#A1A1AA, 6.5:1). Visually collapses with `muted` in dark; the disabled affordance now comes from `cursor: not-allowed` + reduced font-weight rather than dimmer fg." }
     },
     "surface": {
       "$description": "Dark-theme overrides for the surface family. `base` (= white) and `subtle` (= gray.50) cascade correctly through primitive inversion; `muted` and `strong` need explicit lifts so hover / pressed states stay visually distinct from `base` (gray-100 inverts to the same hex as gray-900, which would collapse the elevation difference).",

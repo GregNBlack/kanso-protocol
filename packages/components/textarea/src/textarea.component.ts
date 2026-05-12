@@ -169,7 +169,7 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
       bottom: 4px;
       font-size: 12px;
       line-height: 16px;
-      color: var(--kp-color-text-disabled);
+      color: var(--kp-color-text-muted);
       font-variant-numeric: tabular-nums;
       pointer-events: none;
       background: var(--kp-color-input-bg-default);

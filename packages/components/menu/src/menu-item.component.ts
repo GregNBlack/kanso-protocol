@@ -161,7 +161,7 @@ export type KpMenuItemSize = 'sm' | 'md' | 'lg';
     .kp-menu-item__shortcut {
       font-size: var(--kp-menu-item-shortcut-fs);
       font-weight: 400;
-      color: var(--kp-color-text-disabled);
+      color: var(--kp-color-text-muted);
       font-variant-numeric: tabular-nums;
     }
 

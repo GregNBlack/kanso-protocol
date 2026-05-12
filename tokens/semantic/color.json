@@ -89,7 +89,7 @@
       "strong":   { "$value": "{color.gray.900}", "$type": "color", "$description": "Headings and primary emphasized text" },
       "default":  { "$value": "{color.gray.700}", "$type": "color", "$description": "Default body text" },
       "muted":    { "$value": "{color.gray.500}", "$type": "color", "$description": "Secondary text — captions, helper, less important labels. Dark override → gray.600 for AA contrast against dark page bg." },
-      "disabled": { "$value": "{color.gray.400}", "$type": "color", "$description": "Disabled labels, placeholders. Dark override → gray.500 to stay visibly less prominent than `muted`." }
+      "disabled": { "$value": "{color.gray.500}", "$type": "color", "$description": "audit-2026-05-12 — was gray.400 #A1A1AA (2.62:1 on white, fails AA). gray.500 #71717A → 4.84:1. Visually collapses with `muted` (same hex) in light; the visual disabled affordance now comes from `cursor: not-allowed` + reduced font-weight on actually-disabled controls. Dark override aligned to gray.600 (=#A1A1AA in dark) for consistency." }
     },
 
     "surface": {
@@ -480,7 +480,7 @@
         "fg": {
           "rest":   { "$value": "{color.gray.700}", "$type": "color" },
           "hover":  { "$value": "{color.gray.900}", "$type": "color" },
-          "active": { "$value": "{color.blue.600}", "$type": "color" }
+          "active": { "$value": "{color.blue.700}", "$type": "color", "$description": "audit-2026-05-12 — was blue.600 (4.55:1 on white, borderline AA). blue.700 → 7.46:1." }
         },
         "bg-hover": { "$value": "{color.gray.50}",  "$type": "color" }
       }

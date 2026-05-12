@@ -107,13 +107,26 @@ const config: TestRunnerConfig = {
 
     await freezeAnimations(page);
 
+    // Known false-positive selectors excluded across every story:
+    //   .kp-toggle__input — sr-only `<input type="checkbox" role="switch">`
+    //     visually clipped to 1×1 with clip-path: inset(50%). The visual
+    //     proxy (thumb on track) has its own passing contrast; the input
+    //     itself isn't seen by sighted users, but axe reads its color
+    //     anyway. Excluding the node, not the rule, keeps color-contrast
+    //     active for everything else inside toggle and its consumers
+    //     (settings-row, switch panels, etc).
+    const a11yContext = {
+      include: [['#storybook-root']],
+      exclude: [['.kp-toggle__input']],
+    };
+
     // Light pass — story already rendered in default theme.
-    await checkA11y(page, '#storybook-root', opts);
+    await checkA11y(page, a11yContext, opts);
 
     // Dark pass — flip theme and re-check. Catches dark-mode regressions
     // (missed tokens, hardcoded colors, contrast drops) on every story.
     await setTheme(page, 'dark');
-    await checkA11y(page, '#storybook-root', opts);
+    await checkA11y(page, a11yContext, opts);
 
     // Reset so the next story starts clean. Storybook normally tears down
     // the iframe between stories, but be defensive.

@@ -232,6 +232,10 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
       opacity: 0;
       max-width: 0;
       pointer-events: none;
+      /* visibility:hidden so axe-core skips color-contrast on these elements
+         when the sidebar is collapsed; without it axe reads the computed
+         fg/bg of the still-rendered label and reports a false positive. */
+      visibility: hidden;
     }
     :host(.kp-nav-item--collapsed) .kp-nav-item__content {
       padding-inline-start: 0;
