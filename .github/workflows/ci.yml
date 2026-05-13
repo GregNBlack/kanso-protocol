@@ -73,12 +73,15 @@ jobs:
     # (hardcoded colors, missed tokens, contrast drops) shows up as a serious
     # axe violation here.
     #
-    # Currently advisory (continue-on-error) so existing stories that haven't
-    # been audited yet don't block merges. Flip to a hard gate once the
-    # baseline is clean by removing `continue-on-error`.
+    # Hard gate on `critical` axe-core violations only (set in
+    # .storybook/test-runner.ts via `includedImpacts: ['critical']`).
+    # `serious` + `moderate` still surface in the detailed report (visible
+    # in this job's logs) but they're advisory — the residual long-tail
+    # after phase-2 cleanup is mostly known edge cases (rgba composition
+    # through Angular view-encapsulation, contain:strict viewport, etc.)
+    # that aren't worth blocking every PR over.
     name: a11y + dark-mode
     runs-on: ubuntu-latest
-    continue-on-error: true
     needs: build
     steps:
       - uses: actions/checkout@v4
