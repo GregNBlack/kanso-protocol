@@ -91,6 +91,27 @@ async function freezeAnimations(
   });
 }
 
+// Explicitly clear axe-core's internal "running" lock + re-inject the
+// script. axe-core throws "Axe is already running" if its lock is still
+// held — and that lock isn't reliably released by the time axe-playwright
+// resolves checkA11y, especially between stories or between light/dark
+// passes within a story. Aggressively resetting before each scan keeps
+// the suite race-free.
+async function resetAxe(page: Parameters<NonNullable<TestRunnerConfig['postVisit']>>[0]) {
+  await page.evaluate(() => {
+    // Different axe-core versions use different internal flag names; clear
+    // anything that looks like a "currently running" sentinel and wipe the
+    // global so injectAxe re-creates it cleanly.
+    const w = window as unknown as { axe?: { _running?: boolean; running?: boolean } };
+    if (w.axe) {
+      if (w.axe._running) w.axe._running = false;
+      if (w.axe.running) w.axe.running = false;
+      delete (window as unknown as { axe?: unknown }).axe;
+    }
+  });
+  await injectAxe(page);
+}
+
 const config: TestRunnerConfig = {
   async preVisit(page) {
     await injectAxe(page);
@@ -126,14 +147,16 @@ const config: TestRunnerConfig = {
       exclude: [['.kp-toggle__input']],
     };
 
+    // Reset axe state before each pass. preVisit's injectAxe can race with
+    // a still-cleaning-up previous story; doing a full reset here is the
+    // belt-and-suspenders that keeps "Axe is already running" from
+    // surfacing in CI between stories AND between light/dark passes.
+    await resetAxe(page);
+
     // Light pass — story already rendered in default theme.
     await checkA11y(page, a11yContext, opts);
 
-    // Re-inject axe between passes. Without this, the second checkA11y can
-    // race against the still-cleaning-up first axe.run and throw
-    // "Axe is already running" — axe-core has an internal lock that
-    // isn't fully released by the time axe-playwright resolves checkA11y.
-    await injectAxe(page);
+    await resetAxe(page);
 
     // Dark pass — flip theme and re-check. Catches dark-mode regressions
     // (missed tokens, hardcoded colors, contrast drops) on every story.
