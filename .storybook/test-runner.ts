@@ -129,6 +129,12 @@ const config: TestRunnerConfig = {
     // Light pass — story already rendered in default theme.
     await checkA11y(page, a11yContext, opts);
 
+    // Re-inject axe between passes. Without this, the second checkA11y can
+    // race against the still-cleaning-up first axe.run and throw
+    // "Axe is already running" — axe-core has an internal lock that
+    // isn't fully released by the time axe-playwright resolves checkA11y.
+    await injectAxe(page);
+
     // Dark pass — flip theme and re-check. Catches dark-mode regressions
     // (missed tokens, hardcoded colors, contrast drops) on every story.
     await setTheme(page, 'dark');

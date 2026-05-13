@@ -103,6 +103,12 @@ jobs:
           KANSO_HIDE_AUDIT: '1'
         run: npm run build-storybook
       - name: Serve Storybook & run a11y + dark-mode checks
+        # KANSO_HIDE_AUDIT must be set on the TEST step too — test-storybook
+        # re-evaluates .storybook/main.ts to discover stories, so without the
+        # env var here it lists the audit stories that don't exist in the
+        # built/served static bundle, producing "story missing" errors.
+        env:
+          KANSO_HIDE_AUDIT: '1'
         run: |
           npx concurrently -k -s first -n "SB,TEST" \
             "npx http-server storybook-static --port 6006 --silent" \
