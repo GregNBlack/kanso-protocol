@@ -99,6 +99,7 @@ export class KpTableHeaderDirective {
                 [class.kp-table__header-button--sortable]="col.sortable"
                 [class.kp-table__header-button--active]="col.sortable && sort?.columnId === col.id"
                 [disabled]="!col.sortable"
+                [attr.aria-label]="col.label || col.id"
                 (click)="onHeaderClick(col)"
               >
                 @if (headerTemplate(col.id); as tpl) {
