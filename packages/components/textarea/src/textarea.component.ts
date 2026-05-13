@@ -41,6 +41,7 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
       class="kp-textarea__field"
       [rows]="rows"
       [placeholder]="placeholder"
+      [attr.aria-label]="ariaLabel || placeholder || 'Textarea'"
       [disabled]="disabled"
       [attr.maxlength]="maxLength ?? null"
       [value]="value ?? ''"
@@ -207,6 +208,8 @@ export class KpTextareaComponent implements ControlValueAccessor {
   @Input() filled = false;
   @Input() disabled = false;
   @Input() forceState: KpState | null = null;
+  /** Accessible name for screen readers / axe. Falls back to placeholder. */
+  @Input() ariaLabel: string | null = null;
 
   value: string | null = null;
 

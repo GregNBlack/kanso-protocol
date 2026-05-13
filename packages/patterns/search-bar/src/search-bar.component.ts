@@ -94,7 +94,7 @@ export interface KpSearchResultGroup {
           />
         </div>
 
-        <div class="kp-search-bar__groups" role="listbox">
+        <div class="kp-search-bar__groups" role="listbox" aria-label="Search results">
           @for (group of groups; track group.label) {
             <div class="kp-search-bar__group">
               <div class="kp-search-bar__group-label">{{ group.label }}</div>

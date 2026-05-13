@@ -106,9 +106,16 @@ type KpProgressColor = 'primary' | 'success' | 'danger' | 'warning' | 'neutral';
       font-weight: 500;
     }
     .kp-progress-segmented__label--current {
-      color: var(--kp-progress-fill);
+      color: var(--kp-progress-fg-current, var(--kp-progress-fill));
       font-weight: 600;
     }
+    /* Theme-aware accent fg for the current-step label. Progress.fill
+       doubles as filled-segment bg (white on brand.700 passes) AND
+       label color on page bg — but brand.700 fails AA on dark page bg.
+       accent.*.fg has dark overrides so reads in both themes. */
+    :host(.kp-progress-segmented--primary) { --kp-progress-fg-current: var(--kp-color-accent-primary-fg); }
+    :host(.kp-progress-segmented--success) { --kp-progress-fg-current: var(--kp-color-accent-success-fg); }
+    :host(.kp-progress-segmented--danger)  { --kp-progress-fg-current: var(--kp-color-accent-danger-fg); }
 
     /* Sizes */
     :host(.kp-progress-segmented--xs) { --kp-progress-h: 2px; }

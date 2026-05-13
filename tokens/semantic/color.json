@@ -672,7 +672,7 @@
         "fg": {
           "rest":     { "$value": "{color.gray.900}",  "$type": "color" },
           "selected": { "$value": "{color.blue.700}",  "$type": "color" },
-          "disabled": { "$value": "{color.gray.400}",  "$type": "color" }
+          "disabled": { "$value": "{color.gray.500}",  "$type": "color", "$description": "audit-2026-05-13 — was gray.400 (2.62:1 on white, fails AA). gray.500 → 4.84:1." }
         },
         "icon": {
           "rest":     { "$value": "{color.gray.600}",  "$type": "color" },

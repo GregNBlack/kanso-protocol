@@ -48,6 +48,7 @@ import { KpSize, KpState } from '@kanso-protocol/core';
         class="kp-input__field"
         [type]="type"
         [placeholder]="resolvedPlaceholder"
+        [attr.aria-label]="ariaLabel || label || placeholder || 'Input'"
         [disabled]="isDisabled"
         [value]="value ?? ''"
         (focus)="isFocused = true"
@@ -284,6 +285,10 @@ export class KpInputComponent implements ControlValueAccessor {
   @Input() type: string = 'text';
   @Input() placeholder = '';
   @Input() label = '';
+  /** Accessible name forwarded to the inner input. Falls back to `label`,
+      then `placeholder`, then a generic "Input" so the element is never
+      anonymous for screen readers / axe. */
+  @Input() ariaLabel: string | null = null;
   @Input() floatingLabel = false;
   @Input() showClear = true;
   @Input() disabled = false;

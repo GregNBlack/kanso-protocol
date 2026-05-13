@@ -34,12 +34,12 @@ export type KpSettingsPanelSize = 'sm' | 'md' | 'lg';
   host: { '[class]': 'hostClasses' },
   template: `
     @if (showHeader) {
-      <header class="kp-sp__header">
+      <div class="kp-sp__header">
         <h3 class="kp-sp__title">{{ title }}</h3>
         @if (showDescription && description) {
           <p class="kp-sp__description">{{ description }}</p>
         }
-      </header>
+      </div>
     }
 
     <div class="kp-sp__rows">

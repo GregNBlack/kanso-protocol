@@ -264,7 +264,10 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
       cursor: not-allowed;
     }
     .kp-cmdk__item-label { flex: 1 1 auto; }
-    .kp-cmdk__item-hint { font-size: 12px; color: var(--kp-color-text-muted); }
+    /* text-default (gray.700 light / gray.300 dark) instead of text-muted —
+       hint sits on surface-base AND on surface-muted (when item is --active);
+       text-muted on surface-muted hits ~4.55:1 borderline in light. */
+    .kp-cmdk__item-hint { font-size: 12px; color: var(--kp-color-text-default); }
     .kp-cmdk__item-shortcut {
       font-family: var(--kp-font-family-mono, ui-monospace, SFMono-Regular, monospace);
       font-size: 11px;

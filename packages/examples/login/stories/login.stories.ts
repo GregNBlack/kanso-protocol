@@ -36,7 +36,7 @@ import { KpIconComponent } from '@kanso-protocol/icon';
 
         <div class="options">
           <label class="remember">
-            <kp-checkbox [checked]="true"/>
+            <kp-checkbox [checked]="true" ariaLabel="Remember me"/>
             <span>Remember me</span>
           </label>
           <a class="link" href="#">Forgot password?</a>

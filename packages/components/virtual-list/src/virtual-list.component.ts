@@ -78,13 +78,18 @@ export class KpVirtualRowDirective<T = unknown> {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'list',
-    '[attr.aria-rowcount]': 'items.length',
+    /* aria-setsize on the list itself + aria-posinset on each listitem is
+       the correct positional info for role="list"/"listitem". aria-rowcount
+       / aria-rowindex are only valid on role="grid"/"row" — using them on
+       a list trips aria-allowed-attr (critical). */
+    '[attr.aria-setsize]': 'items.length',
   },
   template: `
     <div
       #viewport
       class="kp-virtual-list__viewport"
       [style.height.px]="viewportHeight"
+      tabindex="0"
       (scroll)="onScroll()"
     >
       <div class="kp-virtual-list__spacer" [style.height.px]="totalHeight">
@@ -96,7 +101,7 @@ export class KpVirtualRowDirective<T = unknown> {
             <div
               class="kp-virtual-list__row"
               role="listitem"
-              [attr.aria-rowindex]="visibleStart + i + 1"
+              [attr.aria-posinset]="visibleStart + i + 1"
               [style.height.px]="itemHeight"
             >
               @if (rowTemplate) {
