@@ -1,5 +1,16 @@
 # @kanso-protocol/rich-text-editor
 
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @kanso-protocol/core@2.0.3
+  - @kanso-protocol/button@2.0.3
+  - @kanso-protocol/divider@2.0.3
+  - @kanso-protocol/input@2.0.3
+  - @kanso-protocol/popover@2.0.3
+
 ## 2.0.2
 
 ### Patch Changes

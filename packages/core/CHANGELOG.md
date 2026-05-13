@@ -1,5 +1,20 @@
 # @kanso-protocol/core
 
+## 2.0.3
+
+### Patch Changes
+
+- a11y phase 2: AA contrast cleanup + ARIA cleanup. axe-core violations dropped from ~130 to 14 (zero critical) across 9 rounds; CI gate now blocks on critical impacts (`continue-on-error` removed). Notable token shifts:
+  - light `accent.{primary,danger,success,warning,info}.fg`: `brand.600 → brand.700` (AA fix on white)
+  - light `badge.{success,info}.filled.bg/border`: `brand.600 → brand.700`
+  - light `input.placeholder.default` + `text.disabled` + `tree.node.fg.disabled`: `gray.400 → gray.500`
+  - light `header.nav-item.fg.active`: `blue.600 → blue.700`
+  - light `progress.{primary,success,danger}.fill`: `brand.600 → brand.700`
+  - new primitive `foreground.on-dark-accent-primary` = `#60A5FA` (fixed in both modes, for `kp-header--dark` / `kp-sidebar--dark` active states)
+  - dark overrides added for: button outline/ghost fg (primary + danger × rest/hover/focus/loading), badge outline fg (5 colors), badge warning filled fg, header nav-item active, tree node selected/disabled + bg selected, form required optional, input placeholder, text disabled
+
+  All packages bump together per `fixed: [["@kanso-protocol/*"]]` config — listing core only.
+
 ## 2.0.2
 
 ### Patch Changes

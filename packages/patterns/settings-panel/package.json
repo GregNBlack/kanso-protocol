@@ -1,11 +1,11 @@
 {
   "name": "@kanso-protocol/settings-panel",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": ">=21.0.0",
     "@angular/common": ">=21.0.0",
-    "@kanso-protocol/core": ">=2.0.2"
+    "@kanso-protocol/core": ">=2.0.3"
   },
   "description": "Kanso Protocol — settings-panel (pattern).",
   "author": "GregNBlack",
