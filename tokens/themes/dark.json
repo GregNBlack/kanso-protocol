@@ -817,6 +817,14 @@
         "active": { "$value": "#BFDBFE", "$description": "audit-2026-05-07 — blue-200 light; one step less prominent than the label so the icon doesn't dominate" }
       }
     },
+    "header": {
+      "$description": "Dark-mode header nav-item active fg. Without this override, header.nav-item.fg.active cascades to blue.700 light (#1D4ED8), which on the dark header bg #18181B gives ~1.4:1 — fails AA hard.",
+      "nav-item": {
+        "fg": {
+          "active": { "$value": "#60A5FA", "$description": "audit-2026-05-12 — blue-400 light, ~7:1 on dark header bg. Mirrors accent.primary.fg dark override." }
+        }
+      }
+    },
     "breadcrumbs": {
       "item": {
         "fg": {

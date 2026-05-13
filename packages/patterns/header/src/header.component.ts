@@ -225,7 +225,11 @@ export interface KpHeaderNavItem {
     }
         :host(.kp-header--dark) .kp-header__nav-item { color: var(--kp-color-fg-on-dark-default); }
     :host(.kp-header--dark) .kp-header__nav-item:hover { background: var(--kp-color-surface-on-dark-muted); color: var(--kp-color-foreground-on-saturated); }
-    :host(.kp-header--dark) .kp-header__nav-item--active { color: var(--kp-color-accent-primary-fg); }
+    /* Theme-fixed brand tint so the dark-appearance header active state
+       reads against the dark header bg in BOTH light and dark themes.
+       Theme-aware accent.primary.fg resolves to a darker blue in light
+       theme which fails AA on the always-dark header bg. */
+    :host(.kp-header--dark) .kp-header__nav-item--active { color: var(--kp-color-foreground-on-dark-accent-primary); }
 
     .kp-header__search-placeholder {
       box-sizing: border-box;

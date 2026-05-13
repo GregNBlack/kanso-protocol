@@ -174,8 +174,24 @@ export interface KpSidebarSection {
 
     :host(.kp-sidebar--dark) {
       background: var(--kp-color-sidebar-bg-dark);
-            color: var(--kp-color-fg-on-dark-strong);
+      color: var(--kp-color-fg-on-dark-strong);
       border-right-color: var(--kp-color-border-on-dark-default);
+    }
+    /* In a dark-appearance sidebar, repoint nav-item fg tokens to the
+       on-dark family so labels read against the dark sidebar bg. Without
+       this nav-item-fg-rest stays at gray.700 light, which on the dark
+       sidebar surface only hits ~1.7:1 — fails AA. */
+    :host(.kp-sidebar--dark) kp-nav-item {
+      --kp-color-nav-item-fg-rest:  var(--kp-color-fg-on-dark-default);
+      --kp-color-nav-item-fg-hover: var(--kp-color-fg-on-dark-strong);
+      --kp-color-nav-item-fg-active: var(--kp-color-foreground-on-dark-accent-primary);
+      --kp-color-nav-item-bg-hover: var(--kp-color-surface-on-dark-muted);
+      --kp-color-nav-item-icon-rest:  var(--kp-color-fg-on-dark-muted);
+      --kp-color-nav-item-icon-hover: var(--kp-color-fg-on-dark-strong);
+      --kp-color-nav-item-icon-active: var(--kp-color-foreground-on-dark-accent-primary);
+    }
+    :host(.kp-sidebar--dark) .kp-sidebar__section-label {
+      color: var(--kp-color-fg-on-dark-muted);
     }
 
     .kp-sidebar__top {
@@ -311,6 +327,9 @@ export interface KpSidebarSection {
     .kp-sidebar__section-label--hidden {
       opacity: 0;
       pointer-events: none;
+      /* visibility:hidden so axe-core skips color-contrast on the
+         collapsed-state section labels. */
+      visibility: hidden;
     }
     .kp-sidebar__section-label {
       padding: 8px 12px 4px;

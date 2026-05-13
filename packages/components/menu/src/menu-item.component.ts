@@ -108,22 +108,26 @@ export type KpMenuItemSize = 'sm' | 'md' | 'lg';
       --kp-menu-item-icon: var(--kp-color-border-strong);
     }
 
-    /* Selected (blue tint) */
+    /* Selected (blue tint). Uses the theme-aware accent.primary.fg so the
+       label stays readable on the dark subtle.bg in dark mode — using
+       primary.default.bg.hover would resolve to blue.700 in dark too
+       (kept-light value), giving ~1.5:1 on the tinted dark bg. */
     :host(.kp-menu-item--selected) {
       --kp-menu-item-bg: var(--kp-color-primary-subtle-bg-rest);
-      --kp-menu-item-fg: var(--kp-color-primary-default-bg-hover);
+      --kp-menu-item-fg: var(--kp-color-accent-primary-fg);
       --kp-menu-item-icon: var(--kp-color-primary-default-bg-rest);
     }
 
-    /* Danger (red fg, white bg; hover = light red bg) */
+    /* Danger (red fg, white bg; hover = light red bg) — same accent
+       pattern for theme-readable fg on tinted bg. */
     :host(.kp-menu-item--danger) {
-      --kp-menu-item-fg: var(--kp-color-danger-default-bg-rest);
+      --kp-menu-item-fg: var(--kp-color-accent-danger-fg);
       --kp-menu-item-icon: var(--kp-color-danger-default-bg-rest);
     }
     :host(.kp-menu-item--danger:hover:not(.kp-menu-item--disabled)),
     :host(.kp-menu-item--danger.kp-menu-item--hover) {
       --kp-menu-item-bg: var(--kp-color-danger-subtle-bg-rest);
-      --kp-menu-item-fg: var(--kp-color-danger-default-bg-hover);
+      --kp-menu-item-fg: var(--kp-color-accent-danger-fg);
     }
 
     .kp-menu-item__leading,
