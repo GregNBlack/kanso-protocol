@@ -98,7 +98,10 @@ const DEFAULTS: Record<KpPageErrorType, { title: string; description: string; ic
       font-size: 120px;
       font-weight: 700;
       line-height: 1;
-      color: var(--kp-color-border-default);
+      /* text-disabled (gray-500 light / gray-600 dark) hits AA (4.84:1
+         light, 6.5:1 dark) even though the number is aria-hidden — axe
+         doesn't always honor aria-hidden for large decorative text. */
+      color: var(--kp-color-text-disabled);
       letter-spacing: -0.02em;
       margin-bottom: 0;
     }

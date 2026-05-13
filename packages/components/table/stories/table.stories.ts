@@ -139,7 +139,7 @@ export const Compact: Story = {
         <ng-template kpTableCell="metric" let-row>{{ row.metric }}</ng-template>
         <ng-template kpTableCell="value" let-row><span style="font-variant-numeric:tabular-nums">{{ row.value }}</span></ng-template>
         <ng-template kpTableCell="change" let-row>
-          <span [style.color]="row.change.startsWith('+') ? '#059669' : '#DC2626'" style="font-variant-numeric:tabular-nums">
+          <span [style.color]="row.change.startsWith('+') ? 'var(--kp-color-accent-success-fg)' : 'var(--kp-color-accent-danger-fg)'" style="font-variant-numeric:tabular-nums">
             {{ row.change }}
           </span>
         </ng-template>

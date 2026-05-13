@@ -910,6 +910,23 @@
       "muted":    { "$value": "{color.gray.600}", "$description": "gray-600 in dark = #A1A1AA — passes AA on gray-900 dark page bg (=#18181B)" },
       "disabled": { "$value": "{color.gray.600}", "$description": "audit-2026-05-12 — bumped from gray.500 (=#71717A in dark, 3.46:1 fails AA) to gray.600 (=#A1A1AA, 6.5:1). Visually collapses with `muted` in dark; the disabled affordance now comes from `cursor: not-allowed` + reduced font-weight rather than dimmer fg." }
     },
+    "form": {
+      "required": {
+        "optional": { "$value": "{color.gray.600}", "$description": "audit-2026-05-13 — gray.500 cascade gives #71717A in dark, 3.46:1 on #18181B. gray.600 dark = #A1A1AA, 6.5:1." }
+      }
+    },
+    "tree": {
+      "$description": "Dark-theme tree node overrides. Selected fg+bg flip to muted-dark navy / readable accent (was blue.700 on blue.50 = 1.4:1 in dark). Disabled fg uses text-muted equivalent.",
+      "node": {
+        "fg": {
+          "selected": { "$value": "#93C5FD", "$description": "blue-300 light, readable on the dark navy selected bg" },
+          "disabled": { "$value": "{color.gray.500}", "$description": "matches the muted/disabled collapse in dark" }
+        },
+        "bg": {
+          "selected": { "$value": "#1E2A4F", "$description": "muted dark navy, matches button primary.subtle.bg.rest" }
+        }
+      }
+    },
     "surface": {
       "$description": "Dark-theme overrides for the surface family. `base` (= white) and `subtle` (= gray.50) cascade correctly through primitive inversion; `muted` and `strong` need explicit lifts so hover / pressed states stay visually distinct from `base` (gray-100 inverts to the same hex as gray-900, which would collapse the elevation difference).",
       "muted":  { "$value": "{color.gray.200}", "$description": "gray-200 dark = #27272A — sits one step lighter than `base` (=#18181B)" },

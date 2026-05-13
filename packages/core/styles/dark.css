@@ -363,6 +363,10 @@
   --kp-color-sidebar-section-label: #a1a1aa;
   --kp-color-text-muted: #a1a1aa;
   --kp-color-text-disabled: #a1a1aa;
+  --kp-color-form-required-optional: #a1a1aa;
+  --kp-color-tree-node-fg-selected: #93c5fd;
+  --kp-color-tree-node-fg-disabled: #71717a;
+  --kp-color-tree-node-bg-selected: #1e2a4f;
   --kp-color-surface-muted: #27272a;
   --kp-color-surface-strong: #3f3f46;
   --kp-color-accent-primary-fg: #60a5fa;

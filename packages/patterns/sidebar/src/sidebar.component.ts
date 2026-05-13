@@ -186,9 +186,16 @@ export interface KpSidebarSection {
       --kp-color-nav-item-fg-hover: var(--kp-color-fg-on-dark-strong);
       --kp-color-nav-item-fg-active: var(--kp-color-foreground-on-dark-accent-primary);
       --kp-color-nav-item-bg-hover: var(--kp-color-surface-on-dark-muted);
+      /* bg-active also flips to the on-dark muted surface so the
+         active fg reads against a dark bg (~7:1) instead of ~3:1
+         against the default light blue.50 active bg. */
+      --kp-color-nav-item-bg-active: var(--kp-color-surface-on-dark-muted);
       --kp-color-nav-item-icon-rest:  var(--kp-color-fg-on-dark-muted);
       --kp-color-nav-item-icon-hover: var(--kp-color-fg-on-dark-strong);
       --kp-color-nav-item-icon-active: var(--kp-color-foreground-on-dark-accent-primary);
+    }
+    :host(.kp-sidebar--dark) .kp-sidebar__footer-email {
+      color: var(--kp-color-fg-on-dark-subtle);
     }
     :host(.kp-sidebar--dark) .kp-sidebar__section-label {
       color: var(--kp-color-fg-on-dark-muted);

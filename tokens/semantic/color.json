@@ -366,9 +366,9 @@
       "track":   { "$value": "{color.gray.100}", "$type": "color", "$description": "Empty track background" },
       "label":   { "$value": "{color.gray.700}", "$type": "color", "$description": "Progress label text" },
       "value":   { "$value": "{color.gray.900}", "$type": "color", "$description": "Progress percentage text" },
-      "primary": { "fill": { "$value": "{color.blue.600}",  "$type": "color" } },
-      "success": { "fill": { "$value": "{color.green.600}", "$type": "color" } },
-      "danger":  { "fill": { "$value": "{color.red.600}",   "$type": "color" } },
+      "primary": { "fill": { "$value": "{color.blue.700}",  "$type": "color", "$description": "audit-2026-05-13 — was blue.600. Used as both filled-segment bg (white fg → 7.46:1) and current-label color on page bg (white = 7.46:1). brand.700 passes AA in both roles." } },
+      "success": { "fill": { "$value": "{color.green.700}", "$type": "color", "$description": "audit-2026-05-13 — was green.600 (2.94:1 fails as label color on white). green.700 → 4.74:1." } },
+      "danger":  { "fill": { "$value": "{color.red.700}",   "$type": "color", "$description": "audit-2026-05-13 — was red.600. red.700 → 6.27:1 on white." } },
       "warning": { "fill": { "$value": "{color.amber.500}", "$type": "color" } },
       "neutral": { "fill": { "$value": "{color.gray.700}",  "$type": "color" } }
     },
