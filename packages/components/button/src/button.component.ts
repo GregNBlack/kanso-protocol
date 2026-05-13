@@ -25,7 +25,13 @@ import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
   host: {
     '[class]': 'hostClasses',
     '[attr.type]': 'type',
-    '[disabled]': 'disabled || loading',
+    /* forceState === 'disabled' also flips the real [disabled] attribute,
+       not just the CSS class. Storybook stories that use forceState to
+       demonstrate the disabled appearance otherwise leave the button
+       interactive — and axe-core's color-contrast exemption only applies
+       to actually-disabled form controls, so the visual disabled fg
+       (gray.500/zinc-600) would get flagged as a contrast violation. */
+    '[disabled]': 'disabled || loading || forceState === "disabled"',
     '[attr.aria-busy]': 'loading || null',
   },
   template: `

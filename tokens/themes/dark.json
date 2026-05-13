@@ -247,6 +247,12 @@
             "$value": "#93C5FD",
             "$description": "designer-pass"
           }
+        },
+        "outline": {
+          "fg": {
+            "$value": "#93C5FD",
+            "$description": "audit-2026-05-13 — outline badge fg cascades to blue.700 (#1D4ED8) in dark which fails AA on transparent → body bg #18181B. Match subtle.fg for readability."
+          }
         }
       },
       "danger": {
@@ -259,6 +265,12 @@
             "$value": "#FCA5A5",
             "$description": "designer-pass"
           }
+        },
+        "outline": {
+          "fg": {
+            "$value": "#FCA5A5",
+            "$description": "audit-2026-05-13 — match subtle.fg; was red.700 cascade which fails AA on body dark bg."
+          }
         }
       },
       "success": {
@@ -270,6 +282,12 @@
           "fg": {
             "$value": "#86EFAC",
             "$description": "designer-pass"
+          }
+        },
+        "outline": {
+          "fg": {
+            "$value": "#86EFAC",
+            "$description": "audit-2026-05-13 — match subtle.fg; was green.700 cascade which fails AA on body dark bg."
           }
         }
       },
@@ -289,6 +307,12 @@
             "$value": "#18181B",
             "$description": "audit-2026-05-12 — force gray.900 LIGHT value. Semantic cascade resolves filled.fg = {color.gray.900} which inverts to #FAFAFA in dark, giving ~2:1 on amber.500 bg. Hardcoding the dark hex keeps the dark-text-on-yellow contrast (~12:1) consistent with the light theme rendering."
           }
+        },
+        "outline": {
+          "fg": {
+            "$value": "#FDE68A",
+            "$description": "audit-2026-05-13 — match subtle.fg; was amber.700 cascade which fails AA on body dark bg."
+          }
         }
       },
       "info": {
@@ -300,6 +324,12 @@
           "fg": {
             "$value": "#67E8F9",
             "$description": "designer-pass"
+          }
+        },
+        "outline": {
+          "fg": {
+            "$value": "#67E8F9",
+            "$description": "audit-2026-05-13 — match subtle.fg; was cyan.700 cascade which fails AA on body dark bg."
           }
         }
       },

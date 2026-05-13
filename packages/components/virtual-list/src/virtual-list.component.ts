@@ -122,6 +122,13 @@ export class KpVirtualRowDirective<T = unknown> {
       overflow-x: hidden;
       position: relative;
       contain: strict;
+      /* Explicit bg so axe-core's color-contrast walk-up resolves to a
+         known surface for the row content. With contain:strict + an
+         implicit transparent bg, the walk-up gets confused and reports
+         the row text against an indeterminate parent bg. The bg here
+         is invisible in practice because every row template paints its
+         own surface on top. */
+      background: var(--kp-color-surface-base);
     }
     .kp-virtual-list__spacer {
       position: relative;
