@@ -11,7 +11,7 @@
 
 Design tokens in W3C DTCG format serve as a single source of truth for both Figma and code. Rules are embedded in architecture, not in agreements.
 
-> **Status: `0.x` beta.** Most surfaces are `stable` or `beta` per [`docs/1.0-readiness.md`](docs/1.0-readiness.md); a handful are still `experimental` and may break in minor releases. Pin exact versions in production. See [`docs/migration-1.0.md`](docs/migration-1.0.md) for known breaking changes en route to `1.0`, [`docs/roadmap.md`](docs/roadmap.md) for what's next, and the [changelog](CHANGELOG.md) for what landed.
+> **Status: `2.x` stable.** Components are `stable` or `beta` per [`docs/1.0-readiness.md`](docs/1.0-readiness.md); a handful remain `experimental` and may break in minor releases. Pin exact versions in production. The `2.0` line shipped native HTML form controls everywhere; `2.0.3` finished the a11y phase-2 cleanup (AA contrast + ARIA, CI gate hard-blocks on critical impacts). See [`docs/roadmap.md`](docs/roadmap.md) for what's next and the [changelog](CHANGELOG.md) for what landed.
 
 ---
 
