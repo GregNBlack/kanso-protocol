@@ -122,13 +122,20 @@ describe('KpVirtualListComponent', () => {
     expect(lastRange).toEqual({ start: 46, end: 64 });
   });
 
-  it('sets aria-rowcount on host and aria-rowindex on rows', () => {
+  it('exposes list/listitem ARIA with set-size/pos-in-set on each row', () => {
     const { host, fix } = setup();
-    expect(host.querySelector('kp-virtual-list')?.getAttribute('aria-rowcount')).toBe('1000');
     fix.detectChanges();
+    // role="list" lives on the inner window div (direct parent of listitems) —
+    // aria-required-children resolves on the immediate DOM child.
+    const window = host.querySelector('.kp-virtual-list__window');
+    expect(window?.getAttribute('role')).toBe('list');
     const firstRow = host.querySelector('.kp-virtual-list__row');
-    expect(firstRow?.getAttribute('aria-rowindex')).toBe('1');
     expect(firstRow?.getAttribute('role')).toBe('listitem');
+    // aria-setsize/posinset are valid per-listitem (aria-rowcount/rowindex
+    // are only valid on role="grid"/"row" — using them on a list trips
+    // aria-allowed-attr).
+    expect(firstRow?.getAttribute('aria-setsize')).toBe('1000');
+    expect(firstRow?.getAttribute('aria-posinset')).toBe('1');
   });
 
   it('uses custom trackBy when provided', () => {
