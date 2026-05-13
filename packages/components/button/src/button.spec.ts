@@ -114,4 +114,24 @@ describe('KpButtonComponent', () => {
     fixture.detectChanges();
     expect(btn.querySelector('.kp-button__spinner')).not.toBeNull();
   });
+
+  it('forceState="disabled" flips the real [disabled] attribute (axe disabled-exemption)', async () => {
+    // Separate wrapper for forceState — the main HostComponent doesn't bind it.
+    @Component({
+      standalone: true,
+      imports: [KpButtonComponent],
+      template: `<button kpButton [forceState]="state()">Click</button>`,
+    })
+    class FsHost {
+      state = signal<'rest' | 'hover' | 'active' | 'focus' | 'disabled' | 'loading' | 'error' | null>(null);
+    }
+    await TestBed.resetTestingModule().configureTestingModule({ imports: [FsHost] }).compileComponents();
+    const fix = TestBed.createComponent(FsHost);
+    fix.detectChanges();
+    const b = fix.nativeElement.querySelector('button[kpButton]') as HTMLButtonElement;
+    expect(b.disabled).toBe(false);
+    fix.componentInstance.state.set('disabled');
+    fix.detectChanges();
+    expect(b.disabled).toBe(true);
+  });
 });

@@ -62,4 +62,28 @@ describe('KpTextareaComponent', () => {
     fix.detectChanges();
     expect(fix.componentInstance.value).toBe('from-form');
   });
+
+  it('aria-label falls back to placeholder when ariaLabel is unset', () => {
+    const { fix, host } = setup();
+    fix.componentRef.setInput('placeholder', 'Tell us more');
+    fix.detectChanges();
+    const t = host.querySelector('textarea') as HTMLTextAreaElement;
+    expect(t.getAttribute('aria-label')).toBe('Tell us more');
+  });
+
+  it('aria-label falls back to "Textarea" when nothing is set', () => {
+    const { fix, host } = setup();
+    fix.detectChanges();
+    const t = host.querySelector('textarea') as HTMLTextAreaElement;
+    expect(t.getAttribute('aria-label')).toBe('Textarea');
+  });
+
+  it('ariaLabel input wins over placeholder', () => {
+    const { fix, host } = setup();
+    fix.componentRef.setInput('placeholder', 'P');
+    fix.componentRef.setInput('ariaLabel', 'Custom');
+    fix.detectChanges();
+    const t = host.querySelector('textarea') as HTMLTextAreaElement;
+    expect(t.getAttribute('aria-label')).toBe('Custom');
+  });
 });

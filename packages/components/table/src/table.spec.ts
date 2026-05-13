@@ -146,4 +146,21 @@ describe('KpTableComponent', () => {
     cmp.trackBy = (r) => r.id;
     expect(cmp.trackRow(ROWS[0], 0)).toBe('a');
   });
+
+  it('header button gets aria-label from col.label', () => {
+    const { fix, host } = setup();
+    fix.detectChanges();
+    const btn = host.querySelector('.kp-table__header-button') as HTMLButtonElement;
+    expect(btn.getAttribute('aria-label')).toBe('Name');
+  });
+
+  it('header button falls back to col.id when label is empty (axe button-name)', () => {
+    const cols: KpTableColumn<Row>[] = [
+      { id: 'actions', label: '', accessor: () => '' },
+    ];
+    const { fix, host } = setup({ columns: cols });
+    fix.detectChanges();
+    const btn = host.querySelector('.kp-table__header-button') as HTMLButtonElement;
+    expect(btn.getAttribute('aria-label')).toBe('actions');
+  });
 });

@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-11T06:14:04.684Z",
-  "totalSpecs": 42,
-  "totalTests": 427,
+  "generatedAt": "2026-05-13T21:40:13.642Z",
+  "totalSpecs": 44,
+  "totalTests": 442,
   "totalPackages": 62,
   "items": [
     {
@@ -79,7 +79,7 @@
       "specFiles": [
         "packages/components/button/src/button.spec.ts"
       ],
-      "tests": 10
+      "tests": 11
     },
     {
       "layer": "components",
@@ -222,7 +222,7 @@
       "specFiles": [
         "packages/components/input/src/input.spec.ts"
       ],
-      "tests": 9
+      "tests": 13
     },
     {
       "layer": "components",
@@ -356,7 +356,7 @@
       "specFiles": [
         "packages/components/table/src/table.spec.ts"
       ],
-      "tests": 14
+      "tests": 16
     },
     {
       "layer": "components",
@@ -378,7 +378,7 @@
       "specFiles": [
         "packages/components/textarea/src/textarea.spec.ts"
       ],
-      "tests": 6
+      "tests": 9
     },
     {
       "layer": "components",
@@ -445,6 +445,28 @@
         "packages/i18n/src/i18n.spec.ts"
       ],
       "tests": 13
+    },
+    {
+      "layer": "patterns",
+      "name": "search-bar",
+      "title": "Patterns/SearchBar",
+      "storybookId": "patterns-searchbar--docs",
+      "specFile": "packages/patterns/search-bar/src/search-bar.spec.ts",
+      "specFiles": [
+        "packages/patterns/search-bar/src/search-bar.spec.ts"
+      ],
+      "tests": 2
+    },
+    {
+      "layer": "patterns",
+      "name": "settings-panel",
+      "title": "Patterns/SettingsPanel",
+      "storybookId": "patterns-settingspanel--docs",
+      "specFile": "packages/patterns/settings-panel/src/settings-panel.spec.ts",
+      "specFiles": [
+        "packages/patterns/settings-panel/src/settings-panel.spec.ts"
+      ],
+      "tests": 3
     },
     {
       "layer": "patterns",
@@ -529,16 +551,6 @@
       "layer": "patterns",
       "name": "row",
       "title": "Patterns/Row"
-    },
-    {
-      "layer": "patterns",
-      "name": "search-bar",
-      "title": "Patterns/SearchBar"
-    },
-    {
-      "layer": "patterns",
-      "name": "settings-panel",
-      "title": "Patterns/SettingsPanel"
     },
     {
       "layer": "patterns",

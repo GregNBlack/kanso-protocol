@@ -71,6 +71,35 @@ describe('KpInputComponent', () => {
     fixture.detectChanges();
     expect(component.value).toBe('from-form');
   });
+
+  it('aria-label falls back to label when ariaLabel input is unset', () => {
+    fixture.componentRef.setInput('label', 'Email');
+    fixture.detectChanges();
+    const input = host.querySelector('input') as HTMLInputElement;
+    expect(input.getAttribute('aria-label')).toBe('Email');
+  });
+
+  it('aria-label falls back to placeholder when neither ariaLabel nor label is set', () => {
+    fixture.componentRef.setInput('placeholder', 'your@email.com');
+    fixture.detectChanges();
+    const input = host.querySelector('input') as HTMLInputElement;
+    expect(input.getAttribute('aria-label')).toBe('your@email.com');
+  });
+
+  it('aria-label falls back to "Input" when nothing else is set', () => {
+    fixture.detectChanges();
+    const input = host.querySelector('input') as HTMLInputElement;
+    expect(input.getAttribute('aria-label')).toBe('Input');
+  });
+
+  it('ariaLabel input wins over label and placeholder', () => {
+    fixture.componentRef.setInput('label', 'L');
+    fixture.componentRef.setInput('placeholder', 'P');
+    fixture.componentRef.setInput('ariaLabel', 'Custom');
+    fixture.detectChanges();
+    const input = host.querySelector('input') as HTMLInputElement;
+    expect(input.getAttribute('aria-label')).toBe('Custom');
+  });
 });
 
 describe('KpInputComponent integration with ReactiveForms', () => {
