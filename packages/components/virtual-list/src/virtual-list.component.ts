@@ -76,14 +76,7 @@ export class KpVirtualRowDirective<T = unknown> {
   selector: 'kp-virtual-list',
   imports: [NgTemplateOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    role: 'list',
-    /* aria-setsize on the list itself + aria-posinset on each listitem is
-       the correct positional info for role="list"/"listitem". aria-rowcount
-       / aria-rowindex are only valid on role="grid"/"row" — using them on
-       a list trips aria-allowed-attr (critical). */
-    '[attr.aria-setsize]': 'items.length',
-  },
+  host: {},
   template: `
     <div
       #viewport
@@ -93,14 +86,22 @@ export class KpVirtualRowDirective<T = unknown> {
       (scroll)="onScroll()"
     >
       <div class="kp-virtual-list__spacer" [style.height.px]="totalHeight">
+        <!-- role="list" sits on the immediate parent of the listitems so
+             aria-required-children resolves against direct children (the
+             viewport/spacer wrappers between the host and the items
+             confused axe's parent-child walk). aria-setsize/posinset are
+             per-item, which is what the ARIA spec actually permits — they
+             aren't valid on role="list" itself. -->
         <div
           class="kp-virtual-list__window"
+          role="list"
           [style.transform]="windowTransform"
         >
           @for (item of visibleItems; track trackByOrIndex($index, item); let i = $index) {
             <div
               class="kp-virtual-list__row"
               role="listitem"
+              [attr.aria-setsize]="items.length"
               [attr.aria-posinset]="visibleStart + i + 1"
               [style.height.px]="itemHeight"
             >
