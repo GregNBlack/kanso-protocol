@@ -1,5 +1,9 @@
 export {
-  KpTooltipComponent,
+  KpTooltipDirective,
+  KpTooltipPosition,
+} from './tooltip.directive';
+export {
   KpTooltipSize,
   KpTooltipArrowPosition,
-} from './tooltip.component';
+  KpTooltipArrowAlign,
+} from './tooltip-internal.component';

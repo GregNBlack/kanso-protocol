@@ -1,5 +1,13 @@
 # @kanso-protocol/number-stepper
 
+## 3.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @kanso-protocol/core@3.0.0
+  - @kanso-protocol/button@3.0.0
+
 ## 2.0.3
 
 ### Patch Changes

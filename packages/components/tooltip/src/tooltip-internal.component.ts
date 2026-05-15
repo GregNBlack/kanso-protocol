@@ -22,30 +22,14 @@ export type KpTooltipArrowPosition = 'none' | 'top' | 'right' | 'bottom' | 'left
 export type KpTooltipArrowAlign = 'start' | 'center' | 'end';
 
 /**
- * Kanso Protocol — Tooltip
+ * Internal styled tooltip body — NOT exported from the package.
  *
- * Dark, compact hint body with an optional directional arrow. This component
- * renders only the visual chrome — **positioning is the caller's
- * responsibility**. Pair with a directive (hover / focus handling, floating
- * UI placement, z-index, portal) to make it interactive.
- *
- * @example
- * <!-- Bare body (for Storybook / layout playgrounds) -->
- * <kp-tooltip label="Search" shortcut="⌘K" arrowPosition="bottom"/>
- *
- * @example
- * <!-- Edge-of-viewport: trigger near the right edge.
- *      Arrow stays at the trigger; body extends to the LEFT. -->
- * <kp-tooltip label="Save changes" arrowPosition="bottom" arrowAlign="end"/>
- *
- * @example
- * <!-- Wired up in a portal above a trigger (pseudocode) -->
- * <button #btn>Search</button>
- * <kp-tooltip *ngIf="open" [style.top]="y + 'px'" [style.left]="x + 'px'"
- *             label="Search" shortcut="⌘K" arrowPosition="bottom"/>
+ * Renders only the visual chrome (arrow, label, shortcut). Positioning,
+ * show/hide, hover/focus, portal placement, and z-index are owned by
+ * `KpTooltipDirective` — the only public surface.
  */
 @Component({
-  selector: 'kp-tooltip',
+  selector: 'kp-tooltip-internal',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
@@ -158,7 +142,8 @@ export type KpTooltipArrowAlign = 'start' | 'center' | 'end';
     }
   `],
 })
-export class KpTooltipComponent {
+/** @internal — public API is `KpTooltipDirective`. */
+export class KpTooltipInternalComponent {
   @Input() size: KpTooltipSize = 'md';
   @Input() arrowPosition: KpTooltipArrowPosition = 'none';
   /** Where along the tooltip edge the arrow attaches. See `KpTooltipArrowAlign`. */

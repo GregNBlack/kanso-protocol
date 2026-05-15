@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-05-05T10:43:37.502Z",
-  "version": "0.1.0",
+  "generatedAt": "2026-05-15T06:54:16.300Z",
+  "version": "2.0.3",
   "totals": {
-    "components": 53,
+    "components": 57,
     "patterns": 22,
-    "tokens": 901
+    "tokens": 914
   },
   "figma": {
     "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
@@ -740,14 +740,20 @@
     {
       "name": "button",
       "className": "KpButtonComponent",
-      "selector": "kp-button",
+      "selector": "button[kpButton]",
       "layer": "components",
       "package": "@kanso-protocol/button",
-      "description": "Kanso Protocol — Button Component\n\nAnatomy: Container → Content → Elements (icon-left, label, icon-right)\nSupports: 5 sizes × 4 variants × 3+ color roles × 6 states",
+      "description": "Kanso Protocol — Button\n\nAttribute-selector on a real native `<button>`. Gets `type` / `form` /\n`name` / `value` / `formaction` / native disabled / Enter+Space /\nform submission / HTML5 validation for free.",
       "examples": [
-        "<button kpButton size=\"md\" variant=\"default\" color=\"primary\">Click me</button>\n<button kpButton size=\"lg\" variant=\"outline\" color=\"danger\" [loading]=\"true\">Delete</button>"
+        "<button kpButton size=\"md\" variant=\"default\" color=\"primary\">Click me</button>\n<button kpButton type=\"submit\" color=\"primary\">Save</button>\n<button kpButton variant=\"outline\" color=\"danger\" [loading]=\"true\">Delete</button>"
       ],
       "inputs": [
+        {
+          "name": "type",
+          "type": "'button' | 'submit' | 'reset'",
+          "default": "'button'",
+          "description": "Native button type. Defaults to \"button\" (safer than browser default \"submit\")."
+        },
         {
           "name": "size",
           "type": "KpSize",
@@ -782,17 +788,17 @@
           "name": "iconOnly",
           "type": "boolean",
           "default": "false",
-          "description": "Hides the label and makes the button square (height × height) — pair with an icon and `aria-label`"
+          "description": "Hides the label and makes the button square — pair with an icon and `aria-label`."
         },
         {
           "name": "forceState",
           "type": "KpState | null",
           "default": "null",
-          "description": "Force a visual state for showcase/documentation purposes"
+          "description": "Force a visual state for showcase/documentation purposes."
         }
       ],
       "outputs": [],
-      "ariaRole": "button",
+      "ariaRole": null,
       "sizeRamp": [
         "xs",
         "sm",
@@ -800,12 +806,68 @@
         "lg",
         "xl"
       ],
-      "keyboardPatterns": [
-        "Enter",
-        "Space"
-      ],
+      "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-button--docs",
       "sourcePath": "packages/components/button/src/button.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:10993",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-10993"
+      },
+      "codeConnect": {
+        "npm": "@kanso-protocol/button",
+        "primaryClass": "KpButtonComponent",
+        "selector": "kp-button",
+        "import": "import { KpButtonComponent } from '@kanso-protocol/button';",
+        "docs": "docs/components/button.md",
+        "storybook": "components-button--docs"
+      }
+    },
+    {
+      "name": "button",
+      "className": "KpIconButtonComponent",
+      "selector": "kp-icon-button",
+      "layer": "components",
+      "package": "@kanso-protocol/button",
+      "description": "Kanso Protocol — IconButton (atom)\n\nSquare ghost button with a single projected icon. Used for \"close\",\n\"clear\", \"dismiss\" affordances on Popover, Dialog, Toast, Input,\nAlert, etc. — replaces per-component reimplementations of the same\npattern (which historically drifted on hover / focus / sizing).\n\nColor is `currentColor` so the button picks up the foreground color\nof its container (e.g. inside Popover header it's `popover-fg-desc`,\ninside Toast it's the toast title color). Hover applies the same\nsubtle overlay used everywhere else.",
+      "examples": [
+        "<kp-icon-button size=\"sm\" ariaLabel=\"Close\" (click)=\"close()\">\n    <svg viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\">\n      <path d=\"M18 6 6 18M6 6l12 12\" stroke=\"currentColor\"\n            stroke-width=\"2\" stroke-linecap=\"round\"/>\n    </svg>\n  </kp-icon-button>"
+      ],
+      "inputs": [
+        {
+          "name": "size",
+          "type": "KpIconButtonSize",
+          "default": "'sm'",
+          "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "type": "string",
+          "default": "''",
+          "description": ""
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "default": "false",
+          "description": ""
+        }
+      ],
+      "outputs": [
+        {
+          "name": "buttonClick",
+          "payload": "MouseEvent"
+        }
+      ],
+      "ariaRole": null,
+      "sizeRamp": [
+        "xs",
+        "sm",
+        "md"
+      ],
+      "keyboardPatterns": [],
+      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-button--docs",
+      "sourcePath": "packages/components/button/src/icon-button.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:10993",
@@ -826,7 +888,7 @@
       "selector": "kp-card",
       "layer": "components",
       "package": "@kanso-protocol/card",
-      "description": "Kanso Protocol — Card\n\nUniversal container with optional header (title + description +\naction), body, and footer. Each section toggles via boolean inputs;\ndividers can be added between sections for visual grouping.\n\nSet `appearance=\"elevated\"` for a shadowed surface, `\"muted\"` for a\ngray background, or `\"outline\"` for a transparent panel with just a\nborder. Setting `[clickable]=\"true\"` adds a hover state and emits\n`(cardClick)` — wire it to navigate, expand, or run any action.",
+      "description": "Kanso Protocol — Card\n\nUniversal container with optional header (title + description +\naction), body, and footer. Each section toggles via boolean inputs;\ndividers can be added between sections for visual grouping.\n\nSet `appearance=\"elevated\"` for a shadowed surface, `\"muted\"` for a\ngray background with dimmed text (secondary / preview content),\n`\"subtle\"` for a gray background with full-strength text and no\nborder (primary content visually separated from the page), or\n`\"outline\"` for a transparent panel with just a border. Setting\n`[clickable]=\"true\"` adds a hover state and emits `(cardClick)` —\nwire it to navigate, expand, or run any action.",
       "examples": [],
       "inputs": [
         {
@@ -931,9 +993,9 @@
       "selector": "kp-checkbox",
       "layer": "components",
       "package": "@kanso-protocol/checkbox",
-      "description": "Kanso Protocol — Checkbox Component",
+      "description": "Kanso Protocol — Checkbox\n\nWraps a real native `<input type=\"checkbox\">` inside a styled `<label>`.\nForm submission, FormData, `<label for>` association, password manager\nautofill, native indeterminate, Space-toggle, and HTML5 validation\n(`required`) all work without polyfills.",
       "examples": [
-        "<kp-checkbox [(checked)]=\"isChecked\" size=\"md\">Remember me</kp-checkbox>\n<kp-checkbox [indeterminate]=\"true\">Select all</kp-checkbox>"
+        "<kp-checkbox [(checked)]=\"isChecked\" size=\"md\">Remember me</kp-checkbox>\n<kp-checkbox [indeterminate]=\"true\">Select all</kp-checkbox>\n<form><kp-checkbox name=\"agree\" value=\"yes\" required>I agree</kp-checkbox></form>"
       ],
       "inputs": [
         {
@@ -967,6 +1029,24 @@
           "description": ""
         },
         {
+          "name": "required",
+          "type": "boolean",
+          "default": "false",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string | null",
+          "default": "null",
+          "description": ""
+        },
+        {
+          "name": "value",
+          "type": "string | null",
+          "default": "null",
+          "description": ""
+        },
+        {
           "name": "forceState",
           "type": "KpState | null",
           "default": "null",
@@ -982,7 +1062,13 @@
           "name": "ariaLabel",
           "type": "string | null",
           "default": "null",
-          "description": "Accessible name for screen readers when no visible label is projected. Falls through to projected text content otherwise."
+          "description": ""
+        },
+        {
+          "name": "ariaDescribedby",
+          "type": "string | null",
+          "default": "null",
+          "description": ""
         }
       ],
       "outputs": [
@@ -991,7 +1077,7 @@
           "payload": "boolean"
         }
       ],
-      "ariaRole": "checkbox",
+      "ariaRole": null,
       "sizeRamp": [
         "sm",
         "md",
@@ -1367,7 +1453,7 @@
       "selector": "kp-dialog",
       "layer": "components",
       "package": "@kanso-protocol/dialog",
-      "description": "Kanso Protocol — Dialog\n\nModal dialog with backdrop, focus trap, and Esc-to-close. Composition\nis slot-driven: `[kpDialogHeroIcon]` for the optional hero icon above\nthe title, `[kpDialogBody]` for body content (default is a projected\ntext node), and `[kpDialogFooter]` for footer actions (default is a\n2-button Cancel/Confirm layout).\n\nThe component is a controlled view — callers bind `[open]` and react\nto `(openChange)` / `(closed)`. Opening the dialog locks body scroll\nand moves focus to the first interactive element inside the panel.",
+      "description": "Kanso Protocol — Dialog\n\nWraps a real native `<dialog>` element. Focus trap, top-layer\nstacking, ESC-to-close, body-scroll inertness, and `::backdrop`\nstyling are all browser-native. Composition is slot-driven:\n`[kpDialogHeroIcon]` / `[kpDialogBody]` / `[kpDialogFooter]`.",
       "examples": [
         "<kp-dialog\n  [(open)]=\"deleteOpen\"\n  size=\"sm\"\n  title=\"Delete repository?\"\n  [showDescription]=\"true\"\n  description=\"This action cannot be undone.\"\n  (closed)=\"deleteOpen = false\"\n/>"
       ],
@@ -1469,9 +1555,7 @@
         "lg",
         "xl"
       ],
-      "keyboardPatterns": [
-        "Escape"
-      ],
+      "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-dialog--docs",
       "sourcePath": "packages/components/dialog/src/dialog.component.ts",
       "figma": {
@@ -1796,6 +1880,18 @@
           "description": ""
         },
         {
+          "name": "required",
+          "type": "boolean",
+          "default": "false",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string | null",
+          "default": "null",
+          "description": ""
+        },
+        {
           "name": "title",
           "type": "string | null",
           "default": "null",
@@ -1834,10 +1930,7 @@
         "md",
         "lg"
       ],
-      "keyboardPatterns": [
-        "Enter",
-        "Space"
-      ],
+      "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-fileupload--docs",
       "sourcePath": "packages/components/file-upload/src/file-upload.component.ts",
       "figma": {
@@ -1989,6 +2082,12 @@
           "type": "string",
           "default": "''",
           "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "type": "string | null",
+          "default": "null",
+          "description": "Accessible name forwarded to the inner input. Falls back to `label`,\n      then `placeholder`, then a generic \"Input\" so the element is never\n      anonymous for screen readers / axe."
         },
         {
           "name": "floatingLabel",
@@ -3086,9 +3185,9 @@
       "selector": "kp-radio",
       "layer": "components",
       "package": "@kanso-protocol/radio",
-      "description": "Kanso Protocol — Radio Component\n\nWhen placed inside <kp-radio-group>, clicking a radio updates the group's\nvalue and deselects siblings. Outside a group, it behaves as a standalone\ntwo-state control with its own CVA.\n\nOuter circle stays white when checked; only the border and inner dot become colored.",
+      "description": "Kanso Protocol — Radio\n\nWraps a real native `<input type=\"radio\">` inside a styled `<label>`.\nInside a `<kp-radio-group>`, radios share a `name` and the browser\nenforces single-selection natively (no manual deselection logic).\nIn a `<form>`, FormData picks up the checked radio's value.",
       "examples": [
-        "<kp-radio-group [(value)]=\"selected\">\n  <kp-radio value=\"a\">Option A</kp-radio>\n  <kp-radio value=\"b\">Option B</kp-radio>\n</kp-radio-group>"
+        "<kp-radio-group [(value)]=\"selected\" name=\"plan\">\n  <kp-radio value=\"free\">Free</kp-radio>\n  <kp-radio value=\"pro\">Pro</kp-radio>\n</kp-radio-group>"
       ],
       "inputs": [
         {
@@ -3122,6 +3221,18 @@
           "description": ""
         },
         {
+          "name": "required",
+          "type": "boolean",
+          "default": "false",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string | null",
+          "default": "null",
+          "description": ""
+        },
+        {
           "name": "forceState",
           "type": "KpState | null",
           "default": "null",
@@ -3137,7 +3248,7 @@
           "name": "ariaLabel",
           "type": "string | null",
           "default": "null",
-          "description": "Accessible name for screen readers when no visible label is projected."
+          "description": ""
         }
       ],
       "outputs": [
@@ -3146,7 +3257,7 @@
           "payload": "boolean"
         }
       ],
-      "ariaRole": "radio",
+      "ariaRole": null,
       "sizeRamp": [
         "sm",
         "md",
@@ -3252,7 +3363,7 @@
       "selector": "kp-segmented-control",
       "layer": "components",
       "package": "@kanso-protocol/segmented-control",
-      "description": "Kanso Protocol — SegmentedControl\n\nPill-style switcher. One white \"pill\" lives behind the segments and slides\nhorizontally to the selected segment's position. Segments have transparent\nbackground; they only change text color when selected.",
+      "description": "Kanso Protocol — SegmentedControl\n\nPill-style switcher backed by real native `<input type=\"radio\">` group.\nBrowser handles mutual-exclusion + arrow-key navigation; in a `<form>`\nthe checked radio's value goes into FormData. The visual \"pill\" is a\nseparate absolutely-positioned element that animates to the selected\nsegment.",
       "examples": [
         "<kp-segmented-control\n  [options]=\"[{value:'day',label:'Day'},{value:'week',label:'Week'}]\"\n  [(ngModel)]=\"period\">\n</kp-segmented-control>"
       ],
@@ -3280,6 +3391,12 @@
           "type": "boolean",
           "default": "false",
           "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string | null",
+          "default": "null",
+          "description": "Native radio-group name. Required for FormData when in a `<form>`. Auto-generated if omitted."
         }
       ],
       "outputs": [
@@ -3288,7 +3405,7 @@
           "payload": "string"
         }
       ],
-      "ariaRole": "tablist",
+      "ariaRole": "radiogroup",
       "sizeRamp": [
         "xs",
         "sm",
@@ -3296,12 +3413,7 @@
         "lg",
         "xl"
       ],
-      "keyboardPatterns": [
-        "ArrowRight",
-        "ArrowLeft",
-        "Home",
-        "End"
-      ],
+      "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-segmentedcontrol--docs",
       "sourcePath": "packages/components/segmented-control/src/segmented-control.component.ts",
       "figma": {
@@ -3376,6 +3488,18 @@
           "type": "boolean",
           "default": "false",
           "description": ""
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "default": "false",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string | null",
+          "default": "null",
+          "description": "Native form name. Required for FormData submission inside a `<form>`."
         },
         {
           "name": "forceState",
@@ -3617,6 +3741,78 @@
     },
     {
       "name": "table",
+      "className": "KpTableCellDirective",
+      "selector": "ng-template[kpTableCell]",
+      "layer": "components",
+      "package": "@kanso-protocol/table",
+      "description": "`<ng-template kpTableCell=\"columnId\" let-row let-i=\"index\">` — custom cell renderer per column.",
+      "examples": [],
+      "inputs": [
+        {
+          "name": "columnId",
+          "type": "string",
+          "default": null,
+          "description": ""
+        }
+      ],
+      "outputs": [],
+      "ariaRole": null,
+      "sizeRamp": [],
+      "keyboardPatterns": [],
+      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-table--docs",
+      "sourcePath": "packages/components/table/src/table.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11131",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11131"
+      },
+      "codeConnect": {
+        "npm": "@kanso-protocol/table",
+        "primaryClass": "KpTableComponent",
+        "selector": "kp-table",
+        "import": "import { KpTableComponent } from '@kanso-protocol/table';",
+        "docs": "docs/components/table.md",
+        "storybook": "components-table--docs"
+      }
+    },
+    {
+      "name": "table",
+      "className": "KpTableHeaderDirective",
+      "selector": "ng-template[kpTableHeader]",
+      "layer": "components",
+      "package": "@kanso-protocol/table",
+      "description": "`<ng-template kpTableHeader=\"columnId\">` — custom header renderer per column.",
+      "examples": [],
+      "inputs": [
+        {
+          "name": "columnId",
+          "type": "string",
+          "default": null,
+          "description": ""
+        }
+      ],
+      "outputs": [],
+      "ariaRole": null,
+      "sizeRamp": [],
+      "keyboardPatterns": [],
+      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-table--docs",
+      "sourcePath": "packages/components/table/src/table.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11131",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11131"
+      },
+      "codeConnect": {
+        "npm": "@kanso-protocol/table",
+        "primaryClass": "KpTableComponent",
+        "selector": "kp-table",
+        "import": "import { KpTableComponent } from '@kanso-protocol/table';",
+        "docs": "docs/components/table.md",
+        "storybook": "components-table--docs"
+      }
+    },
+    {
+      "name": "table",
       "className": "KpTableComponent",
       "selector": "kp-table",
       "layer": "components",
@@ -3727,10 +3923,10 @@
     {
       "name": "tabs",
       "className": "KpTabComponent",
-      "selector": "kp-tab",
+      "selector": "button[kpTab]",
       "layer": "components",
       "package": "@kanso-protocol/tabs",
-      "description": "Kanso Protocol — Tab (atom)\n\nSingle tab for use inside `<kp-tabs>`. Projects an optional leading icon\nand an optional trailing badge. The `selected` / `disabled` inputs drive\nthe visual state; hover is handled in CSS and focus via `:focus-visible`\non the underlying button.",
+      "description": "Kanso Protocol — Tab (atom)\n\nAttribute-selector on a real native `<button role=\"tab\">`. Sits inside\na `<kp-tabs role=\"tablist\">`. Native button gives Enter+Space\nactivation, focus-visible, and disabled. Arrow-key navigation between\ntabs is owned by the parent `<kp-tabs>` via roving tabindex.",
       "examples": [
         "<button kpTab label=\"Inbox\" [selected]=\"current === 'inbox'\" (click)=\"current='inbox'\">\n  <svg kpTabIcon .../>\n  <kp-badge kpTabBadge>12</kp-badge>\n</button>"
       ],
@@ -3778,10 +3974,7 @@
         "md",
         "lg"
       ],
-      "keyboardPatterns": [
-        "Enter",
-        "Space"
-      ],
+      "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tabs--docs",
       "sourcePath": "packages/components/tabs/src/tab.component.ts",
       "figma": {
@@ -3915,6 +4108,12 @@
           "type": "KpState | null",
           "default": "null",
           "description": ""
+        },
+        {
+          "name": "ariaLabel",
+          "type": "string | null",
+          "default": "null",
+          "description": "Accessible name for screen readers / axe. Falls back to placeholder."
         }
       ],
       "outputs": [],
@@ -4105,9 +4304,9 @@
       "selector": "kp-toggle",
       "layer": "components",
       "package": "@kanso-protocol/toggle",
-      "description": "Kanso Protocol — Toggle (Switch) Component",
+      "description": "Kanso Protocol — Toggle (Switch)\n\nWraps a real native `<input type=\"checkbox\" role=\"switch\">` inside a\nstyled `<label>`. Form submission, FormData, `<label for>` association,\nSpace-toggle, and HTML5 validation all work natively.",
       "examples": [
-        "<kp-toggle [(on)]=\"isOn\" size=\"md\">Notifications</kp-toggle>"
+        "<kp-toggle [(on)]=\"isOn\" size=\"md\">Notifications</kp-toggle>\n<form><kp-toggle name=\"notif\" value=\"1\" required>Enable</kp-toggle></form>"
       ],
       "inputs": [
         {
@@ -4135,6 +4334,24 @@
           "description": ""
         },
         {
+          "name": "required",
+          "type": "boolean",
+          "default": "false",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string | null",
+          "default": "null",
+          "description": ""
+        },
+        {
+          "name": "value",
+          "type": "string | null",
+          "default": "null",
+          "description": ""
+        },
+        {
           "name": "forceState",
           "type": "KpState | null",
           "default": "null",
@@ -4150,7 +4367,7 @@
           "name": "ariaLabel",
           "type": "string | null",
           "default": "null",
-          "description": "Accessible name for screen readers when no visible label is projected."
+          "description": ""
         }
       ],
       "outputs": [
@@ -4159,7 +4376,7 @@
           "payload": "boolean"
         }
       ],
-      "ariaRole": "switch",
+      "ariaRole": null,
       "sizeRamp": [
         "sm",
         "md",
@@ -4184,50 +4401,61 @@
     },
     {
       "name": "tooltip",
-      "className": "KpTooltipComponent",
-      "selector": "kp-tooltip",
+      "className": "KpTooltipDirective",
+      "selector": "[kpTooltip]",
       "layer": "components",
       "package": "@kanso-protocol/tooltip",
-      "description": "Kanso Protocol — Tooltip\n\nDark, compact hint body with an optional directional arrow. This component\nrenders only the visual chrome — **positioning is the caller's\nresponsibility**. Pair with a directive (hover / focus handling, floating\nUI placement, z-index, portal) to make it interactive.",
+      "description": "Kanso Protocol — Tooltip directive.\n\nAttaches a styled hint to any element. Auto-shows on hover and focus,\nhides on leave / blur / Escape. Positioned against the trigger with\nviewport-edge flipping. Renders into the nearest open `<dialog>` (so it\nsits above modals) or `document.body`.",
       "examples": [
-        "<!-- Bare body (for Storybook / layout playgrounds) -->\n<kp-tooltip label=\"Search\" shortcut=\"⌘K\" arrowPosition=\"bottom\"/>",
-        "<!-- Wired up in a portal above a trigger (pseudocode) -->\n<button #btn>Search</button>\n<kp-tooltip *ngIf=\"open\" [style.top]=\"y + 'px'\" [style.left]=\"x + 'px'\"\n            label=\"Search\" shortcut=\"⌘K\" arrowPosition=\"bottom\"/>"
+        "<button [kpTooltip]=\"'Copy link'\" kpTooltipShortcut=\"⌘C\">Copy</button>",
+        "<!-- Conditionally enabled — null disables -->\n<button [kpTooltip]=\"isCollapsed ? label : null\" kpTooltipPosition=\"right\">…</button>"
       ],
       "inputs": [
         {
-          "name": "size",
+          "name": "text",
+          "type": "string | null",
+          "default": "null",
+          "description": "Tooltip text. `null` or empty string disables the tooltip."
+        },
+        {
+          "name": "kpTooltipPosition",
+          "type": "KpTooltipPosition",
+          "default": "'top'",
+          "description": ""
+        },
+        {
+          "name": "kpTooltipSize",
           "type": "KpTooltipSize",
           "default": "'md'",
           "description": ""
         },
         {
-          "name": "arrowPosition",
-          "type": "KpTooltipArrowPosition",
-          "default": "'none'",
-          "description": ""
-        },
-        {
-          "name": "label",
-          "type": "string",
-          "default": "''",
-          "description": ""
-        },
-        {
-          "name": "shortcut",
+          "name": "kpTooltipShortcut",
           "type": "string | null",
           "default": "null",
           "description": ""
+        },
+        {
+          "name": "kpTooltipDelay",
+          "type": "number",
+          "default": "DEFAULT_SHOW_DELAY",
+          "description": ""
+        },
+        {
+          "name": "kpTooltipDisabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "Hard-disable regardless of text content."
         }
       ],
       "outputs": [],
-      "ariaRole": "tooltip",
-      "sizeRamp": [
-        "sm",
-        "md"
+      "ariaRole": null,
+      "sizeRamp": [],
+      "keyboardPatterns": [
+        "Escape"
       ],
-      "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tooltip--docs",
-      "sourcePath": "packages/components/tooltip/src/tooltip.component.ts",
+      "sourcePath": "packages/components/tooltip/src/tooltip.directive.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11048",
@@ -4341,6 +4569,32 @@
         "import": "import { KpTreeComponent } from '@kanso-protocol/tree';",
         "docs": "docs/components/tree.md",
         "storybook": "components-tree--docs"
+      }
+    },
+    {
+      "name": "virtual-list",
+      "className": "KpVirtualRowDirective",
+      "selector": "[kpVirtualRow]",
+      "layer": "components",
+      "package": "@kanso-protocol/virtual-list",
+      "description": "Marker directive — pairs the row template with `<kp-virtual-list>`.",
+      "examples": [
+        "<kp-virtual-list ...>\n  <ng-template kpVirtualRow let-item let-i=\"index\">\n    <div>row {{ i }}: {{ item.name }}</div>\n  </ng-template>\n</kp-virtual-list>"
+      ],
+      "inputs": [],
+      "outputs": [],
+      "ariaRole": null,
+      "sizeRamp": [],
+      "keyboardPatterns": [],
+      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-virtuallist--docs",
+      "sourcePath": "packages/components/virtual-list/src/virtual-list.component.ts",
+      "codeConnect": {
+        "npm": "@kanso-protocol/virtual-list",
+        "primaryClass": "KpVirtualListComponent",
+        "selector": "kp-virtual-list",
+        "import": "import { KpVirtualListComponent } from '@kanso-protocol/virtual-list';",
+        "docs": "docs/components/virtual-list.md",
+        "storybook": "components-virtuallist--docs"
       }
     },
     {
@@ -6286,6 +6540,12 @@
       "subPath": "foreground-on-saturated"
     },
     {
+      "name": "--kp-color-foreground-on-dark-accent-primary",
+      "value": "#60a5fa",
+      "category": "color",
+      "subPath": "foreground-on-dark-accent-primary"
+    },
+    {
       "name": "--kp-color-gray-50",
       "value": "#fafafa",
       "category": "color",
@@ -6682,1070 +6942,32 @@
       "subPath": "cyan-950"
     },
     {
-      "name": "--kp-color-primary-subtle-border-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "primary-subtle-border-rest"
-    },
-    {
-      "name": "--kp-color-primary-subtle-border-hover",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "primary-subtle-border-hover"
-    },
-    {
-      "name": "--kp-color-primary-subtle-border-active",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "primary-subtle-border-active"
-    },
-    {
-      "name": "--kp-color-primary-subtle-border-disabled",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "primary-subtle-border-disabled"
-    },
-    {
-      "name": "--kp-color-primary-subtle-border-loading",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "primary-subtle-border-loading"
-    },
-    {
-      "name": "--kp-color-primary-outline-bg-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "primary-outline-bg-rest"
-    },
-    {
-      "name": "--kp-color-primary-outline-bg-focus",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "primary-outline-bg-focus"
-    },
-    {
-      "name": "--kp-color-primary-outline-bg-disabled",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "primary-outline-bg-disabled"
-    },
-    {
-      "name": "--kp-color-primary-outline-bg-loading",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "primary-outline-bg-loading"
-    },
-    {
-      "name": "--kp-color-primary-ghost-bg-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "primary-ghost-bg-rest"
-    },
-    {
-      "name": "--kp-color-primary-ghost-bg-focus",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "primary-ghost-bg-focus"
-    },
-    {
-      "name": "--kp-color-primary-ghost-bg-disabled",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "primary-ghost-bg-disabled"
-    },
-    {
-      "name": "--kp-color-primary-ghost-bg-loading",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "primary-ghost-bg-loading"
-    },
-    {
-      "name": "--kp-color-primary-ghost-border-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "primary-ghost-border-rest"
-    },
-    {
-      "name": "--kp-color-primary-ghost-border-hover",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "primary-ghost-border-hover"
-    },
-    {
-      "name": "--kp-color-primary-ghost-border-active",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "primary-ghost-border-active"
-    },
-    {
-      "name": "--kp-color-primary-ghost-border-disabled",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "primary-ghost-border-disabled"
-    },
-    {
-      "name": "--kp-color-primary-ghost-border-loading",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "primary-ghost-border-loading"
-    },
-    {
-      "name": "--kp-color-danger-subtle-border-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "danger-subtle-border-rest"
-    },
-    {
-      "name": "--kp-color-danger-subtle-border-hover",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "danger-subtle-border-hover"
-    },
-    {
-      "name": "--kp-color-danger-subtle-border-active",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "danger-subtle-border-active"
-    },
-    {
-      "name": "--kp-color-danger-subtle-border-disabled",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "danger-subtle-border-disabled"
-    },
-    {
-      "name": "--kp-color-danger-subtle-border-loading",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "danger-subtle-border-loading"
-    },
-    {
-      "name": "--kp-color-danger-outline-bg-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "danger-outline-bg-rest"
-    },
-    {
-      "name": "--kp-color-danger-outline-bg-focus",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "danger-outline-bg-focus"
-    },
-    {
-      "name": "--kp-color-danger-outline-bg-disabled",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "danger-outline-bg-disabled"
-    },
-    {
-      "name": "--kp-color-danger-outline-bg-loading",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "danger-outline-bg-loading"
-    },
-    {
-      "name": "--kp-color-danger-ghost-bg-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "danger-ghost-bg-rest"
-    },
-    {
-      "name": "--kp-color-danger-ghost-bg-focus",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "danger-ghost-bg-focus"
-    },
-    {
-      "name": "--kp-color-danger-ghost-bg-disabled",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "danger-ghost-bg-disabled"
-    },
-    {
-      "name": "--kp-color-danger-ghost-bg-loading",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "danger-ghost-bg-loading"
-    },
-    {
-      "name": "--kp-color-danger-ghost-border-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "danger-ghost-border-rest"
-    },
-    {
-      "name": "--kp-color-danger-ghost-border-hover",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "danger-ghost-border-hover"
-    },
-    {
-      "name": "--kp-color-danger-ghost-border-active",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "danger-ghost-border-active"
-    },
-    {
-      "name": "--kp-color-danger-ghost-border-disabled",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "danger-ghost-border-disabled"
-    },
-    {
-      "name": "--kp-color-danger-ghost-border-loading",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "danger-ghost-border-loading"
-    },
-    {
-      "name": "--kp-color-neutral-subtle-border-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "neutral-subtle-border-rest"
-    },
-    {
-      "name": "--kp-color-neutral-subtle-border-hover",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "neutral-subtle-border-hover"
-    },
-    {
-      "name": "--kp-color-neutral-subtle-border-active",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "neutral-subtle-border-active"
-    },
-    {
-      "name": "--kp-color-neutral-subtle-border-disabled",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "neutral-subtle-border-disabled"
-    },
-    {
-      "name": "--kp-color-neutral-subtle-border-loading",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "neutral-subtle-border-loading"
-    },
-    {
-      "name": "--kp-color-neutral-outline-bg-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "neutral-outline-bg-rest"
-    },
-    {
-      "name": "--kp-color-neutral-outline-bg-focus",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "neutral-outline-bg-focus"
-    },
-    {
-      "name": "--kp-color-neutral-outline-bg-disabled",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "neutral-outline-bg-disabled"
-    },
-    {
-      "name": "--kp-color-neutral-outline-bg-loading",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "neutral-outline-bg-loading"
-    },
-    {
-      "name": "--kp-color-neutral-ghost-bg-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "neutral-ghost-bg-rest"
-    },
-    {
-      "name": "--kp-color-neutral-ghost-bg-focus",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "neutral-ghost-bg-focus"
-    },
-    {
-      "name": "--kp-color-neutral-ghost-bg-disabled",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "neutral-ghost-bg-disabled"
-    },
-    {
-      "name": "--kp-color-neutral-ghost-bg-loading",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "neutral-ghost-bg-loading"
-    },
-    {
-      "name": "--kp-color-neutral-ghost-border-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "neutral-ghost-border-rest"
-    },
-    {
-      "name": "--kp-color-neutral-ghost-border-hover",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "neutral-ghost-border-hover"
-    },
-    {
-      "name": "--kp-color-neutral-ghost-border-active",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "neutral-ghost-border-active"
-    },
-    {
-      "name": "--kp-color-neutral-ghost-border-disabled",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "neutral-ghost-border-disabled"
-    },
-    {
-      "name": "--kp-color-neutral-ghost-border-loading",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "neutral-ghost-border-loading"
-    },
-    {
-      "name": "--kp-color-segmented-segment-bg-unselected-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "segmented-segment-bg-unselected-rest"
-    },
-    {
-      "name": "--kp-color-segmented-segment-bg-disabled",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "segmented-segment-bg-disabled"
-    },
-    {
-      "name": "--kp-color-badge-primary-subtle-border",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-primary-subtle-border"
-    },
-    {
-      "name": "--kp-color-badge-primary-outline-bg",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-primary-outline-bg"
-    },
-    {
-      "name": "--kp-color-badge-primary-dot-bg",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-primary-dot-bg"
-    },
-    {
-      "name": "--kp-color-badge-primary-dot-border",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-primary-dot-border"
-    },
-    {
-      "name": "--kp-color-badge-danger-subtle-border",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-danger-subtle-border"
-    },
-    {
-      "name": "--kp-color-badge-danger-outline-bg",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-danger-outline-bg"
-    },
-    {
-      "name": "--kp-color-badge-danger-dot-bg",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-danger-dot-bg"
-    },
-    {
-      "name": "--kp-color-badge-danger-dot-border",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-danger-dot-border"
-    },
-    {
-      "name": "--kp-color-badge-success-subtle-border",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-success-subtle-border"
-    },
-    {
-      "name": "--kp-color-badge-success-outline-bg",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-success-outline-bg"
-    },
-    {
-      "name": "--kp-color-badge-success-dot-bg",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-success-dot-bg"
-    },
-    {
-      "name": "--kp-color-badge-success-dot-border",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-success-dot-border"
-    },
-    {
-      "name": "--kp-color-badge-warning-subtle-border",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-warning-subtle-border"
-    },
-    {
-      "name": "--kp-color-badge-warning-outline-bg",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-warning-outline-bg"
-    },
-    {
-      "name": "--kp-color-badge-warning-dot-bg",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-warning-dot-bg"
-    },
-    {
-      "name": "--kp-color-badge-warning-dot-border",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-warning-dot-border"
-    },
-    {
-      "name": "--kp-color-badge-info-subtle-border",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-info-subtle-border"
-    },
-    {
-      "name": "--kp-color-badge-info-outline-bg",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-info-outline-bg"
-    },
-    {
-      "name": "--kp-color-badge-info-dot-bg",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-info-dot-bg"
-    },
-    {
-      "name": "--kp-color-badge-info-dot-border",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-info-dot-border"
-    },
-    {
-      "name": "--kp-color-badge-neutral-subtle-border",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-neutral-subtle-border"
-    },
-    {
-      "name": "--kp-color-badge-neutral-outline-bg",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-neutral-outline-bg"
-    },
-    {
-      "name": "--kp-color-badge-neutral-dot-bg",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-neutral-dot-bg"
-    },
-    {
-      "name": "--kp-color-badge-neutral-dot-border",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "badge-neutral-dot-border"
-    },
-    {
-      "name": "--kp-color-tabs-tab-underline-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "tabs-tab-underline-rest"
-    },
-    {
-      "name": "--kp-color-tabs-tab-underline-disabled",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "tabs-tab-underline-disabled"
-    },
-    {
-      "name": "--kp-color-nav-item-bg-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "nav-item-bg-rest"
-    },
-    {
-      "name": "--kp-color-pagination-item-bg-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "pagination-item-bg-rest"
-    },
-    {
-      "name": "--kp-color-pagination-item-bg-disabled",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "pagination-item-bg-disabled"
-    },
-    {
-      "name": "--kp-color-datepicker-day-bg-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "datepicker-day-bg-rest"
-    },
-    {
-      "name": "--kp-color-datepicker-day-bg-today",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "datepicker-day-bg-today"
-    },
-    {
-      "name": "--kp-color-tree-node-bg-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "tree-node-bg-rest"
-    },
-    {
-      "name": "--kp-color-accordion-trigger-bg-rest",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "accordion-trigger-bg-rest"
-    },
-    {
-      "name": "--kp-color-accordion-trigger-bg-expanded",
-      "value": "rgba(0, 0, 0, 0)",
-      "category": "color",
-      "subPath": "accordion-trigger-bg-expanded"
-    },
-    {
-      "name": "--kp-color-dialog-backdrop",
-      "value": "rgba(0, 0, 0, 0.5)",
-      "category": "color",
-      "subPath": "dialog-backdrop"
-    },
-    {
-      "name": "--kp-color-overlay-hover-subtle",
-      "value": "rgba(0, 0, 0, 0.04)",
-      "category": "color",
-      "subPath": "overlay-hover-subtle"
-    },
-    {
-      "name": "--kp-color-overlay-hover-light",
-      "value": "rgba(0, 0, 0, 0.06)",
-      "category": "color",
-      "subPath": "overlay-hover-light"
-    },
-    {
-      "name": "--kp-color-overlay-hover-medium",
-      "value": "rgba(0, 0, 0, 0.08)",
-      "category": "color",
-      "subPath": "overlay-hover-medium"
-    },
-    {
-      "name": "--kp-color-overlay-primary-hover",
-      "value": "rgba(37, 99, 235, 0.08)",
-      "category": "color",
-      "subPath": "overlay-primary-hover"
-    },
-    {
-      "name": "--kp-color-overlay-focus-ring",
-      "value": "rgba(59, 130, 246, 0.12)",
-      "category": "color",
-      "subPath": "overlay-focus-ring"
-    },
-    {
-      "name": "--kp-color-fg-on-dark-strong",
-      "value": "rgba(255, 255, 255, 0.92)",
-      "category": "color",
-      "subPath": "fg-on-dark-strong"
-    },
-    {
-      "name": "--kp-color-fg-on-dark-default",
-      "value": "rgba(255, 255, 255, 0.8)",
-      "category": "color",
-      "subPath": "fg-on-dark-default"
-    },
-    {
-      "name": "--kp-color-fg-on-dark-muted",
-      "value": "rgba(255, 255, 255, 0.7)",
-      "category": "color",
-      "subPath": "fg-on-dark-muted"
-    },
-    {
-      "name": "--kp-color-fg-on-dark-subtle",
-      "value": "rgba(255, 255, 255, 0.6)",
-      "category": "color",
-      "subPath": "fg-on-dark-subtle"
-    },
-    {
-      "name": "--kp-elevation-none",
-      "value": "0px 0px 0px 0px rgba(0,0,0,0)",
-      "category": "elevation",
-      "subPath": "none"
-    },
-    {
-      "name": "--kp-elevation-raised",
-      "value": "0px 1px 2px 0px rgba(9,9,11,0.08), 0px 1px 3px -1px rgba(9,9,11,0.05), 0px 0px 4px -1px rgba(9,9,11,0.03)",
-      "category": "elevation",
-      "subPath": "raised"
-    },
-    {
-      "name": "--kp-elevation-overlay",
-      "value": "0px 4px 6px -2px rgba(9,9,11,0.10), 0px 2px 10px -2px rgba(9,9,11,0.06), 0px 0px 16px -4px rgba(9,9,11,0.04)",
-      "category": "elevation",
-      "subPath": "overlay"
-    },
-    {
-      "name": "--kp-elevation-floating",
-      "value": "0px 8px 16px -4px rgba(9,9,11,0.12), 0px 4px 24px -4px rgba(9,9,11,0.08), 0px 0px 40px -8px rgba(9,9,11,0.05)",
-      "category": "elevation",
-      "subPath": "floating"
-    },
-    {
-      "name": "--kp-icon-size-xs",
-      "value": "14px",
-      "category": "icon",
-      "subPath": "size-xs"
-    },
-    {
-      "name": "--kp-icon-size-sm",
-      "value": "16px",
-      "category": "icon",
-      "subPath": "size-sm"
-    },
-    {
-      "name": "--kp-icon-size-md",
-      "value": "18px",
-      "category": "icon",
-      "subPath": "size-md"
-    },
-    {
-      "name": "--kp-icon-size-lg",
-      "value": "22px",
-      "category": "icon",
-      "subPath": "size-lg"
-    },
-    {
-      "name": "--kp-icon-size-xl",
-      "value": "24px",
-      "category": "icon",
-      "subPath": "size-xl"
-    },
-    {
-      "name": "--kp-icon-stroke-xs",
-      "value": "1.25px",
-      "category": "icon",
-      "subPath": "stroke-xs"
-    },
-    {
-      "name": "--kp-icon-stroke-sm",
-      "value": "1.35px",
-      "category": "icon",
-      "subPath": "stroke-sm"
-    },
-    {
-      "name": "--kp-icon-stroke-md",
-      "value": "1.5px",
-      "category": "icon",
-      "subPath": "stroke-md"
-    },
-    {
-      "name": "--kp-icon-stroke-lg",
-      "value": "1.75px",
-      "category": "icon",
-      "subPath": "stroke-lg"
-    },
-    {
-      "name": "--kp-icon-stroke-xl",
-      "value": "2px",
-      "category": "icon",
-      "subPath": "stroke-xl"
-    },
-    {
-      "name": "--kp-motion-duration-fast",
-      "value": "120ms",
-      "category": "motion",
-      "subPath": "duration-fast"
-    },
-    {
-      "name": "--kp-motion-duration-normal",
-      "value": "200ms",
-      "category": "motion",
-      "subPath": "duration-normal"
-    },
-    {
-      "name": "--kp-motion-duration-slow",
-      "value": "300ms",
-      "category": "motion",
-      "subPath": "duration-slow"
-    },
-    {
-      "name": "--kp-motion-duration-spin",
-      "value": "1000ms",
-      "category": "motion",
-      "subPath": "duration-spin"
-    },
-    {
-      "name": "--kp-motion-duration-shimmer",
-      "value": "1400ms",
-      "category": "motion",
-      "subPath": "duration-shimmer"
-    },
-    {
-      "name": "--kp-motion-ease-in",
-      "value": "cubic-bezier(0.4, 0, 1, 1)",
-      "category": "motion",
-      "subPath": "ease-in"
-    },
-    {
-      "name": "--kp-motion-ease-out",
-      "value": "cubic-bezier(0, 0, 0.2, 1)",
-      "category": "motion",
-      "subPath": "ease-out"
-    },
-    {
-      "name": "--kp-motion-ease-in-out",
-      "value": "cubic-bezier(0.4, 0, 0.2, 1)",
-      "category": "motion",
-      "subPath": "ease-in-out"
-    },
-    {
-      "name": "--kp-radius-none",
-      "value": "0px",
-      "category": "radius",
-      "subPath": "none"
-    },
-    {
-      "name": "--kp-radius-comp-xs",
-      "value": "8px",
-      "category": "radius",
-      "subPath": "comp-xs"
-    },
-    {
-      "name": "--kp-radius-comp-sm",
-      "value": "10px",
-      "category": "radius",
-      "subPath": "comp-sm"
-    },
-    {
-      "name": "--kp-radius-comp-md",
-      "value": "12px",
-      "category": "radius",
-      "subPath": "comp-md"
-    },
-    {
-      "name": "--kp-radius-comp-lg",
-      "value": "14px",
-      "category": "radius",
-      "subPath": "comp-lg"
-    },
-    {
-      "name": "--kp-radius-comp-xl",
-      "value": "16px",
-      "category": "radius",
-      "subPath": "comp-xl"
-    },
-    {
-      "name": "--kp-radius-full",
-      "value": "9999px",
-      "category": "radius",
-      "subPath": "full"
-    },
-    {
-      "name": "--kp-size-xs",
-      "value": "24px",
-      "category": "size",
-      "subPath": "xs"
-    },
-    {
-      "name": "--kp-size-sm",
-      "value": "28px",
-      "category": "size",
-      "subPath": "sm"
-    },
-    {
-      "name": "--kp-size-md",
-      "value": "36px",
-      "category": "size",
-      "subPath": "md"
-    },
-    {
-      "name": "--kp-size-lg",
-      "value": "44px",
-      "category": "size",
-      "subPath": "lg"
-    },
-    {
-      "name": "--kp-size-xl",
-      "value": "52px",
-      "category": "size",
-      "subPath": "xl"
-    },
-    {
-      "name": "--kp-spacing-4xs",
-      "value": "2px",
-      "category": "spacing",
-      "subPath": "4xs"
-    },
-    {
-      "name": "--kp-spacing-3xs",
-      "value": "4px",
-      "category": "spacing",
-      "subPath": "3xs"
-    },
-    {
-      "name": "--kp-spacing-2xs",
-      "value": "8px",
-      "category": "spacing",
-      "subPath": "2xs"
-    },
-    {
-      "name": "--kp-spacing-xs",
-      "value": "12px",
-      "category": "spacing",
-      "subPath": "xs"
-    },
-    {
-      "name": "--kp-spacing-sm",
-      "value": "16px",
-      "category": "spacing",
-      "subPath": "sm"
-    },
-    {
-      "name": "--kp-spacing-md",
-      "value": "20px",
-      "category": "spacing",
-      "subPath": "md"
-    },
-    {
-      "name": "--kp-spacing-lg",
-      "value": "24px",
-      "category": "spacing",
-      "subPath": "lg"
-    },
-    {
-      "name": "--kp-spacing-xl",
-      "value": "32px",
-      "category": "spacing",
-      "subPath": "xl"
-    },
-    {
-      "name": "--kp-spacing-2xl",
-      "value": "40px",
-      "category": "spacing",
-      "subPath": "2xl"
-    },
-    {
-      "name": "--kp-spacing-3xl",
-      "value": "48px",
-      "category": "spacing",
-      "subPath": "3xl"
-    },
-    {
-      "name": "--kp-spacing-4xl",
-      "value": "64px",
-      "category": "spacing",
-      "subPath": "4xl"
-    },
-    {
-      "name": "--kp-font-family-sans",
-      "value": "Onest, system-ui, sans-serif",
-      "category": "font",
-      "subPath": "family-sans"
-    },
-    {
-      "name": "--kp-font-family-mono",
-      "value": "'SF Mono', Monaco, Consolas, monospace",
-      "category": "font",
-      "subPath": "family-mono"
-    },
-    {
-      "name": "--kp-font-weight-regular",
-      "value": "400",
-      "category": "font",
-      "subPath": "weight-regular"
-    },
-    {
-      "name": "--kp-font-weight-medium",
-      "value": "500",
-      "category": "font",
-      "subPath": "weight-medium"
-    },
-    {
-      "name": "--kp-font-weight-semibold",
-      "value": "600",
-      "category": "font",
-      "subPath": "weight-semibold"
-    },
-    {
-      "name": "--kp-font-weight-bold",
-      "value": "700",
-      "category": "font",
-      "subPath": "weight-bold"
-    },
-    {
-      "name": "--kp-font-size-2xs",
-      "value": "11px",
-      "category": "font",
-      "subPath": "size-2xs"
-    },
-    {
-      "name": "--kp-font-size-xs",
-      "value": "12px",
-      "category": "font",
-      "subPath": "size-xs"
-    },
-    {
-      "name": "--kp-font-size-sm",
-      "value": "14px",
-      "category": "font",
-      "subPath": "size-sm"
-    },
-    {
-      "name": "--kp-font-size-md",
-      "value": "16px",
-      "category": "font",
-      "subPath": "size-md"
-    },
-    {
-      "name": "--kp-font-size-lg",
-      "value": "20px",
-      "category": "font",
-      "subPath": "size-lg"
-    },
-    {
-      "name": "--kp-font-size-xl",
-      "value": "24px",
-      "category": "font",
-      "subPath": "size-xl"
-    },
-    {
-      "name": "--kp-font-size-2xl",
-      "value": "32px",
-      "category": "font",
-      "subPath": "size-2xl"
-    },
-    {
-      "name": "--kp-font-line-height-2xs",
-      "value": "16px",
-      "category": "font",
-      "subPath": "line-height-2xs"
-    },
-    {
-      "name": "--kp-font-line-height-xs",
-      "value": "16px",
-      "category": "font",
-      "subPath": "line-height-xs"
-    },
-    {
-      "name": "--kp-font-line-height-sm",
-      "value": "20px",
-      "category": "font",
-      "subPath": "line-height-sm"
-    },
-    {
-      "name": "--kp-font-line-height-md",
-      "value": "24px",
-      "category": "font",
-      "subPath": "line-height-md"
-    },
-    {
-      "name": "--kp-font-line-height-lg",
-      "value": "28px",
-      "category": "font",
-      "subPath": "line-height-lg"
-    },
-    {
-      "name": "--kp-font-line-height-xl",
-      "value": "32px",
-      "category": "font",
-      "subPath": "line-height-xl"
-    },
-    {
-      "name": "--kp-font-line-height-2xl",
-      "value": "40px",
-      "category": "font",
-      "subPath": "line-height-2xl"
-    },
-    {
-      "name": "--kp-layout-container-max-width-narrow",
-      "value": "640px",
-      "category": "layout",
-      "subPath": "container-max-width-narrow"
-    },
-    {
-      "name": "--kp-layout-container-max-width-medium",
-      "value": "960px",
-      "category": "layout",
-      "subPath": "container-max-width-medium"
-    },
-    {
-      "name": "--kp-layout-container-max-width-wide",
-      "value": "1280px",
-      "category": "layout",
-      "subPath": "container-max-width-wide"
-    },
-    {
-      "name": "--kp-layout-container-max-width-full",
-      "value": "100%",
-      "category": "layout",
-      "subPath": "container-max-width-full"
-    },
-    {
-      "name": "--kp-layout-container-padding-none",
-      "value": "0",
-      "category": "layout",
-      "subPath": "container-padding-none"
-    },
-    {
-      "name": "--kp-layout-container-padding-sm",
-      "value": "16px",
-      "category": "layout",
-      "subPath": "container-padding-sm"
-    },
-    {
-      "name": "--kp-layout-container-padding-md",
-      "value": "24px",
-      "category": "layout",
-      "subPath": "container-padding-md"
-    },
-    {
-      "name": "--kp-layout-container-padding-lg",
-      "value": "32px",
-      "category": "layout",
-      "subPath": "container-padding-lg"
-    },
-    {
       "name": "--kp-color-accent-primary-fg",
-      "value": "var(--kp-color-blue-600)",
+      "value": "var(--kp-color-blue-700)",
       "category": "color",
       "subPath": "accent-primary-fg"
     },
     {
       "name": "--kp-color-accent-danger-fg",
-      "value": "var(--kp-color-red-600)",
+      "value": "var(--kp-color-red-700)",
       "category": "color",
       "subPath": "accent-danger-fg"
     },
     {
       "name": "--kp-color-accent-success-fg",
-      "value": "var(--kp-color-green-600)",
+      "value": "var(--kp-color-green-700)",
       "category": "color",
       "subPath": "accent-success-fg"
     },
     {
       "name": "--kp-color-accent-warning-fg",
-      "value": "var(--kp-color-amber-600)",
+      "value": "var(--kp-color-amber-700)",
       "category": "color",
       "subPath": "accent-warning-fg"
     },
     {
       "name": "--kp-color-accent-info-fg",
-      "value": "var(--kp-color-cyan-600)",
+      "value": "var(--kp-color-cyan-700)",
       "category": "color",
       "subPath": "accent-info-fg"
     },
@@ -7930,10 +7152,46 @@
       "subPath": "primary-subtle-fg-loading"
     },
     {
+      "name": "--kp-color-primary-subtle-border-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "primary-subtle-border-rest"
+    },
+    {
+      "name": "--kp-color-primary-subtle-border-hover",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "primary-subtle-border-hover"
+    },
+    {
+      "name": "--kp-color-primary-subtle-border-active",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "primary-subtle-border-active"
+    },
+    {
       "name": "--kp-color-primary-subtle-border-focus",
       "value": "var(--kp-color-blue-600)",
       "category": "color",
       "subPath": "primary-subtle-border-focus"
+    },
+    {
+      "name": "--kp-color-primary-subtle-border-disabled",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "primary-subtle-border-disabled"
+    },
+    {
+      "name": "--kp-color-primary-subtle-border-loading",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "primary-subtle-border-loading"
+    },
+    {
+      "name": "--kp-color-primary-outline-bg-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "primary-outline-bg-rest"
     },
     {
       "name": "--kp-color-primary-outline-bg-hover",
@@ -7946,6 +7204,24 @@
       "value": "var(--kp-color-blue-100)",
       "category": "color",
       "subPath": "primary-outline-bg-active"
+    },
+    {
+      "name": "--kp-color-primary-outline-bg-focus",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "primary-outline-bg-focus"
+    },
+    {
+      "name": "--kp-color-primary-outline-bg-disabled",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "primary-outline-bg-disabled"
+    },
+    {
+      "name": "--kp-color-primary-outline-bg-loading",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "primary-outline-bg-loading"
     },
     {
       "name": "--kp-color-primary-outline-fg-rest",
@@ -8020,6 +7296,12 @@
       "subPath": "primary-outline-border-loading"
     },
     {
+      "name": "--kp-color-primary-ghost-bg-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "primary-ghost-bg-rest"
+    },
+    {
       "name": "--kp-color-primary-ghost-bg-hover",
       "value": "var(--kp-color-blue-50)",
       "category": "color",
@@ -8030,6 +7312,24 @@
       "value": "var(--kp-color-blue-100)",
       "category": "color",
       "subPath": "primary-ghost-bg-active"
+    },
+    {
+      "name": "--kp-color-primary-ghost-bg-focus",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "primary-ghost-bg-focus"
+    },
+    {
+      "name": "--kp-color-primary-ghost-bg-disabled",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "primary-ghost-bg-disabled"
+    },
+    {
+      "name": "--kp-color-primary-ghost-bg-loading",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "primary-ghost-bg-loading"
     },
     {
       "name": "--kp-color-primary-ghost-fg-rest",
@@ -8068,10 +7368,40 @@
       "subPath": "primary-ghost-fg-loading"
     },
     {
+      "name": "--kp-color-primary-ghost-border-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "primary-ghost-border-rest"
+    },
+    {
+      "name": "--kp-color-primary-ghost-border-hover",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "primary-ghost-border-hover"
+    },
+    {
+      "name": "--kp-color-primary-ghost-border-active",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "primary-ghost-border-active"
+    },
+    {
       "name": "--kp-color-primary-ghost-border-focus",
       "value": "var(--kp-color-blue-600)",
       "category": "color",
       "subPath": "primary-ghost-border-focus"
+    },
+    {
+      "name": "--kp-color-primary-ghost-border-disabled",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "primary-ghost-border-disabled"
+    },
+    {
+      "name": "--kp-color-primary-ghost-border-loading",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "primary-ghost-border-loading"
     },
     {
       "name": "--kp-color-danger-default-bg-rest",
@@ -8254,10 +7584,46 @@
       "subPath": "danger-subtle-fg-loading"
     },
     {
+      "name": "--kp-color-danger-subtle-border-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "danger-subtle-border-rest"
+    },
+    {
+      "name": "--kp-color-danger-subtle-border-hover",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "danger-subtle-border-hover"
+    },
+    {
+      "name": "--kp-color-danger-subtle-border-active",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "danger-subtle-border-active"
+    },
+    {
       "name": "--kp-color-danger-subtle-border-focus",
       "value": "var(--kp-color-red-600)",
       "category": "color",
       "subPath": "danger-subtle-border-focus"
+    },
+    {
+      "name": "--kp-color-danger-subtle-border-disabled",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "danger-subtle-border-disabled"
+    },
+    {
+      "name": "--kp-color-danger-subtle-border-loading",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "danger-subtle-border-loading"
+    },
+    {
+      "name": "--kp-color-danger-outline-bg-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "danger-outline-bg-rest"
     },
     {
       "name": "--kp-color-danger-outline-bg-hover",
@@ -8270,6 +7636,24 @@
       "value": "var(--kp-color-red-100)",
       "category": "color",
       "subPath": "danger-outline-bg-active"
+    },
+    {
+      "name": "--kp-color-danger-outline-bg-focus",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "danger-outline-bg-focus"
+    },
+    {
+      "name": "--kp-color-danger-outline-bg-disabled",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "danger-outline-bg-disabled"
+    },
+    {
+      "name": "--kp-color-danger-outline-bg-loading",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "danger-outline-bg-loading"
     },
     {
       "name": "--kp-color-danger-outline-fg-rest",
@@ -8344,6 +7728,12 @@
       "subPath": "danger-outline-border-loading"
     },
     {
+      "name": "--kp-color-danger-ghost-bg-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "danger-ghost-bg-rest"
+    },
+    {
       "name": "--kp-color-danger-ghost-bg-hover",
       "value": "var(--kp-color-red-50)",
       "category": "color",
@@ -8354,6 +7744,24 @@
       "value": "var(--kp-color-red-100)",
       "category": "color",
       "subPath": "danger-ghost-bg-active"
+    },
+    {
+      "name": "--kp-color-danger-ghost-bg-focus",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "danger-ghost-bg-focus"
+    },
+    {
+      "name": "--kp-color-danger-ghost-bg-disabled",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "danger-ghost-bg-disabled"
+    },
+    {
+      "name": "--kp-color-danger-ghost-bg-loading",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "danger-ghost-bg-loading"
     },
     {
       "name": "--kp-color-danger-ghost-fg-rest",
@@ -8392,10 +7800,40 @@
       "subPath": "danger-ghost-fg-loading"
     },
     {
+      "name": "--kp-color-danger-ghost-border-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "danger-ghost-border-rest"
+    },
+    {
+      "name": "--kp-color-danger-ghost-border-hover",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "danger-ghost-border-hover"
+    },
+    {
+      "name": "--kp-color-danger-ghost-border-active",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "danger-ghost-border-active"
+    },
+    {
       "name": "--kp-color-danger-ghost-border-focus",
       "value": "var(--kp-color-red-600)",
       "category": "color",
       "subPath": "danger-ghost-border-focus"
+    },
+    {
+      "name": "--kp-color-danger-ghost-border-disabled",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "danger-ghost-border-disabled"
+    },
+    {
+      "name": "--kp-color-danger-ghost-border-loading",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "danger-ghost-border-loading"
     },
     {
       "name": "--kp-color-neutral-default-bg-rest",
@@ -8578,10 +8016,46 @@
       "subPath": "neutral-subtle-fg-loading"
     },
     {
+      "name": "--kp-color-neutral-subtle-border-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "neutral-subtle-border-rest"
+    },
+    {
+      "name": "--kp-color-neutral-subtle-border-hover",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "neutral-subtle-border-hover"
+    },
+    {
+      "name": "--kp-color-neutral-subtle-border-active",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "neutral-subtle-border-active"
+    },
+    {
       "name": "--kp-color-neutral-subtle-border-focus",
       "value": "var(--kp-color-gray-600)",
       "category": "color",
       "subPath": "neutral-subtle-border-focus"
+    },
+    {
+      "name": "--kp-color-neutral-subtle-border-disabled",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "neutral-subtle-border-disabled"
+    },
+    {
+      "name": "--kp-color-neutral-subtle-border-loading",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "neutral-subtle-border-loading"
+    },
+    {
+      "name": "--kp-color-neutral-outline-bg-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "neutral-outline-bg-rest"
     },
     {
       "name": "--kp-color-neutral-outline-bg-hover",
@@ -8594,6 +8068,24 @@
       "value": "var(--kp-color-gray-100)",
       "category": "color",
       "subPath": "neutral-outline-bg-active"
+    },
+    {
+      "name": "--kp-color-neutral-outline-bg-focus",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "neutral-outline-bg-focus"
+    },
+    {
+      "name": "--kp-color-neutral-outline-bg-disabled",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "neutral-outline-bg-disabled"
+    },
+    {
+      "name": "--kp-color-neutral-outline-bg-loading",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "neutral-outline-bg-loading"
     },
     {
       "name": "--kp-color-neutral-outline-fg-rest",
@@ -8668,6 +8160,12 @@
       "subPath": "neutral-outline-border-loading"
     },
     {
+      "name": "--kp-color-neutral-ghost-bg-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "neutral-ghost-bg-rest"
+    },
+    {
       "name": "--kp-color-neutral-ghost-bg-hover",
       "value": "var(--kp-color-gray-100)",
       "category": "color",
@@ -8678,6 +8176,24 @@
       "value": "var(--kp-color-gray-200)",
       "category": "color",
       "subPath": "neutral-ghost-bg-active"
+    },
+    {
+      "name": "--kp-color-neutral-ghost-bg-focus",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "neutral-ghost-bg-focus"
+    },
+    {
+      "name": "--kp-color-neutral-ghost-bg-disabled",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "neutral-ghost-bg-disabled"
+    },
+    {
+      "name": "--kp-color-neutral-ghost-bg-loading",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "neutral-ghost-bg-loading"
     },
     {
       "name": "--kp-color-neutral-ghost-fg-rest",
@@ -8716,16 +8232,142 @@
       "subPath": "neutral-ghost-fg-loading"
     },
     {
+      "name": "--kp-color-neutral-ghost-border-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "neutral-ghost-border-rest"
+    },
+    {
+      "name": "--kp-color-neutral-ghost-border-hover",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "neutral-ghost-border-hover"
+    },
+    {
+      "name": "--kp-color-neutral-ghost-border-active",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "neutral-ghost-border-active"
+    },
+    {
       "name": "--kp-color-neutral-ghost-border-focus",
       "value": "var(--kp-color-gray-600)",
       "category": "color",
       "subPath": "neutral-ghost-border-focus"
     },
     {
+      "name": "--kp-color-neutral-ghost-border-disabled",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "neutral-ghost-border-disabled"
+    },
+    {
+      "name": "--kp-color-neutral-ghost-border-loading",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "neutral-ghost-border-loading"
+    },
+    {
       "name": "--kp-color-focus-ring",
       "value": "var(--kp-color-blue-400)",
       "category": "color",
       "subPath": "focus-ring"
+    },
+    {
+      "name": "--kp-color-text-strong",
+      "value": "var(--kp-color-gray-900)",
+      "category": "color",
+      "subPath": "text-strong"
+    },
+    {
+      "name": "--kp-color-text-default",
+      "value": "var(--kp-color-gray-700)",
+      "category": "color",
+      "subPath": "text-default"
+    },
+    {
+      "name": "--kp-color-text-muted",
+      "value": "var(--kp-color-gray-500)",
+      "category": "color",
+      "subPath": "text-muted"
+    },
+    {
+      "name": "--kp-color-text-disabled",
+      "value": "var(--kp-color-gray-500)",
+      "category": "color",
+      "subPath": "text-disabled"
+    },
+    {
+      "name": "--kp-color-surface-base",
+      "value": "var(--kp-color-white)",
+      "category": "color",
+      "subPath": "surface-base"
+    },
+    {
+      "name": "--kp-color-surface-subtle",
+      "value": "var(--kp-color-gray-50)",
+      "category": "color",
+      "subPath": "surface-subtle"
+    },
+    {
+      "name": "--kp-color-surface-muted",
+      "value": "var(--kp-color-gray-100)",
+      "category": "color",
+      "subPath": "surface-muted"
+    },
+    {
+      "name": "--kp-color-surface-strong",
+      "value": "var(--kp-color-gray-200)",
+      "category": "color",
+      "subPath": "surface-strong"
+    },
+    {
+      "name": "--kp-color-surface-on-dark-base",
+      "value": "#18181b",
+      "category": "color",
+      "subPath": "surface-on-dark-base"
+    },
+    {
+      "name": "--kp-color-surface-on-dark-muted",
+      "value": "#27272a",
+      "category": "color",
+      "subPath": "surface-on-dark-muted"
+    },
+    {
+      "name": "--kp-color-surface-on-dark-strong",
+      "value": "#3f3f46",
+      "category": "color",
+      "subPath": "surface-on-dark-strong"
+    },
+    {
+      "name": "--kp-color-border-subtle",
+      "value": "var(--kp-color-gray-100)",
+      "category": "color",
+      "subPath": "border-subtle"
+    },
+    {
+      "name": "--kp-color-border-default",
+      "value": "var(--kp-color-gray-200)",
+      "category": "color",
+      "subPath": "border-default"
+    },
+    {
+      "name": "--kp-color-border-strong",
+      "value": "var(--kp-color-gray-300)",
+      "category": "color",
+      "subPath": "border-strong"
+    },
+    {
+      "name": "--kp-color-border-on-dark-subtle",
+      "value": "#27272a",
+      "category": "color",
+      "subPath": "border-on-dark-subtle"
+    },
+    {
+      "name": "--kp-color-border-on-dark-default",
+      "value": "#3f3f46",
+      "category": "color",
+      "subPath": "border-on-dark-default"
     },
     {
       "name": "--kp-color-icon-primary",
@@ -9023,7 +8665,7 @@
     },
     {
       "name": "--kp-color-input-placeholder-default",
-      "value": "var(--kp-color-gray-400)",
+      "value": "var(--kp-color-gray-500)",
       "category": "color",
       "subPath": "input-placeholder-default"
     },
@@ -9032,6 +8674,18 @@
       "value": "var(--kp-color-gray-300)",
       "category": "color",
       "subPath": "input-placeholder-disabled"
+    },
+    {
+      "name": "--kp-color-checkbox-border-rest",
+      "value": "var(--kp-color-gray-300)",
+      "category": "color",
+      "subPath": "checkbox-border-rest"
+    },
+    {
+      "name": "--kp-color-checkbox-border-hover",
+      "value": "var(--kp-color-gray-400)",
+      "category": "color",
+      "subPath": "checkbox-border-hover"
     },
     {
       "name": "--kp-color-select-chevron-rest",
@@ -9208,10 +8862,22 @@
       "subPath": "segmented-segment-bg-selected"
     },
     {
+      "name": "--kp-color-segmented-segment-bg-unselected-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "segmented-segment-bg-unselected-rest"
+    },
+    {
       "name": "--kp-color-segmented-segment-bg-unselected-hover",
       "value": "var(--kp-color-gray-200)",
       "category": "color",
       "subPath": "segmented-segment-bg-unselected-hover"
+    },
+    {
+      "name": "--kp-color-segmented-segment-bg-disabled",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "segmented-segment-bg-disabled"
     },
     {
       "name": "--kp-color-segmented-segment-fg-selected",
@@ -9274,10 +8940,22 @@
       "subPath": "badge-primary-subtle-fg"
     },
     {
+      "name": "--kp-color-badge-primary-subtle-border",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-primary-subtle-border"
+    },
+    {
       "name": "--kp-color-badge-primary-subtle-dot",
       "value": "var(--kp-color-blue-600)",
       "category": "color",
       "subPath": "badge-primary-subtle-dot"
+    },
+    {
+      "name": "--kp-color-badge-primary-outline-bg",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-primary-outline-bg"
     },
     {
       "name": "--kp-color-badge-primary-outline-fg",
@@ -9298,10 +8976,22 @@
       "subPath": "badge-primary-outline-dot"
     },
     {
+      "name": "--kp-color-badge-primary-dot-bg",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-primary-dot-bg"
+    },
+    {
       "name": "--kp-color-badge-primary-dot-fg",
       "value": "var(--kp-color-gray-700)",
       "category": "color",
       "subPath": "badge-primary-dot-fg"
+    },
+    {
+      "name": "--kp-color-badge-primary-dot-border",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-primary-dot-border"
     },
     {
       "name": "--kp-color-badge-primary-dot-dot",
@@ -9346,10 +9036,22 @@
       "subPath": "badge-danger-subtle-fg"
     },
     {
+      "name": "--kp-color-badge-danger-subtle-border",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-danger-subtle-border"
+    },
+    {
       "name": "--kp-color-badge-danger-subtle-dot",
       "value": "var(--kp-color-red-600)",
       "category": "color",
       "subPath": "badge-danger-subtle-dot"
+    },
+    {
+      "name": "--kp-color-badge-danger-outline-bg",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-danger-outline-bg"
     },
     {
       "name": "--kp-color-badge-danger-outline-fg",
@@ -9370,10 +9072,22 @@
       "subPath": "badge-danger-outline-dot"
     },
     {
+      "name": "--kp-color-badge-danger-dot-bg",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-danger-dot-bg"
+    },
+    {
       "name": "--kp-color-badge-danger-dot-fg",
       "value": "var(--kp-color-gray-700)",
       "category": "color",
       "subPath": "badge-danger-dot-fg"
+    },
+    {
+      "name": "--kp-color-badge-danger-dot-border",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-danger-dot-border"
     },
     {
       "name": "--kp-color-badge-danger-dot-dot",
@@ -9383,7 +9097,7 @@
     },
     {
       "name": "--kp-color-badge-success-filled-bg",
-      "value": "var(--kp-color-green-600)",
+      "value": "var(--kp-color-green-700)",
       "category": "color",
       "subPath": "badge-success-filled-bg"
     },
@@ -9395,7 +9109,7 @@
     },
     {
       "name": "--kp-color-badge-success-filled-border",
-      "value": "var(--kp-color-green-600)",
+      "value": "var(--kp-color-green-700)",
       "category": "color",
       "subPath": "badge-success-filled-border"
     },
@@ -9418,10 +9132,22 @@
       "subPath": "badge-success-subtle-fg"
     },
     {
+      "name": "--kp-color-badge-success-subtle-border",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-success-subtle-border"
+    },
+    {
       "name": "--kp-color-badge-success-subtle-dot",
       "value": "var(--kp-color-green-600)",
       "category": "color",
       "subPath": "badge-success-subtle-dot"
+    },
+    {
+      "name": "--kp-color-badge-success-outline-bg",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-success-outline-bg"
     },
     {
       "name": "--kp-color-badge-success-outline-fg",
@@ -9442,10 +9168,22 @@
       "subPath": "badge-success-outline-dot"
     },
     {
+      "name": "--kp-color-badge-success-dot-bg",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-success-dot-bg"
+    },
+    {
       "name": "--kp-color-badge-success-dot-fg",
       "value": "var(--kp-color-gray-700)",
       "category": "color",
       "subPath": "badge-success-dot-fg"
+    },
+    {
+      "name": "--kp-color-badge-success-dot-border",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-success-dot-border"
     },
     {
       "name": "--kp-color-badge-success-dot-dot",
@@ -9490,10 +9228,22 @@
       "subPath": "badge-warning-subtle-fg"
     },
     {
+      "name": "--kp-color-badge-warning-subtle-border",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-warning-subtle-border"
+    },
+    {
       "name": "--kp-color-badge-warning-subtle-dot",
       "value": "var(--kp-color-amber-500)",
       "category": "color",
       "subPath": "badge-warning-subtle-dot"
+    },
+    {
+      "name": "--kp-color-badge-warning-outline-bg",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-warning-outline-bg"
     },
     {
       "name": "--kp-color-badge-warning-outline-fg",
@@ -9514,10 +9264,22 @@
       "subPath": "badge-warning-outline-dot"
     },
     {
+      "name": "--kp-color-badge-warning-dot-bg",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-warning-dot-bg"
+    },
+    {
       "name": "--kp-color-badge-warning-dot-fg",
       "value": "var(--kp-color-gray-700)",
       "category": "color",
       "subPath": "badge-warning-dot-fg"
+    },
+    {
+      "name": "--kp-color-badge-warning-dot-border",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-warning-dot-border"
     },
     {
       "name": "--kp-color-badge-warning-dot-dot",
@@ -9527,7 +9289,7 @@
     },
     {
       "name": "--kp-color-badge-info-filled-bg",
-      "value": "var(--kp-color-cyan-600)",
+      "value": "var(--kp-color-cyan-700)",
       "category": "color",
       "subPath": "badge-info-filled-bg"
     },
@@ -9539,7 +9301,7 @@
     },
     {
       "name": "--kp-color-badge-info-filled-border",
-      "value": "var(--kp-color-cyan-600)",
+      "value": "var(--kp-color-cyan-700)",
       "category": "color",
       "subPath": "badge-info-filled-border"
     },
@@ -9562,10 +9324,22 @@
       "subPath": "badge-info-subtle-fg"
     },
     {
+      "name": "--kp-color-badge-info-subtle-border",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-info-subtle-border"
+    },
+    {
       "name": "--kp-color-badge-info-subtle-dot",
       "value": "var(--kp-color-cyan-600)",
       "category": "color",
       "subPath": "badge-info-subtle-dot"
+    },
+    {
+      "name": "--kp-color-badge-info-outline-bg",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-info-outline-bg"
     },
     {
       "name": "--kp-color-badge-info-outline-fg",
@@ -9586,10 +9360,22 @@
       "subPath": "badge-info-outline-dot"
     },
     {
+      "name": "--kp-color-badge-info-dot-bg",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-info-dot-bg"
+    },
+    {
       "name": "--kp-color-badge-info-dot-fg",
       "value": "var(--kp-color-gray-700)",
       "category": "color",
       "subPath": "badge-info-dot-fg"
+    },
+    {
+      "name": "--kp-color-badge-info-dot-border",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-info-dot-border"
     },
     {
       "name": "--kp-color-badge-info-dot-dot",
@@ -9634,10 +9420,22 @@
       "subPath": "badge-neutral-subtle-fg"
     },
     {
+      "name": "--kp-color-badge-neutral-subtle-border",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-neutral-subtle-border"
+    },
+    {
       "name": "--kp-color-badge-neutral-subtle-dot",
       "value": "var(--kp-color-gray-500)",
       "category": "color",
       "subPath": "badge-neutral-subtle-dot"
+    },
+    {
+      "name": "--kp-color-badge-neutral-outline-bg",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-neutral-outline-bg"
     },
     {
       "name": "--kp-color-badge-neutral-outline-fg",
@@ -9658,10 +9456,22 @@
       "subPath": "badge-neutral-outline-dot"
     },
     {
+      "name": "--kp-color-badge-neutral-dot-bg",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-neutral-dot-bg"
+    },
+    {
       "name": "--kp-color-badge-neutral-dot-fg",
       "value": "var(--kp-color-gray-700)",
       "category": "color",
       "subPath": "badge-neutral-dot-fg"
+    },
+    {
+      "name": "--kp-color-badge-neutral-dot-border",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "badge-neutral-dot-border"
     },
     {
       "name": "--kp-color-badge-neutral-dot-dot",
@@ -10613,19 +10423,19 @@
     },
     {
       "name": "--kp-color-progress-primary-fill",
-      "value": "var(--kp-color-blue-600)",
+      "value": "var(--kp-color-blue-700)",
       "category": "color",
       "subPath": "progress-primary-fill"
     },
     {
       "name": "--kp-color-progress-success-fill",
-      "value": "var(--kp-color-green-600)",
+      "value": "var(--kp-color-green-700)",
       "category": "color",
       "subPath": "progress-success-fill"
     },
     {
       "name": "--kp-color-progress-danger-fill",
-      "value": "var(--kp-color-red-600)",
+      "value": "var(--kp-color-red-700)",
       "category": "color",
       "subPath": "progress-danger-fill"
     },
@@ -10666,6 +10476,12 @@
       "subPath": "tabs-tab-fg-disabled"
     },
     {
+      "name": "--kp-color-tabs-tab-underline-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "tabs-tab-underline-rest"
+    },
+    {
       "name": "--kp-color-tabs-tab-underline-hover",
       "value": "var(--kp-color-gray-300)",
       "category": "color",
@@ -10676,6 +10492,12 @@
       "value": "var(--kp-color-blue-600)",
       "category": "color",
       "subPath": "tabs-tab-underline-selected"
+    },
+    {
+      "name": "--kp-color-tabs-tab-underline-disabled",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "tabs-tab-underline-disabled"
     },
     {
       "name": "--kp-color-tabs-tab-icon-rest",
@@ -10888,6 +10710,12 @@
       "subPath": "sidebar-section-label"
     },
     {
+      "name": "--kp-color-nav-item-bg-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "nav-item-bg-rest"
+    },
+    {
       "name": "--kp-color-nav-item-bg-hover",
       "value": "var(--kp-color-gray-100)",
       "category": "color",
@@ -10997,7 +10825,7 @@
     },
     {
       "name": "--kp-color-header-nav-item-fg-active",
-      "value": "var(--kp-color-blue-600)",
+      "value": "var(--kp-color-blue-700)",
       "category": "color",
       "subPath": "header-nav-item-fg-active"
     },
@@ -11074,6 +10902,12 @@
       "subPath": "breadcrumbs-ellipsis"
     },
     {
+      "name": "--kp-color-pagination-item-bg-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "pagination-item-bg-rest"
+    },
+    {
       "name": "--kp-color-pagination-item-bg-hover",
       "value": "var(--kp-color-blue-50)",
       "category": "color",
@@ -11090,6 +10924,12 @@
       "value": "var(--kp-color-blue-600)",
       "category": "color",
       "subPath": "pagination-item-bg-selected"
+    },
+    {
+      "name": "--kp-color-pagination-item-bg-disabled",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "pagination-item-bg-disabled"
     },
     {
       "name": "--kp-color-pagination-item-fg-rest",
@@ -11278,6 +11118,12 @@
       "subPath": "datepicker-weekday"
     },
     {
+      "name": "--kp-color-datepicker-day-bg-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "datepicker-day-bg-rest"
+    },
+    {
       "name": "--kp-color-datepicker-day-bg-hover",
       "value": "var(--kp-color-gray-100)",
       "category": "color",
@@ -11288,6 +11134,12 @@
       "value": "var(--kp-color-blue-600)",
       "category": "color",
       "subPath": "datepicker-day-bg-selected"
+    },
+    {
+      "name": "--kp-color-datepicker-day-bg-today",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "datepicker-day-bg-today"
     },
     {
       "name": "--kp-color-datepicker-day-bg-in-range",
@@ -11422,6 +11274,12 @@
       "subPath": "table-border-soft"
     },
     {
+      "name": "--kp-color-tree-node-bg-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "tree-node-bg-rest"
+    },
+    {
       "name": "--kp-color-tree-node-bg-hover",
       "value": "var(--kp-color-gray-50)",
       "category": "color",
@@ -11447,7 +11305,7 @@
     },
     {
       "name": "--kp-color-tree-node-fg-disabled",
-      "value": "var(--kp-color-gray-400)",
+      "value": "var(--kp-color-gray-500)",
       "category": "color",
       "subPath": "tree-node-fg-disabled"
     },
@@ -11476,10 +11334,22 @@
       "subPath": "tree-indent-line"
     },
     {
+      "name": "--kp-color-accordion-trigger-bg-rest",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "accordion-trigger-bg-rest"
+    },
+    {
       "name": "--kp-color-accordion-trigger-bg-hover",
       "value": "var(--kp-color-gray-50)",
       "category": "color",
       "subPath": "accordion-trigger-bg-hover"
+    },
+    {
+      "name": "--kp-color-accordion-trigger-bg-expanded",
+      "value": "rgba(0, 0, 0, 0)",
+      "category": "color",
+      "subPath": "accordion-trigger-bg-expanded"
     },
     {
       "name": "--kp-color-accordion-trigger-fg-rest",
@@ -11566,6 +11436,12 @@
       "subPath": "card-bg-muted"
     },
     {
+      "name": "--kp-color-card-bg-elevated",
+      "value": "var(--kp-color-white)",
+      "category": "color",
+      "subPath": "card-bg-elevated"
+    },
+    {
       "name": "--kp-color-card-border",
       "value": "var(--kp-color-gray-200)",
       "category": "color",
@@ -11594,6 +11470,12 @@
       "value": "var(--kp-color-gray-100)",
       "category": "color",
       "subPath": "card-divider"
+    },
+    {
+      "name": "--kp-color-dialog-backdrop",
+      "value": "rgba(0, 0, 0, 0.5)",
+      "category": "color",
+      "subPath": "dialog-backdrop"
     },
     {
       "name": "--kp-color-dialog-panel-bg",
@@ -11632,44 +11514,494 @@
       "subPath": "dialog-divider"
     },
     {
+      "name": "--kp-color-overlay-hover-subtle",
+      "value": "rgba(0, 0, 0, 0.04)",
+      "category": "color",
+      "subPath": "overlay-hover-subtle"
+    },
+    {
+      "name": "--kp-color-overlay-hover-light",
+      "value": "rgba(0, 0, 0, 0.06)",
+      "category": "color",
+      "subPath": "overlay-hover-light"
+    },
+    {
+      "name": "--kp-color-overlay-hover-medium",
+      "value": "rgba(0, 0, 0, 0.08)",
+      "category": "color",
+      "subPath": "overlay-hover-medium"
+    },
+    {
+      "name": "--kp-color-overlay-primary-hover",
+      "value": "rgba(37, 99, 235, 0.08)",
+      "category": "color",
+      "subPath": "overlay-primary-hover"
+    },
+    {
+      "name": "--kp-color-overlay-focus-ring",
+      "value": "rgba(59, 130, 246, 0.12)",
+      "category": "color",
+      "subPath": "overlay-focus-ring"
+    },
+    {
+      "name": "--kp-color-fg-on-dark-strong",
+      "value": "rgba(255, 255, 255, 0.92)",
+      "category": "color",
+      "subPath": "fg-on-dark-strong"
+    },
+    {
+      "name": "--kp-color-fg-on-dark-default",
+      "value": "rgba(255, 255, 255, 0.8)",
+      "category": "color",
+      "subPath": "fg-on-dark-default"
+    },
+    {
+      "name": "--kp-color-fg-on-dark-muted",
+      "value": "rgba(255, 255, 255, 0.7)",
+      "category": "color",
+      "subPath": "fg-on-dark-muted"
+    },
+    {
+      "name": "--kp-color-fg-on-dark-subtle",
+      "value": "rgba(255, 255, 255, 0.6)",
+      "category": "color",
+      "subPath": "fg-on-dark-subtle"
+    },
+    {
+      "name": "--kp-elevation-none",
+      "value": "0px 0px 0px 0px rgba(0,0,0,0)",
+      "category": "elevation",
+      "subPath": "none"
+    },
+    {
+      "name": "--kp-elevation-raised",
+      "value": "0px 1px 2px 0px rgba(9,9,11,0.08), 0px 1px 3px -1px rgba(9,9,11,0.05), 0px 0px 4px -1px rgba(9,9,11,0.03)",
+      "category": "elevation",
+      "subPath": "raised"
+    },
+    {
+      "name": "--kp-elevation-overlay",
+      "value": "0px 4px 6px -2px rgba(9,9,11,0.10), 0px 2px 10px -2px rgba(9,9,11,0.06), 0px 0px 16px -4px rgba(9,9,11,0.04)",
+      "category": "elevation",
+      "subPath": "overlay"
+    },
+    {
+      "name": "--kp-elevation-floating",
+      "value": "0px 8px 16px -4px rgba(9,9,11,0.12), 0px 4px 24px -4px rgba(9,9,11,0.08), 0px 0px 40px -8px rgba(9,9,11,0.05)",
+      "category": "elevation",
+      "subPath": "floating"
+    },
+    {
+      "name": "--kp-icon-size-xs",
+      "value": "14px",
+      "category": "icon",
+      "subPath": "size-xs"
+    },
+    {
+      "name": "--kp-icon-size-sm",
+      "value": "16px",
+      "category": "icon",
+      "subPath": "size-sm"
+    },
+    {
+      "name": "--kp-icon-size-md",
+      "value": "18px",
+      "category": "icon",
+      "subPath": "size-md"
+    },
+    {
+      "name": "--kp-icon-size-lg",
+      "value": "22px",
+      "category": "icon",
+      "subPath": "size-lg"
+    },
+    {
+      "name": "--kp-icon-size-xl",
+      "value": "24px",
+      "category": "icon",
+      "subPath": "size-xl"
+    },
+    {
+      "name": "--kp-icon-stroke-xs",
+      "value": "1.25px",
+      "category": "icon",
+      "subPath": "stroke-xs"
+    },
+    {
+      "name": "--kp-icon-stroke-sm",
+      "value": "1.35px",
+      "category": "icon",
+      "subPath": "stroke-sm"
+    },
+    {
+      "name": "--kp-icon-stroke-md",
+      "value": "1.5px",
+      "category": "icon",
+      "subPath": "stroke-md"
+    },
+    {
+      "name": "--kp-icon-stroke-lg",
+      "value": "1.75px",
+      "category": "icon",
+      "subPath": "stroke-lg"
+    },
+    {
+      "name": "--kp-icon-stroke-xl",
+      "value": "2px",
+      "category": "icon",
+      "subPath": "stroke-xl"
+    },
+    {
+      "name": "--kp-motion-duration-fast",
+      "value": "120ms",
+      "category": "motion",
+      "subPath": "duration-fast"
+    },
+    {
+      "name": "--kp-motion-duration-normal",
+      "value": "200ms",
+      "category": "motion",
+      "subPath": "duration-normal"
+    },
+    {
+      "name": "--kp-motion-duration-slow",
+      "value": "300ms",
+      "category": "motion",
+      "subPath": "duration-slow"
+    },
+    {
+      "name": "--kp-motion-duration-spin",
+      "value": "1000ms",
+      "category": "motion",
+      "subPath": "duration-spin"
+    },
+    {
+      "name": "--kp-motion-duration-shimmer",
+      "value": "1400ms",
+      "category": "motion",
+      "subPath": "duration-shimmer"
+    },
+    {
+      "name": "--kp-motion-ease-in",
+      "value": "cubic-bezier(0.4, 0, 1, 1)",
+      "category": "motion",
+      "subPath": "ease-in"
+    },
+    {
+      "name": "--kp-motion-ease-out",
+      "value": "cubic-bezier(0, 0, 0.2, 1)",
+      "category": "motion",
+      "subPath": "ease-out"
+    },
+    {
+      "name": "--kp-motion-ease-in-out",
+      "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "category": "motion",
+      "subPath": "ease-in-out"
+    },
+    {
+      "name": "--kp-radius-none",
+      "value": "0px",
+      "category": "radius",
+      "subPath": "none"
+    },
+    {
+      "name": "--kp-radius-comp-xs",
+      "value": "8px",
+      "category": "radius",
+      "subPath": "comp-xs"
+    },
+    {
+      "name": "--kp-radius-comp-sm",
+      "value": "10px",
+      "category": "radius",
+      "subPath": "comp-sm"
+    },
+    {
+      "name": "--kp-radius-comp-md",
+      "value": "12px",
+      "category": "radius",
+      "subPath": "comp-md"
+    },
+    {
+      "name": "--kp-radius-comp-lg",
+      "value": "14px",
+      "category": "radius",
+      "subPath": "comp-lg"
+    },
+    {
+      "name": "--kp-radius-comp-xl",
+      "value": "16px",
+      "category": "radius",
+      "subPath": "comp-xl"
+    },
+    {
+      "name": "--kp-radius-full",
+      "value": "9999px",
+      "category": "radius",
+      "subPath": "full"
+    },
+    {
+      "name": "--kp-size-xs",
+      "value": "24px",
+      "category": "size",
+      "subPath": "xs"
+    },
+    {
+      "name": "--kp-size-sm",
+      "value": "28px",
+      "category": "size",
+      "subPath": "sm"
+    },
+    {
+      "name": "--kp-size-md",
+      "value": "36px",
+      "category": "size",
+      "subPath": "md"
+    },
+    {
+      "name": "--kp-size-lg",
+      "value": "44px",
+      "category": "size",
+      "subPath": "lg"
+    },
+    {
+      "name": "--kp-size-xl",
+      "value": "52px",
+      "category": "size",
+      "subPath": "xl"
+    },
+    {
+      "name": "--kp-spacing-4xs",
+      "value": "2px",
+      "category": "spacing",
+      "subPath": "4xs"
+    },
+    {
+      "name": "--kp-spacing-3xs",
+      "value": "4px",
+      "category": "spacing",
+      "subPath": "3xs"
+    },
+    {
+      "name": "--kp-spacing-2xs",
+      "value": "8px",
+      "category": "spacing",
+      "subPath": "2xs"
+    },
+    {
+      "name": "--kp-spacing-xs",
+      "value": "12px",
+      "category": "spacing",
+      "subPath": "xs"
+    },
+    {
+      "name": "--kp-spacing-sm",
+      "value": "16px",
+      "category": "spacing",
+      "subPath": "sm"
+    },
+    {
+      "name": "--kp-spacing-md",
+      "value": "20px",
+      "category": "spacing",
+      "subPath": "md"
+    },
+    {
+      "name": "--kp-spacing-lg",
+      "value": "24px",
+      "category": "spacing",
+      "subPath": "lg"
+    },
+    {
+      "name": "--kp-spacing-xl",
+      "value": "32px",
+      "category": "spacing",
+      "subPath": "xl"
+    },
+    {
+      "name": "--kp-spacing-2xl",
+      "value": "40px",
+      "category": "spacing",
+      "subPath": "2xl"
+    },
+    {
+      "name": "--kp-spacing-3xl",
+      "value": "48px",
+      "category": "spacing",
+      "subPath": "3xl"
+    },
+    {
+      "name": "--kp-spacing-4xl",
+      "value": "64px",
+      "category": "spacing",
+      "subPath": "4xl"
+    },
+    {
+      "name": "--kp-font-family-sans",
+      "value": "Onest, system-ui, sans-serif",
+      "category": "font",
+      "subPath": "family-sans"
+    },
+    {
+      "name": "--kp-font-family-mono",
+      "value": "'SF Mono', Monaco, Consolas, monospace",
+      "category": "font",
+      "subPath": "family-mono"
+    },
+    {
+      "name": "--kp-font-weight-regular",
+      "value": "400",
+      "category": "font",
+      "subPath": "weight-regular"
+    },
+    {
+      "name": "--kp-font-weight-medium",
+      "value": "500",
+      "category": "font",
+      "subPath": "weight-medium"
+    },
+    {
+      "name": "--kp-font-weight-semibold",
+      "value": "600",
+      "category": "font",
+      "subPath": "weight-semibold"
+    },
+    {
+      "name": "--kp-font-weight-bold",
+      "value": "700",
+      "category": "font",
+      "subPath": "weight-bold"
+    },
+    {
+      "name": "--kp-font-size-2xs",
+      "value": "11px",
+      "category": "font",
+      "subPath": "size-2xs"
+    },
+    {
+      "name": "--kp-font-size-xs",
+      "value": "12px",
+      "category": "font",
+      "subPath": "size-xs"
+    },
+    {
+      "name": "--kp-font-size-sm",
+      "value": "14px",
+      "category": "font",
+      "subPath": "size-sm"
+    },
+    {
+      "name": "--kp-font-size-md",
+      "value": "16px",
+      "category": "font",
+      "subPath": "size-md"
+    },
+    {
+      "name": "--kp-font-size-lg",
+      "value": "20px",
+      "category": "font",
+      "subPath": "size-lg"
+    },
+    {
+      "name": "--kp-font-size-xl",
+      "value": "24px",
+      "category": "font",
+      "subPath": "size-xl"
+    },
+    {
+      "name": "--kp-font-size-2xl",
+      "value": "32px",
+      "category": "font",
+      "subPath": "size-2xl"
+    },
+    {
+      "name": "--kp-layout-container-max-width-narrow",
+      "value": "640px",
+      "category": "layout",
+      "subPath": "container-max-width-narrow"
+    },
+    {
+      "name": "--kp-layout-container-max-width-medium",
+      "value": "960px",
+      "category": "layout",
+      "subPath": "container-max-width-medium"
+    },
+    {
+      "name": "--kp-layout-container-max-width-wide",
+      "value": "1280px",
+      "category": "layout",
+      "subPath": "container-max-width-wide"
+    },
+    {
+      "name": "--kp-layout-container-max-width-full",
+      "value": "100%",
+      "category": "layout",
+      "subPath": "container-max-width-full"
+    },
+    {
+      "name": "--kp-layout-container-padding-none",
+      "value": "0",
+      "category": "layout",
+      "subPath": "container-padding-none"
+    },
+    {
+      "name": "--kp-layout-container-padding-sm",
+      "value": "16px",
+      "category": "layout",
+      "subPath": "container-padding-sm"
+    },
+    {
+      "name": "--kp-layout-container-padding-md",
+      "value": "24px",
+      "category": "layout",
+      "subPath": "container-padding-md"
+    },
+    {
+      "name": "--kp-layout-container-padding-lg",
+      "value": "32px",
+      "category": "layout",
+      "subPath": "container-padding-lg"
+    },
+    {
       "name": "--kp-text-2xs",
-      "value": "var(--kp-font-weight-medium) var(--kp-font-size-2xs)/var(--kp-font-line-height-2xs) var(--kp-font-family-sans)",
+      "value": "500 11px/16px Onest, system-ui, sans-serif",
       "category": "text",
       "subPath": "2xs"
     },
     {
       "name": "--kp-text-xs",
-      "value": "var(--kp-font-weight-regular) var(--kp-font-size-xs)/var(--kp-font-line-height-xs) var(--kp-font-family-sans)",
+      "value": "400 12px/16px Onest, system-ui, sans-serif",
       "category": "text",
       "subPath": "xs"
     },
     {
       "name": "--kp-text-sm",
-      "value": "var(--kp-font-weight-regular) var(--kp-font-size-sm)/var(--kp-font-line-height-sm) var(--kp-font-family-sans)",
+      "value": "400 14px/20px Onest, system-ui, sans-serif",
       "category": "text",
       "subPath": "sm"
     },
     {
       "name": "--kp-text-md",
-      "value": "var(--kp-font-weight-regular) var(--kp-font-size-md)/var(--kp-font-line-height-md) var(--kp-font-family-sans)",
+      "value": "400 16px/24px Onest, system-ui, sans-serif",
       "category": "text",
       "subPath": "md"
     },
     {
       "name": "--kp-text-lg",
-      "value": "var(--kp-font-weight-medium) var(--kp-font-size-lg)/var(--kp-font-line-height-lg) var(--kp-font-family-sans)",
+      "value": "500 20px/28px Onest, system-ui, sans-serif",
       "category": "text",
       "subPath": "lg"
     },
     {
       "name": "--kp-text-xl",
-      "value": "var(--kp-font-weight-semibold) var(--kp-font-size-xl)/var(--kp-font-line-height-xl) var(--kp-font-family-sans)",
+      "value": "600 24px/32px Onest, system-ui, sans-serif",
       "category": "text",
       "subPath": "xl"
     },
     {
       "name": "--kp-text-2xl",
-      "value": "var(--kp-font-weight-semibold) var(--kp-font-size-2xl)/var(--kp-font-line-height-2xl) var(--kp-font-family-sans)",
+      "value": "600 32px/40px Onest, system-ui, sans-serif",
       "category": "text",
       "subPath": "2xl"
     }

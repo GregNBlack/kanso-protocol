@@ -45,7 +45,9 @@ function pickJsDoc(node) {
 }
 
 function readDecoratorArg(cls) {
-  const dec = cls.getDecorator('Component');
+  // Accept both @Component and @Directive — directive-driven primitives
+  // (e.g. KpTooltipDirective) are the public surface for some packages.
+  const dec = cls.getDecorator('Component') || cls.getDecorator('Directive');
   if (!dec) return null;
   const arg = dec.getArguments()[0];
   if (!arg || arg.getKind() !== SyntaxKind.ObjectLiteralExpression) return null;
@@ -187,7 +189,11 @@ function walkComponents(project, layer, dir) {
     if (!fs.statSync(path.join(dir, slug)).isDirectory()) continue;
     if (!fs.existsSync(srcDir)) continue;
     for (const f of fs.readdirSync(srcDir)) {
-      if (!f.endsWith('.component.ts')) continue;
+      // Scan public component + directive files. Skip *-internal.* files —
+      // those render visual chrome that's never exposed as a public symbol.
+      const isPublic = (f.endsWith('.component.ts') || f.endsWith('.directive.ts')) &&
+        !f.includes('-internal.');
+      if (!isPublic) continue;
       const sf = project.addSourceFileAtPathIfExists(path.join(srcDir, f));
       if (!sf) continue;
       const sourceText = sf.getFullText();

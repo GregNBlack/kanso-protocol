@@ -1,5 +1,37 @@
 # @kanso-protocol/core
 
+## 3.0.0
+
+### Major Changes
+
+- **BREAKING:** `@kanso-protocol/tooltip` rewritten as a directive. `<kp-tooltip>` component removed; `[kpTooltip]` directive is the only public API.
+
+  Before — non-functional styled body, consumer had to wire visibility / positioning / hover:
+
+  ```html
+  <kp-tooltip label="Save" arrowPosition="bottom" />
+  ```
+
+  After — attach to any focusable element; auto-shows on hover/focus, hides on leave/blur/Escape, auto-positions with viewport-edge flipping, portals above modals via `findPortalTarget`:
+
+  ```html
+  <button [kpTooltip]="'Save changes'" kpTooltipPosition="top">Save</button>
+  <button [kpTooltip]="'Quick search'" kpTooltipShortcut="⌘K">Search</button>
+  <!-- null/empty/disabled to suppress -->
+  <button [kpTooltip]="collapsed ? label : null" kpTooltipPosition="right">
+    …
+  </button>
+  ```
+
+  Migration:
+  - Replace `KpTooltipComponent` imports with `KpTooltipDirective`
+  - Remove any controlled-visibility plumbing (signals, mouseenter listeners, manual portals)
+  - Apply `[kpTooltip]` on the trigger element itself
+
+  Internal: `KpTooltipInternalComponent` still owns the visual chrome (arrow, label, shortcut, sizes) but is not exported from the package surface.
+
+  `kp-nav-item` migrated internally — drops its custom portal+positioning code in favor of `[kpTooltip]`.
+
 ## 2.0.3
 
 ### Patch Changes

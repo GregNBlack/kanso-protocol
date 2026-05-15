@@ -1,14 +1,14 @@
 {
   "name": "@kanso-protocol/pagination",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": ">=21.0.0",
     "@angular/common": ">=21.0.0",
     "@angular/forms": ">=21.0.0",
-    "@kanso-protocol/core": ">=2.0.3",
-    "@kanso-protocol/i18n": ">=2.0.3",
-    "@kanso-protocol/select": ">=2.0.3"
+    "@kanso-protocol/core": ">=3.0.0",
+    "@kanso-protocol/i18n": ">=3.0.0",
+    "@kanso-protocol/select": ">=3.0.0"
   },
   "description": "Kanso Protocol — pagination (component).",
   "author": "GregNBlack",

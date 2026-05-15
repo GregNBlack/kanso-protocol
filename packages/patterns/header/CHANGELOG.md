@@ -1,5 +1,14 @@
 # @kanso-protocol/header
 
+## 3.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @kanso-protocol/core@3.0.0
+  - @kanso-protocol/avatar@3.0.0
+  - @kanso-protocol/badge@3.0.0
+
 ## 2.0.3
 
 ### Patch Changes
