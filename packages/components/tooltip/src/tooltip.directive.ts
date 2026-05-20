@@ -67,6 +67,12 @@ export class KpTooltipDirective implements OnDestroy {
   @Input() kpTooltipDelay = DEFAULT_SHOW_DELAY;
   /** Hard-disable regardless of text content. */
   @Input() kpTooltipDisabled = false;
+  /**
+   * Where along the tooltip's edge the arrow attaches. Use `start` / `end`
+   * when the trigger sits near a viewport edge — the body shifts inward
+   * while the arrow stays anchored to the trigger.
+   */
+  @Input() kpTooltipAlign: KpTooltipArrowAlign = 'center';
 
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly envInjector = inject(EnvironmentInjector);
@@ -137,7 +143,7 @@ export class KpTooltipDirective implements OnDestroy {
     inst.label = this.text!;
     inst.shortcut = this.kpTooltipShortcut;
     inst.arrowPosition = this.oppositeOf(this.kpTooltipPosition) as KpTooltipArrowPosition;
-    inst.arrowAlign = 'center' as KpTooltipArrowAlign;
+    inst.arrowAlign = this.kpTooltipAlign;
 
     const el = this.ref.location.nativeElement as HTMLElement;
     el.id = this.tooltipId;
@@ -151,14 +157,28 @@ export class KpTooltipDirective implements OnDestroy {
     this.portalTarget = findPortalTarget(this.host.nativeElement, this.doc);
     this.portalTarget.appendChild(el);
 
-    // Measure + position after layout settles
+    // Critical: synchronously run change-detection so host bindings
+    // ([class]="hostClasses") + content interpolation ({{ label }}) are
+    // applied to the DOM before we measure. attachView only marks the
+    // view for CD — the actual tick happens in a microtask, by which
+    // time positionTooltip has already read stale dimensions (no size
+    // class → no padding/font tokens → tip.height way smaller than
+    // real). detectChanges() forces the work synchronously here.
+    this.ref.changeDetectorRef.detectChanges();
     this.positionTooltip(el);
 
     // aria wiring on trigger
     this.host.nativeElement.setAttribute('aria-describedby', this.tooltipId);
 
-    // Fade in
+    // Fade in + re-position once web fonts have loaded so the final
+    // line-height / metrics-driven height matches what positionTooltip
+    // measured. If Onest is already cached, this is a no-op same-frame.
     requestAnimationFrame(() => { el.style.opacity = '1'; });
+    if (this.doc.fonts && this.doc.fonts.status !== 'loaded') {
+      this.doc.fonts.ready.then(() => {
+        if (this.ref) this.positionTooltip(el);
+      });
+    }
   }
 
   private hide(): void {
@@ -205,23 +225,36 @@ export class KpTooltipDirective implements OnDestroy {
     };
     if (!fits(pos) && fits(opp[pos])) pos = opp[pos];
 
+    // Align the tooltip so that the arrow point (not the tooltip centre)
+    // sits on the trigger's centre. arrowInset matches the
+    // --kp-tooltip-arrow-inset value used by the internal component
+    // (sm=10, md=12) — keep these in sync if the CSS changes.
+    const arrowInset = this.kpTooltipSize === 'sm' ? 10 : 12;
+    const arrowOffset = (extent: number): number => {
+      switch (this.kpTooltipAlign) {
+        case 'start': return arrowInset;
+        case 'end':   return extent - arrowInset;
+        default:      return extent / 2;
+      }
+    };
+
     let x: number, y: number;
     switch (pos) {
       case 'top':
-        x = trigger.left + trigger.width / 2 - tip.width / 2;
+        x = trigger.left + trigger.width / 2 - arrowOffset(tip.width);
         y = trigger.top - tip.height - TOOLTIP_GAP;
         break;
       case 'bottom':
-        x = trigger.left + trigger.width / 2 - tip.width / 2;
+        x = trigger.left + trigger.width / 2 - arrowOffset(tip.width);
         y = trigger.bottom + TOOLTIP_GAP;
         break;
       case 'left':
         x = trigger.left - tip.width - TOOLTIP_GAP;
-        y = trigger.top + trigger.height / 2 - tip.height / 2;
+        y = trigger.top + trigger.height / 2 - arrowOffset(tip.height);
         break;
       case 'right':
         x = trigger.right + TOOLTIP_GAP;
-        y = trigger.top + trigger.height / 2 - tip.height / 2;
+        y = trigger.top + trigger.height / 2 - arrowOffset(tip.height);
         break;
     }
 

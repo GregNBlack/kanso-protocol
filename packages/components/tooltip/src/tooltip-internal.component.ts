@@ -62,7 +62,17 @@ export type KpTooltipArrowAlign = 'start' | 'center' | 'end';
       border-radius: var(--kp-tooltip-radius);
       background: var(--kp-color-tooltip-bg);
       color: var(--kp-color-tooltip-fg);
+      /* width: max-content makes the tooltip self-size to its content
+         regardless of where the directive parks it via fixed-positioning.
+         Without this, the browser's shrink-to-fit on a position:fixed
+         element with no width clamps to viewport_width - left, so a
+         tooltip near the right edge collapses into a vertical column. */
+      width: max-content;
       max-width: 240px;
+      /* min-height: prevents font-swap (e.g. Onest async loading) from
+         resizing the box between the directive's measurement and the
+         visible paint. Computed per size: pad-y * 2 + line-height. */
+      min-height: var(--kp-tooltip-min-h);
       box-shadow: var(--kp-elevation-overlay);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       font-weight: 500;
@@ -129,6 +139,9 @@ export type KpTooltipArrowAlign = 'start' | 'center' | 'end';
       --kp-tooltip-line-height: 16px;
       --kp-tooltip-shortcut-size: 11px;
       --kp-tooltip-arrow-inset: 10px;
+      /* pad-y*2 + line-height; matches the layout the directive measures
+         after CD so font-swap can't shift the box height. */
+      --kp-tooltip-min-h: 28px;
     }
     :host(.kp-tooltip--md) {
       --kp-tooltip-pad-x: 12px;
@@ -139,6 +152,7 @@ export type KpTooltipArrowAlign = 'start' | 'center' | 'end';
       --kp-tooltip-line-height: 18px;
       --kp-tooltip-shortcut-size: 12px;
       --kp-tooltip-arrow-inset: 12px;
+      --kp-tooltip-min-h: 34px;
     }
   `],
 })
