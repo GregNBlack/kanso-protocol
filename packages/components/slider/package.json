@@ -1,12 +1,12 @@
 {
   "name": "@kanso-protocol/slider",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": ">=21.0.0",
     "@angular/common": ">=21.0.0",
     "@angular/forms": ">=21.0.0",
-    "@kanso-protocol/core": ">=3.0.0"
+    "@kanso-protocol/core": ">=3.0.1"
   },
   "description": "Kanso Protocol — slider (component).",
   "author": "GregNBlack",

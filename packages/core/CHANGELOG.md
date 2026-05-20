@@ -1,5 +1,37 @@
 # @kanso-protocol/core
 
+## 3.0.1
+
+### Patch Changes
+
+- **Table**
+  - New token `table.row.bg.striped` — was sharing the value with `bg.hover`, so hovering a zebra-even row was invisible. Light → `gray.50`, dark → `#09090B`.
+  - `table.row.bg.hover` bumped: light `gray.50 → gray.100`, dark `#09090B → #27272A` — now reads visibly darker than the striped band underneath.
+  - `table.row.bg.selected` bumped: light `blue.50 → blue.100`, dark `#172554 → #1E2A4F` — unmistakable brand tint instead of "barely tinted".
+  - Striped rows now react to `:hover` — the previous CSS specificity ordering let the striped rule beat the plain hover rule; added a scoped striped+hover override with matching specificity.
+  - `bordered` toggle now actually shows the border with rounded corners. `<table>` with `border-collapse: collapse` doesn't support `border-radius` or `overflow: hidden`; moved the bordered chrome onto `:host` (block element) so border + radius + clipping all render correctly.
+  - Default story binds `[selectable]` / `[(selected)]` so the Storybook controls panel actually drives the example.
+
+  **Tooltip**
+
+  Four positioning bugs reported in production by Sergey, all in `tooltip.directive.ts`:
+  1. `attachView` marks the view dirty but doesn't run change-detection synchronously. `positionTooltip()` read pre-render dimensions (no size class → no padding/font tokens → wrong height) and shifted the tooltip off-centre. Now calls `changeDetectorRef.detectChanges()` before measuring.
+  2. `position: fixed` + no `width` made the browser shrink-to-fit against `viewport - left`. Tooltips near the right edge collapsed into vertical letter columns. Added `width: max-content` on the internal host.
+  3. `arrowAlign` was hardcoded to `'center'` — when viewport clamping shifted the tooltip horizontally, the arrow no longer pointed at the trigger (miss up to ~95px on edge icon buttons). New `@Input() kpTooltipAlign` + position math uses an `arrowOffset(extent)` helper so the arrow point sits on the trigger's centre.
+  4. Font-swap race (Onest async-loads via `@font-face`) shifted box height 2-4px after first paint. Added per-size `min-height` matching `pad-y * 2 + line-height`, plus `document.fonts.ready` re-position as defense-in-depth.
+
+  **Sidebar**
+
+  When `showLogo=false` (used in template-workspace and any consumer that hides the brand mark), the collapse toggle was floating at the left edge of the row. Added a scoped rule so the toggle aligns to the right edge in that case. Collapsed-state centring is preserved.
+
+  **Figma**
+
+  Token sync — added `color/table/row/bg/striped`, updated hover + selected values across light/dark modes to match the code.
+
+  **Tests**
+
+  Test counter `442 → 446` (+10 directive tests for tooltip, −4 from the deleted component tests). 46/62 packages now have specs.
+
 ## 3.0.0
 
 ### Major Changes

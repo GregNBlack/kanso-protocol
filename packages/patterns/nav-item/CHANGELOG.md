@@ -1,5 +1,13 @@
 # @kanso-protocol/nav-item
 
+## 3.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @kanso-protocol/core@3.0.1
+  - @kanso-protocol/tooltip@3.0.1
+
 ## 3.0.0
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @kanso-protocol/command-palette
 
+## 3.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @kanso-protocol/core@3.0.1
+  - @kanso-protocol/dialog@3.0.1
+  - @kanso-protocol/i18n@3.0.1
+
 ## 3.0.0
 
 ### Patch Changes

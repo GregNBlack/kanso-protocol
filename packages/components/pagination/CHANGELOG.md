@@ -1,5 +1,14 @@
 # @kanso-protocol/pagination
 
+## 3.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @kanso-protocol/core@3.0.1
+  - @kanso-protocol/select@3.0.1
+  - @kanso-protocol/i18n@3.0.1
+
 ## 3.0.0
 
 ### Patch Changes
