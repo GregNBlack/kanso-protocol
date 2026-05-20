@@ -179,7 +179,13 @@ export class KpTableHeaderDirective {
     :host(.kp-table--md) { --kp-table-row-h: 48px; --kp-table-pad-x: 16px; --kp-table-fs: 14px; --kp-table-lh: 20px; }
     :host(.kp-table--lg) { --kp-table-row-h: 56px; --kp-table-pad-x: 20px; --kp-table-fs: 15px; --kp-table-lh: 22px; }
 
-    :host(.kp-table--bordered) .kp-table__el {
+    /* bordered styling sits on the :host (block element) instead of the
+       <table>. A <table> with border-collapse: collapse doesn't render
+       border-radius (corners get drawn through by edge cells), and
+       overflow: hidden has no effect on <table> elements — so the
+       previous version offset layout by 1px but never showed the
+       border. Putting it on the block host fixes both. */
+    :host(.kp-table--bordered) {
       border: 1px solid var(--kp-color-table-border);
       border-radius: 12px;
       overflow: hidden;
