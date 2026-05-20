@@ -251,6 +251,15 @@ export class KpTableHeaderDirective {
     :host(.kp-table--striped) .kp-table__row:nth-child(even):not(.kp-table__row--selected) {
       background: var(--kp-color-table-row-bg-striped);
     }
+    /* Hover override for striped rows. Without this, the striped rule
+       above (specificity 0,5,0 — :host(.kp-table--striped) + :nth-child(even)
+       + .kp-table__row + :not(...)) beats the plain hover rule (0,3,0),
+       so even rows never react to the cursor. This rule matches the
+       same striped context plus :hover, bringing specificity to 0,5,0
+       AND winning by source order. */
+    :host(.kp-table--striped) .kp-table__row:nth-child(even):hover:not(.kp-table__row--selected):not(.kp-table__row--empty) {
+      background: var(--kp-color-table-row-bg-hover);
+    }
     .kp-table__row--selected {
       background: var(--kp-color-table-row-bg-selected) !important;
     }

@@ -38,11 +38,18 @@ export default meta;
 type Story = StoryObj<KpTableComponent<User>>;
 
 export const Default: Story = {
-  args: { size: 'md', columns: userColumns, data: users, selectable: false, striped: false, bordered: true },
+  args: { size: 'md', columns: userColumns, data: users, selectable: false, striped: false, bordered: true, selected: [] },
   render: (args) => ({
     props: args,
     template: `
-      <kp-table [size]="size" [columns]="columns" [data]="data" [bordered]="bordered" [striped]="striped">
+      <kp-table
+        [size]="size"
+        [columns]="columns"
+        [data]="data"
+        [bordered]="bordered"
+        [striped]="striped"
+        [selectable]="selectable"
+        [(selected)]="selected">
         <ng-template kpTableCell="role" let-row>
           <kp-badge [color]="row.role === 'Admin' ? 'primary' : 'neutral'" size="sm">{{ row.role }}</kp-badge>
         </ng-template>
