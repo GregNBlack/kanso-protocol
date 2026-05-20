@@ -216,6 +216,14 @@ export interface KpSidebarSection {
       gap: 12px;
       min-height: 40px;
     }
+    /* When the sidebar has no logo (showLogo=false), the toggle is the
+       only child of top-row. Push it to the right edge so it sits flush
+       with the menu boundary instead of floating at the start. The
+       collapsed-state rule below still wins (higher specificity via
+       :host) and keeps the toggle centred when the sidebar narrows. */
+    .kp-sidebar__top-row:not(:has(.kp-sidebar__logo)) {
+      justify-content: flex-end;
+    }
     :host(.kp-sidebar--collapsed) .kp-sidebar__top-row {
       position: relative;
       justify-content: center;
