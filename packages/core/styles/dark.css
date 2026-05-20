@@ -357,6 +357,9 @@
   --kp-color-breadcrumbs-item-fg-link-rest: #93c5fd;
   --kp-color-table-header-fg: #a1a1aa;
   --kp-color-table-row-fg: #f4f4f5;
+  --kp-color-table-row-bg-hover: #27272a;
+  --kp-color-table-row-bg-striped: #09090b;
+  --kp-color-table-row-bg-selected: #1e2a4f;
   --kp-color-divider-label: #a1a1aa;
   --kp-color-datepicker-day-fg-rest: #f4f4f5;
   --kp-color-datepicker-day-fg-outside: #71717a;

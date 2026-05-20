@@ -249,7 +249,7 @@ export class KpTableHeaderDirective {
       background: var(--kp-color-table-row-bg-hover);
     }
     :host(.kp-table--striped) .kp-table__row:nth-child(even):not(.kp-table__row--selected) {
-      background: var(--kp-color-table-row-bg-hover);
+      background: var(--kp-color-table-row-bg-striped);
     }
     .kp-table__row--selected {
       background: var(--kp-color-table-row-bg-selected) !important;

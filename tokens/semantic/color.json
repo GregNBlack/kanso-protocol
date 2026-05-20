@@ -653,8 +653,9 @@
       "row": {
         "bg": {
           "rest":     { "$value": "{color.white}",     "$type": "color" },
-          "hover":    { "$value": "{color.gray.50}",   "$type": "color" },
-          "selected": { "$value": "{color.blue.50}",   "$type": "color" }
+          "striped":  { "$value": "{color.gray.50}",   "$type": "color", "$description": "audit-2026-05-20 — split out from hover so zebra-even rows have a distinct, lighter tint and don't collide with the hover state." },
+          "hover":    { "$value": "{color.gray.100}",  "$type": "color", "$description": "audit-2026-05-20 — bumped gray.50 → gray.100 so hover reads visibly darker than the striped (gray.50) row underneath it." },
+          "selected": { "$value": "{color.blue.100}",  "$type": "color", "$description": "audit-2026-05-20 — bumped blue.50 → blue.100 so the selection state has unmistakable brand tint instead of looking like a barely-tinted row." }
         },
         "fg": { "$value": "{color.gray.900}", "$type": "color" }
       },

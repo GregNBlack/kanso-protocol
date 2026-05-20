@@ -876,6 +876,11 @@
         "fg": {
           "$value": "#F4F4F5",
           "$description": "designer-pass"
+        },
+        "bg": {
+          "hover":    { "$value": "#27272A", "$description": "audit-2026-05-20 — gray.200 dark, one step lighter than surface-base (#18181B) so hover is clearly visible. Without this, the cascade would give #F4F4F5 (gray.100 inverted) — bright white on dark, wrong direction." },
+          "striped":  { "$value": "#09090B", "$description": "audit-2026-05-20 — gray.950 dark, one step darker than base (#18181B) so zebra reads as 'recessed' instead of brighter (the dark-mode convention is opposite to light)." },
+          "selected": { "$value": "#1E2A4F", "$description": "audit-2026-05-20 — muted dark navy. blue.100 cascades to dark blue.100 (#1E3A8A) which is fine but feels too saturated for a row tint; this matches tree.node.bg.selected and button primary.subtle.bg.rest for consistency." }
         }
       }
     },
