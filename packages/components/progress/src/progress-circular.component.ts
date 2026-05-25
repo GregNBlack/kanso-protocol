@@ -67,6 +67,7 @@ const SIZE_CFG: Record<KpProgressCircularSize, { d: number; s: number; valueFont
   `,
   styles: [`
     :host {
+      box-sizing: border-box;
       position: relative;
       display: inline-flex;
       align-items: center;

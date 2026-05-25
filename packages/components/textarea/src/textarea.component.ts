@@ -63,8 +63,12 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
   styles: [`
     :host {
       position: relative;
-      display: inline-block;
+      display: block;
       box-sizing: border-box;
+      /* fluid by default — same rationale as kp-input. The inner
+         <textarea>.kp-textarea__field gets width:100% so it stretches
+         with the host. */
+      width: 100%;
       padding: 0;
       border: 1px solid var(--kp-color-input-border-rest);
       border-radius: var(--kp-textarea-radius);
@@ -91,7 +95,8 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
     .kp-textarea__field {
       display: block;
       box-sizing: border-box;
-      width: 320px;
+      /* stretch to host — host is fluid (width:100%) by default. */
+      width: 100%;
       min-height: var(--kp-textarea-min-h);
       border: none;
       outline: none;

@@ -50,6 +50,7 @@ import { KpTabComponent, KpTabSize } from './tab.component';
   `,
   styles: [`
     :host {
+      box-sizing: border-box;
       position: relative;
       display: flex;
       align-items: stretch;

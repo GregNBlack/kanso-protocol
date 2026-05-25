@@ -4,7 +4,16 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 
-import { KpSize, KpVariant, KpColorRole, KpState } from '@kanso-protocol/core';
+import { KpSize, KpVariant, KpState } from '@kanso-protocol/core';
+
+/**
+ * Subset of KpColorRole that kp-button actually paints. Buttons style
+ * only the three semantic-action colors; success/warning/info live on
+ * Badge / Alert / Avatar where every role is rendered. Restricting the
+ * type here surfaces unsupported colors at compile time instead of
+ * silently rendering as default ghost.
+ */
+export type KpButtonColor = 'primary' | 'danger' | 'neutral';
 
 /**
  * Kanso Protocol — Button
@@ -473,7 +482,7 @@ export class KpButtonComponent {
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
   @Input() size: KpSize = 'md';
   @Input() variant: KpVariant = 'default';
-  @Input() color: KpColorRole = 'primary';
+  @Input() color: KpButtonColor = 'primary';
   @Input() disabled = false;
   @Input() loading = false;
   /** Hides the label and makes the button square — pair with an icon and `aria-label`. */

@@ -13,6 +13,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   template: `<span class="kp-menu-divider__line"></span>`,
   styles: [`
     :host {
+      box-sizing: border-box;
       display: flex;
       align-items: center;
       width: 100%;

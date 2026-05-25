@@ -37,6 +37,7 @@ export type KpStackAlign = 'start' | 'center' | 'end' | 'stretch';
   template: `<ng-content/>`,
   styles: [`
     :host {
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       gap: var(--kp-stack-gap, 16px);

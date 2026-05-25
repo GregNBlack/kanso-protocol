@@ -111,6 +111,7 @@ type RangeCell = { kind: 'page'; page: number } | { kind: 'ellipsis'; key: strin
   `,
   styles: [`
     :host {
+      box-sizing: border-box;
       display: flex;
       align-items: center;
       gap: var(--kp-pg-gap);

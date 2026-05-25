@@ -81,10 +81,14 @@ import { KpSize, KpState } from '@kanso-protocol/core';
     `,
     styles: [`
     :host {
-      display: inline-flex;
+      display: flex;
       align-items: stretch;
       box-sizing: border-box;
-      width: 280px;
+      /* width: 100% — fluid by default. Form-controls live inside form-field /
+         layout containers that own width; isolated demos in Storybook wrap
+         in a fixed-width parent. 280px hardcode was the source of every
+         "kp-input doesn't stretch in my form" report. */
+      width: 100%;
       border: 1px solid var(--kp-color-input-border-rest);
       border-radius: var(--kp-input-radius);
       background: var(--kp-color-input-bg-default);

@@ -12,6 +12,7 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
   template: `<span>{{ label }}</span>`,
   styles: [`
     :host {
+      box-sizing: border-box;
       display: block;
       padding: 8px 10px 4px;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);

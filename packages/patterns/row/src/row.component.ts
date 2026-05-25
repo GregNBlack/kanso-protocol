@@ -42,6 +42,7 @@ export type KpRowJustify =
   template: `<ng-content/>`,
   styles: [`
     :host {
+      box-sizing: border-box;
       display: flex;
       flex-direction: row;
       gap: var(--kp-row-gap, 16px);

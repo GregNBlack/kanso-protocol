@@ -54,6 +54,7 @@ export type KpBreadcrumbsSize = KpBreadcrumbItemSize;
   `,
   styles: [`
     :host {
+      box-sizing: border-box;
       display: block;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }

@@ -124,6 +124,7 @@ let nextRadioGroupId = 0;
   `,
   styles: [`
     :host {
+      box-sizing: border-box;
       display: inline-flex;
       align-items: center;
       gap: 8px;

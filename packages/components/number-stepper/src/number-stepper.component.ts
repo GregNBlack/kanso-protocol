@@ -113,9 +113,13 @@ function coerceNumberOrNull(v: unknown): number | null {
   `,
   styles: [`
     :host {
-      display: inline-flex;
+      display: flex;
       align-items: stretch;
       box-sizing: border-box;
+      /* fluid by default — same rationale as kp-input. Inner __field stays
+         ch-sized so the numeric value never jitters; the host expands
+         around it via flex:1 below. */
+      width: 100%;
       border: 1px solid var(--kp-color-input-border-rest);
       border-radius: var(--kp-stepper-radius);
       background: var(--kp-color-input-bg-default);
@@ -162,6 +166,10 @@ function coerceNumberOrNull(v: unknown): number | null {
       font-size: var(--kp-stepper-fs);
       line-height: var(--kp-stepper-lh);
       font-variant-numeric: tabular-nums;
+      /* flex:1 so the value display absorbs any extra width when the
+         host is wider than content (fluid mode). The inner <input>
+         still gets a deliberate ch-width to keep the digit grid stable. */
+      flex: 1 1 auto;
     }
 
     .kp-number-stepper__affix {

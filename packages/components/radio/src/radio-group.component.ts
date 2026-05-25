@@ -41,6 +41,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   template: `<ng-content/>`,
   styles: [`
     :host {
+      box-sizing: border-box;
       display: inline-flex;
       flex-direction: column;
       gap: 12px;

@@ -35,6 +35,7 @@ export type KpDividerLabelPosition = 'center' | 'start' | 'end';
   `,
   styles: [`
     :host {
+      box-sizing: border-box;
       display: flex;
       align-items: center;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);

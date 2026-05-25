@@ -129,6 +129,7 @@ export interface KpSearchResultGroup {
   `,
   styles: [`
     :host {
+      box-sizing: border-box;
       display: inline-block;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }

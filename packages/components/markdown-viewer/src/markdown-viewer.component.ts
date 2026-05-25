@@ -51,6 +51,7 @@ const defaultParser: KpMarkdownParser = (md) => marked.parse(md, { async: false 
   template: `<div class="kp-markdown-viewer__prose" [innerHTML]="rendered"></div>`,
   styles: [`
     :host {
+      box-sizing: border-box;
       display: block;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       color: var(--kp-color-text-strong);

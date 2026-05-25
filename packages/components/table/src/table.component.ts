@@ -167,6 +167,7 @@ export class KpTableHeaderDirective {
   `,
   styles: [`
     :host {
+      box-sizing: border-box;
       display: block;
       width: 100%;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);

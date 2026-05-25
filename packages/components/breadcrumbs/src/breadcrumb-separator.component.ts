@@ -37,6 +37,7 @@ export type KpBreadcrumbSeparatorType = 'chevron' | 'slash' | 'dot';
   `,
   styles: [`
     :host {
+      box-sizing: border-box;
       display: inline-flex;
       align-items: center;
       justify-content: center;

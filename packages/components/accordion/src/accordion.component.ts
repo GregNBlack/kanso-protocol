@@ -34,6 +34,7 @@ export type KpAccordionMode = 'single' | 'multi';
   template: `<ng-content/>`,
   styles: [`
     :host {
+      box-sizing: border-box;
       display: block;
       width: 100%;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);

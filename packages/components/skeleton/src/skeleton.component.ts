@@ -54,6 +54,7 @@ export type KpSkeletonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
     }
 
     :host {
+      box-sizing: border-box;
       display: inline-block;
       background: var(--kp-color-skeleton-bg-base);
       border-radius: 4px;

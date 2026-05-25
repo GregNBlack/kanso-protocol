@@ -214,10 +214,12 @@ interface DayCell {
   `,
   styles: [`
     :host {
-      display: inline-flex;
+      box-sizing: border-box;
+      display: flex;
       flex-direction: column;
       position: relative;
-      width: 280px;
+      /* fluid by default — same rationale as kp-input. */
+      width: 100%;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
 

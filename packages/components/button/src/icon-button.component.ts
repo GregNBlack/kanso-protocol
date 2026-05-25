@@ -4,24 +4,35 @@ import {
   EventEmitter,
   Input,
   Output,
+  isDevMode,
 } from '@angular/core';
+
+// One-shot dev-mode warning so consumers see the deprecation notice
+// without flooding the console for every instance.
+let WARNED = false;
 
 export type KpIconButtonSize = 'xs' | 'sm' | 'md';
 
 /**
  * Kanso Protocol — IconButton (atom)
  *
- * Square ghost button with a single projected icon. Used for "close",
- * "clear", "dismiss" affordances on Popover, Dialog, Toast, Input,
- * Alert, etc. — replaces per-component reimplementations of the same
- * pattern (which historically drifted on hover / focus / sizing).
+ * @deprecated since 4.0.0 — use `<button kpButton iconOnly>` instead.
+ * `kp-icon-button` is a strict subset of the regular button directive
+ * with `iconOnly=true` and `variant=ghost` baked in. Maintaining two
+ * APIs for one component creates inconsistency (different sets of
+ * inputs, no `variant`/`color` here, etc.). Will be removed in 5.0.0.
  *
- * Color is `currentColor` so the button picks up the foreground color
- * of its container (e.g. inside Popover header it's `popover-fg-desc`,
- * inside Toast it's the toast title color). Hover applies the same
- * subtle overlay used everywhere else.
+ * Migration:
+ *   <kp-icon-button size="sm" ariaLabel="Close" (click)="close()">…</kp-icon-button>
+ * →
+ *   <button kpButton iconOnly size="sm" variant="ghost"
+ *           aria-label="Close" (click)="close()">…</button>
  *
- * @example
+ * The button directive also gives you `variant` (outline / subtle /
+ * ghost) and `color` (primary / danger / neutral) which `kp-icon-button`
+ * never exposed.
+ *
+ * @example  (still works in 4.x but logs a deprecation notice on first use)
  *   <kp-icon-button size="sm" ariaLabel="Close" (click)="close()">
  *     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
  *       <path d="M18 6 6 18M6 6l12 12" stroke="currentColor"
@@ -112,6 +123,18 @@ export class KpIconButtonComponent {
   @Input() disabled = false;
 
   @Output() readonly buttonClick = new EventEmitter<MouseEvent>();
+
+  constructor() {
+    if (isDevMode() && !WARNED) {
+      WARNED = true;
+      // eslint-disable-next-line no-console
+      console.warn(
+        '[kp-icon-button] deprecated since 4.0.0 — use ' +
+          '`<button kpButton iconOnly variant="ghost">` instead. ' +
+          'Will be removed in 5.0.0.',
+      );
+    }
+  }
 
   get hostClasses(): string {
     return `kp-icon-button kp-icon-button--${this.size}`;

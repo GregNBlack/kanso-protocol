@@ -75,6 +75,7 @@ export type KpRequiredMode = 'none' | 'optional' | 'required-asterisk';
   `,
   styles: [`
     :host {
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       gap: 8px;

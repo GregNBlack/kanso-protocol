@@ -57,6 +57,7 @@ const ICON_STROKE: Readonly<Record<KpSize, number>> = Object.freeze({
   },
   styles: [`
     :host {
+      box-sizing: border-box;
       display: inline-flex;
       align-items: center;
       justify-content: center;

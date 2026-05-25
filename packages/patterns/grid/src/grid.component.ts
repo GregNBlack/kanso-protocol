@@ -27,6 +27,7 @@ export type KpGridGap = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   template: `<ng-content/>`,
   styles: [`
     :host {
+      box-sizing: border-box;
       display: grid;
       grid-template-columns: repeat(var(--kp-grid-cols, 3), minmax(0, 1fr));
       column-gap: var(--kp-grid-col-gap, 16px);

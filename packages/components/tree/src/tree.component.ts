@@ -130,6 +130,7 @@ export interface KpTreeNode {
   `,
   styles: [`
     :host {
+      box-sizing: border-box;
       display: block;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       --kp-tree-row-h: 36px;
