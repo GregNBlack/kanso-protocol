@@ -1,5 +1,66 @@
 # @kanso-protocol/core
 
+## 4.0.0
+
+### Major Changes
+
+- **BREAKING** — five changes from Sergey's production review batched for the 4.0.0 line.
+
+  ## Fluid form-controls
+
+  `kp-input`, `kp-select`, `kp-textarea`, `kp-date-picker`, `kp-number-stepper` now default to `width: 100%` and stretch inside their layout parent. Inner `__field` elements stretch via `width: 100%` / `flex: 1`. Previously each was hardcoded to 280/320px regardless of context.
+
+  **Migration:** if you relied on the 280px default for isolated layouts, wrap the control in a fixed-width parent or override `width` directly:
+
+  ```html
+  <div style="width: 280px"><kp-input size="md" /></div>
+  ```
+
+  Inside `kp-form-field`, no migration needed — the field now stretches as expected.
+
+  ## `box-sizing: border-box` global
+
+  Added to `:host` in 21 components/patterns that previously omitted it. Fixes the `kp-table [bordered]` 1px horizontal-scroll bug and prevents the same class of issue everywhere. `kp-dialog` and `kp-drawer` skipped — they use `display: contents` where `box-sizing` has no effect.
+
+  ## `kp-icon-button` deprecated
+
+  `kp-icon-button` is a strict subset of `<button kpButton iconOnly>` — keeping two APIs for one component created inconsistency (icon-button never exposed `variant` / `color`). The component still works in 4.x with a JSDoc `@deprecated` notice and a one-shot dev-mode `console.warn`. Will be removed in 5.0.0.
+
+  **Migration:**
+
+  ```html
+  <!-- Before -->
+  <kp-icon-button size="sm" ariaLabel="Close" (click)="close()"
+    >…</kp-icon-button
+  >
+
+  <!-- After -->
+  <button
+    kpButton
+    iconOnly
+    size="sm"
+    variant="ghost"
+    aria-label="Close"
+    (click)="close()"
+  >
+    …
+  </button>
+  ```
+
+  ## `KpButtonColor` union tightened
+
+  Button's `@Input() color` was typed as `KpColorRole` (7 colors) but only painted 3. New `KpButtonColor` union restricted to the painted set (`'primary' | 'danger' | 'neutral'`). Unsupported colors (`secondary`, `success`, `warning`, `info`) now fail at compile time instead of silently rendering as default ghost.
+
+  `KpColorRole` still exists for components that paint the full 7 (badge, alert, avatar).
+
+  **Migration:** replace `color="success"` / `color="warning"` / `color="info"` / `color="secondary"` on `<button kpButton>` with one of the supported colors, or change the visual treatment via `variant`.
+
+  ## New ADR — CSS Public API
+
+  `docs/adrs/0001-css-public-api.md` formalizes CSS custom properties as the only supported customization surface, with naming convention `--kp-<component>-<property>[--<modifier>]`. Existing components mostly already follow this; ADR documents the rule + lists top 5 retrofit priorities for phase 2.
+
+  Not a breaking change in code, but locks in the contract going forward.
+
 ## 3.0.2
 
 ### Patch Changes

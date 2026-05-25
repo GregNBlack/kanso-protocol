@@ -1,5 +1,13 @@
 # @kanso-protocol/form-section
 
+## 4.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @kanso-protocol/core@4.0.0
+  - @kanso-protocol/divider@4.0.0
+
 ## 3.0.2
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @kanso-protocol/filter-bar
 
+## 4.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @kanso-protocol/core@4.0.0
+  - @kanso-protocol/badge@4.0.0
+  - @kanso-protocol/button@4.0.0
+
 ## 3.0.2
 
 ### Patch Changes

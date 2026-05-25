@@ -1,11 +1,11 @@
 {
   "name": "@kanso-protocol/empty-state",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": ">=21.0.0",
     "@angular/common": ">=21.0.0",
-    "@kanso-protocol/core": ">=3.0.2"
+    "@kanso-protocol/core": ">=4.0.0"
   },
   "description": "Kanso Protocol — empty-state (component).",
   "author": "GregNBlack",
