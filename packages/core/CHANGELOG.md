@@ -1,5 +1,19 @@
 # @kanso-protocol/core
 
+## 3.0.2
+
+### Patch Changes
+
+- Bug fixes + small API addition reported in production review.
+
+  **number-stepper** — `writeValue` now accepts numeric strings (`'10'` → `10`) and warns in dev mode on unparseable input. Previously string defaults silently became `null` with no signal, causing default values to vanish.
+
+  **date-picker (range mode)** — `writeValue` short-circuits when the incoming value is structurally identical to the current one. This breaks the infinite-CD loop with inline model functions returning fresh tuples each tick (`[ngModel]="rangeModel(from(), to())"`). The tab no longer hangs even on a bad model expression; consumers should still pass stable refs for performance.
+
+  **select** — trigger now shows the label of the matching option even when value is an empty string. Previously `value: ''` always rendered as placeholder, making `{ value: '', label: '— Any —' }` filter options invisible in the trigger. Placeholder is now shown only when no option matches.
+
+  **page-header** — new `[align]` input (`'start' | 'center' | 'end'`, default `'start'`). When set to `'center'`/`'end'`, the back-button + title + actions row flips to the requested cross-axis alignment and the back-button's optical 2px offset clears. Also: when `showBottomDivider=false`, the public `--kp-ph-pad-bottom` CSS variable is now forced to `0px` on the host — consumers using it for downstream layout no longer see a phantom 24px gap.
+
 ## 3.0.1
 
 ### Patch Changes

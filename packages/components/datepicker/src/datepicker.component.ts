@@ -901,6 +901,16 @@ export class KpDatePickerComponent implements ControlValueAccessor, AfterViewChe
   private onTouched: () => void = () => { /* no-op */ };
 
   writeValue(v: KpDatePickerValue): void {
+    // Short-circuit when the incoming value is structurally identical to
+    // what we already hold. Breaks the infinite-CD loop that happens
+    // with inline model functions returning a fresh tuple each tick:
+    //   [ngModel]="rangeModel(from(), to())"
+    // writeValue → markForCheck → next CD → fresh tuple → writeValue → …
+    // Consumers SHOULD pass stable refs (computed signal / memoized
+    // getter); this guard just prevents the form control from being
+    // DoS-able by a bad model expression.
+    if (this.sameAsCurrent(v)) return;
+
     if (v == null) {
       this.singleValue = null;
       this.rangeStart = null;
@@ -913,6 +923,25 @@ export class KpDatePickerComponent implements ControlValueAccessor, AfterViewChe
       this.singleValue = startOfDay(v);
     }
     this.cdr.markForCheck();
+  }
+
+  private sameAsCurrent(v: KpDatePickerValue): boolean {
+    const sameDayOrNull = (a: Date | null, b: Date | null | undefined): boolean => {
+      if (a === b) return true;
+      if (!a || !b) return false;
+      return startOfDay(a).getTime() === startOfDay(b).getTime();
+    };
+    if (v == null) {
+      return this.singleValue === null && this.rangeStart === null && this.rangeEnd === null;
+    }
+    if (Array.isArray(v)) {
+      const [a, b] = v;
+      return sameDayOrNull(this.rangeStart, a ?? null) && sameDayOrNull(this.rangeEnd, b ?? null);
+    }
+    if (v instanceof Date) {
+      return sameDayOrNull(this.singleValue, v);
+    }
+    return false;
   }
   registerOnChange(fn: (v: KpDatePickerValue) => void): void { this.onChange = fn; }
   registerOnTouched(fn: () => void): void { this.onTouched = fn; }

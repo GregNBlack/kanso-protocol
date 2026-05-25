@@ -1,5 +1,14 @@
 # @kanso-protocol/search-bar
 
+## 3.0.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @kanso-protocol/core@3.0.2
+  - @kanso-protocol/button@3.0.2
+  - @kanso-protocol/i18n@3.0.2
+
 ## 3.0.1
 
 ### Patch Changes

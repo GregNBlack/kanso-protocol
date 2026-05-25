@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 
 export type KpPageHeaderSize = 'sm' | 'md' | 'lg';
+export type KpPageHeaderAlign = 'start' | 'center' | 'end';
 
 /**
  * Kanso Protocol — PageHeader
@@ -38,7 +39,13 @@ export type KpPageHeaderSize = 'sm' | 'md' | 'lg';
   selector: 'kp-page-header',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { '[class]': 'hostClasses' },
+  host: {
+    '[class]': 'hostClasses',
+    /* When the bottom divider is hidden, zero the public --kp-ph-pad-bottom
+       hook so consumers using it for downstream layout don't see a phantom
+       24px gap below the header. */
+    '[style.--kp-ph-pad-bottom]': "showBottomDivider ? null : '0px'",
+  },
   template: `
     @if (showBreadcrumbs) {
       <div class="kp-page-header__crumbs">
@@ -97,6 +104,21 @@ export type KpPageHeaderSize = 'sm' | 'md' | 'lg';
       align-items: flex-start;
       gap: 16px;
       justify-content: space-between;
+    }
+    :host(.kp-page-header--align-center) .kp-page-header__row,
+    :host(.kp-page-header--align-center) .kp-page-header__left {
+      align-items: center;
+    }
+    :host(.kp-page-header--align-end) .kp-page-header__row,
+    :host(.kp-page-header--align-end) .kp-page-header__left {
+      align-items: flex-end;
+    }
+    /* The default 2px back-button offset is a baseline-alignment trick
+       for the start case (multi-line text block). When align=center/end,
+       parent flex already lines things up — kill the manual offset. */
+    :host(.kp-page-header--align-center) .kp-page-header__back,
+    :host(.kp-page-header--align-end) .kp-page-header__back {
+      margin-top: 0;
     }
 
     .kp-page-header__left {
@@ -204,10 +226,17 @@ export class KpPageHeaderComponent {
   @Input() showActions = false;
   @Input() showTabs = false;
   @Input() showBottomDivider = true;
+  /**
+   * Cross-axis alignment of the back-button + title + actions row.
+   * Default 'start' (optical baseline alignment for multi-line headers
+   * with a description). 'center' for single-line headers where the
+   * back-button should sit mid-height with the title.
+   */
+  @Input() align: KpPageHeaderAlign = 'start';
 
   @Output() backClick = new EventEmitter<void>();
 
   get hostClasses(): string {
-    return `kp-page-header kp-page-header--${this.size}`;
+    return `kp-page-header kp-page-header--${this.size} kp-page-header--align-${this.align}`;
   }
 }

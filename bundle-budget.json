@@ -47,8 +47,8 @@
       "maxGz": 6000
     },
     "components/datepicker": {
-      "currentGz": 8365,
-      "maxGz": 9700
+      "currentGz": 8786,
+      "maxGz": 10200
     },
     "components/dialog": {
       "currentGz": 4045,
@@ -91,8 +91,8 @@
       "maxGz": 4500
     },
     "components/number-stepper": {
-      "currentGz": 3880,
-      "maxGz": 4500
+      "currentGz": 4218,
+      "maxGz": 4900
     },
     "components/pagination": {
       "currentGz": 5209,
@@ -119,8 +119,8 @@
       "maxGz": 4000
     },
     "components/select": {
-      "currentGz": 5719,
-      "maxGz": 6600
+      "currentGz": 5957,
+      "maxGz": 6900
     },
     "components/skeleton": {
       "currentGz": 2017,
@@ -131,7 +131,7 @@
       "maxGz": 5100
     },
     "components/table": {
-      "currentGz": 3959,
+      "currentGz": 3969,
       "maxGz": 4600
     },
     "components/tabs": {
@@ -155,8 +155,8 @@
       "maxGz": 3100
     },
     "components/tooltip": {
-      "currentGz": 4564,
-      "maxGz": 5300
+      "currentGz": 5205,
+      "maxGz": 6000
     },
     "components/tree": {
       "currentGz": 4651,
@@ -203,7 +203,7 @@
       "maxGz": 4600
     },
     "patterns/nav-item": {
-      "currentGz": 2739,
+      "currentGz": 2743,
       "maxGz": 3200
     },
     "patterns/notification-center": {
@@ -215,8 +215,8 @@
       "maxGz": 2600
     },
     "patterns/page-header": {
-      "currentGz": 2154,
-      "maxGz": 2500
+      "currentGz": 2504,
+      "maxGz": 2900
     },
     "patterns/row": {
       "currentGz": 1186,
@@ -231,7 +231,7 @@
       "maxGz": 2500
     },
     "patterns/sidebar": {
-      "currentGz": 3924,
+      "currentGz": 3947,
       "maxGz": 4600
     },
     "patterns/stack": {

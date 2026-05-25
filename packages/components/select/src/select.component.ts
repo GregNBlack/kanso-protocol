@@ -515,7 +515,12 @@ export class KpSelectComponent implements ControlValueAccessor, AfterViewChecked
   }
 
   hasValue(): boolean {
-    return this.multiple ? this.multiValue.length > 0 : this.singleValue !== null && this.singleValue !== '';
+    if (this.multiple) return this.multiValue.length > 0;
+    // Empty string is a legitimate option value (e.g. radio-style "Any"/"All"
+    // in filters). The trigger shows placeholder only when no option matches —
+    // not when the value is formally falsy. null/undefined → no value.
+    if (this.singleValue === null || this.singleValue === undefined) return false;
+    return this.options.some(o => o.value === this.singleValue);
   }
 
   /** Value used by the hidden form-mirror input. Multi-select joins values with comma. */
@@ -548,8 +553,12 @@ export class KpSelectComponent implements ControlValueAccessor, AfterViewChecked
       }
       return `Selected ${this.multiValue.length} out of ${this.options.length}`;
     }
-    if (this.singleValue === null || this.singleValue === '') return this.placeholder;
-    return this.options.find(o => o.value === this.singleValue)?.label ?? this.singleValue;
+    // Match against options first — an option with value: '' shows its
+    // own label, not the placeholder. Fall through only when no option
+    // matches the current value (including when value is null).
+    if (this.singleValue === null || this.singleValue === undefined) return this.placeholder;
+    const matched = this.options.find(o => o.value === this.singleValue);
+    return matched ? matched.label : this.placeholder;
   }
 
   isSelected(opt: KpSelectOption): boolean {

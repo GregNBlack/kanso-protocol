@@ -4,11 +4,35 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   forwardRef,
+  isDevMode,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { KpSize, KpState } from '@kanso-protocol/core';
 import { KpButtonComponent } from '@kanso-protocol/button';
+
+/**
+ * Coerce any incoming form value into a finite number or null. Accepts
+ * numbers, numeric strings ('10', '-3.5'), null/undefined/'' → null
+ * (common 'clear' shapes). Anything else logs a dev-mode warning so
+ * mistakes in form models surface instead of silently becoming null.
+ */
+function coerceNumberOrNull(v: unknown): number | null {
+  if (v === null || v === undefined || v === '') return null;
+  if (typeof v === 'number') return Number.isFinite(v) ? v : null;
+  if (typeof v === 'string') {
+    const parsed = Number(v);
+    if (Number.isFinite(parsed)) return parsed;
+  }
+  if (isDevMode()) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      `[kp-number-stepper] writeValue received a non-numeric value (` +
+        `${typeof v}: ${String(v)}). Coerced to null.`,
+    );
+  }
+  return null;
+}
 
 /**
  * Kanso Protocol — NumberStepper Component
@@ -329,8 +353,8 @@ export class KpNumberStepperComponent implements ControlValueAccessor {
   onChange: (v: number | null) => void = () => { /* no-op */ };
   onTouched: () => void = () => { /* no-op */ };
 
-  writeValue(v: number | null): void {
-    this.value = typeof v === 'number' ? v : null;
+  writeValue(v: unknown): void {
+    this.value = coerceNumberOrNull(v);
   }
   registerOnChange(fn: (v: number | null) => void): void { this.onChange = fn; }
   registerOnTouched(fn: () => void): void { this.onTouched = fn; }
