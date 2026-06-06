@@ -2,7 +2,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
+  TemplateRef,
 } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
 
 export type KpTooltipSize = 'sm' | 'md';
 export type KpTooltipArrowPosition = 'none' | 'top' | 'right' | 'bottom' | 'left';
@@ -30,7 +32,7 @@ export type KpTooltipArrowAlign = 'start' | 'center' | 'end';
  */
 @Component({
   selector: 'kp-tooltip-internal',
-  imports: [],
+  imports: [NgTemplateOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class]': 'hostClasses',
@@ -44,10 +46,15 @@ export type KpTooltipArrowAlign = 'start' | 'center' | 'end';
       </svg>
     }
 
-    <span class="kp-tooltip__label">{{ label }}</span>
-
-    @if (shortcut) {
-      <kbd class="kp-tooltip__shortcut">{{ shortcut }}</kbd>
+    @if (contentTemplate) {
+      <span class="kp-tooltip__label">
+        <ng-container *ngTemplateOutlet="contentTemplate; context: templateContext"/>
+      </span>
+    } @else {
+      <span class="kp-tooltip__label">{{ label }}</span>
+      @if (shortcut) {
+        <kbd class="kp-tooltip__shortcut">{{ shortcut }}</kbd>
+      }
     }
   `,
   styles: [`
@@ -164,6 +171,10 @@ export class KpTooltipInternalComponent {
   @Input() arrowAlign: KpTooltipArrowAlign = 'center';
   @Input() label = '';
   @Input() shortcut: string | null = null;
+  /** Optional projected content. When set, replaces the label + shortcut. */
+  @Input() contentTemplate: TemplateRef<unknown> | null = null;
+  /** Context object passed to the projected template's implicit `$implicit`. */
+  @Input() templateContext: unknown = null;
 
   private get arrowBase(): number { return this.size === 'md' ? 10 : 8; }
   private get arrowHeight(): number { return this.size === 'md' ? 7 : 6; }

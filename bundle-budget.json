@@ -3,7 +3,7 @@
   "headroomNote": "Tiny bundles (<2KB gz) get +500B; larger ones get ~15% rounded to nearest 100B.",
   "packages": {
     "components/accordion": {
-      "currentGz": 3632,
+      "currentGz": 3639,
       "maxGz": 4200
     },
     "components/alert": {
@@ -23,12 +23,12 @@
       "maxGz": 3400
     },
     "components/breadcrumbs": {
-      "currentGz": 4670,
+      "currentGz": 4679,
       "maxGz": 5400
     },
     "components/button": {
-      "currentGz": 4944,
-      "maxGz": 5700
+      "currentGz": 5217,
+      "maxGz": 6000
     },
     "components/card": {
       "currentGz": 2537,
@@ -47,16 +47,16 @@
       "maxGz": 6000
     },
     "components/datepicker": {
-      "currentGz": 8786,
-      "maxGz": 10200
+      "currentGz": 8781,
+      "maxGz": 10100
     },
     "components/dialog": {
       "currentGz": 4045,
       "maxGz": 4700
     },
     "components/divider": {
-      "currentGz": 1340,
-      "maxGz": 1840
+      "currentGz": 1360,
+      "maxGz": 1860
     },
     "components/drawer": {
       "currentGz": 4261,
@@ -71,43 +71,43 @@
       "maxGz": 5600
     },
     "components/form-field": {
-      "currentGz": 3386,
-      "maxGz": 3900
+      "currentGz": 3404,
+      "maxGz": 4000
     },
     "components/icon": {
-      "currentGz": 11608,
+      "currentGz": 11626,
       "maxGz": 13400
     },
     "components/input": {
-      "currentGz": 3418,
+      "currentGz": 3412,
       "maxGz": 4000
     },
     "components/markdown-viewer": {
-      "currentGz": 2432,
-      "maxGz": 2800
+      "currentGz": 2446,
+      "maxGz": 2900
     },
     "components/menu": {
-      "currentGz": 3851,
+      "currentGz": 3857,
       "maxGz": 4500
     },
     "components/number-stepper": {
-      "currentGz": 4218,
+      "currentGz": 4240,
       "maxGz": 4900
     },
     "components/pagination": {
-      "currentGz": 5209,
+      "currentGz": 5215,
       "maxGz": 6000
     },
     "components/popover": {
-      "currentGz": 3133,
-      "maxGz": 3700
+      "currentGz": 5498,
+      "maxGz": 6400
     },
     "components/progress": {
-      "currentGz": 3992,
+      "currentGz": 3996,
       "maxGz": 4600
     },
     "components/radio": {
-      "currentGz": 3323,
+      "currentGz": 3330,
       "maxGz": 3900
     },
     "components/rich-text-editor": {
@@ -123,7 +123,7 @@
       "maxGz": 6900
     },
     "components/skeleton": {
-      "currentGz": 2017,
+      "currentGz": 2032,
       "maxGz": 2400
     },
     "components/slider": {
@@ -131,15 +131,15 @@
       "maxGz": 5100
     },
     "components/table": {
-      "currentGz": 3969,
+      "currentGz": 3986,
       "maxGz": 4600
     },
     "components/tabs": {
-      "currentGz": 3491,
+      "currentGz": 3493,
       "maxGz": 4100
     },
     "components/textarea": {
-      "currentGz": 2766,
+      "currentGz": 2760,
       "maxGz": 3200
     },
     "components/timepicker": {
@@ -155,11 +155,11 @@
       "maxGz": 3100
     },
     "components/tooltip": {
-      "currentGz": 5205,
-      "maxGz": 6000
+      "currentGz": 6682,
+      "maxGz": 7700
     },
     "components/tree": {
-      "currentGz": 4651,
+      "currentGz": 4665,
       "maxGz": 5400
     },
     "components/virtual-list": {
@@ -167,8 +167,8 @@
       "maxGz": 3900
     },
     "core": {
-      "currentGz": 1003,
-      "maxGz": 1503
+      "currentGz": 1786,
+      "maxGz": 2286
     },
     "i18n": {
       "currentGz": 2718,
@@ -195,8 +195,8 @@
       "maxGz": 2231
     },
     "patterns/grid": {
-      "currentGz": 1152,
-      "maxGz": 1652
+      "currentGz": 1172,
+      "maxGz": 1672
     },
     "patterns/header": {
       "currentGz": 3957,
@@ -219,11 +219,11 @@
       "maxGz": 2900
     },
     "patterns/row": {
-      "currentGz": 1186,
-      "maxGz": 1686
+      "currentGz": 1204,
+      "maxGz": 1704
     },
     "patterns/search-bar": {
-      "currentGz": 3239,
+      "currentGz": 3253,
       "maxGz": 3800
     },
     "patterns/settings-panel": {
@@ -235,8 +235,8 @@
       "maxGz": 4600
     },
     "patterns/stack": {
-      "currentGz": 989,
-      "maxGz": 1489
+      "currentGz": 1007,
+      "maxGz": 1507
     },
     "patterns/stat-card": {
       "currentGz": 2102,
@@ -247,7 +247,7 @@
       "maxGz": 3700
     },
     "patterns/theme-toggle": {
-      "currentGz": 4059,
+      "currentGz": 4072,
       "maxGz": 4700
     },
     "patterns/user-menu": {

@@ -1,5 +1,6 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { KpPopoverComponent } from '../src/popover.component';
+import { KpPopoverDirective } from '../src/popover.directive';
 import { KpButtonComponent } from '@kanso-protocol/button';
 
 const meta: Meta<KpPopoverComponent> = {
@@ -151,5 +152,59 @@ export const UseCases: Story = {
           </div>
         </kp-popover>
       </div>`,
+  }),
+};
+
+// ─────────────────────────────────────────────────────────────────────────
+// Directive API ([kpPopover]) — auto-triggered floating panel with a
+// TemplateRef body. Added in 4.1.0 alongside the chrome component above.
+// ─────────────────────────────────────────────────────────────────────────
+
+export const Directive: StoryObj = {
+  name: 'Directive — [kpPopover]',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The `[kpPopover]` directive attaches a floating panel to any element. ' +
+          'Content is a `TemplateRef`, so you control the markup completely. ' +
+          'Default trigger is click (toggle); closes on outside-click / Escape. ' +
+          'Auto-positions against the trigger with viewport-edge flipping.',
+      },
+    },
+  },
+  decorators: [
+    moduleMetadata({
+      imports: [KpPopoverDirective, KpPopoverComponent, KpButtonComponent],
+    }),
+  ],
+  render: () => ({
+    template: `
+      <div style="display:flex;gap:24px;padding:120px 40px;align-items:flex-start">
+        <button kpButton variant="default" color="primary" [kpPopover]="menu" kpPopoverPosition="bottom">
+          Actions ▾
+        </button>
+
+        <button kpButton variant="outline" [kpPopover]="info" kpPopoverPosition="right">
+          Info →
+        </button>
+      </div>
+
+      <ng-template #menu>
+        <kp-popover size="sm" [closable]="false" [showHeader]="false">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <button kpButton variant="ghost" color="neutral" style="justify-content:flex-start">Edit</button>
+            <button kpButton variant="ghost" color="neutral" style="justify-content:flex-start">Duplicate</button>
+            <button kpButton variant="ghost" color="danger" style="justify-content:flex-start">Delete</button>
+          </div>
+        </kp-popover>
+      </ng-template>
+
+      <ng-template #info>
+        <kp-popover size="md" title="Quick info" [closable]="false">
+          Popover content comes from a projected <code>TemplateRef</code> — any markup works,
+          including the chrome <code>&lt;kp-popover&gt;</code> component itself.
+        </kp-popover>
+      </ng-template>`,
   }),
 };

@@ -10,6 +10,7 @@ import {
   Input,
   NgZone,
   OnDestroy,
+  TemplateRef,
   createComponent,
   inject,
 } from '@angular/core';
@@ -59,8 +60,12 @@ let TOOLTIP_ID_SEQ = 0;
   standalone: true,
 })
 export class KpTooltipDirective implements OnDestroy {
-  /** Tooltip text. `null` or empty string disables the tooltip. */
-  @Input('kpTooltip') text: string | null = null;
+  /**
+   * Tooltip content. A `string` renders as the label; a `TemplateRef`
+   * projects custom content (icons, formatted text, etc.). `null` or an
+   * empty string disables the tooltip.
+   */
+  @Input('kpTooltip') text: string | TemplateRef<unknown> | null = null;
   @Input() kpTooltipPosition: KpTooltipPosition = 'top';
   @Input() kpTooltipSize: KpTooltipSize = 'md';
   @Input() kpTooltipShortcut: string | null = null;
@@ -128,7 +133,9 @@ export class KpTooltipDirective implements OnDestroy {
 
   private canShow(): boolean {
     if (this.kpTooltipDisabled) return false;
-    if (!this.text || this.text.trim() === '') return false;
+    if (this.text == null) return false;
+    // TemplateRef is always showable; string must be non-blank.
+    if (typeof this.text === 'string' && this.text.trim() === '') return false;
     return true;
   }
 
@@ -140,8 +147,12 @@ export class KpTooltipDirective implements OnDestroy {
     });
     const inst = this.ref.instance;
     inst.size = this.kpTooltipSize;
-    inst.label = this.text!;
-    inst.shortcut = this.kpTooltipShortcut;
+    if (this.text instanceof TemplateRef) {
+      inst.contentTemplate = this.text;
+    } else {
+      inst.label = this.text ?? '';
+      inst.shortcut = this.kpTooltipShortcut;
+    }
     inst.arrowPosition = this.oppositeOf(this.kpTooltipPosition) as KpTooltipArrowPosition;
     inst.arrowAlign = this.kpTooltipAlign;
 

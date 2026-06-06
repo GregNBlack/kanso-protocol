@@ -1,12 +1,13 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { KpTooltipDirective } from '../src/tooltip.directive';
+import { KpClipboardCopyDirective } from '../src/clipboard-copy.directive';
 import { KpButtonComponent } from '@kanso-protocol/button';
 import { KpBadgeComponent } from '@kanso-protocol/badge';
 
 const meta: Meta = {
   title: 'Components/Tooltip',
   tags: ['autodocs'],
-  decorators: [moduleMetadata({ imports: [KpTooltipDirective, KpButtonComponent, KpBadgeComponent] })],
+  decorators: [moduleMetadata({ imports: [KpTooltipDirective, KpClipboardCopyDirective, KpButtonComponent, KpBadgeComponent] })],
   parameters: {
     docs: {
       description: {
@@ -121,6 +122,59 @@ export const NextToBadge: Story = {
         <kp-badge color="warning" appearance="subtle">Beta</kp-badge>
         <span tabindex="0" [kpTooltip]="'Experimental — API may change before stable'" kpTooltipPosition="right"
               style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--kp-color-surface-muted);color:var(--kp-color-text-muted);font-size:12px;cursor:help">?</span>
+      </div>`,
+  }),
+};
+
+export const TemplateContent: Story = {
+  name: 'Custom content (TemplateRef)',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Pass a `TemplateRef` to `[kpTooltip]` instead of a string to project ' +
+          'rich content — icons, formatted text, multiple lines.',
+      },
+    },
+  },
+  render: () => ({
+    template: `
+      <div style="display:flex;gap:24px;padding:80px 24px">
+        <button kpButton variant="outline" [kpTooltip]="rich">Rich tooltip</button>
+      </div>
+      <ng-template #rich>
+        <div style="display:flex;align-items:center;gap:8px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
+          </svg>
+          <span><strong>Pro tip:</strong> press ⌘K to search</span>
+        </div>
+      </ng-template>`,
+  }),
+};
+
+export const ClipboardCopy: Story = {
+  name: 'Clipboard copy directive',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The `[kpClipboardCopy]` directive copies text to the clipboard on click ' +
+          'and shows a brief confirmation hint (reuses the tooltip chrome).',
+      },
+    },
+  },
+  render: () => ({
+    template: `
+      <div style="display:flex;flex-direction:column;gap:16px;padding:40px 24px;align-items:flex-start">
+        <button kpButton variant="outline" [kpClipboardCopy]="'npm i @kanso-protocol/core'">
+          Copy install command
+        </button>
+
+        <code [kpClipboardCopy]="'sk_live_abc123'" kpClipboardHint="Token copied!"
+              style="cursor:pointer;padding:6px 10px;border-radius:6px;background:var(--kp-color-surface-muted);font-family:monospace;font-size:13px">
+          sk_live_abc123
+        </code>
       </div>`,
   }),
 };

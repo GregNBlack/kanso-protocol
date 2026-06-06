@@ -7,3 +7,6 @@ export {
   KpTooltipArrowPosition,
   KpTooltipArrowAlign,
 } from './tooltip-internal.component';
+export {
+  KpClipboardCopyDirective,
+} from './clipboard-copy.directive';
