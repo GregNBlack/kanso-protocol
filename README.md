@@ -146,6 +146,8 @@ import '@kanso-protocol/ui/styles/dark.css';   // optional — enables [data-the
 
 Both files are generated from the same DTCG source; pick whichever fits your stylesheet pipeline. Components themselves only depend on the CSS variables — they work identically regardless of which import you choose.
 
+**Recolor to your brand** in one line — `npm run theme:brand -- "#7C3AED" > brand.css`, load it after `tokens.css`, and all 114 accent-derived tokens cascade with no rebuild. Light/dark, multi-brand, and fully-custom themes are covered in the [theming guide](docs/theming.md).
+
 Use the component as a standalone Angular import:
 
 ```ts
