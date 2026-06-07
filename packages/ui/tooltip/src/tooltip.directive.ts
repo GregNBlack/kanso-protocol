@@ -14,7 +14,7 @@ import {
   createComponent,
   inject,
 } from '@angular/core';
-import { findPortalTarget } from '@kanso-protocol/ui';
+import { findPortalTarget, computeOverlayPosition } from '@kanso-protocol/ui';
 import {
   KpTooltipArrowPosition,
   KpTooltipArrowAlign,
@@ -91,6 +91,21 @@ export class KpTooltipDirective implements OnDestroy {
   private showTimer: ReturnType<typeof setTimeout> | null = null;
   private hideTimer: ReturnType<typeof setTimeout> | null = null;
   private readonly tooltipId = `kp-tooltip-${++TOOLTIP_ID_SEQ}`;
+  private rafId: number | null = null;
+
+  /**
+   * Reposition while open on scroll/resize so the fixed-positioned tooltip
+   * tracks its trigger (otherwise it drifts toward a screen edge when the
+   * page or an ancestor scrolls). rAF-throttled; capture-phase scroll
+   * catches scrollable ancestors, not just the window.
+   */
+  private readonly onViewportChange = (): void => {
+    if (this.rafId != null || !this.ref) return;
+    this.rafId = requestAnimationFrame(() => {
+      this.rafId = null;
+      if (this.ref) this.positionTooltip(this.ref.location.nativeElement as HTMLElement);
+    });
+  };
 
   /* ─────────────────────── trigger event hooks ──────────────────────── */
 
@@ -178,6 +193,13 @@ export class KpTooltipDirective implements OnDestroy {
     this.ref.changeDetectorRef.detectChanges();
     this.positionTooltip(el);
 
+    // Track the trigger while open (scroll/resize). Capture-phase catches
+    // scrollable ancestors. SSR-guarded.
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', this.onViewportChange, true);
+      window.addEventListener('resize', this.onViewportChange);
+    }
+
     // aria wiring on trigger
     this.host.nativeElement.setAttribute('aria-describedby', this.tooltipId);
 
@@ -194,6 +216,11 @@ export class KpTooltipDirective implements OnDestroy {
 
   private hide(): void {
     if (!this.ref) return;
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('scroll', this.onViewportChange, true);
+      window.removeEventListener('resize', this.onViewportChange);
+    }
+    if (this.rafId != null) { cancelAnimationFrame(this.rafId); this.rafId = null; }
     const el = this.ref.location.nativeElement as HTMLElement;
     this.host.nativeElement.removeAttribute('aria-describedby');
     try {
@@ -213,72 +240,37 @@ export class KpTooltipDirective implements OnDestroy {
   /* ────────────────────────── positioning ───────────────────────────── */
 
   private positionTooltip(el: HTMLElement): void {
+    if (typeof window === 'undefined') return;
     const trigger = this.host.nativeElement.getBoundingClientRect();
     // ref.location is attached but tooltip may need a frame to lay out
     // its content before we can measure. We measure synchronously — the
     // styles use intrinsic size so width/height are immediately valid.
     const tip = el.getBoundingClientRect();
 
-    let pos = this.kpTooltipPosition;
-    const { innerWidth: vw, innerHeight: vh } = window;
-
-    // Flip if not enough space on the requested side
-    const fits = (p: KpTooltipPosition): boolean => {
-      switch (p) {
-        case 'top':    return trigger.top    - tip.height - TOOLTIP_GAP >= 0;
-        case 'bottom': return trigger.bottom + tip.height + TOOLTIP_GAP <= vh;
-        case 'left':   return trigger.left   - tip.width  - TOOLTIP_GAP >= 0;
-        case 'right':  return trigger.right  + tip.width  + TOOLTIP_GAP <= vw;
-      }
-    };
-    const opp: Record<KpTooltipPosition, KpTooltipPosition> = {
-      top: 'bottom', bottom: 'top', left: 'right', right: 'left',
-    };
-    if (!fits(pos) && fits(opp[pos])) pos = opp[pos];
-
-    // Align the tooltip so that the arrow point (not the tooltip centre)
-    // sits on the trigger's centre. arrowInset matches the
-    // --kp-tooltip-arrow-inset value used by the internal component
-    // (sm=10, md=12) — keep these in sync if the CSS changes.
+    // arrowInset matches --kp-tooltip-arrow-inset in the internal component
+    // (sm=10, md=12) — keep in sync if the CSS changes.
     const arrowInset = this.kpTooltipSize === 'sm' ? 10 : 12;
-    const arrowOffset = (extent: number): number => {
-      switch (this.kpTooltipAlign) {
-        case 'start': return arrowInset;
-        case 'end':   return extent - arrowInset;
-        default:      return extent / 2;
-      }
-    };
 
-    let x: number, y: number;
-    switch (pos) {
-      case 'top':
-        x = trigger.left + trigger.width / 2 - arrowOffset(tip.width);
-        y = trigger.top - tip.height - TOOLTIP_GAP;
-        break;
-      case 'bottom':
-        x = trigger.left + trigger.width / 2 - arrowOffset(tip.width);
-        y = trigger.bottom + TOOLTIP_GAP;
-        break;
-      case 'left':
-        x = trigger.left - tip.width - TOOLTIP_GAP;
-        y = trigger.top + trigger.height / 2 - arrowOffset(tip.height);
-        break;
-      case 'right':
-        x = trigger.right + TOOLTIP_GAP;
-        y = trigger.top + trigger.height / 2 - arrowOffset(tip.height);
-        break;
-    }
-
-    // Clamp to viewport with 4px gutter
-    x = Math.max(4, Math.min(x, vw - tip.width - 4));
-    y = Math.max(4, Math.min(y, vh - tip.height - 4));
+    // Shared positioning math: viewport-edge flip + clamp, and an arrow
+    // offset that keeps pointing at the trigger even after the body is
+    // clamped off a screen edge.
+    const { x, y, side, arrowOffset } = computeOverlayPosition({
+      trigger,
+      overlay: { width: tip.width, height: tip.height },
+      side: this.kpTooltipPosition,
+      gap: TOOLTIP_GAP,
+      viewport: { width: window.innerWidth, height: window.innerHeight },
+      align: this.kpTooltipAlign,
+      alignInset: arrowInset,
+      gutter: 4,
+    });
 
     el.style.left = `${x}px`;
     el.style.top = `${y}px`;
 
-    // Update arrow side to match final placement
     if (this.ref) {
-      this.ref.instance.arrowPosition = this.oppositeOf(pos) as KpTooltipArrowPosition;
+      this.ref.instance.arrowPosition = this.oppositeOf(side) as KpTooltipArrowPosition;
+      this.ref.instance.arrowOffset = arrowOffset;
       this.ref.changeDetectorRef.markForCheck();
     }
   }

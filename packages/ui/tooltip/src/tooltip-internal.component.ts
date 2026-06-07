@@ -37,6 +37,9 @@ export type KpTooltipArrowAlign = 'start' | 'center' | 'end';
   host: {
     '[class]': 'hostClasses',
     '[attr.role]': '"tooltip"',
+    // Precise px arrow offset (overrides the align-class default) so the
+    // arrow keeps pointing at the trigger after the body is edge-clamped.
+    '[style.--kp-tooltip-arrow-offset.px]': 'arrowOffset',
   },
   template: `
     @if (arrowPosition !== 'none') {
@@ -169,6 +172,12 @@ export class KpTooltipInternalComponent {
   @Input() arrowPosition: KpTooltipArrowPosition = 'none';
   /** Where along the tooltip edge the arrow attaches. See `KpTooltipArrowAlign`. */
   @Input() arrowAlign: KpTooltipArrowAlign = 'center';
+  /**
+   * Exact arrow offset in px from the tooltip's leading edge, set by the
+   * directive after viewport clamping so the arrow keeps pointing at the
+   * trigger near a screen edge. `null` falls back to the align-class default.
+   */
+  @Input() arrowOffset: number | null = null;
   @Input() label = '';
   @Input() shortcut: string | null = null;
   /** Optional projected content. When set, replaces the label + shortcut. */
