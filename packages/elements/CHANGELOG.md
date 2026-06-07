@@ -1,5 +1,11 @@
 # @kanso-protocol/elements
 
+## 0.1.1
+
+### Patch Changes
+
+- Rebuild the custom-elements bundle against `@kanso-protocol/ui@5.1.2`, picking up the tooltip edge-positioning fix (arrow stays on the trigger near a viewport edge; tooltip repositions on scroll). No API change — the bundle just carries the latest component code.
+
 ## 0.1.0
 
 ### Minor Changes
