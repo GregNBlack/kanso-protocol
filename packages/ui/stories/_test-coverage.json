@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-07T15:37:21.770Z",
+  "generatedAt": "2026-06-07T17:18:11.091Z",
   "totalSpecs": 55,
-  "totalTests": 639,
+  "totalTests": 640,
   "totalPackages": 62,
   "items": [
     {
@@ -577,7 +577,7 @@
       "specFiles": [
         "packages/ui/theme-toggle/src/theme-toggle.spec.ts"
       ],
-      "tests": 6
+      "tests": 7
     },
     {
       "layer": "patterns",

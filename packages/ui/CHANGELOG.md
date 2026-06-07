@@ -1,5 +1,11 @@
 # @kanso-protocol/ui
 
+## 5.1.1
+
+### Patch Changes
+
+- SSR hardening. `theme-toggle` no longer throws during server-side teardown (its menu cleanup touched `window` unguarded), and `rich-text-editor` only instantiates its TipTap editor in the browser (`isPlatformBrowser`) — on the server it renders an empty host and boots on hydration. The other overlay/drag components were already guarded. See `docs/ssr.md` for the full SSR contract.
+
 ## 5.1.0
 
 ### Minor Changes

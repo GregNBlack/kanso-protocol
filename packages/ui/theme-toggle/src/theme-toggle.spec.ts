@@ -52,4 +52,16 @@ describe('KpThemeToggleComponent', () => {
     expect(host.querySelectorAll('input[type="radio"]').length).toBe(0);
     expect(host.querySelector('button.kp-theme-toggle__icon-btn')).toBeTruthy();
   });
+
+  it('teardown is SSR-safe when window is undefined', () => {
+    // Simulate server teardown: ngOnDestroy → cleanupMenu must not touch
+    // window. Regression guard for the SSR fix.
+    const original = (globalThis as { window?: unknown }).window;
+    try {
+      (globalThis as { window?: unknown }).window = undefined;
+      expect(() => fixture.componentInstance.ngOnDestroy()).not.toThrow();
+    } finally {
+      (globalThis as { window?: unknown }).window = original;
+    }
+  });
 });

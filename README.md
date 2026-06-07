@@ -125,6 +125,8 @@ The assistant calls `list_components` / `get_component` / `list_tokens` under th
 
 ## Install & Use
 
+> New here? The [**getting-started guide**](docs/getting-started.md) takes you from install → tokens → first screen → a working form in five steps. It works with [`@angular/ssr`](docs/ssr.md) out of the box.
+
 One package, per-component entry points. Install once; import only what you use — each entry point is a separate ESM module, so tree-shaking ships only what you reference.
 
 ```bash
@@ -145,6 +147,8 @@ import '@kanso-protocol/ui/styles/dark.css';   // optional — enables [data-the
 ```
 
 Both files are generated from the same DTCG source; pick whichever fits your stylesheet pipeline. Components themselves only depend on the CSS variables — they work identically regardless of which import you choose.
+
+**Recolor to your brand** in one line — `npm run theme:brand -- "#7C3AED" > brand.css`, load it after `tokens.css`, and all 114 accent-derived tokens cascade with no rebuild. Light/dark, multi-brand, and fully-custom themes are covered in the [theming guide](docs/theming.md).
 
 Use the component as a standalone Angular import:
 
