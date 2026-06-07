@@ -1,0 +1,55 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Foundations/Getting Started" />
+
+# Getting started
+
+From zero to a themed, accessible screen. (Full version with the forms recipe: [`docs/getting-started.md`](https://github.com/GregNBlack/kanso-protocol/blob/main/docs/getting-started.md).)
+
+## 1 · Install
+
+```bash
+npm install @kanso-protocol/ui
+```
+
+One package; every component/pattern is a secondary entry point. Peer deps: `@angular/core`, `@angular/common` (≥ 21). Add `@angular/forms` / `@angular/router` if you use form controls / `breadcrumbs` / `nav-item`.
+
+## 2 · Load tokens
+
+```ts
+import '@kanso-protocol/ui/styles/tokens.css';   // light + :root default
+import '@kanso-protocol/ui/styles/dark.css';      // [data-theme="dark"]
+```
+
+No module, no `forRoot()`.
+
+## 3 · Use a component
+
+```ts
+import { KpButtonComponent } from '@kanso-protocol/ui/button';
+
+@Component({
+  standalone: true,
+  imports: [KpButtonComponent],
+  template: `<button kpButton color="primary">Save</button>`,
+})
+export class Demo {}
+```
+
+Import only what you reference — tree-shaking ships the rest.
+
+## 4 · Compose a screen
+
+Patterns are opinionated compositions: `app-shell` → `header` + `sidebar` + `page-header` + your content. The **Example Pages** section here (Dashboard / Settings / List / Detail / Login) shows full, copyable layouts.
+
+## 5 · Forms
+
+`kp-form-field` wraps any control and renders the matching validation message automatically — you supply the text once via `KP_VALIDATION_MESSAGES`. See the [forms recipe](https://github.com/GregNBlack/kanso-protocol/blob/main/docs/getting-started.md#5-build-a-form).
+
+## Where next
+
+- **Theming** — recolor to your brand in one line · [`docs/theming.md`](https://github.com/GregNBlack/kanso-protocol/blob/main/docs/theming.md)
+- **Stability** — per-surface tier · *Foundations/Stability* and [`docs/stability.md`](https://github.com/GregNBlack/kanso-protocol/blob/main/docs/stability.md)
+- **Decision Matrix** — pick the right component · *Foundations/Decision Matrix*
+- **Keyboard map** · [`docs/keyboard-map.md`](https://github.com/GregNBlack/kanso-protocol/blob/main/docs/keyboard-map.md)
+- **SSR** — works with `@angular/ssr` out of the box · [`docs/ssr.md`](https://github.com/GregNBlack/kanso-protocol/blob/main/docs/ssr.md)
