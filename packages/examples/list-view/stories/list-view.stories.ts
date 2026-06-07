@@ -1,17 +1,17 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { Component } from '@angular/core';
 
-import { KpHeaderComponent, KpHeaderNavItem } from '@kanso-protocol/header';
-import { KpSidebarComponent, KpSidebarSection } from '@kanso-protocol/sidebar';
-import { KpPageHeaderComponent } from '@kanso-protocol/page-header';
-import { KpTableToolbarComponent } from '@kanso-protocol/table-toolbar';
-import { KpFilterBarComponent, KpFilterChip } from '@kanso-protocol/filter-bar';
-import { KpTableComponent, KpTableColumn, KpTableCellDirective, KpTableHeaderDirective } from '@kanso-protocol/table';
-import { KpPaginationComponent } from '@kanso-protocol/pagination';
-import { KpAvatarComponent } from '@kanso-protocol/avatar';
-import { KpBadgeComponent, KpBadgeColor } from '@kanso-protocol/badge';
-import { KpButtonComponent } from '@kanso-protocol/button';
-import { KpIconComponent } from '@kanso-protocol/icon';
+import { KpHeaderComponent, KpHeaderNavItem } from '@kanso-protocol/ui/header';
+import { KpSidebarComponent, KpSidebarSection } from '@kanso-protocol/ui/sidebar';
+import { KpPageHeaderComponent } from '@kanso-protocol/ui/page-header';
+import { KpTableToolbarComponent } from '@kanso-protocol/ui/table-toolbar';
+import { KpFilterBarComponent, KpFilterChip } from '@kanso-protocol/ui/filter-bar';
+import { KpTableComponent, KpTableColumn, KpTableCellDirective, KpTableHeaderDirective } from '@kanso-protocol/ui/table';
+import { KpPaginationComponent } from '@kanso-protocol/ui/pagination';
+import { KpAvatarComponent } from '@kanso-protocol/ui/avatar';
+import { KpBadgeComponent, KpBadgeColor } from '@kanso-protocol/ui/badge';
+import { KpButtonComponent } from '@kanso-protocol/ui/button';
+import { KpIconComponent } from '@kanso-protocol/ui/icon';
 
 interface TeamMember {
   id: string;

@@ -105,7 +105,7 @@ module.exports = {
     css: {
       transformGroup: 'css',
       prefix: 'kp',
-      buildPath: 'packages/core/styles/',
+      buildPath: 'packages/ui/styles/',
       files: [
         {
           destination: 'tokens.css',
@@ -119,7 +119,7 @@ module.exports = {
     scss: {
       transformGroup: 'scss',
       prefix: 'kp',
-      buildPath: 'packages/core/styles/',
+      buildPath: 'packages/ui/styles/',
       files: [
         {
           destination: '_tokens.scss',
@@ -133,7 +133,7 @@ module.exports = {
     ts: {
       transformGroup: 'js',
       prefix: 'kp',
-      buildPath: 'packages/core/src/_generated/',
+      buildPath: 'packages/ui/src/_generated/',
       files: [
         {
           destination: 'tokens.js',
@@ -156,7 +156,7 @@ module.exports.dark = {
     cssDark: {
       transformGroup: 'css',
       prefix: 'kp',
-      buildPath: 'packages/core/styles/',
+      buildPath: 'packages/ui/styles/',
       files: [
         {
           destination: 'dark.css',

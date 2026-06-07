@@ -1,18 +1,18 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { Component } from '@angular/core';
 
-import { KpHeaderComponent, KpHeaderNavItem } from '@kanso-protocol/header';
-import { KpSidebarComponent, KpSidebarSection } from '@kanso-protocol/sidebar';
-import { KpPageHeaderComponent } from '@kanso-protocol/page-header';
-import { KpBreadcrumbsComponent } from '@kanso-protocol/breadcrumbs';
-import { KpTabsComponent, KpTabComponent } from '@kanso-protocol/tabs';
-import { KpCardComponent } from '@kanso-protocol/card';
-import { KpButtonComponent } from '@kanso-protocol/button';
-import { KpBadgeComponent } from '@kanso-protocol/badge';
-import { KpAvatarComponent } from '@kanso-protocol/avatar';
-import { KpAvatarGroupComponent, KpAvatarGroupItem } from '@kanso-protocol/avatar-group';
-import { KpSettingsRowComponent } from '@kanso-protocol/settings-panel';
-import { KpIconComponent } from '@kanso-protocol/icon';
+import { KpHeaderComponent, KpHeaderNavItem } from '@kanso-protocol/ui/header';
+import { KpSidebarComponent, KpSidebarSection } from '@kanso-protocol/ui/sidebar';
+import { KpPageHeaderComponent } from '@kanso-protocol/ui/page-header';
+import { KpBreadcrumbsComponent } from '@kanso-protocol/ui/breadcrumbs';
+import { KpTabsComponent, KpTabComponent } from '@kanso-protocol/ui/tabs';
+import { KpCardComponent } from '@kanso-protocol/ui/card';
+import { KpButtonComponent } from '@kanso-protocol/ui/button';
+import { KpBadgeComponent } from '@kanso-protocol/ui/badge';
+import { KpAvatarComponent } from '@kanso-protocol/ui/avatar';
+import { KpAvatarGroupComponent, KpAvatarGroupItem } from '@kanso-protocol/ui/avatar-group';
+import { KpSettingsRowComponent } from '@kanso-protocol/ui/settings-panel';
+import { KpIconComponent } from '@kanso-protocol/ui/icon';
 
 interface ActivityEvent {
   initials: string;

@@ -1,0 +1,925 @@
+
+// Do not edit directly, this file was auto-generated.
+
+$kp-color-white: #ffffff;
+$kp-color-black: #09090b;
+$kp-color-foreground-on-saturated: #ffffff; // Text/icon color on saturated brand backgrounds — solid buttons, filled badges, alert solid title, selected pagination items, stepper indicators. Stays #FFFFFF in BOTH modes (no dark.json override) — semantic primitive that decouples 'fg on saturated' from `color.white` (which is the elevation surface and inverts to #18181B in dark).
+$kp-color-foreground-on-dark-accent-primary: #60a5fa; // audit-2026-05-12 — brand-accent fg for active states on always-dark surfaces (kp-header--dark, kp-sidebar--dark). Stays at blue-400 light in BOTH themes (no dark.json override) so the active fg reads ~7:1 on #18181B regardless of which theme the page is in. Without this, a dark-appearance header in a light-themed page used theme-aware accent.primary.fg which is the darker blue.700 — fails AA.
+$kp-color-gray-50: #fafafa;
+$kp-color-gray-100: #f4f4f5;
+$kp-color-gray-200: #e4e4e7;
+$kp-color-gray-300: #d4d4d8;
+$kp-color-gray-400: #a1a1aa;
+$kp-color-gray-500: #71717a;
+$kp-color-gray-600: #52525b;
+$kp-color-gray-700: #3f3f46;
+$kp-color-gray-800: #27272a;
+$kp-color-gray-900: #18181b;
+$kp-color-gray-950: #09090b;
+$kp-color-blue-50: #eff6ff;
+$kp-color-blue-100: #dbeafe;
+$kp-color-blue-200: #bfdbfe;
+$kp-color-blue-300: #93c5fd;
+$kp-color-blue-400: #60a5fa;
+$kp-color-blue-500: #3b82f6;
+$kp-color-blue-600: #2563eb;
+$kp-color-blue-700: #1d4ed8;
+$kp-color-blue-800: #1e40af;
+$kp-color-blue-900: #1e3a8a;
+$kp-color-blue-950: #172554;
+$kp-color-red-50: #fef2f2;
+$kp-color-red-100: #fee2e2;
+$kp-color-red-200: #fecaca;
+$kp-color-red-300: #fca5a5;
+$kp-color-red-400: #f87171;
+$kp-color-red-500: #ef4444;
+$kp-color-red-600: #dc2626;
+$kp-color-red-700: #b91c1c;
+$kp-color-red-800: #991b1b;
+$kp-color-red-900: #7f1d1d;
+$kp-color-red-950: #450a0a;
+$kp-color-green-50: #f0fdf4;
+$kp-color-green-100: #dcfce7;
+$kp-color-green-200: #bbf7d0;
+$kp-color-green-300: #86efac;
+$kp-color-green-400: #4ade80;
+$kp-color-green-500: #22c55e;
+$kp-color-green-600: #16a34a;
+$kp-color-green-700: #15803d;
+$kp-color-green-800: #166534;
+$kp-color-green-900: #14532d;
+$kp-color-green-950: #052e16;
+$kp-color-amber-50: #fffbeb;
+$kp-color-amber-100: #fef3c7;
+$kp-color-amber-200: #fde68a;
+$kp-color-amber-300: #fcd34d;
+$kp-color-amber-400: #fbbf24;
+$kp-color-amber-500: #f59e0b;
+$kp-color-amber-600: #d97706;
+$kp-color-amber-700: #b45309;
+$kp-color-amber-800: #92400e;
+$kp-color-amber-900: #78350f;
+$kp-color-amber-950: #451a03;
+$kp-color-cyan-50: #ecfeff;
+$kp-color-cyan-100: #cffafe;
+$kp-color-cyan-200: #a5f3fc;
+$kp-color-cyan-300: #67e8f9;
+$kp-color-cyan-400: #22d3ee;
+$kp-color-cyan-500: #06b6d4;
+$kp-color-cyan-600: #0891b2;
+$kp-color-cyan-700: #0e7490;
+$kp-color-cyan-800: #155e75;
+$kp-color-cyan-900: #164e63;
+$kp-color-cyan-950: #083344;
+$kp-color-primary-subtle-border-rest: rgba(0, 0, 0, 0);
+$kp-color-primary-subtle-border-hover: rgba(0, 0, 0, 0);
+$kp-color-primary-subtle-border-active: rgba(0, 0, 0, 0);
+$kp-color-primary-subtle-border-disabled: rgba(0, 0, 0, 0);
+$kp-color-primary-subtle-border-loading: rgba(0, 0, 0, 0);
+$kp-color-primary-outline-bg-rest: rgba(0, 0, 0, 0);
+$kp-color-primary-outline-bg-focus: rgba(0, 0, 0, 0);
+$kp-color-primary-outline-bg-disabled: rgba(0, 0, 0, 0);
+$kp-color-primary-outline-bg-loading: rgba(0, 0, 0, 0);
+$kp-color-primary-ghost-bg-rest: rgba(0, 0, 0, 0);
+$kp-color-primary-ghost-bg-focus: rgba(0, 0, 0, 0);
+$kp-color-primary-ghost-bg-disabled: rgba(0, 0, 0, 0);
+$kp-color-primary-ghost-bg-loading: rgba(0, 0, 0, 0);
+$kp-color-primary-ghost-border-rest: rgba(0, 0, 0, 0);
+$kp-color-primary-ghost-border-hover: rgba(0, 0, 0, 0);
+$kp-color-primary-ghost-border-active: rgba(0, 0, 0, 0);
+$kp-color-primary-ghost-border-disabled: rgba(0, 0, 0, 0);
+$kp-color-primary-ghost-border-loading: rgba(0, 0, 0, 0);
+$kp-color-danger-subtle-border-rest: rgba(0, 0, 0, 0);
+$kp-color-danger-subtle-border-hover: rgba(0, 0, 0, 0);
+$kp-color-danger-subtle-border-active: rgba(0, 0, 0, 0);
+$kp-color-danger-subtle-border-disabled: rgba(0, 0, 0, 0);
+$kp-color-danger-subtle-border-loading: rgba(0, 0, 0, 0);
+$kp-color-danger-outline-bg-rest: rgba(0, 0, 0, 0);
+$kp-color-danger-outline-bg-focus: rgba(0, 0, 0, 0);
+$kp-color-danger-outline-bg-disabled: rgba(0, 0, 0, 0);
+$kp-color-danger-outline-bg-loading: rgba(0, 0, 0, 0);
+$kp-color-danger-ghost-bg-rest: rgba(0, 0, 0, 0);
+$kp-color-danger-ghost-bg-focus: rgba(0, 0, 0, 0);
+$kp-color-danger-ghost-bg-disabled: rgba(0, 0, 0, 0);
+$kp-color-danger-ghost-bg-loading: rgba(0, 0, 0, 0);
+$kp-color-danger-ghost-border-rest: rgba(0, 0, 0, 0);
+$kp-color-danger-ghost-border-hover: rgba(0, 0, 0, 0);
+$kp-color-danger-ghost-border-active: rgba(0, 0, 0, 0);
+$kp-color-danger-ghost-border-disabled: rgba(0, 0, 0, 0);
+$kp-color-danger-ghost-border-loading: rgba(0, 0, 0, 0);
+$kp-color-neutral-subtle-border-rest: rgba(0, 0, 0, 0);
+$kp-color-neutral-subtle-border-hover: rgba(0, 0, 0, 0);
+$kp-color-neutral-subtle-border-active: rgba(0, 0, 0, 0);
+$kp-color-neutral-subtle-border-disabled: rgba(0, 0, 0, 0);
+$kp-color-neutral-subtle-border-loading: rgba(0, 0, 0, 0);
+$kp-color-neutral-outline-bg-rest: rgba(0, 0, 0, 0);
+$kp-color-neutral-outline-bg-focus: rgba(0, 0, 0, 0);
+$kp-color-neutral-outline-bg-disabled: rgba(0, 0, 0, 0);
+$kp-color-neutral-outline-bg-loading: rgba(0, 0, 0, 0);
+$kp-color-neutral-ghost-bg-rest: rgba(0, 0, 0, 0);
+$kp-color-neutral-ghost-bg-focus: rgba(0, 0, 0, 0);
+$kp-color-neutral-ghost-bg-disabled: rgba(0, 0, 0, 0);
+$kp-color-neutral-ghost-bg-loading: rgba(0, 0, 0, 0);
+$kp-color-neutral-ghost-border-rest: rgba(0, 0, 0, 0);
+$kp-color-neutral-ghost-border-hover: rgba(0, 0, 0, 0);
+$kp-color-neutral-ghost-border-active: rgba(0, 0, 0, 0);
+$kp-color-neutral-ghost-border-disabled: rgba(0, 0, 0, 0);
+$kp-color-neutral-ghost-border-loading: rgba(0, 0, 0, 0);
+$kp-color-surface-on-dark-base: #18181b; // Always-dark elevated surface (e.g. .kp-header--dark, .kp-sidebar--dark). No dark override — value is fixed across themes.
+$kp-color-surface-on-dark-muted: #27272a; // Always-dark hover/muted surface
+$kp-color-surface-on-dark-strong: #3f3f46; // Always-dark active/pressed surface
+$kp-color-border-on-dark-subtle: #27272a; // Faint divider on always-dark surfaces
+$kp-color-border-on-dark-default: #3f3f46; // Standard border on always-dark surfaces
+$kp-color-segmented-segment-bg-unselected-rest: rgba(0, 0, 0, 0);
+$kp-color-segmented-segment-bg-disabled: rgba(0, 0, 0, 0);
+$kp-color-badge-primary-subtle-border: rgba(0, 0, 0, 0);
+$kp-color-badge-primary-outline-bg: rgba(0, 0, 0, 0);
+$kp-color-badge-primary-dot-bg: rgba(0, 0, 0, 0);
+$kp-color-badge-primary-dot-border: rgba(0, 0, 0, 0);
+$kp-color-badge-danger-subtle-border: rgba(0, 0, 0, 0);
+$kp-color-badge-danger-outline-bg: rgba(0, 0, 0, 0);
+$kp-color-badge-danger-dot-bg: rgba(0, 0, 0, 0);
+$kp-color-badge-danger-dot-border: rgba(0, 0, 0, 0);
+$kp-color-badge-success-subtle-border: rgba(0, 0, 0, 0);
+$kp-color-badge-success-outline-bg: rgba(0, 0, 0, 0);
+$kp-color-badge-success-dot-bg: rgba(0, 0, 0, 0);
+$kp-color-badge-success-dot-border: rgba(0, 0, 0, 0);
+$kp-color-badge-warning-subtle-border: rgba(0, 0, 0, 0);
+$kp-color-badge-warning-outline-bg: rgba(0, 0, 0, 0);
+$kp-color-badge-warning-dot-bg: rgba(0, 0, 0, 0);
+$kp-color-badge-warning-dot-border: rgba(0, 0, 0, 0);
+$kp-color-badge-info-subtle-border: rgba(0, 0, 0, 0);
+$kp-color-badge-info-outline-bg: rgba(0, 0, 0, 0);
+$kp-color-badge-info-dot-bg: rgba(0, 0, 0, 0);
+$kp-color-badge-info-dot-border: rgba(0, 0, 0, 0);
+$kp-color-badge-neutral-subtle-border: rgba(0, 0, 0, 0);
+$kp-color-badge-neutral-outline-bg: rgba(0, 0, 0, 0);
+$kp-color-badge-neutral-dot-bg: rgba(0, 0, 0, 0);
+$kp-color-badge-neutral-dot-border: rgba(0, 0, 0, 0);
+$kp-color-tabs-tab-underline-rest: rgba(0, 0, 0, 0);
+$kp-color-tabs-tab-underline-disabled: rgba(0, 0, 0, 0);
+$kp-color-nav-item-bg-rest: rgba(0, 0, 0, 0);
+$kp-color-pagination-item-bg-rest: rgba(0, 0, 0, 0);
+$kp-color-pagination-item-bg-disabled: rgba(0, 0, 0, 0);
+$kp-color-datepicker-day-bg-rest: rgba(0, 0, 0, 0);
+$kp-color-datepicker-day-bg-today: rgba(0, 0, 0, 0);
+$kp-color-tree-node-bg-rest: rgba(0, 0, 0, 0);
+$kp-color-accordion-trigger-bg-rest: rgba(0, 0, 0, 0);
+$kp-color-accordion-trigger-bg-expanded: rgba(0, 0, 0, 0);
+$kp-color-dialog-backdrop: rgba(0, 0, 0, 0.5); // Semi-transparent overlay behind dialog
+$kp-color-overlay-hover-subtle: rgba(0, 0, 0, 0.04); // Faintest hover bg — close-button on Alert / Badge / Popover surfaces.
+$kp-color-overlay-hover-light: rgba(0, 0, 0, 0.06); // Light hover bg — subtle interactive emphasis on light surfaces.
+$kp-color-overlay-hover-medium: rgba(0, 0, 0, 0.08); // Standard hover bg on light surfaces.
+$kp-color-overlay-primary-hover: rgba(37, 99, 235, 0.08); // Translucent primary tint — Toast action button hover.
+$kp-color-overlay-focus-ring: rgba(59, 130, 246, 0.12); // Soft glow around the focused control (3px ring on SearchBar).
+$kp-color-fg-on-dark-strong: rgba(255, 255, 255, 0.92); // Primary text on dark backgrounds — Sidebar item label.
+$kp-color-fg-on-dark-default: rgba(255, 255, 255, 0.8); // Default text on dark backgrounds — Header nav item / icon button.
+$kp-color-fg-on-dark-muted: rgba(255, 255, 255, 0.7); // Secondary text on dark — Sidebar toggle.
+$kp-color-fg-on-dark-subtle: rgba(255, 255, 255, 0.6); // Lowest-emphasis text on dark — Header user role / chevron.
+$kp-elevation-none: 0px 0px 0px 0px rgba(0,0,0,0);
+$kp-elevation-raised: 0px 1px 2px 0px rgba(9,9,11,0.08), 0px 1px 3px -1px rgba(9,9,11,0.05), 0px 0px 4px -1px rgba(9,9,11,0.03);
+$kp-elevation-overlay: 0px 4px 6px -2px rgba(9,9,11,0.10), 0px 2px 10px -2px rgba(9,9,11,0.06), 0px 0px 16px -4px rgba(9,9,11,0.04);
+$kp-elevation-floating: 0px 8px 16px -4px rgba(9,9,11,0.12), 0px 4px 24px -4px rgba(9,9,11,0.08), 0px 0px 40px -8px rgba(9,9,11,0.05);
+$kp-icon-size-xs: 14px; // Icon for XS components (24px button)
+$kp-icon-size-sm: 16px; // Icon for SM components (28px button)
+$kp-icon-size-md: 18px; // Icon for MD components (36px button)
+$kp-icon-size-lg: 22px; // Icon for LG components (44px button)
+$kp-icon-size-xl: 24px; // Icon for XL components (52px button)
+$kp-icon-stroke-xs: 1.25px; // Stroke width for 14px icons — optical compensation
+$kp-icon-stroke-sm: 1.35px; // Stroke width for 16px icons
+$kp-icon-stroke-md: 1.5px; // Stroke width for 18px icons
+$kp-icon-stroke-lg: 1.75px; // Stroke width for 22px icons
+$kp-icon-stroke-xl: 2px; // Stroke width for 24px icons — standard Tabler default
+$kp-motion-duration-fast: 120ms; // Hover, focus, color/border state changes.
+$kp-motion-duration-normal: 200ms; // Overlay enter/exit, accordion expand, larger transitions.
+$kp-motion-duration-slow: 300ms; // Page-level changes; rare.
+$kp-motion-duration-spin: 1000ms; // Infinite spinner loop — button loading, progress-circular indeterminate.
+$kp-motion-duration-shimmer: 1400ms; // Infinite shimmer loop — skeleton placeholder, progress-linear indeterminate slide.
+$kp-motion-ease-in: cubic-bezier(0.4, 0, 1, 1);
+$kp-motion-ease-out: cubic-bezier(0, 0, 0.2, 1);
+$kp-motion-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+$kp-radius-none: 0px;
+$kp-radius-comp-xs: 8px;
+$kp-radius-comp-sm: 10px;
+$kp-radius-comp-md: 12px;
+$kp-radius-comp-lg: 14px;
+$kp-radius-comp-xl: 16px;
+$kp-radius-full: 9999px;
+$kp-size-xs: 24px;
+$kp-size-sm: 28px;
+$kp-size-md: 36px;
+$kp-size-lg: 44px;
+$kp-size-xl: 52px;
+$kp-spacing-4xs: 2px;
+$kp-spacing-3xs: 4px;
+$kp-spacing-2xs: 8px;
+$kp-spacing-xs: 12px;
+$kp-spacing-sm: 16px;
+$kp-spacing-md: 20px;
+$kp-spacing-lg: 24px;
+$kp-spacing-xl: 32px;
+$kp-spacing-2xl: 40px;
+$kp-spacing-3xl: 48px;
+$kp-spacing-4xl: 64px;
+$kp-font-family-sans: Onest, system-ui, sans-serif; // Primary UI font
+$kp-font-family-mono: 'SF Mono', Monaco, Consolas, monospace; // Monospace for code
+$kp-font-weight-regular: 400; // Body text
+$kp-font-weight-medium: 500; // Emphasis, small text, section labels
+$kp-font-weight-semibold: 600; // Headings
+$kp-font-weight-bold: 700; // Strong emphasis
+$kp-font-size-2xs: 11px; // Micro labels, captions
+$kp-font-size-xs: 12px; // Small body, hints
+$kp-font-size-sm: 14px; // Default body text, UI
+$kp-font-size-md: 16px; // Comfortable body, large UI
+$kp-font-size-lg: 20px; // Section labels, small headings
+$kp-font-size-xl: 24px; // Headings
+$kp-font-size-2xl: 32px; // Large headings, hero text
+$kp-font-line-height-2xs: 16px; // Pairs with size 2xs (11px) — 4px grid
+$kp-font-line-height-xs: 16px; // Pairs with size xs (12px)
+$kp-font-line-height-sm: 20px; // Pairs with size sm (14px)
+$kp-font-line-height-md: 24px; // Pairs with size md (16px)
+$kp-font-line-height-lg: 28px; // Pairs with size lg (20px)
+$kp-font-line-height-xl: 32px; // Pairs with size xl (24px)
+$kp-font-line-height-2xl: 40px; // Pairs with size 2xl (32px)
+$kp-layout-container-max-width-narrow: 640px;
+$kp-layout-container-max-width-medium: 960px;
+$kp-layout-container-max-width-wide: 1280px;
+$kp-layout-container-max-width-full: 100%;
+$kp-layout-container-padding-none: 0;
+$kp-layout-container-padding-sm: 16px;
+$kp-layout-container-padding-md: 24px;
+$kp-layout-container-padding-lg: 32px;
+$kp-color-accent-primary-fg: $kp-color-blue-700; // audit-2026-05-12 — was blue.600 #2563EB (4.55:1 on white, borderline AA). blue.700 #1D4ED8 → 7.46:1.
+$kp-color-accent-danger-fg: $kp-color-red-700; // audit-2026-05-12 — was red.600 #DC2626 (4.95:1 on white, borderline AA). red.700 #B91C1C → 6.27:1.
+$kp-color-accent-success-fg: $kp-color-green-700; // audit-2026-05-12 — was green.600 #16A34A (2.94:1 on white, fails AA). green.700 #15803D → 4.74:1.
+$kp-color-accent-warning-fg: $kp-color-amber-700; // audit-2026-05-12 — was amber.600 #D97706 (3.04:1 on white, fails AA). amber.700 #B45309 → 5.53:1.
+$kp-color-accent-info-fg: $kp-color-cyan-700; // audit-2026-05-12 — was cyan.600 #0891B2 (4.16:1 on white, fails AA). cyan.700 #0E7490 → 5.54:1.
+$kp-color-primary-default-bg-rest: $kp-color-blue-600;
+$kp-color-primary-default-bg-hover: $kp-color-blue-700;
+$kp-color-primary-default-bg-active: $kp-color-blue-800;
+$kp-color-primary-default-bg-focus: $kp-color-blue-600;
+$kp-color-primary-default-bg-disabled: $kp-color-gray-200;
+$kp-color-primary-default-bg-loading: $kp-color-blue-500;
+$kp-color-primary-default-fg-rest: $kp-color-foreground-on-saturated;
+$kp-color-primary-default-fg-hover: $kp-color-foreground-on-saturated;
+$kp-color-primary-default-fg-active: $kp-color-foreground-on-saturated;
+$kp-color-primary-default-fg-focus: $kp-color-foreground-on-saturated;
+$kp-color-primary-default-fg-disabled: $kp-color-gray-400;
+$kp-color-primary-default-fg-loading: $kp-color-foreground-on-saturated;
+$kp-color-primary-default-border-rest: $kp-color-blue-600;
+$kp-color-primary-default-border-hover: $kp-color-blue-700;
+$kp-color-primary-default-border-active: $kp-color-blue-800;
+$kp-color-primary-default-border-focus: $kp-color-blue-600;
+$kp-color-primary-default-border-disabled: $kp-color-gray-200;
+$kp-color-primary-default-border-loading: $kp-color-blue-500;
+$kp-color-primary-subtle-bg-rest: $kp-color-blue-50;
+$kp-color-primary-subtle-bg-hover: $kp-color-blue-100;
+$kp-color-primary-subtle-bg-active: $kp-color-blue-200;
+$kp-color-primary-subtle-bg-focus: $kp-color-blue-50;
+$kp-color-primary-subtle-bg-disabled: $kp-color-gray-100;
+$kp-color-primary-subtle-bg-loading: $kp-color-blue-50;
+$kp-color-primary-subtle-fg-rest: $kp-color-blue-700;
+$kp-color-primary-subtle-fg-hover: $kp-color-blue-800;
+$kp-color-primary-subtle-fg-active: $kp-color-blue-900;
+$kp-color-primary-subtle-fg-focus: $kp-color-blue-700;
+$kp-color-primary-subtle-fg-disabled: $kp-color-gray-400;
+$kp-color-primary-subtle-fg-loading: $kp-color-blue-500;
+$kp-color-primary-subtle-border-focus: $kp-color-blue-600;
+$kp-color-primary-outline-bg-hover: $kp-color-blue-50;
+$kp-color-primary-outline-bg-active: $kp-color-blue-100;
+$kp-color-primary-outline-fg-rest: $kp-color-blue-600;
+$kp-color-primary-outline-fg-hover: $kp-color-blue-700;
+$kp-color-primary-outline-fg-active: $kp-color-blue-800;
+$kp-color-primary-outline-fg-focus: $kp-color-blue-600;
+$kp-color-primary-outline-fg-disabled: $kp-color-gray-400;
+$kp-color-primary-outline-fg-loading: $kp-color-blue-400;
+$kp-color-primary-outline-border-rest: $kp-color-blue-300;
+$kp-color-primary-outline-border-hover: $kp-color-blue-400;
+$kp-color-primary-outline-border-active: $kp-color-blue-500;
+$kp-color-primary-outline-border-focus: $kp-color-blue-600;
+$kp-color-primary-outline-border-disabled: $kp-color-gray-200;
+$kp-color-primary-outline-border-loading: $kp-color-blue-200;
+$kp-color-primary-ghost-bg-hover: $kp-color-blue-50;
+$kp-color-primary-ghost-bg-active: $kp-color-blue-100;
+$kp-color-primary-ghost-fg-rest: $kp-color-blue-600;
+$kp-color-primary-ghost-fg-hover: $kp-color-blue-700;
+$kp-color-primary-ghost-fg-active: $kp-color-blue-800;
+$kp-color-primary-ghost-fg-focus: $kp-color-blue-600;
+$kp-color-primary-ghost-fg-disabled: $kp-color-gray-400;
+$kp-color-primary-ghost-fg-loading: $kp-color-blue-400;
+$kp-color-primary-ghost-border-focus: $kp-color-blue-600;
+$kp-color-danger-default-bg-rest: $kp-color-red-600;
+$kp-color-danger-default-bg-hover: $kp-color-red-700;
+$kp-color-danger-default-bg-active: $kp-color-red-800;
+$kp-color-danger-default-bg-focus: $kp-color-red-600;
+$kp-color-danger-default-bg-disabled: $kp-color-gray-200;
+$kp-color-danger-default-bg-loading: $kp-color-red-500;
+$kp-color-danger-default-fg-rest: $kp-color-foreground-on-saturated;
+$kp-color-danger-default-fg-hover: $kp-color-foreground-on-saturated;
+$kp-color-danger-default-fg-active: $kp-color-foreground-on-saturated;
+$kp-color-danger-default-fg-focus: $kp-color-foreground-on-saturated;
+$kp-color-danger-default-fg-disabled: $kp-color-gray-400;
+$kp-color-danger-default-fg-loading: $kp-color-foreground-on-saturated;
+$kp-color-danger-default-border-rest: $kp-color-red-600;
+$kp-color-danger-default-border-hover: $kp-color-red-700;
+$kp-color-danger-default-border-active: $kp-color-red-800;
+$kp-color-danger-default-border-focus: $kp-color-red-600;
+$kp-color-danger-default-border-disabled: $kp-color-gray-200;
+$kp-color-danger-default-border-loading: $kp-color-red-500;
+$kp-color-danger-subtle-bg-rest: $kp-color-red-50;
+$kp-color-danger-subtle-bg-hover: $kp-color-red-100;
+$kp-color-danger-subtle-bg-active: $kp-color-red-200;
+$kp-color-danger-subtle-bg-focus: $kp-color-red-50;
+$kp-color-danger-subtle-bg-disabled: $kp-color-gray-100;
+$kp-color-danger-subtle-bg-loading: $kp-color-red-50;
+$kp-color-danger-subtle-fg-rest: $kp-color-red-700;
+$kp-color-danger-subtle-fg-hover: $kp-color-red-800;
+$kp-color-danger-subtle-fg-active: $kp-color-red-900;
+$kp-color-danger-subtle-fg-focus: $kp-color-red-700;
+$kp-color-danger-subtle-fg-disabled: $kp-color-gray-400;
+$kp-color-danger-subtle-fg-loading: $kp-color-red-500;
+$kp-color-danger-subtle-border-focus: $kp-color-red-600;
+$kp-color-danger-outline-bg-hover: $kp-color-red-50;
+$kp-color-danger-outline-bg-active: $kp-color-red-100;
+$kp-color-danger-outline-fg-rest: $kp-color-red-600;
+$kp-color-danger-outline-fg-hover: $kp-color-red-700;
+$kp-color-danger-outline-fg-active: $kp-color-red-800;
+$kp-color-danger-outline-fg-focus: $kp-color-red-600;
+$kp-color-danger-outline-fg-disabled: $kp-color-gray-400;
+$kp-color-danger-outline-fg-loading: $kp-color-red-400;
+$kp-color-danger-outline-border-rest: $kp-color-red-300;
+$kp-color-danger-outline-border-hover: $kp-color-red-400;
+$kp-color-danger-outline-border-active: $kp-color-red-500;
+$kp-color-danger-outline-border-focus: $kp-color-red-600;
+$kp-color-danger-outline-border-disabled: $kp-color-gray-200;
+$kp-color-danger-outline-border-loading: $kp-color-red-200;
+$kp-color-danger-ghost-bg-hover: $kp-color-red-50;
+$kp-color-danger-ghost-bg-active: $kp-color-red-100;
+$kp-color-danger-ghost-fg-rest: $kp-color-red-600;
+$kp-color-danger-ghost-fg-hover: $kp-color-red-700;
+$kp-color-danger-ghost-fg-active: $kp-color-red-800;
+$kp-color-danger-ghost-fg-focus: $kp-color-red-600;
+$kp-color-danger-ghost-fg-disabled: $kp-color-gray-400;
+$kp-color-danger-ghost-fg-loading: $kp-color-red-400;
+$kp-color-danger-ghost-border-focus: $kp-color-red-600;
+$kp-color-neutral-default-bg-rest: $kp-color-gray-900;
+$kp-color-neutral-default-bg-hover: $kp-color-gray-800;
+$kp-color-neutral-default-bg-active: $kp-color-gray-700;
+$kp-color-neutral-default-bg-focus: $kp-color-gray-900;
+$kp-color-neutral-default-bg-disabled: $kp-color-gray-200;
+$kp-color-neutral-default-bg-loading: $kp-color-gray-700;
+$kp-color-neutral-default-fg-rest: $kp-color-white;
+$kp-color-neutral-default-fg-hover: $kp-color-white;
+$kp-color-neutral-default-fg-active: $kp-color-white;
+$kp-color-neutral-default-fg-focus: $kp-color-white;
+$kp-color-neutral-default-fg-disabled: $kp-color-gray-400;
+$kp-color-neutral-default-fg-loading: $kp-color-white;
+$kp-color-neutral-default-border-rest: $kp-color-gray-900;
+$kp-color-neutral-default-border-hover: $kp-color-gray-800;
+$kp-color-neutral-default-border-active: $kp-color-gray-700;
+$kp-color-neutral-default-border-focus: $kp-color-gray-900;
+$kp-color-neutral-default-border-disabled: $kp-color-gray-200;
+$kp-color-neutral-default-border-loading: $kp-color-gray-700;
+$kp-color-neutral-subtle-bg-rest: $kp-color-gray-100;
+$kp-color-neutral-subtle-bg-hover: $kp-color-gray-200;
+$kp-color-neutral-subtle-bg-active: $kp-color-gray-300;
+$kp-color-neutral-subtle-bg-focus: $kp-color-gray-100;
+$kp-color-neutral-subtle-bg-disabled: $kp-color-gray-100;
+$kp-color-neutral-subtle-bg-loading: $kp-color-gray-100;
+$kp-color-neutral-subtle-fg-rest: $kp-color-gray-700;
+$kp-color-neutral-subtle-fg-hover: $kp-color-gray-800;
+$kp-color-neutral-subtle-fg-active: $kp-color-gray-900;
+$kp-color-neutral-subtle-fg-focus: $kp-color-gray-700;
+$kp-color-neutral-subtle-fg-disabled: $kp-color-gray-400;
+$kp-color-neutral-subtle-fg-loading: $kp-color-gray-500;
+$kp-color-neutral-subtle-border-focus: $kp-color-gray-600;
+$kp-color-neutral-outline-bg-hover: $kp-color-gray-50;
+$kp-color-neutral-outline-bg-active: $kp-color-gray-100;
+$kp-color-neutral-outline-fg-rest: $kp-color-gray-700;
+$kp-color-neutral-outline-fg-hover: $kp-color-gray-800;
+$kp-color-neutral-outline-fg-active: $kp-color-gray-900;
+$kp-color-neutral-outline-fg-focus: $kp-color-gray-700;
+$kp-color-neutral-outline-fg-disabled: $kp-color-gray-400;
+$kp-color-neutral-outline-fg-loading: $kp-color-gray-400;
+$kp-color-neutral-outline-border-rest: $kp-color-gray-300;
+$kp-color-neutral-outline-border-hover: $kp-color-gray-400;
+$kp-color-neutral-outline-border-active: $kp-color-gray-500;
+$kp-color-neutral-outline-border-focus: $kp-color-gray-600;
+$kp-color-neutral-outline-border-disabled: $kp-color-gray-200;
+$kp-color-neutral-outline-border-loading: $kp-color-gray-200;
+$kp-color-neutral-ghost-bg-hover: $kp-color-gray-100;
+$kp-color-neutral-ghost-bg-active: $kp-color-gray-200;
+$kp-color-neutral-ghost-fg-rest: $kp-color-gray-700;
+$kp-color-neutral-ghost-fg-hover: $kp-color-gray-800;
+$kp-color-neutral-ghost-fg-active: $kp-color-gray-900;
+$kp-color-neutral-ghost-fg-focus: $kp-color-gray-700;
+$kp-color-neutral-ghost-fg-disabled: $kp-color-gray-400;
+$kp-color-neutral-ghost-fg-loading: $kp-color-gray-400;
+$kp-color-neutral-ghost-border-focus: $kp-color-gray-600;
+$kp-color-focus-ring: $kp-color-blue-400; // Focus ring — 2px offset outline for all focusable elements
+$kp-color-text-strong: $kp-color-gray-900; // Headings and primary emphasized text
+$kp-color-text-default: $kp-color-gray-700; // Default body text
+$kp-color-text-muted: $kp-color-gray-500; // Secondary text — captions, helper, less important labels. Dark override → gray.600 for AA contrast against dark page bg.
+$kp-color-text-disabled: $kp-color-gray-500; // audit-2026-05-12 — was gray.400 #A1A1AA (2.62:1 on white, fails AA). gray.500 #71717A → 4.84:1. Visually collapses with `muted` (same hex) in light; the visual disabled affordance now comes from `cursor: not-allowed` + reduced font-weight on actually-disabled controls. Dark override aligned to gray.600 (=#A1A1AA in dark) for consistency.
+$kp-color-surface-base: $kp-color-white; // Top elevated surface — cards, dialogs, dropdowns. Inverts to gray-900 dark = #18181B
+$kp-color-surface-subtle: $kp-color-gray-50; // Page background behind cards, recessed regions. Inverts to gray-950 dark = #09090B
+$kp-color-surface-muted: $kp-color-gray-100; // Hover background, alternating rows, muted callouts. Dark override → gray.200 (= #27272A in dark, distinguishable from base)
+$kp-color-surface-strong: $kp-color-gray-200; // Active row, pressed state, more prominent muted bg. Dark override → gray.300
+$kp-color-border-subtle: $kp-color-gray-100; // Faint internal dividers
+$kp-color-border-default: $kp-color-gray-200; // Standard control and card borders
+$kp-color-border-strong: $kp-color-gray-300; // Emphasized borders — focused panels, table headers
+$kp-color-icon-primary: $kp-color-gray-700; // Default icon color on light backgrounds — navigation, lists, labels
+$kp-color-icon-secondary: $kp-color-gray-400; // Decorative icons, placeholders, hints
+$kp-color-icon-disabled: $kp-color-gray-300; // Disabled/inactive icons
+$kp-color-icon-interactive: $kp-color-blue-600; // Clickable icon-links
+$kp-color-icon-danger: $kp-color-red-600; // Error, destructive actions
+$kp-color-icon-success: $kp-color-green-600; // Success, confirmation
+$kp-color-icon-warning: $kp-color-amber-500; // Warning, attention needed
+$kp-color-form-label-default: $kp-color-gray-700; // Default label color
+$kp-color-form-label-disabled: $kp-color-gray-400; // Disabled label
+$kp-color-form-label-error: $kp-color-red-600; // Error label
+$kp-color-form-helper-default: $kp-color-gray-500; // Default helper text
+$kp-color-form-helper-disabled: $kp-color-gray-400; // Disabled helper text
+$kp-color-form-helper-error: $kp-color-red-500; // Error helper text
+$kp-color-form-floating-label-rest: $kp-color-gray-600; // Floating label at rest
+$kp-color-form-floating-label-focus: $kp-color-blue-600; // Floating label on focus
+$kp-color-form-floating-label-error: $kp-color-red-500; // Floating label on error
+$kp-color-form-floating-label-disabled: $kp-color-gray-400; // Floating label disabled
+$kp-color-form-required-marker: $kp-color-red-600; // Required field asterisk color
+$kp-color-form-required-optional: $kp-color-gray-500; // Optional field label color
+$kp-color-menu-panel-bg: $kp-color-white;
+$kp-color-menu-panel-border: $kp-color-gray-200;
+$kp-color-menu-item-bg-rest: $kp-color-white;
+$kp-color-menu-item-bg-hover: $kp-color-gray-50;
+$kp-color-menu-item-bg-active: $kp-color-gray-100;
+$kp-color-menu-item-bg-selected: $kp-color-blue-50;
+$kp-color-menu-item-bg-disabled: $kp-color-white;
+$kp-color-menu-item-fg-rest: $kp-color-gray-900;
+$kp-color-menu-item-fg-hover: $kp-color-gray-900;
+$kp-color-menu-item-fg-active: $kp-color-gray-900;
+$kp-color-menu-item-fg-selected: $kp-color-blue-700;
+$kp-color-menu-item-fg-disabled: $kp-color-gray-400;
+$kp-color-menu-item-fg-danger-rest: $kp-color-red-600;
+$kp-color-menu-item-fg-danger-hover: $kp-color-red-700;
+$kp-color-menu-item-icon-rest: $kp-color-gray-500;
+$kp-color-menu-item-icon-selected: $kp-color-blue-600;
+$kp-color-menu-item-icon-disabled: $kp-color-gray-300;
+$kp-color-menu-item-shortcut-default: $kp-color-gray-400;
+$kp-color-menu-divider: $kp-color-gray-100;
+$kp-color-menu-section-label: $kp-color-gray-500;
+$kp-color-input-bg-default: $kp-color-white;
+$kp-color-input-bg-filled: $kp-color-gray-100;
+$kp-color-input-bg-disabled: $kp-color-gray-50;
+$kp-color-input-fg-default: $kp-color-gray-900;
+$kp-color-input-fg-disabled: $kp-color-gray-400;
+$kp-color-input-border-rest: $kp-color-gray-300;
+$kp-color-input-border-hover: $kp-color-gray-400;
+$kp-color-input-border-focus: $kp-color-blue-600;
+$kp-color-input-border-disabled: $kp-color-gray-200;
+$kp-color-input-border-error: $kp-color-red-500;
+$kp-color-input-placeholder-default: $kp-color-gray-500; // audit-2026-05-12 — was gray.400 #A1A1AA (2.62:1 on white, fails AA). gray.500 #71717A → 4.84:1. Dark override (#A1A1AA) preserves prior dark contrast.
+$kp-color-input-placeholder-disabled: $kp-color-gray-300;
+$kp-color-checkbox-border-rest: $kp-color-gray-300;
+$kp-color-checkbox-border-hover: $kp-color-gray-400;
+$kp-color-select-chevron-rest: $kp-color-gray-500;
+$kp-color-select-chevron-hover: $kp-color-gray-700;
+$kp-color-select-chevron-open: $kp-color-blue-600;
+$kp-color-select-chevron-disabled: $kp-color-gray-300;
+$kp-color-select-chevron-error: $kp-color-red-500;
+$kp-color-stepper-indicator-bg-pending: $kp-color-white;
+$kp-color-stepper-indicator-bg-active: $kp-color-blue-600;
+$kp-color-stepper-indicator-bg-completed: $kp-color-blue-600;
+$kp-color-stepper-indicator-bg-error: $kp-color-red-600;
+$kp-color-stepper-indicator-border-pending: $kp-color-gray-300;
+$kp-color-stepper-indicator-border-active: $kp-color-blue-600;
+$kp-color-stepper-indicator-border-completed: $kp-color-blue-600;
+$kp-color-stepper-indicator-border-error: $kp-color-red-600;
+$kp-color-stepper-indicator-fg-pending: $kp-color-gray-500;
+$kp-color-stepper-indicator-fg-active: $kp-color-foreground-on-saturated;
+$kp-color-stepper-indicator-fg-completed: $kp-color-foreground-on-saturated;
+$kp-color-stepper-indicator-fg-error: $kp-color-foreground-on-saturated;
+$kp-color-stepper-label-pending: $kp-color-gray-500;
+$kp-color-stepper-label-active: $kp-color-gray-900;
+$kp-color-stepper-label-completed: $kp-color-gray-700;
+$kp-color-stepper-label-error: $kp-color-red-700;
+$kp-color-stepper-description-pending: $kp-color-gray-400;
+$kp-color-stepper-description-active: $kp-color-gray-600;
+$kp-color-stepper-description-completed: $kp-color-gray-500;
+$kp-color-stepper-description-error: $kp-color-red-600;
+$kp-color-stepper-connector-pending: $kp-color-gray-200;
+$kp-color-stepper-connector-completed: $kp-color-blue-600;
+$kp-color-segmented-track-bg: $kp-color-gray-100; // Outer container background
+$kp-color-segmented-segment-bg-selected: $kp-color-white;
+$kp-color-segmented-segment-bg-unselected-hover: $kp-color-gray-200;
+$kp-color-segmented-segment-fg-selected: $kp-color-gray-900;
+$kp-color-segmented-segment-fg-unselected-rest: $kp-color-gray-600;
+$kp-color-segmented-segment-fg-unselected-hover: $kp-color-gray-900;
+$kp-color-segmented-segment-fg-disabled: $kp-color-gray-400;
+$kp-color-badge-primary-filled-bg: $kp-color-blue-600;
+$kp-color-badge-primary-filled-fg: $kp-color-foreground-on-saturated;
+$kp-color-badge-primary-filled-border: $kp-color-blue-600;
+$kp-color-badge-primary-filled-dot: $kp-color-foreground-on-saturated;
+$kp-color-badge-primary-subtle-bg: $kp-color-blue-50;
+$kp-color-badge-primary-subtle-fg: $kp-color-blue-700;
+$kp-color-badge-primary-subtle-dot: $kp-color-blue-600;
+$kp-color-badge-primary-outline-fg: $kp-color-blue-700;
+$kp-color-badge-primary-outline-border: $kp-color-blue-300;
+$kp-color-badge-primary-outline-dot: $kp-color-blue-600;
+$kp-color-badge-primary-dot-fg: $kp-color-gray-700;
+$kp-color-badge-primary-dot-dot: $kp-color-blue-600;
+$kp-color-badge-danger-filled-bg: $kp-color-red-600;
+$kp-color-badge-danger-filled-fg: $kp-color-foreground-on-saturated;
+$kp-color-badge-danger-filled-border: $kp-color-red-600;
+$kp-color-badge-danger-filled-dot: $kp-color-foreground-on-saturated;
+$kp-color-badge-danger-subtle-bg: $kp-color-red-50;
+$kp-color-badge-danger-subtle-fg: $kp-color-red-700;
+$kp-color-badge-danger-subtle-dot: $kp-color-red-600;
+$kp-color-badge-danger-outline-fg: $kp-color-red-700;
+$kp-color-badge-danger-outline-border: $kp-color-red-300;
+$kp-color-badge-danger-outline-dot: $kp-color-red-600;
+$kp-color-badge-danger-dot-fg: $kp-color-gray-700;
+$kp-color-badge-danger-dot-dot: $kp-color-red-600;
+$kp-color-badge-success-filled-bg: $kp-color-green-700;
+$kp-color-badge-success-filled-fg: $kp-color-foreground-on-saturated;
+$kp-color-badge-success-filled-border: $kp-color-green-700;
+$kp-color-badge-success-filled-dot: $kp-color-foreground-on-saturated;
+$kp-color-badge-success-subtle-bg: $kp-color-green-50;
+$kp-color-badge-success-subtle-fg: $kp-color-green-700;
+$kp-color-badge-success-subtle-dot: $kp-color-green-600;
+$kp-color-badge-success-outline-fg: $kp-color-green-700;
+$kp-color-badge-success-outline-border: $kp-color-green-300;
+$kp-color-badge-success-outline-dot: $kp-color-green-600;
+$kp-color-badge-success-dot-fg: $kp-color-gray-700;
+$kp-color-badge-success-dot-dot: $kp-color-green-600;
+$kp-color-badge-warning-filled-bg: $kp-color-amber-500;
+$kp-color-badge-warning-filled-fg: $kp-color-gray-900;
+$kp-color-badge-warning-filled-border: $kp-color-amber-500;
+$kp-color-badge-warning-filled-dot: $kp-color-gray-900;
+$kp-color-badge-warning-subtle-bg: $kp-color-amber-50;
+$kp-color-badge-warning-subtle-fg: $kp-color-amber-700;
+$kp-color-badge-warning-subtle-dot: $kp-color-amber-500;
+$kp-color-badge-warning-outline-fg: $kp-color-amber-700;
+$kp-color-badge-warning-outline-border: $kp-color-amber-400;
+$kp-color-badge-warning-outline-dot: $kp-color-amber-500;
+$kp-color-badge-warning-dot-fg: $kp-color-gray-700;
+$kp-color-badge-warning-dot-dot: $kp-color-amber-500;
+$kp-color-badge-info-filled-bg: $kp-color-cyan-700;
+$kp-color-badge-info-filled-fg: $kp-color-foreground-on-saturated;
+$kp-color-badge-info-filled-border: $kp-color-cyan-700;
+$kp-color-badge-info-filled-dot: $kp-color-foreground-on-saturated;
+$kp-color-badge-info-subtle-bg: $kp-color-cyan-50;
+$kp-color-badge-info-subtle-fg: $kp-color-cyan-700;
+$kp-color-badge-info-subtle-dot: $kp-color-cyan-600;
+$kp-color-badge-info-outline-fg: $kp-color-cyan-700;
+$kp-color-badge-info-outline-border: $kp-color-cyan-300;
+$kp-color-badge-info-outline-dot: $kp-color-cyan-600;
+$kp-color-badge-info-dot-fg: $kp-color-gray-700;
+$kp-color-badge-info-dot-dot: $kp-color-cyan-600;
+$kp-color-badge-neutral-filled-bg: $kp-color-gray-900;
+$kp-color-badge-neutral-filled-fg: $kp-color-white;
+$kp-color-badge-neutral-filled-border: $kp-color-gray-900;
+$kp-color-badge-neutral-filled-dot: $kp-color-white;
+$kp-color-badge-neutral-subtle-bg: $kp-color-gray-100;
+$kp-color-badge-neutral-subtle-fg: $kp-color-gray-700;
+$kp-color-badge-neutral-subtle-dot: $kp-color-gray-500;
+$kp-color-badge-neutral-outline-fg: $kp-color-gray-700;
+$kp-color-badge-neutral-outline-border: $kp-color-gray-300;
+$kp-color-badge-neutral-outline-dot: $kp-color-gray-500;
+$kp-color-badge-neutral-dot-fg: $kp-color-gray-700;
+$kp-color-badge-neutral-dot-dot: $kp-color-gray-500;
+$kp-color-alert-primary-subtle-bg: $kp-color-blue-50;
+$kp-color-alert-primary-subtle-fg-title: $kp-color-blue-900;
+$kp-color-alert-primary-subtle-fg-desc: $kp-color-blue-800;
+$kp-color-alert-primary-subtle-border: $kp-color-blue-200;
+$kp-color-alert-primary-subtle-icon: $kp-color-blue-600;
+$kp-color-alert-primary-subtle-accent: $kp-color-blue-600;
+$kp-color-alert-primary-solid-bg: $kp-color-blue-600;
+$kp-color-alert-primary-solid-fg-title: $kp-color-foreground-on-saturated;
+$kp-color-alert-primary-solid-fg-desc: $kp-color-blue-50;
+$kp-color-alert-primary-solid-border: $kp-color-blue-600;
+$kp-color-alert-primary-solid-icon: $kp-color-foreground-on-saturated;
+$kp-color-alert-primary-solid-accent: $kp-color-foreground-on-saturated;
+$kp-color-alert-primary-outline-bg: $kp-color-white;
+$kp-color-alert-primary-outline-fg-title: $kp-color-blue-900;
+$kp-color-alert-primary-outline-fg-desc: $kp-color-gray-700;
+$kp-color-alert-primary-outline-border: $kp-color-blue-300;
+$kp-color-alert-primary-outline-icon: $kp-color-blue-600;
+$kp-color-alert-primary-outline-accent: $kp-color-blue-600;
+$kp-color-alert-primary-left-accent-bg: $kp-color-white;
+$kp-color-alert-primary-left-accent-fg-title: $kp-color-gray-900;
+$kp-color-alert-primary-left-accent-fg-desc: $kp-color-gray-700;
+$kp-color-alert-primary-left-accent-border: $kp-color-gray-200;
+$kp-color-alert-primary-left-accent-icon: $kp-color-blue-600;
+$kp-color-alert-primary-left-accent-accent: $kp-color-blue-600;
+$kp-color-alert-danger-subtle-bg: $kp-color-red-50;
+$kp-color-alert-danger-subtle-fg-title: $kp-color-red-900;
+$kp-color-alert-danger-subtle-fg-desc: $kp-color-red-800;
+$kp-color-alert-danger-subtle-border: $kp-color-red-200;
+$kp-color-alert-danger-subtle-icon: $kp-color-red-600;
+$kp-color-alert-danger-subtle-accent: $kp-color-red-600;
+$kp-color-alert-danger-solid-bg: $kp-color-red-600;
+$kp-color-alert-danger-solid-fg-title: $kp-color-foreground-on-saturated;
+$kp-color-alert-danger-solid-fg-desc: $kp-color-red-50;
+$kp-color-alert-danger-solid-border: $kp-color-red-600;
+$kp-color-alert-danger-solid-icon: $kp-color-foreground-on-saturated;
+$kp-color-alert-danger-solid-accent: $kp-color-foreground-on-saturated;
+$kp-color-alert-danger-outline-bg: $kp-color-white;
+$kp-color-alert-danger-outline-fg-title: $kp-color-red-900;
+$kp-color-alert-danger-outline-fg-desc: $kp-color-gray-700;
+$kp-color-alert-danger-outline-border: $kp-color-red-300;
+$kp-color-alert-danger-outline-icon: $kp-color-red-600;
+$kp-color-alert-danger-outline-accent: $kp-color-red-600;
+$kp-color-alert-danger-left-accent-bg: $kp-color-white;
+$kp-color-alert-danger-left-accent-fg-title: $kp-color-gray-900;
+$kp-color-alert-danger-left-accent-fg-desc: $kp-color-gray-700;
+$kp-color-alert-danger-left-accent-border: $kp-color-gray-200;
+$kp-color-alert-danger-left-accent-icon: $kp-color-red-600;
+$kp-color-alert-danger-left-accent-accent: $kp-color-red-600;
+$kp-color-alert-success-subtle-bg: $kp-color-green-50;
+$kp-color-alert-success-subtle-fg-title: $kp-color-green-900;
+$kp-color-alert-success-subtle-fg-desc: $kp-color-green-800;
+$kp-color-alert-success-subtle-border: $kp-color-green-200;
+$kp-color-alert-success-subtle-icon: $kp-color-green-600;
+$kp-color-alert-success-subtle-accent: $kp-color-green-600;
+$kp-color-alert-success-solid-bg: $kp-color-green-600;
+$kp-color-alert-success-solid-fg-title: $kp-color-foreground-on-saturated;
+$kp-color-alert-success-solid-fg-desc: $kp-color-green-50;
+$kp-color-alert-success-solid-border: $kp-color-green-600;
+$kp-color-alert-success-solid-icon: $kp-color-foreground-on-saturated;
+$kp-color-alert-success-solid-accent: $kp-color-foreground-on-saturated;
+$kp-color-alert-success-outline-bg: $kp-color-white;
+$kp-color-alert-success-outline-fg-title: $kp-color-green-900;
+$kp-color-alert-success-outline-fg-desc: $kp-color-gray-700;
+$kp-color-alert-success-outline-border: $kp-color-green-300;
+$kp-color-alert-success-outline-icon: $kp-color-green-600;
+$kp-color-alert-success-outline-accent: $kp-color-green-600;
+$kp-color-alert-success-left-accent-bg: $kp-color-white;
+$kp-color-alert-success-left-accent-fg-title: $kp-color-gray-900;
+$kp-color-alert-success-left-accent-fg-desc: $kp-color-gray-700;
+$kp-color-alert-success-left-accent-border: $kp-color-gray-200;
+$kp-color-alert-success-left-accent-icon: $kp-color-green-600;
+$kp-color-alert-success-left-accent-accent: $kp-color-green-600;
+$kp-color-alert-warning-subtle-bg: $kp-color-amber-50;
+$kp-color-alert-warning-subtle-fg-title: $kp-color-amber-900;
+$kp-color-alert-warning-subtle-fg-desc: $kp-color-amber-800;
+$kp-color-alert-warning-subtle-border: $kp-color-amber-200;
+$kp-color-alert-warning-subtle-icon: $kp-color-amber-600;
+$kp-color-alert-warning-subtle-accent: $kp-color-amber-500;
+$kp-color-alert-warning-solid-bg: $kp-color-amber-500;
+$kp-color-alert-warning-solid-fg-title: $kp-color-gray-900;
+$kp-color-alert-warning-solid-fg-desc: $kp-color-amber-900;
+$kp-color-alert-warning-solid-border: $kp-color-amber-500;
+$kp-color-alert-warning-solid-icon: $kp-color-gray-900;
+$kp-color-alert-warning-solid-accent: $kp-color-gray-900;
+$kp-color-alert-warning-outline-bg: $kp-color-white;
+$kp-color-alert-warning-outline-fg-title: $kp-color-amber-900;
+$kp-color-alert-warning-outline-fg-desc: $kp-color-gray-700;
+$kp-color-alert-warning-outline-border: $kp-color-amber-400;
+$kp-color-alert-warning-outline-icon: $kp-color-amber-600;
+$kp-color-alert-warning-outline-accent: $kp-color-amber-500;
+$kp-color-alert-warning-left-accent-bg: $kp-color-white;
+$kp-color-alert-warning-left-accent-fg-title: $kp-color-gray-900;
+$kp-color-alert-warning-left-accent-fg-desc: $kp-color-gray-700;
+$kp-color-alert-warning-left-accent-border: $kp-color-gray-200;
+$kp-color-alert-warning-left-accent-icon: $kp-color-amber-600;
+$kp-color-alert-warning-left-accent-accent: $kp-color-amber-500;
+$kp-color-alert-info-subtle-bg: $kp-color-cyan-50;
+$kp-color-alert-info-subtle-fg-title: $kp-color-cyan-900;
+$kp-color-alert-info-subtle-fg-desc: $kp-color-cyan-800;
+$kp-color-alert-info-subtle-border: $kp-color-cyan-200;
+$kp-color-alert-info-subtle-icon: $kp-color-cyan-600;
+$kp-color-alert-info-subtle-accent: $kp-color-cyan-600;
+$kp-color-alert-info-solid-bg: $kp-color-cyan-600;
+$kp-color-alert-info-solid-fg-title: $kp-color-foreground-on-saturated;
+$kp-color-alert-info-solid-fg-desc: $kp-color-cyan-50;
+$kp-color-alert-info-solid-border: $kp-color-cyan-600;
+$kp-color-alert-info-solid-icon: $kp-color-foreground-on-saturated;
+$kp-color-alert-info-solid-accent: $kp-color-foreground-on-saturated;
+$kp-color-alert-info-outline-bg: $kp-color-white;
+$kp-color-alert-info-outline-fg-title: $kp-color-cyan-900;
+$kp-color-alert-info-outline-fg-desc: $kp-color-gray-700;
+$kp-color-alert-info-outline-border: $kp-color-cyan-300;
+$kp-color-alert-info-outline-icon: $kp-color-cyan-600;
+$kp-color-alert-info-outline-accent: $kp-color-cyan-600;
+$kp-color-alert-info-left-accent-bg: $kp-color-white;
+$kp-color-alert-info-left-accent-fg-title: $kp-color-gray-900;
+$kp-color-alert-info-left-accent-fg-desc: $kp-color-gray-700;
+$kp-color-alert-info-left-accent-border: $kp-color-gray-200;
+$kp-color-alert-info-left-accent-icon: $kp-color-cyan-600;
+$kp-color-alert-info-left-accent-accent: $kp-color-cyan-600;
+$kp-color-alert-neutral-subtle-bg: $kp-color-gray-50;
+$kp-color-alert-neutral-subtle-fg-title: $kp-color-gray-900;
+$kp-color-alert-neutral-subtle-fg-desc: $kp-color-gray-700;
+$kp-color-alert-neutral-subtle-border: $kp-color-gray-200;
+$kp-color-alert-neutral-subtle-icon: $kp-color-gray-600;
+$kp-color-alert-neutral-subtle-accent: $kp-color-gray-600;
+$kp-color-alert-neutral-solid-bg: $kp-color-gray-900;
+$kp-color-alert-neutral-solid-fg-title: $kp-color-white;
+$kp-color-alert-neutral-solid-fg-desc: $kp-color-gray-300;
+$kp-color-alert-neutral-solid-border: $kp-color-gray-900;
+$kp-color-alert-neutral-solid-icon: $kp-color-white;
+$kp-color-alert-neutral-solid-accent: $kp-color-white;
+$kp-color-alert-neutral-outline-bg: $kp-color-white;
+$kp-color-alert-neutral-outline-fg-title: $kp-color-gray-900;
+$kp-color-alert-neutral-outline-fg-desc: $kp-color-gray-700;
+$kp-color-alert-neutral-outline-border: $kp-color-gray-300;
+$kp-color-alert-neutral-outline-icon: $kp-color-gray-600;
+$kp-color-alert-neutral-outline-accent: $kp-color-gray-600;
+$kp-color-alert-neutral-left-accent-bg: $kp-color-white;
+$kp-color-alert-neutral-left-accent-fg-title: $kp-color-gray-900;
+$kp-color-alert-neutral-left-accent-fg-desc: $kp-color-gray-700;
+$kp-color-alert-neutral-left-accent-border: $kp-color-gray-200;
+$kp-color-alert-neutral-left-accent-icon: $kp-color-gray-600;
+$kp-color-alert-neutral-left-accent-accent: $kp-color-gray-600;
+$kp-color-tooltip-bg: $kp-color-gray-900; // Dark tooltip background
+$kp-color-tooltip-fg: $kp-color-white; // Tooltip label color
+$kp-color-tooltip-shortcut: $kp-color-gray-400; // Keyboard shortcut text color
+$kp-color-tooltip-border: $kp-color-gray-800; // Subtle tooltip border for contrast
+$kp-color-popover-bg: $kp-color-white; // Popover background
+$kp-color-popover-border: $kp-color-gray-200; // Popover border
+$kp-color-popover-fg-title: $kp-color-gray-900; // Popover title
+$kp-color-popover-fg-desc: $kp-color-gray-600; // Popover description
+$kp-color-popover-fg-body: $kp-color-gray-700; // Popover body text
+$kp-color-popover-divider: $kp-color-gray-100; // Divider between header/body/footer
+$kp-color-progress-track: $kp-color-gray-100; // Empty track background
+$kp-color-progress-label: $kp-color-gray-700; // Progress label text
+$kp-color-progress-value: $kp-color-gray-900; // Progress percentage text
+$kp-color-progress-primary-fill: $kp-color-blue-700; // audit-2026-05-13 — was blue.600. Used as both filled-segment bg (white fg → 7.46:1) and current-label color on page bg (white = 7.46:1). brand.700 passes AA in both roles.
+$kp-color-progress-success-fill: $kp-color-green-700; // audit-2026-05-13 — was green.600 (2.94:1 fails as label color on white). green.700 → 4.74:1.
+$kp-color-progress-danger-fill: $kp-color-red-700; // audit-2026-05-13 — was red.600. red.700 → 6.27:1 on white.
+$kp-color-progress-warning-fill: $kp-color-amber-500;
+$kp-color-progress-neutral-fill: $kp-color-gray-700;
+$kp-color-tabs-tab-fg-rest: $kp-color-gray-600;
+$kp-color-tabs-tab-fg-hover: $kp-color-gray-900;
+$kp-color-tabs-tab-fg-selected: $kp-color-blue-600;
+$kp-color-tabs-tab-fg-disabled: $kp-color-gray-300;
+$kp-color-tabs-tab-underline-hover: $kp-color-gray-300;
+$kp-color-tabs-tab-underline-selected: $kp-color-blue-600;
+$kp-color-tabs-tab-icon-rest: $kp-color-gray-500;
+$kp-color-tabs-tab-icon-hover: $kp-color-gray-700;
+$kp-color-tabs-tab-icon-selected: $kp-color-blue-600;
+$kp-color-tabs-tab-icon-disabled: $kp-color-gray-300;
+$kp-color-tabs-track-border: $kp-color-gray-200; // Bottom border under the whole tabs strip
+$kp-color-avatar-bg-default: $kp-color-gray-200;
+$kp-color-avatar-bg-primary: $kp-color-blue-100;
+$kp-color-avatar-bg-success: $kp-color-green-100;
+$kp-color-avatar-bg-warning: $kp-color-amber-100;
+$kp-color-avatar-bg-danger: $kp-color-red-100;
+$kp-color-avatar-bg-info: $kp-color-cyan-100;
+$kp-color-avatar-bg-neutral: $kp-color-gray-900;
+$kp-color-avatar-fg-default: $kp-color-gray-700;
+$kp-color-avatar-fg-primary: $kp-color-blue-700;
+$kp-color-avatar-fg-success: $kp-color-green-700;
+$kp-color-avatar-fg-warning: $kp-color-amber-700;
+$kp-color-avatar-fg-danger: $kp-color-red-700;
+$kp-color-avatar-fg-info: $kp-color-cyan-700;
+$kp-color-avatar-fg-neutral: $kp-color-white;
+$kp-color-avatar-ring: $kp-color-white; // Border ring around avatars in stacks
+$kp-color-avatar-status-online: $kp-color-green-500;
+$kp-color-avatar-status-offline: $kp-color-gray-400;
+$kp-color-avatar-status-busy: $kp-color-red-500;
+$kp-color-avatar-status-away: $kp-color-amber-500;
+$kp-color-avatar-group-count-bg: $kp-color-gray-200;
+$kp-color-avatar-group-count-fg: $kp-color-gray-700;
+$kp-color-search-palette-bg: $kp-color-white;
+$kp-color-search-palette-border: $kp-color-gray-200;
+$kp-color-search-palette-shortcut-bg: $kp-color-gray-100;
+$kp-color-search-palette-shortcut-fg: $kp-color-gray-600;
+$kp-color-search-palette-group-label: $kp-color-gray-500;
+$kp-color-sidebar-bg: $kp-color-white;
+$kp-color-sidebar-bg-dark: $kp-color-gray-900;
+$kp-color-sidebar-border: $kp-color-gray-200;
+$kp-color-sidebar-section-label: $kp-color-gray-500;
+$kp-color-nav-item-bg-hover: $kp-color-gray-100;
+$kp-color-nav-item-bg-active: $kp-color-blue-50;
+$kp-color-nav-item-fg-rest: $kp-color-gray-700;
+$kp-color-nav-item-fg-hover: $kp-color-gray-900;
+$kp-color-nav-item-fg-active: $kp-color-blue-700;
+$kp-color-nav-item-fg-disabled: $kp-color-gray-400;
+$kp-color-nav-item-icon-rest: $kp-color-gray-500;
+$kp-color-nav-item-icon-hover: $kp-color-gray-700;
+$kp-color-nav-item-icon-active: $kp-color-blue-600;
+$kp-color-nav-item-active-indicator: $kp-color-blue-600; // Left accent bar on active nav item
+$kp-color-header-bg: $kp-color-white;
+$kp-color-header-bg-dark: $kp-color-gray-900; // Dark-mode / intentional dark header
+$kp-color-header-border: $kp-color-gray-200;
+$kp-color-header-divider: $kp-color-gray-200;
+$kp-color-header-fg: $kp-color-gray-900;
+$kp-color-header-fg-dark: $kp-color-white;
+$kp-color-header-nav-item-fg-rest: $kp-color-gray-700;
+$kp-color-header-nav-item-fg-hover: $kp-color-gray-900;
+$kp-color-header-nav-item-fg-active: $kp-color-blue-700; // audit-2026-05-12 — was blue.600 (4.55:1 on white, borderline AA). blue.700 → 7.46:1.
+$kp-color-header-nav-item-bg-hover: $kp-color-gray-50;
+$kp-color-breadcrumbs-item-fg-link-rest: $kp-color-gray-600; // Link item at rest
+$kp-color-breadcrumbs-item-fg-link-hover: $kp-color-gray-900; // Link item on hover
+$kp-color-breadcrumbs-item-fg-current: $kp-color-gray-900; // Current (last) item — non-interactive
+$kp-color-breadcrumbs-item-fg-disabled: $kp-color-gray-400; // Disabled link item
+$kp-color-breadcrumbs-item-icon-link-rest: $kp-color-gray-500;
+$kp-color-breadcrumbs-item-icon-link-hover: $kp-color-gray-700;
+$kp-color-breadcrumbs-item-icon-current: $kp-color-gray-700;
+$kp-color-breadcrumbs-item-icon-disabled: $kp-color-gray-300;
+$kp-color-breadcrumbs-separator: $kp-color-gray-400; // Separator between items (chevron/slash)
+$kp-color-breadcrumbs-separator-dot: $kp-color-blue-600; // Dot separator — accent color, used as a 3×3 shape instead of the middot glyph
+$kp-color-breadcrumbs-ellipsis: $kp-color-gray-600; // Ellipsis (…) color for collapsed middle levels
+$kp-color-pagination-item-bg-hover: $kp-color-blue-50;
+$kp-color-pagination-item-bg-active: $kp-color-blue-100;
+$kp-color-pagination-item-bg-selected: $kp-color-blue-600;
+$kp-color-pagination-item-fg-rest: $kp-color-gray-700;
+$kp-color-pagination-item-fg-hover: $kp-color-blue-700;
+$kp-color-pagination-item-fg-active: $kp-color-blue-700;
+$kp-color-pagination-item-fg-selected: $kp-color-foreground-on-saturated;
+$kp-color-pagination-item-fg-disabled: $kp-color-gray-300;
+$kp-color-pagination-item-icon-rest: $kp-color-gray-600;
+$kp-color-pagination-item-icon-hover: $kp-color-blue-700;
+$kp-color-pagination-item-icon-active: $kp-color-blue-700;
+$kp-color-pagination-item-icon-selected: $kp-color-foreground-on-saturated;
+$kp-color-pagination-item-icon-disabled: $kp-color-gray-300;
+$kp-color-pagination-ellipsis: $kp-color-gray-500; // Ellipsis (…) color between page ranges
+$kp-color-pagination-info: $kp-color-gray-600; // 'Showing X of Y' info text + 'Per page' label
+$kp-color-divider-line: $kp-color-gray-200; // Divider line color
+$kp-color-divider-label: $kp-color-gray-500; // Divider center label color
+$kp-color-drawer-resize-handle: $kp-color-gray-300; // Drag handle on bottom/top sheets
+$kp-color-skeleton-bg-base: $kp-color-gray-100;
+$kp-color-skeleton-bg-highlight: $kp-color-gray-200; // Animated shimmer highlight
+$kp-color-slider-track-empty: $kp-color-gray-200;
+$kp-color-slider-track-filled: $kp-color-blue-600;
+$kp-color-slider-thumb-bg: $kp-color-white;
+$kp-color-slider-thumb-border: $kp-color-blue-600;
+$kp-color-slider-thumb-ring-focus: $kp-color-blue-100;
+$kp-color-slider-tick: $kp-color-gray-400; // Step ticks on track
+$kp-color-slider-label: $kp-color-gray-600;
+$kp-color-slider-value: $kp-color-gray-900;
+$kp-color-combobox-highlight: $kp-color-blue-50; // Background behind query-matching substrings in options
+$kp-color-datepicker-panel-bg: $kp-color-white;
+$kp-color-datepicker-panel-border: $kp-color-gray-200;
+$kp-color-datepicker-header-fg: $kp-color-gray-900;
+$kp-color-datepicker-header-nav-fg: $kp-color-gray-600;
+$kp-color-datepicker-weekday: $kp-color-gray-500;
+$kp-color-datepicker-day-bg-hover: $kp-color-gray-100;
+$kp-color-datepicker-day-bg-selected: $kp-color-blue-600;
+$kp-color-datepicker-day-bg-in-range: $kp-color-blue-50;
+$kp-color-datepicker-day-bg-range-edge: $kp-color-blue-600;
+$kp-color-datepicker-day-fg-rest: $kp-color-gray-900;
+$kp-color-datepicker-day-fg-hover: $kp-color-gray-900;
+$kp-color-datepicker-day-fg-selected: $kp-color-white;
+$kp-color-datepicker-day-fg-today: $kp-color-blue-600;
+$kp-color-datepicker-day-fg-in-range: $kp-color-blue-700;
+$kp-color-datepicker-day-fg-range-edge: $kp-color-white;
+$kp-color-datepicker-day-fg-outside: $kp-color-gray-400;
+$kp-color-datepicker-day-fg-disabled: $kp-color-gray-300;
+$kp-color-datepicker-day-today-ring: $kp-color-blue-600; // Ring around today's date
+$kp-color-toast-close: $kp-color-gray-400; // Toast close button icon color
+$kp-color-table-header-bg: $kp-color-gray-50;
+$kp-color-table-header-fg: $kp-color-gray-700;
+$kp-color-table-header-sort-icon: $kp-color-gray-500;
+$kp-color-table-header-sort-active: $kp-color-blue-600;
+$kp-color-table-row-bg-rest: $kp-color-white;
+$kp-color-table-row-bg-striped: $kp-color-gray-50; // audit-2026-05-20 — split out from hover so zebra-even rows have a distinct, lighter tint and don't collide with the hover state.
+$kp-color-table-row-bg-hover: $kp-color-gray-100; // audit-2026-05-20 — bumped gray.50 → gray.100 so hover reads visibly darker than the striped (gray.50) row underneath it.
+$kp-color-table-row-bg-selected: $kp-color-blue-100; // audit-2026-05-20 — bumped blue.50 → blue.100 so the selection state has unmistakable brand tint instead of looking like a barely-tinted row.
+$kp-color-table-row-fg: $kp-color-gray-900;
+$kp-color-table-border: $kp-color-gray-200;
+$kp-color-table-border-soft: $kp-color-gray-100;
+$kp-color-tree-node-bg-hover: $kp-color-gray-50;
+$kp-color-tree-node-bg-selected: $kp-color-blue-50;
+$kp-color-tree-node-fg-rest: $kp-color-gray-900;
+$kp-color-tree-node-fg-selected: $kp-color-blue-700;
+$kp-color-tree-node-fg-disabled: $kp-color-gray-500; // audit-2026-05-13 — was gray.400 (2.62:1 on white, fails AA). gray.500 → 4.84:1.
+$kp-color-tree-node-icon-rest: $kp-color-gray-600;
+$kp-color-tree-node-icon-selected: $kp-color-blue-600;
+$kp-color-tree-node-chevron: $kp-color-gray-500;
+$kp-color-tree-indent-line: $kp-color-gray-200; // Vertical line showing nesting level
+$kp-color-accordion-trigger-bg-hover: $kp-color-gray-50;
+$kp-color-accordion-trigger-fg-rest: $kp-color-gray-900;
+$kp-color-accordion-trigger-fg-expanded: $kp-color-gray-900;
+$kp-color-accordion-trigger-fg-disabled: $kp-color-gray-400;
+$kp-color-accordion-trigger-icon-rest: $kp-color-gray-500;
+$kp-color-accordion-trigger-icon-expanded: $kp-color-blue-600;
+$kp-color-accordion-content: $kp-color-gray-700;
+$kp-color-accordion-border: $kp-color-gray-200;
+$kp-color-accordion-bg: $kp-color-white;
+$kp-color-empty-state-illustration-bg: $kp-color-gray-100;
+$kp-color-empty-state-illustration-icon: $kp-color-gray-500;
+$kp-color-empty-state-fg-title: $kp-color-gray-900;
+$kp-color-empty-state-fg-description: $kp-color-gray-600;
+$kp-color-card-bg: $kp-color-white;
+$kp-color-card-bg-muted: $kp-color-gray-50; // Alternative muted background
+$kp-color-card-bg-elevated: $kp-color-white; // Same as bg in light. Dark override (#1F1F22) lifts the elevated card one step above default so the elevation reads against the dark page bg.
+$kp-color-card-border: $kp-color-gray-200;
+$kp-color-card-fg-title: $kp-color-gray-900;
+$kp-color-card-fg-desc: $kp-color-gray-600;
+$kp-color-card-fg-body: $kp-color-gray-700;
+$kp-color-card-divider: $kp-color-gray-100;
+$kp-color-dialog-panel-bg: $kp-color-white;
+$kp-color-dialog-panel-border: $kp-color-gray-200;
+$kp-color-dialog-fg-title: $kp-color-gray-900; // Dialog title
+$kp-color-dialog-fg-desc: $kp-color-gray-600; // Dialog description (under title) + close icon
+$kp-color-dialog-fg-body: $kp-color-gray-700; // Dialog body copy
+$kp-color-dialog-divider: $kp-color-gray-100; // Optional divider between header/body/footer
+$kp-text-2xs: $kp-font-weight-medium $kp-font-size-2xs/$kp-font-line-height-2xs $kp-font-family-sans; // Micro text — badges, captions, legal
+$kp-text-xs: $kp-font-weight-regular $kp-font-size-xs/$kp-font-line-height-xs $kp-font-family-sans; // Small body — helper text, metadata
+$kp-text-sm: $kp-font-weight-regular $kp-font-size-sm/$kp-font-line-height-sm $kp-font-family-sans; // Default UI body
+$kp-text-md: $kp-font-weight-regular $kp-font-size-md/$kp-font-line-height-md $kp-font-family-sans; // Comfortable body — reading content
+$kp-text-lg: $kp-font-weight-medium $kp-font-size-lg/$kp-font-line-height-lg $kp-font-family-sans; // Section label, small heading
+$kp-text-xl: $kp-font-weight-semibold $kp-font-size-xl/$kp-font-line-height-xl $kp-font-family-sans; // Heading
+$kp-text-2xl: $kp-font-weight-semibold $kp-font-size-2xl/$kp-font-line-height-2xl $kp-font-family-sans; // Large heading, hero

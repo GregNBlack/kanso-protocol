@@ -2,16 +2,16 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { FormsModule } from '@angular/forms';
 
 import { KpTemplateWorkspaceComponent, KpWsUser } from '../template-workspace.component';
-import { KpSidebarSection } from '@kanso-protocol/sidebar';
+import { KpSidebarSection } from '@kanso-protocol/ui/sidebar';
 import {
   KpBreadcrumbsComponent,
   KpBreadcrumbItemComponent,
   KpBreadcrumbSeparatorComponent,
-} from '@kanso-protocol/breadcrumbs';
-import { KpNotificationCenterComponent, KpNotification } from '@kanso-protocol/notification-center';
-import { KpMenuItemComponent } from '@kanso-protocol/menu';
-import { KpIconComponent } from '@kanso-protocol/icon';
-import { KpSelectComponent, KpSelectOption } from '@kanso-protocol/select';
+} from '@kanso-protocol/ui/breadcrumbs';
+import { KpNotificationCenterComponent, KpNotification } from '@kanso-protocol/ui/notification-center';
+import { KpMenuItemComponent } from '@kanso-protocol/ui/menu';
+import { KpIconComponent } from '@kanso-protocol/ui/icon';
+import { KpSelectComponent, KpSelectOption } from '@kanso-protocol/ui/select';
 
 // ============================================================================
 // Mock data — replace with your own when copying the template into a project.
