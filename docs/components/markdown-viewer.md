@@ -51,7 +51,7 @@ type KpMarkdownParser = (markdown: string) => string;
 ## Example
 
 ```ts
-import { KpMarkdownViewerComponent } from '@kanso-protocol/markdown-viewer';
+import { KpMarkdownViewerComponent } from '@kanso-protocol/ui/markdown-viewer';
 
 @Component({
   imports: [KpMarkdownViewerComponent],
@@ -93,7 +93,7 @@ class Demo {
 ## References
 
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-markdownviewer--docs
-- **Source**: `packages/components/markdown-viewer/src/`
+- **Source**: `packages/ui/markdown-viewer/src/`
 - **Tokens used**:
   - Heading + body fg: `gray.900`
   - Code background: `gray.100`

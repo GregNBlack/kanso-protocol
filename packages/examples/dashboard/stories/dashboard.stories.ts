@@ -1,15 +1,15 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { Component } from '@angular/core';
 
-import { KpHeaderComponent, KpHeaderNavItem } from '@kanso-protocol/header';
-import { KpSidebarComponent, KpSidebarSection } from '@kanso-protocol/sidebar';
-import { KpBannerComponent } from '@kanso-protocol/banner';
-import { KpPageHeaderComponent } from '@kanso-protocol/page-header';
-import { KpStatCardComponent } from '@kanso-protocol/stat-card';
-import { KpCardComponent } from '@kanso-protocol/card';
-import { KpButtonComponent } from '@kanso-protocol/button';
-import { KpNotificationItemComponent } from '@kanso-protocol/notification-center';
-import { KpIconComponent } from '@kanso-protocol/icon';
+import { KpHeaderComponent, KpHeaderNavItem } from '@kanso-protocol/ui/header';
+import { KpSidebarComponent, KpSidebarSection } from '@kanso-protocol/ui/sidebar';
+import { KpBannerComponent } from '@kanso-protocol/ui/banner';
+import { KpPageHeaderComponent } from '@kanso-protocol/ui/page-header';
+import { KpStatCardComponent } from '@kanso-protocol/ui/stat-card';
+import { KpCardComponent } from '@kanso-protocol/ui/card';
+import { KpButtonComponent } from '@kanso-protocol/ui/button';
+import { KpNotificationItemComponent } from '@kanso-protocol/ui/notification-center';
+import { KpIconComponent } from '@kanso-protocol/ui/icon';
 
 @Component({
   selector: 'kp-example-dashboard',

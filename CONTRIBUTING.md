@@ -10,7 +10,7 @@ Thanks for your interest. This guide covers environment setup, conventions, and 
 git clone https://github.com/GregNBlack/kanso-protocol.git
 cd kanso-protocol
 npm install
-npm run build:tokens     # generates packages/core/styles/{tokens.css,_tokens.scss}
+npm run build:tokens     # generates packages/ui/styles/{tokens.css,_tokens.scss}
 npm run storybook        # http://localhost:6006
 ```
 
@@ -44,7 +44,7 @@ tokens/                    DTCG source
 Read [`docs/architecture-decision-record.md`](docs/architecture-decision-record.md) first — it is the `why` behind every structural decision.
 
 1. **Every value is a token.** No hex, no magic numbers in component CSS. If you need a new value, add it to `tokens/primitive/` or `tokens/semantic/`, rebuild, and reference the resulting CSS variable.
-2. **Every component is standalone.** Don't add cross-component imports. If two components need shared logic, extract it to `@kanso-protocol/core`.
+2. **Every component is standalone.** Don't add cross-component imports. If two components need shared logic, extract it to `@kanso-protocol/ui`.
 3. **Components don't depend on patterns.** The dependency graph flows `components → patterns → examples`. Never the reverse.
 4. **Every state is explicit.** Six states (rest / hover / active / focus / disabled / loading) — no opacity overlays, no `:hover { opacity: 0.8 }`.
 5. **Match the Figma component.** The Figma library is updated in lockstep. If you add or change a variant in code, update Figma (and vice versa). See [Figma sync](#figma-sync).
@@ -59,14 +59,14 @@ Tokens live in `tokens/**/*.json` in W3C DTCG format. They are the single source
 
 1. Edit the relevant JSON file in `tokens/primitive/` or `tokens/semantic/`.
 2. Run `npm run build:tokens` — this regenerates:
-   - `packages/core/styles/tokens.css` (CSS custom properties)
-   - `packages/core/styles/_tokens.scss` (Sass variables)
-   - `packages/core/styles/dark.css` (dark-theme overrides — see below)
-   - `packages/core/src/_generated/tokens.js` (TS/JS constants)
+   - `packages/ui/styles/tokens.css` (CSS custom properties)
+   - `packages/ui/styles/_tokens.scss` (Sass variables)
+   - `packages/ui/styles/dark.css` (dark-theme overrides — see below)
+   - `packages/ui/src/_generated/tokens.js` (TS/JS constants)
 3. Commit both the source JSON and the regenerated output.
 4. Mirror the change in Figma if it's a primitive.
 
-**Dark theme** is also generated from DTCG sources. Overrides live in `tokens/themes/dark.json` and emit to `packages/core/styles/dark.css` via the `css/variables-dark` custom format defined in `style-dictionary.config.js`. When you add a new primitive ramp:
+**Dark theme** is also generated from DTCG sources. Overrides live in `tokens/themes/dark.json` and emit to `packages/ui/styles/dark.css` via the `css/variables-dark` custom format defined in `style-dictionary.config.js`. When you add a new primitive ramp:
 
 1. Add the inverted ramp to `tokens/themes/dark.json` (mirror the structure of an existing ramp like `gray` or `blue`).
 2. If a semantic token built on top of that primitive needs a *different* mapping in dark (e.g. a `subtle-bg` that inversion alone doesn't make tinted enough — see how `alert.subtle.bg` and `badge.subtle.bg` are listed at the bottom of `tokens/themes/dark.json`), add an explicit override there too.
@@ -76,10 +76,10 @@ Tokens live in `tokens/**/*.json` in W3C DTCG format. They are the single source
 
 ## Adding a new component
 
-1. **Copy an existing component** as your starting template — Button is the canonical example: `packages/components/button/`.
+1. **Copy an existing component** as your starting template — Button is the canonical example: `packages/ui/button/`.
 2. **Directory layout:**
    ```
-   packages/components/my-component/
+   packages/ui/my-component/
      package.json           { name, version, peerDependencies }
      src/
        index.ts             public exports
@@ -96,7 +96,7 @@ Tokens live in `tokens/**/*.json` in W3C DTCG format. They are the single source
 
 ## Adding a pattern
 
-Patterns live under `packages/patterns/{name}/` and follow the same layout as components. Key rules:
+Patterns live under `packages/ui/{name}/` and follow the same layout as components. Key rules:
 
 - A pattern **consumes components** — it doesn't wrap them in custom markup.
 - A pattern **never duplicates a component's styling** — override via CSS variables if you need a tweak.

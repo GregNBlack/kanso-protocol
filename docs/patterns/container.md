@@ -51,7 +51,7 @@ Every content-area page in the app should sit inside a Container. That's where "
 
 - **Figma pattern**: [`Container` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-container
-- **Source**: `packages/patterns/container/src/`
+- **Source**: `packages/ui/container/src/`
 - **Tokens**: `layout/container/max-width/*`, `layout/container/padding/*`
 
 ## Changelog

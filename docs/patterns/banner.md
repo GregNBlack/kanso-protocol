@@ -49,7 +49,7 @@ Mount a Banner inside `AppShell`'s `[kpAppShellBanner]` slot for global messages
 
 - **Figma**: `Banner` Component Set (Patterns page) — 6 colors × 2 sizes.
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-banner
-- **Source**: `packages/patterns/banner/src/`
+- **Source**: `packages/ui/banner/src/`
 - **Tokens**: reuses `alert/{color}/subtle/{bg,border,fg-title,fg-desc,icon}`.
 
 ## Changelog

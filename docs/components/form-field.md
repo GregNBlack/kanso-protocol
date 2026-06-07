@@ -90,7 +90,7 @@ The nested control handles its own rest/hover/focus states.
 
 - **Figma component**: [`FormField` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3069-240)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-formfield
-- **Source**: `packages/components/form-field/src/form-field.component.ts`
+- **Source**: `packages/ui/form-field/src/form-field.component.ts`
 - **Tokens used**:
   - `form/label` — label text color per state
   - `form/helper` — helper text color per state

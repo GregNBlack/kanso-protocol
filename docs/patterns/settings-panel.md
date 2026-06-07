@@ -50,7 +50,7 @@ Slot: default `<ng-content>` — the right-side control. Goes flush right.
 
 - **Figma**: `SettingsPanel` Component Set on the [📐 Patterns page](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System).
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-settingspanel
-- **Source**: `packages/patterns/settings-panel/src/`
+- **Source**: `packages/ui/settings-panel/src/`
 
 ## Changelog
 

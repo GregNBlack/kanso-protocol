@@ -95,7 +95,7 @@ None — Textarea is a leaf component.
 
 - **Figma component**: [`Textarea` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3092-729)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-textarea
-- **Source**: `packages/components/textarea/src/textarea.component.ts`
+- **Source**: `packages/ui/textarea/src/textarea.component.ts`
 - **Tokens used**:
   - `input/bg`, `input/fg`, `input/border`, `input/placeholder` (State collection) — shared with Input
   - `input/variant-bg`, `input/variant-border` (Input Variant collection)

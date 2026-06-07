@@ -137,7 +137,7 @@ We set `document.body.style.overflow = 'hidden'` while the dialog is open and re
 
 - **Figma component**: [`Dialog` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3447-7678)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-dialog
-- **Source**: `packages/components/dialog/src/`
+- **Source**: `packages/ui/dialog/src/`
 - **Tokens used**:
   - Backdrop: `dialog/backdrop`
   - Panel: `dialog/panel/bg`, `dialog/panel/border`

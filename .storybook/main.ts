@@ -12,17 +12,19 @@ const HIDE_AUDIT = process.env.KANSO_HIDE_AUDIT === '1';
 
 const auditStories = HIDE_AUDIT
   ? []
-  : ['../packages/core/stories/dark-theme-audit.stories.@(ts|tsx)'];
+  : ['../packages/ui/stories/dark-theme-audit.stories.@(ts|tsx)'];
 
 const config: StorybookConfig = {
   stories: [
-    '../packages/components/**/stories/*.stories.@(ts|tsx)',
-    '../packages/patterns/**/stories/*.stories.@(ts|tsx)',
+    // Per-entry-point stories: packages/ui/<name>/stories (single segment,
+    // so this does NOT match the root packages/ui/stories — that's handled
+    // separately below with the audit gate).
+    '../packages/ui/*/stories/*.stories.@(ts|tsx)',
     '../packages/examples/**/stories/*.stories.@(ts|tsx)',
-    // All non-audit core stories — the audit file is gated separately above.
-    '../packages/core/stories/!(dark-theme-audit).stories.@(ts|tsx)',
+    // Foundational stories at the ui root (non-audit; audit gated above).
+    '../packages/ui/stories/!(dark-theme-audit).stories.@(ts|tsx)',
     ...auditStories,
-    '../packages/core/stories/*.mdx',
+    '../packages/ui/stories/*.mdx',
   ],
   addons: [
     getAbsolutePath("@storybook/addon-essentials"),
@@ -39,7 +41,7 @@ const config: StorybookConfig = {
     autodocs: true,
   },
   staticDirs: [
-    { from: '../packages/core/styles', to: '/styles' },
+    { from: '../packages/ui/styles', to: '/styles' },
   ],
 };
 

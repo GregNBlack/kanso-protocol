@@ -49,7 +49,7 @@ Slots:
 
 - **Figma**: `NavItem` Component Set (Patterns page)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-navitem
-- **Source**: `packages/patterns/nav-item/src/`
+- **Source**: `packages/ui/nav-item/src/`
 - **Tokens**: `nav-item/bg/*`, `nav-item/fg/*`, `nav-item/icon/*`, `nav-item/active-indicator`
 
 ## Changelog

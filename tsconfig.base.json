@@ -11,76 +11,211 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "lib": ["ES2022", "dom"],
+    "lib": [
+      "ES2022",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@kanso-protocol/core": ["packages/core/src/index.ts"],
-      "@kanso-protocol/i18n": ["packages/i18n/src/index.ts"],
-      "@kanso-protocol/button": ["packages/components/button/src/index.ts"],
-      "@kanso-protocol/input": ["packages/components/input/src/index.ts"],
-      "@kanso-protocol/checkbox": ["packages/components/checkbox/src/index.ts"],
-      "@kanso-protocol/radio": ["packages/components/radio/src/index.ts"],
-      "@kanso-protocol/toggle": ["packages/components/toggle/src/index.ts"],
-      "@kanso-protocol/form-field": ["packages/components/form-field/src/index.ts"],
-      "@kanso-protocol/menu": ["packages/components/menu/src/index.ts"],
-      "@kanso-protocol/textarea": ["packages/components/textarea/src/index.ts"],
-      "@kanso-protocol/select": ["packages/components/select/src/index.ts"],
-      "@kanso-protocol/number-stepper": ["packages/components/number-stepper/src/index.ts"],
-      "@kanso-protocol/segmented-control": ["packages/components/segmented-control/src/index.ts"],
-      "@kanso-protocol/badge": ["packages/components/badge/src/index.ts"],
-      "@kanso-protocol/alert": ["packages/components/alert/src/index.ts"],
-      "@kanso-protocol/tooltip": ["packages/components/tooltip/src/index.ts"],
-      "@kanso-protocol/popover": ["packages/components/popover/src/index.ts"],
-      "@kanso-protocol/progress": ["packages/components/progress/src/index.ts"],
-      "@kanso-protocol/tabs": ["packages/components/tabs/src/index.ts"],
-      "@kanso-protocol/breadcrumbs": ["packages/components/breadcrumbs/src/index.ts"],
-      "@kanso-protocol/pagination": ["packages/components/pagination/src/index.ts"],
-      "@kanso-protocol/dialog": ["packages/components/dialog/src/index.ts"],
-      "@kanso-protocol/divider": ["packages/components/divider/src/index.ts"],
-      "@kanso-protocol/card": ["packages/components/card/src/index.ts"],
-      "@kanso-protocol/empty-state": ["packages/components/empty-state/src/index.ts"],
-      "@kanso-protocol/drawer": ["packages/components/drawer/src/index.ts"],
-      "@kanso-protocol/accordion": ["packages/components/accordion/src/index.ts"],
-      "@kanso-protocol/skeleton": ["packages/components/skeleton/src/index.ts"],
-      "@kanso-protocol/slider": ["packages/components/slider/src/index.ts"],
-      "@kanso-protocol/combobox": ["packages/components/combobox/src/index.ts"],
-      "@kanso-protocol/datepicker": ["packages/components/datepicker/src/index.ts"],
-      "@kanso-protocol/timepicker": ["packages/components/timepicker/src/index.ts"],
-      "@kanso-protocol/toast": ["packages/components/toast/src/index.ts"],
-      "@kanso-protocol/table": ["packages/components/table/src/index.ts"],
-      "@kanso-protocol/tree": ["packages/components/tree/src/index.ts"],
-      "@kanso-protocol/avatar": ["packages/components/avatar/src/index.ts"],
-      "@kanso-protocol/avatar-group": ["packages/components/avatar-group/src/index.ts"],
-      "@kanso-protocol/icon": ["packages/components/icon/src/index.ts"],
-      "@kanso-protocol/rich-text-editor": ["packages/components/rich-text-editor/src/index.ts"],
-      "@kanso-protocol/file-upload": ["packages/components/file-upload/src/index.ts"],
-      "@kanso-protocol/markdown-viewer": ["packages/components/markdown-viewer/src/index.ts"],
-      "@kanso-protocol/command-palette": ["packages/components/command-palette/src/index.ts"],
-      "@kanso-protocol/virtual-list": ["packages/components/virtual-list/src/index.ts"],
-      "@kanso-protocol/container": ["packages/patterns/container/src/index.ts"],
-      "@kanso-protocol/stack": ["packages/patterns/stack/src/index.ts"],
-      "@kanso-protocol/row": ["packages/patterns/row/src/index.ts"],
-      "@kanso-protocol/grid": ["packages/patterns/grid/src/index.ts"],
-      "@kanso-protocol/header": ["packages/patterns/header/src/index.ts"],
-      "@kanso-protocol/nav-item": ["packages/patterns/nav-item/src/index.ts"],
-      "@kanso-protocol/sidebar": ["packages/patterns/sidebar/src/index.ts"],
-      "@kanso-protocol/page-header": ["packages/patterns/page-header/src/index.ts"],
-      "@kanso-protocol/user-menu": ["packages/patterns/user-menu/src/index.ts"],
-      "@kanso-protocol/theme-toggle": ["packages/patterns/theme-toggle/src/index.ts"],
-      "@kanso-protocol/search-bar": ["packages/patterns/search-bar/src/index.ts"],
-      "@kanso-protocol/app-shell": ["packages/patterns/app-shell/src/index.ts"],
-      "@kanso-protocol/banner": ["packages/patterns/banner/src/index.ts"],
-      "@kanso-protocol/page-error": ["packages/patterns/page-error/src/index.ts"],
-      "@kanso-protocol/notification-center": ["packages/patterns/notification-center/src/index.ts"],
-      "@kanso-protocol/stat-card": ["packages/patterns/stat-card/src/index.ts"],
-      "@kanso-protocol/table-toolbar": ["packages/patterns/table-toolbar/src/index.ts"],
-      "@kanso-protocol/filter-bar": ["packages/patterns/filter-bar/src/index.ts"],
-      "@kanso-protocol/form-section": ["packages/patterns/form-section/src/index.ts"],
-      "@kanso-protocol/settings-panel": ["packages/patterns/settings-panel/src/index.ts"]
+      "@kanso-protocol/ui": [
+        "packages/ui/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/accordion": [
+        "packages/ui/accordion/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/alert": [
+        "packages/ui/alert/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/app-shell": [
+        "packages/ui/app-shell/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/avatar": [
+        "packages/ui/avatar/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/avatar-group": [
+        "packages/ui/avatar-group/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/badge": [
+        "packages/ui/badge/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/banner": [
+        "packages/ui/banner/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/breadcrumbs": [
+        "packages/ui/breadcrumbs/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/button": [
+        "packages/ui/button/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/card": [
+        "packages/ui/card/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/checkbox": [
+        "packages/ui/checkbox/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/combobox": [
+        "packages/ui/combobox/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/command-palette": [
+        "packages/ui/command-palette/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/container": [
+        "packages/ui/container/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/datepicker": [
+        "packages/ui/datepicker/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/dialog": [
+        "packages/ui/dialog/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/divider": [
+        "packages/ui/divider/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/drawer": [
+        "packages/ui/drawer/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/empty-state": [
+        "packages/ui/empty-state/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/file-upload": [
+        "packages/ui/file-upload/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/filter-bar": [
+        "packages/ui/filter-bar/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/form-field": [
+        "packages/ui/form-field/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/form-section": [
+        "packages/ui/form-section/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/grid": [
+        "packages/ui/grid/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/header": [
+        "packages/ui/header/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/i18n": [
+        "packages/ui/i18n/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/icon": [
+        "packages/ui/icon/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/input": [
+        "packages/ui/input/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/markdown-viewer": [
+        "packages/ui/markdown-viewer/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/menu": [
+        "packages/ui/menu/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/nav-item": [
+        "packages/ui/nav-item/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/notification-center": [
+        "packages/ui/notification-center/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/number-stepper": [
+        "packages/ui/number-stepper/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/page-error": [
+        "packages/ui/page-error/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/page-header": [
+        "packages/ui/page-header/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/pagination": [
+        "packages/ui/pagination/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/popover": [
+        "packages/ui/popover/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/progress": [
+        "packages/ui/progress/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/radio": [
+        "packages/ui/radio/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/rich-text-editor": [
+        "packages/ui/rich-text-editor/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/row": [
+        "packages/ui/row/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/search-bar": [
+        "packages/ui/search-bar/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/segmented-control": [
+        "packages/ui/segmented-control/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/select": [
+        "packages/ui/select/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/settings-panel": [
+        "packages/ui/settings-panel/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/sidebar": [
+        "packages/ui/sidebar/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/skeleton": [
+        "packages/ui/skeleton/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/slider": [
+        "packages/ui/slider/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/stack": [
+        "packages/ui/stack/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/stat-card": [
+        "packages/ui/stat-card/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/table": [
+        "packages/ui/table/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/table-toolbar": [
+        "packages/ui/table-toolbar/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/tabs": [
+        "packages/ui/tabs/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/textarea": [
+        "packages/ui/textarea/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/theme-toggle": [
+        "packages/ui/theme-toggle/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/timepicker": [
+        "packages/ui/timepicker/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/toast": [
+        "packages/ui/toast/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/toggle": [
+        "packages/ui/toggle/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/tooltip": [
+        "packages/ui/tooltip/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/tree": [
+        "packages/ui/tree/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/user-menu": [
+        "packages/ui/user-menu/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/virtual-list": [
+        "packages/ui/virtual-list/src/public-api.ts"
+      ],
+      "@kanso-protocol/mcp": [
+        "packages/mcp/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "dist"]
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

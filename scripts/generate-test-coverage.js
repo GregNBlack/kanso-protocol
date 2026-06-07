@@ -3,7 +3,7 @@
  * Scan packages/**\/src/*.spec.ts files and generate a manifest of which
  * components/patterns have unit tests, how many, and where the spec lives.
  *
- * Output: packages/core/stories/_test-coverage.json
+ * Output: packages/ui/stories/_test-coverage.json
  *   {
  *     generatedAt: '…ISO…',
  *     totalSpecs: N,
@@ -24,7 +24,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const OUT = path.join(ROOT, 'packages/core/stories/_test-coverage.json');
+const OUT = path.join(ROOT, 'packages/ui/stories/_test-coverage.json');
 
 function listDirs(base) {
   if (!fs.existsSync(base)) return [];
@@ -66,47 +66,46 @@ function findSpecFiles(srcDir) {
 const items = [];
 const missing = [];
 
-// Multi-package layers (every direct child is its own library).
-for (const layer of ['components', 'patterns']) {
-  for (const pkg of listDirs(path.join(ROOT, 'packages', layer))) {
-    const srcDir = path.join(pkg.full, 'src');
-    const specs = findSpecFiles(srcDir);
-    const title = readTitle(pkg.full, pkg.name);
-    const storybookId = title
-      ? title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '--docs'
-      : null;
+// Single-package layout: every entry point is a subfolder of packages/ui.
+// Layer (components | patterns | utilities) is derived from the entry's
+// story title; root-level src (core) + i18n are "utilities".
+const UI = path.join(ROOT, 'packages', 'ui');
+const SKIP = new Set(['src', 'styles', 'stories']);
 
-    if (specs.length === 0) {
-      missing.push({ layer, name: pkg.name, title });
-      continue;
+function layerOf(entryDir, name) {
+  if (name === 'i18n') return 'utilities';
+  const storiesDir = path.join(entryDir, 'stories');
+  if (fs.existsSync(storiesDir)) {
+    for (const f of fs.readdirSync(storiesDir)) {
+      if (!f.endsWith('.stories.ts')) continue;
+      const m = fs.readFileSync(path.join(storiesDir, f), 'utf8').match(/title:\s*['"]([^/'"]+)\//);
+      if (m) return m[1].toLowerCase() === 'patterns' ? 'patterns' : 'components';
     }
-    const tests = specs.reduce((sum, s) => sum + countTests(s), 0);
-    items.push({
-      layer,
-      name: pkg.name,
-      title,
-      storybookId,
-      specFile: path.relative(ROOT, specs[0]),
-      specFiles: specs.map((s) => path.relative(ROOT, s)),
-      tests,
-    });
   }
+  return 'components';
 }
 
-// Top-level single-package layers (e.g. packages/i18n, packages/core).
-// Each is one library, not a directory of libraries.
-for (const singleton of ['i18n']) {
-  const pkgDir = path.join(ROOT, 'packages', singleton);
-  const srcDir = path.join(pkgDir, 'src');
+for (const name of listDirs(UI).map((d) => d.name).filter((n) => !SKIP.has(n))) {
+  const entryDir = path.join(UI, name);
+  const srcDir = path.join(entryDir, 'src');
   if (!fs.existsSync(srcDir)) continue;
+  const layer = layerOf(entryDir, name);
   const specs = findSpecFiles(srcDir);
-  if (specs.length === 0) continue;
+  const title = readTitle(entryDir, name);
+  const storybookId = title
+    ? title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '--docs'
+    : null;
+
+  if (specs.length === 0) {
+    missing.push({ layer, name, title });
+    continue;
+  }
   const tests = specs.reduce((sum, s) => sum + countTests(s), 0);
   items.push({
-    layer: 'utilities',
-    name: singleton,
-    title: null,
-    storybookId: null,
+    layer,
+    name,
+    title,
+    storybookId,
     specFile: path.relative(ROOT, specs[0]),
     specFiles: specs.map((s) => path.relative(ROOT, s)),
     tests,

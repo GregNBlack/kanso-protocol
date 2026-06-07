@@ -90,7 +90,7 @@ Container
 
 - **Figma component**: [Figma link with node-id]
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-{name}
-- **Source**: `packages/components/{name}/src/{name}.component.ts`
+- **Source**: `packages/ui/{name}/src/{name}.component.ts`
 - **Tokens used**: list of semantic tokens this component consumes
 
 ## Changelog

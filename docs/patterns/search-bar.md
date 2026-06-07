@@ -44,7 +44,7 @@ The `command-palette` variant renders a self-contained panel (input + grouped re
 
 - **Figma**: `SearchBar` Component Set (Patterns page) — inline × 3 sizes × 3 states + command-palette demo
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-searchbar
-- **Source**: `packages/patterns/search-bar/src/`
+- **Source**: `packages/ui/search-bar/src/`
 - **Tokens**: `search/palette/bg`, `search/palette/border`, `search/palette/shortcut-*`, `search/palette/group-label`
 
 ## Changelog

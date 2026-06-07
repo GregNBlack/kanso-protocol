@@ -53,7 +53,7 @@ Ghost button showing the current theme's icon + label + chevron-down. Opens a dr
 
 - **Figma**: `ThemeToggle` Component Set (Patterns page) — 27 variants (3 × 3 × 3)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-themetoggle
-- **Source**: `packages/patterns/theme-toggle/src/`
+- **Source**: `packages/ui/theme-toggle/src/`
 
 ## Changelog
 

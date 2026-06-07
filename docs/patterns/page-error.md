@@ -54,7 +54,7 @@ Typically mounted in place of the page body (inside `Container` or bare inside `
 
 - **Figma**: `PageError` Component Set (Patterns page) — 4 types.
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-pageerror
-- **Source**: `packages/patterns/page-error/src/`
+- **Source**: `packages/ui/page-error/src/`
 
 ## Changelog
 

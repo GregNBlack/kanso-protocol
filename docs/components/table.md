@@ -117,7 +117,7 @@ Selection is index-blind — it compares rows by reference. Provide `trackBy` if
 
 - **Figma component**: [`Table` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System) (pending)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-table
-- **Source**: `packages/components/table/src/`
+- **Source**: `packages/ui/table/src/`
 - **Tokens**: `table/header-*`, `table/row-*`, `table/border`, `table/border-soft`
 
 ## Changelog

@@ -95,7 +95,7 @@ Implements `ControlValueAccessor` — use `[(ngModel)]` or reactive-form binding
 
 - **Figma component**: [`Checkbox` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3066-490)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-checkbox
-- **Source**: `packages/components/checkbox/src/checkbox.component.ts`
+- **Source**: `packages/ui/checkbox/src/checkbox.component.ts`
 - **Tokens used**:
   - `control/bg`, `control/bg-checked`, `control/border`, `control/border-checked`, `control/fg` (State collection)
   - `control/bg-checked` / `control/border-checked` overrides for `danger` appearance

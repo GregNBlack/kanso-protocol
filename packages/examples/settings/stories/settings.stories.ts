@@ -1,19 +1,19 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { Component } from '@angular/core';
 
-import { KpHeaderComponent, KpHeaderNavItem } from '@kanso-protocol/header';
-import { KpSidebarComponent, KpSidebarSection } from '@kanso-protocol/sidebar';
-import { KpPageHeaderComponent } from '@kanso-protocol/page-header';
-import { KpTabsComponent } from '@kanso-protocol/tabs';
-import { KpTabComponent } from '@kanso-protocol/tabs';
-import { KpSettingsPanelComponent } from '@kanso-protocol/settings-panel';
-import { KpSettingsRowComponent } from '@kanso-protocol/settings-panel';
-import { KpAvatarComponent } from '@kanso-protocol/avatar';
-import { KpInputComponent } from '@kanso-protocol/input';
-import { KpToggleComponent } from '@kanso-protocol/toggle';
-import { KpSelectComponent } from '@kanso-protocol/select';
-import { KpButtonComponent } from '@kanso-protocol/button';
-import { KpTextareaComponent } from '@kanso-protocol/textarea';
+import { KpHeaderComponent, KpHeaderNavItem } from '@kanso-protocol/ui/header';
+import { KpSidebarComponent, KpSidebarSection } from '@kanso-protocol/ui/sidebar';
+import { KpPageHeaderComponent } from '@kanso-protocol/ui/page-header';
+import { KpTabsComponent } from '@kanso-protocol/ui/tabs';
+import { KpTabComponent } from '@kanso-protocol/ui/tabs';
+import { KpSettingsPanelComponent } from '@kanso-protocol/ui/settings-panel';
+import { KpSettingsRowComponent } from '@kanso-protocol/ui/settings-panel';
+import { KpAvatarComponent } from '@kanso-protocol/ui/avatar';
+import { KpInputComponent } from '@kanso-protocol/ui/input';
+import { KpToggleComponent } from '@kanso-protocol/ui/toggle';
+import { KpSelectComponent } from '@kanso-protocol/ui/select';
+import { KpButtonComponent } from '@kanso-protocol/ui/button';
+import { KpTextareaComponent } from '@kanso-protocol/ui/textarea';
 
 @Component({
   selector: 'kp-example-settings',

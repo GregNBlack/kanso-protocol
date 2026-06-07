@@ -103,7 +103,7 @@
 
 - **Figma component**: [`Card` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3468-7841)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-card
-- **Source**: `packages/components/card/src/`
+- **Source**: `packages/ui/card/src/`
 - **Tokens used**:
   - Background: `card/bg`, `card/bg-muted`
   - Border: `card/border`

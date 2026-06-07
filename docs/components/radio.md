@@ -114,8 +114,8 @@ Accompanying component `<kp-radio-group>` provides:
 - **Figma component**: [`Radio` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3066-628)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-radio
 - **Source**:
-  - `packages/components/radio/src/radio.component.ts`
-  - `packages/components/radio/src/radio-group.component.ts`
+  - `packages/ui/radio/src/radio.component.ts`
+  - `packages/ui/radio/src/radio-group.component.ts`
 - **Tokens used**:
   - `control/bg`, `control/border`, `control/border-checked`, `control/bg-checked` (State collection)
   - Outer fill always `color/white`; border and dot colored per state

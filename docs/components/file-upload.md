@@ -142,7 +142,7 @@ class Demo {
 ## References
 
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-fileupload--docs
-- **Source**: `packages/components/file-upload/src/`
+- **Source**: `packages/ui/file-upload/src/`
 - **Tokens used**:
   - Zone bg / border: `gray.50`, `gray.300` (rest), `accent.primary.fg`, `blue.50` (dragover)
   - Item border / status: `gray.200` (idle), `red.300`/`red.50` (error), `green.300` (success)

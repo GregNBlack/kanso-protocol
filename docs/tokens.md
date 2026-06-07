@@ -100,10 +100,10 @@ hard to retire because every theme has to inherit the new ramp.
    to merge them back.
 
 3. **Run `npm run build:tokens`.** Style Dictionary regenerates:
-   - `packages/core/styles/tokens.css` — CSS custom properties (light)
-   - `packages/core/styles/_tokens.scss` — Sass mirror
-   - `packages/core/styles/dark.css` — dark overrides (see below)
-   - `packages/core/src/_generated/tokens.js` — TS/JS constants
+   - `packages/ui/styles/tokens.css` — CSS custom properties (light)
+   - `packages/ui/styles/_tokens.scss` — Sass mirror
+   - `packages/ui/styles/dark.css` — dark overrides (see below)
+   - `packages/ui/src/_generated/tokens.js` — TS/JS constants
 
 4. **Add a dark override if the primitive doesn't invert correctly by
    default.** Open `tokens/themes/dark.json` and add the override at the

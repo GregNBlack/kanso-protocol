@@ -22,10 +22,10 @@ Container (clips content, absolute-positioned children)
 
 ## API
 
-### Code (`@kanso-protocol/icon`)
+### Code (`@kanso-protocol/ui/icon`)
 
 ```ts
-import { KpIconComponent } from '@kanso-protocol/icon';
+import { KpIconComponent } from '@kanso-protocol/ui/icon';
 
 @Component({
   standalone: true,
@@ -91,14 +91,14 @@ Icon has no states of its own — it adopts the state coloring of its host (Butt
 
 ## Bundle strategy — why only 115 icons ship by default
 
-`@kanso-protocol/icon` bundles **115 Tabler glyphs** (72 outlined + 43
+`@kanso-protocol/ui/icon` bundles **115 Tabler glyphs** (72 outlined + 43
 filled) inline as SVG strings — see
-[`icons.allowlist.json`](https://github.com/GregNBlack/kanso-protocol/blob/main/packages/components/icon/icons.allowlist.json).
+[`icons.allowlist.json`](https://github.com/GregNBlack/kanso-protocol/blob/main/packages/ui/icon/icons.allowlist.json).
 
 **Why a curated list and not the whole Tabler library?**
 
 The full Tabler set has ~5500 icons; bundling them all would push
-`@kanso-protocol/icon` past 10 MB of inline SVG, which is unacceptable
+`@kanso-protocol/ui/icon` past 10 MB of inline SVG, which is unacceptable
 for production consumers. The curated 115 covers two needs:
 
 1. **What Kanso components themselves render** — the chevron in
@@ -127,7 +127,7 @@ npm install @tabler/icons
 ```
 
 ```ts
-import { KP_ICON_REGISTRY } from '@kanso-protocol/icon';
+import { KP_ICON_REGISTRY } from '@kanso-protocol/ui/icon';
 import rocketSvg from '@tabler/icons/icons/rocket.svg?raw';
 
 KP_ICON_REGISTRY.register('rocket', rocketSvg);
@@ -143,7 +143,7 @@ build time.)
 ### 2. Multiple icons at once
 
 ```ts
-import { KP_ICON_REGISTRY } from '@kanso-protocol/icon';
+import { KP_ICON_REGISTRY } from '@kanso-protocol/ui/icon';
 import rocketSvg    from '@tabler/icons/icons/rocket.svg?raw';
 import ufoSvg       from '@tabler/icons/icons/ufo.svg?raw';
 import satelliteSvg from '@tabler/icons/icons/satellite.svg?raw';
@@ -181,8 +181,8 @@ catching missing register calls while wiring up screens.
 ## References
 
 - **Figma component**: [`icon` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=70-245)
-- **Source**: [`@kanso-protocol/icon`](https://www.npmjs.com/package/@kanso-protocol/icon) — standalone Angular package
-- **Allowlist**: [`packages/components/icon/icons.allowlist.json`](https://github.com/GregNBlack/kanso-protocol/blob/main/packages/components/icon/icons.allowlist.json)
+- **Source**: the `icon` entry point of [`@kanso-protocol/ui`](https://www.npmjs.com/package/@kanso-protocol/ui), imported as `@kanso-protocol/ui/icon`
+- **Allowlist**: [`packages/ui/icon/icons.allowlist.json`](https://github.com/GregNBlack/kanso-protocol/blob/main/packages/ui/icon/icons.allowlist.json)
 - **Full Tabler library**: [`@tabler/icons`](https://www.npmjs.com/package/@tabler/icons) on npm; [tabler.io/icons](https://tabler.io/icons) browser
 - **Tokens used**:
   - `primitive.icon.size.{xs|sm|md|lg|xl}`

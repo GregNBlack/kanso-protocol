@@ -96,7 +96,7 @@ Each `side` has its own slide-in animation; backdrop fades in independently.
 
 - **Figma component**: [`Drawer` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3476-8207)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-drawer
-- **Source**: `packages/components/drawer/src/`
+- **Source**: `packages/ui/drawer/src/`
 - **Tokens used**:
   - Reuses Dialog tokens: `dialog/backdrop`, `dialog/panel-bg`, `dialog/panel-border`, `dialog/fg-title`, `dialog/fg-desc`, `dialog/fg-body`, `dialog/divider`
   - Drawer-specific: `drawer/resize-handle`

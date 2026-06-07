@@ -102,7 +102,7 @@ None — use native `(click)` on `<kp-menu-item>`.
 
 - **Figma component**: [`MenuItem` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3073-457)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-dropdownmenu
-- **Source**: `packages/components/menu/src/menu-item.component.ts`
+- **Source**: `packages/ui/menu/src/menu-item.component.ts`
 - **Tokens used**:
   - `menu-item/bg`, `menu-item/fg`, `menu-item/icon` (State collection)
   - Appearance modes `menu-default`, `menu-selected`, `menu-danger` re-map the same variables

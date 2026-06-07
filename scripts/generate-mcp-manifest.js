@@ -181,13 +181,33 @@ function storybookUrl(layer, slug) {
   return `https://gregnblack.github.io/kanso-protocol/?path=/docs/${layer}-${slug.replace(/-/g, '')}--docs`;
 }
 
-function walkComponents(project, layer, dir) {
+// Derive the layer (components | patterns) from the entry's story title
+// (`title: 'Components/Button'` / `'Patterns/Sidebar'`). Single-package
+// layout no longer encodes layer in the folder path. Defaults to
+// 'components' when there's no story.
+function layerFromStory(entryDir) {
+  const storiesDir = path.join(entryDir, 'stories');
+  if (!fs.existsSync(storiesDir)) return 'components';
+  for (const f of fs.readdirSync(storiesDir)) {
+    if (!f.endsWith('.stories.ts')) continue;
+    const m = fs.readFileSync(path.join(storiesDir, f), 'utf8').match(/title:\s*['"]([^/'"]+)\//);
+    if (m) return m[1].toLowerCase() === 'patterns' ? 'patterns' : 'components';
+  }
+  return 'components';
+}
+
+// Scan the single packages/ui tree — one entry point per subfolder.
+function walkComponents(project, _unusedLayer, dir) {
   const items = [];
   if (!fs.existsSync(dir)) return items;
+  const SKIP = new Set(['src', 'styles', 'stories']);
   for (const slug of fs.readdirSync(dir)) {
-    const srcDir = path.join(dir, slug, 'src');
-    if (!fs.statSync(path.join(dir, slug)).isDirectory()) continue;
+    if (SKIP.has(slug)) continue;
+    const entryDir = path.join(dir, slug);
+    const srcDir = path.join(entryDir, 'src');
+    if (!fs.statSync(entryDir).isDirectory()) continue;
     if (!fs.existsSync(srcDir)) continue;
+    const layer = layerFromStory(entryDir);
     for (const f of fs.readdirSync(srcDir)) {
       // Scan public component + directive files. Skip *-internal.* files —
       // those render visual chrome that's never exposed as a public symbol.
@@ -208,7 +228,8 @@ function walkComponents(project, layer, dir) {
           className: cls.getName(),
           selector,
           layer,
-          package: `@kanso-protocol/${slug}`,
+          package: '@kanso-protocol/ui',
+          import: `@kanso-protocol/ui/${slug}`,
           description,
           examples,
           inputs: extractInputs(cls),
@@ -226,7 +247,7 @@ function walkComponents(project, layer, dir) {
 }
 
 function parseTokens() {
-  const tokensCss = path.join(ROOT, 'packages', 'core', 'styles', 'tokens.css');
+  const tokensCss = path.join(ROOT, 'packages', 'ui', 'styles', 'tokens.css');
   if (!fs.existsSync(tokensCss)) return [];
   const src = fs.readFileSync(tokensCss, 'utf8');
   const out = [];
@@ -289,8 +310,10 @@ function main() {
   });
 
   const figmaMap = loadFigmaMapping();
-  const components = walkComponents(project, 'components', path.join(ROOT, 'packages', 'components'));
-  const patterns   = walkComponents(project, 'patterns',   path.join(ROOT, 'packages', 'patterns'));
+  // Single packages/ui tree; layer is derived per-entry from its story title.
+  const all = walkComponents(project, null, path.join(ROOT, 'packages', 'ui'));
+  const components = all.filter((i) => i.layer === 'components');
+  const patterns   = all.filter((i) => i.layer === 'patterns');
   const tokens     = parseTokens();
 
   const fileKey = figmaMap?.fileKey ?? null;

@@ -121,7 +121,7 @@ Alert is **non-interactive by default**. The only focusable elements are the act
 
 - **Figma component**: [`Alert` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3240-6425)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-alert
-- **Source**: `packages/components/alert/src/alert.component.ts`
+- **Source**: `packages/ui/alert/src/alert.component.ts`
 - **Tokens used**:
   - Background: `alert/{color}/{appearance}/bg`
   - Title text: `alert/{color}/{appearance}/fg-title`

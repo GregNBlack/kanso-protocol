@@ -127,7 +127,7 @@ Floating Label is a boolean available on lg and xl only.
 
 - **Figma component**: [`Select` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3118-2901)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-select
-- **Source**: `packages/components/select/src/select.component.ts`
+- **Source**: `packages/ui/select/src/select.component.ts`
 - **Tokens used**:
   - Trigger inherits Input tokens: `input/bg`, `input/fg`, `input/border.*`, `input/placeholder`
   - Chevron: `select/chevron.rest`, `select/chevron.hover`, `select/chevron.open`, `select/chevron.disabled`, `select/chevron.error`

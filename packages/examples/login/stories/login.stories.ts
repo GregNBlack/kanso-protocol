@@ -1,11 +1,11 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { Component } from '@angular/core';
-import { KpFormFieldComponent } from '@kanso-protocol/form-field';
-import { KpInputComponent } from '@kanso-protocol/input';
-import { KpCheckboxComponent } from '@kanso-protocol/checkbox';
-import { KpButtonComponent } from '@kanso-protocol/button';
-import { KpDividerComponent } from '@kanso-protocol/divider';
-import { KpIconComponent } from '@kanso-protocol/icon';
+import { KpFormFieldComponent } from '@kanso-protocol/ui/form-field';
+import { KpInputComponent } from '@kanso-protocol/ui/input';
+import { KpCheckboxComponent } from '@kanso-protocol/ui/checkbox';
+import { KpButtonComponent } from '@kanso-protocol/ui/button';
+import { KpDividerComponent } from '@kanso-protocol/ui/divider';
+import { KpIconComponent } from '@kanso-protocol/ui/icon';
 
 /**
  * Headless wrapper so Storybook can render a single Angular component

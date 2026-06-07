@@ -99,7 +99,7 @@ interface KpToastShowInput {
 
 - **Figma component**: [`Toast` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-toast
-- **Source**: `packages/components/toast/src/`
+- **Source**: `packages/ui/toast/src/`
 - **Tokens used**:
   - Appearances: `alert/primary-subtle/*`, `alert/success-subtle/*`, `alert/danger-subtle/*`, `alert/warning-subtle/*`, `alert/info-subtle/*`
   - Close button: `toast/close`

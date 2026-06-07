@@ -51,7 +51,7 @@ Switching `mode` to `bulk-select` hides the default bar and shows a selection su
 
 - **Figma**: `TableToolbar` Component Set on the [📐 Patterns page](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System).
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-tabletoolbar
-- **Source**: `packages/patterns/table-toolbar/src/`
+- **Source**: `packages/ui/table-toolbar/src/`
 
 ## Changelog
 

@@ -112,7 +112,7 @@ Badge is **non-interactive by default** — it has no hover / active / focus / d
 
 - **Figma component**: [`Badge` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3206-44)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-badge
-- **Source**: `packages/components/badge/src/badge.component.ts`
+- **Source**: `packages/ui/badge/src/badge.component.ts`
 - **Tokens used**:
   - Background: `badge/{color}/{appearance}/bg`
   - Foreground: `badge/{color}/{appearance}/fg`

@@ -65,7 +65,7 @@ Variable-height is on the roadmap as a separate `<kp-variable-virtual-list>` so 
 ## Example
 
 ```ts
-import { KpVirtualListComponent, KpVirtualRowDirective } from '@kanso-protocol/virtual-list';
+import { KpVirtualListComponent, KpVirtualRowDirective } from '@kanso-protocol/ui/virtual-list';
 
 @Component({
   imports: [KpVirtualListComponent, KpVirtualRowDirective],
@@ -126,7 +126,7 @@ class Demo {
 ## References
 
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-virtuallist--docs
-- **Source**: `packages/components/virtual-list/src/`
+- **Source**: `packages/ui/virtual-list/src/`
 - **Tokens used**: none — fully consumer-styled via the `kpVirtualRow` template.
 
 ## Changelog

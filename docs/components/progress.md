@@ -4,7 +4,7 @@
 
 ## Contract
 
-All three components live in `@kanso-protocol/progress` and share:
+All three components live in `@kanso-protocol/ui/progress` and share:
 
 - **Color roles** — `primary` (default) / `success` / `danger` / `warning` / `neutral`, mapped to the `--kp-color-progress-{role}-fill` tokens. The empty track is always `--kp-color-progress-track`, and the label / value typography is driven by `--kp-color-progress-label` and `--kp-color-progress-value`.
 - **Determinate API** — a numeric `value` (0–100) clamped internally.
@@ -116,7 +116,7 @@ Host is `role="progressbar"` with `aria-valuemin=1`, `aria-valuemax=<total>`, `a
   - [`ProgressCircular`](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3329-8649)
   - [`ProgressSegmented`](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3334-9288)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-progress
-- **Source**: `packages/components/progress/src/`
+- **Source**: `packages/ui/progress/src/`
 - **Tokens used**:
   - Track: `progress/track`
   - Role fills: `progress/{primary|success|danger|warning|neutral}/fill`

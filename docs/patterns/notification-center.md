@@ -61,7 +61,7 @@ Atomic list row. Same fields as above, emits `click$`.
 
 - **Figma**: `NotificationCenter` + `NotificationItem` Component Sets.
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-notificationcenter
-- **Source**: `packages/patterns/notification-center/src/`
+- **Source**: `packages/ui/notification-center/src/`
 
 ## Changelog
 

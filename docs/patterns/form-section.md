@@ -43,7 +43,7 @@ Slot: default `<ng-content>` — drop fields here. The component spaces them wit
 
 - **Figma**: `FormSection` Component Set on the [📐 Patterns page](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System).
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-formsection
-- **Source**: `packages/patterns/form-section/src/`
+- **Source**: `packages/ui/form-section/src/`
 
 ## Changelog
 

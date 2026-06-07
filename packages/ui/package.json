@@ -1,0 +1,25 @@
+{
+  "name": "@kanso-protocol/ui",
+  "version": "5.0.0",
+  "description": "Kanso Protocol — Angular design system (single package, per-component secondary entry points).",
+  "license": "MIT",
+  "author": "GregNBlack",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GregNBlack/kanso-protocol.git",
+    "directory": "packages/ui"
+  },
+  "homepage": "https://gregnblack.github.io/kanso-protocol",
+  "bugs": "https://github.com/GregNBlack/kanso-protocol/issues",
+  "keywords": [
+    "design-system",
+    "angular",
+    "kanso",
+    "dtcg"
+  ],
+  "sideEffects": false,
+  "peerDependencies": {
+    "@angular/core": ">=21.0.0",
+    "@angular/common": ">=21.0.0"
+  }
+}

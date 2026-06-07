@@ -79,14 +79,14 @@ import {
   Output,
 } from '@angular/core';
 
-import { KpAppShellComponent } from '@kanso-protocol/app-shell';
-import { KpSidebarComponent, KpSidebarNavItem, KpSidebarSection } from '@kanso-protocol/sidebar';
-import { KpAvatarComponent } from '@kanso-protocol/avatar';
-import { KpUserMenuComponent } from '@kanso-protocol/user-menu';
-import { KpThemeToggleComponent } from '@kanso-protocol/theme-toggle';
-import { KpIconComponent } from '@kanso-protocol/icon';
-import { KpIconButtonComponent } from '@kanso-protocol/button';
-import { KpBadgeComponent } from '@kanso-protocol/badge';
+import { KpAppShellComponent } from '@kanso-protocol/ui/app-shell';
+import { KpSidebarComponent, KpSidebarNavItem, KpSidebarSection } from '@kanso-protocol/ui/sidebar';
+import { KpAvatarComponent } from '@kanso-protocol/ui/avatar';
+import { KpUserMenuComponent } from '@kanso-protocol/ui/user-menu';
+import { KpThemeToggleComponent } from '@kanso-protocol/ui/theme-toggle';
+import { KpIconComponent } from '@kanso-protocol/ui/icon';
+import { KpIconButtonComponent } from '@kanso-protocol/ui/button';
+import { KpBadgeComponent } from '@kanso-protocol/ui/badge';
 
 // ============================================================================
 // Public types
