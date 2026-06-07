@@ -38,6 +38,7 @@ const ALLOW = [
   /^scripts\/migrate-to-single-package\.js$/, // the migration codemod itself
   /^\.github\/workflows\/deprecate-legacy\.yml$/,
   /^scripts\/check-no-stale-refs\.js$/, // this file (contains the patterns)
+  /^scripts\/check-lockfile-workspaces\.js$/, // explains the v5 break in comments
 ];
 
 // Only scan source-ish text files.
