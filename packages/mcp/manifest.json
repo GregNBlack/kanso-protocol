@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-05-15T06:54:16.300Z",
-  "version": "2.0.3",
+  "generatedAt": "2026-06-07T10:01:41.558Z",
+  "version": "4.1.0",
   "totals": {
-    "components": 57,
+    "components": 59,
     "patterns": 22,
-    "tokens": 914
+    "tokens": 915
   },
   "figma": {
     "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
@@ -61,7 +61,8 @@
       "className": "KpAccordionItemComponent",
       "selector": "kp-accordion-item",
       "layer": "components",
-      "package": "@kanso-protocol/accordion",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/accordion",
       "description": "Kanso Protocol — AccordionItem (atom)\n\nExpandable row: a clickable trigger with title / optional description /\nchevron, and a content panel that renders when `[expanded]` is true.\nDrive `[expanded]` from a parent — either manually or via\n`<kp-accordion>` which coordinates single/multi behavior.",
       "examples": [],
       "inputs": [
@@ -128,7 +129,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-accordion--docs",
-      "sourcePath": "packages/components/accordion/src/accordion-item.component.ts",
+      "sourcePath": "packages/ui/accordion/src/accordion-item.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11103",
@@ -148,7 +149,8 @@
       "className": "KpAccordionComponent",
       "selector": "kp-accordion",
       "layer": "components",
-      "package": "@kanso-protocol/accordion",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/accordion",
       "description": "Kanso Protocol — Accordion\n\nContainer for `<kp-accordion-item>` children. Coordinates the\nexpand/collapse behavior via `[mode]`:\n  - `single` — only one item can be open; expanding a new one collapses the previous.\n  - `multi`  — any number of items can be open simultaneously.\n\nCascades `size` to every projected item so callers set it once on\nthe container. Set `[showOuterBorder]=\"true\"` to wrap the group in\na 1px border with rounded corners (for standalone accordions on\nflat surfaces). Otherwise only the per-item bottom borders show.",
       "examples": [],
       "inputs": [
@@ -180,7 +182,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-accordion--docs",
-      "sourcePath": "packages/components/accordion/src/accordion.component.ts",
+      "sourcePath": "packages/ui/accordion/src/accordion.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11103",
@@ -200,7 +202,8 @@
       "className": "KpAlertComponent",
       "selector": "kp-alert",
       "layer": "components",
-      "package": "@kanso-protocol/alert",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/alert",
       "description": "Kanso Protocol — Alert\n\nIn-page banner for statuses, errors, warnings, and short messages. 3 sizes ×\n4 appearances (subtle / solid / outline / left-accent) × 6 color roles, plus\nan optional leading icon, an action slot (inline right or stacked below),\nand a close button.",
       "examples": [
         "<kp-alert color=\"success\" title=\"Changes saved\" description=\"Profile updated.\">\n  <svg kpAlertIcon .../>\n</kp-alert>\n\n<kp-alert color=\"warning\" appearance=\"left-accent\" title=\"Review required\"\n          description=\"3 items need your approval.\">\n  <button kpButton kpAlertAction size=\"sm\" variant=\"subtle\">Review</button>\n</kp-alert>"
@@ -263,7 +266,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-alert--docs",
-      "sourcePath": "packages/components/alert/src/alert.component.ts",
+      "sourcePath": "packages/ui/alert/src/alert.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11044",
@@ -283,7 +286,8 @@
       "className": "KpAvatarComponent",
       "selector": "kp-avatar",
       "layer": "components",
-      "package": "@kanso-protocol/avatar",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/avatar",
       "description": "Kanso Protocol — Avatar\n\nUser-facing identity surface: image / initials / icon. Six sizes\n× two shapes, seven color appearances, optional presence status\ndot and ring (for stacks).\n\nContent precedence: `src` → image, else `initials` → initials,\nelse projected `<svg>` / default user glyph.",
       "examples": [
         "<kp-avatar size=\"md\" initials=\"GB\"/>\n<kp-avatar size=\"lg\" src=\"/me.jpg\" [showStatus]=\"true\" status=\"online\"/>\n<kp-avatar size=\"xl\" shape=\"square\" appearance=\"neutral\">\n  <svg><!-- company glyph --></svg>\n</kp-avatar>"
@@ -362,7 +366,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-avatar--docs",
-      "sourcePath": "packages/components/avatar/src/avatar.component.ts",
+      "sourcePath": "packages/ui/avatar/src/avatar.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11139",
@@ -382,7 +386,8 @@
       "className": "KpAvatarGroupComponent",
       "selector": "kp-avatar-group",
       "layer": "components",
-      "package": "@kanso-protocol/avatar-group",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/avatar-group",
       "description": "Kanso Protocol — AvatarGroup\n\nOverlapping stack of Avatars with an optional \"+N\" count chip.\nItems after `max` collapse into the count; `total` drives the\ndisplayed number (\"+N\" = `total - visible.length`).\n\nEach avatar is rendered with `showRing=true` so the overlap\nreads cleanly against any background.",
       "examples": [
         "<kp-avatar-group size=\"sm\" [items]=\"members\" [max]=\"4\" [total]=\"members.length\"/>"
@@ -414,7 +419,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-avatargroup--docs",
-      "sourcePath": "packages/components/avatar-group/src/avatar-group.component.ts",
+      "sourcePath": "packages/ui/avatar-group/src/avatar-group.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11139",
@@ -434,7 +439,8 @@
       "className": "KpBadgeComponent",
       "selector": "kp-badge",
       "layer": "components",
-      "package": "@kanso-protocol/badge",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/badge",
       "description": "Kanso Protocol — Badge\n\nCompact label for statuses, tags, and counters. 3 sizes × 4 appearances\n× 6 color roles. A leading dot and a leading icon are independent\noptional slots; the dot appearance drops the background and border so\nthe dot becomes the only colour cue.",
       "examples": [
         "<kp-badge color=\"success\">Active</kp-badge>\n<kp-badge appearance=\"dot\" color=\"warning\" [showLeadingDot]=\"true\">Away</kp-badge>\n<kp-badge pill [closable]=\"true\" color=\"neutral\" appearance=\"subtle\" (close)=\"remove()\">Design</kp-badge>\n<kp-badge size=\"xs\" color=\"danger\" [count]=\"true\">12</kp-badge>"
@@ -497,7 +503,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-badge--docs",
-      "sourcePath": "packages/components/badge/src/badge.component.ts",
+      "sourcePath": "packages/ui/badge/src/badge.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11040",
@@ -517,7 +523,8 @@
       "className": "KpBreadcrumbItemComponent",
       "selector": "kp-breadcrumb-item",
       "layer": "components",
-      "package": "@kanso-protocol/breadcrumbs",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/breadcrumbs",
       "description": "Kanso Protocol — BreadcrumbItem (atom)\n\nSingle breadcrumb cell. Renders as an `<a>` for `type=\"link\"` with an\n`href`, a `<button>` for `type=\"link\"` without one, a plain `<span>`\nfor `type=\"current\"`, or a `<button>` for `type=\"ellipsis\"`\n(clickable — callers typically open a Popover / DropdownMenu from it).\n\nProjects a leading icon via `[kpBreadcrumbIcon]`. Size is usually set\nby the parent `<kp-breadcrumbs>`.",
       "examples": [
         "<kp-breadcrumb-item type=\"link\" href=\"/projects\">\n  <svg kpBreadcrumbIcon .../>\n  Projects\n</kp-breadcrumb-item>"
@@ -575,7 +582,7 @@
         "Home"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-breadcrumbs--docs",
-      "sourcePath": "packages/components/breadcrumbs/src/breadcrumb-item.component.ts",
+      "sourcePath": "packages/ui/breadcrumbs/src/breadcrumb-item.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11072",
@@ -595,7 +602,8 @@
       "className": "KpBreadcrumbSeparatorComponent",
       "selector": "kp-breadcrumb-separator",
       "layer": "components",
-      "package": "@kanso-protocol/breadcrumbs",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/breadcrumbs",
       "description": "Kanso Protocol — BreadcrumbSeparator (atom)\n\nVisual glue between `<kp-breadcrumb-item>`s. Inert — not announced by\nscreen readers. Ships with three variants: a gray chevron, a gray\nslash, and a small accent-colored dot.",
       "examples": [],
       "inputs": [
@@ -620,7 +628,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-breadcrumbs--docs",
-      "sourcePath": "packages/components/breadcrumbs/src/breadcrumb-separator.component.ts",
+      "sourcePath": "packages/ui/breadcrumbs/src/breadcrumb-separator.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11072",
@@ -640,7 +648,8 @@
       "className": "KpBreadcrumbsAutoComponent",
       "selector": "kp-breadcrumbs-auto",
       "layer": "components",
-      "package": "@kanso-protocol/breadcrumbs",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/breadcrumbs",
       "description": "Kanso Protocol — BreadcrumbsAuto\n\nDrop-in replacement for the composable `<kp-breadcrumbs>` API that\nbuilds its trail from the Angular router state. Walks the current\n`ActivatedRouteSnapshot` tree from root to leaf, picks every route\nthat defines `data.breadcrumb`, and renders the full path\nautomatically — updating on every `NavigationEnd`.\n\nThe last collected entry becomes `type=\"current\"`; everything before\nit is `type=\"link\"` with an `href` built from the accumulated URL\nsegments. If you need richer content (icons, ellipsis collapsing),\nfall back to the manual `<kp-breadcrumbs>` composition.",
       "examples": [
         "// route config\nconst routes = [\n  { path: '', data: { breadcrumb: 'Home' } },\n  { path: 'projects', data: { breadcrumb: 'Projects' }, children: [\n    { path: ':id', data: { breadcrumb: (r) => r.paramMap.get('id') ?? 'Detail' } }\n  ]}\n];\n\n// template — anywhere inside a routed component\n<kp-breadcrumbs-auto size=\"md\" separator=\"chevron\"/>"
@@ -675,7 +684,7 @@
         "Home"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-breadcrumbs--docs",
-      "sourcePath": "packages/components/breadcrumbs/src/breadcrumbs-auto.component.ts",
+      "sourcePath": "packages/ui/breadcrumbs/src/breadcrumbs-auto.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11072",
@@ -695,7 +704,8 @@
       "className": "KpBreadcrumbsComponent",
       "selector": "kp-breadcrumbs",
       "layer": "components",
-      "package": "@kanso-protocol/breadcrumbs",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/breadcrumbs",
       "description": "Kanso Protocol — Breadcrumbs (container)\n\nSemantic `<nav aria-label=\"Breadcrumb\">` with an ordered list of items\nand separators. Cascades `size` to every projected `<kp-breadcrumb-item>`\nand `<kp-breadcrumb-separator>` so callers set it in one place.\n\nThe component is intentionally composable — callers include items\nand separators in the order they want them rendered. This keeps it\ncompatible with whatever routing/data source you use and makes the\noverflow `...` affordance trivial (just drop an `<kp-breadcrumb-item\ntype=\"ellipsis\">` between items).",
       "examples": [
         "<kp-breadcrumbs size=\"md\" ariaLabel=\"Breadcrumb\">\n  <kp-breadcrumb-item type=\"link\" href=\"/\">\n    <svg kpBreadcrumbIcon .../>\n  </kp-breadcrumb-item>\n  <kp-breadcrumb-separator type=\"chevron\"/>\n  <kp-breadcrumb-item type=\"link\" label=\"Projects\" href=\"/projects\"/>\n  <kp-breadcrumb-separator type=\"chevron\"/>\n  <kp-breadcrumb-item type=\"current\" label=\"Button\"/>\n</kp-breadcrumbs>"
@@ -722,7 +732,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-breadcrumbs--docs",
-      "sourcePath": "packages/components/breadcrumbs/src/breadcrumbs.component.ts",
+      "sourcePath": "packages/ui/breadcrumbs/src/breadcrumbs.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11072",
@@ -742,7 +752,8 @@
       "className": "KpButtonComponent",
       "selector": "button[kpButton]",
       "layer": "components",
-      "package": "@kanso-protocol/button",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/button",
       "description": "Kanso Protocol — Button\n\nAttribute-selector on a real native `<button>`. Gets `type` / `form` /\n`name` / `value` / `formaction` / native disabled / Enter+Space /\nform submission / HTML5 validation for free.",
       "examples": [
         "<button kpButton size=\"md\" variant=\"default\" color=\"primary\">Click me</button>\n<button kpButton type=\"submit\" color=\"primary\">Save</button>\n<button kpButton variant=\"outline\" color=\"danger\" [loading]=\"true\">Delete</button>"
@@ -768,7 +779,7 @@
         },
         {
           "name": "color",
-          "type": "KpColorRole",
+          "type": "KpButtonColor",
           "default": "'primary'",
           "description": ""
         },
@@ -808,7 +819,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-button--docs",
-      "sourcePath": "packages/components/button/src/button.component.ts",
+      "sourcePath": "packages/ui/button/src/button.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:10993",
@@ -828,10 +839,11 @@
       "className": "KpIconButtonComponent",
       "selector": "kp-icon-button",
       "layer": "components",
-      "package": "@kanso-protocol/button",
-      "description": "Kanso Protocol — IconButton (atom)\n\nSquare ghost button with a single projected icon. Used for \"close\",\n\"clear\", \"dismiss\" affordances on Popover, Dialog, Toast, Input,\nAlert, etc. — replaces per-component reimplementations of the same\npattern (which historically drifted on hover / focus / sizing).\n\nColor is `currentColor` so the button picks up the foreground color\nof its container (e.g. inside Popover header it's `popover-fg-desc`,\ninside Toast it's the toast title color). Hover applies the same\nsubtle overlay used everywhere else.",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/button",
+      "description": "Kanso Protocol — IconButton (atom)",
       "examples": [
-        "<kp-icon-button size=\"sm\" ariaLabel=\"Close\" (click)=\"close()\">\n    <svg viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\">\n      <path d=\"M18 6 6 18M6 6l12 12\" stroke=\"currentColor\"\n            stroke-width=\"2\" stroke-linecap=\"round\"/>\n    </svg>\n  </kp-icon-button>"
+        "(still works in 4.x but logs a deprecation notice on first use)\n<kp-icon-button size=\"sm\" ariaLabel=\"Close\" (click)=\"close()\">\n<svg viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\">\n<path d=\"M18 6 6 18M6 6l12 12\" stroke=\"currentColor\"\n  stroke-width=\"2\" stroke-linecap=\"round\"/>\n</svg>\n</kp-icon-button>"
       ],
       "inputs": [
         {
@@ -867,7 +879,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-button--docs",
-      "sourcePath": "packages/components/button/src/icon-button.component.ts",
+      "sourcePath": "packages/ui/button/src/icon-button.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:10993",
@@ -887,7 +899,8 @@
       "className": "KpCardComponent",
       "selector": "kp-card",
       "layer": "components",
-      "package": "@kanso-protocol/card",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/card",
       "description": "Kanso Protocol — Card\n\nUniversal container with optional header (title + description +\naction), body, and footer. Each section toggles via boolean inputs;\ndividers can be added between sections for visual grouping.\n\nSet `appearance=\"elevated\"` for a shadowed surface, `\"muted\"` for a\ngray background with dimmed text (secondary / preview content),\n`\"subtle\"` for a gray background with full-strength text and no\nborder (primary content visually separated from the page), or\n`\"outline\"` for a transparent panel with just a border. Setting\n`[clickable]=\"true\"` adds a hover state and emits `(cardClick)` —\nwire it to navigate, expand, or run any action.",
       "examples": [],
       "inputs": [
@@ -972,7 +985,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-card--docs",
-      "sourcePath": "packages/components/card/src/card.component.ts",
+      "sourcePath": "packages/ui/card/src/card.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11091",
@@ -992,7 +1005,8 @@
       "className": "KpCheckboxComponent",
       "selector": "kp-checkbox",
       "layer": "components",
-      "package": "@kanso-protocol/checkbox",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/checkbox",
       "description": "Kanso Protocol — Checkbox\n\nWraps a real native `<input type=\"checkbox\">` inside a styled `<label>`.\nForm submission, FormData, `<label for>` association, password manager\nautofill, native indeterminate, Space-toggle, and HTML5 validation\n(`required`) all work without polyfills.",
       "examples": [
         "<kp-checkbox [(checked)]=\"isChecked\" size=\"md\">Remember me</kp-checkbox>\n<kp-checkbox [indeterminate]=\"true\">Select all</kp-checkbox>\n<form><kp-checkbox name=\"agree\" value=\"yes\" required>I agree</kp-checkbox></form>"
@@ -1085,7 +1099,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-checkbox--docs",
-      "sourcePath": "packages/components/checkbox/src/checkbox.component.ts",
+      "sourcePath": "packages/ui/checkbox/src/checkbox.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11001",
@@ -1105,7 +1119,8 @@
       "className": "KpComboboxComponent",
       "selector": "kp-combobox",
       "layer": "components",
-      "package": "@kanso-protocol/combobox",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/combobox",
       "description": "Kanso Protocol — Combobox\n\nSelect with an embedded text input for filtering. Type to narrow the\ndropdown list; pick an option with click, `Enter`, or `Tab`. Supports\nsingle and multi selection. Matches Input's size ramp so it composes\nwith other form controls.",
       "examples": [
         "<kp-combobox [options]=\"countries\" [(ngModel)]=\"country\"/>\n<kp-combobox [multiple]=\"true\" [options]=\"tags\" [(ngModel)]=\"picked\"/>"
@@ -1194,7 +1209,7 @@
         "Backspace"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-combobox--docs",
-      "sourcePath": "packages/components/combobox/src/combobox.component.ts",
+      "sourcePath": "packages/ui/combobox/src/combobox.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11115",
@@ -1214,7 +1229,8 @@
       "className": "KpCommandPaletteComponent",
       "selector": "kp-command-palette",
       "layer": "components",
-      "package": "@kanso-protocol/command-palette",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/command-palette",
       "description": "Kanso Protocol — CommandPalette\n\nModal command launcher (⌘K-style). Composes `<kp-dialog>` (chromeless)\nwith an internal input + grouped result list. Keyboard navigation:\n`↑` / `↓` highlight, `Enter` select, `Esc` close. The component owns\nthe open state when `[shortcut]` is set — the global keydown listener\ntoggles `open` on the configured combo (default `mod+k`).\n\nThe consumer supplies `[groups]`. Filtering is the consumer's job —\nthe component re-emits `(filterChange)` on every input keystroke.",
       "examples": [
         "<kp-command-palette\n  [(open)]=\"paletteOpen\"\n  [groups]=\"results\"\n  [shortcut]=\"{ combo: 'mod+k' }\"\n  (filterChange)=\"onFilter($event)\"\n  (itemSelect)=\"run($event)\"\n/>"
@@ -1280,7 +1296,7 @@
         },
         {
           "name": "itemSelect",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/components/command-palette/src/command-palette.component\").KpCommandItem"
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/command-palette/src/command-palette.component\").KpCommandItem"
         }
       ],
       "ariaRole": null,
@@ -1297,7 +1313,7 @@
         "Enter"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-commandpalette--docs",
-      "sourcePath": "packages/components/command-palette/src/command-palette.component.ts",
+      "sourcePath": "packages/ui/command-palette/src/command-palette.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "4111:11234",
@@ -1317,7 +1333,8 @@
       "className": "KpDatePickerComponent",
       "selector": "kp-date-picker",
       "layer": "components",
-      "package": "@kanso-protocol/datepicker",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/datepicker",
       "description": "Kanso Protocol — DatePicker\n\nInput-triggered calendar popup. `mode=\"single\"` picks one date, `mode=\"range\"`\npicks a pair `[start, end]`. Panel portals to `<body>` so it escapes any\noverflow / transform on ancestors.\n\nShares Input's size ramp and visual state vocabulary.",
       "examples": [],
       "inputs": [
@@ -1403,7 +1420,7 @@
       "outputs": [
         {
           "name": "valueChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/components/datepicker/src/datepicker.component\").KpDatePickerValue"
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/datepicker/src/datepicker.component\").KpDatePickerValue"
         },
         {
           "name": "openChange",
@@ -1432,7 +1449,7 @@
         "Space"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-datepicker--docs",
-      "sourcePath": "packages/components/datepicker/src/datepicker.component.ts",
+      "sourcePath": "packages/ui/datepicker/src/datepicker.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11119",
@@ -1452,7 +1469,8 @@
       "className": "KpDialogComponent",
       "selector": "kp-dialog",
       "layer": "components",
-      "package": "@kanso-protocol/dialog",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/dialog",
       "description": "Kanso Protocol — Dialog\n\nWraps a real native `<dialog>` element. Focus trap, top-layer\nstacking, ESC-to-close, body-scroll inertness, and `::backdrop`\nstyling are all browser-native. Composition is slot-driven:\n`[kpDialogHeroIcon]` / `[kpDialogBody]` / `[kpDialogFooter]`.",
       "examples": [
         "<kp-dialog\n  [(open)]=\"deleteOpen\"\n  size=\"sm\"\n  title=\"Delete repository?\"\n  [showDescription]=\"true\"\n  description=\"This action cannot be undone.\"\n  (closed)=\"deleteOpen = false\"\n/>"
@@ -1557,7 +1575,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-dialog--docs",
-      "sourcePath": "packages/components/dialog/src/dialog.component.ts",
+      "sourcePath": "packages/ui/dialog/src/dialog.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11083",
@@ -1577,7 +1595,8 @@
       "className": "KpDividerComponent",
       "selector": "kp-divider",
       "layer": "components",
-      "package": "@kanso-protocol/divider",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/divider",
       "description": "Kanso Protocol — Divider\n\nThin line separator. Horizontal by default; set `orientation=\"vertical\"`\nfor an inline vertical rule. Horizontal dividers can carry an optional\nlabel via `[label]` (or projected default content) with configurable\nposition — center / start / end.\n\nVertical dividers are label-less by design (visually awkward).",
       "examples": [],
       "inputs": [
@@ -1611,7 +1630,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-divider--docs",
-      "sourcePath": "packages/components/divider/src/divider.component.ts",
+      "sourcePath": "packages/ui/divider/src/divider.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11087",
@@ -1631,7 +1650,8 @@
       "className": "KpDrawerComponent",
       "selector": "kp-drawer",
       "layer": "components",
-      "package": "@kanso-protocol/drawer",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/drawer",
       "description": "Kanso Protocol — Drawer\n\nSide panel that slides in from any of four edges. Same composition\nmodel as Dialog (header / body / footer slots, controlled\n`[(open)]` state, focus trap on open, Esc + backdrop close), but\nanchored to a screen edge instead of centered.\n\nUse it for: settings panels, filter sidebars, mobile bottom sheets,\ntop notification trays. Body content scrolls when it overflows the\npanel; the panel itself stays fixed-size per `size` × `side`.",
       "examples": [],
       "inputs": [
@@ -1747,7 +1767,7 @@
         "Escape"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-drawer--docs",
-      "sourcePath": "packages/components/drawer/src/drawer.component.ts",
+      "sourcePath": "packages/ui/drawer/src/drawer.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11099",
@@ -1767,7 +1787,8 @@
       "className": "KpEmptyStateComponent",
       "selector": "kp-empty-state",
       "layer": "components",
-      "package": "@kanso-protocol/empty-state",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/empty-state",
       "description": "Kanso Protocol — EmptyState\n\nCentered placeholder for empty lists, missing data, or zero-result\nscreens. Composes a circular illustration container, title,\ndescription, and an actions row. Project the illustration via\n`[kpEmptyStateIcon]` and footer buttons via `[kpEmptyStateActions]`.",
       "examples": [],
       "inputs": [
@@ -1811,7 +1832,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-emptystate--docs",
-      "sourcePath": "packages/components/empty-state/src/empty-state.component.ts",
+      "sourcePath": "packages/ui/empty-state/src/empty-state.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11095",
@@ -1831,7 +1852,8 @@
       "className": "KpFileUploadComponent",
       "selector": "kp-file-upload",
       "layer": "components",
-      "package": "@kanso-protocol/file-upload",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/file-upload",
       "description": "Kanso Protocol — FileUpload (dropzone)\n\nClick-to-browse + drag-and-drop. Constraints:\n`[accept]` MIME / extension list, `[maxSize]` bytes per file,\n`[maxFiles]` total count, `[multiple]` toggle.\n\nEmits `(filesAdded)` for accepted files (the consumer owns the upload\nloop and reports back via `setProgress` / `setStatus`) and\n`(filesRejected)` for the rest. Selected files are tracked in `files`\nso the UI can show a status list with progress + remove.",
       "examples": [
         "<kp-file-upload\n  [multiple]=\"true\"\n  accept=\"image/*,.pdf\"\n  [maxSize]=\"5 * 1024 * 1024\"\n  [maxFiles]=\"10\"\n  (filesAdded)=\"upload($event)\"\n  (filesRejected)=\"warn($event)\"\n  (fileRemoved)=\"cancel($event)\"\n/>"
@@ -1913,15 +1935,15 @@
       "outputs": [
         {
           "name": "filesAdded",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/components/file-upload/src/file-upload.component\").KpUploadFile[]"
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/file-upload/src/file-upload.component\").KpUploadFile[]"
         },
         {
           "name": "filesRejected",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/components/file-upload/src/file-upload.component\").KpFileRejection[]"
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/file-upload/src/file-upload.component\").KpFileRejection[]"
         },
         {
           "name": "fileRemoved",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/components/file-upload/src/file-upload.component\").KpUploadFile"
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/file-upload/src/file-upload.component\").KpUploadFile"
         }
       ],
       "ariaRole": null,
@@ -1932,7 +1954,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-fileupload--docs",
-      "sourcePath": "packages/components/file-upload/src/file-upload.component.ts",
+      "sourcePath": "packages/ui/file-upload/src/file-upload.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "4110:11270",
@@ -1952,7 +1974,8 @@
       "className": "KpFormFieldComponent",
       "selector": "kp-form-field",
       "layer": "components",
-      "package": "@kanso-protocol/form-field",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/form-field",
       "description": "Kanso Protocol — FormField\n\nWraps any form control with a label, optional/required marker, and a\nfooter that renders either a helper text (rest state) or a validation\nerror message (when the projected control is invalid and was touched\nor dirty).\n\n**Auto-error mode.** Project any Angular form control — `[formControl]`,\n`[formControlName]`, `ngModel`, or a custom directive that implements\n`ControlValueAccessor`. FormField finds the `NgControl` via content\nprojection, subscribes to its status/value changes, and surfaces the\nerror from `control.errors` using a lookup against the validation\nmessage registry (see `KP_VALIDATION_MESSAGES`). Per-field messages\noverride the registry via the `[errors]` input.\n\n**Manual mode.** Pass `[error]=\"true\"` + a custom `[helper]` text if\nyou want full control over the error display (e.g. when the validation\nstate lives outside Angular Forms).",
       "examples": [
         "Auto-error from a reactive FormControl:\n<kp-form-field label=\"Email\" required=\"required-asterisk\">\n<kp-input [formControl]=\"email\" />\n</kp-form-field>",
@@ -2007,7 +2030,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-formfield--docs",
-      "sourcePath": "packages/components/form-field/src/form-field.component.ts",
+      "sourcePath": "packages/ui/form-field/src/form-field.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11016",
@@ -2027,7 +2050,8 @@
       "className": "KpIconComponent",
       "selector": "kp-icon",
       "layer": "components",
-      "package": "@kanso-protocol/icon",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/icon",
       "description": "Kanso Protocol — Icon Component\n\nRenders Tabler Icons SVGs inline with stroke-width auto-tuned per size.\nThe same `name` strings work in code and Figma (the `tabler/{name}` master\ncomponents on the Foundations » Tabler Icons page mirror this set).",
       "examples": [
         "<kp-icon name=\"search\" size=\"md\" />\n<kp-icon name=\"star-filled\" size=\"sm\" />\n<kp-icon [name]=\"dynamicName\" size=\"lg\" />\n\nNeed an icon outside the default set? Register at startup:\n\n  KP_ICON_REGISTRY.register('my-logo', '<svg viewBox=\"0 0 24 24\">…</svg>');"
@@ -2038,7 +2062,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-icon--docs",
-      "sourcePath": "packages/components/icon/src/icon.component.ts",
+      "sourcePath": "packages/ui/icon/src/icon.component.ts",
       "codeConnect": {
         "npm": "@kanso-protocol/icon",
         "primaryClass": "KpIconComponent",
@@ -2053,7 +2077,8 @@
       "className": "KpInputComponent",
       "selector": "kp-input",
       "layer": "components",
-      "package": "@kanso-protocol/input",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/input",
       "description": "Kanso Protocol — Input Component\n\nAnatomy: Container → Content → Elements (icon-left, input, icon-right)\nSupports: 5 sizes × 7 states (rest/hover/active/focus/disabled/loading/error)\nFloating Label: available for lg and xl sizes",
       "examples": [
         "<kp-input size=\"md\" placeholder=\"Enter text\"></kp-input>\n<kp-input size=\"lg\" label=\"Email\" [floatingLabel]=\"true\"></kp-input>"
@@ -2131,7 +2156,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-input--docs",
-      "sourcePath": "packages/components/input/src/input.component.ts",
+      "sourcePath": "packages/ui/input/src/input.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:10997",
@@ -2151,7 +2176,8 @@
       "className": "KpMarkdownViewerComponent",
       "selector": "kp-markdown-viewer",
       "layer": "components",
-      "package": "@kanso-protocol/markdown-viewer",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/markdown-viewer",
       "description": "Kanso Protocol — MarkdownViewer\n\nRead-only markdown renderer. Pairs with `<kp-rich-text-editor>` (which\nis HTML-only) for repos / docs / READMEs / changelog viewers.\n\nDefault parser is `marked` (already a dev-dep transitive in many Angular\nsetups; declared here as a runtime dep so the component is self-contained).\nPass `[parser]` to swap in `markdown-it`, `remark`, or a custom parser\nwhen you need plugin support beyond CommonMark + GFM.\n\nOutput is sanitized via `DomSanitizer.bypassSecurityTrustHtml` only when\n`[trusted]=true`. With `trusted=false` (default) the inner HTML goes\nthrough Angular's automatic sanitization, which strips `<script>`,\ninline event handlers, and `javascript:` URLs.",
       "examples": [
         "<kp-markdown-viewer\n  size=\"md\"\n  [content]=\"readme\"\n/>",
@@ -2192,7 +2218,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-markdownviewer--docs",
-      "sourcePath": "packages/components/markdown-viewer/src/markdown-viewer.component.ts",
+      "sourcePath": "packages/ui/markdown-viewer/src/markdown-viewer.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "4109:11282",
@@ -2212,7 +2238,8 @@
       "className": "KpDropdownMenuComponent",
       "selector": "kp-dropdown-menu",
       "layer": "components",
-      "package": "@kanso-protocol/menu",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/menu",
       "description": "Kanso Protocol — DropdownMenu\n\nFloating panel container for menu items. Projects any menu content:\nMenuItem, MenuDivider, MenuSectionLabel.\n\nOptional Search at the top and Footer with 1–2 full-width buttons at the bottom.",
       "examples": [
         "<kp-dropdown-menu\n  [hasSearch]=\"true\"\n  [hasFooter]=\"true\"\n  [showCancel]=\"true\"\n  primaryLabel=\"Apply\"\n  cancelLabel=\"Cancel\"\n  (primary)=\"apply()\"\n  (cancel)=\"close()\">\n  <kp-menu-item label=\"Profile\"/>\n</kp-dropdown-menu>"
@@ -2279,7 +2306,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-menu--docs",
-      "sourcePath": "packages/components/menu/src/dropdown-menu.component.ts",
+      "sourcePath": "packages/ui/menu/src/dropdown-menu.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11020",
@@ -2299,7 +2326,8 @@
       "className": "KpMenuDividerComponent",
       "selector": "kp-menu-divider",
       "layer": "components",
-      "package": "@kanso-protocol/menu",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/menu",
       "description": "Kanso Protocol — MenuDivider\n\nThin horizontal separator between groups of menu items.",
       "examples": [],
       "inputs": [],
@@ -2308,7 +2336,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-menu--docs",
-      "sourcePath": "packages/components/menu/src/menu-divider.component.ts",
+      "sourcePath": "packages/ui/menu/src/menu-divider.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11020",
@@ -2328,7 +2356,8 @@
       "className": "KpMenuItemComponent",
       "selector": "kp-menu-item",
       "layer": "components",
-      "package": "@kanso-protocol/menu",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/menu",
       "description": "Kanso Protocol — MenuItem\n\nSingle option inside a DropdownMenu. Supports 3 sizes, optional icon slot,\ndescription (lg), shortcut/chevron trailing, and selected/danger variants.\n\nProjection slots:\n  [kpMenuItemLeading]  — slot before label (e.g. Checkbox/Radio)\n  [kpMenuItemIcon]     — icon left slot\n  [kpMenuItemTrailing] — custom trailing content (overrides shortcut/chevron)",
       "examples": [
         "<kp-menu-item label=\"Edit\" shortcut=\"⌘E\">\n  <svg kpMenuItemIcon>...</svg>\n</kp-menu-item>"
@@ -2398,7 +2427,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-menu--docs",
-      "sourcePath": "packages/components/menu/src/menu-item.component.ts",
+      "sourcePath": "packages/ui/menu/src/menu-item.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11020",
@@ -2418,7 +2447,8 @@
       "className": "KpMenuSectionLabelComponent",
       "selector": "kp-menu-section-label",
       "layer": "components",
-      "package": "@kanso-protocol/menu",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/menu",
       "description": "Kanso Protocol — MenuSectionLabel\n\nSmall uppercase heading used to group items inside a DropdownMenu.",
       "examples": [],
       "inputs": [
@@ -2434,7 +2464,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-menu--docs",
-      "sourcePath": "packages/components/menu/src/menu-section-label.component.ts",
+      "sourcePath": "packages/ui/menu/src/menu-section-label.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11020",
@@ -2454,7 +2484,8 @@
       "className": "KpNumberStepperComponent",
       "selector": "kp-number-stepper",
       "layer": "components",
-      "package": "@kanso-protocol/number-stepper",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/number-stepper",
       "description": "Kanso Protocol — NumberStepper Component\n\nNumeric input with − and + controls integrated into one rounded container.\nMirrors Input's size grammar so a NumberStepper sits flush next to an Input\nof the same size in a form row.",
       "examples": [
         "<kp-number-stepper [(ngModel)]=\"qty\" [min]=\"0\" [max]=\"10\"/>\n<kp-number-stepper size=\"lg\" [(ngModel)]=\"weight\" suffix=\"kg\"/>"
@@ -2526,7 +2557,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-numberstepper--docs",
-      "sourcePath": "packages/components/number-stepper/src/number-stepper.component.ts",
+      "sourcePath": "packages/ui/number-stepper/src/number-stepper.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11032",
@@ -2546,7 +2577,8 @@
       "className": "KpPaginationItemComponent",
       "selector": "kp-pagination-item",
       "layer": "components",
-      "package": "@kanso-protocol/pagination",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/pagination",
       "description": "Kanso Protocol — PaginationItem (atom)\n\nSingle cell in a pagination strip. Renders as a page-pill for\n`type=\"page\"` (rounded-square with size-specific radius), a\nchevron/text-nav button for `type=\"nav\"`, or a static `…`\nellipsis for `type=\"ellipsis\"`.\n\nUsually driven by the parent `<kp-pagination>`. You can drop items\nstandalone if you're assembling a bespoke pagination layout, but for\nthe common case let the container compute the range and emit events.",
       "examples": [],
       "inputs": [
@@ -2619,7 +2651,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-pagination--docs",
-      "sourcePath": "packages/components/pagination/src/pagination-item.component.ts",
+      "sourcePath": "packages/ui/pagination/src/pagination-item.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11076",
@@ -2639,7 +2671,8 @@
       "className": "KpPaginationComponent",
       "selector": "kp-pagination",
       "layer": "components",
-      "package": "@kanso-protocol/pagination",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/pagination",
       "description": "Kanso Protocol — Pagination\n\nPage-strip with prev/next nav, page pills, and optional \"Showing X of Y\" +\nitems-per-page selector. Computes the truncation range itself — callers\nonly provide `currentPage`, `totalPages`, and (if wanted) items-per-page\nstate and listen for `(pageChange)` / `(itemsPerPageChange)`.",
       "examples": [
         "<kp-pagination\n  [currentPage]=\"page\"\n  [totalPages]=\"20\"\n  [showItemsInfo]=\"true\"\n  [itemsPerPage]=\"pageSize\"\n  [itemsTotal]=\"total\"\n  [showItemsPerPage]=\"true\"\n  (pageChange)=\"page = $event\"\n  (itemsPerPageChange)=\"pageSize = $event\"\n/>"
@@ -2748,7 +2781,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-pagination--docs",
-      "sourcePath": "packages/components/pagination/src/pagination.component.ts",
+      "sourcePath": "packages/ui/pagination/src/pagination.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11076",
@@ -2768,7 +2801,8 @@
       "className": "KpPopoverComponent",
       "selector": "kp-popover",
       "layer": "components",
-      "package": "@kanso-protocol/popover",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/popover",
       "description": "Kanso Protocol — Popover\n\nFloating panel with optional header / body / footer and an optional\ndirectional arrow (4 sides × 3 anchors). Visual chrome only —\npositioning, show/hide and portaling are the caller's responsibility.\n\nThe host container uses `filter: drop-shadow()` so the shadow follows\nthe combined silhouette of body + arrow, and grows automatically with\ncontent.",
       "examples": [
         "<kp-popover size=\"md\" arrowPosition=\"top-center\"\n            title=\"Delete this item?\" description=\"This action cannot be undone.\"\n            [closable]=\"true\" (close)=\"cancel()\">\n  <button kpButton kpPopoverFooter size=\"sm\" variant=\"ghost\">Cancel</button>\n  <button kpButton kpPopoverFooter size=\"sm\" color=\"danger\">Delete</button>\n</kp-popover>"
@@ -2851,7 +2885,82 @@
         "Space"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-popover--docs",
-      "sourcePath": "packages/components/popover/src/popover.component.ts",
+      "sourcePath": "packages/ui/popover/src/popover.component.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11052",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11052"
+      },
+      "codeConnect": {
+        "npm": "@kanso-protocol/popover",
+        "primaryClass": "KpPopoverComponent",
+        "selector": "kp-popover",
+        "import": "import { KpPopoverComponent } from '@kanso-protocol/popover';",
+        "docs": "docs/components/popover.md",
+        "storybook": "components-popover--docs"
+      }
+    },
+    {
+      "name": "popover",
+      "className": "KpPopoverDirective",
+      "selector": "[kpPopover]",
+      "layer": "components",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/popover",
+      "description": "Kanso Protocol — Popover directive.\n\nAttaches a floating panel to any element. The panel content is a\n`TemplateRef`, so you control its markup completely (a menu, a form,\na `<kp-popover>` chrome component, anything).\n\nTriggers:\n- `click` (default) — toggle on click; close on outside-click / Escape\n- `hover` — open on mouseenter, close on mouseleave (with a small grace delay)\n- `manual` — only `open()` / `close()` / `toggle()` from a template ref\n\nPositioned against the trigger with viewport-edge flipping (shared math\nwith the tooltip directive). Renders into the nearest open `<dialog>`\n(so it sits above modals) or `document.body`.",
+      "examples": [
+        "<button [kpPopover]=\"menuTpl\">Actions</button>\n<ng-template #menuTpl>\n  <kp-popover [closable]=\"false\">\n    <button kpButton variant=\"ghost\">Edit</button>\n    <button kpButton variant=\"ghost\" color=\"danger\">Delete</button>\n  </kp-popover>\n</ng-template>",
+        "<!-- avatar menu, the motivating case -->\n<kp-avatar [kpPopover]=\"avatarMenu\" kpPopoverPosition=\"bottom\" />"
+      ],
+      "inputs": [
+        {
+          "name": "content",
+          "type": "TemplateRef<unknown> | null",
+          "default": "null",
+          "description": "Panel content. `null` disables the popover."
+        },
+        {
+          "name": "kpPopoverPosition",
+          "type": "KpOverlaySide",
+          "default": "'bottom'",
+          "description": ""
+        },
+        {
+          "name": "kpPopoverTrigger",
+          "type": "KpPopoverTrigger",
+          "default": "'click'",
+          "description": ""
+        },
+        {
+          "name": "kpPopoverGap",
+          "type": "number",
+          "default": "DEFAULT_GAP",
+          "description": ""
+        },
+        {
+          "name": "kpPopoverDisabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "Hard-disable regardless of content."
+        }
+      ],
+      "outputs": [
+        {
+          "name": "kpPopoverOpened",
+          "payload": "void"
+        },
+        {
+          "name": "kpPopoverClosed",
+          "payload": "void"
+        }
+      ],
+      "ariaRole": null,
+      "sizeRamp": [],
+      "keyboardPatterns": [
+        "Escape"
+      ],
+      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-popover--docs",
+      "sourcePath": "packages/ui/popover/src/popover.directive.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11052",
@@ -2871,7 +2980,8 @@
       "className": "KpProgressCircularComponent",
       "selector": "kp-progress-circular",
       "layer": "components",
-      "package": "@kanso-protocol/progress",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/progress",
       "description": "Kanso Protocol — ProgressCircular\n\nCircular determinate or indeterminate progress, drawn as two SVG\ncircles — a full track ring and a stroked arc that sweeps clockwise\nfrom 12 o'clock.",
       "examples": [
         "<kp-progress-circular [value]=\"65\" color=\"primary\" [showValue]=\"true\"/>\n<kp-progress-circular [indeterminate]=\"true\" size=\"md\"/>"
@@ -2927,7 +3037,7 @@
         "Space"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-progress--docs",
-      "sourcePath": "packages/components/progress/src/progress-circular.component.ts",
+      "sourcePath": "packages/ui/progress/src/progress-circular.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11056",
@@ -2947,7 +3057,8 @@
       "className": "KpProgressLinearComponent",
       "selector": "kp-progress-linear",
       "layer": "components",
-      "package": "@kanso-protocol/progress",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/progress",
       "description": "Kanso Protocol — ProgressLinear\n\nHorizontal determinate or indeterminate progress bar, with an optional\nlabel/value pair either stacked above or sitting inline to the right.",
       "examples": [
         "<kp-progress-linear [value]=\"45\" color=\"success\" [showLabel]=\"true\" label=\"Uploading\"/>\n<kp-progress-linear [indeterminate]=\"true\" color=\"primary\"/>"
@@ -3012,7 +3123,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-progress--docs",
-      "sourcePath": "packages/components/progress/src/progress-linear.component.ts",
+      "sourcePath": "packages/ui/progress/src/progress-linear.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11056",
@@ -3032,7 +3143,8 @@
       "className": "KpProgressSegmentedComponent",
       "selector": "kp-progress-segmented",
       "layer": "components",
-      "package": "@kanso-protocol/progress",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/progress",
       "description": "Kanso Protocol — ProgressSegmented\n\nStepper-style progress: a row of pill-shaped segments, each filled when\nits step is complete. Use for multi-step flows (Details → Review →\nConfirm → Done) where the user can see both total and current step at a\nglance.",
       "examples": [
         "<kp-progress-segmented [total]=\"4\" [current]=\"2\"\n  [showLabels]=\"true\" [labels]=\"['Details','Payment','Review','Done']\"\n  [showStepCounter]=\"true\"/>"
@@ -3103,7 +3215,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-progress--docs",
-      "sourcePath": "packages/components/progress/src/progress-segmented.component.ts",
+      "sourcePath": "packages/ui/progress/src/progress-segmented.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11056",
@@ -3123,7 +3235,8 @@
       "className": "KpRadioGroupComponent",
       "selector": "kp-radio-group",
       "layer": "components",
-      "package": "@kanso-protocol/radio",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/radio",
       "description": "Kanso Protocol — Radio Group\n\nContainer that coordinates a set of kp-radio elements. Selecting one\nautomatically deselects the others. Integrates with Reactive/Template forms.",
       "examples": [
         "<kp-radio-group [(value)]=\"selected\" name=\"plan\">\n  <kp-radio value=\"free\">Free</kp-radio>\n  <kp-radio value=\"pro\">Pro</kp-radio>\n  <kp-radio value=\"team\">Team</kp-radio>\n</kp-radio-group>"
@@ -3164,7 +3277,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-radio--docs",
-      "sourcePath": "packages/components/radio/src/radio-group.component.ts",
+      "sourcePath": "packages/ui/radio/src/radio-group.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11005",
@@ -3184,7 +3297,8 @@
       "className": "KpRadioComponent",
       "selector": "kp-radio",
       "layer": "components",
-      "package": "@kanso-protocol/radio",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/radio",
       "description": "Kanso Protocol — Radio\n\nWraps a real native `<input type=\"radio\">` inside a styled `<label>`.\nInside a `<kp-radio-group>`, radios share a `name` and the browser\nenforces single-selection natively (no manual deselection logic).\nIn a `<form>`, FormData picks up the checked radio's value.",
       "examples": [
         "<kp-radio-group [(value)]=\"selected\" name=\"plan\">\n  <kp-radio value=\"free\">Free</kp-radio>\n  <kp-radio value=\"pro\">Pro</kp-radio>\n</kp-radio-group>"
@@ -3265,7 +3379,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-radio--docs",
-      "sourcePath": "packages/components/radio/src/radio.component.ts",
+      "sourcePath": "packages/ui/radio/src/radio.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11005",
@@ -3285,7 +3399,8 @@
       "className": "KpRichTextEditorComponent",
       "selector": "kp-rich-text-editor",
       "layer": "components",
-      "package": "@kanso-protocol/rich-text-editor",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/rich-text-editor",
       "description": "Kanso Protocol — Rich Text Editor\n\nToolbar + editable surface built on TipTap (headless ProseMirror).\nValue shape: HTML string. ControlValueAccessor ready, so it plugs into\nReactive / Template-driven forms the same way as `<kp-input>`.\n\nToolbar groups:\n  · history       — undo / redo\n  · inline marks  — bold · italic · underline · strikethrough · code\n  · blocks        — H1 · H2 · H3 · blockquote · code-block · horizontal rule\n  · lists         — bullet · ordered\n  · alignment     — left · center · right\n  · link          — prompts for URL (future: popover with input)\n  · image         — emits `(imageUpload)` so the host app handles storage",
       "examples": [
         "<kp-rich-text-editor\n    [(ngModel)]=\"content\"\n    placeholder=\"Write your post…\"\n    (imageUpload)=\"uploadAndResolve($event)\" />"
@@ -3342,7 +3457,7 @@
         "Escape"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-richtexteditor--docs",
-      "sourcePath": "packages/components/rich-text-editor/src/rich-text-editor.component.ts",
+      "sourcePath": "packages/ui/rich-text-editor/src/rich-text-editor.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3849:11648",
@@ -3362,7 +3477,8 @@
       "className": "KpSegmentedControlComponent",
       "selector": "kp-segmented-control",
       "layer": "components",
-      "package": "@kanso-protocol/segmented-control",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/segmented-control",
       "description": "Kanso Protocol — SegmentedControl\n\nPill-style switcher backed by real native `<input type=\"radio\">` group.\nBrowser handles mutual-exclusion + arrow-key navigation; in a `<form>`\nthe checked radio's value goes into FormData. The visual \"pill\" is a\nseparate absolutely-positioned element that animates to the selected\nsegment.",
       "examples": [
         "<kp-segmented-control\n  [options]=\"[{value:'day',label:'Day'},{value:'week',label:'Week'}]\"\n  [(ngModel)]=\"period\">\n</kp-segmented-control>"
@@ -3415,7 +3531,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-segmentedcontrol--docs",
-      "sourcePath": "packages/components/segmented-control/src/segmented-control.component.ts",
+      "sourcePath": "packages/ui/segmented-control/src/segmented-control.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11036",
@@ -3435,7 +3551,8 @@
       "className": "KpSelectComponent",
       "selector": "kp-select",
       "layer": "components",
-      "package": "@kanso-protocol/select",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/select",
       "description": "Kanso Protocol — Select Component\n\nCombines an Input-style trigger with a DropdownMenu panel. Supports\nsingle and multiple selection, floating label (lg/xl), clear button,\nand the standard 7-state model shared with Input.",
       "examples": [
         "<kp-select size=\"md\" placeholder=\"Pick one\" [options]=\"countries\" [(ngModel)]=\"country\"/>\n<kp-select [multiple]=\"true\" [options]=\"tags\" [(ngModel)]=\"picked\"/>"
@@ -3526,7 +3643,7 @@
         "Escape"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-select--docs",
-      "sourcePath": "packages/components/select/src/select.component.ts",
+      "sourcePath": "packages/ui/select/src/select.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11028",
@@ -3546,7 +3663,8 @@
       "className": "KpSkeletonComponent",
       "selector": "kp-skeleton",
       "layer": "components",
-      "package": "@kanso-protocol/skeleton",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/skeleton",
       "description": "Kanso Protocol — Skeleton\n\nStatic placeholder shown while real content is loading. Six shape\npresets cover the common patterns (line, circle, rectangle, avatar,\nbutton, card) with a size ramp. `animated` toggles the shimmer\ngradient — on by default.\n\nComposition: project children for complex placeholders. For simple\nskeletons, just drop `<kp-skeleton shape=\"line\" size=\"md\"/>` and\noptionally override `[width]` to fit the real content width.",
       "examples": [],
       "inputs": [
@@ -3592,7 +3710,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-skeleton--docs",
-      "sourcePath": "packages/components/skeleton/src/skeleton.component.ts",
+      "sourcePath": "packages/ui/skeleton/src/skeleton.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11107",
@@ -3612,7 +3730,8 @@
       "className": "KpSliderComponent",
       "selector": "kp-slider",
       "layer": "components",
-      "package": "@kanso-protocol/slider",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/slider",
       "description": "Kanso Protocol — Slider\n\nNumeric range input with a draggable thumb on a horizontal track.\n`mode=\"single\"` exposes one thumb; `mode=\"range\"` exposes two.\n\nPointer drag, arrow-key stepping, track-click targeting, and a full\nControlValueAccessor for reactive / template-driven forms. In range\nmode, `ngModel` is a `[number, number]` tuple; in single mode, a plain\n`number`.",
       "examples": [],
       "inputs": [
@@ -3704,7 +3823,7 @@
       "outputs": [
         {
           "name": "valueChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/components/slider/src/slider.component\").KpSliderValue"
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/slider/src/slider.component\").KpSliderValue"
         }
       ],
       "ariaRole": null,
@@ -3724,7 +3843,7 @@
         "PageDown"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-slider--docs",
-      "sourcePath": "packages/components/slider/src/slider.component.ts",
+      "sourcePath": "packages/ui/slider/src/slider.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11111",
@@ -3744,7 +3863,8 @@
       "className": "KpTableCellDirective",
       "selector": "ng-template[kpTableCell]",
       "layer": "components",
-      "package": "@kanso-protocol/table",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/table",
       "description": "`<ng-template kpTableCell=\"columnId\" let-row let-i=\"index\">` — custom cell renderer per column.",
       "examples": [],
       "inputs": [
@@ -3760,7 +3880,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-table--docs",
-      "sourcePath": "packages/components/table/src/table.component.ts",
+      "sourcePath": "packages/ui/table/src/table.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11131",
@@ -3780,7 +3900,8 @@
       "className": "KpTableHeaderDirective",
       "selector": "ng-template[kpTableHeader]",
       "layer": "components",
-      "package": "@kanso-protocol/table",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/table",
       "description": "`<ng-template kpTableHeader=\"columnId\">` — custom header renderer per column.",
       "examples": [],
       "inputs": [
@@ -3796,7 +3917,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-table--docs",
-      "sourcePath": "packages/components/table/src/table.component.ts",
+      "sourcePath": "packages/ui/table/src/table.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11131",
@@ -3816,7 +3937,8 @@
       "className": "KpTableComponent",
       "selector": "kp-table",
       "layer": "components",
-      "package": "@kanso-protocol/table",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/table",
       "description": "Kanso Protocol — Table\n\nData-driven table with a columns schema, sortable headers, optional\nrow selection, striped / bordered variants, and template-per-column\ncell rendering via `<ng-template kpTableCell=\"id\">`.",
       "examples": [
         "<kp-table [columns]=\"cols\" [data]=\"rows\" [selectable]=\"true\" [(selected)]=\"picked\">\n  <ng-template kpTableCell=\"status\" let-row>\n    <kp-badge [color]=\"row.active ? 'success' : 'neutral'\">\n      {{ row.active ? 'Active' : 'Inactive' }}\n    </kp-badge>\n  </ng-template>\n</kp-table>"
@@ -3890,7 +4012,7 @@
         },
         {
           "name": "sortChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/components/table/src/table.component\").KpTableSort | null"
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/table/src/table.component\").KpTableSort | null"
         },
         {
           "name": "rowClick",
@@ -3905,7 +4027,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-table--docs",
-      "sourcePath": "packages/components/table/src/table.component.ts",
+      "sourcePath": "packages/ui/table/src/table.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11131",
@@ -3925,7 +4047,8 @@
       "className": "KpTabComponent",
       "selector": "button[kpTab]",
       "layer": "components",
-      "package": "@kanso-protocol/tabs",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/tabs",
       "description": "Kanso Protocol — Tab (atom)\n\nAttribute-selector on a real native `<button role=\"tab\">`. Sits inside\na `<kp-tabs role=\"tablist\">`. Native button gives Enter+Space\nactivation, focus-visible, and disabled. Arrow-key navigation between\ntabs is owned by the parent `<kp-tabs>` via roving tabindex.",
       "examples": [
         "<button kpTab label=\"Inbox\" [selected]=\"current === 'inbox'\" (click)=\"current='inbox'\">\n  <svg kpTabIcon .../>\n  <kp-badge kpTabBadge>12</kp-badge>\n</button>"
@@ -3976,7 +4099,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tabs--docs",
-      "sourcePath": "packages/components/tabs/src/tab.component.ts",
+      "sourcePath": "packages/ui/tabs/src/tab.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11068",
@@ -3996,7 +4119,8 @@
       "className": "KpTabsComponent",
       "selector": "kp-tabs",
       "layer": "components",
-      "package": "@kanso-protocol/tabs",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/tabs",
       "description": "Kanso Protocol — Tabs (container)\n\nHorizontal strip of `<button kpTab>` children with a shared bottom border.\nCascades `size` and `fullWidth` down to every projected `<button kpTab>`\nautomatically, so callers only set those two inputs in one place.\n\nA `[kpTabsMore]` slot projects an optional \"More ▾\" affordance to the\nright of the strip — useful when tabs overflow and you want a dropdown\nto hold the rest.",
       "examples": [
         "<kp-tabs size=\"md\" [fullWidth]=\"false\">\n  <button kpTab label=\"Overview\" [selected]=\"tab === 'overview'\" (selectedChange)=\"tab = 'overview'\"></button>\n  <button kpTab label=\"Activity\" [selected]=\"tab === 'activity'\" (selectedChange)=\"tab = 'activity'\"></button>\n  <button kpTab label=\"Settings\" [selected]=\"tab === 'settings'\" (selectedChange)=\"tab = 'settings'\"></button>\n\n  <button kpTabsMore>More ▾</button>\n</kp-tabs>"
@@ -4029,7 +4153,7 @@
         "End"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tabs--docs",
-      "sourcePath": "packages/components/tabs/src/tabs.component.ts",
+      "sourcePath": "packages/ui/tabs/src/tabs.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11068",
@@ -4049,7 +4173,8 @@
       "className": "KpTextareaComponent",
       "selector": "kp-textarea",
       "layer": "components",
-      "package": "@kanso-protocol/textarea",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/textarea",
       "description": "Kanso Protocol — Textarea Component\n\nMulti-line text input. Shares Input's size/state grammar; adds a resize handle\nand optional character counter for length-constrained fields.",
       "examples": [
         "<kp-textarea [(ngModel)]=\"bio\" placeholder=\"Tell us about yourself\"></kp-textarea>\n<kp-textarea size=\"lg\" [maxLength]=\"500\" [showCounter]=\"true\"></kp-textarea>"
@@ -4125,7 +4250,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-textarea--docs",
-      "sourcePath": "packages/components/textarea/src/textarea.component.ts",
+      "sourcePath": "packages/ui/textarea/src/textarea.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11024",
@@ -4145,7 +4270,8 @@
       "className": "KpTimePickerComponent",
       "selector": "kp-time-picker",
       "layer": "components",
-      "package": "@kanso-protocol/timepicker",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/timepicker",
       "description": "Kanso Protocol — TimePicker\n\nInput-triggered picker for hour / minute (optional second). Panel has\nscrollable columns per unit plus Now / Cancel / Apply footer — picks\nare staged in a draft until Apply, so accidental clicks don't commit.\n\nValue on the wire is always canonical 24-hour `HH:mm` or `HH:mm:ss`;\ndisplay switches between 12h and 24h via `format`.",
       "examples": [],
       "inputs": [
@@ -4207,7 +4333,7 @@
       "outputs": [
         {
           "name": "valueChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/components/timepicker/src/timepicker.component\").KpTimePickerValue"
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/timepicker/src/timepicker.component\").KpTimePickerValue"
         },
         {
           "name": "openChange",
@@ -4224,7 +4350,7 @@
         "Escape"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-timepicker--docs",
-      "sourcePath": "packages/components/timepicker/src/timepicker.component.ts",
+      "sourcePath": "packages/ui/timepicker/src/timepicker.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11123",
@@ -4244,7 +4370,8 @@
       "className": "KpToastHostComponent",
       "selector": "kp-toast-host",
       "layer": "components",
-      "package": "@kanso-protocol/toast",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/toast",
       "description": "Kanso Protocol — ToastHost\n\nPortaled container that renders the active toast queue in one corner\nof the viewport. Drop one (or several, one per corner) anywhere in\nthe app — toasts render via this host, not inline.",
       "examples": [
         "<kp-toast-host position=\"top-right\" size=\"md\"/>"
@@ -4283,7 +4410,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-toast--docs",
-      "sourcePath": "packages/components/toast/src/toast-host.component.ts",
+      "sourcePath": "packages/ui/toast/src/toast-host.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11127",
@@ -4303,7 +4430,8 @@
       "className": "KpToggleComponent",
       "selector": "kp-toggle",
       "layer": "components",
-      "package": "@kanso-protocol/toggle",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/toggle",
       "description": "Kanso Protocol — Toggle (Switch)\n\nWraps a real native `<input type=\"checkbox\" role=\"switch\">` inside a\nstyled `<label>`. Form submission, FormData, `<label for>` association,\nSpace-toggle, and HTML5 validation all work natively.",
       "examples": [
         "<kp-toggle [(on)]=\"isOn\" size=\"md\">Notifications</kp-toggle>\n<form><kp-toggle name=\"notif\" value=\"1\" required>Enable</kp-toggle></form>"
@@ -4384,7 +4512,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-toggle--docs",
-      "sourcePath": "packages/components/toggle/src/toggle.component.ts",
+      "sourcePath": "packages/ui/toggle/src/toggle.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11009",
@@ -4401,10 +4529,84 @@
     },
     {
       "name": "tooltip",
+      "className": "KpClipboardCopyDirective",
+      "selector": "[kpClipboardCopy]",
+      "layer": "components",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/tooltip",
+      "description": "Kanso Protocol — Clipboard-copy directive.\n\nClick the host element to copy text to the clipboard; a brief tooltip\nhint (\"Copied\") appears for `kpClipboardDuration` ms. Reuses the\ntooltip's visual chrome + the shared overlay positioning.",
+      "examples": [
+        "<code [kpClipboardCopy]=\"snippet\">{{ snippet }}</code>",
+        "<button [kpClipboardCopy]=\"token\"\n        kpClipboardHint=\"Token copied!\"\n        kpClipboardPosition=\"top\">Copy token</button>"
+      ],
+      "inputs": [
+        {
+          "name": "text",
+          "type": "string | null",
+          "default": "null",
+          "description": "Text to copy. `null`/empty disables the copy action."
+        },
+        {
+          "name": "kpClipboardHint",
+          "type": "string",
+          "default": "'Copied'",
+          "description": "Hint shown after a successful copy."
+        },
+        {
+          "name": "kpClipboardPosition",
+          "type": "KpOverlaySide",
+          "default": "'top'",
+          "description": "Hint placement relative to the trigger."
+        },
+        {
+          "name": "kpClipboardDuration",
+          "type": "number",
+          "default": "DEFAULT_HINT_DURATION",
+          "description": "How long the hint stays visible, in ms."
+        },
+        {
+          "name": "kpClipboardDisabled",
+          "type": "boolean",
+          "default": "false",
+          "description": "Hard-disable regardless of text."
+        }
+      ],
+      "outputs": [
+        {
+          "name": "kpCopied",
+          "payload": "string"
+        },
+        {
+          "name": "kpCopyFailed",
+          "payload": "unknown"
+        }
+      ],
+      "ariaRole": null,
+      "sizeRamp": [],
+      "keyboardPatterns": [],
+      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tooltip--docs",
+      "sourcePath": "packages/ui/tooltip/src/clipboard-copy.directive.ts",
+      "figma": {
+        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "nodeId": "3805:11048",
+        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11048"
+      },
+      "codeConnect": {
+        "npm": "@kanso-protocol/tooltip",
+        "primaryClass": "KpTooltipComponent",
+        "selector": "kp-tooltip",
+        "import": "import { KpTooltipComponent } from '@kanso-protocol/tooltip';",
+        "docs": "docs/components/tooltip.md",
+        "storybook": "components-tooltip--docs"
+      }
+    },
+    {
+      "name": "tooltip",
       "className": "KpTooltipDirective",
       "selector": "[kpTooltip]",
       "layer": "components",
-      "package": "@kanso-protocol/tooltip",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/tooltip",
       "description": "Kanso Protocol — Tooltip directive.\n\nAttaches a styled hint to any element. Auto-shows on hover and focus,\nhides on leave / blur / Escape. Positioned against the trigger with\nviewport-edge flipping. Renders into the nearest open `<dialog>` (so it\nsits above modals) or `document.body`.",
       "examples": [
         "<button [kpTooltip]=\"'Copy link'\" kpTooltipShortcut=\"⌘C\">Copy</button>",
@@ -4413,9 +4615,9 @@
       "inputs": [
         {
           "name": "text",
-          "type": "string | null",
+          "type": "string | TemplateRef<unknown> | null",
           "default": "null",
-          "description": "Tooltip text. `null` or empty string disables the tooltip."
+          "description": "Tooltip content. A `string` renders as the label; a `TemplateRef`\nprojects custom content (icons, formatted text, etc.). `null` or an\nempty string disables the tooltip."
         },
         {
           "name": "kpTooltipPosition",
@@ -4446,6 +4648,12 @@
           "type": "boolean",
           "default": "false",
           "description": "Hard-disable regardless of text content."
+        },
+        {
+          "name": "kpTooltipAlign",
+          "type": "KpTooltipArrowAlign",
+          "default": "'center'",
+          "description": "Where along the tooltip's edge the arrow attaches. Use `start` / `end`\nwhen the trigger sits near a viewport edge — the body shifts inward\nwhile the arrow stays anchored to the trigger."
         }
       ],
       "outputs": [],
@@ -4455,7 +4663,7 @@
         "Escape"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tooltip--docs",
-      "sourcePath": "packages/components/tooltip/src/tooltip.directive.ts",
+      "sourcePath": "packages/ui/tooltip/src/tooltip.directive.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11048",
@@ -4475,7 +4683,8 @@
       "className": "KpTreeComponent",
       "selector": "kp-tree",
       "layer": "components",
-      "package": "@kanso-protocol/tree",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/tree",
       "description": "Kanso Protocol — Tree\n\nRecursive list of nested nodes. Click the chevron to toggle expansion;\nclick the label to select. Optional `showCheckboxes` renders a\ncheckbox per node with tri-state propagation (child check flips\nparent indeterminate / checked).\n\nExpansion and selection state is owned internally but mirrored via\n`[(expanded)]` / `[(selected)]` / `[(checked)]` two-way bindings so\ncallers can drive or persist it.",
       "examples": [],
       "inputs": [
@@ -4537,7 +4746,7 @@
         },
         {
           "name": "nodeClick",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/components/tree/src/tree.component\").KpTreeNode"
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/tree/src/tree.component\").KpTreeNode"
         }
       ],
       "ariaRole": null,
@@ -4556,7 +4765,7 @@
         "Space"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tree--docs",
-      "sourcePath": "packages/components/tree/src/tree.component.ts",
+      "sourcePath": "packages/ui/tree/src/tree.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3805:11135",
@@ -4576,7 +4785,8 @@
       "className": "KpVirtualRowDirective",
       "selector": "[kpVirtualRow]",
       "layer": "components",
-      "package": "@kanso-protocol/virtual-list",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/virtual-list",
       "description": "Marker directive — pairs the row template with `<kp-virtual-list>`.",
       "examples": [
         "<kp-virtual-list ...>\n  <ng-template kpVirtualRow let-item let-i=\"index\">\n    <div>row {{ i }}: {{ item.name }}</div>\n  </ng-template>\n</kp-virtual-list>"
@@ -4587,7 +4797,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-virtuallist--docs",
-      "sourcePath": "packages/components/virtual-list/src/virtual-list.component.ts",
+      "sourcePath": "packages/ui/virtual-list/src/virtual-list.component.ts",
       "codeConnect": {
         "npm": "@kanso-protocol/virtual-list",
         "primaryClass": "KpVirtualListComponent",
@@ -4602,7 +4812,8 @@
       "className": "KpVirtualListComponent",
       "selector": "kp-virtual-list",
       "layer": "components",
-      "package": "@kanso-protocol/virtual-list",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/virtual-list",
       "description": "Kanso Protocol — VirtualList\n\nWindow-mode virtual scroller for **fixed-height rows**. Renders only the\nrows currently visible in the viewport (plus a configurable `[overscan]`\nbuffer). Lets the consumer hand any item shape via a projected\n`<ng-template kpVirtualRow let-item let-i=\"index\">`.\n\nWhy fixed-height: keeps the math O(1) per scroll event (`scrollTop /\nitemHeight`), no measurement pass, no layout thrash. Variable-height\nsupport is on the roadmap (`KpVariableVirtualListComponent`); for now,\nsize each row to a uniform height.\n\nUse this for tables / message lists / log views with thousands of rows.\nBelow ~100 rows just render them — virtualization adds complexity for\nnegligible gain.",
       "examples": [
         "<kp-virtual-list\n  [items]=\"rows\"\n  [itemHeight]=\"40\"\n  [viewportHeight]=\"480\"\n  [overscan]=\"6\"\n  (rangeChange)=\"onRange($event)\"\n>\n  <ng-template kpVirtualRow let-row let-i=\"index\">\n    <div class=\"row\" [class.row--alt]=\"i % 2\">{{ row.name }}</div>\n  </ng-template>\n</kp-virtual-list>"
@@ -4642,14 +4853,14 @@
       "outputs": [
         {
           "name": "rangeChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/components/virtual-list/src/virtual-list.component\").KpVirtualRange"
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/virtual-list/src/virtual-list.component\").KpVirtualRange"
         }
       ],
       "ariaRole": null,
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-virtuallist--docs",
-      "sourcePath": "packages/components/virtual-list/src/virtual-list.component.ts",
+      "sourcePath": "packages/ui/virtual-list/src/virtual-list.component.ts",
       "codeConnect": {
         "npm": "@kanso-protocol/virtual-list",
         "primaryClass": "KpVirtualListComponent",
@@ -4666,7 +4877,8 @@
       "className": "KpAppShellComponent",
       "selector": "kp-app-shell",
       "layer": "patterns",
-      "package": "@kanso-protocol/app-shell",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/app-shell",
       "description": "Kanso Protocol — AppShell\n\nRoot application template. Composes Header + Sidebar + Main + Footer\nwith a single layout input driving placement. All sections are\nprojection slots — drop in real `<kp-header>`, `<kp-sidebar>`,\n`<kp-banner>`, etc. instances.\n\nSlots:\n- `[kpAppShellHeader]` — topbar\n- `[kpAppShellBanner]` — under header, spans full width\n- `[kpAppShellSidebar]` — side nav (left / right / hidden depending on `layout`)\n- `[kpAppShellBody]` — main content; scrolls independently\n- `[kpAppShellFooter]` — optional footer strip",
       "examples": [
         "<kp-app-shell layout=\"sidebar-left\">\n  <kp-header kpAppShellHeader [navItems]=\"nav\"/>\n  <kp-sidebar kpAppShellSidebar [sections]=\"sections\"/>\n  <div kpAppShellBody>\n    <kp-page-header title=\"Dashboard\"/>\n    <!-- … -->\n  </div>\n</kp-app-shell>"
@@ -4708,7 +4920,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-appshell--docs",
-      "sourcePath": "packages/patterns/app-shell/src/app-shell.component.ts",
+      "sourcePath": "packages/ui/app-shell/src/app-shell.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7265",
@@ -4728,7 +4940,8 @@
       "className": "KpBannerComponent",
       "selector": "kp-banner",
       "layer": "patterns",
-      "package": "@kanso-protocol/banner",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/banner",
       "description": "Kanso Protocol — Banner\n\nGlobal top strip under the app Header. Used for system messages:\ntrial status, maintenance, payment alerts, feature launches.\nReuses alert semantic tokens (subtle appearance) so color roles\nmatch Alert / Toast.\n\nSlot: `[kpBannerAction]` for a trailing CTA (typically `<button kpButton size=\"sm\">`).",
       "examples": [
         "<kp-banner color=\"warning\" title=\"Your trial ends in 3 days\">\n  <button kpButton kpBannerAction size=\"sm\">Upgrade</button>\n</kp-banner>"
@@ -4784,7 +4997,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-banner--docs",
-      "sourcePath": "packages/patterns/banner/src/banner.component.ts",
+      "sourcePath": "packages/ui/banner/src/banner.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7272",
@@ -4804,7 +5017,8 @@
       "className": "KpContainerComponent",
       "selector": "kp-container",
       "layer": "patterns",
-      "package": "@kanso-protocol/container",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/container",
       "description": "Kanso Protocol — Container\n\nResponsive content wrapper. Caps child width at one of four\npreset breakpoints and applies horizontal padding. Pure layout\nprimitive — no colors, borders, or spacing on its own axis.",
       "examples": [
         "<kp-container width=\"medium\" padding=\"md\">\n  <h1>Settings</h1>\n  <kp-card>…</kp-card>\n</kp-container>"
@@ -4828,7 +5042,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-container--docs",
-      "sourcePath": "packages/patterns/container/src/container.component.ts",
+      "sourcePath": "packages/ui/container/src/container.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7280",
@@ -4848,7 +5062,8 @@
       "className": "KpFilterBarComponent",
       "selector": "kp-filter-bar",
       "layer": "patterns",
-      "package": "@kanso-protocol/filter-bar",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/filter-bar",
       "description": "Kanso Protocol — FilterBar\n\nHorizontal strip of active filter chips (closable Badges in pill\nstyle) with an \"Add filter\" affordance on the left and optional\n\"Save filter\" / \"Clear all\" actions on the right. Sits under a\nTableToolbar or any filterable view.\n\nChips come from `[filters]`. Emit `removeFilter(id)` / `addFilter`\n/ `saveFilter` / `clearAll` — state management lives outside.",
       "examples": [
         "<kp-filter-bar\n  [filters]=\"[{ id:'s', label:'Status: Active', color:'primary' }]\"\n  (removeFilter)=\"drop($event)\"\n  (addFilter)=\"openPicker()\"\n  (clearAll)=\"reset()\">\n</kp-filter-bar>"
@@ -4901,7 +5116,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-filterbar--docs",
-      "sourcePath": "packages/patterns/filter-bar/src/filter-bar.component.ts",
+      "sourcePath": "packages/ui/filter-bar/src/filter-bar.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7288",
@@ -4921,7 +5136,8 @@
       "className": "KpFormSectionComponent",
       "selector": "kp-form-section",
       "layer": "patterns",
-      "package": "@kanso-protocol/form-section",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/form-section",
       "description": "Kanso Protocol — FormSection\n\nOne titled block of a form with a description and the related\nfields. Two layouts:\n- `inline` — title + description on the left, fields on the right\n  (the classic \"settings page\" layout).\n- `stacked` — title + description on top, fields below (good for\n  narrow viewports and onboarding wizards).\n\nPure container — drop your `<kp-form-field>` / `<kp-input>` /\n`<kp-toggle>` etc. as children. Bottom divider is optional and on\nby default so consecutive sections separate cleanly.",
       "examples": [
         "<kp-form-section title=\"Personal information\"\n                 description=\"This information will be displayed publicly.\">\n  <kp-form-field label=\"First name\"><kp-input/></kp-form-field>\n  <kp-form-field label=\"Last name\"><kp-input/></kp-form-field>\n  <kp-form-field label=\"Email\"><kp-input type=\"email\"/></kp-form-field>\n</kp-form-section>"
@@ -4973,7 +5189,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-formsection--docs",
-      "sourcePath": "packages/patterns/form-section/src/form-section.component.ts",
+      "sourcePath": "packages/ui/form-section/src/form-section.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7296",
@@ -4993,7 +5209,8 @@
       "className": "KpGridComponent",
       "selector": "kp-grid",
       "layer": "patterns",
-      "package": "@kanso-protocol/grid",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/grid",
       "description": "Kanso Protocol — Grid\n\nResponsive `display: grid` wrapper. Equal-width columns, preset\ngap scale. Independent row-gap via `gapRow` when columns need\ntighter vertical rhythm than horizontal.",
       "examples": [
         "<kp-grid [columns]=\"3\" gap=\"md\">\n  <kp-card/><kp-card/><kp-card/>\n</kp-grid>"
@@ -5023,7 +5240,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-grid--docs",
-      "sourcePath": "packages/patterns/grid/src/grid.component.ts",
+      "sourcePath": "packages/ui/grid/src/grid.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7304",
@@ -5043,7 +5260,8 @@
       "className": "KpHeaderComponent",
       "selector": "kp-header",
       "layer": "patterns",
-      "package": "@kanso-protocol/header",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/header",
       "description": "Kanso Protocol — Header (Topbar)\n\nApp topbar pattern. Three-section layout (left / center / right)\nwith optional logo, inline nav, search slot, notifications,\ntheme toggle, CTA, and user menu. Data-driven; projection slots\nfor logo, search, and extra actions.\n\nSlots:\n- `[kpHeaderLogo]` — replace the default logo mark + title\n- `[kpHeaderSearch]` — render custom search UI in the center slot\n  (takes precedence over `[showSearch]` placeholder)\n- `[kpHeaderActions]` — extra action buttons before the user menu",
       "examples": [
         "<kp-header\n  size=\"md\"\n  [navItems]=\"nav\"\n  [userName]=\"me.name\"\n  [userInitials]=\"me.initials\"\n  userRole=\"Admin\"\n  [showSearch]=\"true\"\n  [showNotifications]=\"true\"\n  notificationsCount=\"3\"\n/>"
@@ -5184,7 +5402,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-header--docs",
-      "sourcePath": "packages/patterns/header/src/header.component.ts",
+      "sourcePath": "packages/ui/header/src/header.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7312",
@@ -5204,7 +5422,8 @@
       "className": "KpNavItemComponent",
       "selector": "kp-nav-item",
       "layer": "patterns",
-      "package": "@kanso-protocol/nav-item",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/nav-item",
       "description": "Kanso Protocol — NavItem\n\nAtomic nav row for Sidebar. Supports 3 sizes, 4 states, nested\ndepth (left padding), optional icon / badge / chevron, and an\n\"active\" left accent bar.\n\nSlots:\n- `[kpNavItemIcon]` — leading icon\n- `[kpNavItemBadge]` — trailing badge (e.g. `<kp-badge>`)",
       "examples": [
         "<kp-nav-item size=\"md\" [active]=\"true\" label=\"Dashboard\">\n  <svg kpNavItemIcon>…</svg>\n</kp-nav-item>"
@@ -5291,7 +5510,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-navitem--docs",
-      "sourcePath": "packages/patterns/nav-item/src/nav-item.component.ts",
+      "sourcePath": "packages/ui/nav-item/src/nav-item.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7320",
@@ -5311,7 +5530,8 @@
       "className": "KpNotificationCenterComponent",
       "selector": "kp-notification-center",
       "layer": "patterns",
-      "package": "@kanso-protocol/notification-center",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/notification-center",
       "description": "Kanso Protocol — NotificationCenter\n\nPanel with header + optional filters + list of notifications +\noptional footer (\"View all\"). Three states: with-items / empty /\nloading. Typically anchored to the bell icon in Header via\nDropdownMenu / Popover positioning.",
       "examples": [
         "<kp-notification-center\n  state=\"with-items\"\n  [notifications]=\"items\"\n  [showFilters]=\"true\"\n  unreadCount=\"3\"\n/>"
@@ -5365,7 +5585,7 @@
         },
         {
           "name": "itemClick",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/patterns/notification-center/src/notification-center.component\").KpNotification"
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/notification-center/src/notification-center.component\").KpNotification"
         },
         {
           "name": "filterChange",
@@ -5380,7 +5600,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-notificationcenter--docs",
-      "sourcePath": "packages/patterns/notification-center/src/notification-center.component.ts",
+      "sourcePath": "packages/ui/notification-center/src/notification-center.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7327",
@@ -5400,7 +5620,8 @@
       "className": "KpNotificationItemComponent",
       "selector": "kp-notification-item",
       "layer": "patterns",
-      "package": "@kanso-protocol/notification-center",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/notification-center",
       "description": "",
       "examples": [],
       "inputs": [
@@ -5463,7 +5684,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-notificationcenter--docs",
-      "sourcePath": "packages/patterns/notification-center/src/notification-item.component.ts",
+      "sourcePath": "packages/ui/notification-center/src/notification-item.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7327",
@@ -5483,7 +5704,8 @@
       "className": "KpPageErrorComponent",
       "selector": "kp-page-error",
       "layer": "patterns",
-      "package": "@kanso-protocol/page-error",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/page-error",
       "description": "Kanso Protocol — PageError\n\nFull-page error state for 404, 500, offline, and access-denied\nscenarios. Composes an illustration, optional hero error code,\ntitle + description, and primary/secondary action slots.\n\nTitles/descriptions/icon default to the `type` preset; override\nany of them via individual inputs.\n\nSlots:\n- `[kpPageErrorPrimary]` — primary CTA (Button, default)\n- `[kpPageErrorSecondary]` — secondary CTA (Button, ghost)",
       "examples": [
         "<kp-page-error type=\"404\">\n  <button kpButton kpPageErrorPrimary>Go home</button>\n  <button kpButton kpPageErrorSecondary variant=\"ghost\">Report broken link</button>\n</kp-page-error>"
@@ -5537,7 +5759,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-pageerror--docs",
-      "sourcePath": "packages/patterns/page-error/src/page-error.component.ts",
+      "sourcePath": "packages/ui/page-error/src/page-error.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7334",
@@ -5557,7 +5779,8 @@
       "className": "KpPageHeaderComponent",
       "selector": "kp-page-header",
       "layer": "patterns",
-      "package": "@kanso-protocol/page-header",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/page-header",
       "description": "Kanso Protocol — PageHeader\n\nContent-area header. Three sizes, optional breadcrumbs, back button,\ndescription, actions slot, tabs slot, and bottom divider.\n\nSlots (all optional):\n- `[kpPageHeaderBreadcrumbs]` — Breadcrumbs instance\n- `[kpPageHeaderTitle]` — custom title (e.g. title + inline Badge)\n- `[kpPageHeaderActions]` — action buttons on the right\n- `[kpPageHeaderTabs]` — Tabs instance under the header",
       "examples": [
         "<kp-page-header\n  size=\"md\"\n  title=\"All projects\"\n  description=\"12 active projects\"\n  [showActions]=\"true\"\n>\n  <kp-breadcrumbs kpPageHeaderBreadcrumbs [items]=\"crumbs\"/>\n  <div kpPageHeaderActions>\n    <button kpButton appearance=\"ghost\">Import</button>\n    <button kpButton>Create</button>\n  </div>\n</kp-page-header>"
@@ -5616,6 +5839,12 @@
           "type": "boolean",
           "default": "true",
           "description": ""
+        },
+        {
+          "name": "align",
+          "type": "KpPageHeaderAlign",
+          "default": "'start'",
+          "description": "Cross-axis alignment of the back-button + title + actions row.\nDefault 'start' (optical baseline alignment for multi-line headers\nwith a description). 'center' for single-line headers where the\nback-button should sit mid-height with the title."
         }
       ],
       "outputs": [
@@ -5632,7 +5861,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-pageheader--docs",
-      "sourcePath": "packages/patterns/page-header/src/page-header.component.ts",
+      "sourcePath": "packages/ui/page-header/src/page-header.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7341",
@@ -5652,7 +5881,8 @@
       "className": "KpRowComponent",
       "selector": "kp-row",
       "layer": "patterns",
-      "package": "@kanso-protocol/row",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/row",
       "description": "Kanso Protocol — Row\n\nHorizontal Auto Layout wrapper with a preset gap scale, cross-axis\nalignment, and main-axis justification. Optional wrap on overflow.",
       "examples": [
         "<kp-row gap=\"sm\" justify=\"end\">\n  <button kpButton appearance=\"ghost\">Cancel</button>\n  <button kpButton>Save</button>\n</kp-row>"
@@ -5688,7 +5918,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-row--docs",
-      "sourcePath": "packages/patterns/row/src/row.component.ts",
+      "sourcePath": "packages/ui/row/src/row.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3825:7273",
@@ -5708,7 +5938,8 @@
       "className": "KpSearchBarComponent",
       "selector": "kp-search-bar",
       "layer": "patterns",
-      "package": "@kanso-protocol/search-bar",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/search-bar",
       "description": "Kanso Protocol — SearchBar\n\nTwo variants:\n- `inline` — a simple search input with optional ⌘K shortcut hint,\n  good for header search or page filters.\n- `command-palette` — a self-contained panel: input + grouped\n  results with shortcuts + footer helper keys. Typically rendered\n  inside a Dialog/Overlay.\n\nThe component is presentational; filtering results, opening the\npalette via ⌘K, and committing selection are all consumer\nresponsibilities.",
       "examples": [
         "<!-- Inline in Header -->\n<kp-search-bar variant=\"inline\" size=\"md\" [showShortcutHint]=\"true\" (search)=\"onSearch($event)\"/>\n\n<!-- Command Palette (inside a Dialog) -->\n<kp-search-bar variant=\"command-palette\" [groups]=\"results\" (itemClick)=\"run($event)\"/>"
@@ -5768,7 +5999,7 @@
         },
         {
           "name": "itemClick",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/patterns/search-bar/src/search-bar.component\").KpSearchResultItem"
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/search-bar/src/search-bar.component\").KpSearchResultItem"
         }
       ],
       "ariaRole": null,
@@ -5779,7 +6010,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-searchbar--docs",
-      "sourcePath": "packages/patterns/search-bar/src/search-bar.component.ts",
+      "sourcePath": "packages/ui/search-bar/src/search-bar.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7356",
@@ -5799,7 +6030,8 @@
       "className": "KpSettingsPanelComponent",
       "selector": "kp-settings-panel",
       "layer": "patterns",
-      "package": "@kanso-protocol/settings-panel",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/settings-panel",
       "description": "Kanso Protocol — SettingsPanel\n\nCard-shaped container for a group of related settings. Title +\ndescription in the header, then a column of `<kp-settings-row>`\nchildren. The card border and header are optional — turn them off\nto inline a panel inside another container.\n\nUse one panel per topical group (Notifications / Privacy / Billing).",
       "examples": [
         "<kp-settings-panel title=\"Notifications\"\n                   description=\"Manage how you receive updates and alerts.\">\n  <kp-settings-row title=\"Email notifications\">\n    <kp-toggle [on]=\"true\"/>\n  </kp-settings-row>\n  <kp-settings-row title=\"Push notifications\" [showDivider]=\"false\">\n    <kp-toggle [on]=\"false\"/>\n  </kp-settings-row>\n</kp-settings-panel>"
@@ -5851,7 +6083,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-settingspanel--docs",
-      "sourcePath": "packages/patterns/settings-panel/src/settings-panel.component.ts",
+      "sourcePath": "packages/ui/settings-panel/src/settings-panel.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7364",
@@ -5871,7 +6103,8 @@
       "className": "KpSettingsRowComponent",
       "selector": "kp-settings-row",
       "layer": "patterns",
-      "package": "@kanso-protocol/settings-panel",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/settings-panel",
       "description": "Kanso Protocol — SettingsRow\n\nOne row inside a `<kp-settings-panel>`. Title + optional description\non the left, a Control slot on the right (toggle, select, input,\nbutton, badge — anything you project in). Bottom divider on by\ndefault; consumers usually turn it off on the last row of a panel.",
       "examples": [
         "<kp-settings-row title=\"Email notifications\"\n                 description=\"Receive an email when something important happens.\">\n  <kp-toggle [on]=\"true\"/>\n</kp-settings-row>"
@@ -5917,7 +6150,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-settingspanel--docs",
-      "sourcePath": "packages/patterns/settings-panel/src/settings-row.component.ts",
+      "sourcePath": "packages/ui/settings-panel/src/settings-row.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7364",
@@ -5937,7 +6170,8 @@
       "className": "KpSidebarComponent",
       "selector": "kp-sidebar",
       "layer": "patterns",
-      "package": "@kanso-protocol/sidebar",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/sidebar",
       "description": "Kanso Protocol — Sidebar\n\nApp side navigation container. Expanded (240) or collapsed (64).\nData-driven sections, each with its own label and NavItems.\nOptional logo, search slot, user footer with Avatar.\n\nSlots:\n- `[kpSidebarLogo]` — custom logo area\n- `[kpSidebarSearch]` — search field above sections\n- each NavItem icon is rendered via `iconTemplateRef` if provided\n  (otherwise a generic placeholder)",
       "examples": [
         "<kp-sidebar\n  widthState=\"expanded\"\n  [sections]=\"nav\"\n  userName=\"Greg Black\"\n  userInitials=\"GB\"\n  userEmail=\"greg@example.com\"\n/>"
@@ -6013,11 +6247,11 @@
       "outputs": [
         {
           "name": "toggle",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/patterns/sidebar/src/sidebar.component\").KpSidebarWidth"
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/sidebar/src/sidebar.component\").KpSidebarWidth"
         },
         {
           "name": "itemClick",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/patterns/sidebar/src/sidebar.component\").KpSidebarNavItem"
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/sidebar/src/sidebar.component\").KpSidebarNavItem"
         },
         {
           "name": "userMenuClick",
@@ -6028,7 +6262,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-sidebar--docs",
-      "sourcePath": "packages/patterns/sidebar/src/sidebar.component.ts",
+      "sourcePath": "packages/ui/sidebar/src/sidebar.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7372",
@@ -6048,7 +6282,8 @@
       "className": "KpStackComponent",
       "selector": "kp-stack",
       "layer": "patterns",
-      "package": "@kanso-protocol/stack",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/stack",
       "description": "Kanso Protocol — Stack\n\nVertical Auto Layout wrapper with a preset gap scale and cross-axis\nalignment. Semantic counterpart to `<div style=\"display:flex;flex-direction:column\">`.",
       "examples": [
         "<kp-stack gap=\"md\">\n  <kp-input/>\n  <kp-input/>\n  <button kpButton>Save</button>\n</kp-stack>"
@@ -6072,7 +6307,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-stack--docs",
-      "sourcePath": "packages/patterns/stack/src/stack.component.ts",
+      "sourcePath": "packages/ui/stack/src/stack.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3825:7265",
@@ -6092,7 +6327,8 @@
       "className": "KpStatCardComponent",
       "selector": "kp-stat-card",
       "layer": "patterns",
-      "package": "@kanso-protocol/stat-card",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/stat-card",
       "description": "Kanso Protocol — StatCard\n\nSingle-metric tile with label, big value, optional icon, optional\ntrend (direction + delta + description), optional sparkline placeholder.\nDesigned to live in a dashboard grid.\n\nSlot: `[kpStatCardSparkline]` — drop in your real chart (e.g. recharts);\nthe placeholder shows a styled rectangle when empty.",
       "examples": [
         "<kp-stat-card label=\"Total revenue\" value=\"$12,482\" trendValue=\"+12.5%\" trendDescription=\"from last month\"/>"
@@ -6174,7 +6410,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-statcard--docs",
-      "sourcePath": "packages/patterns/stat-card/src/stat-card.component.ts",
+      "sourcePath": "packages/ui/stat-card/src/stat-card.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7387",
@@ -6194,7 +6430,8 @@
       "className": "KpTableToolbarComponent",
       "selector": "kp-table-toolbar",
       "layer": "patterns",
-      "package": "@kanso-protocol/table-toolbar",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/table-toolbar",
       "description": "Kanso Protocol — TableToolbar\n\nPanel that sits above a data table. Two modes:\n- `default` — search + filter/sort + right-side actions (density, columns,\n  export, create).\n- `bulk-select` — swaps to a selection summary with bulk actions\n  (export / tag / move / delete).\n\nComposes SearchBar, Button, Badge. Action slots are boolean toggles so\nyou can dial the toolbar from minimal (\"search + create\") up to a full\nadmin bar without touching templates.",
       "examples": [
         "<kp-table-toolbar\n  [showFilter]=\"true\"\n  [activeFilterCount]=\"2\"\n  (createClick)=\"openCreate()\">\n</kp-table-toolbar>"
@@ -6300,7 +6537,7 @@
         },
         {
           "name": "densityChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/patterns/table-toolbar/src/table-toolbar.component\").KpTableToolbarDensity"
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/table-toolbar/src/table-toolbar.component\").KpTableToolbarDensity"
         },
         {
           "name": "columnsClick",
@@ -6339,7 +6576,7 @@
       "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-tabletoolbar--docs",
-      "sourcePath": "packages/patterns/table-toolbar/src/table-toolbar.component.ts",
+      "sourcePath": "packages/ui/table-toolbar/src/table-toolbar.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7395",
@@ -6359,7 +6596,8 @@
       "className": "KpThemeToggleComponent",
       "selector": "kp-theme-toggle",
       "layer": "patterns",
-      "package": "@kanso-protocol/theme-toggle",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/theme-toggle",
       "description": "Kanso Protocol — ThemeToggle\n\nThree presentations for switching between light / dark / system\nthemes:\n- `icon` — single icon button that cycles\n- `segmented` — three inline icon segments, one selected\n- `dropdown` — ghost button showing the current theme label; opens a menu\n\nThe component emits `themeChange` when the user selects a value;\nkeeping the chosen theme (including `system`) up to the consumer.",
       "examples": [
         "<kp-theme-toggle\n  variant=\"segmented\"\n  [showLabel]=\"true\"\n  [currentTheme]=\"theme()\"\n  (themeChange)=\"theme.set($event)\"\n/>"
@@ -6393,7 +6631,7 @@
       "outputs": [
         {
           "name": "themeChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/patterns/theme-toggle/src/theme-toggle.component\").KpThemeValue"
+          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/theme-toggle/src/theme-toggle.component\").KpThemeValue"
         },
         {
           "name": "dropdownClick",
@@ -6410,7 +6648,7 @@
         "Escape"
       ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-themetoggle--docs",
-      "sourcePath": "packages/patterns/theme-toggle/src/theme-toggle.component.ts",
+      "sourcePath": "packages/ui/theme-toggle/src/theme-toggle.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7403",
@@ -6430,7 +6668,8 @@
       "className": "KpUserMenuComponent",
       "selector": "kp-user-menu",
       "layer": "patterns",
-      "package": "@kanso-protocol/user-menu",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/user-menu",
       "description": "Kanso Protocol — UserMenu\n\nPreset dropdown shown from the user Avatar in Header. User block\nat top, main menu, optional theme toggle + help links, Sign out.\n\nSlots:\n- `[kpUserMenuItems]` — main menu items (Profile / Settings / Billing / Team)\n- `[kpUserMenuHelp]` — help links\n- `[kpUserMenuTheme]` — theme toggle row (e.g. a SegmentedControl)",
       "examples": [
         "<kp-user-menu\n  userName=\"Greg Black\"\n  userInitials=\"GB\"\n  userEmail=\"greg@example.com\"\n  [showPlanBadge]=\"true\"\n  planName=\"Pro\"\n>\n  <div kpUserMenuItems>\n    <kp-menu-item icon=\"user\" label=\"Profile\" (click$)=\"goto('profile')\"/>\n    ...\n  </div>\n</kp-user-menu>"
@@ -6504,7 +6743,7 @@
       ],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-usermenu--docs",
-      "sourcePath": "packages/patterns/user-menu/src/user-menu.component.ts",
+      "sourcePath": "packages/ui/user-menu/src/user-menu.component.ts",
       "figma": {
         "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
         "nodeId": "3822:7411",
@@ -11244,14 +11483,20 @@
       "subPath": "table-row-bg-rest"
     },
     {
-      "name": "--kp-color-table-row-bg-hover",
+      "name": "--kp-color-table-row-bg-striped",
       "value": "var(--kp-color-gray-50)",
+      "category": "color",
+      "subPath": "table-row-bg-striped"
+    },
+    {
+      "name": "--kp-color-table-row-bg-hover",
+      "value": "var(--kp-color-gray-100)",
       "category": "color",
       "subPath": "table-row-bg-hover"
     },
     {
       "name": "--kp-color-table-row-bg-selected",
-      "value": "var(--kp-color-blue-50)",
+      "value": "var(--kp-color-blue-100)",
       "category": "color",
       "subPath": "table-row-bg-selected"
     },

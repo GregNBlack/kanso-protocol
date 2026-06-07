@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * Generate `packages/components/icon/src/svg-map.generated.ts` — a TypeScript
+ * Generate `packages/ui/icon/src/svg-map.generated.ts` — a TypeScript
  * constant mapping every bundled Tabler icon name to its raw SVG string.
  *
  * The set of bundled icons is the union of `outlined` and `filled` arrays in
- * `packages/components/icon/icons.allowlist.json`. Filled variants get a
+ * `packages/ui/icon/icons.allowlist.json`. Filled variants get a
  * `-filled` suffix so `<kp-icon name="star-filled">` is unambiguous.
  *
  * Each SVG is minified (whitespace collapsed, redundant `class` attribute

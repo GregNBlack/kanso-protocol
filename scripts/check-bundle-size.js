@@ -61,51 +61,29 @@ const budgets = budgetFile.packages;
 
 // ─── Discover packages from dist ───────────────────────────────────────
 
-function* walkDist() {
-  // Two layouts: dist/packages/<pkg>/fesm2022/<file>.mjs (core, i18n) and
-  //              dist/packages/<group>/<pkg>/fesm2022/<file>.mjs (components, patterns).
-  for (const top of fs.readdirSync(DIST_DIR)) {
-    const topPath = path.join(DIST_DIR, top);
-    if (!fs.statSync(topPath).isDirectory()) continue;
-
-    const fesmDirect = path.join(topPath, 'fesm2022');
-    if (fs.existsSync(fesmDirect)) {
-      yield { key: top, fesmDir: fesmDirect };
-      continue;
-    }
-
-    for (const sub of fs.readdirSync(topPath)) {
-      const subPath = path.join(topPath, sub);
-      if (!fs.statSync(subPath).isDirectory()) continue;
-      const fesm = path.join(subPath, 'fesm2022');
-      if (fs.existsSync(fesm)) {
-        yield { key: `${top}/${sub}`, fesmDir: fesm };
-      }
-    }
-  }
-}
-
 function gzippedSize(file) {
   const raw = fs.readFileSync(file);
   return zlib.gzipSync(raw, { level: 9 }).length;
 }
 
 // ─── Measure ────────────────────────────────────────────────────────────
+//
+// Single-package layout: dist/packages/ui/fesm2022/ holds one .mjs per
+// entry point — kanso-protocol-ui.mjs (root) and
+// kanso-protocol-ui-<name>.mjs (each secondary entry point). Each entry
+// point gets its own budget, keyed `ui` / `ui/<name>`.
 
+const FESM = path.join(DIST_DIR, 'ui', 'fesm2022');
 const measured = []; // { key, gz, mjsRelPath }
-for (const { key, fesmDir } of walkDist()) {
-  const mjs = fs
-    .readdirSync(fesmDir)
-    .filter((f) => f.endsWith('.mjs'))
-    .map((f) => path.join(fesmDir, f));
-  if (mjs.length === 0) continue;
-  // A package may have multiple entry points (rare); sum them.
-  const total = mjs.reduce((a, f) => a + gzippedSize(f), 0);
-  measured.push({
-    key,
-    gz: total,
-    mjsRelPath: mjs.map((p) => path.relative(ROOT, p)).join(', '),
-  });
+if (fs.existsSync(FESM)) {
+  for (const f of fs.readdirSync(FESM)) {
+    if (!f.endsWith('.mjs')) continue;
+    const full = path.join(FESM, f);
+    // kanso-protocol-ui.mjs → 'ui'; kanso-protocol-ui-button.mjs → 'ui/button'
+    const base = f.replace(/^kanso-protocol-ui/, '').replace(/\.mjs$/, '');
+    const key = base === '' ? 'ui' : `ui/${base.replace(/^-/, '')}`;
+    measured.push({ key, gz: gzippedSize(full), mjsRelPath: path.relative(ROOT, full) });
+  }
 }
 
 measured.sort((a, b) => a.key.localeCompare(b.key));

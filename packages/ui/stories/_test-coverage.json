@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-20T09:36:33.603Z",
+  "generatedAt": "2026-06-07T10:07:11.503Z",
   "totalSpecs": 44,
-  "totalTests": 446,
+  "totalTests": 454,
   "totalPackages": 62,
   "items": [
     {
@@ -9,9 +9,9 @@
       "name": "accordion",
       "title": "Components/Accordion",
       "storybookId": "components-accordion--docs",
-      "specFile": "packages/components/accordion/src/accordion.spec.ts",
+      "specFile": "packages/ui/accordion/src/accordion.spec.ts",
       "specFiles": [
-        "packages/components/accordion/src/accordion.spec.ts"
+        "packages/ui/accordion/src/accordion.spec.ts"
       ],
       "tests": 4
     },
@@ -20,9 +20,9 @@
       "name": "alert",
       "title": "Components/Alert",
       "storybookId": "components-alert--docs",
-      "specFile": "packages/components/alert/src/alert.spec.ts",
+      "specFile": "packages/ui/alert/src/alert.spec.ts",
       "specFiles": [
-        "packages/components/alert/src/alert.spec.ts"
+        "packages/ui/alert/src/alert.spec.ts"
       ],
       "tests": 4
     },
@@ -31,9 +31,9 @@
       "name": "avatar",
       "title": "Components/Avatar",
       "storybookId": "components-avatar--docs",
-      "specFile": "packages/components/avatar/src/avatar.spec.ts",
+      "specFile": "packages/ui/avatar/src/avatar.spec.ts",
       "specFiles": [
-        "packages/components/avatar/src/avatar.spec.ts"
+        "packages/ui/avatar/src/avatar.spec.ts"
       ],
       "tests": 4
     },
@@ -42,9 +42,9 @@
       "name": "avatar-group",
       "title": "Components/AvatarGroup",
       "storybookId": "components-avatargroup--docs",
-      "specFile": "packages/components/avatar-group/src/avatar-group.spec.ts",
+      "specFile": "packages/ui/avatar-group/src/avatar-group.spec.ts",
       "specFiles": [
-        "packages/components/avatar-group/src/avatar-group.spec.ts"
+        "packages/ui/avatar-group/src/avatar-group.spec.ts"
       ],
       "tests": 4
     },
@@ -53,9 +53,9 @@
       "name": "badge",
       "title": "Components/Badge",
       "storybookId": "components-badge--docs",
-      "specFile": "packages/components/badge/src/badge.spec.ts",
+      "specFile": "packages/ui/badge/src/badge.spec.ts",
       "specFiles": [
-        "packages/components/badge/src/badge.spec.ts"
+        "packages/ui/badge/src/badge.spec.ts"
       ],
       "tests": 7
     },
@@ -64,9 +64,9 @@
       "name": "breadcrumbs",
       "title": "Components/Breadcrumbs",
       "storybookId": "components-breadcrumbs--docs",
-      "specFile": "packages/components/breadcrumbs/src/breadcrumbs.spec.ts",
+      "specFile": "packages/ui/breadcrumbs/src/breadcrumbs.spec.ts",
       "specFiles": [
-        "packages/components/breadcrumbs/src/breadcrumbs.spec.ts"
+        "packages/ui/breadcrumbs/src/breadcrumbs.spec.ts"
       ],
       "tests": 4
     },
@@ -75,9 +75,9 @@
       "name": "button",
       "title": "Components/Button",
       "storybookId": "components-button--docs",
-      "specFile": "packages/components/button/src/button.spec.ts",
+      "specFile": "packages/ui/button/src/button.spec.ts",
       "specFiles": [
-        "packages/components/button/src/button.spec.ts"
+        "packages/ui/button/src/button.spec.ts"
       ],
       "tests": 11
     },
@@ -86,9 +86,9 @@
       "name": "card",
       "title": "Components/Card",
       "storybookId": "components-card--docs",
-      "specFile": "packages/components/card/src/card.spec.ts",
+      "specFile": "packages/ui/card/src/card.spec.ts",
       "specFiles": [
-        "packages/components/card/src/card.spec.ts"
+        "packages/ui/card/src/card.spec.ts"
       ],
       "tests": 4
     },
@@ -97,9 +97,9 @@
       "name": "checkbox",
       "title": "Components/Checkbox",
       "storybookId": "components-checkbox--docs",
-      "specFile": "packages/components/checkbox/src/checkbox.spec.ts",
+      "specFile": "packages/ui/checkbox/src/checkbox.spec.ts",
       "specFiles": [
-        "packages/components/checkbox/src/checkbox.spec.ts"
+        "packages/ui/checkbox/src/checkbox.spec.ts"
       ],
       "tests": 8
     },
@@ -108,9 +108,9 @@
       "name": "combobox",
       "title": "Components/Combobox",
       "storybookId": "components-combobox--docs",
-      "specFile": "packages/components/combobox/src/combobox.spec.ts",
+      "specFile": "packages/ui/combobox/src/combobox.spec.ts",
       "specFiles": [
-        "packages/components/combobox/src/combobox.spec.ts"
+        "packages/ui/combobox/src/combobox.spec.ts"
       ],
       "tests": 15
     },
@@ -119,9 +119,9 @@
       "name": "command-palette",
       "title": "Components/CommandPalette",
       "storybookId": "components-commandpalette--docs",
-      "specFile": "packages/components/command-palette/src/command-palette.spec.ts",
+      "specFile": "packages/ui/command-palette/src/command-palette.spec.ts",
       "specFiles": [
-        "packages/components/command-palette/src/command-palette.spec.ts"
+        "packages/ui/command-palette/src/command-palette.spec.ts"
       ],
       "tests": 14
     },
@@ -130,9 +130,9 @@
       "name": "datepicker",
       "title": "Components/DatePicker",
       "storybookId": "components-datepicker--docs",
-      "specFile": "packages/components/datepicker/src/datepicker.spec.ts",
+      "specFile": "packages/ui/datepicker/src/datepicker.spec.ts",
       "specFiles": [
-        "packages/components/datepicker/src/datepicker.spec.ts"
+        "packages/ui/datepicker/src/datepicker.spec.ts"
       ],
       "tests": 25
     },
@@ -141,9 +141,9 @@
       "name": "dialog",
       "title": "Components/Dialog",
       "storybookId": "components-dialog--docs",
-      "specFile": "packages/components/dialog/src/dialog.spec.ts",
+      "specFile": "packages/ui/dialog/src/dialog.spec.ts",
       "specFiles": [
-        "packages/components/dialog/src/dialog.spec.ts"
+        "packages/ui/dialog/src/dialog.spec.ts"
       ],
       "tests": 9
     },
@@ -152,9 +152,9 @@
       "name": "divider",
       "title": "Components/Divider",
       "storybookId": "components-divider--docs",
-      "specFile": "packages/components/divider/src/divider.spec.ts",
+      "specFile": "packages/ui/divider/src/divider.spec.ts",
       "specFiles": [
-        "packages/components/divider/src/divider.spec.ts"
+        "packages/ui/divider/src/divider.spec.ts"
       ],
       "tests": 5
     },
@@ -163,9 +163,9 @@
       "name": "drawer",
       "title": "Components/Drawer",
       "storybookId": "components-drawer--docs",
-      "specFile": "packages/components/drawer/src/drawer.spec.ts",
+      "specFile": "packages/ui/drawer/src/drawer.spec.ts",
       "specFiles": [
-        "packages/components/drawer/src/drawer.spec.ts"
+        "packages/ui/drawer/src/drawer.spec.ts"
       ],
       "tests": 13
     },
@@ -174,9 +174,9 @@
       "name": "menu",
       "title": "Components/DropdownMenu",
       "storybookId": "components-dropdownmenu--docs",
-      "specFile": "packages/components/menu/src/menu.spec.ts",
+      "specFile": "packages/ui/menu/src/menu.spec.ts",
       "specFiles": [
-        "packages/components/menu/src/menu.spec.ts"
+        "packages/ui/menu/src/menu.spec.ts"
       ],
       "tests": 18
     },
@@ -185,9 +185,9 @@
       "name": "empty-state",
       "title": "Components/EmptyState",
       "storybookId": "components-emptystate--docs",
-      "specFile": "packages/components/empty-state/src/empty-state.spec.ts",
+      "specFile": "packages/ui/empty-state/src/empty-state.spec.ts",
       "specFiles": [
-        "packages/components/empty-state/src/empty-state.spec.ts"
+        "packages/ui/empty-state/src/empty-state.spec.ts"
       ],
       "tests": 4
     },
@@ -196,9 +196,9 @@
       "name": "file-upload",
       "title": "Components/FileUpload",
       "storybookId": "components-fileupload--docs",
-      "specFile": "packages/components/file-upload/src/file-upload.spec.ts",
+      "specFile": "packages/ui/file-upload/src/file-upload.spec.ts",
       "specFiles": [
-        "packages/components/file-upload/src/file-upload.spec.ts"
+        "packages/ui/file-upload/src/file-upload.spec.ts"
       ],
       "tests": 15
     },
@@ -207,9 +207,9 @@
       "name": "form-field",
       "title": "Components/FormField",
       "storybookId": "components-formfield--docs",
-      "specFile": "packages/components/form-field/src/form-field.spec.ts",
+      "specFile": "packages/ui/form-field/src/form-field.spec.ts",
       "specFiles": [
-        "packages/components/form-field/src/form-field.spec.ts"
+        "packages/ui/form-field/src/form-field.spec.ts"
       ],
       "tests": 14
     },
@@ -218,9 +218,9 @@
       "name": "input",
       "title": "Components/Input",
       "storybookId": "components-input--docs",
-      "specFile": "packages/components/input/src/input.spec.ts",
+      "specFile": "packages/ui/input/src/input.spec.ts",
       "specFiles": [
-        "packages/components/input/src/input.spec.ts"
+        "packages/ui/input/src/input.spec.ts"
       ],
       "tests": 13
     },
@@ -229,9 +229,9 @@
       "name": "markdown-viewer",
       "title": "Components/MarkdownViewer",
       "storybookId": "components-markdownviewer--docs",
-      "specFile": "packages/components/markdown-viewer/src/markdown-viewer.spec.ts",
+      "specFile": "packages/ui/markdown-viewer/src/markdown-viewer.spec.ts",
       "specFiles": [
-        "packages/components/markdown-viewer/src/markdown-viewer.spec.ts"
+        "packages/ui/markdown-viewer/src/markdown-viewer.spec.ts"
       ],
       "tests": 10
     },
@@ -240,9 +240,9 @@
       "name": "number-stepper",
       "title": "Components/NumberStepper",
       "storybookId": "components-numberstepper--docs",
-      "specFile": "packages/components/number-stepper/src/number-stepper.spec.ts",
+      "specFile": "packages/ui/number-stepper/src/number-stepper.spec.ts",
       "specFiles": [
-        "packages/components/number-stepper/src/number-stepper.spec.ts"
+        "packages/ui/number-stepper/src/number-stepper.spec.ts"
       ],
       "tests": 5
     },
@@ -251,9 +251,9 @@
       "name": "pagination",
       "title": "Components/Pagination",
       "storybookId": "components-pagination--docs",
-      "specFile": "packages/components/pagination/src/pagination.spec.ts",
+      "specFile": "packages/ui/pagination/src/pagination.spec.ts",
       "specFiles": [
-        "packages/components/pagination/src/pagination.spec.ts"
+        "packages/ui/pagination/src/pagination.spec.ts"
       ],
       "tests": 5
     },
@@ -262,22 +262,23 @@
       "name": "popover",
       "title": "Components/Popover",
       "storybookId": "components-popover--docs",
-      "specFile": "packages/components/popover/src/popover.spec.ts",
+      "specFile": "packages/ui/popover/src/popover.directive.spec.ts",
       "specFiles": [
-        "packages/components/popover/src/popover.spec.ts"
+        "packages/ui/popover/src/popover.directive.spec.ts",
+        "packages/ui/popover/src/popover.spec.ts"
       ],
-      "tests": 15
+      "tests": 23
     },
     {
       "layer": "components",
       "name": "progress",
       "title": "Components/Progress/Circular",
       "storybookId": "components-progress-circular--docs",
-      "specFile": "packages/components/progress/src/progress-circular.spec.ts",
+      "specFile": "packages/ui/progress/src/progress-circular.spec.ts",
       "specFiles": [
-        "packages/components/progress/src/progress-circular.spec.ts",
-        "packages/components/progress/src/progress-linear.spec.ts",
-        "packages/components/progress/src/progress-segmented.spec.ts"
+        "packages/ui/progress/src/progress-circular.spec.ts",
+        "packages/ui/progress/src/progress-linear.spec.ts",
+        "packages/ui/progress/src/progress-segmented.spec.ts"
       ],
       "tests": 12
     },
@@ -286,9 +287,9 @@
       "name": "radio",
       "title": "Components/Radio",
       "storybookId": "components-radio--docs",
-      "specFile": "packages/components/radio/src/radio.spec.ts",
+      "specFile": "packages/ui/radio/src/radio.spec.ts",
       "specFiles": [
-        "packages/components/radio/src/radio.spec.ts"
+        "packages/ui/radio/src/radio.spec.ts"
       ],
       "tests": 6
     },
@@ -297,9 +298,9 @@
       "name": "rich-text-editor",
       "title": "Components/RichTextEditor",
       "storybookId": "components-richtexteditor--docs",
-      "specFile": "packages/components/rich-text-editor/src/rich-text-editor.spec.ts",
+      "specFile": "packages/ui/rich-text-editor/src/rich-text-editor.spec.ts",
       "specFiles": [
-        "packages/components/rich-text-editor/src/rich-text-editor.spec.ts"
+        "packages/ui/rich-text-editor/src/rich-text-editor.spec.ts"
       ],
       "tests": 17
     },
@@ -308,9 +309,9 @@
       "name": "segmented-control",
       "title": "Components/SegmentedControl",
       "storybookId": "components-segmentedcontrol--docs",
-      "specFile": "packages/components/segmented-control/src/segmented-control.spec.ts",
+      "specFile": "packages/ui/segmented-control/src/segmented-control.spec.ts",
       "specFiles": [
-        "packages/components/segmented-control/src/segmented-control.spec.ts"
+        "packages/ui/segmented-control/src/segmented-control.spec.ts"
       ],
       "tests": 6
     },
@@ -319,9 +320,9 @@
       "name": "select",
       "title": "Components/Select",
       "storybookId": "components-select--docs",
-      "specFile": "packages/components/select/src/select.spec.ts",
+      "specFile": "packages/ui/select/src/select.spec.ts",
       "specFiles": [
-        "packages/components/select/src/select.spec.ts"
+        "packages/ui/select/src/select.spec.ts"
       ],
       "tests": 16
     },
@@ -330,9 +331,9 @@
       "name": "skeleton",
       "title": "Components/Skeleton",
       "storybookId": "components-skeleton--docs",
-      "specFile": "packages/components/skeleton/src/skeleton.spec.ts",
+      "specFile": "packages/ui/skeleton/src/skeleton.spec.ts",
       "specFiles": [
-        "packages/components/skeleton/src/skeleton.spec.ts"
+        "packages/ui/skeleton/src/skeleton.spec.ts"
       ],
       "tests": 4
     },
@@ -341,9 +342,9 @@
       "name": "slider",
       "title": "Components/Slider",
       "storybookId": "components-slider--docs",
-      "specFile": "packages/components/slider/src/slider.spec.ts",
+      "specFile": "packages/ui/slider/src/slider.spec.ts",
       "specFiles": [
-        "packages/components/slider/src/slider.spec.ts"
+        "packages/ui/slider/src/slider.spec.ts"
       ],
       "tests": 15
     },
@@ -352,9 +353,9 @@
       "name": "table",
       "title": "Components/Table",
       "storybookId": "components-table--docs",
-      "specFile": "packages/components/table/src/table.spec.ts",
+      "specFile": "packages/ui/table/src/table.spec.ts",
       "specFiles": [
-        "packages/components/table/src/table.spec.ts"
+        "packages/ui/table/src/table.spec.ts"
       ],
       "tests": 16
     },
@@ -363,9 +364,9 @@
       "name": "tabs",
       "title": "Components/Tabs",
       "storybookId": "components-tabs--docs",
-      "specFile": "packages/components/tabs/src/tabs.spec.ts",
+      "specFile": "packages/ui/tabs/src/tabs.spec.ts",
       "specFiles": [
-        "packages/components/tabs/src/tabs.spec.ts"
+        "packages/ui/tabs/src/tabs.spec.ts"
       ],
       "tests": 11
     },
@@ -374,9 +375,9 @@
       "name": "textarea",
       "title": "Components/Textarea",
       "storybookId": "components-textarea--docs",
-      "specFile": "packages/components/textarea/src/textarea.spec.ts",
+      "specFile": "packages/ui/textarea/src/textarea.spec.ts",
       "specFiles": [
-        "packages/components/textarea/src/textarea.spec.ts"
+        "packages/ui/textarea/src/textarea.spec.ts"
       ],
       "tests": 9
     },
@@ -385,9 +386,9 @@
       "name": "timepicker",
       "title": "Components/TimePicker",
       "storybookId": "components-timepicker--docs",
-      "specFile": "packages/components/timepicker/src/timepicker.spec.ts",
+      "specFile": "packages/ui/timepicker/src/timepicker.spec.ts",
       "specFiles": [
-        "packages/components/timepicker/src/timepicker.spec.ts"
+        "packages/ui/timepicker/src/timepicker.spec.ts"
       ],
       "tests": 17
     },
@@ -396,9 +397,9 @@
       "name": "toggle",
       "title": "Components/Toggle",
       "storybookId": "components-toggle--docs",
-      "specFile": "packages/components/toggle/src/toggle.spec.ts",
+      "specFile": "packages/ui/toggle/src/toggle.spec.ts",
       "specFiles": [
-        "packages/components/toggle/src/toggle.spec.ts"
+        "packages/ui/toggle/src/toggle.spec.ts"
       ],
       "tests": 5
     },
@@ -407,9 +408,9 @@
       "name": "tooltip",
       "title": "Components/Tooltip",
       "storybookId": "components-tooltip--docs",
-      "specFile": "packages/components/tooltip/src/tooltip.spec.ts",
+      "specFile": "packages/ui/tooltip/src/tooltip.spec.ts",
       "specFiles": [
-        "packages/components/tooltip/src/tooltip.spec.ts"
+        "packages/ui/tooltip/src/tooltip.spec.ts"
       ],
       "tests": 9
     },
@@ -418,9 +419,9 @@
       "name": "tree",
       "title": "Components/Tree",
       "storybookId": "components-tree--docs",
-      "specFile": "packages/components/tree/src/tree.spec.ts",
+      "specFile": "packages/ui/tree/src/tree.spec.ts",
       "specFiles": [
-        "packages/components/tree/src/tree.spec.ts"
+        "packages/ui/tree/src/tree.spec.ts"
       ],
       "tests": 22
     },
@@ -429,9 +430,9 @@
       "name": "virtual-list",
       "title": "Components/VirtualList",
       "storybookId": "components-virtuallist--docs",
-      "specFile": "packages/components/virtual-list/src/virtual-list.spec.ts",
+      "specFile": "packages/ui/virtual-list/src/virtual-list.spec.ts",
       "specFiles": [
-        "packages/components/virtual-list/src/virtual-list.spec.ts"
+        "packages/ui/virtual-list/src/virtual-list.spec.ts"
       ],
       "tests": 13
     },
@@ -440,9 +441,9 @@
       "name": "i18n",
       "title": null,
       "storybookId": null,
-      "specFile": "packages/i18n/src/i18n.spec.ts",
+      "specFile": "packages/ui/i18n/src/i18n.spec.ts",
       "specFiles": [
-        "packages/i18n/src/i18n.spec.ts"
+        "packages/ui/i18n/src/i18n.spec.ts"
       ],
       "tests": 13
     },
@@ -451,9 +452,9 @@
       "name": "search-bar",
       "title": "Patterns/SearchBar",
       "storybookId": "patterns-searchbar--docs",
-      "specFile": "packages/patterns/search-bar/src/search-bar.spec.ts",
+      "specFile": "packages/ui/search-bar/src/search-bar.spec.ts",
       "specFiles": [
-        "packages/patterns/search-bar/src/search-bar.spec.ts"
+        "packages/ui/search-bar/src/search-bar.spec.ts"
       ],
       "tests": 2
     },
@@ -462,9 +463,9 @@
       "name": "settings-panel",
       "title": "Patterns/SettingsPanel",
       "storybookId": "patterns-settingspanel--docs",
-      "specFile": "packages/patterns/settings-panel/src/settings-panel.spec.ts",
+      "specFile": "packages/ui/settings-panel/src/settings-panel.spec.ts",
       "specFiles": [
-        "packages/patterns/settings-panel/src/settings-panel.spec.ts"
+        "packages/ui/settings-panel/src/settings-panel.spec.ts"
       ],
       "tests": 3
     },
@@ -473,9 +474,9 @@
       "name": "theme-toggle",
       "title": "Patterns/ThemeToggle",
       "storybookId": "patterns-themetoggle--docs",
-      "specFile": "packages/patterns/theme-toggle/src/theme-toggle.spec.ts",
+      "specFile": "packages/ui/theme-toggle/src/theme-toggle.spec.ts",
       "specFiles": [
-        "packages/patterns/theme-toggle/src/theme-toggle.spec.ts"
+        "packages/ui/theme-toggle/src/theme-toggle.spec.ts"
       ],
       "tests": 6
     },
@@ -484,9 +485,9 @@
       "name": "toast",
       "title": "Task completed",
       "storybookId": "task-completed--docs",
-      "specFile": "packages/components/toast/src/toast.spec.ts",
+      "specFile": "packages/ui/toast/src/toast.spec.ts",
       "specFiles": [
-        "packages/components/toast/src/toast.spec.ts"
+        "packages/ui/toast/src/toast.spec.ts"
       ],
       "tests": 14
     }

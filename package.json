@@ -94,8 +94,6 @@
   },
   "workspaces": [
     "packages/*",
-    "packages/components/*",
-    "packages/patterns/*",
     "apps/*"
   ]
 }
