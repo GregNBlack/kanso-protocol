@@ -1,5 +1,7 @@
 # @kanso-protocol/rich-text-editor
 
+## 4.1.0
+
 ## 4.0.0
 
 ### Patch Changes

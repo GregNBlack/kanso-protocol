@@ -1,5 +1,7 @@
 # @kanso-protocol/theme-toggle
 
+## 4.1.0
+
 ## 4.0.0
 
 ### Patch Changes

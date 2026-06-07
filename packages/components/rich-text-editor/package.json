@@ -1,6 +1,6 @@
 {
   "name": "@kanso-protocol/rich-text-editor",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Kanso Protocol — Rich Text Editor component (TipTap-powered, Angular 18+).",
   "license": "MIT",
   "author": "GregNBlack",

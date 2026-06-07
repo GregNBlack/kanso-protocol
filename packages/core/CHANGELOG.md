@@ -1,5 +1,19 @@
 # @kanso-protocol/core
 
+## 4.1.0
+
+### Minor Changes
+
+- Three additive features from production review (no breaking changes).
+
+  **`[kpPopover]` directive** — auto-triggered floating panel attached to any element; content is a `TemplateRef` (menu, form, or the chrome `<kp-popover>` itself). Triggers: `click` (toggle, default) / `hover` / `manual`. Closes on outside-click + Escape. Viewport-edge flipping; portals into the nearest open `<dialog>` or `document.body`; sets `aria-expanded`/`aria-controls`. Existing `<kp-popover>` component unchanged — directive lives alongside it.
+
+  **TemplateRef content in tooltip** — `[kpTooltip]` now accepts `string | TemplateRef`.
+
+  **`[kpClipboardCopy]` directive** — copy-on-click with a brief confirmation hint (reuses tooltip chrome). Async Clipboard API + textarea fallback. Inputs: `kpClipboardHint`/`kpClipboardPosition`/`kpClipboardDuration`/`kpClipboardDisabled`; outputs: `kpCopied`/`kpCopyFailed`.
+
+  **Internal** — shared `computeOverlayPosition()` in `@kanso-protocol/core` (pure, unit-tested). CI: a11y + visual jobs run in the official Playwright Docker container (no more flaky `playwright install` CDN stalls). Changeset config fix: `onlyUpdatePeerDependentsWhenOutOfRange` stops the peer-dep major-escalation so minor releases bump correctly.
+
 ## 4.0.0
 
 ### Major Changes
