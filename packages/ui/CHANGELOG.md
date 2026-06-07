@@ -1,5 +1,11 @@
 # @kanso-protocol/ui
 
+## 5.1.0
+
+### Minor Changes
+
+- `notification-item` rows are now interactive: the previously-declared `click$` output is wired to a real click, and the row is keyboard-operable (focusable, `Enter` / `Space` activate) — matching its `cursor: pointer` affordance. Before, `click$` never fired, so `notification-center`'s `(itemClick)` could not be triggered by a user. No template or input API changed; existing consumers that already subscribe to `itemClick` / `click$` start receiving events. Note rows now join the tab order.
+
 ## 5.0.0
 
 ### Major Changes
