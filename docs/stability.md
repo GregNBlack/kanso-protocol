@@ -42,7 +42,7 @@ A surface is **`stable`** when all hold:
 
 ## Components
 
-Status as of `5.0.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All components pass the a11y critical gate in both themes.
+Status as of `5.1.2`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All components pass the a11y critical gate in both themes.
 
 | Component | Status | Coverage | Notes / open questions |
 |---|---|---|---|
