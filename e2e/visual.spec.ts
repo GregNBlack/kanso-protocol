@@ -45,6 +45,7 @@ const STORIES: StorySpec[] = [
   { id: 'components-drawer--default',             name: 'drawer — default' },
   { id: 'components-dropdownmenu--default',       name: 'dropdown menu — default' },
   { id: 'components-emptystate--default',         name: 'empty state — default' },
+  { id: 'components-fileupload--playground',      name: 'file upload — playground' },
   { id: 'components-formfield--states',           name: 'form field — states' },
   { id: 'components-icon--sizes',                 name: 'icon — sizes' },
   { id: 'components-input--default',              name: 'input — default' },
@@ -66,14 +67,19 @@ const STORIES: StorySpec[] = [
   { id: 'components-toggle--default',             name: 'toggle — default' },
   { id: 'components-tooltip--default',            name: 'tooltip — default' },
   { id: 'components-tree--default',               name: 'tree — default' },
+  { id: 'components-virtuallist--ten-thousand-rows', name: 'virtual list — 10k rows' },
 
   // ─── Patterns ────────────────────────────────────────────────────────
+  { id: 'patterns-appshell--playground',          name: 'app shell — playground' },
   { id: 'patterns-banner--appearances',           name: 'banner — appearances' },
   { id: 'patterns-filterbar--features',           name: 'filter bar — features' },
   { id: 'patterns-header--saa-s-app',             name: 'header — SaaS app shell' },
+  { id: 'patterns-navitem--states',               name: 'nav item — states' },
+  { id: 'patterns-notificationcenter--playground', name: 'notification center — playground' },
   { id: 'patterns-pageerror--not-found',          name: 'page error — not found' },
   { id: 'patterns-pageheader--composition',       name: 'page header — composition' },
   { id: 'patterns-searchbar--sizes',              name: 'search bar — sizes' },
+  { id: 'patterns-settingspanel--playground',     name: 'settings panel — playground' },
   { id: 'patterns-sidebar--dark-variant',         name: 'sidebar — dark variant' },
   { id: 'patterns-statcard--compositions',        name: 'stat card — compositions' },
   { id: 'patterns-tabletoolbar--compositions',    name: 'table toolbar — compositions' },
@@ -119,4 +125,48 @@ for (const story of STORIES) {
       );
     });
   }
+}
+
+// ─── RTL pass ──────────────────────────────────────────────────────────
+//
+// Components use CSS logical properties throughout; this freezes how the
+// direction-sensitive ones render under `dir="rtl"` so a future change that
+// reaches for a physical property (margin-left, left:, ::before chevrons)
+// shows up as a diff. Light theme only — RTL is about axis, not color, and
+// doubling by theme would just add noise. Kept to a directional subset
+// (icon side, chevrons, drawer/sidebar edge, breadcrumb separators, etc.).
+// Snapshots live in the same -snapshots dir so CI's [update-baselines]
+// commit step picks them up.
+const RTL_STORIES: StorySpec[] = [
+  { id: 'components-breadcrumbs--default',   name: 'breadcrumbs' },
+  { id: 'components-input--default',         name: 'input' },
+  { id: 'components-formfield--states',      name: 'form field' },
+  { id: 'components-pagination--default',    name: 'pagination' },
+  { id: 'components-drawer--default',        name: 'drawer' },
+  { id: 'components-tabs--default',          name: 'tabs' },
+  { id: 'components-numberstepper--default', name: 'number stepper' },
+  { id: 'components-select--default',        name: 'select' },
+  { id: 'patterns-sidebar--dark-variant',   name: 'sidebar' },
+  { id: 'patterns-header--saa-s-app',        name: 'header' },
+  { id: 'patterns-navitem--states',          name: 'nav item' },
+  { id: 'patterns-pageheader--composition',  name: 'page header' },
+];
+
+async function setDir(page: Page, dir: 'ltr' | 'rtl'): Promise<void> {
+  await page.evaluate((d) => {
+    document.documentElement.setAttribute('dir', d);
+    document.body.setAttribute('dir', d);
+  }, dir);
+  await page.waitForTimeout(50);
+}
+
+for (const story of RTL_STORIES) {
+  test(`${story.name} — rtl`, async ({ page }) => {
+    await gotoStory(page, story.id);
+    await setTheme(page, 'light');
+    await setDir(page, 'rtl');
+    await expect(page.locator('#storybook-root')).toHaveScreenshot(
+      `${story.id}-rtl.png`,
+    );
+  });
 }
