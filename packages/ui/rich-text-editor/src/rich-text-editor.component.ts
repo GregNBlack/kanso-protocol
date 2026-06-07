@@ -10,7 +10,9 @@ import {
   ViewChild,
   forwardRef,
   inject,
+  PLATFORM_ID,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { Editor } from '@tiptap/core';
@@ -421,6 +423,7 @@ export class KpRichTextEditorComponent implements ControlValueAccessor, OnDestro
   @ViewChild('editorHost', { static: true }) private editorHostRef!: ElementRef<HTMLDivElement>;
 
   private readonly cdr = inject(ChangeDetectorRef);
+  private readonly platformId = inject(PLATFORM_ID);
   editor: Editor | null = null;
 
   private pendingValue: string | null = null;
@@ -435,6 +438,9 @@ export class KpRichTextEditorComponent implements ControlValueAccessor, OnDestro
   }
 
   ngAfterViewInit(): void {
+    // TipTap/ProseMirror needs a real DOM — only instantiate in the browser.
+    // Under SSR the editor host renders empty and the editor boots on hydration.
+    if (!isPlatformBrowser(this.platformId)) return;
     this.editor = new Editor({
       element: this.editorHostRef.nativeElement,
       editable: !this.disabled,

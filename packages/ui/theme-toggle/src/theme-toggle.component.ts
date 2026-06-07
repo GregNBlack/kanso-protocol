@@ -380,8 +380,11 @@ export class KpThemeToggleComponent implements AfterViewChecked, OnDestroy {
   }
 
   private cleanupMenu(): void {
-    window.removeEventListener('scroll', this.reposition, true);
-    window.removeEventListener('resize', this.reposition);
+    // Guarded for SSR teardown — bare-metal platform-server has no `window`.
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('scroll', this.reposition, true);
+      window.removeEventListener('resize', this.reposition);
+    }
     if (this.portaledMenu && this.portaledMenu.parentElement === this.doc?.body) {
       this.portaledMenu.remove();
     }
