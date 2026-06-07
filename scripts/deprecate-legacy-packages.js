@@ -72,9 +72,11 @@ for (const name of names.sort()) {
   // Deprecate every version below 5.0.0 — the range the old per-package
   // releases lived in. (These packages never reach 5.x; that line is
   // @kanso-protocol/ui only.)
-  const range = `${pkg}@"<5.0.0"`;
+  // No shell here (execFileSync), so the range is a single literal arg —
+  // it must NOT carry the `"` quotes you'd need to protect `<` in a shell.
+  const range = `${pkg}@<5.0.0`;
   if (DRY) {
-    console.log(`DRY    npm deprecate ${range} "${msg}"`);
+    console.log(`DRY    npm deprecate '${range}' "${msg}"`);
     deprecated++;
     continue;
   }
@@ -83,7 +85,8 @@ for (const name of names.sort()) {
     console.log(`done   ${range}`);
     deprecated++;
   } catch (e) {
-    console.error(`FAIL   ${pkg} — ${e.message.split('\n')[0]}`);
+    const detail = (e.stderr || e.stdout || e.message || '').toString().trim().split('\n').filter(Boolean).pop();
+    console.error(`FAIL   ${pkg} — ${detail}`);
   }
 }
 
