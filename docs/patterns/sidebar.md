@@ -85,7 +85,7 @@ interface KpSidebarNavItem {
 
 - **Figma**: `Sidebar` Component Set (Patterns page) — 4 variants: expanded/collapsed × light/dark
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-sidebar
-- **Source**: `packages/patterns/sidebar/src/`
+- **Source**: `packages/ui/sidebar/src/`
 - **Tokens**: `sidebar/bg`, `sidebar/bg-dark`, `sidebar/border`, `sidebar/section-label`
 
 ## Changelog

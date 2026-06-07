@@ -77,7 +77,7 @@ Provide custom `<svg>` as the icon when neither `src` nor `initials` are set:
 
 - **Figma component**: [`Avatar` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-avatar
-- **Source**: `packages/components/avatar/src/`
+- **Source**: `packages/ui/avatar/src/`
 - **Tokens**: `avatar/bg-*`, `avatar/fg-*`, `avatar/ring`, `avatar/status-*`
 
 ## Changelog

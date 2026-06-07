@@ -53,7 +53,7 @@ Slot: `[kpStatCardSparkline]` — drop in your real chart (recharts, ngx-charts,
 
 - **Figma**: `StatCard` Component Set on the [📐 Patterns page](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System).
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-statcard
-- **Source**: `packages/patterns/stat-card/src/`
+- **Source**: `packages/ui/stat-card/src/`
 
 ## Changelog
 

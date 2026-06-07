@@ -501,7 +501,7 @@ kanso-protocol/
 
 Every new component requires three artifacts in one PR:
 
-1. **Implementation** — Angular component in `packages/components/{name}/`
+1. **Implementation** — Angular component in `packages/ui/{name}/`
 2. **Figma component** — published in the Design System file
 3. **API contract** — markdown file in `docs/components/{name}.md` following `docs/components/_template.md`
 
@@ -529,7 +529,7 @@ in the repo and its own page in Figma:
 1. **Components** (🧩) — atomic building blocks. Generic, unopinionated,
    reusable. Each one does one thing and exposes a tight API. They are
    the bricks; they don't know about pages or workflows.
-   - In code: `packages/components/*` (one ng-package per component).
+   - In code: `packages/ui/<name>/` (one secondary entry point per component, all in the single `@kanso-protocol/ui` package — see [ADR 0002](adrs/0002-single-package-secondary-entry-points.md)).
    - In Figma: `🧩 Components` page, one Component Set per atom.
    - Examples: Button, Input, Icon, Badge, Avatar, Checkbox, Toggle,
      Select, Tabs, Card, Divider, Pagination, Table.
@@ -538,7 +538,7 @@ in the repo and its own page in Figma:
    cases. Opinionated about layout and arrangement, but still flexible
    via inputs and projection slots. They never reach down past the
    token graph — they reuse atom instances rather than redrawing them.
-   - In code: `packages/patterns/*`.
+   - In code: `packages/ui/<name>/` (same single package, flat alongside components — `@kanso-protocol/ui/sidebar`, etc.).
    - In Figma: `📐 Patterns` page, one Component Set per pattern.
    - Examples: Header, Sidebar, NavItem, UserMenu, ThemeToggle,
      SearchBar, AppShell, Banner, PageHeader, PageError,

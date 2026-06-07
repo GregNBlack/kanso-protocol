@@ -57,7 +57,7 @@
 
 - **Figma**: `UserMenu` Component Set (Patterns page)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-usermenu
-- **Source**: `packages/patterns/user-menu/src/`
+- **Source**: `packages/ui/user-menu/src/`
 
 ## Changelog
 

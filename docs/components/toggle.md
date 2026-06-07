@@ -95,7 +95,7 @@ Track corner-radius is always half its height (pill shape). Thumb offset from ed
 
 - **Figma component**: [`Toggle` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3064-158)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-toggle
-- **Source**: `packages/components/toggle/src/toggle.component.ts`
+- **Source**: `packages/ui/toggle/src/toggle.component.ts`
 - **Tokens used**:
   - `toggle/track-bg-off` for off state
   - `control/bg-checked` for on state (appearance-aware)

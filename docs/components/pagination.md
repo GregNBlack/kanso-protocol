@@ -128,7 +128,7 @@ Bump `siblingCount` for wider "window" around the current page; bump `boundaryCo
 
 - **Figma components**: [`Pagination` container](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3410-10940) · [`PaginationItem` atom](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3406-5263)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-pagination
-- **Source**: `packages/components/pagination/src/`
+- **Source**: `packages/ui/pagination/src/`
 - **Tokens used**:
   - Item bg per state: `pagination/item/bg/{rest|hover|active|selected|disabled}`
   - Item fg per state: `pagination/item/fg/{rest|hover|active|selected|disabled}`

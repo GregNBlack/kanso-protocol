@@ -80,7 +80,7 @@ demand and contributor bandwidth.
 
 - **Charts** — intentionally out of scope today; using a dedicated
   charting library is the recommendation. May ship a thin
-  `@kanso-protocol/charts` adapter that styles a known library
+  `@kanso-protocol/ui/charts` adapter that styles a known library
   (e.g. ECharts, Chart.js) with Kanso tokens, rather than a charts
   package of our own.
 - **Mobile-first AppShell variant** — drawer-as-default-nav, bottom-tab

@@ -119,9 +119,9 @@ Once connected, ask the assistant things like:
 
 The assistant calls `list_components` / `get_component` / `list_tokens` under the hood and answers from the live catalog instead of guessing.
 
-## What's not in 0.1.x
+## Roadmap
 
-- **No Figma bridge yet.** The next minor will add `figma_component_for(name)` and `figma_token_for(name)` so an agent can hop straight from a Kanso component to its Figma master node and pull a screenshot via the Figma MCP.
+- **Figma bridge — shipped.** `figma_context`, `figma_for_component`, `figma_for_pattern`, and `figma_for_icon` let an agent hop straight from a Kanso component to its Figma node and pull a screenshot via the Figma MCP (see the Figma bridge section above).
 - **No example-generation tool.** Pure metadata for now — let the agent compose snippets from the inputs/outputs it learns. We'll revisit if it turns out hand-crafting matters.
 
 ## License

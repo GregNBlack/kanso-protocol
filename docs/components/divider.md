@@ -69,7 +69,7 @@ vertical:
 
 - **Figma component**: [`Divider` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3466-7798)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-divider
-- **Source**: `packages/components/divider/src/`
+- **Source**: `packages/ui/divider/src/`
 - **Tokens used**:
   - Line: `divider/line`
   - Label: `divider/label`

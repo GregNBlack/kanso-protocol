@@ -88,7 +88,7 @@ interface KpCommandGroup {
 ## Example
 
 ```ts
-import { KpCommandPaletteComponent, KpCommandGroup, KpCommandItem } from '@kanso-protocol/command-palette';
+import { KpCommandPaletteComponent, KpCommandGroup, KpCommandItem } from '@kanso-protocol/ui/command-palette';
 
 @Component({
   imports: [KpCommandPaletteComponent],
@@ -143,8 +143,8 @@ class Demo {
 ## References
 
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-commandpalette--docs
-- **Source**: `packages/components/command-palette/src/`
-- **Composes**: `@kanso-protocol/dialog` (peer)
+- **Source**: `packages/ui/command-palette/src/`
+- **Composes**: `@kanso-protocol/ui/dialog` (peer)
 - **Tokens used**:
   - List bg: `gray.50` (page-level), `gray.100` (active row), `white` (palette surface from dialog)
   - Item label / hint: `gray.900` / `gray.500`

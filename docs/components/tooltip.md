@@ -4,13 +4,13 @@
 
 ## Contract
 
-`KpTooltipDirective` is the **only** public surface of `@kanso-protocol/tooltip`. The visual body is an internal styled component (`kp-tooltip-internal`) that the directive instantiates at runtime — consumers don't import or template it.
+`KpTooltipDirective` is the **only** public surface of `@kanso-protocol/ui/tooltip`. The visual body is an internal styled component (`kp-tooltip-internal`) that the directive instantiates at runtime — consumers don't import or template it.
 
 Behavior:
 
 - **Triggers:** `mouseenter` / `focusin` show after `kpTooltipDelay` ms. `mouseleave` / `focusout` hide after ~100ms. `Escape` hides immediately.
 - **Positioning:** trigger-relative with viewport-edge flipping. If the requested side doesn't fit, the tooltip flips to the opposite side.
-- **Portal:** rendered into the nearest open `<dialog>` (via `findPortalTarget` from `@kanso-protocol/core`) or `document.body`, so the tooltip sits above modals.
+- **Portal:** rendered into the nearest open `<dialog>` (via `findPortalTarget` from `@kanso-protocol/ui`) or `document.body`, so the tooltip sits above modals.
 - **A11y:** trigger gets `aria-describedby` pointing to the tooltip's unique id while visible.
 
 ## API

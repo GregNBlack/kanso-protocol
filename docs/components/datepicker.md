@@ -123,7 +123,7 @@ Built-in defaults (used when `presets` is left null):
 
 - **Figma component**: [`DatePicker` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-datepicker
-- **Source**: `packages/components/datepicker/src/`
+- **Source**: `packages/ui/datepicker/src/`
 - **Tokens used**:
   - Panel: `datepicker/panel-bg`, `datepicker/panel-border`
   - Header: `datepicker/header-fg`, `datepicker/header-nav-fg`

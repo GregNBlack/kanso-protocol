@@ -5,7 +5,7 @@ WYSIWYG editor with a toolbar + editable surface. Built on [TipTap](https://tipt
 ## API
 
 ```ts
-import { KpRichTextEditorComponent } from '@kanso-protocol/rich-text-editor';
+import { KpRichTextEditorComponent } from '@kanso-protocol/ui/rich-text-editor';
 ```
 
 | Prop          | Type                          | Default | Description                                                 |
@@ -39,7 +39,7 @@ Toolbar buttons reflect current selection state via `aria-pressed` and a visual 
 ```ts
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { KpRichTextEditorComponent } from '@kanso-protocol/rich-text-editor';
+import { KpRichTextEditorComponent } from '@kanso-protocol/ui/rich-text-editor';
 
 @Component({
   standalone: true,

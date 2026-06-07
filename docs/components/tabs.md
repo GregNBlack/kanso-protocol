@@ -104,7 +104,7 @@ Focus is handled by `:focus-visible` on the underlying `<button>` with a standar
 
 - **Figma components**: [`Tab` atom](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3345-9059) · [`Tabs` container](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3347-9887)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tabs
-- **Source**: `packages/components/tabs/src/`
+- **Source**: `packages/ui/tabs/src/`
 - **Tokens used**:
   - Track border: `tabs/track-border`
   - Tab fg per state: `tabs/tab/fg/{rest|hover|selected|disabled}`

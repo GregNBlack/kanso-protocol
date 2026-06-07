@@ -103,7 +103,7 @@ Open/closed is a parent concern — the trigger decides when to render DropdownM
 
 - **Figma component**: [`DropdownMenu` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3075-1466)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-dropdownmenu
-- **Source**: `packages/components/menu/src/dropdown-menu.component.ts`
+- **Source**: `packages/ui/menu/src/dropdown-menu.component.ts`
 - **Related**: [MenuItem](menu-item.md), `MenuDivider`, `MenuSectionLabel`
 - **Tokens used**:
   - `menu/panel.bg`, `menu/panel.border`

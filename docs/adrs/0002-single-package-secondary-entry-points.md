@@ -30,44 +30,44 @@ Angular libraries support **secondary entry points** natively (ng-packagr): one 
 **Collapse the 64 packages into a single published package with one secondary entry point per component/pattern.**
 
 ```
-@kanso-protocol/kit                      → core: tokens, types, overlay-position, portal
-@kanso-protocol/kit/button
-@kanso-protocol/kit/input
-@kanso-protocol/kit/tooltip
+@kanso-protocol/ui                      → core: tokens, types, overlay-position, portal
+@kanso-protocol/ui/button
+@kanso-protocol/ui/input
+@kanso-protocol/ui/tooltip
 …                                        → one entry point per component
-@kanso-protocol/kit/sidebar
-@kanso-protocol/kit/page-header
+@kanso-protocol/ui/sidebar
+@kanso-protocol/ui/page-header
 …                                        → patterns, same flat namespace
 ```
 
 Consumers install once:
 
 ```bash
-npm i @kanso-protocol/kit
+npm i @kanso-protocol/ui
 ```
 
 and import per-feature:
 
 ```ts
-import { KpButtonComponent } from '@kanso-protocol/kit/button';
-import { KpTooltipDirective } from '@kanso-protocol/kit/tooltip';
+import { KpButtonComponent } from '@kanso-protocol/ui/button';
+import { KpTooltipDirective } from '@kanso-protocol/ui/tooltip';
 ```
 
-Tree-shaking is unaffected — importing `@kanso-protocol/kit/button` pulls only the button entry point's code; the bundler never sees the others.
+Tree-shaking is unaffected — importing `@kanso-protocol/ui/button` pulls only the button entry point's code; the bundler never sees the others.
 
-### Package name — DECISION NEEDED
+### Package name — DECIDED: `@kanso-protocol/ui`
 
-Candidates (all keep the `@kanso-protocol` org scope):
-- `@kanso-protocol/kit` — short, conventional for a component kit
-- `@kanso-protocol/ui`
-- `@kanso-protocol/angular` — signals the framework, leaves room for a future `@kanso-protocol/react`
+Candidates considered (all keep the `@kanso-protocol` org scope):
+- `@kanso-protocol/ui` — **chosen.** Plain, reads naturally as a UI library.
+- `@kanso-protocol/kit` — short, conventional for a component kit.
+- `@kanso-protocol/angular` — signals the framework, leaves room for a future `@kanso-protocol/react`.
 
-Recommendation: **`@kanso-protocol/kit`**. (User to confirm before implementation — the name is load-bearing across every import site and the docs.)
+The name is load-bearing across every import site and the docs; `ui` was confirmed before implementation.
 
 ### Layout on disk
 
 ```
-packages/kit/
+packages/ui/
   package.json            # the ONE published package
   ng-package.json         # primary entry point → core
   src/public-api.ts       # re-exports tokens/types/utils
@@ -86,26 +86,26 @@ ng-packagr discovers every `ng-package.json` under the package root and builds t
 ## Migration plan (phased, on a long-lived branch)
 
 ### Phase 1 — scaffolding (no behavior change)
-1. Create `packages/kit/` with the primary entry point (core sources move here, or core stays and `kit` root re-exports it — TBD during impl).
-2. Move each `packages/components/<name>/src` and `packages/patterns/<name>/src` under `packages/kit/<name>/`, add per-folder `ng-package.json` + `public-api.ts`.
-3. Internal cross-imports rewrite: `@kanso-protocol/button` → `@kanso-protocol/kit/button` (187 import sites; scripted codemod).
+1. Create `packages/ui/` with the primary entry point (core sources move here; the `ui` root re-exports tokens / types / utils).
+2. Move each `packages/components/<name>/src` and `packages/patterns/<name>/src` under `packages/ui/<name>/`, add per-folder `ng-package.json` + `public-api.ts`.
+3. Internal cross-imports rewrite: `@kanso-protocol/button` → `@kanso-protocol/ui/button` (187 import sites; scripted codemod).
 
 ### Phase 2 — tooling
-4. `build-libs.js` → single ng-packagr build of `packages/kit` (produces `dist/kit` with all entry points).
+4. `build-libs.js` → single ng-packagr build of `packages/ui` (produces `dist/packages/ui` with all entry points).
 5. `publish-libs.js` → publish ONE package.
 6. `check-bundle-size.js` → measure per-entry-point bundles within the one package.
-7. `generate-mcp-manifest.js` → entry points instead of packages (selector/import paths change to `@kanso-protocol/kit/<name>`).
+7. `generate-mcp-manifest.js` → entry points instead of packages (selector/import paths change to `@kanso-protocol/ui/<name>`).
 8. `tsconfig.base.json` paths → map subpaths to the new folders.
 9. `.changeset/config.json` → single package, drop the fixed/linked group entirely (no more cross-peer-dep group).
 
 ### Phase 3 — consumers & docs
 10. Storybook + examples imports → new subpaths.
 11. README, docs/components/*, MCP install snippet, Figma Community description.
-12. **Codemod for external consumers** — ship a `npx @kanso-protocol/kit migrate` or document a find-replace: `@kanso-protocol/<name>` → `@kanso-protocol/kit/<name>`, and a single `npm i @kanso-protocol/kit` replacing N installs.
-13. Deprecate the 64 old packages on npm (deprecation notice pointing to `@kanso-protocol/kit/<name>`), keep them published at their last 4.x for a grace period.
+12. **Codemod for external consumers** — ship a `npx @kanso-protocol/ui migrate` or document a find-replace: `@kanso-protocol/<name>` → `@kanso-protocol/ui/<name>`, and a single `npm i @kanso-protocol/ui` replacing N installs.
+13. Deprecate the 64 old packages on npm (deprecation notice pointing to `@kanso-protocol/ui/<name>`), keep them published at their last 4.x for a grace period.
 
 ### Phase 4 — release
-14. Major bump to **5.0.0** for `@kanso-protocol/kit`. The old packages get a final 4.x with a deprecation `README` note.
+14. Major bump to **5.0.0** for `@kanso-protocol/ui`. The old packages get a final 4.x with a deprecation `README` note.
 
 ## Consequences
 
@@ -114,7 +114,7 @@ ng-packagr discovers every `ng-package.json` under the package root and builds t
 - One `package.json` + one `CHANGELOG.md` per release.
 - Eliminates the cross-peer-dep group entirely → no more changeset escalation class.
 - Tree-shaking unchanged (verified: secondary entry points are independent ESM modules).
-- Simpler mental model: "install the kit, import what you need."
+- Simpler mental model: "install the package, import what you need."
 
 ### Negative / risk
 - **Large breaking change** — every consumer rewrites imports + install. Mitigated by codemod + docs + grace-period deprecation of old packages.
@@ -122,11 +122,11 @@ ng-packagr discovers every `ng-package.json` under the package root and builds t
 - **MCP manifest reshape** — every component's `import`/`npm` field changes; AI consumers using the MCP get the new paths automatically after regen.
 - **Loses ability to publish a single component independently** — acceptable; the granularity was never used in practice (core is always required).
 
-## Open questions (resolve before Phase 1)
-1. Package name: `kit` / `ui` / `angular`? (recommend `kit`)
-2. Does `core` keep its own package (`@kanso-protocol/core`) or fold into `@kanso-protocol/kit` root? Folding is cleaner (one package) but `core` is also consumed by tooling; recommend folding into the `kit` root entry point.
-3. Patterns namespace — flat (`@kanso-protocol/kit/sidebar`) or prefixed (`@kanso-protocol/kit/patterns/sidebar`)? Flat is simpler; recommend flat unless a name collides with a component.
-4. Grace period length for deprecated 64 packages.
+## Open questions — RESOLVED
+1. ~~Package name: `kit` / `ui` / `angular`?~~ → **`@kanso-protocol/ui`** (see Decisions).
+2. ~~Does `core` keep its own package or fold into the root?~~ → **folded into the `@kanso-protocol/ui` root entry point**; tooling imports the root.
+3. ~~Patterns namespace — flat or prefixed?~~ → **flat** (`@kanso-protocol/ui/sidebar`); no name collisions across 41 components + 20 patterns.
+4. Grace period length for deprecated 64 packages — left published at their final 4.x; revisit removal after adoption data.
 
 ## References
 - [ng-packagr secondary entry points](https://github.com/ng-packagr/ng-packagr/blob/main/docs/secondary-entrypoints.md)

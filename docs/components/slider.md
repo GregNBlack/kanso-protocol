@@ -112,7 +112,7 @@ Works with both template-driven and reactive forms via `ControlValueAccessor`. I
 
 - **Figma component**: [`Slider` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-slider
-- **Source**: `packages/components/slider/src/`
+- **Source**: `packages/ui/slider/src/`
 - **Tokens used**:
   - Track: `slider/track-empty`, `slider/track-filled`
   - Thumb: `slider/thumb-bg`, `slider/thumb-border`, `slider/thumb-ring-focus`

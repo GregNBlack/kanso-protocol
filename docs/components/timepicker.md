@@ -104,7 +104,7 @@ Display switches between 12h and 24h via `format`, but the emitted value never c
 
 - **Figma component**: [`TimePicker` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-timepicker
-- **Source**: `packages/components/timepicker/src/`
+- **Source**: `packages/ui/timepicker/src/`
 - **Tokens used**: reuses `datepicker/panel-*`, `datepicker/day-bg-*`, `datepicker/day-fg-*`, `datepicker/weekday`
 
 ## Changelog

@@ -55,7 +55,7 @@ The shell owns **placement**, not **content**. Persisting sidebar expand state, 
 
 - **Figma**: `AppShell` Component Set (Patterns page) — 4 layouts, with/without banner/footer demos.
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-appshell
-- **Source**: `packages/patterns/app-shell/src/`
+- **Source**: `packages/ui/app-shell/src/`
 
 ## Changelog
 

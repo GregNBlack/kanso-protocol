@@ -83,7 +83,7 @@ Everything is toggleable via boolean inputs; the layout collapses cleanly when s
 
 - **Figma pattern**: [`Header` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-header
-- **Source**: `packages/patterns/header/src/`
+- **Source**: `packages/ui/header/src/`
 - **Tokens**: `header/bg`, `header/bg-dark`, `header/border`, `header/nav-item/*`, `header/divider`
 
 ## Changelog

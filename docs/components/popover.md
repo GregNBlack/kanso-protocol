@@ -133,7 +133,7 @@ When you wire the popover up to a trigger, the usual UX is:
 
 - **Figma component**: [`Popover` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3271-8580)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-popover
-- **Source**: `packages/components/popover/src/popover.component.ts`
+- **Source**: `packages/ui/popover/src/popover.component.ts`
 - **Tokens used**:
   - Background: `popover/bg`
   - Border / divider: `popover/divider` (1px lines inside)

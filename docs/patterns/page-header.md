@@ -58,7 +58,7 @@ Slots:
 
 - **Figma**: `PageHeader` Component Set (Patterns page)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-pageheader
-- **Source**: `packages/patterns/page-header/src/`
+- **Source**: `packages/ui/page-header/src/`
 
 ## Changelog
 

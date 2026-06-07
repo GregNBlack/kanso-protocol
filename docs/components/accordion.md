@@ -85,7 +85,7 @@ Each `<kp-accordion-item>` renders a clickable trigger (title + optional descrip
 
 - **Figma components**: [`Accordion` container](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3481-8668) · [`AccordionItem` atom](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3480-8218)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-accordion
-- **Source**: `packages/components/accordion/src/`
+- **Source**: `packages/ui/accordion/src/`
 - **Tokens used**:
   - Trigger bg per state: `accordion/trigger/bg/{rest|hover|expanded}`
   - Trigger fg per state: `accordion/trigger/fg/{rest|expanded|disabled}`

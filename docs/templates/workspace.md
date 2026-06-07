@@ -55,25 +55,13 @@ logo and the right-cluster.
 
 ## Install
 
-### 1. Add Kanso peer packages
+### 1. Add Kanso
 
-If your project already uses Kanso, you probably have most of these. Add the missing ones:
+Everything ships from one package — a single install covers every component
+and pattern this template uses (imports stay per-component via subpaths):
 
 ```bash
-npm i @kanso-protocol/core \
-      @kanso-protocol/app-shell \
-      @kanso-protocol/sidebar \
-      @kanso-protocol/nav-item \
-      @kanso-protocol/avatar \
-      @kanso-protocol/user-menu \
-      @kanso-protocol/menu \
-      @kanso-protocol/theme-toggle \
-      @kanso-protocol/popover \
-      @kanso-protocol/notification-center \
-      @kanso-protocol/icon \
-      @kanso-protocol/button \
-      @kanso-protocol/badge \
-      @kanso-protocol/breadcrumbs
+npm i @kanso-protocol/ui
 ```
 
 ### 2. Copy the template file
@@ -92,15 +80,15 @@ curl -o src/templates/template-workspace.component.ts \
 ```ts
 import { Component } from '@angular/core';
 import { KpTemplateWorkspaceComponent, KpWsUser } from './templates/template-workspace.component';
-import { KpSidebarSection } from '@kanso-protocol/sidebar';
+import { KpSidebarSection } from '@kanso-protocol/ui/sidebar';
 import {
   KpBreadcrumbsComponent,
   KpBreadcrumbItemComponent,
   KpBreadcrumbSeparatorComponent,
-} from '@kanso-protocol/breadcrumbs';
-import { KpNotificationCenterComponent, KpNotification } from '@kanso-protocol/notification-center';
-import { KpMenuItemComponent } from '@kanso-protocol/menu';
-import { KpIconComponent } from '@kanso-protocol/icon';
+} from '@kanso-protocol/ui/breadcrumbs';
+import { KpNotificationCenterComponent, KpNotification } from '@kanso-protocol/ui/notification-center';
+import { KpMenuItemComponent } from '@kanso-protocol/ui/menu';
+import { KpIconComponent } from '@kanso-protocol/ui/icon';
 
 @Component({
   standalone: true,
