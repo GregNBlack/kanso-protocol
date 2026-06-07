@@ -50,6 +50,15 @@ export interface KpOverlayPositionResult {
   y: number;
   /** Final side after flipping — may differ from the requested side. */
   side: KpOverlaySide;
+  /**
+   * Where the arrow should sit along the overlay's cross-axis edge, in px
+   * from the overlay's left (top/bottom sides) or top (left/right sides).
+   * Tracks the trigger centre even after the overlay is clamped to a
+   * viewport edge — so the arrow keeps pointing at the trigger — and is
+   * itself clamped to `[alignInset, extent - alignInset]` so it never
+   * leaves the rounded corner. Apply as `--kp-tooltip-arrow-offset`.
+   */
+  arrowOffset: number;
 }
 
 const OPPOSITE: Record<KpOverlaySide, KpOverlaySide> = {
@@ -111,5 +120,17 @@ export function computeOverlayPosition(input: KpOverlayPositionInput): KpOverlay
   x = Math.max(gutter, Math.min(x, viewport.width - overlay.width - gutter));
   y = Math.max(gutter, Math.min(y, viewport.height - overlay.height - gutter));
 
-  return { x, y, side };
+  // Re-point the arrow at the trigger centre *after* clamping, so a tooltip
+  // shoved off a viewport edge still points back at its trigger. Clamp the
+  // arrow into the overlay's safe corner zone so it can't escape the box.
+  const horizontal = side === 'top' || side === 'bottom';
+  const crossExtent = horizontal ? overlay.width : overlay.height;
+  const triggerCentre = horizontal
+    ? trigger.left + trigger.width / 2
+    : trigger.top + trigger.height / 2;
+  const finalCross = horizontal ? x : y;
+  const inset = Math.min(alignInset || 12, crossExtent / 2);
+  const arrowOffset = Math.max(inset, Math.min(triggerCentre - finalCross, crossExtent - inset));
+
+  return { x, y, side, arrowOffset };
 }
