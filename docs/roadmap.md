@@ -98,9 +98,12 @@ faith.
 - **CSS-in-JS support.** Tokens are CSS custom properties; consumers
   can use them from any CSS-in-JS layer, but Kanso itself doesn't ship
   a runtime injection API.
-- **Non-Angular framework ports.** Tokens are framework-agnostic and
-  consumable from React/Vue/Svelte; components are Angular-only and
-  staying that way. Cross-framework parity isn't the goal.
+- **Non-Angular framework usage — shipped via Web Components.** Tokens are
+  framework-agnostic, and the components now ship as custom elements
+  ([`@kanso-protocol/elements`](web-components.md), experimental `0.x`) for
+  React / Vue / Svelte / plain HTML. Hand-written native React/Vue *rewrites*
+  remain out of scope — the custom-elements bridge is how Kanso reaches other
+  frameworks.
 - **CDN-hosted Storybook with versioned URLs.** Storybook is built per
   release on GitHub Pages; we don't run a versioned-docs service.
 

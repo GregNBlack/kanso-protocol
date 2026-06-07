@@ -129,6 +129,10 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 | `docs/components/<name>.md` | `stable` | Every component has a contract doc. |
 | `docs/patterns/<name>.md` | `stable` | All 20 patterns documented. |
 | `docs/MIGRATION-v5.md` | `stable` | 4.x → 5.0 single-package upgrade guide + codemod. |
+| `docs/getting-started.md` | `stable` | Install → tokens → screen → forms onboarding. |
+| `docs/theming.md` | `stable` | Brand recolor, light/dark, custom themes. |
+| `docs/ssr.md` | `stable` | SSR / hydration contract. |
+| `docs/web-components.md` | `stable` | Using Kanso outside Angular via custom elements. |
 | `docs/keyboard-map.md` | `stable` | Cross-component keyboard chord reference. |
 | `docs/stability.md` | `beta` | This file. Update on every PR that changes a tier or coverage. |
 
@@ -138,12 +142,13 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 |---|---|---|
 | `@kanso-protocol/mcp` | `stable` | Catalog server, **11 stdio tools** (`catalog_overview`, `list_components`, `get_component`, `list_patterns`, `get_pattern`, `list_tokens`, `get_token`, `figma_context`, `figma_for_component`, `figma_for_pattern`, `figma_for_icon`). `figma_for_*` / `get_component` return a `codeConnect` block resolving a Figma node ref → real `@kanso-protocol/ui/<name>` import. |
 | `@kanso-protocol/ui/i18n` | `beta` | `KP_LOCALE` / `KP_STRINGS` + Intl helpers. **Open:** fold `KP_VALIDATION_MESSAGES` into `KP_STRINGS`; auto-detect 12h/24h. |
+| `@kanso-protocol/elements` | `experimental` | Framework-agnostic custom elements (all 73 `kp-*` components) for React / Vue / plain HTML. `0.x` — API stable, packaging (single bundle, embeds Angular runtime) may evolve. Build + runtime smoke gated in CI (`web-components` job). See [`docs/web-components.md`](web-components.md). |
+| `publish-libs.js` | `stable` | Publishes unpublished `dist/packages/**` (`@kanso-protocol/ui` + `/mcp` + `/elements`). |
 | `kanso-lint-tokens` | `stable` | Architectural rule checker (raw colors, physical CSS, raw motion/shadows). |
 | Style Dictionary build | `stable` | Light + dark via custom `css/variables-dark` format. |
 | `check-changelog.js` | `stable` | CI + pre-push hook. |
 | `check-no-stale-refs.js` | `stable` | CI guard: no pre-v5 package/path references. |
 | `check-lockfile-workspaces.js` | `stable` | CI guard: lockfile workspace set matches disk. |
-| `publish-libs.js` | `stable` | Publishes unpublished `dist/packages/**` (single `@kanso-protocol/ui` + `@kanso-protocol/mcp`). |
 | Visual regression suite | `stable` | `e2e/visual.spec.ts` — 60 stories × 2 themes + 12 RTL = 132 snapshots; runs in CI in the Playwright container. |
 
 ## Coverage gaps — status
@@ -161,4 +166,4 @@ The audit's gaps have been closed; what remains `beta` is held by open **API que
 ## Out of scope (by design)
 
 - **Charts** — use a charting library of choice; Kanso documents the recommendation rather than shipping one.
-- **React / Vue ports** — Angular-only. The Figma library is framework-agnostic for mockups.
+- **First-class React / Vue rewrites** — out of scope. Non-Angular consumers use the framework-agnostic [`@kanso-protocol/elements`](web-components.md) custom elements (experimental `0.x`) rather than hand-ported components. The Figma library is framework-agnostic for mockups.

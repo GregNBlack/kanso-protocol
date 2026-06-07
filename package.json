@@ -2,7 +2,7 @@
   "name": "@kanso-protocol/source",
   "version": "0.0.1",
   "private": true,
-  "description": "Kanso Protocol — open source Angular design system built on architectural consistency",
+  "description": "Kanso Protocol — open source design system for Angular (+ framework-agnostic Web Components), built on architectural consistency",
   "license": "MIT",
   "author": "GregNBlack",
   "repository": {
