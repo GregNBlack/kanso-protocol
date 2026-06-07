@@ -32,7 +32,7 @@ export const Default: Story = {
             <div kpAccordionItemContent>Kanso Protocol is an open-source Angular design system with a Figma library kept in sync via tokens.</div>
           </kp-accordion-item>
           <kp-accordion-item title="How do I install it?">
-            <div kpAccordionItemContent>Install via npm: each component is its own package — start with <code>@kanso-protocol/core</code> plus the components you need.</div>
+            <div kpAccordionItemContent>Install via npm: one package — <code>npm i @kanso-protocol/ui</code> — then import each component from its own subpath.</div>
           </kp-accordion-item>
           <kp-accordion-item title="Is it free?">
             <div kpAccordionItemContent>Yes — MIT licensed. Use in commercial projects freely.</div>

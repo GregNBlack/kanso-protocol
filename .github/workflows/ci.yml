@@ -23,6 +23,22 @@ jobs:
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: node scripts/check-changelog.js
 
+  guards:
+    # Fast, dependency-free invariants (no npm ci). Fail early on the two
+    # classes of regression the v5 migration exposed:
+    #   - stale pre-v5 package/path references creeping back into source
+    #   - a package-lock.json whose workspace set drifted from disk
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: No stale pre-v5 package/path references
+        run: node scripts/check-no-stale-refs.js
+      - name: Lockfile workspaces in sync with disk
+        run: node scripts/check-lockfile-workspaces.js
+
   build:
     runs-on: ubuntu-latest
     steps:

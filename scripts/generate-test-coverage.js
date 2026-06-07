@@ -10,7 +10,7 @@
  *     totalTests: M,
  *     items: [
  *       { layer: 'components', name: 'button', title: 'Components/Button',
- *         specFile: 'packages/components/button/src/button.spec.ts',
+ *         specFile: 'packages/ui/button/src/button.spec.ts',
  *         tests: 9, storybookId: 'components-button--docs' },
  *       …
  *     ],

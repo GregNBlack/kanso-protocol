@@ -75,13 +75,17 @@ for (const name of names.sort()) {
   // No shell here (execFileSync), so the range is a single literal arg —
   // it must NOT carry the `"` quotes you'd need to protect `<` in a shell.
   const range = `${pkg}@<5.0.0`;
+  const argv = ['deprecate', range, msg];
   if (DRY) {
-    console.log(`DRY    npm deprecate '${range}' "${msg}"`);
+    // Print the exact argv execFileSync will pass (no shell). This is the
+    // real command shape — a shell-style string can hide quoting bugs that
+    // only bite at execution time (see the literal-quotes regression).
+    console.log(`DRY    npm ${JSON.stringify(argv)}`);
     deprecated++;
     continue;
   }
   try {
-    execFileSync('npm', ['deprecate', range, msg], { stdio: 'pipe' });
+    execFileSync('npm', argv, { stdio: 'pipe' });
     console.log(`done   ${range}`);
     deprecated++;
   } catch (e) {

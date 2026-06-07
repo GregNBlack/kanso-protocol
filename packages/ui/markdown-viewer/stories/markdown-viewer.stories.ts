@@ -81,7 +81,7 @@ Step B of the dark architecture rebuild.
 
 ### Bumps
 
-- \`@kanso-protocol/core\` \`0.4.0\` → \`0.5.0\`
+- \`@kanso-protocol/ui\` \`4.1.0\` → \`5.0.0\`
 
 ### Migration
 

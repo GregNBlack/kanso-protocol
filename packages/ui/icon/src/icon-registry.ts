@@ -3,7 +3,7 @@ import { TABLER_SVG_MAP } from './svg-map.generated';
 
 /**
  * In-memory registry of icon name → SVG string. Pre-populated with the
- * Tabler icons listed in `packages/components/icon/icons.allowlist.json`.
+ * Tabler icons listed in `packages/ui/icon/icons.allowlist.json`.
  *
  * Consumers extend at runtime to add custom icons (or additional Tabler
  * icons not in the default allowlist):

@@ -5,9 +5,9 @@
 > driven by a small contributor set. Sequence is the commitment, calendar
 > is not.
 
-For per-surface readiness today, see [`docs/1.0-readiness.md`](./1.0-readiness.md).
-For known breaking changes that 1.0 will introduce, see
-[`docs/migration-1.0.md`](./migration-1.0.md).
+For per-surface stability today, see [`docs/stability.md`](./stability.md).
+For the most recent breaking change and how to upgrade, see
+[`docs/MIGRATION-v5.md`](./MIGRATION-v5.md).
 
 ## Now (active)
 
@@ -29,9 +29,9 @@ Active work targeted for the next minor release.
   helps consumers pick between similar components (Combobox vs Select,
   Drawer vs Dialog, Toast vs Alert, etc.).
 
-## Next (committed for 1.0)
+## Next (committed)
 
-Required to graduate `1.0`.
+Committed for an upcoming `5.x` minor — these are what move `beta` surfaces toward `stable`.
 
 - ~~**Dark theme architecture stabilization.**~~ **Done** (2026-05-05).
   Surface-vs-text double duty on `--kp-color-white` resolved (split via
@@ -55,9 +55,9 @@ Required to graduate `1.0`.
   `figma_for_component` / `figma_for_pattern` tools so a single call
   resolves a Figma node ref → real Angular import statement.
 
-## Later (post-1.0)
+## Later
 
-Worth doing, not blocking 1.0.
+Worth doing, not blocking the next release.
 
 - **`<kp-table-virtual>`** — bake `<kp-virtual-list>` composition into
   the table primitive so consumers don't have to wire it up themselves
@@ -113,5 +113,5 @@ If you'd like to push something forward:
 3. For "Considered" items, a real consumer integrating the proposed
    feature is the strongest signal we can use to prioritize.
 4. PRs that move a component from `beta` → `stable` (closing the
-   open questions in `1.0-readiness.md`) are the highest-leverage
-   contributions today.
+   open questions / coverage gaps in [`stability.md`](./stability.md)) are
+   the highest-leverage contributions today.

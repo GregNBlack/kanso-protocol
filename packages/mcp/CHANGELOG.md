@@ -1,5 +1,11 @@
 # @kanso-protocol/mcp
 
+## 4.2.1
+
+### Patch Changes
+
+- Ship the corrected Code Connect map in the package tarball: `figma-mapping.json`'s `codeConnect` entries now report `npm: @kanso-protocol/ui` and `import: @kanso-protocol/ui/<name>` (they still carried the pre-v5 per-package paths in 4.2.0). The served manifest was already correct; this aligns the raw source file shipped in the package.
+
 ## 4.2.0
 
 ### Minor Changes
