@@ -24,7 +24,17 @@ export type KpNotificationAppearance =
   selector: 'kp-notification-item',
   imports: [KpAvatarComponent, KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { '[class]': 'hostClasses', role: 'listitem' },
+  host: {
+    '[class]': 'hostClasses',
+    role: 'listitem',
+    // The row is clickable (cursor: pointer) and emits `click$`. Make it
+    // keyboard-operable too: focusable + Enter/Space activate, matching the
+    // pointer affordance.
+    tabindex: '0',
+    '(click)': 'click$.emit()',
+    '(keydown.enter)': 'click$.emit()',
+    '(keydown.space)': 'onSpace($event)',
+  },
   template: `
     <kp-avatar
       size="md"
@@ -127,5 +137,11 @@ export class KpNotificationItemComponent {
 
   get hostClasses(): string {
     return `kp-notif-item ${this.read ? '' : 'kp-notif-item--unread'}`;
+  }
+
+  /** Space activates like a button without scrolling the page. */
+  protected onSpace(event: Event): void {
+    event.preventDefault();
+    this.click$.emit();
   }
 }
