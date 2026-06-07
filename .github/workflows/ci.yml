@@ -83,6 +83,10 @@ jobs:
     name: a11y + dark-mode
     runs-on: ubuntu-latest
     needs: build
+    # Hard ceiling so a hung playwright install (the post-download
+    # extraction occasionally stalls and would otherwise burn the full
+    # 6h job limit) fails fast and can be rerun.
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -90,8 +94,25 @@ jobs:
           node-version: 24
           cache: 'npm'
       - run: npm ci --legacy-peer-deps
+      # Cache the browser binary keyed by the installed Playwright version
+      # so we don't re-download ~170MB from the CDN every run (that download
+      # is what stalls). On a hit, `playwright install` is near-instant.
+      - name: Resolve Playwright version
+        id: pw
+        run: echo "version=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
+      - name: Cache Playwright browsers
+        id: pw-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.pw.outputs.version }}
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
+        run: |
+          if [ "${{ steps.pw-cache.outputs.cache-hit }}" = "true" ]; then
+            npx playwright install-deps chromium
+          else
+            npx playwright install --with-deps chromium
+          fi
       - name: Build tokens
         run: npm run build:tokens
       - name: Build Storybook
@@ -129,6 +150,9 @@ jobs:
     name: visual-regression
     runs-on: ubuntu-latest
     needs: build
+    # Same hard ceiling as the a11y job — a stalled playwright install
+    # should fail in 15 min, not consume the 6h job limit.
+    timeout-minutes: 15
     permissions:
       contents: write
     steps:
@@ -140,8 +164,24 @@ jobs:
           node-version: 24
           cache: 'npm'
       - run: npm ci --legacy-peer-deps
+      # Cache the browser binary keyed by Playwright version — avoids the
+      # ~170MB CDN re-download that intermittently stalls post-download.
+      - name: Resolve Playwright version
+        id: pw
+        run: echo "version=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
+      - name: Cache Playwright browsers
+        id: pw-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.pw.outputs.version }}
       - name: Install Playwright browser
-        run: npx playwright install --with-deps chromium
+        run: |
+          if [ "${{ steps.pw-cache.outputs.cache-hit }}" = "true" ]; then
+            npx playwright install-deps chromium
+          else
+            npx playwright install --with-deps chromium
+          fi
       - name: Build tokens + Storybook
         env:
           KANSO_HIDE_AUDIT: '1'
