@@ -1,0 +1,48 @@
+name: Deprecate legacy packages
+
+# One-time (idempotent) deprecation of the 63 former per-component packages
+# after the v5 single-package migration (ADR 0002). Runs the same
+# scripts/deprecate-legacy-packages.js, but here using the repo's NPM_TOKEN
+# secret — an automation/granular token that bypasses the account's 2FA
+# write requirement (the same token release.yml publishes with). This avoids
+# per-package OTP prompts that make a local run impractical.
+#
+# Manual trigger only:
+#   gh workflow run deprecate-legacy.yml            # real deprecation
+#   gh workflow run deprecate-legacy.yml -f dry_run=true   # preview only
+#
+# Re-runnable: npm deprecate is idempotent, so a repeat run just re-applies
+# the same notice.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Preview only (no deprecation applied)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  deprecate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+
+      - name: Deprecate
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            node scripts/deprecate-legacy-packages.js --dry-run
+          else
+            node scripts/deprecate-legacy-packages.js
+          fi
+        env:
+          # npm reads this for write auth; the token bypasses 2FA.
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
