@@ -63,6 +63,9 @@ jobs:
       - name: Build MCP server
         run: npm run build:mcp
 
+      - name: Build custom-elements bundle
+        run: npm run build:elements
+
       - name: Create release PR or publish
         uses: changesets/action@v1
         with:

@@ -20,7 +20,10 @@ const babel = require('@babel/core');
 const { createEs2015LinkerPlugin } = require('@angular/compiler-cli/linker/babel');
 
 const ROOT = path.resolve(__dirname, '..');
-const OUT = path.join(ROOT, 'dist', 'elements', 'kanso-elements.mjs');
+// Stage under dist/packages/** so publish-libs.js discovers + publishes it.
+const SRC_PKG = path.join(ROOT, 'packages', 'elements');
+const DEST = path.join(ROOT, 'dist', 'packages', 'elements');
+const OUT = path.join(DEST, 'kanso-elements.mjs');
 
 // Angular ships its framework packages in *partial* compilation format
 // (ɵɵngDeclare*). esbuild doesn't run the Angular linker, so those fail JIT
@@ -104,8 +107,19 @@ esbuild
     legalComments: 'none',
   })
   .then(() => {
+    // Stage the publishable package alongside the bundle: manifest, README,
+    // and a minimal type declaration (the bundle's only export).
+    fs.copyFileSync(path.join(SRC_PKG, 'package.json'), path.join(DEST, 'package.json'));
+    fs.copyFileSync(path.join(SRC_PKG, 'README.md'), path.join(DEST, 'README.md'));
+    fs.writeFileSync(
+      path.join(DEST, 'kanso-elements.d.ts'),
+      '/** Define every Kanso `kp-*` custom element. Idempotent. */\n' +
+        'export declare function defineKansoElements(): Promise<void>;\n',
+    );
     const kb = (fs.statSync(OUT).size / 1024).toFixed(0);
+    const { name, version } = JSON.parse(fs.readFileSync(path.join(DEST, 'package.json'), 'utf8'));
     console.log(`elements bundle: ${path.relative(ROOT, OUT)} (${kb} KB minified)`);
+    console.log(`staged ${name}@${version} → ${path.relative(ROOT, DEST)}`);
   })
   .catch((err) => {
     console.error('elements bundle failed:', err.message);

@@ -1,0 +1,41 @@
+{
+  "name": "@kanso-protocol/elements",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "Framework-agnostic custom elements for the Kanso Protocol design system — use <kp-*> components from React, Vue, Svelte, or plain HTML, no Angular required.",
+  "author": "GregNBlack",
+  "type": "module",
+  "module": "./kanso-elements.mjs",
+  "exports": {
+    ".": {
+      "types": "./kanso-elements.d.ts",
+      "default": "./kanso-elements.mjs"
+    }
+  },
+  "files": [
+    "kanso-elements.mjs",
+    "kanso-elements.mjs.map",
+    "kanso-elements.d.ts",
+    "README.md"
+  ],
+  "sideEffects": [
+    "./kanso-elements.mjs"
+  ],
+  "keywords": [
+    "design-system",
+    "web-components",
+    "custom-elements",
+    "react",
+    "vue",
+    "ui-components",
+    "kanso"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GregNBlack/kanso-protocol.git",
+    "directory": "packages/elements"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
