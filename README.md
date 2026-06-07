@@ -11,7 +11,7 @@
 
 Design tokens in W3C DTCG format serve as a single source of truth for both Figma and code. Rules are embedded in architecture, not in agreements.
 
-> **Status: `5.x` stable.** Per the [stability matrix](docs/stability.md), 36 of 61 surfaces are `stable` (API frozen for `5.x`) and most of the rest `beta`; only `virtual-list` is still `experimental`. Pin exact versions in production. The `5.0` line consolidated the former 64 per-component packages into a single `@kanso-protocol/ui` package with per-component secondary entry points ([ADR 0002](docs/adrs/0002-single-package-secondary-entry-points.md)) — install once, import per-subpath, tree-shaking preserved. **Upgrading from 4.x?** Follow the [v5 migration guide](docs/MIGRATION-v5.md) (mechanical import-path change; no component API changed). See [`docs/roadmap.md`](docs/roadmap.md) for what's next and the [changelog](CHANGELOG.md) for what landed.
+> **Status: `5.x` stable.** Per the [stability matrix](docs/stability.md), 40 of 61 surfaces are `stable` (API frozen for `5.x`) and the rest `beta` (held by open API questions, not missing coverage); only `virtual-list` is still `experimental`. Pin exact versions in production. The `5.0` line consolidated the former 64 per-component packages into a single `@kanso-protocol/ui` package with per-component secondary entry points ([ADR 0002](docs/adrs/0002-single-package-secondary-entry-points.md)) — install once, import per-subpath, tree-shaking preserved. **Upgrading from 4.x?** Follow the [v5 migration guide](docs/MIGRATION-v5.md) (mechanical import-path change; no component API changed). See [`docs/roadmap.md`](docs/roadmap.md) for what's next and the [changelog](CHANGELOG.md) for what landed.
 
 ---
 

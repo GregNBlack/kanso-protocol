@@ -56,15 +56,15 @@ Status as of `5.0.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `card` | `stable` | docs ✓ · a11y ✓ · spec ✓(4) · visual ✓ | A `[clickable]` variant would be additive. |
 | `checkbox` | `stable` | docs ✓ · a11y ✓ · spec ✓(8) · visual ✓ | Indeterminate + ControlValueAccessor covered. |
 | `combobox` | `beta` | docs ✓ · a11y ✓ · spec ✓(15) · visual ✓ | **Open:** async-loading API — `(filter)` event vs `[items]` with debounced filter — not finalized. |
-| `command-palette` | `beta` | docs ✓ · a11y ✓ · spec ✓(14) · visual ✗ | **Open:** global shortcut via DI vs `[shortcut]` input (multi-palette collisions). No visual baseline yet. |
+| `command-palette` | `beta` | docs ✓ · a11y ✓ · spec ✓(14) · visual n/a | **Open:** global shortcut via DI vs `[shortcut]` input (multi-palette collisions). Visual n/a — renders in a top-layer `<dialog>`, not capturable in `#storybook-root`. |
 | `datepicker` | `beta` | docs ✓ · a11y ✓ · spec ✓(25) · visual ✓ | Large surface (`single` + `range`, presets, min/max), i18n-aware. Held at `beta` pending a cycle of range edge-case soak. |
 | `dialog` | `stable` | docs ✓ · a11y ✓ · spec ✓(9) · visual ✓ | Native `<dialog>`; nested-Esc contract specced. |
 | `divider` | `stable` | docs ✓ · a11y ✓ · spec ✓(5) · visual ✓ | Horizontal / vertical / labeled. |
 | `drawer` | `stable` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | `side` is physical (not RTL-flipped); documented. |
 | `empty-state` | `stable` | docs ✓ · a11y ✓ · spec ✓(4) · visual ✓ | Slot-based. |
-| `file-upload` | `beta` | docs ✓ · a11y ✓ · spec ✓(15) · visual ✗ | Upload transport is consumer-implemented; `accept` is OS-level only. No visual baseline. |
+| `file-upload` | `beta` | docs ✓ · a11y ✓ · spec ✓(15) · visual ✓ | Upload transport is consumer-implemented; `accept` is OS-level only. |
 | `form-field` | `stable` | docs ✓ · a11y ✓ · spec ✓(14) · visual ✓ | `KP_VALIDATION_MESSAGES` override contract specced. |
-| `icon` | `beta` | docs ✓ · a11y ✓ · spec ✗(0) · visual ✓ | ⚠ Has real logic (registry: `register` / `registerMany` / unknown-name `console.warn`) but **no unit spec** — blocks `stable` until specced. |
+| `icon` | `stable` | docs ✓ · a11y ✓ · spec ✓(12) · visual ✓ | Registry (`register` / `registerMany` / unknown-name warning) + size ramp now specced. |
 | `input` | `stable` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Password-reveal toggle is default behavior. |
 | `markdown-viewer` | `beta` | docs ✓ · a11y ✓ · spec ✓(10) · visual ✓ | **Open:** lazy-load the `marked` parser via dynamic import (bundle perf). |
 | `menu` | `beta` | docs ✓ · a11y ✓ · spec ✓(18) · visual ✓ | DropdownMenu / MenuItem / MenuDivider. **Open:** keyboard nav across section labels. |
@@ -73,7 +73,7 @@ Status as of `5.0.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `popover` | `beta` | docs ✓ · a11y ✓ · spec ✓(23) · visual ✓ | **Open:** anchor positioning on scroll — currently fixed-pos; needs scroll-recompute. |
 | `progress` | `stable` | docs ✓ · a11y ✓ · spec ✓(12) · visual ✓ | Linear / Circular / Segmented (both visual stories present). |
 | `radio` | `stable` | docs ✓ · a11y ✓ · spec ✓(6) · visual ✓ | Roving tabindex + CVA verified. |
-| `rich-text-editor` | `beta` | docs ✓ · a11y ✓ · spec ✓(17) · visual ✗ | Image-upload protocol is consumer-implemented (needs a reference impl). No visual baseline. |
+| `rich-text-editor` | `beta` | docs ✓ · a11y ✓ · spec ✓(17) · visual n/a | Image-upload protocol is consumer-implemented (needs a reference impl). Visual n/a — caret/selection state is non-deterministic. |
 | `segmented-control` | `stable` | docs ✓ · a11y ✓ · spec ✓(6) · visual ✓ | Native radio group under the hood. |
 | `select` | `stable` | docs ✓ · a11y ✓ · spec ✓(16) · visual ✓ | Native `<select>` wrapper. A richer custom variant would be additive. |
 | `skeleton` | `stable` | docs ✓ · a11y ✓ · spec ✓(4) · visual ✓ | Box / text / circle. |
@@ -82,13 +82,13 @@ Status as of `5.0.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `tabs` | `stable` | docs ✓ · a11y ✓ · spec ✓(11) · visual ✓ | Roving tabindex + overflow slot. |
 | `textarea` | `stable` | docs ✓ · a11y ✓ · spec ✓(9) · visual ✓ | Auto-resize + counter. |
 | `timepicker` | `beta` | docs ✓ · a11y ✓ · spec ✓(17) · visual ✓ | i18n-aware. **Open:** auto-detect 12h/24h from `KP_LOCALE` (currently `[format]`). |
-| `toast` | `beta` | docs ✓ · a11y ✓ · spec ✓(14) · visual ✗ | **Open:** queue ordering across corners. No visual baseline. |
+| `toast` | `beta` | docs ✓ · a11y ✓ · spec ✓(14) · visual n/a | **Open:** queue ordering across corners. Visual n/a — enter/exit animation is non-deterministic. |
 | `toggle` | `stable` | docs ✓ · a11y ✓ · spec ✓(5) · visual ✓ | `[ariaLabel]` supported. |
 | `tooltip` | `stable` | docs ✓ · a11y ✓ · spec ✓(9) · visual ✓ | `[kpTooltip]` directive; global default delay would be additive. |
 | `tree` | `beta` | docs ✓ · a11y ✓ · spec ✓(22) · visual ✓ | Roving tabindex + expand/collapse. **Open:** lazy-load contract for `expandable` nodes without `children`. |
-| `virtual-list` | `experimental` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✗ | Fixed-height window mode only. Variable-height, sticky group headers, and a load-more directive are still-evolving API. |
+| `virtual-list` | `experimental` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Fixed-height window mode only. Variable-height, sticky group headers, and a load-more directive are still-evolving API — kept `experimental` on the API, not coverage. |
 
-**Components: 27 `stable` · 13 `beta` · 1 `experimental`.**
+**Components: 28 `stable` · 12 `beta` · 1 `experimental`.**
 
 ## Patterns
 
@@ -96,28 +96,28 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 
 | Pattern | Status | Coverage | Notes / open questions |
 |---|---|---|---|
-| `app-shell` | `beta` | docs ✓ · a11y ✓ · spec ✗ · visual ✗ | Header + Sidebar + main composition. Needs spec + visual baseline. |
+| `app-shell` | `stable` | docs ✓ · a11y ✓ · spec ✓(14) · visual ✓ | Header + Sidebar + main composition. |
 | `banner` | `stable` | docs ✓ · a11y ✓ · spec — · visual ✓ | Presentational + single dismiss (no-logic exception). |
 | `container` | `stable` | docs ✓ · a11y ✓ · spec — · visual — | Pure layout (max-width + padding). |
-| `filter-bar` | `beta` | docs ✓ · a11y ✓ · spec ✗ · visual ✓ | Active-filter chips. **Open:** multi-select chip groups. Needs spec. |
+| `filter-bar` | `beta` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Active-filter chips. **Open:** multi-select chip groups. |
 | `form-section` | `stable` | docs ✓ · a11y ✓ · spec — · visual — | Presentational title block (no-logic exception). |
 | `grid` | `stable` | docs ✓ · a11y ✓ · spec — · visual — | Pure layout (equal-column responsive). |
-| `header` | `beta` | docs ✓ · a11y ✓ · spec ✗ · visual ✓ | Logo + nav + search + user-menu slot. **Open:** mobile breakpoint. Needs spec. |
-| `nav-item` | `beta` | docs ✓ · a11y ✓ · spec ✗ · visual ✗ | Collapsed-mode `aria-label`. Needs spec + visual. |
-| `notification-center` | `beta` | docs ✓ · a11y ✓ · spec ✗ · visual ✗ | **Open:** pagination of long lists. Needs spec + visual. |
+| `header` | `beta` | docs ✓ · a11y ✓ · spec ✓(19) · visual ✓ | Logo + nav + search + user-menu slot. **Open:** mobile breakpoint. |
+| `nav-item` | `stable` | docs ✓ · a11y ✓ · spec ✓(16) · visual ✓ | Collapsed-mode `aria-label`, active state, depth. |
+| `notification-center` | `beta` | docs ✓ · a11y ✓ · spec ✓(20) · visual ✓ | Item rows now keyboard-operable (`click$` wired). **Open:** pagination of long lists. |
 | `page-error` | `stable` | docs ✓ · a11y ✓ · spec — · visual ✓ | Presentational (404 / 500 / generic). |
-| `page-header` | `beta` | docs ✓ · a11y ✓ · spec ✗ · visual ✓ | Title + breadcrumbs + actions + tabs. **Open:** collapsible variant. Needs spec. |
+| `page-header` | `beta` | docs ✓ · a11y ✓ · spec ✓(14) · visual ✓ | Title + breadcrumbs + actions + tabs. **Open:** collapsible variant. |
 | `row` | `stable` | docs ✓ · a11y ✓ · spec — · visual — | Pure layout (flex primitive). |
 | `search-bar` | `stable` | docs ✓ · a11y ✓ · spec ✓(2) · visual ✓ | Inline + command-palette variants settled. |
-| `settings-panel` | `beta` | docs ✓ · a11y ✓ · spec ✓(3) · visual ✗ | SettingsRow children. **Open:** drag-to-reorder. No visual baseline. |
-| `sidebar` | `beta` | docs ✓ · a11y ✓ · spec ✗ · visual ✓ | Expanded / collapsed. **Open:** persistent vs session-scoped collapse. Needs spec. |
+| `settings-panel` | `beta` | docs ✓ · a11y ✓ · spec ✓(3) · visual ✓ | SettingsRow children. **Open:** drag-to-reorder. |
+| `sidebar` | `beta` | docs ✓ · a11y ✓ · spec ✓(27) · visual ✓ | Expanded / collapsed. **Open:** persistent vs session-scoped collapse. |
 | `stack` | `stable` | docs ✓ · a11y ✓ · spec — · visual — | Pure layout (flex primitive). |
-| `stat-card` | `beta` | docs ✓ · a11y ✓ · spec ✗ · visual ✓ | Single-metric tile + trend. **Open:** sparkline integration. Needs spec. |
-| `table-toolbar` | `beta` | docs ✓ · a11y ✓ · spec ✗ · visual ✓ | Search + filter + actions slots. Needs spec. |
+| `stat-card` | `beta` | docs ✓ · a11y ✓ · spec ✓(16) · visual ✓ | Single-metric tile + trend. **Open:** sparkline integration. |
+| `table-toolbar` | `stable` | docs ✓ · a11y ✓ · spec ✓(17) · visual ✓ | Search + filter + actions + bulk-select + density. |
 | `theme-toggle` | `stable` | docs ✓ · a11y ✓ · spec ✓(6) · visual ✓ | Light / dark / system. |
-| `user-menu` | `beta` | docs ✓ · a11y ✓ · spec ✗ · visual ✓ | Avatar + menu. **Open:** presence indicator as a separate component. Needs spec. |
+| `user-menu` | `beta` | docs ✓ · a11y ✓ · spec ✓(17) · visual ✓ | Avatar + menu. **Open:** presence indicator as a separate component. |
 
-**Patterns: 9 `stable` · 11 `beta`.**
+**Patterns: 12 `stable` · 8 `beta`.**
 
 ## Documentation surface
 
@@ -129,6 +129,7 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 | `docs/components/<name>.md` | `stable` | Every component has a contract doc. |
 | `docs/patterns/<name>.md` | `stable` | All 20 patterns documented. |
 | `docs/MIGRATION-v5.md` | `stable` | 4.x → 5.0 single-package upgrade guide + codemod. |
+| `docs/keyboard-map.md` | `stable` | Cross-component keyboard chord reference. |
 | `docs/stability.md` | `beta` | This file. Update on every PR that changes a tier or coverage. |
 
 ## Tooling surface
@@ -143,17 +144,19 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 | `check-no-stale-refs.js` | `stable` | CI guard: no pre-v5 package/path references. |
 | `check-lockfile-workspaces.js` | `stable` | CI guard: lockfile workspace set matches disk. |
 | `publish-libs.js` | `stable` | Publishes unpublished `dist/packages/**` (single `@kanso-protocol/ui` + `@kanso-protocol/mcp`). |
-| Visual regression suite | `stable` | `e2e/visual.spec.ts` — 54 stories × 2 themes = 108 snapshots; runs in CI in the Playwright container. |
+| Visual regression suite | `stable` | `e2e/visual.spec.ts` — 60 stories × 2 themes + 12 RTL = 132 snapshots; runs in CI in the Playwright container. |
 
-## Known coverage gaps (tracked)
+## Coverage gaps — status
 
-The honest backlog behind the `beta` tiers — none block usage, but each is what stands between a surface and `stable`:
+The audit's gaps have been closed; what remains `beta` is held by open **API questions**, not missing coverage:
 
-- **`icon` has no unit spec** despite real registry logic. Highest-value gap (it's otherwise a heavily-used `stable`-grade component).
-- **Behavioral patterns lacking specs:** `app-shell`, `filter-bar`, `header`, `nav-item`, `notification-center`, `page-header`, `sidebar`, `stat-card`, `table-toolbar`, `user-menu`.
-- **No visual baseline:** `command-palette`, `file-upload`, `rich-text-editor`, `toast`, `virtual-list` (components); `app-shell`, `nav-item`, `notification-center`, `settings-panel` (patterns).
-- **RTL pass** — components use logical properties throughout, but there's no automated `dir="rtl"` snapshot spec.
-- **Keyboard-map doc** — most components implement WAI-ARIA patterns; a central per-component chord reference doesn't exist yet.
+- ~~`icon` has no unit spec~~ → **done** (12 tests); promoted to `stable`.
+- ~~Behavioral patterns lacking specs~~ → **done**: every pattern now has a spec (app-shell 14 · filter-bar 13 · header 19 · nav-item 16 · notification-center 20 · page-header 14 · sidebar 27 · stat-card 16 · table-toolbar 17 · user-menu 17). app-shell, nav-item, and table-toolbar promoted to `stable`.
+- ~~No visual baseline~~ → **done** for the in-flow surfaces (file-upload, virtual-list, app-shell, nav-item, notification-center, settings-panel). `command-palette`, `rich-text-editor`, and `toast` are marked **visual n/a** — they render in a top-layer/portal or animate, so a `#storybook-root` snapshot can't capture them deterministically (this is a deliberate exclusion, not a gap).
+- ~~RTL pass~~ → **done**: `e2e/visual.spec.ts` snapshots a directional subset under `dir="rtl"`.
+- ~~Keyboard-map doc~~ → **done**: [`docs/keyboard-map.md`](keyboard-map.md) — per-component chord reference.
+
+**Remaining is API-level only** — the `beta` surfaces each carry one open design question (multi-select chip groups, mobile header breakpoint, notification pagination, sidebar collapse persistence, sparkline, drag-reorder, presence indicator, combobox async API, etc.). Those are product decisions, not coverage debt; resolving each promotes its surface to `stable`.
 
 ## Out of scope (by design)
 

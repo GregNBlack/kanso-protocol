@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-07T10:25:18.836Z",
-  "totalSpecs": 44,
-  "totalTests": 454,
+  "generatedAt": "2026-06-07T15:37:21.770Z",
+  "totalSpecs": 55,
+  "totalTests": 639,
   "totalPackages": 62,
   "items": [
     {
@@ -212,6 +212,17 @@
         "packages/ui/form-field/src/form-field.spec.ts"
       ],
       "tests": 14
+    },
+    {
+      "layer": "components",
+      "name": "icon",
+      "title": "Components/Icon",
+      "storybookId": "components-icon--docs",
+      "specFile": "packages/ui/icon/src/icon.spec.ts",
+      "specFiles": [
+        "packages/ui/icon/src/icon.spec.ts"
+      ],
+      "tests": 12
     },
     {
       "layer": "components",
@@ -449,6 +460,61 @@
     },
     {
       "layer": "patterns",
+      "name": "app-shell",
+      "title": "Patterns/AppShell",
+      "storybookId": "patterns-appshell--docs",
+      "specFile": "packages/ui/app-shell/src/app-shell.spec.ts",
+      "specFiles": [
+        "packages/ui/app-shell/src/app-shell.spec.ts"
+      ],
+      "tests": 14
+    },
+    {
+      "layer": "patterns",
+      "name": "filter-bar",
+      "title": "Patterns/FilterBar",
+      "storybookId": "patterns-filterbar--docs",
+      "specFile": "packages/ui/filter-bar/src/filter-bar.spec.ts",
+      "specFiles": [
+        "packages/ui/filter-bar/src/filter-bar.spec.ts"
+      ],
+      "tests": 13
+    },
+    {
+      "layer": "patterns",
+      "name": "header",
+      "title": "Patterns/Header",
+      "storybookId": "patterns-header--docs",
+      "specFile": "packages/ui/header/src/header.spec.ts",
+      "specFiles": [
+        "packages/ui/header/src/header.spec.ts"
+      ],
+      "tests": 19
+    },
+    {
+      "layer": "patterns",
+      "name": "nav-item",
+      "title": "Patterns/NavItem",
+      "storybookId": "patterns-navitem--docs",
+      "specFile": "packages/ui/nav-item/src/nav-item.spec.ts",
+      "specFiles": [
+        "packages/ui/nav-item/src/nav-item.spec.ts"
+      ],
+      "tests": 16
+    },
+    {
+      "layer": "patterns",
+      "name": "page-header",
+      "title": "Patterns/PageHeader",
+      "storybookId": "patterns-pageheader--docs",
+      "specFile": "packages/ui/page-header/src/page-header.spec.ts",
+      "specFiles": [
+        "packages/ui/page-header/src/page-header.spec.ts"
+      ],
+      "tests": 14
+    },
+    {
+      "layer": "patterns",
       "name": "search-bar",
       "title": "Patterns/SearchBar",
       "storybookId": "patterns-searchbar--docs",
@@ -471,6 +537,39 @@
     },
     {
       "layer": "patterns",
+      "name": "sidebar",
+      "title": "Patterns/Sidebar",
+      "storybookId": "patterns-sidebar--docs",
+      "specFile": "packages/ui/sidebar/src/sidebar.spec.ts",
+      "specFiles": [
+        "packages/ui/sidebar/src/sidebar.spec.ts"
+      ],
+      "tests": 27
+    },
+    {
+      "layer": "patterns",
+      "name": "stat-card",
+      "title": "Patterns/StatCard",
+      "storybookId": "patterns-statcard--docs",
+      "specFile": "packages/ui/stat-card/src/stat-card.spec.ts",
+      "specFiles": [
+        "packages/ui/stat-card/src/stat-card.spec.ts"
+      ],
+      "tests": 16
+    },
+    {
+      "layer": "patterns",
+      "name": "table-toolbar",
+      "title": "Patterns/TableToolbar",
+      "storybookId": "patterns-tabletoolbar--docs",
+      "specFile": "packages/ui/table-toolbar/src/table-toolbar.spec.ts",
+      "specFiles": [
+        "packages/ui/table-toolbar/src/table-toolbar.spec.ts"
+      ],
+      "tests": 17
+    },
+    {
+      "layer": "patterns",
       "name": "theme-toggle",
       "title": "Patterns/ThemeToggle",
       "storybookId": "patterns-themetoggle--docs",
@@ -479,6 +578,28 @@
         "packages/ui/theme-toggle/src/theme-toggle.spec.ts"
       ],
       "tests": 6
+    },
+    {
+      "layer": "patterns",
+      "name": "user-menu",
+      "title": "Patterns/UserMenu",
+      "storybookId": "patterns-usermenu--docs",
+      "specFile": "packages/ui/user-menu/src/user-menu.spec.ts",
+      "specFiles": [
+        "packages/ui/user-menu/src/user-menu.spec.ts"
+      ],
+      "tests": 17
+    },
+    {
+      "layer": "patterns",
+      "name": "notification-center",
+      "title": "Sarah mentioned you",
+      "storybookId": "sarah-mentioned-you--docs",
+      "specFile": "packages/ui/notification-center/src/notification-center.spec.ts",
+      "specFiles": [
+        "packages/ui/notification-center/src/notification-center.spec.ts"
+      ],
+      "tests": 20
     },
     {
       "layer": "components",
@@ -494,16 +615,6 @@
   ],
   "missing": [
     {
-      "layer": "components",
-      "name": "icon",
-      "title": "Components/Icon"
-    },
-    {
-      "layer": "patterns",
-      "name": "app-shell",
-      "title": "Patterns/AppShell"
-    },
-    {
       "layer": "patterns",
       "name": "banner",
       "title": "Patterns/Banner"
@@ -512,11 +623,6 @@
       "layer": "patterns",
       "name": "container",
       "title": "Patterns/Container"
-    },
-    {
-      "layer": "patterns",
-      "name": "filter-bar",
-      "title": "Patterns/FilterBar"
     },
     {
       "layer": "patterns",
@@ -530,23 +636,8 @@
     },
     {
       "layer": "patterns",
-      "name": "header",
-      "title": "Patterns/Header"
-    },
-    {
-      "layer": "patterns",
-      "name": "nav-item",
-      "title": "Patterns/NavItem"
-    },
-    {
-      "layer": "patterns",
       "name": "page-error",
       "title": "Patterns/PageError"
-    },
-    {
-      "layer": "patterns",
-      "name": "page-header",
-      "title": "Patterns/PageHeader"
     },
     {
       "layer": "patterns",
@@ -555,33 +646,8 @@
     },
     {
       "layer": "patterns",
-      "name": "sidebar",
-      "title": "Patterns/Sidebar"
-    },
-    {
-      "layer": "patterns",
       "name": "stack",
       "title": "Patterns/Stack"
-    },
-    {
-      "layer": "patterns",
-      "name": "stat-card",
-      "title": "Patterns/StatCard"
-    },
-    {
-      "layer": "patterns",
-      "name": "table-toolbar",
-      "title": "Patterns/TableToolbar"
-    },
-    {
-      "layer": "patterns",
-      "name": "user-menu",
-      "title": "Patterns/UserMenu"
-    },
-    {
-      "layer": "patterns",
-      "name": "notification-center",
-      "title": "Sarah mentioned you"
     }
   ]
 }
