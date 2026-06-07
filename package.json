@@ -15,6 +15,8 @@
     "build:lib": "node scripts/build-libs.js --only",
     "prebuild:libs": "npm run build:tokens",
     "build:mcp": "node scripts/build-mcp.js",
+    "build:elements": "node scripts/build-elements.js",
+    "test:elements": "playwright test e2e/elements.spec.ts --config e2e/playwright.config.ts",
     "generate:mcp-manifest": "node scripts/generate-mcp-manifest.js",
     "generate:icons": "node scripts/generate-icon-map.js",
     "build": "npm run build:tokens && npm run generate:icons && npm run build:libs && npm run build:mcp",

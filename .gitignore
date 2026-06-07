@@ -27,3 +27,8 @@ Thumbs.db
 
 .claude/
 docs/articles/
+
+# Playwright run artifacts
+test-results/
+playwright-report/
+e2e/test-results/
