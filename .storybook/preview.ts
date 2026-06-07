@@ -6,7 +6,7 @@ import { withThemeByDataAttribute } from '@storybook/addon-themes';
  *
  * Backed by `@storybook/addon-themes` — flips a `data-theme` attribute
  * on the iframe `<html>`. The actual colour swap is driven by
- * `packages/core/styles/dark.css`, loaded in `preview-head.html`,
+ * `packages/ui/styles/dark.css`, loaded in `preview-head.html`,
  * which inverts the primitive grayscale + brand ramps under
  * `[data-theme="dark"]`.
  *
@@ -40,7 +40,7 @@ const preview: Preview = {
       },
     },
     // Backgrounds addon disabled — body background is driven by
-    // `[data-theme]` rules in `packages/core/styles/dark.css`, so the
+    // `[data-theme]` rules in `packages/ui/styles/dark.css`, so the
     // theme switcher alone flips both component colours and the canvas.
     backgrounds: { disable: true },
     // axe-core a11y checks — runs on every story, results surface in the

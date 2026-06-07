@@ -21,7 +21,7 @@ const __filename = fileURLToPath(import.meta.url);
 const ROOT = path.resolve(path.dirname(__filename), '..');
 const OUT = path.join(ROOT, 'packages', 'mcp', 'manifest.json');
 
-/** Convert `kp-button` → "Button", `@kanso-protocol/form-field` → "FormField". */
+/** Convert `kp-button` → "Button", `@kanso-protocol/ui/form-field` → "FormField". */
 function humanize(slug) {
   return slug
     .replace(/^@kanso-protocol\//, '')
