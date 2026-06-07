@@ -156,12 +156,11 @@ jobs:
         run: npm run build:tokens && npm run build-storybook
       - name: Detect baseline-refresh mode
         id: mode
-        run: |
-          if echo "${{ github.event.head_commit.message }}" | grep -q "\[update-baselines\]"; then
-            echo "update=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "update=false" >> "$GITHUB_OUTPUT"
-          fi
+        # Use a GitHub expression (not a shell echo of the commit message):
+        # contains() evaluates to the literal `true`/`false`, so the message
+        # never reaches the shell. Echoing it directly broke `sh -e` whenever
+        # the message held backticks / quotes / newlines (shell injection).
+        run: echo "update=${{ contains(github.event.head_commit.message, '[update-baselines]') }}" >> "$GITHUB_OUTPUT"
       - name: Serve Storybook & run visual diffs
         if: steps.mode.outputs.update == 'false'
         env:
