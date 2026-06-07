@@ -38,8 +38,8 @@
     "test": "ng test",
     "test:watch": "ng test --watch",
     "test:storybook": "test-storybook --config-dir .storybook",
-    "test:visual": "playwright test --config e2e/playwright.config.ts",
-    "test:visual:update": "playwright test --config e2e/playwright.config.ts --update-snapshots"
+    "test:visual": "playwright test e2e/visual.spec.ts --config e2e/playwright.config.ts",
+    "test:visual:update": "playwright test e2e/visual.spec.ts --config e2e/playwright.config.ts --update-snapshots"
   },
   "dependencies": {
     "@angular/animations": "^21.2.0",
