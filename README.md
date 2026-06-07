@@ -126,6 +126,8 @@ The assistant calls `list_components` / `get_component` / `list_tokens` under th
 ## Install & Use
 
 > New here? The [**getting-started guide**](docs/getting-started.md) takes you from install → tokens → first screen → a working form in five steps. It works with [`@angular/ssr`](docs/ssr.md) out of the box.
+>
+> **Not on Angular?** Kanso can compile to framework-agnostic [custom elements](docs/web-components.md) (`<kp-badge>`, `<kp-card>`, …) for React / Vue / plain HTML.
 
 One package, per-component entry points. Install once; import only what you use — each entry point is a separate ESM module, so tree-shaking ships only what you reference.
 

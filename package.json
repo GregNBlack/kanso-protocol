@@ -15,6 +15,8 @@
     "build:lib": "node scripts/build-libs.js --only",
     "prebuild:libs": "npm run build:tokens",
     "build:mcp": "node scripts/build-mcp.js",
+    "build:elements": "node scripts/build-elements.js",
+    "test:elements": "playwright test e2e/elements.spec.ts --config e2e/playwright.config.ts",
     "generate:mcp-manifest": "node scripts/generate-mcp-manifest.js",
     "generate:icons": "node scripts/generate-icon-map.js",
     "build": "npm run build:tokens && npm run generate:icons && npm run build:libs && npm run build:mcp",
@@ -36,14 +38,15 @@
     "test": "ng test",
     "test:watch": "ng test --watch",
     "test:storybook": "test-storybook --config-dir .storybook",
-    "test:visual": "playwright test --config e2e/playwright.config.ts",
-    "test:visual:update": "playwright test --config e2e/playwright.config.ts --update-snapshots"
+    "test:visual": "playwright test e2e/visual.spec.ts --config e2e/playwright.config.ts",
+    "test:visual:update": "playwright test e2e/visual.spec.ts --config e2e/playwright.config.ts --update-snapshots"
   },
   "dependencies": {
     "@angular/animations": "^21.2.0",
     "@angular/common": "^21.2.0",
     "@angular/compiler": "^21.2.0",
     "@angular/core": "^21.2.0",
+    "@angular/elements": "^21.2.16",
     "@angular/forms": "^21.2.0",
     "@angular/platform-browser": "^21.2.0",
     "@angular/platform-browser-dynamic": "^21.2.0",

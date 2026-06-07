@@ -23,8 +23,10 @@
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 
-// `source` is the private monorepo-root package name, not a component.
-const STALE_PKG = /@kanso-protocol\/(?!ui\b|ui\/|mcp\b|source\b)[a-z][a-z0-9-]*/;
+// First-party package names that are NOT pre-v5 per-component packages:
+// `ui` (the single package), `mcp` (the server), `source` (private repo
+// root), `elements` (the planned framework-agnostic custom-elements bundle).
+const STALE_PKG = /@kanso-protocol\/(?!ui\b|ui\/|mcp\b|source\b|elements\b)[a-z][a-z0-9-]*/;
 const STALE_PATH = /packages\/(components|patterns|core|i18n)\//;
 
 // Files that describe the OLD world on purpose — exempt by exact path or prefix.

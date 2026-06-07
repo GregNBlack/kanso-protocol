@@ -239,3 +239,26 @@ jobs:
             playwright-report/
           retention-days: 7
           if-no-files-found: ignore
+
+  web-components:
+    name: web-components (custom elements)
+    runs-on: ubuntu-latest
+    needs: build
+    # Playwright image (Chromium baked in) — the smoke loads the elements
+    # bundle on a blank page and asserts components upgrade + render.
+    container:
+      image: mcr.microsoft.com/playwright:v1.59.1-noble
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: 'npm'
+      - run: npm ci --legacy-peer-deps
+      - name: Build tokens + libs
+        run: npm run build:tokens && npm run build:libs
+      - name: Build custom-elements bundle
+        run: npm run build:elements
+      - name: Smoke — elements upgrade + render
+        run: npm run test:elements
