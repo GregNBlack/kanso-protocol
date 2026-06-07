@@ -5,157 +5,605 @@
   "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System",
   "communityUrl": "https://www.figma.com/community/file/1633266134559104948",
   "pages": {
-    "components":  { "id": "0:1",     "name": "🧩 Components" },
-    "patterns":    { "id": "3612:2",  "name": "📐 Patterns" },
-    "foundations": { "id": "6:4",     "name": "🎨 Foundations" },
-    "examples":    { "id": "3753:2",  "name": "🖼️ Example Pages" },
-    "assets":      { "id": "17:2",    "name": "⚙️ Assets" },
-    "manifest":    { "id": "6:3",     "name": "📋 Manifest" },
-    "cover":       { "id": "6:2",     "name": "📖 Cover" }
+    "components": {
+      "id": "0:1",
+      "name": "🧩 Components"
+    },
+    "patterns": {
+      "id": "3612:2",
+      "name": "📐 Patterns"
+    },
+    "foundations": {
+      "id": "6:4",
+      "name": "🎨 Foundations"
+    },
+    "examples": {
+      "id": "3753:2",
+      "name": "🖼️ Example Pages"
+    },
+    "assets": {
+      "id": "17:2",
+      "name": "⚙️ Assets"
+    },
+    "manifest": {
+      "id": "6:3",
+      "name": "📋 Manifest"
+    },
+    "cover": {
+      "id": "6:2",
+      "name": "📖 Cover"
+    }
   },
   "iconLibrary": {
     "$comment": "Tabler icons used in this library are now detached (inlined into the Kanso file) so community duplicators don't need an external library subscription. To add NEW icons inside Figma, use the official Tabler Icons plugin and drag glyphs in directly. The previous external file ref (0bgkes9nJYbk0vonduKaVZ) has been removed — every icon node now lives locally."
   },
   "components": {
-    "button":            "3805:10993",
-    "input":             "3805:10997",
-    "checkbox":          "3805:11001",
-    "radio":             "3805:11005",
-    "toggle":            "3805:11009",
-    "form-field":        "3805:11016",
-    "menu":              "3805:11020",
-    "textarea":          "3805:11024",
-    "select":            "3805:11028",
-    "number-stepper":    "3805:11032",
+    "button": "3805:10993",
+    "input": "3805:10997",
+    "checkbox": "3805:11001",
+    "radio": "3805:11005",
+    "toggle": "3805:11009",
+    "form-field": "3805:11016",
+    "menu": "3805:11020",
+    "textarea": "3805:11024",
+    "select": "3805:11028",
+    "number-stepper": "3805:11032",
     "segmented-control": "3805:11036",
-    "badge":             "3805:11040",
-    "alert":             "3805:11044",
-    "tooltip":           "3805:11048",
-    "popover":           "3805:11052",
-    "progress":          "3805:11056",
-    "tabs":              "3805:11068",
-    "breadcrumbs":       "3805:11072",
-    "pagination":        "3805:11076",
-    "dialog":            "3805:11083",
-    "divider":           "3805:11087",
-    "card":              "3805:11091",
-    "empty-state":       "3805:11095",
-    "drawer":            "3805:11099",
-    "accordion":         "3805:11103",
-    "skeleton":          "3805:11107",
-    "slider":            "3805:11111",
-    "combobox":          "3805:11115",
-    "datepicker":        "3805:11119",
-    "timepicker":        "3805:11123",
-    "toast":             "3805:11127",
-    "table":             "3805:11131",
-    "tree":              "3805:11135",
-    "avatar":            "3805:11139",
-    "avatar-group":      "3805:11139",
-    "rich-text-editor":  "3849:11648",
-    "markdown-viewer":   "4109:11282",
-    "file-upload":       "4110:11270",
-    "command-palette":   "4111:11234"
+    "badge": "3805:11040",
+    "alert": "3805:11044",
+    "tooltip": "3805:11048",
+    "popover": "3805:11052",
+    "progress": "3805:11056",
+    "tabs": "3805:11068",
+    "breadcrumbs": "3805:11072",
+    "pagination": "3805:11076",
+    "dialog": "3805:11083",
+    "divider": "3805:11087",
+    "card": "3805:11091",
+    "empty-state": "3805:11095",
+    "drawer": "3805:11099",
+    "accordion": "3805:11103",
+    "skeleton": "3805:11107",
+    "slider": "3805:11111",
+    "combobox": "3805:11115",
+    "datepicker": "3805:11119",
+    "timepicker": "3805:11123",
+    "toast": "3805:11127",
+    "table": "3805:11131",
+    "tree": "3805:11135",
+    "avatar": "3805:11139",
+    "avatar-group": "3805:11139",
+    "rich-text-editor": "3849:11648",
+    "markdown-viewer": "4109:11282",
+    "file-upload": "4110:11270",
+    "command-palette": "4111:11234"
   },
   "patterns": {
-    "app-shell":           "3822:7265",
-    "banner":              "3822:7272",
-    "container":           "3822:7280",
-    "filter-bar":          "3822:7288",
-    "form-section":        "3822:7296",
-    "grid":                "3822:7304",
-    "header":              "3822:7312",
-    "nav-item":            "3822:7320",
+    "app-shell": "3822:7265",
+    "banner": "3822:7272",
+    "container": "3822:7280",
+    "filter-bar": "3822:7288",
+    "form-section": "3822:7296",
+    "grid": "3822:7304",
+    "header": "3822:7312",
+    "nav-item": "3822:7320",
     "notification-center": "3822:7327",
-    "page-error":          "3822:7334",
-    "page-header":         "3822:7341",
-    "search-bar":          "3822:7356",
-    "settings-panel":      "3822:7364",
-    "sidebar":             "3822:7372",
-    "stat-card":           "3822:7387",
-    "table-toolbar":       "3822:7395",
-    "theme-toggle":        "3822:7403",
-    "user-menu":           "3822:7411",
-    "stack":               "3825:7265",
-    "row":                 "3825:7273"
+    "page-error": "3822:7334",
+    "page-header": "3822:7341",
+    "search-bar": "3822:7356",
+    "settings-panel": "3822:7364",
+    "sidebar": "3822:7372",
+    "stat-card": "3822:7387",
+    "table-toolbar": "3822:7395",
+    "theme-toggle": "3822:7403",
+    "user-menu": "3822:7411",
+    "stack": "3825:7265",
+    "row": "3825:7273"
   },
   "foundations": {
-    "typography":         "3043:2",
-    "colors":             "3051:2",
-    "spacing":            "3055:2",
-    "sizing":             "3056:2",
-    "radius":             "3057:2",
-    "elevation":          "3881:2",
-    "overlays":           "3881:30",
+    "typography": "3043:2",
+    "colors": "3051:2",
+    "spacing": "3055:2",
+    "sizing": "3056:2",
+    "radius": "3057:2",
+    "elevation": "3881:2",
+    "overlays": "3881:30",
     "foreground-on-dark": "3881:73",
-    "motion":             "3881:93"
+    "motion": "3881:93"
   },
   "codeConnect": {
     "$comment": "Static Code Connect map: round-trip resolution from Figma component name → npm package + Angular import + selector + docs + Storybook URL slug. Consumed by the MCP server (figma_for_component / get_component) and any external tool that wants to translate a Figma node ref into actual code. Add an entry here when adding a new component or pattern; the manifest generator merges these fields into each catalog item alongside the figma node ref.",
     "components": {
-      "button":            { "npm": "@kanso-protocol/button",            "primaryClass": "KpButtonComponent",            "selector": "kp-button",            "import": "import { KpButtonComponent } from '@kanso-protocol/button';",                       "docs": "docs/components/button.md",            "storybook": "components-button--docs" },
-      "input":             { "npm": "@kanso-protocol/input",             "primaryClass": "KpInputComponent",             "selector": "kp-input",             "import": "import { KpInputComponent } from '@kanso-protocol/input';",                         "docs": "docs/components/input.md",             "storybook": "components-input--docs" },
-      "checkbox":          { "npm": "@kanso-protocol/checkbox",          "primaryClass": "KpCheckboxComponent",          "selector": "kp-checkbox",          "import": "import { KpCheckboxComponent } from '@kanso-protocol/checkbox';",                   "docs": "docs/components/checkbox.md",          "storybook": "components-checkbox--docs" },
-      "radio":             { "npm": "@kanso-protocol/radio",             "primaryClass": "KpRadioComponent",             "selector": "kp-radio",             "import": "import { KpRadioComponent } from '@kanso-protocol/radio';",                         "docs": "docs/components/radio.md",             "storybook": "components-radio--docs" },
-      "toggle":            { "npm": "@kanso-protocol/toggle",            "primaryClass": "KpToggleComponent",            "selector": "kp-toggle",            "import": "import { KpToggleComponent } from '@kanso-protocol/toggle';",                       "docs": "docs/components/toggle.md",            "storybook": "components-toggle--docs" },
-      "form-field":        { "npm": "@kanso-protocol/form-field",        "primaryClass": "KpFormFieldComponent",        "selector": "kp-form-field",        "import": "import { KpFormFieldComponent } from '@kanso-protocol/form-field';",               "docs": "docs/components/form-field.md",        "storybook": "components-formfield--docs" },
-      "menu":              { "npm": "@kanso-protocol/menu",              "primaryClass": "KpDropdownMenuComponent",      "selector": "kp-dropdown-menu",     "import": "import { KpDropdownMenuComponent } from '@kanso-protocol/menu';",                   "docs": "docs/components/dropdown-menu.md",     "storybook": "components-dropdownmenu--docs" },
-      "textarea":          { "npm": "@kanso-protocol/textarea",          "primaryClass": "KpTextareaComponent",          "selector": "kp-textarea",          "import": "import { KpTextareaComponent } from '@kanso-protocol/textarea';",                   "docs": "docs/components/textarea.md",          "storybook": "components-textarea--docs" },
-      "select":            { "npm": "@kanso-protocol/select",            "primaryClass": "KpSelectComponent",            "selector": "kp-select",            "import": "import { KpSelectComponent } from '@kanso-protocol/select';",                       "docs": "docs/components/select.md",            "storybook": "components-select--docs" },
-      "number-stepper":    { "npm": "@kanso-protocol/number-stepper",    "primaryClass": "KpNumberStepperComponent",    "selector": "kp-number-stepper",    "import": "import { KpNumberStepperComponent } from '@kanso-protocol/number-stepper';",       "docs": "docs/components/number-stepper.md",    "storybook": "components-numberstepper--docs" },
-      "segmented-control": { "npm": "@kanso-protocol/segmented-control", "primaryClass": "KpSegmentedControlComponent", "selector": "kp-segmented-control", "import": "import { KpSegmentedControlComponent } from '@kanso-protocol/segmented-control';", "docs": "docs/components/segmented-control.md", "storybook": "components-segmentedcontrol--docs" },
-      "badge":             { "npm": "@kanso-protocol/badge",             "primaryClass": "KpBadgeComponent",             "selector": "kp-badge",             "import": "import { KpBadgeComponent } from '@kanso-protocol/badge';",                         "docs": "docs/components/badge.md",             "storybook": "components-badge--docs" },
-      "alert":             { "npm": "@kanso-protocol/alert",             "primaryClass": "KpAlertComponent",             "selector": "kp-alert",             "import": "import { KpAlertComponent } from '@kanso-protocol/alert';",                         "docs": "docs/components/alert.md",             "storybook": "components-alert--docs" },
-      "tooltip":           { "npm": "@kanso-protocol/tooltip",           "primaryClass": "KpTooltipComponent",           "selector": "kp-tooltip",           "import": "import { KpTooltipComponent } from '@kanso-protocol/tooltip';",                     "docs": "docs/components/tooltip.md",           "storybook": "components-tooltip--docs" },
-      "popover":           { "npm": "@kanso-protocol/popover",           "primaryClass": "KpPopoverComponent",           "selector": "kp-popover",           "import": "import { KpPopoverComponent } from '@kanso-protocol/popover';",                     "docs": "docs/components/popover.md",           "storybook": "components-popover--docs" },
-      "progress":          { "npm": "@kanso-protocol/progress",          "primaryClass": "KpProgressLinearComponent",   "selector": "kp-progress-linear",   "import": "import { KpProgressLinearComponent } from '@kanso-protocol/progress';",            "docs": "docs/components/progress.md",          "storybook": "components-progress-linear--docs" },
-      "tabs":              { "npm": "@kanso-protocol/tabs",              "primaryClass": "KpTabsComponent",              "selector": "kp-tabs",              "import": "import { KpTabsComponent } from '@kanso-protocol/tabs';",                           "docs": "docs/components/tabs.md",              "storybook": "components-tabs--docs" },
-      "breadcrumbs":       { "npm": "@kanso-protocol/breadcrumbs",       "primaryClass": "KpBreadcrumbsComponent",       "selector": "kp-breadcrumbs",       "import": "import { KpBreadcrumbsComponent } from '@kanso-protocol/breadcrumbs';",             "docs": "docs/components/breadcrumbs.md",       "storybook": "components-breadcrumbs--docs" },
-      "pagination":        { "npm": "@kanso-protocol/pagination",        "primaryClass": "KpPaginationComponent",        "selector": "kp-pagination",        "import": "import { KpPaginationComponent } from '@kanso-protocol/pagination';",               "docs": "docs/components/pagination.md",        "storybook": "components-pagination--docs" },
-      "dialog":            { "npm": "@kanso-protocol/dialog",            "primaryClass": "KpDialogComponent",            "selector": "kp-dialog",            "import": "import { KpDialogComponent } from '@kanso-protocol/dialog';",                       "docs": "docs/components/dialog.md",            "storybook": "components-dialog--docs" },
-      "divider":           { "npm": "@kanso-protocol/divider",           "primaryClass": "KpDividerComponent",           "selector": "kp-divider",           "import": "import { KpDividerComponent } from '@kanso-protocol/divider';",                     "docs": "docs/components/divider.md",           "storybook": "components-divider--docs" },
-      "card":              { "npm": "@kanso-protocol/card",              "primaryClass": "KpCardComponent",              "selector": "kp-card",              "import": "import { KpCardComponent } from '@kanso-protocol/card';",                           "docs": "docs/components/card.md",              "storybook": "components-card--docs" },
-      "empty-state":       { "npm": "@kanso-protocol/empty-state",       "primaryClass": "KpEmptyStateComponent",       "selector": "kp-empty-state",       "import": "import { KpEmptyStateComponent } from '@kanso-protocol/empty-state';",             "docs": "docs/components/empty-state.md",       "storybook": "components-emptystate--docs" },
-      "drawer":            { "npm": "@kanso-protocol/drawer",            "primaryClass": "KpDrawerComponent",            "selector": "kp-drawer",            "import": "import { KpDrawerComponent } from '@kanso-protocol/drawer';",                       "docs": "docs/components/drawer.md",            "storybook": "components-drawer--docs" },
-      "accordion":         { "npm": "@kanso-protocol/accordion",         "primaryClass": "KpAccordionComponent",         "selector": "kp-accordion",         "import": "import { KpAccordionComponent } from '@kanso-protocol/accordion';",                 "docs": "docs/components/accordion.md",         "storybook": "components-accordion--docs" },
-      "skeleton":          { "npm": "@kanso-protocol/skeleton",          "primaryClass": "KpSkeletonComponent",          "selector": "kp-skeleton",          "import": "import { KpSkeletonComponent } from '@kanso-protocol/skeleton';",                   "docs": "docs/components/skeleton.md",          "storybook": "components-skeleton--docs" },
-      "slider":            { "npm": "@kanso-protocol/slider",            "primaryClass": "KpSliderComponent",            "selector": "kp-slider",            "import": "import { KpSliderComponent } from '@kanso-protocol/slider';",                       "docs": "docs/components/slider.md",            "storybook": "components-slider--docs" },
-      "combobox":          { "npm": "@kanso-protocol/combobox",          "primaryClass": "KpComboboxComponent",          "selector": "kp-combobox",          "import": "import { KpComboboxComponent } from '@kanso-protocol/combobox';",                   "docs": "docs/components/combobox.md",          "storybook": "components-combobox--docs" },
-      "datepicker":        { "npm": "@kanso-protocol/datepicker",        "primaryClass": "KpDatePickerComponent",        "selector": "kp-datepicker",        "import": "import { KpDatePickerComponent } from '@kanso-protocol/datepicker';",               "docs": "docs/components/datepicker.md",        "storybook": "components-datepicker--docs" },
-      "timepicker":        { "npm": "@kanso-protocol/timepicker",        "primaryClass": "KpTimePickerComponent",        "selector": "kp-timepicker",        "import": "import { KpTimePickerComponent } from '@kanso-protocol/timepicker';",               "docs": "docs/components/timepicker.md",        "storybook": "components-timepicker--docs" },
-      "toast":             { "npm": "@kanso-protocol/toast",             "primaryClass": "KpToastHostComponent",         "selector": "kp-toast-host",        "import": "import { KpToastHostComponent } from '@kanso-protocol/toast';",                     "docs": "docs/components/toast.md",             "storybook": "components-toast--docs" },
-      "table":             { "npm": "@kanso-protocol/table",             "primaryClass": "KpTableComponent",             "selector": "kp-table",             "import": "import { KpTableComponent } from '@kanso-protocol/table';",                         "docs": "docs/components/table.md",             "storybook": "components-table--docs" },
-      "tree":              { "npm": "@kanso-protocol/tree",              "primaryClass": "KpTreeComponent",              "selector": "kp-tree",              "import": "import { KpTreeComponent } from '@kanso-protocol/tree';",                           "docs": "docs/components/tree.md",              "storybook": "components-tree--docs" },
-      "avatar":            { "npm": "@kanso-protocol/avatar",            "primaryClass": "KpAvatarComponent",            "selector": "kp-avatar",            "import": "import { KpAvatarComponent } from '@kanso-protocol/avatar';",                       "docs": "docs/components/avatar.md",            "storybook": "components-avatar--docs" },
-      "avatar-group":      { "npm": "@kanso-protocol/avatar-group",      "primaryClass": "KpAvatarGroupComponent",      "selector": "kp-avatar-group",      "import": "import { KpAvatarGroupComponent } from '@kanso-protocol/avatar-group';",           "docs": "docs/components/avatar-group.md",      "storybook": "components-avatargroup--docs" },
-      "rich-text-editor":  { "npm": "@kanso-protocol/rich-text-editor",  "primaryClass": "KpRichTextEditorComponent",  "selector": "kp-rich-text-editor",  "import": "import { KpRichTextEditorComponent } from '@kanso-protocol/rich-text-editor';",   "docs": "docs/components/rich-text-editor.md",  "storybook": "components-richtexteditor--docs" },
-      "markdown-viewer":   { "npm": "@kanso-protocol/markdown-viewer",   "primaryClass": "KpMarkdownViewerComponent",   "selector": "kp-markdown-viewer",   "import": "import { KpMarkdownViewerComponent } from '@kanso-protocol/markdown-viewer';",     "docs": "docs/components/markdown-viewer.md",   "storybook": "components-markdownviewer--docs" },
-      "file-upload":       { "npm": "@kanso-protocol/file-upload",       "primaryClass": "KpFileUploadComponent",       "selector": "kp-file-upload",       "import": "import { KpFileUploadComponent } from '@kanso-protocol/file-upload';",             "docs": "docs/components/file-upload.md",       "storybook": "components-fileupload--docs" },
-      "command-palette":   { "npm": "@kanso-protocol/command-palette",   "primaryClass": "KpCommandPaletteComponent",   "selector": "kp-command-palette",   "import": "import { KpCommandPaletteComponent } from '@kanso-protocol/command-palette';",     "docs": "docs/components/command-palette.md",   "storybook": "components-commandpalette--docs" },
-      "icon":              { "npm": "@kanso-protocol/icon",              "primaryClass": "KpIconComponent",              "selector": "kp-icon",              "import": "import { KpIconComponent } from '@kanso-protocol/icon';",                           "docs": "docs/components/icon.md",              "storybook": "components-icon--docs" },
-      "virtual-list":      { "npm": "@kanso-protocol/virtual-list",      "primaryClass": "KpVirtualListComponent",      "selector": "kp-virtual-list",      "import": "import { KpVirtualListComponent } from '@kanso-protocol/virtual-list';",           "docs": "docs/components/virtual-list.md",      "storybook": "components-virtuallist--docs" }
+      "button": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpButtonComponent",
+        "selector": "kp-button",
+        "import": "import { KpButtonComponent } from '@kanso-protocol/ui/button';",
+        "docs": "docs/components/button.md",
+        "storybook": "components-button--docs"
+      },
+      "input": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpInputComponent",
+        "selector": "kp-input",
+        "import": "import { KpInputComponent } from '@kanso-protocol/ui/input';",
+        "docs": "docs/components/input.md",
+        "storybook": "components-input--docs"
+      },
+      "checkbox": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpCheckboxComponent",
+        "selector": "kp-checkbox",
+        "import": "import { KpCheckboxComponent } from '@kanso-protocol/ui/checkbox';",
+        "docs": "docs/components/checkbox.md",
+        "storybook": "components-checkbox--docs"
+      },
+      "radio": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpRadioComponent",
+        "selector": "kp-radio",
+        "import": "import { KpRadioComponent } from '@kanso-protocol/ui/radio';",
+        "docs": "docs/components/radio.md",
+        "storybook": "components-radio--docs"
+      },
+      "toggle": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpToggleComponent",
+        "selector": "kp-toggle",
+        "import": "import { KpToggleComponent } from '@kanso-protocol/ui/toggle';",
+        "docs": "docs/components/toggle.md",
+        "storybook": "components-toggle--docs"
+      },
+      "form-field": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpFormFieldComponent",
+        "selector": "kp-form-field",
+        "import": "import { KpFormFieldComponent } from '@kanso-protocol/ui/form-field';",
+        "docs": "docs/components/form-field.md",
+        "storybook": "components-formfield--docs"
+      },
+      "menu": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpDropdownMenuComponent",
+        "selector": "kp-dropdown-menu",
+        "import": "import { KpDropdownMenuComponent } from '@kanso-protocol/ui/menu';",
+        "docs": "docs/components/dropdown-menu.md",
+        "storybook": "components-dropdownmenu--docs"
+      },
+      "textarea": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpTextareaComponent",
+        "selector": "kp-textarea",
+        "import": "import { KpTextareaComponent } from '@kanso-protocol/ui/textarea';",
+        "docs": "docs/components/textarea.md",
+        "storybook": "components-textarea--docs"
+      },
+      "select": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpSelectComponent",
+        "selector": "kp-select",
+        "import": "import { KpSelectComponent } from '@kanso-protocol/ui/select';",
+        "docs": "docs/components/select.md",
+        "storybook": "components-select--docs"
+      },
+      "number-stepper": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpNumberStepperComponent",
+        "selector": "kp-number-stepper",
+        "import": "import { KpNumberStepperComponent } from '@kanso-protocol/ui/number-stepper';",
+        "docs": "docs/components/number-stepper.md",
+        "storybook": "components-numberstepper--docs"
+      },
+      "segmented-control": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpSegmentedControlComponent",
+        "selector": "kp-segmented-control",
+        "import": "import { KpSegmentedControlComponent } from '@kanso-protocol/ui/segmented-control';",
+        "docs": "docs/components/segmented-control.md",
+        "storybook": "components-segmentedcontrol--docs"
+      },
+      "badge": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpBadgeComponent",
+        "selector": "kp-badge",
+        "import": "import { KpBadgeComponent } from '@kanso-protocol/ui/badge';",
+        "docs": "docs/components/badge.md",
+        "storybook": "components-badge--docs"
+      },
+      "alert": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpAlertComponent",
+        "selector": "kp-alert",
+        "import": "import { KpAlertComponent } from '@kanso-protocol/ui/alert';",
+        "docs": "docs/components/alert.md",
+        "storybook": "components-alert--docs"
+      },
+      "tooltip": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpTooltipComponent",
+        "selector": "kp-tooltip",
+        "import": "import { KpTooltipComponent } from '@kanso-protocol/ui/tooltip';",
+        "docs": "docs/components/tooltip.md",
+        "storybook": "components-tooltip--docs"
+      },
+      "popover": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpPopoverComponent",
+        "selector": "kp-popover",
+        "import": "import { KpPopoverComponent } from '@kanso-protocol/ui/popover';",
+        "docs": "docs/components/popover.md",
+        "storybook": "components-popover--docs"
+      },
+      "progress": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpProgressLinearComponent",
+        "selector": "kp-progress-linear",
+        "import": "import { KpProgressLinearComponent } from '@kanso-protocol/ui/progress';",
+        "docs": "docs/components/progress.md",
+        "storybook": "components-progress-linear--docs"
+      },
+      "tabs": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpTabsComponent",
+        "selector": "kp-tabs",
+        "import": "import { KpTabsComponent } from '@kanso-protocol/ui/tabs';",
+        "docs": "docs/components/tabs.md",
+        "storybook": "components-tabs--docs"
+      },
+      "breadcrumbs": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpBreadcrumbsComponent",
+        "selector": "kp-breadcrumbs",
+        "import": "import { KpBreadcrumbsComponent } from '@kanso-protocol/ui/breadcrumbs';",
+        "docs": "docs/components/breadcrumbs.md",
+        "storybook": "components-breadcrumbs--docs"
+      },
+      "pagination": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpPaginationComponent",
+        "selector": "kp-pagination",
+        "import": "import { KpPaginationComponent } from '@kanso-protocol/ui/pagination';",
+        "docs": "docs/components/pagination.md",
+        "storybook": "components-pagination--docs"
+      },
+      "dialog": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpDialogComponent",
+        "selector": "kp-dialog",
+        "import": "import { KpDialogComponent } from '@kanso-protocol/ui/dialog';",
+        "docs": "docs/components/dialog.md",
+        "storybook": "components-dialog--docs"
+      },
+      "divider": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpDividerComponent",
+        "selector": "kp-divider",
+        "import": "import { KpDividerComponent } from '@kanso-protocol/ui/divider';",
+        "docs": "docs/components/divider.md",
+        "storybook": "components-divider--docs"
+      },
+      "card": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpCardComponent",
+        "selector": "kp-card",
+        "import": "import { KpCardComponent } from '@kanso-protocol/ui/card';",
+        "docs": "docs/components/card.md",
+        "storybook": "components-card--docs"
+      },
+      "empty-state": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpEmptyStateComponent",
+        "selector": "kp-empty-state",
+        "import": "import { KpEmptyStateComponent } from '@kanso-protocol/ui/empty-state';",
+        "docs": "docs/components/empty-state.md",
+        "storybook": "components-emptystate--docs"
+      },
+      "drawer": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpDrawerComponent",
+        "selector": "kp-drawer",
+        "import": "import { KpDrawerComponent } from '@kanso-protocol/ui/drawer';",
+        "docs": "docs/components/drawer.md",
+        "storybook": "components-drawer--docs"
+      },
+      "accordion": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpAccordionComponent",
+        "selector": "kp-accordion",
+        "import": "import { KpAccordionComponent } from '@kanso-protocol/ui/accordion';",
+        "docs": "docs/components/accordion.md",
+        "storybook": "components-accordion--docs"
+      },
+      "skeleton": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpSkeletonComponent",
+        "selector": "kp-skeleton",
+        "import": "import { KpSkeletonComponent } from '@kanso-protocol/ui/skeleton';",
+        "docs": "docs/components/skeleton.md",
+        "storybook": "components-skeleton--docs"
+      },
+      "slider": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpSliderComponent",
+        "selector": "kp-slider",
+        "import": "import { KpSliderComponent } from '@kanso-protocol/ui/slider';",
+        "docs": "docs/components/slider.md",
+        "storybook": "components-slider--docs"
+      },
+      "combobox": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpComboboxComponent",
+        "selector": "kp-combobox",
+        "import": "import { KpComboboxComponent } from '@kanso-protocol/ui/combobox';",
+        "docs": "docs/components/combobox.md",
+        "storybook": "components-combobox--docs"
+      },
+      "datepicker": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpDatePickerComponent",
+        "selector": "kp-datepicker",
+        "import": "import { KpDatePickerComponent } from '@kanso-protocol/ui/datepicker';",
+        "docs": "docs/components/datepicker.md",
+        "storybook": "components-datepicker--docs"
+      },
+      "timepicker": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpTimePickerComponent",
+        "selector": "kp-timepicker",
+        "import": "import { KpTimePickerComponent } from '@kanso-protocol/ui/timepicker';",
+        "docs": "docs/components/timepicker.md",
+        "storybook": "components-timepicker--docs"
+      },
+      "toast": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpToastHostComponent",
+        "selector": "kp-toast-host",
+        "import": "import { KpToastHostComponent } from '@kanso-protocol/ui/toast';",
+        "docs": "docs/components/toast.md",
+        "storybook": "components-toast--docs"
+      },
+      "table": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpTableComponent",
+        "selector": "kp-table",
+        "import": "import { KpTableComponent } from '@kanso-protocol/ui/table';",
+        "docs": "docs/components/table.md",
+        "storybook": "components-table--docs"
+      },
+      "tree": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpTreeComponent",
+        "selector": "kp-tree",
+        "import": "import { KpTreeComponent } from '@kanso-protocol/ui/tree';",
+        "docs": "docs/components/tree.md",
+        "storybook": "components-tree--docs"
+      },
+      "avatar": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpAvatarComponent",
+        "selector": "kp-avatar",
+        "import": "import { KpAvatarComponent } from '@kanso-protocol/ui/avatar';",
+        "docs": "docs/components/avatar.md",
+        "storybook": "components-avatar--docs"
+      },
+      "avatar-group": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpAvatarGroupComponent",
+        "selector": "kp-avatar-group",
+        "import": "import { KpAvatarGroupComponent } from '@kanso-protocol/ui/avatar-group';",
+        "docs": "docs/components/avatar-group.md",
+        "storybook": "components-avatargroup--docs"
+      },
+      "rich-text-editor": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpRichTextEditorComponent",
+        "selector": "kp-rich-text-editor",
+        "import": "import { KpRichTextEditorComponent } from '@kanso-protocol/ui/rich-text-editor';",
+        "docs": "docs/components/rich-text-editor.md",
+        "storybook": "components-richtexteditor--docs"
+      },
+      "markdown-viewer": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpMarkdownViewerComponent",
+        "selector": "kp-markdown-viewer",
+        "import": "import { KpMarkdownViewerComponent } from '@kanso-protocol/ui/markdown-viewer';",
+        "docs": "docs/components/markdown-viewer.md",
+        "storybook": "components-markdownviewer--docs"
+      },
+      "file-upload": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpFileUploadComponent",
+        "selector": "kp-file-upload",
+        "import": "import { KpFileUploadComponent } from '@kanso-protocol/ui/file-upload';",
+        "docs": "docs/components/file-upload.md",
+        "storybook": "components-fileupload--docs"
+      },
+      "command-palette": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpCommandPaletteComponent",
+        "selector": "kp-command-palette",
+        "import": "import { KpCommandPaletteComponent } from '@kanso-protocol/ui/command-palette';",
+        "docs": "docs/components/command-palette.md",
+        "storybook": "components-commandpalette--docs"
+      },
+      "icon": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpIconComponent",
+        "selector": "kp-icon",
+        "import": "import { KpIconComponent } from '@kanso-protocol/ui/icon';",
+        "docs": "docs/components/icon.md",
+        "storybook": "components-icon--docs"
+      },
+      "virtual-list": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpVirtualListComponent",
+        "selector": "kp-virtual-list",
+        "import": "import { KpVirtualListComponent } from '@kanso-protocol/ui/virtual-list';",
+        "docs": "docs/components/virtual-list.md",
+        "storybook": "components-virtuallist--docs"
+      }
     },
     "patterns": {
-      "app-shell":           { "npm": "@kanso-protocol/app-shell",           "primaryClass": "KpAppShellComponent",           "selector": "kp-app-shell",           "import": "import { KpAppShellComponent } from '@kanso-protocol/app-shell';",                     "docs": "docs/patterns/app-shell.md",           "storybook": "patterns-appshell--docs" },
-      "banner":              { "npm": "@kanso-protocol/banner",              "primaryClass": "KpBannerComponent",              "selector": "kp-banner",              "import": "import { KpBannerComponent } from '@kanso-protocol/banner';",                          "docs": "docs/patterns/banner.md",              "storybook": "patterns-banner--docs" },
-      "container":           { "npm": "@kanso-protocol/container",           "primaryClass": "KpContainerComponent",           "selector": "kp-container",           "import": "import { KpContainerComponent } from '@kanso-protocol/container';",                    "docs": "docs/patterns/container.md",           "storybook": "patterns-container--docs" },
-      "filter-bar":          { "npm": "@kanso-protocol/filter-bar",          "primaryClass": "KpFilterBarComponent",          "selector": "kp-filter-bar",          "import": "import { KpFilterBarComponent } from '@kanso-protocol/filter-bar';",                  "docs": "docs/patterns/filter-bar.md",          "storybook": "patterns-filterbar--docs" },
-      "form-section":        { "npm": "@kanso-protocol/form-section",        "primaryClass": "KpFormSectionComponent",        "selector": "kp-form-section",        "import": "import { KpFormSectionComponent } from '@kanso-protocol/form-section';",              "docs": "docs/patterns/form-section.md",        "storybook": "patterns-formsection--docs" },
-      "grid":                { "npm": "@kanso-protocol/grid",                "primaryClass": "KpGridComponent",                "selector": "kp-grid",                "import": "import { KpGridComponent } from '@kanso-protocol/grid';",                              "docs": "docs/patterns/grid.md",                "storybook": "patterns-grid--docs" },
-      "header":              { "npm": "@kanso-protocol/header",              "primaryClass": "KpHeaderComponent",              "selector": "kp-header",              "import": "import { KpHeaderComponent } from '@kanso-protocol/header';",                          "docs": "docs/patterns/header.md",              "storybook": "patterns-header--docs" },
-      "nav-item":            { "npm": "@kanso-protocol/nav-item",            "primaryClass": "KpNavItemComponent",            "selector": "kp-nav-item",            "import": "import { KpNavItemComponent } from '@kanso-protocol/nav-item';",                      "docs": "docs/patterns/nav-item.md",            "storybook": "patterns-navitem--docs" },
-      "notification-center": { "npm": "@kanso-protocol/notification-center", "primaryClass": "KpNotificationCenterComponent", "selector": "kp-notification-center", "import": "import { KpNotificationCenterComponent } from '@kanso-protocol/notification-center';", "docs": "docs/patterns/notification-center.md", "storybook": "patterns-notificationcenter--docs" },
-      "page-error":          { "npm": "@kanso-protocol/page-error",          "primaryClass": "KpPageErrorComponent",          "selector": "kp-page-error",          "import": "import { KpPageErrorComponent } from '@kanso-protocol/page-error';",                  "docs": "docs/patterns/page-error.md",          "storybook": "patterns-pageerror--docs" },
-      "page-header":         { "npm": "@kanso-protocol/page-header",         "primaryClass": "KpPageHeaderComponent",         "selector": "kp-page-header",         "import": "import { KpPageHeaderComponent } from '@kanso-protocol/page-header';",                "docs": "docs/patterns/page-header.md",         "storybook": "patterns-pageheader--docs" },
-      "search-bar":          { "npm": "@kanso-protocol/search-bar",          "primaryClass": "KpSearchBarComponent",          "selector": "kp-search-bar",          "import": "import { KpSearchBarComponent } from '@kanso-protocol/search-bar';",                  "docs": "docs/patterns/search-bar.md",          "storybook": "patterns-searchbar--docs" },
-      "settings-panel":      { "npm": "@kanso-protocol/settings-panel",      "primaryClass": "KpSettingsPanelComponent",      "selector": "kp-settings-panel",      "import": "import { KpSettingsPanelComponent } from '@kanso-protocol/settings-panel';",          "docs": "docs/patterns/settings-panel.md",      "storybook": "patterns-settingspanel--docs" },
-      "sidebar":             { "npm": "@kanso-protocol/sidebar",             "primaryClass": "KpSidebarComponent",             "selector": "kp-sidebar",             "import": "import { KpSidebarComponent } from '@kanso-protocol/sidebar';",                        "docs": "docs/patterns/sidebar.md",             "storybook": "patterns-sidebar--docs" },
-      "stat-card":           { "npm": "@kanso-protocol/stat-card",           "primaryClass": "KpStatCardComponent",           "selector": "kp-stat-card",           "import": "import { KpStatCardComponent } from '@kanso-protocol/stat-card';",                    "docs": "docs/patterns/stat-card.md",           "storybook": "patterns-statcard--docs" },
-      "table-toolbar":       { "npm": "@kanso-protocol/table-toolbar",       "primaryClass": "KpTableToolbarComponent",       "selector": "kp-table-toolbar",       "import": "import { KpTableToolbarComponent } from '@kanso-protocol/table-toolbar';",            "docs": "docs/patterns/table-toolbar.md",       "storybook": "patterns-tabletoolbar--docs" },
-      "theme-toggle":        { "npm": "@kanso-protocol/theme-toggle",        "primaryClass": "KpThemeToggleComponent",        "selector": "kp-theme-toggle",        "import": "import { KpThemeToggleComponent } from '@kanso-protocol/theme-toggle';",              "docs": "docs/patterns/theme-toggle.md",        "storybook": "patterns-themetoggle--docs" },
-      "user-menu":           { "npm": "@kanso-protocol/user-menu",           "primaryClass": "KpUserMenuComponent",           "selector": "kp-user-menu",           "import": "import { KpUserMenuComponent } from '@kanso-protocol/user-menu';",                    "docs": "docs/patterns/user-menu.md",           "storybook": "patterns-usermenu--docs" },
-      "stack":               { "npm": "@kanso-protocol/stack",               "primaryClass": "KpStackComponent",               "selector": "kp-stack",               "import": "import { KpStackComponent } from '@kanso-protocol/stack';",                            "docs": "docs/patterns/stack.md",               "storybook": "patterns-stack--docs" },
-      "row":                 { "npm": "@kanso-protocol/row",                 "primaryClass": "KpRowComponent",                 "selector": "kp-row",                 "import": "import { KpRowComponent } from '@kanso-protocol/row';",                                "docs": "docs/patterns/row.md",                 "storybook": "patterns-row--docs" }
+      "app-shell": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpAppShellComponent",
+        "selector": "kp-app-shell",
+        "import": "import { KpAppShellComponent } from '@kanso-protocol/ui/app-shell';",
+        "docs": "docs/patterns/app-shell.md",
+        "storybook": "patterns-appshell--docs"
+      },
+      "banner": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpBannerComponent",
+        "selector": "kp-banner",
+        "import": "import { KpBannerComponent } from '@kanso-protocol/ui/banner';",
+        "docs": "docs/patterns/banner.md",
+        "storybook": "patterns-banner--docs"
+      },
+      "container": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpContainerComponent",
+        "selector": "kp-container",
+        "import": "import { KpContainerComponent } from '@kanso-protocol/ui/container';",
+        "docs": "docs/patterns/container.md",
+        "storybook": "patterns-container--docs"
+      },
+      "filter-bar": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpFilterBarComponent",
+        "selector": "kp-filter-bar",
+        "import": "import { KpFilterBarComponent } from '@kanso-protocol/ui/filter-bar';",
+        "docs": "docs/patterns/filter-bar.md",
+        "storybook": "patterns-filterbar--docs"
+      },
+      "form-section": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpFormSectionComponent",
+        "selector": "kp-form-section",
+        "import": "import { KpFormSectionComponent } from '@kanso-protocol/ui/form-section';",
+        "docs": "docs/patterns/form-section.md",
+        "storybook": "patterns-formsection--docs"
+      },
+      "grid": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpGridComponent",
+        "selector": "kp-grid",
+        "import": "import { KpGridComponent } from '@kanso-protocol/ui/grid';",
+        "docs": "docs/patterns/grid.md",
+        "storybook": "patterns-grid--docs"
+      },
+      "header": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpHeaderComponent",
+        "selector": "kp-header",
+        "import": "import { KpHeaderComponent } from '@kanso-protocol/ui/header';",
+        "docs": "docs/patterns/header.md",
+        "storybook": "patterns-header--docs"
+      },
+      "nav-item": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpNavItemComponent",
+        "selector": "kp-nav-item",
+        "import": "import { KpNavItemComponent } from '@kanso-protocol/ui/nav-item';",
+        "docs": "docs/patterns/nav-item.md",
+        "storybook": "patterns-navitem--docs"
+      },
+      "notification-center": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpNotificationCenterComponent",
+        "selector": "kp-notification-center",
+        "import": "import { KpNotificationCenterComponent } from '@kanso-protocol/ui/notification-center';",
+        "docs": "docs/patterns/notification-center.md",
+        "storybook": "patterns-notificationcenter--docs"
+      },
+      "page-error": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpPageErrorComponent",
+        "selector": "kp-page-error",
+        "import": "import { KpPageErrorComponent } from '@kanso-protocol/ui/page-error';",
+        "docs": "docs/patterns/page-error.md",
+        "storybook": "patterns-pageerror--docs"
+      },
+      "page-header": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpPageHeaderComponent",
+        "selector": "kp-page-header",
+        "import": "import { KpPageHeaderComponent } from '@kanso-protocol/ui/page-header';",
+        "docs": "docs/patterns/page-header.md",
+        "storybook": "patterns-pageheader--docs"
+      },
+      "search-bar": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpSearchBarComponent",
+        "selector": "kp-search-bar",
+        "import": "import { KpSearchBarComponent } from '@kanso-protocol/ui/search-bar';",
+        "docs": "docs/patterns/search-bar.md",
+        "storybook": "patterns-searchbar--docs"
+      },
+      "settings-panel": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpSettingsPanelComponent",
+        "selector": "kp-settings-panel",
+        "import": "import { KpSettingsPanelComponent } from '@kanso-protocol/ui/settings-panel';",
+        "docs": "docs/patterns/settings-panel.md",
+        "storybook": "patterns-settingspanel--docs"
+      },
+      "sidebar": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpSidebarComponent",
+        "selector": "kp-sidebar",
+        "import": "import { KpSidebarComponent } from '@kanso-protocol/ui/sidebar';",
+        "docs": "docs/patterns/sidebar.md",
+        "storybook": "patterns-sidebar--docs"
+      },
+      "stat-card": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpStatCardComponent",
+        "selector": "kp-stat-card",
+        "import": "import { KpStatCardComponent } from '@kanso-protocol/ui/stat-card';",
+        "docs": "docs/patterns/stat-card.md",
+        "storybook": "patterns-statcard--docs"
+      },
+      "table-toolbar": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpTableToolbarComponent",
+        "selector": "kp-table-toolbar",
+        "import": "import { KpTableToolbarComponent } from '@kanso-protocol/ui/table-toolbar';",
+        "docs": "docs/patterns/table-toolbar.md",
+        "storybook": "patterns-tabletoolbar--docs"
+      },
+      "theme-toggle": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpThemeToggleComponent",
+        "selector": "kp-theme-toggle",
+        "import": "import { KpThemeToggleComponent } from '@kanso-protocol/ui/theme-toggle';",
+        "docs": "docs/patterns/theme-toggle.md",
+        "storybook": "patterns-themetoggle--docs"
+      },
+      "user-menu": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpUserMenuComponent",
+        "selector": "kp-user-menu",
+        "import": "import { KpUserMenuComponent } from '@kanso-protocol/ui/user-menu';",
+        "docs": "docs/patterns/user-menu.md",
+        "storybook": "patterns-usermenu--docs"
+      },
+      "stack": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpStackComponent",
+        "selector": "kp-stack",
+        "import": "import { KpStackComponent } from '@kanso-protocol/ui/stack';",
+        "docs": "docs/patterns/stack.md",
+        "storybook": "patterns-stack--docs"
+      },
+      "row": {
+        "npm": "@kanso-protocol/ui",
+        "primaryClass": "KpRowComponent",
+        "selector": "kp-row",
+        "import": "import { KpRowComponent } from '@kanso-protocol/ui/row';",
+        "docs": "docs/patterns/row.md",
+        "storybook": "patterns-row--docs"
+      }
     }
   }
 }

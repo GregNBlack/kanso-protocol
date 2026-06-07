@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-07T10:27:04.005Z",
+  "generatedAt": "2026-06-07T13:01:53.120Z",
   "version": "4.2.0",
   "totals": {
     "components": 59,
@@ -136,10 +136,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11103"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/accordion",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpAccordionComponent",
         "selector": "kp-accordion",
-        "import": "import { KpAccordionComponent } from '@kanso-protocol/accordion';",
+        "import": "import { KpAccordionComponent } from '@kanso-protocol/ui/accordion';",
         "docs": "docs/components/accordion.md",
         "storybook": "components-accordion--docs"
       }
@@ -189,10 +189,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11103"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/accordion",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpAccordionComponent",
         "selector": "kp-accordion",
-        "import": "import { KpAccordionComponent } from '@kanso-protocol/accordion';",
+        "import": "import { KpAccordionComponent } from '@kanso-protocol/ui/accordion';",
         "docs": "docs/components/accordion.md",
         "storybook": "components-accordion--docs"
       }
@@ -273,10 +273,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11044"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/alert",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpAlertComponent",
         "selector": "kp-alert",
-        "import": "import { KpAlertComponent } from '@kanso-protocol/alert';",
+        "import": "import { KpAlertComponent } from '@kanso-protocol/ui/alert';",
         "docs": "docs/components/alert.md",
         "storybook": "components-alert--docs"
       }
@@ -373,10 +373,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11139"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/avatar",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpAvatarComponent",
         "selector": "kp-avatar",
-        "import": "import { KpAvatarComponent } from '@kanso-protocol/avatar';",
+        "import": "import { KpAvatarComponent } from '@kanso-protocol/ui/avatar';",
         "docs": "docs/components/avatar.md",
         "storybook": "components-avatar--docs"
       }
@@ -426,10 +426,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11139"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/avatar-group",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpAvatarGroupComponent",
         "selector": "kp-avatar-group",
-        "import": "import { KpAvatarGroupComponent } from '@kanso-protocol/avatar-group';",
+        "import": "import { KpAvatarGroupComponent } from '@kanso-protocol/ui/avatar-group';",
         "docs": "docs/components/avatar-group.md",
         "storybook": "components-avatargroup--docs"
       }
@@ -510,10 +510,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11040"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/badge",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpBadgeComponent",
         "selector": "kp-badge",
-        "import": "import { KpBadgeComponent } from '@kanso-protocol/badge';",
+        "import": "import { KpBadgeComponent } from '@kanso-protocol/ui/badge';",
         "docs": "docs/components/badge.md",
         "storybook": "components-badge--docs"
       }
@@ -589,10 +589,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11072"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/breadcrumbs",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpBreadcrumbsComponent",
         "selector": "kp-breadcrumbs",
-        "import": "import { KpBreadcrumbsComponent } from '@kanso-protocol/breadcrumbs';",
+        "import": "import { KpBreadcrumbsComponent } from '@kanso-protocol/ui/breadcrumbs';",
         "docs": "docs/components/breadcrumbs.md",
         "storybook": "components-breadcrumbs--docs"
       }
@@ -635,10 +635,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11072"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/breadcrumbs",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpBreadcrumbsComponent",
         "selector": "kp-breadcrumbs",
-        "import": "import { KpBreadcrumbsComponent } from '@kanso-protocol/breadcrumbs';",
+        "import": "import { KpBreadcrumbsComponent } from '@kanso-protocol/ui/breadcrumbs';",
         "docs": "docs/components/breadcrumbs.md",
         "storybook": "components-breadcrumbs--docs"
       }
@@ -691,10 +691,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11072"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/breadcrumbs",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpBreadcrumbsComponent",
         "selector": "kp-breadcrumbs",
-        "import": "import { KpBreadcrumbsComponent } from '@kanso-protocol/breadcrumbs';",
+        "import": "import { KpBreadcrumbsComponent } from '@kanso-protocol/ui/breadcrumbs';",
         "docs": "docs/components/breadcrumbs.md",
         "storybook": "components-breadcrumbs--docs"
       }
@@ -739,10 +739,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11072"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/breadcrumbs",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpBreadcrumbsComponent",
         "selector": "kp-breadcrumbs",
-        "import": "import { KpBreadcrumbsComponent } from '@kanso-protocol/breadcrumbs';",
+        "import": "import { KpBreadcrumbsComponent } from '@kanso-protocol/ui/breadcrumbs';",
         "docs": "docs/components/breadcrumbs.md",
         "storybook": "components-breadcrumbs--docs"
       }
@@ -826,10 +826,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-10993"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/button",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpButtonComponent",
         "selector": "kp-button",
-        "import": "import { KpButtonComponent } from '@kanso-protocol/button';",
+        "import": "import { KpButtonComponent } from '@kanso-protocol/ui/button';",
         "docs": "docs/components/button.md",
         "storybook": "components-button--docs"
       }
@@ -886,10 +886,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-10993"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/button",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpButtonComponent",
         "selector": "kp-button",
-        "import": "import { KpButtonComponent } from '@kanso-protocol/button';",
+        "import": "import { KpButtonComponent } from '@kanso-protocol/ui/button';",
         "docs": "docs/components/button.md",
         "storybook": "components-button--docs"
       }
@@ -992,10 +992,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11091"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/card",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpCardComponent",
         "selector": "kp-card",
-        "import": "import { KpCardComponent } from '@kanso-protocol/card';",
+        "import": "import { KpCardComponent } from '@kanso-protocol/ui/card';",
         "docs": "docs/components/card.md",
         "storybook": "components-card--docs"
       }
@@ -1106,10 +1106,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11001"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/checkbox",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpCheckboxComponent",
         "selector": "kp-checkbox",
-        "import": "import { KpCheckboxComponent } from '@kanso-protocol/checkbox';",
+        "import": "import { KpCheckboxComponent } from '@kanso-protocol/ui/checkbox';",
         "docs": "docs/components/checkbox.md",
         "storybook": "components-checkbox--docs"
       }
@@ -1216,10 +1216,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11115"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/combobox",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpComboboxComponent",
         "selector": "kp-combobox",
-        "import": "import { KpComboboxComponent } from '@kanso-protocol/combobox';",
+        "import": "import { KpComboboxComponent } from '@kanso-protocol/ui/combobox';",
         "docs": "docs/components/combobox.md",
         "storybook": "components-combobox--docs"
       }
@@ -1320,10 +1320,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=4111-11234"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/command-palette",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpCommandPaletteComponent",
         "selector": "kp-command-palette",
-        "import": "import { KpCommandPaletteComponent } from '@kanso-protocol/command-palette';",
+        "import": "import { KpCommandPaletteComponent } from '@kanso-protocol/ui/command-palette';",
         "docs": "docs/components/command-palette.md",
         "storybook": "components-commandpalette--docs"
       }
@@ -1456,10 +1456,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11119"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/datepicker",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpDatePickerComponent",
         "selector": "kp-datepicker",
-        "import": "import { KpDatePickerComponent } from '@kanso-protocol/datepicker';",
+        "import": "import { KpDatePickerComponent } from '@kanso-protocol/ui/datepicker';",
         "docs": "docs/components/datepicker.md",
         "storybook": "components-datepicker--docs"
       }
@@ -1582,10 +1582,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11083"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/dialog",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpDialogComponent",
         "selector": "kp-dialog",
-        "import": "import { KpDialogComponent } from '@kanso-protocol/dialog';",
+        "import": "import { KpDialogComponent } from '@kanso-protocol/ui/dialog';",
         "docs": "docs/components/dialog.md",
         "storybook": "components-dialog--docs"
       }
@@ -1637,10 +1637,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11087"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/divider",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpDividerComponent",
         "selector": "kp-divider",
-        "import": "import { KpDividerComponent } from '@kanso-protocol/divider';",
+        "import": "import { KpDividerComponent } from '@kanso-protocol/ui/divider';",
         "docs": "docs/components/divider.md",
         "storybook": "components-divider--docs"
       }
@@ -1774,10 +1774,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11099"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/drawer",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpDrawerComponent",
         "selector": "kp-drawer",
-        "import": "import { KpDrawerComponent } from '@kanso-protocol/drawer';",
+        "import": "import { KpDrawerComponent } from '@kanso-protocol/ui/drawer';",
         "docs": "docs/components/drawer.md",
         "storybook": "components-drawer--docs"
       }
@@ -1839,10 +1839,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11095"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/empty-state",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpEmptyStateComponent",
         "selector": "kp-empty-state",
-        "import": "import { KpEmptyStateComponent } from '@kanso-protocol/empty-state';",
+        "import": "import { KpEmptyStateComponent } from '@kanso-protocol/ui/empty-state';",
         "docs": "docs/components/empty-state.md",
         "storybook": "components-emptystate--docs"
       }
@@ -1961,10 +1961,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=4110-11270"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/file-upload",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpFileUploadComponent",
         "selector": "kp-file-upload",
-        "import": "import { KpFileUploadComponent } from '@kanso-protocol/file-upload';",
+        "import": "import { KpFileUploadComponent } from '@kanso-protocol/ui/file-upload';",
         "docs": "docs/components/file-upload.md",
         "storybook": "components-fileupload--docs"
       }
@@ -2037,10 +2037,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11016"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/form-field",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpFormFieldComponent",
         "selector": "kp-form-field",
-        "import": "import { KpFormFieldComponent } from '@kanso-protocol/form-field';",
+        "import": "import { KpFormFieldComponent } from '@kanso-protocol/ui/form-field';",
         "docs": "docs/components/form-field.md",
         "storybook": "components-formfield--docs"
       }
@@ -2064,10 +2064,10 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-icon--docs",
       "sourcePath": "packages/ui/icon/src/icon.component.ts",
       "codeConnect": {
-        "npm": "@kanso-protocol/icon",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpIconComponent",
         "selector": "kp-icon",
-        "import": "import { KpIconComponent } from '@kanso-protocol/icon';",
+        "import": "import { KpIconComponent } from '@kanso-protocol/ui/icon';",
         "docs": "docs/components/icon.md",
         "storybook": "components-icon--docs"
       }
@@ -2163,10 +2163,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-10997"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/input",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpInputComponent",
         "selector": "kp-input",
-        "import": "import { KpInputComponent } from '@kanso-protocol/input';",
+        "import": "import { KpInputComponent } from '@kanso-protocol/ui/input';",
         "docs": "docs/components/input.md",
         "storybook": "components-input--docs"
       }
@@ -2225,10 +2225,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=4109-11282"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/markdown-viewer",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpMarkdownViewerComponent",
         "selector": "kp-markdown-viewer",
-        "import": "import { KpMarkdownViewerComponent } from '@kanso-protocol/markdown-viewer';",
+        "import": "import { KpMarkdownViewerComponent } from '@kanso-protocol/ui/markdown-viewer';",
         "docs": "docs/components/markdown-viewer.md",
         "storybook": "components-markdownviewer--docs"
       }
@@ -2313,10 +2313,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11020"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/menu",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpDropdownMenuComponent",
         "selector": "kp-dropdown-menu",
-        "import": "import { KpDropdownMenuComponent } from '@kanso-protocol/menu';",
+        "import": "import { KpDropdownMenuComponent } from '@kanso-protocol/ui/menu';",
         "docs": "docs/components/dropdown-menu.md",
         "storybook": "components-dropdownmenu--docs"
       }
@@ -2343,10 +2343,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11020"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/menu",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpDropdownMenuComponent",
         "selector": "kp-dropdown-menu",
-        "import": "import { KpDropdownMenuComponent } from '@kanso-protocol/menu';",
+        "import": "import { KpDropdownMenuComponent } from '@kanso-protocol/ui/menu';",
         "docs": "docs/components/dropdown-menu.md",
         "storybook": "components-dropdownmenu--docs"
       }
@@ -2434,10 +2434,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11020"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/menu",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpDropdownMenuComponent",
         "selector": "kp-dropdown-menu",
-        "import": "import { KpDropdownMenuComponent } from '@kanso-protocol/menu';",
+        "import": "import { KpDropdownMenuComponent } from '@kanso-protocol/ui/menu';",
         "docs": "docs/components/dropdown-menu.md",
         "storybook": "components-dropdownmenu--docs"
       }
@@ -2471,10 +2471,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11020"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/menu",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpDropdownMenuComponent",
         "selector": "kp-dropdown-menu",
-        "import": "import { KpDropdownMenuComponent } from '@kanso-protocol/menu';",
+        "import": "import { KpDropdownMenuComponent } from '@kanso-protocol/ui/menu';",
         "docs": "docs/components/dropdown-menu.md",
         "storybook": "components-dropdownmenu--docs"
       }
@@ -2564,10 +2564,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11032"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/number-stepper",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpNumberStepperComponent",
         "selector": "kp-number-stepper",
-        "import": "import { KpNumberStepperComponent } from '@kanso-protocol/number-stepper';",
+        "import": "import { KpNumberStepperComponent } from '@kanso-protocol/ui/number-stepper';",
         "docs": "docs/components/number-stepper.md",
         "storybook": "components-numberstepper--docs"
       }
@@ -2658,10 +2658,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11076"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/pagination",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpPaginationComponent",
         "selector": "kp-pagination",
-        "import": "import { KpPaginationComponent } from '@kanso-protocol/pagination';",
+        "import": "import { KpPaginationComponent } from '@kanso-protocol/ui/pagination';",
         "docs": "docs/components/pagination.md",
         "storybook": "components-pagination--docs"
       }
@@ -2788,10 +2788,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11076"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/pagination",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpPaginationComponent",
         "selector": "kp-pagination",
-        "import": "import { KpPaginationComponent } from '@kanso-protocol/pagination';",
+        "import": "import { KpPaginationComponent } from '@kanso-protocol/ui/pagination';",
         "docs": "docs/components/pagination.md",
         "storybook": "components-pagination--docs"
       }
@@ -2892,10 +2892,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11052"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/popover",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpPopoverComponent",
         "selector": "kp-popover",
-        "import": "import { KpPopoverComponent } from '@kanso-protocol/popover';",
+        "import": "import { KpPopoverComponent } from '@kanso-protocol/ui/popover';",
         "docs": "docs/components/popover.md",
         "storybook": "components-popover--docs"
       }
@@ -2967,10 +2967,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11052"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/popover",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpPopoverComponent",
         "selector": "kp-popover",
-        "import": "import { KpPopoverComponent } from '@kanso-protocol/popover';",
+        "import": "import { KpPopoverComponent } from '@kanso-protocol/ui/popover';",
         "docs": "docs/components/popover.md",
         "storybook": "components-popover--docs"
       }
@@ -3044,10 +3044,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11056"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/progress",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpProgressLinearComponent",
         "selector": "kp-progress-linear",
-        "import": "import { KpProgressLinearComponent } from '@kanso-protocol/progress';",
+        "import": "import { KpProgressLinearComponent } from '@kanso-protocol/ui/progress';",
         "docs": "docs/components/progress.md",
         "storybook": "components-progress-linear--docs"
       }
@@ -3130,10 +3130,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11056"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/progress",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpProgressLinearComponent",
         "selector": "kp-progress-linear",
-        "import": "import { KpProgressLinearComponent } from '@kanso-protocol/progress';",
+        "import": "import { KpProgressLinearComponent } from '@kanso-protocol/ui/progress';",
         "docs": "docs/components/progress.md",
         "storybook": "components-progress-linear--docs"
       }
@@ -3222,10 +3222,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11056"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/progress",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpProgressLinearComponent",
         "selector": "kp-progress-linear",
-        "import": "import { KpProgressLinearComponent } from '@kanso-protocol/progress';",
+        "import": "import { KpProgressLinearComponent } from '@kanso-protocol/ui/progress';",
         "docs": "docs/components/progress.md",
         "storybook": "components-progress-linear--docs"
       }
@@ -3284,10 +3284,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11005"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/radio",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpRadioComponent",
         "selector": "kp-radio",
-        "import": "import { KpRadioComponent } from '@kanso-protocol/radio';",
+        "import": "import { KpRadioComponent } from '@kanso-protocol/ui/radio';",
         "docs": "docs/components/radio.md",
         "storybook": "components-radio--docs"
       }
@@ -3386,10 +3386,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11005"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/radio",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpRadioComponent",
         "selector": "kp-radio",
-        "import": "import { KpRadioComponent } from '@kanso-protocol/radio';",
+        "import": "import { KpRadioComponent } from '@kanso-protocol/ui/radio';",
         "docs": "docs/components/radio.md",
         "storybook": "components-radio--docs"
       }
@@ -3464,10 +3464,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3849-11648"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/rich-text-editor",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpRichTextEditorComponent",
         "selector": "kp-rich-text-editor",
-        "import": "import { KpRichTextEditorComponent } from '@kanso-protocol/rich-text-editor';",
+        "import": "import { KpRichTextEditorComponent } from '@kanso-protocol/ui/rich-text-editor';",
         "docs": "docs/components/rich-text-editor.md",
         "storybook": "components-richtexteditor--docs"
       }
@@ -3538,10 +3538,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11036"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/segmented-control",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpSegmentedControlComponent",
         "selector": "kp-segmented-control",
-        "import": "import { KpSegmentedControlComponent } from '@kanso-protocol/segmented-control';",
+        "import": "import { KpSegmentedControlComponent } from '@kanso-protocol/ui/segmented-control';",
         "docs": "docs/components/segmented-control.md",
         "storybook": "components-segmentedcontrol--docs"
       }
@@ -3650,10 +3650,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11028"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/select",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpSelectComponent",
         "selector": "kp-select",
-        "import": "import { KpSelectComponent } from '@kanso-protocol/select';",
+        "import": "import { KpSelectComponent } from '@kanso-protocol/ui/select';",
         "docs": "docs/components/select.md",
         "storybook": "components-select--docs"
       }
@@ -3717,10 +3717,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11107"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/skeleton",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpSkeletonComponent",
         "selector": "kp-skeleton",
-        "import": "import { KpSkeletonComponent } from '@kanso-protocol/skeleton';",
+        "import": "import { KpSkeletonComponent } from '@kanso-protocol/ui/skeleton';",
         "docs": "docs/components/skeleton.md",
         "storybook": "components-skeleton--docs"
       }
@@ -3850,10 +3850,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11111"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/slider",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpSliderComponent",
         "selector": "kp-slider",
-        "import": "import { KpSliderComponent } from '@kanso-protocol/slider';",
+        "import": "import { KpSliderComponent } from '@kanso-protocol/ui/slider';",
         "docs": "docs/components/slider.md",
         "storybook": "components-slider--docs"
       }
@@ -3887,10 +3887,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11131"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/table",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpTableComponent",
         "selector": "kp-table",
-        "import": "import { KpTableComponent } from '@kanso-protocol/table';",
+        "import": "import { KpTableComponent } from '@kanso-protocol/ui/table';",
         "docs": "docs/components/table.md",
         "storybook": "components-table--docs"
       }
@@ -3924,10 +3924,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11131"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/table",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpTableComponent",
         "selector": "kp-table",
-        "import": "import { KpTableComponent } from '@kanso-protocol/table';",
+        "import": "import { KpTableComponent } from '@kanso-protocol/ui/table';",
         "docs": "docs/components/table.md",
         "storybook": "components-table--docs"
       }
@@ -4034,10 +4034,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11131"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/table",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpTableComponent",
         "selector": "kp-table",
-        "import": "import { KpTableComponent } from '@kanso-protocol/table';",
+        "import": "import { KpTableComponent } from '@kanso-protocol/ui/table';",
         "docs": "docs/components/table.md",
         "storybook": "components-table--docs"
       }
@@ -4106,10 +4106,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11068"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/tabs",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpTabsComponent",
         "selector": "kp-tabs",
-        "import": "import { KpTabsComponent } from '@kanso-protocol/tabs';",
+        "import": "import { KpTabsComponent } from '@kanso-protocol/ui/tabs';",
         "docs": "docs/components/tabs.md",
         "storybook": "components-tabs--docs"
       }
@@ -4160,10 +4160,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11068"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/tabs",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpTabsComponent",
         "selector": "kp-tabs",
-        "import": "import { KpTabsComponent } from '@kanso-protocol/tabs';",
+        "import": "import { KpTabsComponent } from '@kanso-protocol/ui/tabs';",
         "docs": "docs/components/tabs.md",
         "storybook": "components-tabs--docs"
       }
@@ -4257,10 +4257,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11024"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/textarea",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpTextareaComponent",
         "selector": "kp-textarea",
-        "import": "import { KpTextareaComponent } from '@kanso-protocol/textarea';",
+        "import": "import { KpTextareaComponent } from '@kanso-protocol/ui/textarea';",
         "docs": "docs/components/textarea.md",
         "storybook": "components-textarea--docs"
       }
@@ -4357,10 +4357,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11123"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/timepicker",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpTimePickerComponent",
         "selector": "kp-timepicker",
-        "import": "import { KpTimePickerComponent } from '@kanso-protocol/timepicker';",
+        "import": "import { KpTimePickerComponent } from '@kanso-protocol/ui/timepicker';",
         "docs": "docs/components/timepicker.md",
         "storybook": "components-timepicker--docs"
       }
@@ -4417,10 +4417,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11127"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/toast",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpToastHostComponent",
         "selector": "kp-toast-host",
-        "import": "import { KpToastHostComponent } from '@kanso-protocol/toast';",
+        "import": "import { KpToastHostComponent } from '@kanso-protocol/ui/toast';",
         "docs": "docs/components/toast.md",
         "storybook": "components-toast--docs"
       }
@@ -4519,10 +4519,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11009"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/toggle",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpToggleComponent",
         "selector": "kp-toggle",
-        "import": "import { KpToggleComponent } from '@kanso-protocol/toggle';",
+        "import": "import { KpToggleComponent } from '@kanso-protocol/ui/toggle';",
         "docs": "docs/components/toggle.md",
         "storybook": "components-toggle--docs"
       }
@@ -4592,10 +4592,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11048"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/tooltip",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpTooltipComponent",
         "selector": "kp-tooltip",
-        "import": "import { KpTooltipComponent } from '@kanso-protocol/tooltip';",
+        "import": "import { KpTooltipComponent } from '@kanso-protocol/ui/tooltip';",
         "docs": "docs/components/tooltip.md",
         "storybook": "components-tooltip--docs"
       }
@@ -4670,10 +4670,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11048"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/tooltip",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpTooltipComponent",
         "selector": "kp-tooltip",
-        "import": "import { KpTooltipComponent } from '@kanso-protocol/tooltip';",
+        "import": "import { KpTooltipComponent } from '@kanso-protocol/ui/tooltip';",
         "docs": "docs/components/tooltip.md",
         "storybook": "components-tooltip--docs"
       }
@@ -4772,10 +4772,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11135"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/tree",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpTreeComponent",
         "selector": "kp-tree",
-        "import": "import { KpTreeComponent } from '@kanso-protocol/tree';",
+        "import": "import { KpTreeComponent } from '@kanso-protocol/ui/tree';",
         "docs": "docs/components/tree.md",
         "storybook": "components-tree--docs"
       }
@@ -4799,10 +4799,10 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-virtuallist--docs",
       "sourcePath": "packages/ui/virtual-list/src/virtual-list.component.ts",
       "codeConnect": {
-        "npm": "@kanso-protocol/virtual-list",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpVirtualListComponent",
         "selector": "kp-virtual-list",
-        "import": "import { KpVirtualListComponent } from '@kanso-protocol/virtual-list';",
+        "import": "import { KpVirtualListComponent } from '@kanso-protocol/ui/virtual-list';",
         "docs": "docs/components/virtual-list.md",
         "storybook": "components-virtuallist--docs"
       }
@@ -4862,10 +4862,10 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-virtuallist--docs",
       "sourcePath": "packages/ui/virtual-list/src/virtual-list.component.ts",
       "codeConnect": {
-        "npm": "@kanso-protocol/virtual-list",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpVirtualListComponent",
         "selector": "kp-virtual-list",
-        "import": "import { KpVirtualListComponent } from '@kanso-protocol/virtual-list';",
+        "import": "import { KpVirtualListComponent } from '@kanso-protocol/ui/virtual-list';",
         "docs": "docs/components/virtual-list.md",
         "storybook": "components-virtuallist--docs"
       }
@@ -4927,10 +4927,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7265"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/app-shell",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpAppShellComponent",
         "selector": "kp-app-shell",
-        "import": "import { KpAppShellComponent } from '@kanso-protocol/app-shell';",
+        "import": "import { KpAppShellComponent } from '@kanso-protocol/ui/app-shell';",
         "docs": "docs/patterns/app-shell.md",
         "storybook": "patterns-appshell--docs"
       }
@@ -5004,10 +5004,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7272"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/banner",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpBannerComponent",
         "selector": "kp-banner",
-        "import": "import { KpBannerComponent } from '@kanso-protocol/banner';",
+        "import": "import { KpBannerComponent } from '@kanso-protocol/ui/banner';",
         "docs": "docs/patterns/banner.md",
         "storybook": "patterns-banner--docs"
       }
@@ -5049,10 +5049,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7280"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/container",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpContainerComponent",
         "selector": "kp-container",
-        "import": "import { KpContainerComponent } from '@kanso-protocol/container';",
+        "import": "import { KpContainerComponent } from '@kanso-protocol/ui/container';",
         "docs": "docs/patterns/container.md",
         "storybook": "patterns-container--docs"
       }
@@ -5123,10 +5123,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7288"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/filter-bar",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpFilterBarComponent",
         "selector": "kp-filter-bar",
-        "import": "import { KpFilterBarComponent } from '@kanso-protocol/filter-bar';",
+        "import": "import { KpFilterBarComponent } from '@kanso-protocol/ui/filter-bar';",
         "docs": "docs/patterns/filter-bar.md",
         "storybook": "patterns-filterbar--docs"
       }
@@ -5196,10 +5196,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7296"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/form-section",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpFormSectionComponent",
         "selector": "kp-form-section",
-        "import": "import { KpFormSectionComponent } from '@kanso-protocol/form-section';",
+        "import": "import { KpFormSectionComponent } from '@kanso-protocol/ui/form-section';",
         "docs": "docs/patterns/form-section.md",
         "storybook": "patterns-formsection--docs"
       }
@@ -5247,10 +5247,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7304"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/grid",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpGridComponent",
         "selector": "kp-grid",
-        "import": "import { KpGridComponent } from '@kanso-protocol/grid';",
+        "import": "import { KpGridComponent } from '@kanso-protocol/ui/grid';",
         "docs": "docs/patterns/grid.md",
         "storybook": "patterns-grid--docs"
       }
@@ -5409,10 +5409,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7312"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/header",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpHeaderComponent",
         "selector": "kp-header",
-        "import": "import { KpHeaderComponent } from '@kanso-protocol/header';",
+        "import": "import { KpHeaderComponent } from '@kanso-protocol/ui/header';",
         "docs": "docs/patterns/header.md",
         "storybook": "patterns-header--docs"
       }
@@ -5517,10 +5517,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7320"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/nav-item",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpNavItemComponent",
         "selector": "kp-nav-item",
-        "import": "import { KpNavItemComponent } from '@kanso-protocol/nav-item';",
+        "import": "import { KpNavItemComponent } from '@kanso-protocol/ui/nav-item';",
         "docs": "docs/patterns/nav-item.md",
         "storybook": "patterns-navitem--docs"
       }
@@ -5607,10 +5607,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7327"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/notification-center",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpNotificationCenterComponent",
         "selector": "kp-notification-center",
-        "import": "import { KpNotificationCenterComponent } from '@kanso-protocol/notification-center';",
+        "import": "import { KpNotificationCenterComponent } from '@kanso-protocol/ui/notification-center';",
         "docs": "docs/patterns/notification-center.md",
         "storybook": "patterns-notificationcenter--docs"
       }
@@ -5691,10 +5691,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7327"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/notification-center",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpNotificationCenterComponent",
         "selector": "kp-notification-center",
-        "import": "import { KpNotificationCenterComponent } from '@kanso-protocol/notification-center';",
+        "import": "import { KpNotificationCenterComponent } from '@kanso-protocol/ui/notification-center';",
         "docs": "docs/patterns/notification-center.md",
         "storybook": "patterns-notificationcenter--docs"
       }
@@ -5766,10 +5766,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7334"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/page-error",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpPageErrorComponent",
         "selector": "kp-page-error",
-        "import": "import { KpPageErrorComponent } from '@kanso-protocol/page-error';",
+        "import": "import { KpPageErrorComponent } from '@kanso-protocol/ui/page-error';",
         "docs": "docs/patterns/page-error.md",
         "storybook": "patterns-pageerror--docs"
       }
@@ -5868,10 +5868,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7341"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/page-header",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpPageHeaderComponent",
         "selector": "kp-page-header",
-        "import": "import { KpPageHeaderComponent } from '@kanso-protocol/page-header';",
+        "import": "import { KpPageHeaderComponent } from '@kanso-protocol/ui/page-header';",
         "docs": "docs/patterns/page-header.md",
         "storybook": "patterns-pageheader--docs"
       }
@@ -5925,10 +5925,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3825-7273"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/row",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpRowComponent",
         "selector": "kp-row",
-        "import": "import { KpRowComponent } from '@kanso-protocol/row';",
+        "import": "import { KpRowComponent } from '@kanso-protocol/ui/row';",
         "docs": "docs/patterns/row.md",
         "storybook": "patterns-row--docs"
       }
@@ -6017,10 +6017,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7356"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/search-bar",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpSearchBarComponent",
         "selector": "kp-search-bar",
-        "import": "import { KpSearchBarComponent } from '@kanso-protocol/search-bar';",
+        "import": "import { KpSearchBarComponent } from '@kanso-protocol/ui/search-bar';",
         "docs": "docs/patterns/search-bar.md",
         "storybook": "patterns-searchbar--docs"
       }
@@ -6090,10 +6090,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7364"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/settings-panel",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpSettingsPanelComponent",
         "selector": "kp-settings-panel",
-        "import": "import { KpSettingsPanelComponent } from '@kanso-protocol/settings-panel';",
+        "import": "import { KpSettingsPanelComponent } from '@kanso-protocol/ui/settings-panel';",
         "docs": "docs/patterns/settings-panel.md",
         "storybook": "patterns-settingspanel--docs"
       }
@@ -6157,10 +6157,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7364"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/settings-panel",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpSettingsPanelComponent",
         "selector": "kp-settings-panel",
-        "import": "import { KpSettingsPanelComponent } from '@kanso-protocol/settings-panel';",
+        "import": "import { KpSettingsPanelComponent } from '@kanso-protocol/ui/settings-panel';",
         "docs": "docs/patterns/settings-panel.md",
         "storybook": "patterns-settingspanel--docs"
       }
@@ -6269,10 +6269,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7372"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/sidebar",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpSidebarComponent",
         "selector": "kp-sidebar",
-        "import": "import { KpSidebarComponent } from '@kanso-protocol/sidebar';",
+        "import": "import { KpSidebarComponent } from '@kanso-protocol/ui/sidebar';",
         "docs": "docs/patterns/sidebar.md",
         "storybook": "patterns-sidebar--docs"
       }
@@ -6314,10 +6314,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3825-7265"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/stack",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpStackComponent",
         "selector": "kp-stack",
-        "import": "import { KpStackComponent } from '@kanso-protocol/stack';",
+        "import": "import { KpStackComponent } from '@kanso-protocol/ui/stack';",
         "docs": "docs/patterns/stack.md",
         "storybook": "patterns-stack--docs"
       }
@@ -6417,10 +6417,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7387"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/stat-card",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpStatCardComponent",
         "selector": "kp-stat-card",
-        "import": "import { KpStatCardComponent } from '@kanso-protocol/stat-card';",
+        "import": "import { KpStatCardComponent } from '@kanso-protocol/ui/stat-card';",
         "docs": "docs/patterns/stat-card.md",
         "storybook": "patterns-statcard--docs"
       }
@@ -6583,10 +6583,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7395"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/table-toolbar",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpTableToolbarComponent",
         "selector": "kp-table-toolbar",
-        "import": "import { KpTableToolbarComponent } from '@kanso-protocol/table-toolbar';",
+        "import": "import { KpTableToolbarComponent } from '@kanso-protocol/ui/table-toolbar';",
         "docs": "docs/patterns/table-toolbar.md",
         "storybook": "patterns-tabletoolbar--docs"
       }
@@ -6655,10 +6655,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7403"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/theme-toggle",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpThemeToggleComponent",
         "selector": "kp-theme-toggle",
-        "import": "import { KpThemeToggleComponent } from '@kanso-protocol/theme-toggle';",
+        "import": "import { KpThemeToggleComponent } from '@kanso-protocol/ui/theme-toggle';",
         "docs": "docs/patterns/theme-toggle.md",
         "storybook": "patterns-themetoggle--docs"
       }
@@ -6750,10 +6750,10 @@
         "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7411"
       },
       "codeConnect": {
-        "npm": "@kanso-protocol/user-menu",
+        "npm": "@kanso-protocol/ui",
         "primaryClass": "KpUserMenuComponent",
         "selector": "kp-user-menu",
-        "import": "import { KpUserMenuComponent } from '@kanso-protocol/user-menu';",
+        "import": "import { KpUserMenuComponent } from '@kanso-protocol/ui/user-menu';",
         "docs": "docs/patterns/user-menu.md",
         "storybook": "patterns-usermenu--docs"
       }
