@@ -7,9 +7,9 @@
 [![MCP](https://img.shields.io/badge/MCP-ready-7c3aed)](https://www.npmjs.com/package/@kanso-protocol/mcp)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-**Open source design system for Angular, built on architectural consistency.**
+**Open source design system for Angular — and any framework via Web Components — built on architectural consistency.**
 
-Design tokens in W3C DTCG format serve as a single source of truth for both Figma and code. Rules are embedded in architecture, not in agreements.
+Design tokens in W3C DTCG format serve as a single source of truth for both Figma and code. Rules are embedded in architecture, not in agreements. Native Angular components ship as [`@kanso-protocol/ui`](https://www.npmjs.com/package/@kanso-protocol/ui); the same components compile to framework-agnostic custom elements as [`@kanso-protocol/elements`](https://www.npmjs.com/package/@kanso-protocol/elements) for React, Vue, or plain HTML.
 
 > **Status: `5.x` stable.** Per the [stability matrix](docs/stability.md), 40 of 61 surfaces are `stable` (API frozen for `5.x`) and the rest `beta` (held by open API questions, not missing coverage); only `virtual-list` is still `experimental`. Pin exact versions in production. The `5.0` line consolidated the former 64 per-component packages into a single `@kanso-protocol/ui` package with per-component secondary entry points ([ADR 0002](docs/adrs/0002-single-package-secondary-entry-points.md)) — install once, import per-subpath, tree-shaking preserved. **Upgrading from 4.x?** Follow the [v5 migration guide](docs/MIGRATION-v5.md) (mechanical import-path change; no component API changed). See [`docs/roadmap.md`](docs/roadmap.md) for what's next and the [changelog](CHANGELOG.md) for what landed.
 
@@ -25,6 +25,7 @@ Design tokens in W3C DTCG format serve as a single source of truth for both Figm
 - **No exception without a record.** When a component departs from the contract, the deviation lives as an ADR with a reason — not as an undocumented one-off.
 - **Designed to stay small.** Components are added intentionally, when there's a clear need — not because something might be useful.
 - **One package, per-component entry points.** `npm i @kanso-protocol/ui`, then import each component from its own subpath (`@kanso-protocol/ui/button`). Tree-shaking ships only what you reference.
+- **Not just Angular.** The same components ship as framework-agnostic custom elements (`@kanso-protocol/elements`) — use `<kp-*>` from React, Vue, Svelte, or plain HTML. SSR-safe out of the box with `@angular/ssr`.
 - **AI-native.** Ships with `@kanso-protocol/mcp` — a Model Context Protocol server that exposes the live, typed catalog to Claude Code, Cursor, and VS Code, so the assistant authors Kanso UI from the actual API instead of from training-data guesses.
 
 ## Live Preview
@@ -127,7 +128,7 @@ The assistant calls `list_components` / `get_component` / `list_tokens` under th
 
 > New here? The [**getting-started guide**](docs/getting-started.md) takes you from install → tokens → first screen → a working form in five steps. It works with [`@angular/ssr`](docs/ssr.md) out of the box.
 >
-> **Not on Angular?** Kanso can compile to framework-agnostic [custom elements](docs/web-components.md) (`<kp-badge>`, `<kp-card>`, …) for React / Vue / plain HTML.
+> **Not on Angular?** `npm i @kanso-protocol/elements` gives you the same components as framework-agnostic [custom elements](docs/web-components.md) (`<kp-badge>`, `<kp-card>`, …) for React / Vue / plain HTML.
 
 One package, per-component entry points. Install once; import only what you use — each entry point is a separate ESM module, so tree-shaking ships only what you reference.
 

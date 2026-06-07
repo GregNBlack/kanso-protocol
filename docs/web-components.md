@@ -2,24 +2,25 @@
 
 Kanso ships an **Angular implementation**, but its components can be compiled to **framework-agnostic custom elements** so React, Vue, Svelte, or plain HTML can use the same design system. This is the bridge for non-Angular teams.
 
-> **Status: experimental / foundational.** The build and a runtime smoke are in the repo (`npm run build:elements`, CI `web-components` job); a published `@kanso-protocol/elements` package with per-component bundles is a tracked follow-up. If you're on Angular, use the native [`@kanso-protocol/ui`](getting-started.md) package — don't ship the custom-elements bundle (it embeds the Angular runtime).
+> **Status: experimental (`0.x`), published as [`@kanso-protocol/elements`](https://www.npmjs.com/package/@kanso-protocol/elements).** The API is stable; the packaging (one bundle today) may evolve. If you're on Angular, use the native [`@kanso-protocol/ui`](getting-started.md) package instead — don't ship the custom-elements bundle (it embeds the Angular runtime).
 
-## Build the bundle
+## Install
 
 ```bash
-npm run build:elements
-# → dist/elements/kanso-elements.mjs  (self-contained ESM, includes the Angular runtime)
+npm install @kanso-protocol/elements @kanso-protocol/ui
 ```
 
-It registers **73 element-selector components** (`<kp-badge>`, `<kp-card>`, `<kp-select>`, …) auto-discovered from `packages/ui`. The build runs the Angular linker over the AOT output so no `@angular/compiler` is needed at runtime.
+`@kanso-protocol/ui` is only for the token stylesheet (`styles/tokens.css`); the **73 element-selector components** (`<kp-badge>`, `<kp-card>`, `<kp-select>`, …) are bundled in. The bundle is built by running the Angular linker over the AOT output, so no `@angular/compiler` is needed at runtime.
 
 ## Use it
 
-Load the bundle as a module (it auto-defines every `kp-*` element) plus the token stylesheet:
+Import the package once (it auto-defines every `kp-*` element) plus the token stylesheet:
 
 ```html
-<link rel="stylesheet" href="@kanso-protocol/ui/styles/tokens.css" />
-<script type="module" src="/path/to/kanso-elements.mjs"></script>
+<link rel="stylesheet" href="node_modules/@kanso-protocol/ui/styles/tokens.css" />
+<script type="module">
+  import '@kanso-protocol/elements';
+</script>
 
 <kp-badge appearance="success">Active</kp-badge>
 <kp-card>
@@ -27,12 +28,14 @@ Load the bundle as a module (it auto-defines every `kp-*` element) plus the toke
 </kp-card>
 ```
 
-Or import and control timing:
+Or control timing:
 
 ```js
-import { defineKansoElements } from './kanso-elements.mjs';
+import { defineKansoElements } from '@kanso-protocol/elements';
 await defineKansoElements();
 ```
+
+> Building from source instead? `npm run build:elements` → `dist/packages/elements/kanso-elements.mjs`.
 
 Components render in **light DOM**, so the global `tokens.css` and any [brand theme](theming.md) apply unchanged — no shadow-DOM style piercing needed.
 
