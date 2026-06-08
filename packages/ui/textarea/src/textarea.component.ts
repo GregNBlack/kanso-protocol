@@ -66,9 +66,14 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
       display: block;
       box-sizing: border-box;
       /* fluid by default — same rationale as kp-input. The inner
-         <textarea>.kp-textarea__field gets width:100% so it stretches
-         with the host. */
+         <textarea>.kp-textarea__field fills the host (width/height 100%).
+         Resize lives on the HOST (not the field) so the whole bordered box
+         grows/shrinks together — resizing the inner field alone left the
+         border box at full width, so horizontal drag looked like a no-op. */
       width: 100%;
+      resize: both;
+      overflow: hidden;
+      min-height: var(--kp-textarea-min-h);
       padding: 0;
       border: 1px solid var(--kp-color-input-border-rest);
       border-radius: var(--kp-textarea-radius);
@@ -110,12 +115,15 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
       padding-block-end: 22px; /* reserve space for counter + resize grip — matches Figma */
       padding-inline-start: var(--kp-textarea-pad-x);
       margin: 0;
-      resize: both;
+      /* resize is on :host; the field just fills it and never scrolls its
+         own box wider/taller than the host. */
+      resize: none;
+      height: 100%;
       border-radius: inherit;
     }
-    :host(.kp-textarea--no-resize) .kp-textarea__field { resize: none; }
-    :host(.kp-textarea--resize-vertical) .kp-textarea__field { resize: vertical; }
-    :host(.kp-textarea--resize-horizontal) .kp-textarea__field { resize: horizontal; }
+    :host(.kp-textarea--no-resize) { resize: none; }
+    :host(.kp-textarea--resize-vertical) { resize: vertical; }
+    :host(.kp-textarea--resize-horizontal) { resize: horizontal; }
 
     .kp-textarea__field::placeholder { color: var(--kp-color-input-placeholder-default); }
     .kp-textarea__field:disabled { color: var(--kp-color-input-fg-disabled); cursor: not-allowed; }
@@ -134,8 +142,10 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
     }
     .kp-textarea__field::-webkit-scrollbar-thumb:hover { background: var(--kp-color-text-disabled); background-clip: padding-box; }
 
-    /* Hide native resize grip; we draw our own below */
+    /* Hide native resize grip; we draw our own below. Resize now lives on
+       :host, so hide the host's resizer too. */
     .kp-textarea__field::-webkit-resizer { background: transparent; }
+    :host::-webkit-resizer { background: transparent; }
 
     .kp-textarea__grip {
       position: absolute;

@@ -24,7 +24,8 @@ const meta: Meta<KpBadgeComponent> = {
     appearance: { control: 'select', options: ['filled', 'subtle', 'outline', 'dot'], table: { defaultValue: { summary: 'filled' } } },
     color:      { control: 'select', options: ['primary', 'danger', 'success', 'warning', 'info', 'neutral'], table: { defaultValue: { summary: 'primary' } } },
     pill:           { control: 'boolean', description: 'Fully rounded sides — for chips and word-bearing tags', table: { defaultValue: { summary: 'false' } } },
-    count:          { control: 'boolean', description: 'Counter shape — tight circle for short numeric content (1, 12, 99+)', table: { defaultValue: { summary: 'false' } } },
+    count:          { control: 'boolean', description: 'Counter SHAPE — reshapes the whole badge into a tight circle for numeric content (1, 12, 99+). The number is the badge content.', table: { defaultValue: { summary: 'false' } } },
+    counter:        { control: 'text', description: 'COUNTER chip after the label (like the count in Tabs). Additive — does not change the label/icon/shape. Accepts a number or text like "99+". Clear the field to hide it.', table: { defaultValue: { summary: 'null' } } },
     showLeadingDot: { control: 'boolean', description: 'Force a leading dot marker (auto-shown when appearance=dot)', table: { defaultValue: { summary: 'false' } } },
     closable:       { control: 'boolean', table: { defaultValue: { summary: 'false' } } },
   },
@@ -33,10 +34,10 @@ export default meta;
 type Story = StoryObj<KpBadgeComponent>;
 
 export const Default: Story = {
-  args: { size: 'md', appearance: 'filled', color: 'primary', pill: false, count: false, showLeadingDot: false, closable: false },
+  args: { size: 'md', appearance: 'filled', color: 'primary', pill: false, count: false, counter: null, showLeadingDot: false, closable: false },
   render: (args) => ({
     props: args,
-    template: `<kp-badge [size]="size" [appearance]="appearance" [color]="color" [pill]="pill" [count]="count" [showLeadingDot]="showLeadingDot" [closable]="closable">Badge</kp-badge>`,
+    template: `<kp-badge [size]="size" [appearance]="appearance" [color]="color" [pill]="pill" [count]="count" [counter]="counter" [showLeadingDot]="showLeadingDot" [closable]="closable">{{ count ? '5' : 'Badge' }}</kp-badge>`,
   }),
 };
 
@@ -143,6 +144,26 @@ export const Counters: Story = {
         <kp-badge size="xs" [count]="true" color="danger">12</kp-badge>
         <kp-badge size="xs" [count]="true" color="danger">99</kp-badge>
         <kp-badge size="xs" [count]="true" color="danger">99+</kp-badge>
+      </div>`,
+  }),
+};
+
+export const WithCounter: Story = {
+  name: 'With counter',
+  render: () => ({
+    template: `
+      <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+        <div style="display:flex;align-items:center;gap:12px">
+          <kp-badge color="primary" [counter]="5">Inbox</kp-badge>
+          <kp-badge color="neutral" appearance="subtle" [counter]="12">Drafts</kp-badge>
+          <kp-badge color="success" appearance="subtle" [counter]="3">Done</kp-badge>
+          <kp-badge color="danger" [counter]="'99+'">Alerts</kp-badge>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <kp-badge size="sm" color="primary" appearance="outline" [counter]="8">Mentions</kp-badge>
+          <kp-badge size="sm" color="neutral" appearance="subtle" [pill]="true" [counter]="24">Tasks</kp-badge>
+          <kp-badge size="xs" color="info" appearance="subtle" [counter]="2">Updates</kp-badge>
+        </div>
       </div>`,
   }),
 };

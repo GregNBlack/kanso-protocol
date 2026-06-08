@@ -122,10 +122,10 @@ export const ProfileSettings: Story = {
         </kp-form-section>
 
         <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:24px">
-          <button kpButton variant="ghost" color="neutral" size="sm">
+          <button kpButton variant="ghost" color="neutral" size="md">
             <span>Cancel</span>
           </button>
-          <button kpButton variant="default" color="primary" size="sm">
+          <button kpButton variant="default" color="primary" size="md">
             <span>Save changes</span>
           </button>
         </div>

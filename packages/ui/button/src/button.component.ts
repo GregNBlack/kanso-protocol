@@ -2,6 +2,7 @@ import {
   Component,
   Input,
   ChangeDetectionStrategy,
+  booleanAttribute,
 } from '@angular/core';
 
 import { KpSize, KpVariant, KpState } from '@kanso-protocol/ui';
@@ -483,10 +484,12 @@ export class KpButtonComponent {
   @Input() size: KpSize = 'md';
   @Input() variant: KpVariant = 'default';
   @Input() color: KpButtonColor = 'primary';
-  @Input() disabled = false;
-  @Input() loading = false;
-  /** Hides the label and makes the button square — pair with an icon and `aria-label`. */
-  @Input() iconOnly = false;
+  @Input({ transform: booleanAttribute }) disabled = false;
+  @Input({ transform: booleanAttribute }) loading = false;
+  /** Hides the label and makes the button square — pair with an icon and `aria-label`.
+      booleanAttribute so a bare `iconOnly` attribute coerces to true (a plain
+      `@Input() = false` left a bare attribute as the falsy empty string). */
+  @Input({ transform: booleanAttribute }) iconOnly = false;
   /** Force a visual state for showcase/documentation purposes. */
   @Input() forceState: KpState | null = null;
 

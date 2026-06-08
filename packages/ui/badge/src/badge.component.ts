@@ -48,6 +48,10 @@ export type KpBadgeColor =
 
     <span class="kp-badge__label"><ng-content/></span>
 
+    @if (showCounter) {
+      <span class="kp-badge__counter">{{ counter }}</span>
+    }
+
     @if (closable) {
       <button
         type="button"
@@ -106,6 +110,34 @@ export type KpBadgeColor =
       align-items: center;
     }
 
+    /* Numeric counter — a small rounded chip after the label, the same idea as
+       the count chip in Tabs. Independent of the label / icon / dot / shape:
+       it only shows when [counter] is set and never changes the rest. The
+       background is a translucent tint of the current text color, so it adapts
+       to any badge color — a light chip on filled (dark) badges, a dark chip
+       on subtle / outline (light) ones — without per-color tokens. */
+    .kp-badge__counter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      flex: 0 0 auto;
+      min-width: var(--kp-badge-counter-h);
+      height: var(--kp-badge-counter-h);
+      padding-inline: var(--kp-badge-counter-pad-x);
+      border-radius: var(--kp-radius-full, 9999px);
+      background: color-mix(in srgb, currentColor 16%, transparent);
+      font-size: var(--kp-badge-counter-fs);
+      font-weight: 600;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* With a trailing counter chip, tighten the badge's right padding to the
+       same inset the chip already has top/bottom — (badge-h - counter-h)/2 —
+       so the chip sits equidistant from the top, bottom, and right edges. */
+    :host(.kp-badge--has-counter) { padding-inline-end: var(--kp-badge-counter-inset); }
+
     .kp-badge__close {
       all: unset;
       display: inline-flex;
@@ -133,6 +165,11 @@ export type KpBadgeColor =
     :host(.kp-badge--xs) {
       --kp-badge-h: 18px;
       --kp-badge-pad-x: 6px;
+      --kp-badge-count-pad-x: 4px;
+      --kp-badge-counter-h: 14px;
+      --kp-badge-counter-pad-x: 4px;
+      --kp-badge-counter-fs: 10px;
+      --kp-badge-counter-inset: 1px;
       --kp-badge-gap: 4px;
       --kp-badge-font-size: 11px;
       --kp-badge-icon-size: 12px;
@@ -144,6 +181,11 @@ export type KpBadgeColor =
     :host(.kp-badge--sm) {
       --kp-badge-h: 22px;
       --kp-badge-pad-x: 8px;
+      --kp-badge-count-pad-x: 5px;
+      --kp-badge-counter-h: 16px;
+      --kp-badge-counter-pad-x: 5px;
+      --kp-badge-counter-fs: 11px;
+      --kp-badge-counter-inset: 2px;
       --kp-badge-gap: 4px;
       --kp-badge-font-size: 12px;
       --kp-badge-icon-size: 14px;
@@ -155,6 +197,11 @@ export type KpBadgeColor =
     :host(.kp-badge--md) {
       --kp-badge-h: 26px;
       --kp-badge-pad-x: 10px;
+      --kp-badge-count-pad-x: 6px;
+      --kp-badge-counter-h: 18px;
+      --kp-badge-counter-pad-x: 6px;
+      --kp-badge-counter-fs: 11px;
+      --kp-badge-counter-inset: 3px;
       --kp-badge-gap: 6px;
       --kp-badge-font-size: 13px;
       --kp-badge-icon-size: 16px;
@@ -166,14 +213,17 @@ export type KpBadgeColor =
 
     :host(.kp-badge--pill) { --kp-badge-radius: var(--kp-radius-full, 9999px); }
 
-    /* Counter shape: a notification-style circle for 1–2 short numeric chars.
-       Forces full radius, min-width = height, tight horizontal padding, and
-       center-aligned content so "1", "12", "99+" all look visually circular
-       at the same baseline. Use [pill] for word-bearing chips/tags instead. */
+    /* Counter shape: a notification-style circle for short numeric content.
+       Forces full radius, min-width = height, and center-aligned content so a
+       single digit ("1", "5") renders as a perfect circle. The per-size
+       horizontal padding is small enough that one digit still hits min-width
+       (stays circular) but large enough that "12" / "99+" don't crowd the
+       edges — the old flat 2px looked like the padding had vanished. Use
+       [pill] for word-bearing chips/tags instead. */
     :host(.kp-badge--count) {
       --kp-badge-radius: var(--kp-radius-full, 9999px);
       min-width: var(--kp-badge-h);
-      padding-inline: 2px;
+      padding-inline: var(--kp-badge-count-pad-x);
       justify-content: center;
     }
 
@@ -336,6 +386,14 @@ export class KpBadgeComponent {
   @Input() pill = false;
   /** Counter shape: a tight circle for short numeric content (notification badges, "1", "12", "99+"). Use `pill` for word-bearing chips. */
   @Input() count = false;
+  /**
+   * Numeric counter rendered as a small chip after the label (same idea as the
+   * count chip in Tabs). Fully additive: it shows only when set and never
+   * changes the label, icon, dot, or shape. Set a number (or "99+") to show it;
+   * leave null/'' to hide. This is the "just a number" counter — distinct from
+   * `count`, which reshapes the whole badge into a circle.
+   */
+  @Input() counter: number | string | null = null;
   /** Render a small colored dot before the label (independent of `appearance='dot'`; auto-shown for that appearance) */
   @Input() showLeadingDot = false;
   /** Render a ✕ affordance after the label and emit `close` when clicked */
@@ -345,6 +403,14 @@ export class KpBadgeComponent {
 
   get showDot(): boolean {
     return this.showLeadingDot || this.appearance === 'dot';
+  }
+
+  get showCounter(): boolean {
+    const v = this.counter;
+    if (v === null || v === undefined) return false;
+    // A number control sends NaN when emptied; bound null/'' should hide too.
+    if (typeof v === 'number') return !Number.isNaN(v);
+    return `${v}`.trim() !== '';
   }
 
   get hostClasses(): string {
@@ -357,6 +423,7 @@ export class KpBadgeComponent {
     if (this.pill) c.push('kp-badge--pill');
     if (this.count) c.push('kp-badge--count');
     if (this.closable) c.push('kp-badge--closable');
+    if (this.showCounter) c.push('kp-badge--has-counter');
     return c.join(' ');
   }
 
