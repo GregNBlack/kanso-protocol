@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 
 export type KpDialogSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
+export type KpDialogFooterLayout = 'start' | 'end' | 'between' | 'stacked';
 
 /**
  * Kanso Protocol — Dialog
@@ -22,6 +22,15 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
  * stacking, ESC-to-close, body-scroll inertness, and `::backdrop`
  * styling are all browser-native. Composition is slot-driven:
  * `[kpDialogHeroIcon]` / `[kpDialogBody]` / `[kpDialogFooter]`.
+ *
+ * Footer layouts (`footerLayout`):
+ * - `end` (default): actions packed to the right.
+ * - `start`: actions packed to the LEFT. To separate a Cancel /
+ *   secondary action and push it to the far right while the primary
+ *   actions stay left, mark that element with the `[kpDialogFooterEnd]`
+ *   attribute — the component applies `margin-inline-start: auto` to it.
+ * - `between`: first child left, the rest right (`space-between`).
+ * - `stacked`: full-width column, for narrow surfaces.
  *
  * @example
  * <kp-dialog
@@ -248,9 +257,18 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       padding: var(--kp-dialog-pad);
       gap: var(--kp-dialog-footer-gap);
     }
+    .kp-dialog__footer--start   { justify-content: flex-start; }
     .kp-dialog__footer--end     { justify-content: flex-end; }
     .kp-dialog__footer--between { justify-content: space-between; }
     .kp-dialog__footer--stacked { flex-direction: column; align-items: stretch; }
+
+    /* In the start layout the actions pack left with the normal footer gap;
+       a projected element flagged [kpDialogFooterEnd] (typically Cancel /
+       secondary) is ordered to sit at the right end of that left-packed
+       group, regardless of its position in the projected markup. */
+    .kp-dialog__footer--start ::ng-deep [kpDialogFooterEnd] {
+      order: 1;
+    }
 
     /* Sizes */
     .kp-dialog__el.kp-dialog--xs {
@@ -305,7 +323,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       --kp-dialog-desc-lh: 24px;
       --kp-dialog-body-size: 16px;
       --kp-dialog-body-lh: 24px;
-      --kp-dialog-footer-gap: 12px;
+      --kp-dialog-footer-gap: 8px;
     }
     .kp-dialog__el.kp-dialog--lg {
       --kp-dialog-w: 720px;
@@ -323,7 +341,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       --kp-dialog-desc-lh: 24px;
       --kp-dialog-body-size: 16px;
       --kp-dialog-body-lh: 24px;
-      --kp-dialog-footer-gap: 12px;
+      --kp-dialog-footer-gap: 8px;
     }
     .kp-dialog__el.kp-dialog--xl {
       --kp-dialog-w: 960px;
@@ -341,7 +359,7 @@ export type KpDialogFooterLayout = 'end' | 'between' | 'stacked';
       --kp-dialog-desc-lh: 28px;
       --kp-dialog-body-size: 16px;
       --kp-dialog-body-lh: 24px;
-      --kp-dialog-footer-gap: 12px;
+      --kp-dialog-footer-gap: 8px;
     }
   `],
 })

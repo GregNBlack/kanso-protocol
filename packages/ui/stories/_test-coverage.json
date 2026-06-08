@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-07T17:18:11.091Z",
+  "generatedAt": "2026-06-08T05:54:50.732Z",
   "totalSpecs": 55,
-  "totalTests": 640,
+  "totalTests": 653,
   "totalPackages": 62,
   "items": [
     {
@@ -13,7 +13,7 @@
       "specFiles": [
         "packages/ui/accordion/src/accordion.spec.ts"
       ],
-      "tests": 4
+      "tests": 5
     },
     {
       "layer": "components",
@@ -112,7 +112,7 @@
       "specFiles": [
         "packages/ui/combobox/src/combobox.spec.ts"
       ],
-      "tests": 15
+      "tests": 16
     },
     {
       "layer": "components",
@@ -145,7 +145,7 @@
       "specFiles": [
         "packages/ui/dialog/src/dialog.spec.ts"
       ],
-      "tests": 9
+      "tests": 11
     },
     {
       "layer": "components",
@@ -167,7 +167,7 @@
       "specFiles": [
         "packages/ui/drawer/src/drawer.spec.ts"
       ],
-      "tests": 13
+      "tests": 21
     },
     {
       "layer": "components",
@@ -278,7 +278,7 @@
         "packages/ui/popover/src/popover.directive.spec.ts",
         "packages/ui/popover/src/popover.spec.ts"
       ],
-      "tests": 23
+      "tests": 24
     },
     {
       "layer": "components",

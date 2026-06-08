@@ -100,7 +100,18 @@ export interface KpComboboxOption {
     </div>
 
     @if (isOpen && !isDisabled) {
-      <div #dropdown class="kp-cb__dropdown" role="listbox" [id]="listboxId" [attr.aria-multiselectable]="multiple || null">
+      <div
+        #dropdown
+        class="kp-cb__dropdown"
+        [class.kp-cb--xs]="size === 'xs'"
+        [class.kp-cb--sm]="size === 'sm'"
+        [class.kp-cb--md]="size === 'md'"
+        [class.kp-cb--lg]="size === 'lg'"
+        [class.kp-cb--xl]="size === 'xl'"
+        role="listbox"
+        [id]="listboxId"
+        [attr.aria-multiselectable]="multiple || null"
+      >
         @for (opt of filteredOptions; track opt.value; let i = $index) {
           <div
             class="kp-cb__option"
@@ -250,6 +261,12 @@ export interface KpComboboxOption {
     :host(.kp-cb--error) .kp-cb__chevron { color: var(--kp-color-input-border-error); }
 
     .kp-cb__dropdown {
+      /* md-scale defaults — overridden by the per-size selectors below when
+         the panel carries a kp-cb--<size> class. Guarantees the option vars
+         always resolve even before/without a size class. */
+      --kp-cb-option-height: 32px; --kp-cb-option-padding-x: 10px;
+      --kp-cb-option-font-size: 14px; --kp-cb-option-gap: 8px;
+      --kp-cb-option-radius: 6px; --kp-cb-dropdown-radius: 12px;
       position: fixed;
       top: 0;
       left: 0;
@@ -260,7 +277,7 @@ export interface KpComboboxOption {
       padding: 4px;
       background: var(--kp-color-popover-bg);
       border: 1px solid var(--kp-color-popover-border);
-      border-radius: 12px;
+      border-radius: var(--kp-cb-dropdown-radius);
       box-shadow: var(--kp-elevation-overlay);
       overflow-y: auto;
       box-sizing: border-box;
@@ -270,11 +287,11 @@ export interface KpComboboxOption {
     .kp-cb__option {
       display: flex;
       align-items: center;
-      gap: 8px;
-      height: 32px;
-      padding: 0 10px;
-      border-radius: 6px;
-      font-size: 14px;
+      gap: var(--kp-cb-option-gap);
+      height: var(--kp-cb-option-height);
+      padding: 0 var(--kp-cb-option-padding-x);
+      border-radius: var(--kp-cb-option-radius);
+      font-size: var(--kp-cb-option-font-size);
       font-weight: 500;
       color: var(--kp-color-text-strong);
       cursor: pointer;
@@ -331,42 +348,63 @@ export interface KpComboboxOption {
 
     .kp-cb__empty {
       padding: 12px;
-      font-size: 13px;
+      font-size: var(--kp-cb-option-font-size);
       color: var(--kp-color-text-disabled);
       text-align: center;
     }
 
-    /* Size tokens — identical grammar to Input/Select */
-    :host(.kp-cb--xs) {
+    /* Size tokens — identical grammar to Input/Select.
+       Each size block is applied to BOTH the host (so the trigger scales)
+       AND the dropdown panel carrying the matching size class. The panel is
+       physically portaled out of :host (to <body> or the nearest <dialog>),
+       so :host-scoped size vars never reach it — the dropdown must declare
+       its own copy of the option-scale vars or it falls back to the smallest
+       size. See dropdownSizeClass binding on the panel element. */
+    :host(.kp-cb--xs), .kp-cb__dropdown.kp-cb--xs {
       --kp-input-height: 24px; --kp-input-radius: 8px; --kp-input-padding-x: 6px;
       --kp-input-font-size: 12px; --kp-input-line-height: 1.333;
       --kp-input-gap: 4px;
       --kp-input-clear-size: 16px; --kp-input-clear-icon: 12px;
+      --kp-cb-option-height: 26px; --kp-cb-option-padding-x: 8px;
+      --kp-cb-option-font-size: 12px; --kp-cb-option-gap: 6px;
+      --kp-cb-option-radius: 5px; --kp-cb-dropdown-radius: 10px;
     }
-    :host(.kp-cb--sm) {
+    :host(.kp-cb--sm), .kp-cb__dropdown.kp-cb--sm {
       --kp-input-height: 28px; --kp-input-radius: 10px; --kp-input-padding-x: 8px;
       --kp-input-font-size: 14px; --kp-input-line-height: 1.428;
       --kp-input-gap: 5px;
       --kp-input-clear-size: 16px; --kp-input-clear-icon: 12px;
+      --kp-cb-option-height: 30px; --kp-cb-option-padding-x: 8px;
+      --kp-cb-option-font-size: 13px; --kp-cb-option-gap: 7px;
+      --kp-cb-option-radius: 5px; --kp-cb-dropdown-radius: 10px;
     }
-    :host(.kp-cb--md) {
+    :host(.kp-cb--md), .kp-cb__dropdown.kp-cb--md {
       --kp-input-height: 36px; --kp-input-radius: 12px; --kp-input-padding-x: 12px;
       --kp-input-font-size: 16px; --kp-input-line-height: 1.5;
       --kp-input-gap: 6px;
       --kp-input-clear-size: 20px; --kp-input-clear-icon: 14px;
+      --kp-cb-option-height: 32px; --kp-cb-option-padding-x: 10px;
+      --kp-cb-option-font-size: 14px; --kp-cb-option-gap: 8px;
+      --kp-cb-option-radius: 6px; --kp-cb-dropdown-radius: 12px;
     }
-    :host(.kp-cb--lg) {
+    :host(.kp-cb--lg), .kp-cb__dropdown.kp-cb--lg {
       --kp-input-height: 44px; --kp-input-radius: 14px; --kp-input-padding-x: 14px;
       --kp-input-font-size: 16px; --kp-input-line-height: 1.5;
       --kp-input-gap: 8px;
       --kp-input-clear-size: 24px; --kp-input-clear-icon: 16px;
+      --kp-cb-option-height: 40px; --kp-cb-option-padding-x: 12px;
+      --kp-cb-option-font-size: 16px; --kp-cb-option-gap: 10px;
+      --kp-cb-option-radius: 8px; --kp-cb-dropdown-radius: 14px;
     }
-    :host(.kp-cb--xl) {
+    :host(.kp-cb--xl), .kp-cb__dropdown.kp-cb--xl {
       --kp-input-height: 52px; --kp-input-radius: 16px; --kp-input-padding-x: 16px;
       --kp-input-font-size: 20px; --kp-input-line-height: 1.4;
       --kp-input-font-weight: 500;
       --kp-input-gap: 8px;
       --kp-input-clear-size: 24px; --kp-input-clear-icon: 16px;
+      --kp-cb-option-height: 48px; --kp-cb-option-padding-x: 14px;
+      --kp-cb-option-font-size: 18px; --kp-cb-option-gap: 12px;
+      --kp-cb-option-radius: 9px; --kp-cb-dropdown-radius: 16px;
     }
   `],
 })

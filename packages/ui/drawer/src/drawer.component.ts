@@ -18,6 +18,7 @@ import { DOCUMENT } from '@angular/common';
 
 export type KpDrawerSize = 'sm' | 'md' | 'lg' | 'xl';
 export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
+export type KpDrawerVariant = 'flush' | 'floating';
 
 /**
  * Kanso Protocol — Drawer
@@ -39,12 +40,14 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
   template: `
     @if (rendered) {
       <div #root class="kp-drawer__root" [class]="rootClasses">
-        <div class="kp-drawer__backdrop" (click)="onBackdropClick()"></div>
+        @if (renderedModal) {
+          <div class="kp-drawer__backdrop" (click)="onBackdropClick()"></div>
+        }
         <div
           #panel
           class="kp-drawer__panel"
           role="dialog"
-          aria-modal="true"
+          [attr.aria-modal]="renderedModal ? 'true' : null"
           [attr.aria-labelledby]="showHeader ? titleId : null"
           [attr.aria-label]="!showHeader ? ariaLabel : null"
           tabindex="-1"
@@ -113,12 +116,25 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       display: flex;
       flex-direction: column;
       background: var(--kp-color-dialog-panel-bg);
-      border: 1px solid var(--kp-color-dialog-panel-border);
-      box-shadow: var(--kp-elevation-floating);
+      /* Light, always-on subtle border around the panel. Per-side overrides
+         below drop the edge that sits flush against the viewport in 'flush'
+         variant; 'floating' keeps the full border on all four sides. */
+      border: 1px solid var(--kp-color-border-subtle);
       outline: none;
       max-width: 100vw;
       max-height: 100vh;
     }
+
+    /* Non-modal: no backdrop, page behind stays interactive. The root spans
+       the viewport for positioning, so it must not swallow pointer events —
+       only the panel itself is interactive. */
+    .kp-drawer__root--non-modal { pointer-events: none; }
+    .kp-drawer__root--non-modal .kp-drawer__panel { pointer-events: auto; }
+
+    /* Elevation — opt-in via [elevated]. Especially useful in light theme and
+       for floating / non-modal drawers that have no backdrop to separate them
+       from the page. */
+    .kp-drawer__root--elevated .kp-drawer__panel { box-shadow: var(--kp-elevation-overlay); }
 
     @keyframes kp-drawer-fade-in   { from { opacity: 0 } to { opacity: 1 } }
     @keyframes kp-drawer-fade-out  { from { opacity: 1 } to { opacity: 0 } }
@@ -131,11 +147,11 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
     @keyframes kp-drawer-out-top    { from { transform: translateY(0); } to { transform: translateY(-100%); } }
     @keyframes kp-drawer-out-bottom { from { transform: translateY(0); } to { transform: translateY(100%); } }
 
-    /* Side anchoring + radius (only on edge facing into the screen) */
+    /* Side anchoring + radius (only on edge facing into the screen, flush variant) */
     .kp-drawer__root.kp-drawer--right .kp-drawer__panel {
       top: 0; right: 0; height: 100vh;
       width: var(--kp-drawer-w);
-      border-radius: 16px 0 0 16px;
+      border-radius: var(--kp-radius-comp-xl) 0 0 var(--kp-radius-comp-xl);
       /* kanso-lint-disable physical-css -- drawer's side="right" is a physical API by design */
       border-right: none;
       animation: kp-drawer-slide-right var(--kp-motion-duration-normal) cubic-bezier(0.2, 1, 0.4, 1);
@@ -143,7 +159,7 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
     .kp-drawer__root.kp-drawer--left .kp-drawer__panel {
       top: 0; left: 0; height: 100vh;
       width: var(--kp-drawer-w);
-      border-radius: 0 16px 16px 0;
+      border-radius: 0 var(--kp-radius-comp-xl) var(--kp-radius-comp-xl) 0;
       /* kanso-lint-disable physical-css -- drawer's side="left" is a physical API by design */
       border-left: none;
       animation: kp-drawer-slide-left var(--kp-motion-duration-normal) cubic-bezier(0.2, 1, 0.4, 1);
@@ -151,16 +167,48 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
     .kp-drawer__root.kp-drawer--top .kp-drawer__panel {
       top: 0; left: 0; width: 100vw;
       height: var(--kp-drawer-h);
-      border-radius: 0 0 16px 16px;
+      border-radius: 0 0 var(--kp-radius-comp-xl) var(--kp-radius-comp-xl);
       border-top: none;
       animation: kp-drawer-slide-top var(--kp-motion-duration-normal) cubic-bezier(0.2, 1, 0.4, 1);
     }
     .kp-drawer__root.kp-drawer--bottom .kp-drawer__panel {
       bottom: 0; left: 0; width: 100vw;
       height: var(--kp-drawer-h);
-      border-radius: 16px 16px 0 0;
+      border-radius: var(--kp-radius-comp-xl) var(--kp-radius-comp-xl) 0 0;
       border-bottom: none;
       animation: kp-drawer-slide-bottom var(--kp-motion-duration-normal) cubic-bezier(0.2, 1, 0.4, 1);
+    }
+
+    /* Floating variant — panel is inset from the viewport by an equal margin on
+       all sides, fully rounded, and keeps its border on all four edges. The
+       inset is applied symmetrically: the gap on the attached side equals the
+       gap on top/bottom (or left/right) so the panel reads as a free card. */
+    /* All-corner radius + full border for floating — matched to the same
+       3-class specificity as the flush per-side rules below so it wins.
+       (A 2-class root--floating panel rule loses to the 3-class flush
+       per-side rule, so the panel kept one-sided rounding.) */
+    .kp-drawer__root--floating.kp-drawer--right .kp-drawer__panel,
+    .kp-drawer__root--floating.kp-drawer--left .kp-drawer__panel,
+    .kp-drawer__root--floating.kp-drawer--top .kp-drawer__panel,
+    .kp-drawer__root--floating.kp-drawer--bottom .kp-drawer__panel {
+      border-radius: var(--kp-radius-comp-xs);
+      border: 1px solid var(--kp-color-border-subtle);
+    }
+    .kp-drawer__root--floating.kp-drawer--right .kp-drawer__panel {
+      top: var(--kp-drawer-inset); right: var(--kp-drawer-inset);
+      height: auto; bottom: var(--kp-drawer-inset);
+    }
+    .kp-drawer__root--floating.kp-drawer--left .kp-drawer__panel {
+      top: var(--kp-drawer-inset); left: var(--kp-drawer-inset);
+      height: auto; bottom: var(--kp-drawer-inset);
+    }
+    .kp-drawer__root--floating.kp-drawer--top .kp-drawer__panel {
+      top: var(--kp-drawer-inset); left: var(--kp-drawer-inset);
+      width: auto; right: var(--kp-drawer-inset);
+    }
+    .kp-drawer__root--floating.kp-drawer--bottom .kp-drawer__panel {
+      bottom: var(--kp-drawer-inset); left: var(--kp-drawer-inset);
+      width: auto; right: var(--kp-drawer-inset);
     }
 
     /* Exit animations — same easing, reversed direction. forwards keeps the
@@ -258,6 +306,9 @@ export type KpDrawerSide = 'right' | 'left' | 'top' | 'bottom';
       padding: 20px;
     }
 
+    /* Equal margin around the panel in the floating variant. */
+    .kp-drawer__root { --kp-drawer-inset: 16px; }
+
     /* Sizes — width for right/left, height for top/bottom */
     .kp-drawer__root.kp-drawer--sm { --kp-drawer-w: 320px; --kp-drawer-h: 240px; }
     .kp-drawer__root.kp-drawer--md { --kp-drawer-w: 480px; --kp-drawer-h: 400px; }
@@ -271,6 +322,16 @@ export class KpDrawerComponent implements AfterViewChecked, OnChanges, OnDestroy
 
   @Input() size: KpDrawerSize = 'md';
   @Input() side: KpDrawerSide = 'right';
+  /** Modal drawer renders a backdrop and locks page scroll (default).
+   *  Set `false` for a non-modal drawer: no backdrop, no scroll lock, and the
+   *  page behind stays interactive. */
+  @Input() modal = true;
+  /** `flush` (default) sits edge-attached and full-height. `floating` insets
+   *  the panel from the viewport with equal margins and rounds all corners. */
+  @Input() variant: KpDrawerVariant = 'flush';
+  /** Adds an overlay shadow to the panel — useful in light theme and when
+   *  there is no backdrop (floating / non-modal). */
+  @Input() elevated = false;
   @Input() title = '';
   @Input() description = '';
   @Input() showHeader = true;
@@ -293,6 +354,12 @@ export class KpDrawerComponent implements AfterViewChecked, OnChanges, OnDestroy
   renderedSide: KpDrawerSide = 'right';
   /** @internal — frozen size for the same reason. */
   renderedSize: KpDrawerSize = 'md';
+  /** @internal — frozen variant while mounted. */
+  renderedVariant: KpDrawerVariant = 'flush';
+  /** @internal — frozen modal flag; drives backdrop + scroll-lock + classes. */
+  renderedModal = true;
+  /** @internal — frozen elevated flag. */
+  renderedElevated = false;
   /** @internal — flips on for the duration of the exit animation. */
   closing = false;
   private closeTimer?: ReturnType<typeof setTimeout>;
@@ -315,6 +382,9 @@ export class KpDrawerComponent implements AfterViewChecked, OnChanges, OnDestroy
   }
   get rootClasses(): string {
     let s = `kp-drawer__root kp-drawer--${this.renderedSize} kp-drawer--${this.renderedSide}`;
+    s += ` kp-drawer__root--${this.renderedVariant}`;
+    if (!this.renderedModal) s += ' kp-drawer__root--non-modal';
+    if (this.renderedElevated) s += ' kp-drawer__root--elevated';
     if (this.closing) s += ' kp-drawer__root--closing';
     return s;
   }
@@ -347,6 +417,9 @@ export class KpDrawerComponent implements AfterViewChecked, OnChanges, OnDestroy
     // drawer is closing.
     this.renderedSide = this.side;
     this.renderedSize = this.size;
+    this.renderedVariant = this.variant;
+    this.renderedModal = this.modal;
+    this.renderedElevated = this.elevated;
     this.rendered = true;
     this.closing = false;
     this.onOpened();
@@ -355,13 +428,16 @@ export class KpDrawerComponent implements AfterViewChecked, OnChanges, OnDestroy
   private onOpened(): void {
     if (!this.doc?.body) return;
     this.prevFocused = this.doc.activeElement;
-    this.prevBodyOverflow = this.doc.body.style.overflow;
-    this.doc.body.style.overflow = 'hidden';
+    // Non-modal drawers leave the page behind interactive — no scroll lock.
+    if (this.renderedModal) {
+      this.prevBodyOverflow = this.doc.body.style.overflow;
+      this.doc.body.style.overflow = 'hidden';
+    }
     queueMicrotask(() => this.focusPanel());
   }
   private restoreBodyScroll(): void {
     if (!this.doc?.body) return;
-    this.doc.body.style.overflow = this.prevBodyOverflow;
+    if (this.renderedModal) this.doc.body.style.overflow = this.prevBodyOverflow;
     if (this.prevFocused instanceof HTMLElement) this.prevFocused.focus();
   }
   private focusPanel(): void {

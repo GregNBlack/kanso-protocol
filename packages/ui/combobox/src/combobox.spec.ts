@@ -167,6 +167,22 @@ describe('KpComboboxComponent', () => {
     ]);
   });
 
+  it('propagates the size class to the portaled dropdown panel and its options', () => {
+    const { fix, cmp } = setup({ size: 'lg' });
+    cmp.onTriggerClick();
+    fix.detectChanges();
+    // The panel is portaled out of the host, so it must carry its own size
+    // class — otherwise its size CSS vars never resolve and options render
+    // at the smallest scale regardless of the configured `size`.
+    const panel = document.querySelector('.kp-cb__dropdown') as HTMLElement;
+    expect(panel).toBeTruthy();
+    expect(panel.classList.contains('kp-cb--lg')).toBe(true);
+    // Options live inside the sized panel.
+    const opts = options(fix.nativeElement as HTMLElement);
+    expect(opts.length).toBeGreaterThan(0);
+    expect(opts[0].closest('.kp-cb__dropdown')?.classList.contains('kp-cb--lg')).toBe(true);
+  });
+
   it('Backspace on empty query in multi mode pops the last selection', () => {
     const { fix, cmp } = setup({ multiple: true });
     cmp.writeValue(['us', 'uk']);

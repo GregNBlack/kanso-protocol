@@ -102,6 +102,22 @@ describe('KpDialogComponent', () => {
     expect(spy).not.toHaveBeenCalled();
   });
 
+  it('defaults footerLayout to "end" and applies the matching class', () => {
+    fixture.componentRef.setInput('open', true);
+    fixture.detectChanges();
+    const footer = fixture.nativeElement.querySelector('.kp-dialog__footer') as HTMLElement;
+    expect(footer.classList.contains('kp-dialog__footer--end')).toBe(true);
+  });
+
+  it('applies the start footer class and packs to flex-start when footerLayout="start"', () => {
+    fixture.componentRef.setInput('open', true);
+    fixture.componentRef.setInput('footerLayout', 'start');
+    fixture.detectChanges();
+    const footer = fixture.nativeElement.querySelector('.kp-dialog__footer') as HTMLElement;
+    expect(component.footerLayoutClass).toBe('kp-dialog__footer--start');
+    expect(footer.classList.contains('kp-dialog__footer--start')).toBe(true);
+  });
+
   it('cancel event is suppressed when closeOnEsc=false', () => {
     fixture.componentRef.setInput('open', true);
     fixture.componentRef.setInput('closeOnEsc', false);

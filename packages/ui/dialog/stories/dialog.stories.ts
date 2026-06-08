@@ -9,7 +9,7 @@ const meta: Meta<KpDialogComponent> = {
   decorators: [moduleMetadata({ imports: [KpDialogComponent, KpButtonComponent] })],
   argTypes: {
     size: { control: 'inline-radio', options: ['xs', 'sm', 'md', 'lg', 'xl'], table: { defaultValue: { summary: 'md' } } },
-    footerLayout: { control: 'inline-radio', options: ['end', 'between', 'stacked'], table: { defaultValue: { summary: 'end' } } },
+    footerLayout: { control: 'inline-radio', options: ['start', 'end', 'between', 'stacked'], table: { defaultValue: { summary: 'end' } } },
   },
 };
 export default meta;
@@ -48,7 +48,8 @@ export const Default: Story = {
       >
         <p kpDialogBody>Dialog body content. Replace this slot with forms, lists, or any layout.</p>
         <ng-container kpDialogFooter>
-          <button kpButton variant="ghost" color="neutral" (click)="open = false">Cancel</button>
+          <!-- kpDialogFooterEnd pins Cancel to the right in footerLayout="start". -->
+          <button kpDialogFooterEnd kpButton variant="ghost" color="neutral" (click)="open = false">Cancel</button>
           <button kpButton (click)="open = false">Confirm</button>
         </ng-container>
       </kp-dialog>`,
@@ -126,10 +127,20 @@ export const FooterLayouts: Story = {
     props: { openLayout: '' as string },
     template: `
       <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <button kpButton (click)="openLayout = 'start'">Start-aligned</button>
         <button kpButton (click)="openLayout = 'end'">End-aligned</button>
         <button kpButton (click)="openLayout = 'between'">Space-between</button>
         <button kpButton (click)="openLayout = 'stacked'">Stacked</button>
       </div>
+
+      <kp-dialog [open]="openLayout === 'start'" size="md" footerLayout="start" title="Update available" [showDescription]="true" description="Version 2.3 is ready to install." (openChange)="openLayout = ''">
+        <p kpDialogBody>Primary actions stay left; the Cancel button is flagged [kpDialogFooterEnd] so it sits on the right.</p>
+        <ng-container kpDialogFooter>
+          <button kpButton (click)="openLayout = ''">Install</button>
+          <button kpButton variant="ghost" color="neutral" (click)="openLayout = ''">Remind me later</button>
+          <button kpDialogFooterEnd kpButton variant="ghost" color="neutral" (click)="openLayout = ''">Cancel</button>
+        </ng-container>
+      </kp-dialog>
 
       <kp-dialog [open]="openLayout === 'end'" size="md" footerLayout="end" title="Update available" [showDescription]="true" description="Version 2.3 is ready to install." (openChange)="openLayout = ''">
         <p kpDialogBody>Install now or later — we'll remind you in a day.</p>

@@ -136,6 +136,64 @@ describe('KpDrawerComponent', () => {
     expect(document.querySelector('.kp-drawer__close')).toBeNull();
   });
 
+  it('renders a backdrop by default (modal)', () => {
+    const { fix } = setup();
+    fix.componentRef.setInput('open', true);
+    fix.detectChanges();
+    expect(document.querySelector('.kp-drawer__backdrop')).not.toBeNull();
+  });
+
+  it('renders no backdrop and adds non-modal class when modal=false', () => {
+    const { fix } = setup({ modal: false });
+    fix.componentRef.setInput('open', true);
+    fix.detectChanges();
+    expect(document.querySelector('.kp-drawer__backdrop')).toBeNull();
+    expect(getRoot()!.classList.contains('kp-drawer__root--non-modal')).toBe(true);
+  });
+
+  it('does not lock body scroll when modal=false', () => {
+    document.body.style.overflow = 'auto';
+    const { fix } = setup({ modal: false });
+    fix.componentRef.setInput('open', true);
+    fix.detectChanges();
+    expect(document.body.style.overflow).toBe('auto');
+  });
+
+  it('omits aria-modal when modal=false', () => {
+    const { fix } = setup({ modal: false });
+    fix.componentRef.setInput('open', true);
+    fix.detectChanges();
+    expect(getPanel()!.hasAttribute('aria-modal')).toBe(false);
+  });
+
+  it('adds the floating variant class when variant="floating"', () => {
+    const { fix } = setup({ variant: 'floating' });
+    fix.componentRef.setInput('open', true);
+    fix.detectChanges();
+    expect(getRoot()!.classList.contains('kp-drawer__root--floating')).toBe(true);
+  });
+
+  it('uses the flush variant class by default', () => {
+    const { fix } = setup();
+    fix.componentRef.setInput('open', true);
+    fix.detectChanges();
+    expect(getRoot()!.classList.contains('kp-drawer__root--flush')).toBe(true);
+  });
+
+  it('does not add the elevated class by default', () => {
+    const { fix } = setup();
+    fix.componentRef.setInput('open', true);
+    fix.detectChanges();
+    expect(getRoot()!.classList.contains('kp-drawer__root--elevated')).toBe(false);
+  });
+
+  it('adds the elevated class when elevated=true', () => {
+    const { fix } = setup({ elevated: true });
+    fix.componentRef.setInput('open', true);
+    fix.detectChanges();
+    expect(getRoot()!.classList.contains('kp-drawer__root--elevated')).toBe(true);
+  });
+
   it('locks document body scroll while open and restores on close', async () => {
     vi.useFakeTimers();
     document.body.style.overflow = 'auto';

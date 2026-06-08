@@ -105,4 +105,18 @@ describe('KpPopoverDirective', () => {
     fix.componentInstance.dir.close();
     expect(panel()).toBeNull();
   });
+
+  it('positions the panel viewport-aware via the shared util (resolved side + arrow offset)', () => {
+    const { trigger } = setup();
+    trigger.click();
+    const wrapper = panel()?.closest('div[id^="kp-popover-"]') as HTMLElement;
+    expect(wrapper).toBeTruthy();
+    // Fixed positioning applied.
+    expect(wrapper.style.position).toBe('fixed');
+    expect(wrapper.style.left).toMatch(/px$/);
+    expect(wrapper.style.top).toMatch(/px$/);
+    // Resolved side + arrow offset exposed for the inner chrome to consume.
+    expect(wrapper.dataset['kpPopoverSide']).toMatch(/^(top|right|bottom|left)$/);
+    expect(wrapper.style.getPropertyValue('--kp-popover-arrow-offset')).toMatch(/px$/);
+  });
 });

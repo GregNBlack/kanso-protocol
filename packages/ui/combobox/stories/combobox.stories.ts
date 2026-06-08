@@ -67,6 +67,33 @@ export const Sizes: Story = {
   }),
 };
 
+/**
+ * Each combobox is opened so the dropdown panel + options render at the
+ * matching size. Regression cover for the bug where the portaled panel always
+ * rendered at the smallest scale regardless of `size`. Lay them out across a
+ * row with vertical room so the open panels don't overlap.
+ */
+export const OpenSizes: Story = {
+  name: 'Open · all sizes',
+  render: () => ({
+    props: { options: fruits, v1: null, v2: null, v3: null, v4: null, v5: null },
+    template: `
+      <div style="display:flex;gap:16px;align-items:flex-start;min-height:360px">
+        <kp-combobox size="xs" placeholder="XS" [options]="options" [(ngModel)]="v1"/>
+        <kp-combobox size="sm" placeholder="SM" [options]="options" [(ngModel)]="v2"/>
+        <kp-combobox size="md" placeholder="MD" [options]="options" [(ngModel)]="v3"/>
+        <kp-combobox size="lg" placeholder="LG" [options]="options" [(ngModel)]="v4"/>
+        <kp-combobox size="xl" placeholder="XL" [options]="options" [(ngModel)]="v5"/>
+      </div>`,
+  }),
+  play: async ({ canvasElement }) => {
+    // Open every combobox so reviewers see all five panel scales at once.
+    canvasElement
+      .querySelectorAll<HTMLElement>('.kp-cb__trigger')
+      .forEach((trigger) => trigger.click());
+  },
+};
+
 export const WithValue: Story = {
   render: () => ({
     props: { options: fruits, value: 'banana' },

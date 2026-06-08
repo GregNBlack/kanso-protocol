@@ -83,7 +83,22 @@ export class KpPopoverDirective implements OnDestroy {
   private portalTarget: HTMLElement | null = null;
   private hideTimer: ReturnType<typeof setTimeout> | null = null;
   private readonly panelId = `kp-popover-${++POPOVER_ID_SEQ}`;
-  private reposition = (): void => { if (this.panel) this.positionPanel(this.panel); };
+  private rafId: number | null = null;
+
+  /**
+   * Reposition while open on scroll/resize so the fixed-positioned panel
+   * tracks its trigger (otherwise it drifts toward a screen edge when the
+   * page or an ancestor scrolls). rAF-throttled; capture-phase scroll
+   * catches scrollable ancestors, not just the window. Mirrors
+   * `KpTooltipDirective.onViewportChange`.
+   */
+  private readonly onViewportChange = (): void => {
+    if (this.rafId != null || !this.panel) return;
+    this.rafId = requestAnimationFrame(() => {
+      this.rafId = null;
+      if (this.panel) this.positionPanel(this.panel);
+    });
+  };
 
   get isOpen(): boolean { return this.viewRef != null; }
 
@@ -140,6 +155,16 @@ export class KpPopoverDirective implements OnDestroy {
     this.portalTarget.appendChild(panel);
     this.panel = panel;
 
+    // Critical: synchronously run change-detection on the embedded view so
+    // its host bindings ([class]="hostClasses" → variant/size classes that
+    // define the button colour/border tokens) are applied to the DOM before
+    // first paint and before we measure. Without this the inner buttons
+    // paint one frame with an unresolved `--kp-button-border` (falls back to
+    // currentColor → a dark border) which then transitions to the real token
+    // over the border-color transition — the reported "dark border flash".
+    // It also fixes stale dimension reads, exactly like the tooltip does.
+    this.viewRef.detectChanges();
+
     // Measure after the embedded view has rendered its content.
     this.positionPanel(panel);
 
@@ -154,8 +179,12 @@ export class KpPopoverDirective implements OnDestroy {
       requestAnimationFrame(() => {
         this.doc.addEventListener('pointerdown', this.onDocumentPointerDown, true);
       });
-      window.addEventListener('scroll', this.reposition, true);
-      window.addEventListener('resize', this.reposition);
+      // Track the trigger while open (scroll/resize). Capture-phase catches
+      // scrollable ancestors. SSR-guarded.
+      if (typeof window !== 'undefined') {
+        window.addEventListener('scroll', this.onViewportChange, true);
+        window.addEventListener('resize', this.onViewportChange);
+      }
     });
 
     this.kpPopoverOpened.emit();
@@ -165,8 +194,11 @@ export class KpPopoverDirective implements OnDestroy {
     if (!this.isOpen) return;
 
     this.doc.removeEventListener('pointerdown', this.onDocumentPointerDown, true);
-    window.removeEventListener('scroll', this.reposition, true);
-    window.removeEventListener('resize', this.reposition);
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('scroll', this.onViewportChange, true);
+      window.removeEventListener('resize', this.onViewportChange);
+    }
+    if (this.rafId != null) { cancelAnimationFrame(this.rafId); this.rafId = null; }
 
     this.host.nativeElement.removeAttribute('aria-expanded');
     this.host.nativeElement.removeAttribute('aria-controls');
@@ -194,17 +226,30 @@ export class KpPopoverDirective implements OnDestroy {
   };
 
   private positionPanel(panel: HTMLElement): void {
+    if (typeof window === 'undefined') return;
     const t = this.host.nativeElement.getBoundingClientRect();
     const p = panel.getBoundingClientRect();
-    const { x, y } = computeOverlayPosition({
+
+    // Shared positioning math: viewport-edge flip + clamp (so the panel
+    // never sits off-screen), a `gap` so it never overlaps the trigger, and
+    // an `arrowOffset` that keeps the arrow pointing at the trigger even
+    // after the body is clamped to a viewport edge — exactly like the
+    // tooltip directive.
+    const { x, y, side, arrowOffset } = computeOverlayPosition({
       trigger: { top: t.top, left: t.left, right: t.right, bottom: t.bottom, width: t.width, height: t.height },
       overlay: { width: p.width, height: p.height },
       side: this.kpPopoverPosition,
       gap: this.kpPopoverGap,
       viewport: { width: window.innerWidth, height: window.innerHeight },
     });
+
     panel.style.left = `${x}px`;
     panel.style.top = `${y}px`;
+    // Expose the resolved side + arrow offset so an inner <kp-popover> (or
+    // any consumer) can keep its arrow pointing at the trigger after a flip
+    // or viewport clamp. The popover chrome reads --kp-popover-arrow-offset.
+    panel.dataset['kpPopoverSide'] = side;
+    panel.style.setProperty('--kp-popover-arrow-offset', `${arrowOffset}px`);
   }
 
   private clearHideTimer(): void {
