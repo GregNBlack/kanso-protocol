@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-07T19:42:39.603Z",
+  "generatedAt": "2026-06-08T05:55:59.377Z",
   "version": "4.2.1",
   "totals": {
     "components": 59,
@@ -1471,7 +1471,7 @@
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/dialog",
-      "description": "Kanso Protocol — Dialog\n\nWraps a real native `<dialog>` element. Focus trap, top-layer\nstacking, ESC-to-close, body-scroll inertness, and `::backdrop`\nstyling are all browser-native. Composition is slot-driven:\n`[kpDialogHeroIcon]` / `[kpDialogBody]` / `[kpDialogFooter]`.",
+      "description": "Kanso Protocol — Dialog\n\nWraps a real native `<dialog>` element. Focus trap, top-layer\nstacking, ESC-to-close, body-scroll inertness, and `::backdrop`\nstyling are all browser-native. Composition is slot-driven:\n`[kpDialogHeroIcon]` / `[kpDialogBody]` / `[kpDialogFooter]`.\n\nFooter layouts (`footerLayout`):\n- `end` (default): actions packed to the right.\n- `start`: actions packed to the LEFT. To separate a Cancel /\n  secondary action and push it to the far right while the primary\n  actions stay left, mark that element with the `[kpDialogFooterEnd]`\n  attribute — the component applies `margin-inline-start: auto` to it.\n- `between`: first child left, the rest right (`space-between`).\n- `stacked`: full-width column, for narrow surfaces.",
       "examples": [
         "<kp-dialog\n  [(open)]=\"deleteOpen\"\n  size=\"sm\"\n  title=\"Delete repository?\"\n  [showDescription]=\"true\"\n  description=\"This action cannot be undone.\"\n  (closed)=\"deleteOpen = false\"\n/>"
       ],
@@ -1666,6 +1666,24 @@
           "type": "KpDrawerSide",
           "default": "'right'",
           "description": ""
+        },
+        {
+          "name": "modal",
+          "type": "boolean",
+          "default": "true",
+          "description": "Modal drawer renders a backdrop and locks page scroll (default).\n Set `false` for a non-modal drawer: no backdrop, no scroll lock, and the\n page behind stays interactive."
+        },
+        {
+          "name": "variant",
+          "type": "KpDrawerVariant",
+          "default": "'flush'",
+          "description": "`flush` (default) sits edge-attached and full-height. `floating` insets\n the panel from the viewport with equal margins and rounds all corners."
+        },
+        {
+          "name": "elevated",
+          "type": "boolean",
+          "default": "false",
+          "description": "Adds an overlay shadow to the panel — useful in light theme and when\n there is no backdrop (floating / non-modal)."
         },
         {
           "name": "title",

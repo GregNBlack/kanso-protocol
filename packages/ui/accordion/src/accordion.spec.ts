@@ -59,4 +59,18 @@ describe('KpAccordion + KpAccordionItem', () => {
     const items = root.querySelectorAll('kp-accordion-item');
     expect(items[items.length - 1].className).toContain('kp-ai--last-in-group');
   });
+
+  it('keeps collapsed panel content in the DOM but hidden + inert', () => {
+    const { root } = setup();
+    const items = root.querySelectorAll('kp-accordion-item');
+    // Item two starts collapsed (a === 0).
+    const collapsed = items[1];
+    const panel = collapsed.querySelector('.kp-ai__panel')!;
+    const region = collapsed.querySelector('.kp-ai__content')!;
+    // Content text still present so it can animate / stay accessible to AT search.
+    expect(region.textContent).toContain('Content 2');
+    // But marked hidden + not focusable while collapsed.
+    expect(region.getAttribute('aria-hidden')).toBe('true');
+    expect(panel.hasAttribute('inert')).toBe(true);
+  });
 });

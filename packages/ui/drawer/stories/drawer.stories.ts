@@ -10,18 +10,21 @@ const meta: Meta<KpDrawerComponent> = {
   argTypes: {
     size: { control: 'inline-radio', options: ['sm', 'md', 'lg', 'xl'] },
     side: { control: 'inline-radio', options: ['right', 'left', 'top', 'bottom'] },
+    variant: { control: 'inline-radio', options: ['flush', 'floating'] },
+    modal: { control: 'boolean' },
+    elevated: { control: 'boolean' },
   },
 };
 export default meta;
 type Story = StoryObj<KpDrawerComponent>;
 
 export const Default: Story = {
-  args: { size: 'md', side: 'right', title: 'Drawer title', description: 'Optional description.', showDescription: true, showFooter: true },
+  args: { size: 'md', side: 'right', title: 'Drawer title', description: 'Optional description.', showDescription: true, showFooter: true, variant: 'flush', modal: true, elevated: false },
   render: (args) => ({
     props: { ...args, open: false },
     template: `
       <button kpButton (click)="open = true">Open drawer</button>
-      <kp-drawer [(open)]="open" [size]="size" [side]="side" [title]="title" [description]="description" [showDescription]="showDescription" [showFooter]="showFooter">
+      <kp-drawer [(open)]="open" [size]="size" [side]="side" [variant]="variant" [modal]="modal" [elevated]="elevated" [title]="title" [description]="description" [showDescription]="showDescription" [showFooter]="showFooter">
         <p kpDrawerBody>Drawer body content. Replace this slot with forms, lists, or any layout.</p>
         <ng-container kpDrawerFooter>
           <button kpButton variant="ghost" color="neutral" (click)="open = false">Cancel</button>
@@ -67,6 +70,59 @@ export const Sizes: Story = {
           <button kpButton variant="ghost" color="neutral" (click)="openSize = ''">Cancel</button>
           <button kpButton (click)="openSize = ''">OK</button>
         </ng-container>
+      </kp-drawer>`,
+  }),
+};
+
+export const NonModal: Story = {
+  name: 'Non-modal',
+  render: () => ({
+    props: { open: false },
+    template: `
+      <div style="display:flex;flex-direction:column;gap:12px;max-width:520px">
+        <button kpButton (click)="open = !open">Toggle non-modal drawer</button>
+        <p style="font-size:14px;color: var(--kp-color-gray-600)">
+          No backdrop, no scroll lock — keep scrolling and interacting with this
+          page while the drawer stays open alongside it.
+        </p>
+        <div style="height:140px;overflow:auto;border:1px solid var(--kp-color-border-subtle);border-radius:8px;padding:12px">
+          <p>Scrollable region — still works while the drawer is open.</p>
+          <p style="margin-top:600px">Bottom of the scroll area.</p>
+        </div>
+      </div>
+      <kp-drawer [open]="open" [modal]="false" [elevated]="true" side="right" size="md" title="Non-modal drawer" [showDescription]="true" description="The page behind stays interactive." (openChange)="open = $event">
+        <p kpDrawerBody>This drawer renders no overlay and does not lock body scroll.</p>
+      </kp-drawer>`,
+  }),
+};
+
+export const Floating: Story = {
+  render: () => ({
+    props: { openSide: '' as string },
+    template: `
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <button kpButton (click)="openSide = 'left'">Floating from left</button>
+        <button kpButton (click)="openSide = 'right'">Floating from right</button>
+      </div>
+      <kp-drawer [open]="openSide !== ''" variant="floating" [elevated]="true" [side]="openSide || 'right'" size="md" [title]="'Floating ' + (openSide || 'right')" [showDescription]="true" description="Inset from the viewport with equal margins, rounded on all corners." [showFooter]="true" (openChange)="openSide = ''">
+        <p kpDrawerBody>The panel floats with a symmetric margin and full border.</p>
+        <ng-container kpDrawerFooter>
+          <button kpButton variant="ghost" color="neutral" (click)="openSide = ''">Cancel</button>
+          <button kpButton (click)="openSide = ''">OK</button>
+        </ng-container>
+      </kp-drawer>`,
+  }),
+};
+
+export const WithShadow: Story = {
+  name: 'With shadow',
+  args: { size: 'md', side: 'right', title: 'Elevated drawer', description: 'Overlay shadow via [elevated].', showDescription: true },
+  render: (args) => ({
+    props: { ...args, open: false },
+    template: `
+      <button kpButton (click)="open = true">Open elevated drawer</button>
+      <kp-drawer [(open)]="open" [elevated]="true" [size]="size" [side]="side" [title]="title" [description]="description" [showDescription]="showDescription">
+        <p kpDrawerBody>An overlay shadow separates the panel from the page — useful in light theme.</p>
       </kp-drawer>`,
   }),
 };

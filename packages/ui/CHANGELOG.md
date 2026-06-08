@@ -1,5 +1,18 @@
 # @kanso-protocol/ui
 
+## 5.2.0
+
+### Minor Changes
+
+- Component improvements from a Storybook review pass:
+  - **accordion** — content panel now animates open/close smoothly (CSS `grid-template-rows` 0fr→1fr over `--kp-motion-duration-normal`, content kept in the DOM + `inert`/`aria-hidden` when collapsed; respects `prefers-reduced-motion`).
+  - **combobox** — the dropdown panel + options now match the component `size` (the portaled panel previously lost the host size context and always rendered small).
+  - **dialog** — new `footerLayout="start"` (actions packed left); mark a footer item `[kpDialogFooterEnd]` to push it (e.g. Cancel) to the right.
+  - **drawer** — `[modal]` (set `false` for a non-modal drawer: no backdrop, no scroll-lock, page stays interactive); `[variant]="floating"` (inset from the edges, rounded all corners, works from any side); always-on subtle border; `[elevated]` for an optional shadow (light-theme friendly).
+  - **popover** — positioning is now fully viewport-aware via the shared `computeOverlayPosition` (applies the flipped side + arrow offset so the arrow tracks the trigger), repositions on scroll/resize, keeps a gap so it no longer overlaps the trigger, and the inner buttons no longer flash a dark border on open.
+
+  Also: revived the `kanso-lint-tokens` architecture gate (it scanned the pre-v5 `packages/{components,patterns}` paths and silently linted zero files since the single-package migration; now scans `packages/ui/*`), and tokenized one stray raw duration in `theme-toggle`.
+
 ## 5.1.2
 
 ### Patch Changes

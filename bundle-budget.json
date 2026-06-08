@@ -3,12 +3,12 @@
   "headroomNote": "Tiny bundles (<2KB gz) get +500B; larger ones get ~15% rounded to nearest 100B.",
   "packages": {
     "ui": {
-      "currentGz": 1669,
-      "maxGz": 2169
+      "currentGz": 1893,
+      "maxGz": 2393
     },
     "ui/accordion": {
-      "currentGz": 3641,
-      "maxGz": 4200
+      "currentGz": 3658,
+      "maxGz": 4300
     },
     "ui/alert": {
       "currentGz": 3138,
@@ -51,8 +51,8 @@
       "maxGz": 3300
     },
     "ui/combobox": {
-      "currentGz": 6212,
-      "maxGz": 7200
+      "currentGz": 6439,
+      "maxGz": 7500
     },
     "ui/command-palette": {
       "currentGz": 5194,
@@ -67,16 +67,16 @@
       "maxGz": 10200
     },
     "ui/dialog": {
-      "currentGz": 4047,
-      "maxGz": 4700
+      "currentGz": 4272,
+      "maxGz": 5000
     },
     "ui/divider": {
       "currentGz": 1362,
       "maxGz": 1862
     },
     "ui/drawer": {
-      "currentGz": 4263,
-      "maxGz": 5000
+      "currentGz": 4870,
+      "maxGz": 5700
     },
     "ui/empty-state": {
       "currentGz": 1538,
@@ -111,7 +111,7 @@
       "maxGz": 3200
     },
     "ui/icon": {
-      "currentGz": 11631,
+      "currentGz": 11629,
       "maxGz": 13400
     },
     "ui/input": {
@@ -131,8 +131,8 @@
       "maxGz": 3200
     },
     "ui/notification-center": {
-      "currentGz": 3805,
-      "maxGz": 4400
+      "currentGz": 4053,
+      "maxGz": 4700
     },
     "ui/number-stepper": {
       "currentGz": 4244,
@@ -151,8 +151,8 @@
       "maxGz": 6100
     },
     "ui/popover": {
-      "currentGz": 5504,
-      "maxGz": 6400
+      "currentGz": 6358,
+      "maxGz": 7400
     },
     "ui/progress": {
       "currentGz": 3998,
@@ -163,8 +163,8 @@
       "maxGz": 3900
     },
     "ui/rich-text-editor": {
-      "currentGz": 6591,
-      "maxGz": 7600
+      "currentGz": 6721,
+      "maxGz": 7800
     },
     "ui/row": {
       "currentGz": 1206,
@@ -223,8 +223,8 @@
       "maxGz": 3200
     },
     "ui/theme-toggle": {
-      "currentGz": 4077,
-      "maxGz": 4700
+      "currentGz": 4144,
+      "maxGz": 4800
     },
     "ui/timepicker": {
       "currentGz": 6600,
@@ -239,8 +239,8 @@
       "maxGz": 3100
     },
     "ui/tooltip": {
-      "currentGz": 6687,
-      "maxGz": 7700
+      "currentGz": 6865,
+      "maxGz": 7900
     },
     "ui/tree": {
       "currentGz": 4670,

@@ -185,7 +185,7 @@ let nextRadioGroupId = 0;
       background: var(--kp-color-segmented-segment-bg-selected);
       box-shadow: var(--kp-elevation-raised);
       transform: translateX(var(--kp-theme-pill-x, 0));
-      transition: transform 240ms cubic-bezier(0.32, 0.72, 0, 1);
+      transition: transform var(--kp-motion-duration-normal) cubic-bezier(0.32, 0.72, 0, 1);
       pointer-events: none;
       z-index: 0;
     }

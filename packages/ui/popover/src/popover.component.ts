@@ -190,18 +190,22 @@ export type KpPopoverArrowPosition =
     }
     .kp-popover__arrow path { fill: currentColor; }
 
-    /* Arrow side/anchor positioning */
+    /* Arrow side/anchor positioning.
+       The "-center" anchors default to 50% but honour --kp-popover-arrow-offset
+       when the [kpPopover] directive sets it — that keeps the arrow pointing at
+       the trigger after a viewport flip/clamp. Static "-start"/"-end" anchors
+       keep their fixed inset for the standalone chrome component. */
     :host(.kp-popover--arrow-top-start)    .kp-popover__arrow { top: 0; left: 16px; transform: translateY(-100%); }
-    :host(.kp-popover--arrow-top-center)   .kp-popover__arrow { top: 0; left: 50%; transform: translate(-50%, -100%); }
+    :host(.kp-popover--arrow-top-center)   .kp-popover__arrow { top: 0; left: var(--kp-popover-arrow-offset, 50%); transform: translate(-50%, -100%); }
     :host(.kp-popover--arrow-top-end)      .kp-popover__arrow { top: 0; right: 16px; transform: translateY(-100%); }
     :host(.kp-popover--arrow-bottom-start) .kp-popover__arrow { bottom: 0; left: 16px; transform: translateY(100%); }
-    :host(.kp-popover--arrow-bottom-center) .kp-popover__arrow { bottom: 0; left: 50%; transform: translate(-50%, 100%); }
+    :host(.kp-popover--arrow-bottom-center) .kp-popover__arrow { bottom: 0; left: var(--kp-popover-arrow-offset, 50%); transform: translate(-50%, 100%); }
     :host(.kp-popover--arrow-bottom-end)   .kp-popover__arrow { bottom: 0; right: 16px; transform: translateY(100%); }
     :host(.kp-popover--arrow-left-start)   .kp-popover__arrow { left: 0; top: 16px; transform: translateX(-100%); }
-    :host(.kp-popover--arrow-left-center)  .kp-popover__arrow { left: 0; top: 50%; transform: translate(-100%, -50%); }
+    :host(.kp-popover--arrow-left-center)  .kp-popover__arrow { left: 0; top: var(--kp-popover-arrow-offset, 50%); transform: translate(-100%, -50%); }
     :host(.kp-popover--arrow-left-end)     .kp-popover__arrow { left: 0; bottom: 16px; transform: translateX(-100%); }
     :host(.kp-popover--arrow-right-start)  .kp-popover__arrow { right: 0; top: 16px; transform: translateX(100%); }
-    :host(.kp-popover--arrow-right-center) .kp-popover__arrow { right: 0; top: 50%; transform: translate(100%, -50%); }
+    :host(.kp-popover--arrow-right-center) .kp-popover__arrow { right: 0; top: var(--kp-popover-arrow-offset, 50%); transform: translate(100%, -50%); }
     :host(.kp-popover--arrow-right-end)    .kp-popover__arrow { right: 0; bottom: 16px; transform: translateX(100%); }
 
     /* Sizes */

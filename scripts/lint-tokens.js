@@ -66,11 +66,16 @@ function listComponentFiles() {
       .map((p) => path.join(ROOT, p))
       .filter((p) => fs.existsSync(p));
   }
+  // Single-package layout (ADR 0002): every component/pattern is an entry
+  // point under packages/ui/<name>/src. (Was packages/{components,patterns}/*
+  // pre-v5 — keeping that stale path meant this gate silently scanned zero
+  // files after the migration.)
   const out = [];
-  for (const layer of ['components', 'patterns']) {
-    const base = path.join(ROOT, 'packages', layer);
-    if (!fs.existsSync(base)) continue;
+  const SKIP = new Set(['src', 'styles', 'stories']);
+  const base = path.join(ROOT, 'packages', 'ui');
+  if (fs.existsSync(base)) {
     for (const pkg of fs.readdirSync(base)) {
+      if (SKIP.has(pkg)) continue;
       const srcDir = path.join(base, pkg, 'src');
       if (!fs.existsSync(srcDir)) continue;
       for (const f of fs.readdirSync(srcDir)) {

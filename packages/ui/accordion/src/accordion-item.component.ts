@@ -49,17 +49,18 @@ export type KpAccordionItemSize = 'sm' | 'md' | 'lg';
       </span>
     </button>
 
-    @if (expanded) {
+    <div class="kp-ai__panel" [attr.inert]="expanded ? null : ''">
       <div
         class="kp-ai__content"
         role="region"
         [id]="panelId"
         [attr.aria-labelledby]="triggerId"
+        [attr.aria-hidden]="expanded ? null : 'true'"
       >
         <ng-content select="[kpAccordionItemContent]"/>
         <ng-content/>
       </div>
-    }
+    </div>
   `,
   styles: [`
     :host {
@@ -143,21 +144,39 @@ export type KpAccordionItemSize = 'sm' | 'md' | 'lg';
       color: var(--kp-color-accordion-trigger-icon-expanded);
     }
 
+    /* Animated height via the grid-template-rows 0fr to 1fr technique:
+       the panel is a 1-row grid whose track grows from 0 to the content
+       natural height. No magic numbers, content stays in the DOM. */
+    .kp-ai__panel {
+      display: grid;
+      /* minmax(0, …) forces the track minimum to 0 — a bare 0fr keeps the
+         row at the content's auto-minimum (a line of text + padding), so it
+         never actually collapses. With minmax(0,0fr) the row is truly 0. */
+      grid-template-rows: minmax(0, 0fr);
+      transition: grid-template-rows var(--kp-motion-duration-normal) ease;
+      /* Clip the content while the 0-height track can't (the content keeps
+         its own intrinsic height inside the collapsed track). */
+      overflow: hidden;
+    }
+    :host(.kp-ai--expanded) .kp-ai__panel {
+      grid-template-rows: minmax(0, 1fr);
+    }
+
     .kp-ai__content {
+      /* min-height: 0 lets the grid track collapse below content size.
+         overflow: hidden clips the content (and its padding) as the
+         track animates between 0fr and 1fr. */
+      min-height: 0;
+      overflow: hidden;
       padding: var(--kp-ai-ct-pad-top) var(--kp-ai-ct-pad) var(--kp-ai-ct-pad);
       color: var(--kp-color-accordion-content);
       font-size: var(--kp-ai-ct-size);
       line-height: var(--kp-ai-ct-lh);
-      animation: kp-ai-in var(--kp-motion-duration-normal) ease;
-    }
-    @keyframes kp-ai-in {
-      from { opacity: 0; transform: translateY(-4px); }
-      to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Respect OS-level reduce-motion preference — content appears instantly. */
+    /* Respect OS-level reduce-motion preference — no height transition. */
     @media (prefers-reduced-motion: reduce) {
-      .kp-ai__content { animation-duration: 0.01ms; }
+      .kp-ai__panel { transition: none; }
     }
 
     :host(.kp-ai--sm) {
