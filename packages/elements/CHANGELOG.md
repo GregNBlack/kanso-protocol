@@ -1,5 +1,11 @@
 # @kanso-protocol/elements
 
+## 0.1.2
+
+### Patch Changes
+
+- Rebuild the custom-elements bundle against `@kanso-protocol/ui@5.2.0`, carrying the accordion animation, combobox dropdown sizing, dialog `start` footer, drawer `[modal]`/`floating`/`[elevated]`, and popover positioning improvements to React / Vue / plain-HTML consumers. No API change.
+
 ## 0.1.1
 
 ### Patch Changes
