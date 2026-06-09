@@ -240,17 +240,17 @@
       "primary": {
         "subtle": {
           "bg": {
-            "$value": "#1E3A8A",
+            "$value": "{color.blue.100}",
             "$description": "blue-100 in dark"
           },
           "fg": {
-            "$value": "#93C5FD",
+            "$value": "{color.blue.900}",
             "$description": "designer-pass"
           }
         },
         "outline": {
           "fg": {
-            "$value": "#93C5FD",
+            "$value": "{color.blue.900}",
             "$description": "audit-2026-05-13 — outline badge fg cascades to blue.700 (#1D4ED8) in dark which fails AA on transparent → body bg #18181B. Match subtle.fg for readability."
           }
         }
@@ -258,7 +258,7 @@
       "danger": {
         "subtle": {
           "bg": {
-            "$value": "#7F1D1D",
+            "$value": "{color.red.100}",
             "$description": "red-100"
           },
           "fg": {
@@ -276,7 +276,7 @@
       "success": {
         "subtle": {
           "bg": {
-            "$value": "#14532D",
+            "$value": "{color.green.100}",
             "$description": "green-100"
           },
           "fg": {
@@ -294,7 +294,7 @@
       "warning": {
         "subtle": {
           "bg": {
-            "$value": "#78350F",
+            "$value": "{color.amber.100}",
             "$description": "amber-100"
           },
           "fg": {
@@ -304,7 +304,7 @@
         },
         "filled": {
           "fg": {
-            "$value": "#18181B",
+            "$value": "{color.gray.100}",
             "$description": "audit-2026-05-12 — force gray.900 LIGHT value. Semantic cascade resolves filled.fg = {color.gray.900} which inverts to #FAFAFA in dark, giving ~2:1 on amber.500 bg. Hardcoding the dark hex keeps the dark-text-on-yellow contrast (~12:1) consistent with the light theme rendering."
           }
         },
@@ -318,7 +318,7 @@
       "info": {
         "subtle": {
           "bg": {
-            "$value": "#164E63",
+            "$value": "{color.cyan.100}",
             "$description": "cyan-100"
           },
           "fg": {
@@ -336,11 +336,11 @@
       "neutral": {
         "subtle": {
           "bg": {
-            "$value": "#27272A",
+            "$value": "{color.gray.200}",
             "$description": "gray-200"
           },
           "fg": {
-            "$value": "#D4D4D8",
+            "$value": "{color.gray.700}",
             "$description": "designer-pass"
           }
         }
@@ -350,141 +350,341 @@
       "$description": "Subtle backgrounds — same logic as badge. r3 (audit-2026-05-06): titles for ALL subtle / outline appearances pulled to plain white so they read 'distinct' rather than 'tinted-but-similar'. Subtle desc for danger/success/warning/info bumped one step lighter so body text is readable. Solid desc explicitly held at light X.100 instead of inverting to dark X.50 (which produced dark-on-bright text in dark mode). Solid neutral bg pulled to subtle-neutral level so it stops reading as a near-white card.",
       "primary": {
         "subtle": {
-          "bg":       { "$value": "#1E3A8A" },
-          "fg-title": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 r3 — plain white, was #DBEAFE which read as same-toned as desc" },
-          "fg-desc":  { "$value": "#DBEAFE", "$description": "audit-2026-05-06 r4 — match solid.fg-desc; was #BFDBFE which read too dim against the darker bg" },
-          "border":   { "$value": "transparent", "$description": "audit-2026-05-06 — subtle alerts in dark feel cleaner without a border; the tinted bg defines the box" }
+          "bg": {
+            "$value": "{color.blue.100}"
+          },
+          "fg-title": {
+            "$value": "{color.gray.950}",
+            "$description": "audit-2026-05-06 r3 — plain white, was #DBEAFE which read as same-toned as desc"
+          },
+          "fg-desc": {
+            "$value": "{color.blue.900}",
+            "$description": "audit-2026-05-06 r4 — match solid.fg-desc; was #BFDBFE which read too dim against the darker bg"
+          },
+          "border": {
+            "$value": "transparent",
+            "$description": "audit-2026-05-06 — subtle alerts in dark feel cleaner without a border; the tinted bg defines the box"
+          }
         },
         "solid": {
-          "fg-desc":  { "$value": "#DBEAFE", "$description": "audit-2026-05-06 r3 — hold at blue-100 light; without override the alias cascades to blue.50 dark = #172554 which is dark text on bright bg — wrong" }
+          "fg-desc": {
+            "$value": "{color.blue.900}",
+            "$description": "audit-2026-05-06 r3 — hold at blue-100 light; without override the alias cascades to blue.50 dark = #172554 which is dark text on bright bg — wrong"
+          }
         },
         "outline": {
-          "bg":       { "$value": "#09090B", "$description": "audit-2026-05-06 — outline alerts were on surface-base (#18181B); dropped to page bg so the colored border carries identity" },
-          "fg-title": { "$value": "#BFDBFE", "$description": "audit-2026-05-06 r5 — blue-200 light, brand-tinted title (was plain white #FAFAFA but user wants colored title for outline)" },
-          "fg-desc":  { "$value": "#A1A1AA", "$description": "audit-2026-05-06 r5 — gray-800 light, brighter than gray.700-inv #D4D4D8 which was barely visible" }
+          "bg": {
+            "$value": "{color.gray.50}",
+            "$description": "audit-2026-05-06 — outline alerts were on surface-base (#18181B); dropped to page bg so the colored border carries identity"
+          },
+          "fg-title": {
+            "$value": "{color.blue.900}",
+            "$description": "audit-2026-05-06 r5 — blue-200 light, brand-tinted title (was plain white #FAFAFA but user wants colored title for outline)"
+          },
+          "fg-desc": {
+            "$value": "{color.gray.600}",
+            "$description": "audit-2026-05-06 r5 — gray-800 light, brighter than gray.700-inv #D4D4D8 which was barely visible"
+          }
         },
         "left-accent": {
-          "bg":       { "$value": "#09090B", "$description": "audit-2026-05-06 — same as outline; left-accent identity comes from the colored bar" },
-          "fg-title": { "$value": "#BFDBFE", "$description": "audit-2026-05-06 r5 — blue-200 light, visible brand title" },
-          "fg-desc":  { "$value": "#A1A1AA", "$description": "audit-2026-05-06 r5 — gray-800 light, brighter body text" },
-          "border":   { "$value": "#27272A", "$description": "audit-2026-05-06 r5 — surface-base level; border was gray.200-inv #27272A which felt too prominent" },
-          "accent":   { "$value": "#3A4F88", "$description": "audit-2026-05-06 r5 — muted brand bar (was blue.600 dark = #2563EB, too saturated/bright for accent)" }
+          "bg": {
+            "$value": "{color.gray.50}",
+            "$description": "audit-2026-05-06 — same as outline; left-accent identity comes from the colored bar"
+          },
+          "fg-title": {
+            "$value": "{color.blue.900}",
+            "$description": "audit-2026-05-06 r5 — blue-200 light, visible brand title"
+          },
+          "fg-desc": {
+            "$value": "{color.gray.600}",
+            "$description": "audit-2026-05-06 r5 — gray-800 light, brighter body text"
+          },
+          "border": {
+            "$value": "{color.gray.200}",
+            "$description": "audit-2026-05-06 r5 — surface-base level; border was gray.200-inv #27272A which felt too prominent"
+          },
+          "accent": {
+            "$value": "{color.blue.200}",
+            "$description": "audit-2026-05-06 r5 — muted brand bar (was blue.600 dark = #2563EB, too saturated/bright for accent)"
+          }
         }
       },
       "danger": {
         "subtle": {
-          "bg":       { "$value": "#7F1D1D" },
-          "fg-title": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 r3 — plain white" },
-          "fg-desc":  { "$value": "#FEE2E2", "$description": "audit-2026-05-06 r4 — match solid.fg-desc; red-100 light" },
-          "border":   { "$value": "transparent" }
+          "bg": {
+            "$value": "{color.red.100}"
+          },
+          "fg-title": {
+            "$value": "{color.gray.950}",
+            "$description": "audit-2026-05-06 r3 — plain white"
+          },
+          "fg-desc": {
+            "$value": "{color.red.900}",
+            "$description": "audit-2026-05-06 r4 — match solid.fg-desc; red-100 light"
+          },
+          "border": {
+            "$value": "transparent"
+          }
         },
         "solid": {
-          "fg-desc":  { "$value": "#FEE2E2", "$description": "audit-2026-05-06 r3 — red-100 light" }
+          "fg-desc": {
+            "$value": "{color.red.900}",
+            "$description": "audit-2026-05-06 r3 — red-100 light"
+          }
         },
         "outline": {
-          "bg":       { "$value": "#09090B" },
-          "fg-title": { "$value": "#FECACA", "$description": "audit-2026-05-06 r5 — red-200 light" },
-          "fg-desc":  { "$value": "#A1A1AA" }
+          "bg": {
+            "$value": "{color.gray.50}"
+          },
+          "fg-title": {
+            "$value": "#FECACA",
+            "$description": "audit-2026-05-06 r5 — red-200 light"
+          },
+          "fg-desc": {
+            "$value": "{color.gray.600}"
+          }
         },
         "left-accent": {
-          "bg":       { "$value": "#09090B" },
-          "fg-title": { "$value": "#FECACA" },
-          "fg-desc":  { "$value": "#A1A1AA" },
-          "border":   { "$value": "#27272A" },
-          "accent":   { "$value": "#7A2A2D", "$description": "audit-2026-05-06 r5 — muted dark red bar" }
+          "bg": {
+            "$value": "{color.gray.50}"
+          },
+          "fg-title": {
+            "$value": "#FECACA"
+          },
+          "fg-desc": {
+            "$value": "{color.gray.600}"
+          },
+          "border": {
+            "$value": "{color.gray.200}"
+          },
+          "accent": {
+            "$value": "#7A2A2D",
+            "$description": "audit-2026-05-06 r5 — muted dark red bar"
+          }
         }
       },
       "success": {
         "subtle": {
-          "bg":       { "$value": "#14532D" },
-          "fg-title": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 r3 — plain white" },
-          "fg-desc":  { "$value": "#DCFCE7", "$description": "audit-2026-05-06 r4 — match solid.fg-desc; green-100 light" },
-          "border":   { "$value": "transparent" }
+          "bg": {
+            "$value": "{color.green.100}"
+          },
+          "fg-title": {
+            "$value": "{color.gray.950}",
+            "$description": "audit-2026-05-06 r3 — plain white"
+          },
+          "fg-desc": {
+            "$value": "{color.green.900}",
+            "$description": "audit-2026-05-06 r4 — match solid.fg-desc; green-100 light"
+          },
+          "border": {
+            "$value": "transparent"
+          }
         },
         "solid": {
-          "fg-desc":  { "$value": "#DCFCE7", "$description": "audit-2026-05-06 r3 — green-100 light" }
+          "fg-desc": {
+            "$value": "{color.green.900}",
+            "$description": "audit-2026-05-06 r3 — green-100 light"
+          }
         },
         "outline": {
-          "bg":       { "$value": "#09090B" },
-          "fg-title": { "$value": "#BBF7D0", "$description": "audit-2026-05-06 r5 — green-200 light" },
-          "fg-desc":  { "$value": "#A1A1AA" }
+          "bg": {
+            "$value": "{color.gray.50}"
+          },
+          "fg-title": {
+            "$value": "#BBF7D0",
+            "$description": "audit-2026-05-06 r5 — green-200 light"
+          },
+          "fg-desc": {
+            "$value": "{color.gray.600}"
+          }
         },
         "left-accent": {
-          "bg":       { "$value": "#09090B" },
-          "fg-title": { "$value": "#BBF7D0" },
-          "fg-desc":  { "$value": "#A1A1AA" },
-          "border":   { "$value": "#27272A" },
-          "accent":   { "$value": "#1F6336", "$description": "audit-2026-05-06 r5 — muted dark green bar" }
+          "bg": {
+            "$value": "{color.gray.50}"
+          },
+          "fg-title": {
+            "$value": "#BBF7D0"
+          },
+          "fg-desc": {
+            "$value": "{color.gray.600}"
+          },
+          "border": {
+            "$value": "{color.gray.200}"
+          },
+          "accent": {
+            "$value": "#1F6336",
+            "$description": "audit-2026-05-06 r5 — muted dark green bar"
+          }
         }
       },
       "warning": {
         "subtle": {
-          "bg":       { "$value": "#78350F" },
-          "fg-title": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 r3 — plain white" },
-          "fg-desc":  { "$value": "#FEF3C7", "$description": "audit-2026-05-06 r4 — amber-50 light, matches solid pattern" },
-          "border":   { "$value": "transparent" }
+          "bg": {
+            "$value": "{color.amber.100}"
+          },
+          "fg-title": {
+            "$value": "{color.gray.950}",
+            "$description": "audit-2026-05-06 r3 — plain white"
+          },
+          "fg-desc": {
+            "$value": "{color.amber.900}",
+            "$description": "audit-2026-05-06 r4 — amber-50 light, matches solid pattern"
+          },
+          "border": {
+            "$value": "transparent"
+          }
         },
         "outline": {
-          "bg":       { "$value": "#09090B" },
-          "fg-title": { "$value": "#FDE68A", "$description": "audit-2026-05-06 r5 — amber-200 light" },
-          "fg-desc":  { "$value": "#A1A1AA" }
+          "bg": {
+            "$value": "{color.gray.50}"
+          },
+          "fg-title": {
+            "$value": "#FDE68A",
+            "$description": "audit-2026-05-06 r5 — amber-200 light"
+          },
+          "fg-desc": {
+            "$value": "{color.gray.600}"
+          }
         },
         "left-accent": {
-          "bg":       { "$value": "#09090B" },
-          "fg-title": { "$value": "#FDE68A" },
-          "fg-desc":  { "$value": "#A1A1AA" },
-          "border":   { "$value": "#27272A" },
-          "accent":   { "$value": "#8A4A0E", "$description": "audit-2026-05-06 r5 — muted dark amber bar" }
+          "bg": {
+            "$value": "{color.gray.50}"
+          },
+          "fg-title": {
+            "$value": "#FDE68A"
+          },
+          "fg-desc": {
+            "$value": "{color.gray.600}"
+          },
+          "border": {
+            "$value": "{color.gray.200}"
+          },
+          "accent": {
+            "$value": "#8A4A0E",
+            "$description": "audit-2026-05-06 r5 — muted dark amber bar"
+          }
         }
       },
       "info": {
         "subtle": {
-          "bg":       { "$value": "#164E63" },
-          "fg-title": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 r3 — plain white" },
-          "fg-desc":  { "$value": "#CFFAFE", "$description": "audit-2026-05-06 r4 — match solid.fg-desc; cyan-100 light" },
-          "border":   { "$value": "transparent" }
+          "bg": {
+            "$value": "{color.cyan.100}"
+          },
+          "fg-title": {
+            "$value": "{color.gray.950}",
+            "$description": "audit-2026-05-06 r3 — plain white"
+          },
+          "fg-desc": {
+            "$value": "{color.cyan.900}",
+            "$description": "audit-2026-05-06 r4 — match solid.fg-desc; cyan-100 light"
+          },
+          "border": {
+            "$value": "transparent"
+          }
         },
         "solid": {
-          "fg-desc":  { "$value": "#CFFAFE", "$description": "audit-2026-05-06 r3 — cyan-100 light" }
+          "fg-desc": {
+            "$value": "{color.cyan.900}",
+            "$description": "audit-2026-05-06 r3 — cyan-100 light"
+          }
         },
         "outline": {
-          "bg":       { "$value": "#09090B" },
-          "fg-title": { "$value": "#A5F3FC", "$description": "audit-2026-05-06 r5 — cyan-200 light" },
-          "fg-desc":  { "$value": "#A1A1AA" }
+          "bg": {
+            "$value": "{color.gray.50}"
+          },
+          "fg-title": {
+            "$value": "#A5F3FC",
+            "$description": "audit-2026-05-06 r5 — cyan-200 light"
+          },
+          "fg-desc": {
+            "$value": "{color.gray.600}"
+          }
         },
         "left-accent": {
-          "bg":       { "$value": "#09090B" },
-          "fg-title": { "$value": "#A5F3FC" },
-          "fg-desc":  { "$value": "#A1A1AA" },
-          "border":   { "$value": "#27272A" },
-          "accent":   { "$value": "#155E75", "$description": "audit-2026-05-06 r5 — muted dark cyan bar" }
+          "bg": {
+            "$value": "{color.gray.50}"
+          },
+          "fg-title": {
+            "$value": "#A5F3FC"
+          },
+          "fg-desc": {
+            "$value": "{color.gray.600}"
+          },
+          "border": {
+            "$value": "{color.gray.200}"
+          },
+          "accent": {
+            "$value": "{color.cyan.200}",
+            "$description": "audit-2026-05-06 r5 — muted dark cyan bar"
+          }
         }
       },
       "neutral": {
         "subtle": {
-          "bg":       { "$value": "#27272A" },
-          "fg-title": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 — near-white title on the gray-200 dark subtle bg" },
-          "fg-desc":  { "$value": "#A1A1AA", "$description": "audit-2026-05-06 — gray-400 light, readable secondary on gray-200 dark" },
-          "border":   { "$value": "transparent" }
+          "bg": {
+            "$value": "{color.gray.200}"
+          },
+          "fg-title": {
+            "$value": "{color.gray.950}",
+            "$description": "audit-2026-05-06 — near-white title on the gray-200 dark subtle bg"
+          },
+          "fg-desc": {
+            "$value": "{color.gray.600}",
+            "$description": "audit-2026-05-06 — gray-400 light, readable secondary on gray-200 dark"
+          },
+          "border": {
+            "$value": "transparent"
+          }
         },
         "solid": {
-          "bg":       { "$value": "#27272A", "$description": "audit-2026-05-06 r3 — match subtle.neutral; default cascade gave gray.900 inverted = #F4F4F5 (near-white card) which read as 'light bg' in dark mode" },
-          "fg-title": { "$value": "#FAFAFA" },
-          "fg-desc":  { "$value": "#A1A1AA" },
-          "border":   { "$value": "#27272A", "$description": "audit-2026-05-06 r4 — match bg so the border disappears; other solid alerts naturally have border = bg, but neutral was using gray.900-inv = #F4F4F5 which left a bright outline on the new dark bg" }
+          "bg": {
+            "$value": "{color.gray.200}",
+            "$description": "audit-2026-05-06 r3 — match subtle.neutral; default cascade gave gray.900 inverted = #F4F4F5 (near-white card) which read as 'light bg' in dark mode"
+          },
+          "fg-title": {
+            "$value": "{color.gray.950}"
+          },
+          "fg-desc": {
+            "$value": "{color.gray.600}"
+          },
+          "border": {
+            "$value": "{color.gray.200}",
+            "$description": "audit-2026-05-06 r4 — match bg so the border disappears; other solid alerts naturally have border = bg, but neutral was using gray.900-inv = #F4F4F5 which left a bright outline on the new dark bg"
+          }
         },
         "outline": {
-          "bg":       { "$value": "#09090B" },
-          "fg-title": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 r5 — explicit white title (cascade gave gray.900 inverted = #F4F4F5 which user reported as 'not visible' — likely a perception issue from the bordered card; explicit value to be safe)" },
-          "fg-desc":  { "$value": "#A1A1AA" },
-          "border":   { "$value": "#27272A", "$description": "audit-2026-05-06 r5 — gray-200 dark, less bright than gray.300 inversion #3F3F46" }
+          "bg": {
+            "$value": "{color.gray.50}"
+          },
+          "fg-title": {
+            "$value": "{color.gray.950}",
+            "$description": "audit-2026-05-06 r5 — explicit white title (cascade gave gray.900 inverted = #F4F4F5 which user reported as 'not visible' — likely a perception issue from the bordered card; explicit value to be safe)"
+          },
+          "fg-desc": {
+            "$value": "{color.gray.600}"
+          },
+          "border": {
+            "$value": "{color.gray.200}",
+            "$description": "audit-2026-05-06 r5 — gray-200 dark, less bright than gray.300 inversion #3F3F46"
+          }
         },
         "left-accent": {
-          "bg":       { "$value": "#09090B" },
-          "fg-title": { "$value": "#FAFAFA" },
-          "fg-desc":  { "$value": "#A1A1AA" },
-          "border":   { "$value": "#27272A" },
-          "accent":   { "$value": "#3F3F46", "$description": "audit-2026-05-06 r5 — gray-300 dark, muted neutral bar" }
+          "bg": {
+            "$value": "{color.gray.50}"
+          },
+          "fg-title": {
+            "$value": "{color.gray.950}"
+          },
+          "fg-desc": {
+            "$value": "{color.gray.600}"
+          },
+          "border": {
+            "$value": "{color.gray.200}"
+          },
+          "accent": {
+            "$value": "{color.gray.300}",
+            "$description": "audit-2026-05-06 r5 — gray-300 dark, muted neutral bar"
+          }
         }
       }
     },
@@ -492,146 +692,352 @@
       "$description": "Dark-mode primary button overrides. Includes: (1) designer-pass FG colors so text reads on saturated bg, (2) muted disabled bg/border so disabled blends with surface-base, (3) less saturated subtle bg / outline border / outline+ghost hover-active bg per audit feedback (2026-05-05).",
       "default": {
         "bg": {
-          "disabled": { "$value": "#18181B", "$description": "audit-2026-05-05 — disabled blends with surface-base, less 'светлая' feel" },
-          "loading":  { "$value": "#3B82F6", "$description": "blue-500 dark — bright loading bg so spinner stays readable" }
+          "disabled": {
+            "$value": "{color.gray.100}",
+            "$description": "audit-2026-05-05 — disabled blends with surface-base, less 'светлая' feel"
+          },
+          "loading": {
+            "$value": "{color.blue.500}",
+            "$description": "blue-500 dark — bright loading bg so spinner stays readable"
+          }
         },
         "fg": {
-          "disabled": { "$value": "#52525B", "$description": "audit-2026-05-05 — muted disabled fg on the new darker disabled bg" },
-          "loading":  { "$value": "#FFFFFF", "$description": "light loader on saturated loading bg" }
+          "disabled": {
+            "$value": "{color.gray.400}",
+            "$description": "audit-2026-05-05 — muted disabled fg on the new darker disabled bg"
+          },
+          "loading": {
+            "$value": "#FFFFFF",
+            "$description": "light loader on saturated loading bg"
+          }
         },
         "border": {
-          "disabled": { "$value": "#18181B", "$description": "audit-2026-05-05 — match new disabled bg" },
-          "loading":  { "$value": "#3B82F6" }
+          "disabled": {
+            "$value": "{color.gray.100}",
+            "$description": "audit-2026-05-05 — match new disabled bg"
+          },
+          "loading": {
+            "$value": "{color.blue.500}"
+          }
         }
       },
       "subtle": {
         "bg": {
-          "rest":     { "$value": "#1E2A4F", "$description": "audit-2026-05-05 — muted dark navy, less saturated than blue-50 inversion (#172554) which read as too colored" },
-          "hover":    { "$value": "#27395E" },
-          "active":   { "$value": "#324871" },
-          "focus":    { "$value": "#1E2A4F" },
-          "loading":  { "$value": "#1E2A4F" },
-          "disabled": { "$value": "#18181B" }
+          "rest": {
+            "$value": "{color.blue.50}",
+            "$description": "audit-2026-05-05 — muted dark navy, less saturated than blue-50 inversion (#172554) which read as too colored"
+          },
+          "hover": {
+            "$value": "{color.blue.50}"
+          },
+          "active": {
+            "$value": "{color.blue.100}"
+          },
+          "focus": {
+            "$value": "{color.blue.50}"
+          },
+          "loading": {
+            "$value": "{color.blue.50}"
+          },
+          "disabled": {
+            "$value": "{color.gray.100}"
+          }
         },
         "fg": {
-          "rest":     { "$value": "#93C5FD", "$description": "designer-pass" },
-          "hover":    { "$value": "#BFDBFE" },
-          "active":   { "$value": "#DBEAFE" },
-          "focus":    { "$value": "#93C5FD" },
-          "loading":  { "$value": "#93C5FD" },
-          "disabled": { "$value": "#52525B" }
+          "rest": {
+            "$value": "{color.blue.900}",
+            "$description": "designer-pass"
+          },
+          "hover": {
+            "$value": "{color.blue.900}"
+          },
+          "active": {
+            "$value": "{color.blue.900}"
+          },
+          "focus": {
+            "$value": "{color.blue.900}"
+          },
+          "loading": {
+            "$value": "{color.blue.900}"
+          },
+          "disabled": {
+            "$value": "{color.gray.400}"
+          }
         },
         "border": {
-          "disabled": { "$value": "transparent" }
+          "disabled": {
+            "$value": "transparent"
+          }
         }
       },
       "outline": {
         "bg": {
-          "hover":  { "$value": "#1E2A4F", "$description": "audit-2026-05-05 — match subtle.bg.rest, soft brand-tinted hover surface" },
-          "active": { "$value": "#27395E" }
+          "hover": {
+            "$value": "{color.blue.50}",
+            "$description": "audit-2026-05-05 — match subtle.bg.rest, soft brand-tinted hover surface"
+          },
+          "active": {
+            "$value": "{color.blue.50}"
+          }
         },
         "fg": {
-          "rest":     { "$value": "#93C5FD", "$description": "audit-2026-05-12 — blue-300 light; was inheriting blue.600 dark (#2563EB) which gave 3.77:1 on surface-base (fails AA). Matches subtle.fg.rest." },
-          "hover":    { "$value": "#BFDBFE", "$description": "audit-2026-05-12 — blue-200 light, lighter than rest for hover affordance on tinted bg #1E2A4F" },
-          "active":   { "$value": "#BFDBFE", "$description": "audit-2026-05-05 r2 — blue-200 light, readable on darker active bg" },
-          "focus":    { "$value": "#93C5FD", "$description": "audit-2026-05-12 — match rest" },
-          "loading":  { "$value": "#93C5FD", "$description": "audit-2026-05-12 — match rest" },
-          "disabled": { "$value": "#3F3F46", "$description": "audit-2026-05-05 r2 — much more muted disabled fg, not 'too bright' for a disabled state" }
+          "rest": {
+            "$value": "{color.blue.900}",
+            "$description": "audit-2026-05-12 — blue-300 light; was inheriting blue.600 dark (#2563EB) which gave 3.77:1 on surface-base (fails AA). Matches subtle.fg.rest."
+          },
+          "hover": {
+            "$value": "{color.blue.900}",
+            "$description": "audit-2026-05-12 — blue-200 light, lighter than rest for hover affordance on tinted bg #1E2A4F"
+          },
+          "active": {
+            "$value": "{color.blue.900}",
+            "$description": "audit-2026-05-05 r2 — blue-200 light, readable on darker active bg"
+          },
+          "focus": {
+            "$value": "{color.blue.900}",
+            "$description": "audit-2026-05-12 — match rest"
+          },
+          "loading": {
+            "$value": "{color.blue.900}",
+            "$description": "audit-2026-05-12 — match rest"
+          },
+          "disabled": {
+            "$value": "{color.gray.300}",
+            "$description": "audit-2026-05-05 r2 — much more muted disabled fg, not 'too bright' for a disabled state"
+          }
         },
         "border": {
-          "rest":     { "$value": "#3A4F88", "$description": "audit-2026-05-05 — muted brand border, less saturated than blue.300 inversion (#1D4ED8) which felt too bright" },
-          "hover":    { "$value": "#4A60A0" },
-          "active":   { "$value": "#5C72B8" },
-          "focus":    { "$value": "#3A4F88" },
-          "disabled": { "$value": "#27272A", "$description": "audit-2026-05-05 — disabled outline border = surface-strong" },
-          "loading":  { "$value": "#3A4F88" }
+          "rest": {
+            "$value": "{color.blue.200}",
+            "$description": "audit-2026-05-05 — muted brand border, less saturated than blue.300 inversion (#1D4ED8) which felt too bright"
+          },
+          "hover": {
+            "$value": "{color.blue.300}"
+          },
+          "active": {
+            "$value": "{color.blue.400}"
+          },
+          "focus": {
+            "$value": "{color.blue.200}"
+          },
+          "disabled": {
+            "$value": "{color.gray.200}",
+            "$description": "audit-2026-05-05 — disabled outline border = surface-strong"
+          },
+          "loading": {
+            "$value": "{color.blue.200}"
+          }
         }
       },
       "ghost": {
         "bg": {
-          "hover":  { "$value": "#1E2A4F", "$description": "audit-2026-05-05 — match outline hover" },
-          "active": { "$value": "#27395E" }
+          "hover": {
+            "$value": "{color.blue.50}",
+            "$description": "audit-2026-05-05 — match outline hover"
+          },
+          "active": {
+            "$value": "{color.blue.50}"
+          }
         },
         "fg": {
-          "rest":     { "$value": "#93C5FD", "$description": "audit-2026-05-12 — match primary.outline.fg.rest; was inheriting blue.600 dark (#2563EB) which fails AA on surface-base" },
-          "hover":    { "$value": "#BFDBFE", "$description": "audit-2026-05-12 — match primary.outline.fg.hover" },
-          "active":   { "$value": "#BFDBFE", "$description": "audit-2026-05-05 r2 — match outline.fg.active" },
-          "focus":    { "$value": "#93C5FD", "$description": "audit-2026-05-12 — match rest" },
-          "loading":  { "$value": "#93C5FD", "$description": "audit-2026-05-12 — match rest" },
-          "disabled": { "$value": "#3F3F46", "$description": "audit-2026-05-05 r2 — match outline.fg.disabled" }
+          "rest": {
+            "$value": "{color.blue.900}",
+            "$description": "audit-2026-05-12 — match primary.outline.fg.rest; was inheriting blue.600 dark (#2563EB) which fails AA on surface-base"
+          },
+          "hover": {
+            "$value": "{color.blue.900}",
+            "$description": "audit-2026-05-12 — match primary.outline.fg.hover"
+          },
+          "active": {
+            "$value": "{color.blue.900}",
+            "$description": "audit-2026-05-05 r2 — match outline.fg.active"
+          },
+          "focus": {
+            "$value": "{color.blue.900}",
+            "$description": "audit-2026-05-12 — match rest"
+          },
+          "loading": {
+            "$value": "{color.blue.900}",
+            "$description": "audit-2026-05-12 — match rest"
+          },
+          "disabled": {
+            "$value": "{color.gray.300}",
+            "$description": "audit-2026-05-05 r2 — match outline.fg.disabled"
+          }
         }
       }
     },
     "danger": {
       "default": {
         "bg": {
-          "disabled": { "$value": "#18181B", "$description": "audit-2026-05-05" },
-          "loading":  { "$value": "#EF4444", "$description": "red-500 dark — bright loading bg" }
+          "disabled": {
+            "$value": "{color.gray.100}",
+            "$description": "audit-2026-05-05"
+          },
+          "loading": {
+            "$value": "{color.red.500}",
+            "$description": "red-500 dark — bright loading bg"
+          }
         },
         "fg": {
-          "disabled": { "$value": "#52525B", "$description": "audit-2026-05-05" },
-          "loading":  { "$value": "#FFFFFF" }
+          "disabled": {
+            "$value": "{color.gray.400}",
+            "$description": "audit-2026-05-05"
+          },
+          "loading": {
+            "$value": "#FFFFFF"
+          }
         },
         "border": {
-          "disabled": { "$value": "#18181B" },
-          "loading":  { "$value": "#EF4444" }
+          "disabled": {
+            "$value": "{color.gray.100}"
+          },
+          "loading": {
+            "$value": "{color.red.500}"
+          }
         }
       },
       "subtle": {
         "bg": {
-          "rest":     { "$value": "#3A1518", "$description": "audit-2026-05-05 — muted dark red, less saturated than red-50 inversion" },
-          "hover":    { "$value": "#4D1B1F" },
-          "active":   { "$value": "#5E2125" },
-          "focus":    { "$value": "#3A1518" },
-          "loading":  { "$value": "#3A1518" },
-          "disabled": { "$value": "#18181B" }
+          "rest": {
+            "$value": "#3A1518",
+            "$description": "audit-2026-05-05 — muted dark red, less saturated than red-50 inversion"
+          },
+          "hover": {
+            "$value": "#4D1B1F"
+          },
+          "active": {
+            "$value": "#5E2125"
+          },
+          "focus": {
+            "$value": "#3A1518"
+          },
+          "loading": {
+            "$value": "#3A1518"
+          },
+          "disabled": {
+            "$value": "{color.gray.100}"
+          }
         },
         "fg": {
-          "rest":     { "$value": "#FCA5A5", "$description": "designer-pass" },
-          "hover":    { "$value": "#FECACA" },
-          "active":   { "$value": "#FEE2E2" },
-          "focus":    { "$value": "#FCA5A5" },
-          "loading":  { "$value": "#FCA5A5" },
-          "disabled": { "$value": "#52525B" }
+          "rest": {
+            "$value": "#FCA5A5",
+            "$description": "designer-pass"
+          },
+          "hover": {
+            "$value": "#FECACA"
+          },
+          "active": {
+            "$value": "{color.red.900}"
+          },
+          "focus": {
+            "$value": "#FCA5A5"
+          },
+          "loading": {
+            "$value": "#FCA5A5"
+          },
+          "disabled": {
+            "$value": "{color.gray.400}"
+          }
         },
         "border": {
-          "disabled": { "$value": "transparent" }
+          "disabled": {
+            "$value": "transparent"
+          }
         }
       },
       "outline": {
         "bg": {
-          "hover":  { "$value": "#3A1518", "$description": "audit-2026-05-05" },
-          "active": { "$value": "#4D1B1F" }
+          "hover": {
+            "$value": "#3A1518",
+            "$description": "audit-2026-05-05"
+          },
+          "active": {
+            "$value": "#4D1B1F"
+          }
         },
         "fg": {
-          "rest":     { "$value": "#FCA5A5", "$description": "audit-2026-05-12 — red-300 light; was inheriting red.600 dark (#DC2626) which gave ~4.0:1 on surface-base (fails AA). Matches subtle.fg.rest." },
-          "hover":    { "$value": "#FECACA", "$description": "audit-2026-05-12 — red-200 light, lighter than rest for hover on tinted bg #3A1518" },
-          "active":   { "$value": "#FECACA", "$description": "audit-2026-05-05 r2 — red-200 light, readable on darker active bg" },
-          "focus":    { "$value": "#FCA5A5", "$description": "audit-2026-05-12 — match rest" },
-          "loading":  { "$value": "#FCA5A5", "$description": "audit-2026-05-12 — match rest" },
-          "disabled": { "$value": "#3F3F46", "$description": "audit-2026-05-05 r2 — muted disabled fg" }
+          "rest": {
+            "$value": "#FCA5A5",
+            "$description": "audit-2026-05-12 — red-300 light; was inheriting red.600 dark (#DC2626) which gave ~4.0:1 on surface-base (fails AA). Matches subtle.fg.rest."
+          },
+          "hover": {
+            "$value": "#FECACA",
+            "$description": "audit-2026-05-12 — red-200 light, lighter than rest for hover on tinted bg #3A1518"
+          },
+          "active": {
+            "$value": "#FECACA",
+            "$description": "audit-2026-05-05 r2 — red-200 light, readable on darker active bg"
+          },
+          "focus": {
+            "$value": "#FCA5A5",
+            "$description": "audit-2026-05-12 — match rest"
+          },
+          "loading": {
+            "$value": "#FCA5A5",
+            "$description": "audit-2026-05-12 — match rest"
+          },
+          "disabled": {
+            "$value": "{color.gray.300}",
+            "$description": "audit-2026-05-05 r2 — muted disabled fg"
+          }
         },
         "border": {
-          "rest":     { "$value": "#7A2A2D", "$description": "audit-2026-05-05 — muted dark red border" },
-          "hover":    { "$value": "#933338" },
-          "active":   { "$value": "#AC3D44" },
-          "focus":    { "$value": "#7A2A2D" },
-          "disabled": { "$value": "#27272A" },
-          "loading":  { "$value": "#7A2A2D" }
+          "rest": {
+            "$value": "#7A2A2D",
+            "$description": "audit-2026-05-05 — muted dark red border"
+          },
+          "hover": {
+            "$value": "#933338"
+          },
+          "active": {
+            "$value": "#AC3D44"
+          },
+          "focus": {
+            "$value": "#7A2A2D"
+          },
+          "disabled": {
+            "$value": "{color.gray.200}"
+          },
+          "loading": {
+            "$value": "#7A2A2D"
+          }
         }
       },
       "ghost": {
         "bg": {
-          "hover":  { "$value": "#3A1518" },
-          "active": { "$value": "#4D1B1F" }
+          "hover": {
+            "$value": "#3A1518"
+          },
+          "active": {
+            "$value": "#4D1B1F"
+          }
         },
         "fg": {
-          "rest":     { "$value": "#FCA5A5", "$description": "audit-2026-05-12 — match danger.outline.fg.rest; was inheriting red.600 dark (#DC2626) which fails AA on surface-base" },
-          "hover":    { "$value": "#FECACA", "$description": "audit-2026-05-12 — match danger.outline.fg.hover" },
-          "active":   { "$value": "#FECACA", "$description": "audit-2026-05-05 r2 — match outline.fg.active" },
-          "focus":    { "$value": "#FCA5A5", "$description": "audit-2026-05-12 — match rest" },
-          "loading":  { "$value": "#FCA5A5", "$description": "audit-2026-05-12 — match rest" },
-          "disabled": { "$value": "#3F3F46", "$description": "audit-2026-05-05 r2 — match outline.fg.disabled" }
+          "rest": {
+            "$value": "#FCA5A5",
+            "$description": "audit-2026-05-12 — match danger.outline.fg.rest; was inheriting red.600 dark (#DC2626) which fails AA on surface-base"
+          },
+          "hover": {
+            "$value": "#FECACA",
+            "$description": "audit-2026-05-12 — match danger.outline.fg.hover"
+          },
+          "active": {
+            "$value": "#FECACA",
+            "$description": "audit-2026-05-05 r2 — match outline.fg.active"
+          },
+          "focus": {
+            "$value": "#FCA5A5",
+            "$description": "audit-2026-05-12 — match rest"
+          },
+          "loading": {
+            "$value": "#FCA5A5",
+            "$description": "audit-2026-05-12 — match rest"
+          },
+          "disabled": {
+            "$value": "{color.gray.300}",
+            "$description": "audit-2026-05-05 r2 — match outline.fg.disabled"
+          }
         }
       }
     },
@@ -639,89 +1045,199 @@
       "default": {
         "$description": "Neutral default in dark = elevated dark button (gray-300/400/500 dark). Was inheriting gray.900 inverted (#F4F4F5) which produced a near-white button with dark text — visually inconsistent in dark mode. Audit (2026-05-05) flipped to a medium-dark elevated surface with light text.",
         "bg": {
-          "rest":     { "$value": "#3F3F46", "$description": "gray-300 dark — elevated above surface-base" },
-          "hover":    { "$value": "#52525B", "$description": "gray-400 dark" },
-          "active":   { "$value": "#71717A", "$description": "gray-500 dark" },
-          "focus":    { "$value": "#3F3F46" },
-          "loading":  { "$value": "#52525B", "$description": "lighter so the dark loader stays visible" },
-          "disabled": { "$value": "#18181B" }
+          "rest": {
+            "$value": "{color.gray.300}",
+            "$description": "gray-300 dark — elevated above surface-base"
+          },
+          "hover": {
+            "$value": "{color.gray.400}",
+            "$description": "gray-400 dark"
+          },
+          "active": {
+            "$value": "{color.gray.500}",
+            "$description": "gray-500 dark"
+          },
+          "focus": {
+            "$value": "{color.gray.300}"
+          },
+          "loading": {
+            "$value": "{color.gray.400}",
+            "$description": "lighter so the dark loader stays visible"
+          },
+          "disabled": {
+            "$value": "{color.gray.100}"
+          }
         },
         "fg": {
-          "rest":     { "$value": "#FAFAFA", "$description": "audit-2026-05-05 — light text on medium-dark elevated button" },
-          "hover":    { "$value": "#FAFAFA" },
-          "active":   { "$value": "#FAFAFA" },
-          "focus":    { "$value": "#FAFAFA" },
-          "loading":  { "$value": "#FAFAFA" },
-          "disabled": { "$value": "#52525B", "$description": "audit-2026-05-05 r3 — match primary/danger.default.fg.disabled for visual consistency across colors" }
+          "rest": {
+            "$value": "{color.gray.950}",
+            "$description": "audit-2026-05-05 — light text on medium-dark elevated button"
+          },
+          "hover": {
+            "$value": "{color.gray.950}"
+          },
+          "active": {
+            "$value": "{color.gray.950}"
+          },
+          "focus": {
+            "$value": "{color.gray.950}"
+          },
+          "loading": {
+            "$value": "{color.gray.950}"
+          },
+          "disabled": {
+            "$value": "{color.gray.400}",
+            "$description": "audit-2026-05-05 r3 — match primary/danger.default.fg.disabled for visual consistency across colors"
+          }
         },
         "border": {
-          "rest":     { "$value": "#3F3F46" },
-          "hover":    { "$value": "#52525B" },
-          "active":   { "$value": "#71717A" },
-          "focus":    { "$value": "#3F3F46" },
-          "loading":  { "$value": "#52525B" },
-          "disabled": { "$value": "#18181B" }
+          "rest": {
+            "$value": "{color.gray.300}"
+          },
+          "hover": {
+            "$value": "{color.gray.400}"
+          },
+          "active": {
+            "$value": "{color.gray.500}"
+          },
+          "focus": {
+            "$value": "{color.gray.300}"
+          },
+          "loading": {
+            "$value": "{color.gray.400}"
+          },
+          "disabled": {
+            "$value": "{color.gray.100}"
+          }
         }
       },
       "subtle": {
         "bg": {
-          "rest":     { "$value": "#27272A", "$description": "audit-2026-05-05 — gray-200 dark, muted dark" },
-          "hover":    { "$value": "#3F3F46" },
-          "active":   { "$value": "#52525B" },
-          "focus":    { "$value": "#27272A" },
-          "loading":  { "$value": "#27272A" },
-          "disabled": { "$value": "#18181B" }
+          "rest": {
+            "$value": "{color.gray.200}",
+            "$description": "audit-2026-05-05 — gray-200 dark, muted dark"
+          },
+          "hover": {
+            "$value": "{color.gray.300}"
+          },
+          "active": {
+            "$value": "{color.gray.400}"
+          },
+          "focus": {
+            "$value": "{color.gray.200}"
+          },
+          "loading": {
+            "$value": "{color.gray.200}"
+          },
+          "disabled": {
+            "$value": "{color.gray.100}"
+          }
         },
         "fg": {
-          "rest":     { "$value": "#D4D4D8", "$description": "designer-pass" },
-          "hover":    { "$value": "#E4E4E7" },
-          "active":   { "$value": "#F4F4F5" },
-          "focus":    { "$value": "#D4D4D8" },
-          "loading":  { "$value": "#D4D4D8" },
-          "disabled": { "$value": "#52525B" }
+          "rest": {
+            "$value": "{color.gray.700}",
+            "$description": "designer-pass"
+          },
+          "hover": {
+            "$value": "{color.gray.800}"
+          },
+          "active": {
+            "$value": "{color.gray.900}"
+          },
+          "focus": {
+            "$value": "{color.gray.700}"
+          },
+          "loading": {
+            "$value": "{color.gray.700}"
+          },
+          "disabled": {
+            "$value": "{color.gray.400}"
+          }
         },
         "border": {
-          "disabled": { "$value": "transparent" }
+          "disabled": {
+            "$value": "transparent"
+          }
         }
       },
       "outline": {
         "bg": {
-          "hover":  { "$value": "#27272A", "$description": "audit-2026-05-05 — muted neutral hover surface" },
-          "active": { "$value": "#3F3F46" }
+          "hover": {
+            "$value": "{color.gray.200}",
+            "$description": "audit-2026-05-05 — muted neutral hover surface"
+          },
+          "active": {
+            "$value": "{color.gray.300}"
+          }
         },
         "fg": {
-          "rest":     { "$value": "#E4E4E7", "$description": "audit-2026-05-05 r2 — gray-800 light, slightly brighter than gray.700 default" },
-          "hover":    { "$value": "#FAFAFA", "$description": "audit-2026-05-05 r2 — near white on hover bg #27272A for unmistakable contrast" },
-          "disabled": { "$value": "#3F3F46", "$description": "audit-2026-05-05 r2 — muted disabled fg" }
+          "rest": {
+            "$value": "{color.gray.800}",
+            "$description": "audit-2026-05-05 r2 — gray-800 light, slightly brighter than gray.700 default"
+          },
+          "hover": {
+            "$value": "{color.gray.950}",
+            "$description": "audit-2026-05-05 r2 — near white on hover bg #27272A for unmistakable contrast"
+          },
+          "disabled": {
+            "$value": "{color.gray.300}",
+            "$description": "audit-2026-05-05 r2 — muted disabled fg"
+          }
         },
         "border": {
-          "rest":     { "$value": "#3F3F46", "$description": "audit-2026-05-05 — neutral outline border = gray-300 dark" },
-          "hover":    { "$value": "#52525B" },
-          "active":   { "$value": "#71717A" },
-          "focus":    { "$value": "#3F3F46" },
-          "disabled": { "$value": "#27272A" },
-          "loading":  { "$value": "#3F3F46" }
+          "rest": {
+            "$value": "{color.gray.300}",
+            "$description": "audit-2026-05-05 — neutral outline border = gray-300 dark"
+          },
+          "hover": {
+            "$value": "{color.gray.400}"
+          },
+          "active": {
+            "$value": "{color.gray.500}"
+          },
+          "focus": {
+            "$value": "{color.gray.300}"
+          },
+          "disabled": {
+            "$value": "{color.gray.200}"
+          },
+          "loading": {
+            "$value": "{color.gray.300}"
+          }
         }
       },
       "ghost": {
         "bg": {
-          "hover":  { "$value": "#27272A" },
-          "active": { "$value": "#3F3F46" }
+          "hover": {
+            "$value": "{color.gray.200}"
+          },
+          "active": {
+            "$value": "{color.gray.300}"
+          }
         },
         "fg": {
-          "rest":     { "$value": "#E4E4E7", "$description": "audit-2026-05-05 r2 — match outline.fg.rest" },
-          "hover":    { "$value": "#FAFAFA", "$description": "audit-2026-05-05 r2 — match outline.fg.hover" },
-          "disabled": { "$value": "#3F3F46", "$description": "audit-2026-05-05 r2 — match outline.fg.disabled" }
+          "rest": {
+            "$value": "{color.gray.800}",
+            "$description": "audit-2026-05-05 r2 — match outline.fg.rest"
+          },
+          "hover": {
+            "$value": "{color.gray.950}",
+            "$description": "audit-2026-05-05 r2 — match outline.fg.hover"
+          },
+          "disabled": {
+            "$value": "{color.gray.300}",
+            "$description": "audit-2026-05-05 r2 — match outline.fg.disabled"
+          }
         }
       }
     },
     "card": {
       "fg-desc": {
-        "$value": "#A1A1AA",
+        "$value": "{color.gray.600}",
         "$description": "designer-pass"
       },
       "border": {
-        "$value": "#3F3F46",
+        "$value": "{color.gray.300}",
         "$description": "audit-2026-05-06 — match button outline-neutral border (gray.300 dark); was gray.200-inv (#27272A) which was too subtle to define the card outline against the page bg in dark"
       },
       "bg-elevated": {
@@ -732,80 +1248,165 @@
     "avatar": {
       "$description": "Dark-mode avatar chrome. Default bg/fg cascade (gray.200/gray.700) was OK but other appearances aliased X.100 / X.700 — the dark inversions (X.100 dark = saturated mid-darks like #1E3A8A, #14532D) read as 'too saturated / too light' against the dark page bg. Pulled bgs down to muted-dark variants matching the audit-tuned button subtle palette. neutral was the worst: bg.neutral aliased gray.900 → #F4F4F5 (near-white), now lifted to gray.300 dark.",
       "bg": {
-        "default":  { "$value": "#27272A", "$description": "audit-2026-05-06 r2 — gray.200 dark; tried surface-base #18181B but felt too dark for an avatar; back to gray-200" },
-        "primary":  { "$value": "#1E2A4F", "$description": "audit-2026-05-06 — match button primary.subtle.bg.rest" },
-        "success":  { "$value": "#14392A", "$description": "audit-2026-05-06 — muted dark green" },
-        "warning":  { "$value": "#4A2E0A", "$description": "audit-2026-05-06 — muted dark amber" },
-        "danger":   { "$value": "#3A1518", "$description": "audit-2026-05-06 — match button danger.subtle.bg.rest" },
-        "info":     { "$value": "#13384B", "$description": "audit-2026-05-06 — muted dark cyan" },
-        "neutral":  { "$value": "#3F3F46", "$description": "audit-2026-05-06 — gray-300 dark; was gray.900-inv (#F4F4F5) which left a near-white avatar in dark mode" }
+        "default": {
+          "$value": "{color.gray.200}",
+          "$description": "audit-2026-05-06 r2 — gray.200 dark; tried surface-base #18181B but felt too dark for an avatar; back to gray-200"
+        },
+        "primary": {
+          "$value": "{color.blue.50}",
+          "$description": "audit-2026-05-06 — match button primary.subtle.bg.rest"
+        },
+        "success": {
+          "$value": "#14392A",
+          "$description": "audit-2026-05-06 — muted dark green"
+        },
+        "warning": {
+          "$value": "#4A2E0A",
+          "$description": "audit-2026-05-06 — muted dark amber"
+        },
+        "danger": {
+          "$value": "#3A1518",
+          "$description": "audit-2026-05-06 — match button danger.subtle.bg.rest"
+        },
+        "info": {
+          "$value": "#13384B",
+          "$description": "audit-2026-05-06 — muted dark cyan"
+        },
+        "neutral": {
+          "$value": "{color.gray.300}",
+          "$description": "audit-2026-05-06 — gray-300 dark; was gray.900-inv (#F4F4F5) which left a near-white avatar in dark mode"
+        }
       },
       "fg": {
-        "default":  { "$value": "#D4D4D8" },
-        "primary":  { "$value": "#93C5FD", "$description": "audit-2026-05-06 — blue-300 light, readable on the new muted dark bg" },
-        "success":  { "$value": "#86EFAC", "$description": "audit-2026-05-06 — green-300 light" },
-        "warning":  { "$value": "#FCD34D", "$description": "audit-2026-05-06 — amber-300 light" },
-        "danger":   { "$value": "#FCA5A5", "$description": "audit-2026-05-06 — red-300 light" },
-        "info":     { "$value": "#67E8F9", "$description": "audit-2026-05-06 — cyan-300 light" },
-        "neutral":  { "$value": "#FAFAFA", "$description": "audit-2026-05-06 — light text on the new gray-300-dark neutral bg" }
+        "default": {
+          "$value": "{color.gray.700}"
+        },
+        "primary": {
+          "$value": "{color.blue.900}",
+          "$description": "audit-2026-05-06 — blue-300 light, readable on the new muted dark bg"
+        },
+        "success": {
+          "$value": "#86EFAC",
+          "$description": "audit-2026-05-06 — green-300 light"
+        },
+        "warning": {
+          "$value": "#FCD34D",
+          "$description": "audit-2026-05-06 — amber-300 light"
+        },
+        "danger": {
+          "$value": "#FCA5A5",
+          "$description": "audit-2026-05-06 — red-300 light"
+        },
+        "info": {
+          "$value": "#67E8F9",
+          "$description": "audit-2026-05-06 — cyan-300 light"
+        },
+        "neutral": {
+          "$value": "{color.gray.950}",
+          "$description": "audit-2026-05-06 — light text on the new gray-300-dark neutral bg"
+        }
       },
       "ring": {
-        "$value": "#09090B",
+        "$value": "{color.gray.50}",
         "$description": "audit-2026-05-06 — page bg; was color.white inverted = #18181B which left a visible 'lifted' ring around the avatar in dark mode. Page-matching ring is invisible against the page so the avatar looks like a clean disc."
       },
       "group": {
         "count": {
-          "bg": { "$value": "#27272A", "$description": "audit-2026-05-06 r2 — gray.200 dark; same logic as avatar.bg.default — surface-base felt too dark" },
-          "fg": { "$value": "#FAFAFA", "$description": "audit-2026-05-06 r2 — bright white; gray.700-inv (#D4D4D8) read 'too pale' for the +N number on a dark count chip" }
+          "bg": {
+            "$value": "{color.gray.200}",
+            "$description": "audit-2026-05-06 r2 — gray.200 dark; same logic as avatar.bg.default — surface-base felt too dark"
+          },
+          "fg": {
+            "$value": "{color.gray.950}",
+            "$description": "audit-2026-05-06 r2 — bright white; gray.700-inv (#D4D4D8) read 'too pale' for the +N number on a dark count chip"
+          }
         }
       }
     },
     "checkbox": {
       "border": {
-        "hover": { "$value": "#71717A", "$description": "audit-2026-05-06 — gray.500 dark, brighter than input.border.hover (#52525B); the small checkbox box needs more contrast on hover" }
+        "hover": {
+          "$value": "{color.gray.500}",
+          "$description": "audit-2026-05-06 — gray.500 dark, brighter than input.border.hover (#52525B); the small checkbox box needs more contrast on hover"
+        }
       }
     },
     "menu": {
       "item": {
         "fg": {
-          "selected": { "$value": "#DBEAFE", "$description": "audit-2026-05-07 r2 — blue-100 light, one step brighter than the r1 #BFDBFE which was still hard to read on the dark selected bg" }
+          "selected": {
+            "$value": "{color.blue.900}",
+            "$description": "audit-2026-05-07 r2 — blue-100 light, one step brighter than the r1 #BFDBFE which was still hard to read on the dark selected bg"
+          }
         }
       }
     },
     "segmented": {
       "$description": "Dark-mode SegmentedControl. Track inherited gray.100-inv = #18181B (= surface-base, blended with page bg). Bumped to gray.200-inv (#27272A) so the track outline reads, and selected segment lifted further (#3F3F46) so the selected affordance reads above the track.",
       "track": {
-        "bg": { "$value": "#27272A" }
+        "bg": {
+          "$value": "{color.gray.200}"
+        }
       },
       "segment": {
         "bg": {
-          "selected": { "$value": "#3F3F46", "$description": "audit-2026-05-06 — gray.300 dark; one step above track for clear elevation" }
+          "selected": {
+            "$value": "{color.gray.300}",
+            "$description": "audit-2026-05-06 — gray.300 dark; one step above track for clear elevation"
+          }
         }
       }
     },
     "input": {
       "$description": "Dark-mode input chrome. bg.default was inheriting color.white (= surface-base = #18181B) which read as 'still light' against the page bg in dark; pulled to a deliberately darker value so the field surface is unmistakably dark in dark mode. r2 (2026-05-05): border / fg / placeholder values realigned with Button outline-neutral so input chrome reads with the same visual weight as that button on a dark surface.",
       "bg": {
-        "default":  { "$value": "#0E0F13", "$description": "audit-2026-05-05 — distinctly darker than surface-base (#18181B); slight lift from page (#09090B) so the field is still defined" },
-        "filled":   { "$value": "#18181B", "$description": "audit-2026-05-05 — filled variant gets a more visible lift (= surface-base)" },
-        "disabled": { "$value": "#09090B", "$description": "audit-2026-05-05 — disabled blends with page bg, recessed look" }
+        "default": {
+          "$value": "#0E0F13",
+          "$description": "audit-2026-05-05 — distinctly darker than surface-base (#18181B); slight lift from page (#09090B) so the field is still defined"
+        },
+        "filled": {
+          "$value": "{color.gray.100}",
+          "$description": "audit-2026-05-05 — filled variant gets a more visible lift (= surface-base)"
+        },
+        "disabled": {
+          "$value": "{color.gray.50}",
+          "$description": "audit-2026-05-05 — disabled blends with page bg, recessed look"
+        }
       },
       "border": {
-        "rest":     { "$value": "#3F3F46", "$description": "audit-2026-05-05 r3 — gray-300 dark; on the deeper input bg #0E0F13 this lands at the same perceived weight as button outline-neutral border on transparent bg" },
-        "hover":    { "$value": "#52525B", "$description": "audit-2026-05-05 r3 — gray-400 dark, one step up for clear hover affordance" },
-        "disabled": { "$value": "#27272A", "$description": "audit-2026-05-05 r3 — gray-200 dark; barely-there but visible enough that the disabled field still reads as a field" }
+        "rest": {
+          "$value": "{color.gray.300}",
+          "$description": "audit-2026-05-05 r3 — gray-300 dark; on the deeper input bg #0E0F13 this lands at the same perceived weight as button outline-neutral border on transparent bg"
+        },
+        "hover": {
+          "$value": "{color.gray.400}",
+          "$description": "audit-2026-05-05 r3 — gray-400 dark, one step up for clear hover affordance"
+        },
+        "disabled": {
+          "$value": "{color.gray.200}",
+          "$description": "audit-2026-05-05 r3 — gray-200 dark; barely-there but visible enough that the disabled field still reads as a field"
+        }
       },
       "fg": {
-        "default":  { "$value": "#E4E4E7", "$description": "audit-2026-05-05 r2 — gray-800 light, matches button outline-neutral rest fg; was #71717A which read 'too pale' for typed input value" },
-        "disabled": { "$value": "#3F3F46", "$description": "audit-2026-05-05 r2 — match button outline disabled fg, low-prominence disabled label" }
+        "default": {
+          "$value": "{color.gray.800}",
+          "$description": "audit-2026-05-05 r2 — gray-800 light, matches button outline-neutral rest fg; was #71717A which read 'too pale' for typed input value"
+        },
+        "disabled": {
+          "$value": "{color.gray.300}",
+          "$description": "audit-2026-05-05 r2 — match button outline disabled fg, low-prominence disabled label"
+        }
       },
       "placeholder": {
-        "default":  { "$value": "#A1A1AA", "$description": "audit-2026-05-12 — bumped from #52525B to zinc-400. The deeper input bg (#0E0F13) gave only 2.4:1 against the old #52525B; #A1A1AA gives ~6.5:1, meeting AA without making the placeholder look like real input text." }
+        "default": {
+          "$value": "{color.gray.600}",
+          "$description": "audit-2026-05-12 — bumped from #52525B to zinc-400. The deeper input bg (#0E0F13) gave only 2.4:1 against the old #52525B; #A1A1AA gives ~6.5:1, meeting AA without making the placeholder look like real input text."
+        }
       }
     },
     "popover": {
       "fg-desc": {
-        "$value": "#A1A1AA",
+        "$value": "{color.gray.600}",
         "$description": "designer-pass"
       },
       "bg": {
@@ -813,7 +1414,7 @@
         "$description": "audit-2026-05-06 — slight lift above surface-base (#18181B); was inheriting white-inv = #18181B which read indistinguishable from the page bg layered behind it"
       },
       "border": {
-        "$value": "#3F3F46",
+        "$value": "{color.gray.300}",
         "$description": "audit-2026-05-06 — gray.300 dark, matches the popover trigger surfaces (input / button outline / card / dropdown-menu* — *menu uses gray.200 still)"
       }
     },
@@ -821,17 +1422,17 @@
       "tab": {
         "fg": {
           "rest": {
-            "$value": "#A1A1AA",
+            "$value": "{color.gray.600}",
             "$description": "designer-pass"
           },
           "selected": {
-            "$value": "#FAFAFA",
+            "$value": "{color.gray.950}",
             "$description": "Near-white for max readability on dark page bg. Saturated blue-600 from the light theme has poor contrast against #09090b page bg; underline still carries the brand-blue accent."
           }
         },
         "icon": {
           "selected": {
-            "$value": "#FAFAFA",
+            "$value": "{color.gray.950}",
             "$description": "Match selected fg for consistent dark-mode tab read."
           }
         }
@@ -840,18 +1441,30 @@
     "nav-item": {
       "$description": "Dark-mode active nav-item fg/icon — light brand tints so the active state is unmistakable on the dark sidebar bg.",
       "fg": {
-        "active":   { "$value": "#DBEAFE", "$description": "audit-2026-05-07 — blue-100 light; was blue.700-inv = #1D4ED8 (same blue tone as the active bg #172554)" },
-        "disabled": { "$value": "#71717A", "$description": "designer-pass" }
+        "active": {
+          "$value": "{color.blue.900}",
+          "$description": "audit-2026-05-07 — blue-100 light; was blue.700-inv = #1D4ED8 (same blue tone as the active bg #172554)"
+        },
+        "disabled": {
+          "$value": "{color.gray.500}",
+          "$description": "designer-pass"
+        }
       },
       "icon": {
-        "active": { "$value": "#BFDBFE", "$description": "audit-2026-05-07 — blue-200 light; one step less prominent than the label so the icon doesn't dominate" }
+        "active": {
+          "$value": "{color.blue.900}",
+          "$description": "audit-2026-05-07 — blue-200 light; one step less prominent than the label so the icon doesn't dominate"
+        }
       }
     },
     "header": {
       "$description": "Dark-mode header nav-item active fg. Without this override, header.nav-item.fg.active cascades to blue.700 light (#1D4ED8), which on the dark header bg #18181B gives ~1.4:1 — fails AA hard.",
       "nav-item": {
         "fg": {
-          "active": { "$value": "#60A5FA", "$description": "audit-2026-05-12 — blue-400 light, ~7:1 on dark header bg. Mirrors accent.primary.fg dark override." }
+          "active": {
+            "$value": "{color.blue.500}",
+            "$description": "audit-2026-05-12 — blue-400 light, ~7:1 on dark header bg. Mirrors accent.primary.fg dark override."
+          }
         }
       }
     },
@@ -859,7 +1472,7 @@
       "item": {
         "fg": {
           "link-rest": {
-            "$value": "#93C5FD",
+            "$value": "{color.blue.900}",
             "$description": "designer-pass"
           }
         }
@@ -868,25 +1481,34 @@
     "table": {
       "header": {
         "fg": {
-          "$value": "#A1A1AA",
+          "$value": "{color.gray.600}",
           "$description": "designer-pass"
         }
       },
       "row": {
         "fg": {
-          "$value": "#F4F4F5",
+          "$value": "{color.gray.900}",
           "$description": "designer-pass"
         },
         "bg": {
-          "hover":    { "$value": "#27272A", "$description": "audit-2026-05-20 — gray.200 dark, one step lighter than surface-base (#18181B) so hover is clearly visible. Without this, the cascade would give #F4F4F5 (gray.100 inverted) — bright white on dark, wrong direction." },
-          "striped":  { "$value": "#09090B", "$description": "audit-2026-05-20 — gray.950 dark, one step darker than base (#18181B) so zebra reads as 'recessed' instead of brighter (the dark-mode convention is opposite to light)." },
-          "selected": { "$value": "#1E2A4F", "$description": "audit-2026-05-20 — muted dark navy. blue.100 cascades to dark blue.100 (#1E3A8A) which is fine but feels too saturated for a row tint; this matches tree.node.bg.selected and button primary.subtle.bg.rest for consistency." }
+          "hover": {
+            "$value": "{color.gray.200}",
+            "$description": "audit-2026-05-20 — gray.200 dark, one step lighter than surface-base (#18181B) so hover is clearly visible. Without this, the cascade would give #F4F4F5 (gray.100 inverted) — bright white on dark, wrong direction."
+          },
+          "striped": {
+            "$value": "{color.gray.50}",
+            "$description": "audit-2026-05-20 — gray.950 dark, one step darker than base (#18181B) so zebra reads as 'recessed' instead of brighter (the dark-mode convention is opposite to light)."
+          },
+          "selected": {
+            "$value": "{color.blue.50}",
+            "$description": "audit-2026-05-20 — muted dark navy. blue.100 cascades to dark blue.100 (#1E3A8A) which is fine but feels too saturated for a row tint; this matches tree.node.bg.selected and button primary.subtle.bg.rest for consistency."
+          }
         }
       }
     },
     "divider": {
       "label": {
-        "$value": "#A1A1AA",
+        "$value": "{color.gray.600}",
         "$description": "designer-pass"
       }
     },
@@ -894,11 +1516,11 @@
       "day": {
         "fg": {
           "rest": {
-            "$value": "#F4F4F5",
+            "$value": "{color.gray.900}",
             "$description": "designer-pass"
           },
           "outside": {
-            "$value": "#71717A",
+            "$value": "{color.gray.500}",
             "$description": "designer-pass"
           }
         }
@@ -906,42 +1528,66 @@
     },
     "sidebar": {
       "section-label": {
-        "$value": "#A1A1AA",
+        "$value": "{color.gray.600}",
         "$description": "designer-pass"
       }
     },
     "text": {
       "$description": "Dark-theme overrides for the text family. `strong` and `default` cascade through primitive inversion automatically; `muted` and `disabled` need explicit lifts so they keep AA contrast and stay visually distinct from each other on the dark page bg.",
-      "muted":    { "$value": "{color.gray.600}", "$description": "gray-600 in dark = #A1A1AA — passes AA on gray-900 dark page bg (=#18181B)" },
-      "disabled": { "$value": "{color.gray.600}", "$description": "audit-2026-05-12 — bumped from gray.500 (=#71717A in dark, 3.46:1 fails AA) to gray.600 (=#A1A1AA, 6.5:1). Visually collapses with `muted` in dark; the disabled affordance now comes from `cursor: not-allowed` + reduced font-weight rather than dimmer fg." }
+      "muted": {
+        "$value": "{color.gray.600}",
+        "$description": "gray-600 in dark = #A1A1AA — passes AA on gray-900 dark page bg (=#18181B)"
+      },
+      "disabled": {
+        "$value": "{color.gray.600}",
+        "$description": "audit-2026-05-12 — bumped from gray.500 (=#71717A in dark, 3.46:1 fails AA) to gray.600 (=#A1A1AA, 6.5:1). Visually collapses with `muted` in dark; the disabled affordance now comes from `cursor: not-allowed` + reduced font-weight rather than dimmer fg."
+      }
     },
     "form": {
       "required": {
-        "optional": { "$value": "{color.gray.600}", "$description": "audit-2026-05-13 — gray.500 cascade gives #71717A in dark, 3.46:1 on #18181B. gray.600 dark = #A1A1AA, 6.5:1." }
+        "optional": {
+          "$value": "{color.gray.600}",
+          "$description": "audit-2026-05-13 — gray.500 cascade gives #71717A in dark, 3.46:1 on #18181B. gray.600 dark = #A1A1AA, 6.5:1."
+        }
       }
     },
     "tree": {
       "$description": "Dark-theme tree node overrides. Selected fg+bg flip to muted-dark navy / readable accent (was blue.700 on blue.50 = 1.4:1 in dark). Disabled fg uses text-muted equivalent.",
       "node": {
         "fg": {
-          "selected": { "$value": "#93C5FD", "$description": "blue-300 light, readable on the dark navy selected bg" },
-          "disabled": { "$value": "{color.gray.500}", "$description": "matches the muted/disabled collapse in dark" }
+          "selected": {
+            "$value": "{color.blue.900}",
+            "$description": "blue-300 light, readable on the dark navy selected bg"
+          },
+          "disabled": {
+            "$value": "{color.gray.500}",
+            "$description": "matches the muted/disabled collapse in dark"
+          }
         },
         "bg": {
-          "selected": { "$value": "#1E2A4F", "$description": "muted dark navy, matches button primary.subtle.bg.rest" }
+          "selected": {
+            "$value": "{color.blue.50}",
+            "$description": "muted dark navy, matches button primary.subtle.bg.rest"
+          }
         }
       }
     },
     "surface": {
       "$description": "Dark-theme overrides for the surface family. `base` (= white) and `subtle` (= gray.50) cascade correctly through primitive inversion; `muted` and `strong` need explicit lifts so hover / pressed states stay visually distinct from `base` (gray-100 inverts to the same hex as gray-900, which would collapse the elevation difference).",
-      "muted":  { "$value": "{color.gray.200}", "$description": "gray-200 dark = #27272A — sits one step lighter than `base` (=#18181B)" },
-      "strong": { "$value": "{color.gray.300}", "$description": "gray-300 dark = #3F3F46 — pressed / active row distinguishable from `muted`" }
+      "muted": {
+        "$value": "{color.gray.200}",
+        "$description": "gray-200 dark = #27272A — sits one step lighter than `base` (=#18181B)"
+      },
+      "strong": {
+        "$value": "{color.gray.300}",
+        "$description": "gray-300 dark = #3F3F46 — pressed / active row distinguishable from `muted`"
+      }
     },
     "accent": {
       "$description": "Dark-theme accent fg overrides — readable brand shades on dark page bg, decoupled from action-shade primitive inversion",
       "primary": {
         "fg": {
-          "$value": "#60A5FA",
+          "$value": "{color.blue.500}",
           "$description": "blue-400 light"
         }
       },
