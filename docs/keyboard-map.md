@@ -44,7 +44,7 @@ Conventions: `Tab` / `Shift+Tab` move between focusable elements everywhere and 
 | `drawer` | `Escape` closes (when enabled); backdrop click closes. |
 | `popover` | `Escape` dismisses; outside click and the built-in close button also dismiss. |
 | `tooltip` | `Tab` onto the trigger shows it after the delay; `Escape` dismisses immediately without moving focus off the trigger. |
-| `dropdown-menu` | `Arrow Down` / `Arrow Up` move focus through items; `Enter` / `Space` activate; `Escape` closes; `Tab` cycles Search → body → footer when present. |
+| `dropdown-menu` | `Arrow Down` / `Arrow Up` rove focus through enabled items (wraps; section labels, dividers, and disabled items are skipped); `Home` / `End` jump to first / last; `Enter` / `Space` activate; `Escape` closes; `Tab` also works and cycles Search → body → footer when present. |
 | `command-palette` | `mod+K` opens (configurable); `Arrow Up` / `Arrow Down` navigate; `Home` / `End` jump; `Enter` runs the highlighted item; `Escape` closes. Disabled items are skipped. |
 | `datepicker` | Day cells are `<button>`s: `Tab` / `Shift+Tab` move between them; `Escape` closes the panel. |
 | `timepicker` | Column options are buttons; `Escape` cancels (discards the draft and closes). |
