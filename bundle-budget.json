@@ -91,8 +91,8 @@
       "maxGz": 2376
     },
     "ui/form-field": {
-      "currentGz": 3406,
-      "maxGz": 4000
+      "currentGz": 3323,
+      "maxGz": 3900
     },
     "ui/form-section": {
       "currentGz": 1736,
@@ -107,8 +107,8 @@
       "maxGz": 4600
     },
     "ui/i18n": {
-      "currentGz": 2721,
-      "maxGz": 3200
+      "currentGz": 3194,
+      "maxGz": 3700
     },
     "ui/icon": {
       "currentGz": 11629,
@@ -119,12 +119,12 @@
       "maxGz": 4000
     },
     "ui/markdown-viewer": {
-      "currentGz": 2449,
-      "maxGz": 2900
+      "currentGz": 2829,
+      "maxGz": 3300
     },
     "ui/menu": {
-      "currentGz": 3862,
-      "maxGz": 4500
+      "currentGz": 4420,
+      "maxGz": 5100
     },
     "ui/nav-item": {
       "currentGz": 2748,
@@ -203,8 +203,8 @@
       "maxGz": 1509
     },
     "ui/stat-card": {
-      "currentGz": 2106,
-      "maxGz": 2500
+      "currentGz": 2743,
+      "maxGz": 3200
     },
     "ui/table": {
       "currentGz": 3991,
@@ -227,8 +227,8 @@
       "maxGz": 4800
     },
     "ui/timepicker": {
-      "currentGz": 6600,
-      "maxGz": 7600
+      "currentGz": 6944,
+      "maxGz": 8000
     },
     "ui/toast": {
       "currentGz": 4042,

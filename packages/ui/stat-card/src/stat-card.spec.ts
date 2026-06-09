@@ -193,5 +193,26 @@ describe('KpStatCardComponent', () => {
       expect(host.querySelector('[data-testid="chart"]')).not.toBeNull();
       expect(host.querySelector('.kp-stat__sparkline-placeholder')).toBeNull();
     });
+
+    it('draws a built-in polyline from sparklineData', () => {
+      const { fix, host } = setup();
+      fix.componentRef.setInput('showSparkline', true);
+      fix.componentRef.setInput('sparklineData', [1, 5, 2, 8, 3]);
+      fix.detectChanges();
+      const poly = host.querySelector('.kp-stat__sparkline-svg polyline');
+      expect(poly).not.toBeNull();
+      // 5 data points → 5 "x,y" pairs
+      expect(poly!.getAttribute('points')!.trim().split(/\s+/).length).toBe(5);
+      expect(host.querySelector('.kp-stat__sparkline-placeholder')).toBeNull();
+    });
+
+    it('falls back to the placeholder when sparklineData has < 2 points', () => {
+      const { fix, host } = setup();
+      fix.componentRef.setInput('showSparkline', true);
+      fix.componentRef.setInput('sparklineData', [5]);
+      fix.detectChanges();
+      expect(host.querySelector('.kp-stat__sparkline-svg')).toBeNull();
+      expect(host.querySelector('.kp-stat__sparkline-placeholder')).not.toBeNull();
+    });
   });
 });

@@ -56,7 +56,16 @@ export type KpStatTrendAppearance = 'positive' | 'negative';
     @if (showSparkline) {
       <div class="kp-stat__sparkline">
         <ng-content select="[kpStatCardSparkline]">
-          <div class="kp-stat__sparkline-placeholder" aria-hidden="true"></div>
+          @if (sparklinePath) {
+            <svg class="kp-stat__sparkline-svg" [attr.data-tone]="trendTone"
+                 [attr.viewBox]="'0 0 100 ' + SPARK_H" preserveAspectRatio="none" aria-hidden="true">
+              <polyline [attr.points]="sparklinePath" fill="none" stroke="currentColor"
+                        stroke-width="1.5" vector-effect="non-scaling-stroke"
+                        stroke-linejoin="round" stroke-linecap="round"/>
+            </svg>
+          } @else {
+            <div class="kp-stat__sparkline-placeholder" aria-hidden="true"></div>
+          }
         </ng-content>
       </div>
     }
@@ -127,6 +136,10 @@ export type KpStatTrendAppearance = 'positive' | 'negative';
       background: var(--kp-color-surface-muted);
       border-radius: 4px;
     }
+    .kp-stat__sparkline-svg { display: block; width: 100%; height: 32px; color: var(--kp-color-accent-primary-fg); }
+    .kp-stat__sparkline-svg[data-tone='good']    { color: var(--kp-color-accent-success-fg); }
+    .kp-stat__sparkline-svg[data-tone='bad']     { color: var(--kp-color-accent-danger-fg); }
+    .kp-stat__sparkline-svg[data-tone='neutral'] { color: var(--kp-color-accent-primary-fg); }
   `],
 })
 export class KpStatCardComponent {
@@ -144,6 +157,27 @@ export class KpStatCardComponent {
   @Input() trendDescription: string | null = 'from last month';
 
   @Input() showSparkline = false;
+  /** Built-in sparkline: pass a numeric series (≥2 points) to draw an inline
+   *  trend line. Ignored if you project your own `[kpStatCardSparkline]`. */
+  @Input() sparklineData: number[] | null = null;
+
+  /** Sparkline SVG viewBox height (width is a fixed 100, stretched to fit). */
+  readonly SPARK_H = 32;
+
+  /** Polyline points normalized to the 100×SPARK_H viewBox, or null if no data. */
+  get sparklinePath(): string | null {
+    const d = this.sparklineData;
+    if (!d || d.length < 2) return null;
+    const min = Math.min(...d);
+    const max = Math.max(...d);
+    const range = max - min || 1;
+    const pad = 3; // keep the stroke off the top/bottom edges
+    const h = this.SPARK_H - pad * 2;
+    const stepX = 100 / (d.length - 1);
+    return d
+      .map((v, i) => `${(i * stepX).toFixed(2)},${(pad + (1 - (v - min) / range) * h).toFixed(2)}`)
+      .join(' ');
+  }
 
   get trendIconName(): string {
     if (this.trendDirection === 'up') return 'trending-up';

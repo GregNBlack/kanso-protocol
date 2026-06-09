@@ -40,7 +40,20 @@ export const Compositions: Story = {
         <kp-stat-card label="Minimal" value="$12,482" [showTrend]="false"/>
         <kp-stat-card label="With trend" value="$12,482" trendValue="+12.5%" trendDescription="from last month"/>
         <kp-stat-card label="With icon + trend" value="$12,482" [showIcon]="true" icon="currency-dollar" trendValue="+12.5%" trendDescription="from last month"/>
-        <kp-stat-card label="Full" value="$12,482" [showIcon]="true" icon="currency-dollar" trendValue="+12.5%" trendDescription="from last month" [showSparkline]="true"/>
+        <kp-stat-card label="Full" value="$12,482" [showIcon]="true" icon="currency-dollar" trendValue="+12.5%" trendDescription="from last month" [showSparkline]="true" [sparklineData]="[4,7,5,9,6,11,8,12]"/>
+      </div>
+    `,
+  }),
+};
+
+export const WithSparkline: Story = {
+  name: 'With sparkline',
+  render: () => ({
+    template: `
+      <div style="display:grid;grid-template-columns:repeat(3,280px);gap:16px">
+        <kp-stat-card label="Revenue" value="$12,482" trendDirection="up" trendAppearance="positive" trendValue="+12.5%" trendDescription="30-day" [showSparkline]="true" [sparklineData]="[4,6,5,8,7,10,9,12,11,14]"/>
+        <kp-stat-card label="Latency" value="142ms" trendDirection="down" trendAppearance="negative" trendValue="-8ms" trendDescription="30-day" [showSparkline]="true" [sparklineData]="[18,16,17,14,15,12,13,11,12,9]"/>
+        <kp-stat-card label="Sessions" value="3.4k" trendDirection="neutral" trendValue="0.0%" trendDescription="30-day" [showSparkline]="true" [sparklineData]="[9,11,8,10,9,11,10,9,10,9]"/>
       </div>
     `,
   }),
