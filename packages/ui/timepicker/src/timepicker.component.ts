@@ -21,7 +21,19 @@ import { KpButtonComponent } from '@kanso-protocol/ui/button';
 import { injectKpLocale, injectKpStrings, kpDayPeriod } from '@kanso-protocol/ui/i18n';
 
 export type KpTimePickerSize = 'sm' | 'md' | 'lg';
-export type KpTimePickerFormat = '12h' | '24h';
+export type KpTimePickerFormat = '12h' | '24h' | 'auto';
+
+/** Resolve the locale's clock convention via Intl (en-US → 12h, most → 24h).
+ * Formats 13:00 and checks for a day-period part — present only in 12h. */
+function detectClockFormat(locale: string): '12h' | '24h' {
+  try {
+    const parts = new Intl.DateTimeFormat(locale, { hour: 'numeric' })
+      .formatToParts(new Date(Date.UTC(2020, 0, 1, 13)));
+    return parts.some((p) => p.type === 'dayPeriod') ? '12h' : '24h';
+  } catch {
+    return '24h';
+  }
+}
 /** Canonical string form — always 24-hour `HH:mm` or `HH:mm:ss`. */
 export type KpTimePickerValue = string | null;
 
@@ -150,7 +162,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
             </div>
           }
 
-          @if (format === '12h') {
+          @if (resolvedFormat === '12h') {
             <div class="kp-tp__col kp-tp__col--period">
               <div class="kp-tp__col-label">{{ strings.timeDayPeriod }}</div>
               <div class="kp-tp__col-list kp-tp__col-list--period">
@@ -350,7 +362,8 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
 })
 export class KpTimePickerComponent implements ControlValueAccessor, AfterViewChecked, OnDestroy {
   @Input() size: KpTimePickerSize = 'md';
-  @Input() format: KpTimePickerFormat = '24h';
+  /** `'auto'` (default) derives 12h/24h from `KP_LOCALE`; set `'12h'`/`'24h'` to force. */
+  @Input() format: KpTimePickerFormat = 'auto';
   @Input() showSeconds = false;
   /** Step for the minute column. Use 5 / 15 / 30 for rounded pickers. */
   @Input() minuteStep = 1;
@@ -387,6 +400,11 @@ export class KpTimePickerComponent implements ControlValueAccessor, AfterViewChe
 
   readonly strings = injectKpStrings();
   private readonly locale = injectKpLocale();
+  private readonly localeFormat: '12h' | '24h' = detectClockFormat(this.locale);
+  /** The effective 12h/24h after resolving `'auto'` against the locale. */
+  get resolvedFormat(): '12h' | '24h' {
+    return this.format === 'auto' ? this.localeFormat : this.format;
+  }
   /** Localized AM marker (or "AM" if locale is 24h-only). */
   readonly amLabel = kpDayPeriod(0, this.locale) || 'AM';
   /** Localized PM marker (or "PM" if locale is 24h-only). */
@@ -407,7 +425,7 @@ export class KpTimePickerComponent implements ControlValueAccessor, AfterViewChe
   }
 
   get hourItems(): number[] {
-    if (this.format === '12h') {
+    if (this.resolvedFormat === '12h') {
       // 12h: 12, 1, 2, ... 11 (conventional clock order)
       return [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
     }
@@ -428,7 +446,7 @@ export class KpTimePickerComponent implements ControlValueAccessor, AfterViewChe
 
   /** In 12h display the hour value that should show "selected" ranges 1–12. */
   get draftHourDisplay(): number {
-    if (this.format === '24h') return this.draftHour;
+    if (this.resolvedFormat === '24h') return this.draftHour;
     const h = this.draftHour % 12;
     return h === 0 ? 12 : h;
   }
@@ -438,7 +456,7 @@ export class KpTimePickerComponent implements ControlValueAccessor, AfterViewChe
   triggerText(): string {
     if (!this.committed) return this.placeholder ?? this.strings.selectTime;
     const { h, m, s } = this.committed;
-    if (this.format === '24h') {
+    if (this.resolvedFormat === '24h') {
       return this.showSeconds ? `${pad2(h)}:${pad2(m)}:${pad2(s)}` : `${pad2(h)}:${pad2(m)}`;
     }
     const period = h >= 12 ? this.pmLabel : this.amLabel;
@@ -475,7 +493,7 @@ export class KpTimePickerComponent implements ControlValueAccessor, AfterViewChe
   }
 
   pickHour(h: number): void {
-    if (this.format === '24h') {
+    if (this.resolvedFormat === '24h') {
       this.draftHour = h;
     } else {
       // h is 1..12; convert to 24h using current period.
@@ -555,7 +573,7 @@ export class KpTimePickerComponent implements ControlValueAccessor, AfterViewChe
     }
     this.positionPanel();
     // Scroll each column to its selected value once per open.
-    const key = `${this.draftHour}|${this.draftMinute}|${this.draftSecond}|${this.format}|${this.showSeconds}`;
+    const key = `${this.draftHour}|${this.draftMinute}|${this.draftSecond}|${this.resolvedFormat}|${this.showSeconds}`;
     if (this.lastScrolledInto !== key) {
       this.scrollSelectedIntoView();
       this.lastScrolledInto = key;

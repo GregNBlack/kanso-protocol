@@ -16,6 +16,7 @@ import {
   KpValidationMessages,
   resolveErrorMessage,
 } from './validation-messages';
+import { injectKpStrings, KP_DEFAULT_VALIDATION_MESSAGES } from '@kanso-protocol/ui/i18n';
 
 export type KpRequiredMode = 'none' | 'optional' | 'required-asterisk';
 
@@ -156,7 +157,15 @@ export class KpFormFieldComponent implements AfterContentInit, OnDestroy {
   @ContentChild(NgControl) private ngControl: NgControl | null = null;
 
   private readonly cdr = inject(ChangeDetectorRef);
-  private readonly registry = inject(KP_VALIDATION_MESSAGES);
+  // Unified registry: English defaults ← KP_STRINGS.validation overrides ←
+  // the deprecated KP_VALIDATION_MESSAGES token (still honored for back-compat).
+  // Re-basing on the defaults restores per-key fallback even when an override
+  // is partial.
+  private readonly registry: KpValidationMessages = {
+    ...KP_DEFAULT_VALIDATION_MESSAGES,
+    ...injectKpStrings().validation,
+    ...inject(KP_VALIDATION_MESSAGES),
+  };
   private sub: Subscription | null = null;
 
   /** Internal — whether we should currently show an error from NgControl. */

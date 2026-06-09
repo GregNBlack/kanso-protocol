@@ -10,7 +10,15 @@ Kanso Protocol ships English defaults for every user-facing string and provides 
 
 ---
 
-## Validation messages — `KP_VALIDATION_MESSAGES`
+## Validation messages — `KP_STRINGS.validation`
+
+> **Unified in `5.4.0`:** validation messages now live under the single
+> `KP_STRINGS` token as `validation`, alongside every other localizable string —
+> `{ provide: KP_STRINGS, useValue: { validation: { required: '…' } } }`.
+> The standalone `KP_VALIDATION_MESSAGES` token is **deprecated but still
+> honored** (merged on top of `KP_STRINGS.validation`), so existing apps keep
+> working. Overrides may be partial — unspecified keys fall back to the English
+> defaults. Per-field `[errors]` still wins over both.
 
 The `form-field` component auto-detects the content child `NgControl`, listens for validation errors, and looks up the right human-readable message through an injectable resolver. No assumptions about language live inside the component.
 
@@ -70,7 +78,11 @@ The global resolver is the fallback; a specific field can still win with its own
 </kp-form-field>
 ```
 
-Resolution priority: **per-field `[errors]` > DI token (`KP_VALIDATION_MESSAGES`) > English defaults**.
+Resolution priority: **per-field `[errors]` > `KP_VALIDATION_MESSAGES` (deprecated) > `KP_STRINGS.validation` > English defaults**.
+
+> **Timepicker locale format (`5.4.0`):** `<kp-time-picker>` now defaults to
+> `format="auto"`, deriving 12h/24h from `KP_LOCALE` (e.g. `en-US` → 12h,
+> `de-DE` → 24h). Pass `format="12h"` / `"24h"` to force a convention.
 
 ### Reactive language switching
 

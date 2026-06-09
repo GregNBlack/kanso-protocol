@@ -14,3 +14,6 @@ export {
   kpWeekdayNames,
   kpDayPeriod,
 } from './intl';
+
+export { KP_DEFAULT_VALIDATION_MESSAGES } from './validation';
+export type { KpValidationMessages, KpValidationMessageResolver } from './validation';
