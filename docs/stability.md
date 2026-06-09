@@ -57,12 +57,12 @@ Status as of `5.4.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `checkbox` | `stable` | docs ✓ · a11y ✓ · spec ✓(8) · visual ✓ | Indeterminate + ControlValueAccessor covered. |
 | `combobox` | `beta` | docs ✓ · a11y ✓ · spec ✓(15) · visual ✓ | **Open:** async-loading API — `(filter)` event vs `[items]` with debounced filter — not finalized. |
 | `command-palette` | `beta` | docs ✓ · a11y ✓ · spec ✓(14) · visual n/a | **Open:** global shortcut via DI vs `[shortcut]` input (multi-palette collisions). Visual n/a — renders in a top-layer `<dialog>`, not capturable in `#storybook-root`. |
-| `datepicker` | `beta` | docs ✓ · a11y ✓ · spec ✓(25) · visual ✓ | Large surface (`single` + `range`, presets, min/max), i18n-aware. Held at `beta` pending a cycle of range edge-case soak. |
+| `datepicker` | `stable` | docs ✓ · a11y ✓ · spec ✓(25) · visual ✓ | Large surface (`single` + `range`, presets, min/max), i18n-aware. Range edge cases specced (25 tests); API frozen for 5.x. |
 | `dialog` | `stable` | docs ✓ · a11y ✓ · spec ✓(9) · visual ✓ | Native `<dialog>`; nested-Esc contract specced. |
 | `divider` | `stable` | docs ✓ · a11y ✓ · spec ✓(5) · visual ✓ | Horizontal / vertical / labeled. |
 | `drawer` | `stable` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | `side` is physical (not RTL-flipped); documented. |
 | `empty-state` | `stable` | docs ✓ · a11y ✓ · spec ✓(4) · visual ✓ | Slot-based. |
-| `file-upload` | `beta` | docs ✓ · a11y ✓ · spec ✓(15) · visual ✓ | Upload transport is consumer-implemented; `accept` is OS-level only. |
+| `file-upload` | `stable` | docs ✓ · a11y ✓ · spec ✓(15) · visual ✓ | Upload transport is consumer-implemented **by design** (you wire the request); `accept` maps to the OS dialog. A reference transport would be additive, not breaking. |
 | `form-field` | `stable` | docs ✓ · a11y ✓ · spec ✓(14) · visual ✓ | Validation messages via `KP_STRINGS.validation` (5.4.0); `KP_VALIDATION_MESSAGES` deprecated-but-honored. |
 | `icon` | `stable` | docs ✓ · a11y ✓ · spec ✓(12) · visual ✓ | Registry (`register` / `registerMany` / unknown-name warning) + size ramp now specced. |
 | `input` | `stable` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Password-reveal toggle is default behavior. |
@@ -70,7 +70,7 @@ Status as of `5.4.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `menu` | `stable` | docs ✓ · a11y ✓ · spec ✓(19) · visual ✓ | DropdownMenu / MenuItem / MenuDivider. Arrow / Home / End roving nav skips section labels, dividers, and disabled items (5.4.1). |
 | `number-stepper` | `stable` | docs ✓ · a11y ✓ · spec ✓(5) · visual ✓ | Integer + fractional via `[step]`. |
 | `pagination` | `stable` | docs ✓ · a11y ✓ · spec ✓(5) · visual ✓ | i18n-aware. "Go to page" input would be additive. |
-| `popover` | `beta` | docs ✓ · a11y ✓ · spec ✓(23) · visual ✓ | **Open:** anchor positioning on scroll — currently fixed-pos; needs scroll-recompute. |
+| `popover` | `stable` | docs ✓ · a11y ✓ · spec ✓(24) · visual ✓ | Tracks its trigger — repositions on scroll/resize (rAF-throttled, capture-phase catches scrollable ancestors), detaches on close. |
 | `progress` | `stable` | docs ✓ · a11y ✓ · spec ✓(12) · visual ✓ | Linear / Circular / Segmented (both visual stories present). |
 | `radio` | `stable` | docs ✓ · a11y ✓ · spec ✓(6) · visual ✓ | Roving tabindex + CVA verified. |
 | `rich-text-editor` | `beta` | docs ✓ · a11y ✓ · spec ✓(17) · visual n/a | Image-upload protocol is consumer-implemented (needs a reference impl). Visual n/a — caret/selection state is non-deterministic. |
@@ -88,7 +88,7 @@ Status as of `5.4.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `tree` | `beta` | docs ✓ · a11y ✓ · spec ✓(22) · visual ✓ | Roving tabindex + expand/collapse. **Open:** lazy-load contract for `expandable` nodes without `children`. |
 | `virtual-list` | `experimental` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Fixed-height window mode only. Variable-height, sticky group headers, and a load-more directive are still-evolving API — kept `experimental` on the API, not coverage. |
 
-**Components: 30 `stable` · 10 `beta` · 1 `experimental`.**
+**Components: 33 `stable` · 7 `beta` · 1 `experimental`.**
 
 ## Patterns
 

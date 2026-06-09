@@ -119,4 +119,17 @@ describe('KpPopoverDirective', () => {
     expect(wrapper.dataset['kpPopoverSide']).toMatch(/^(top|right|bottom|left)$/);
     expect(wrapper.style.getPropertyValue('--kp-popover-arrow-offset')).toMatch(/px$/);
   });
+
+  it('repositions while open on scroll/resize (viewport tracking)', () => {
+    const { trigger } = setup();
+    trigger.click(); // open
+    expect(panel()).not.toBeNull();
+    // Capture-phase scroll/resize listeners schedule a rAF reposition so the
+    // fixed-positioned panel tracks its trigger instead of drifting.
+    const rafSpy = vi.spyOn(window, 'requestAnimationFrame');
+    window.dispatchEvent(new Event('scroll'));
+    expect(rafSpy).toHaveBeenCalledTimes(1);
+    window.dispatchEvent(new Event('resize'));
+    rafSpy.mockRestore();
+  });
 });
