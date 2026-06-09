@@ -106,6 +106,15 @@ export interface KpFilterChip {
       min-width: 0;
     }
 
+    /* In a control strip the chips sit next to sm buttons (Add filter / Clear
+       all). A sm badge is 22px but a sm control is 28px, so the chips looked
+       short. Raise the chip height to the shared SM control token so chips and
+       buttons line up. Higher specificity than the badge's own
+       :host(.kp-badge--sm) rule, so this wins; the sm font/padding stay. */
+    .kp-fb__chips kp-badge {
+      --kp-badge-h: var(--kp-size-sm);
+    }
+
     .kp-fb__actions {
       display: flex;
       align-items: center;

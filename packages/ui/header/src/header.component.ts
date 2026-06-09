@@ -316,14 +316,21 @@ export interface KpHeaderNavItem {
 
     .kp-header__user {
       all: unset;
+      box-sizing: border-box;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 4px;
+      /* Match the icon buttons in this row (36px) and give the chevron real
+         padding instead of the bespoke flat 4px — avatar keeps a tight left
+         inset, the trailing chevron gets button-grammar breathing room. */
+      height: 36px;
+      padding-inline: 4px 10px;
       border-radius: 8px;
       cursor: pointer;
       transition: background var(--kp-motion-duration-fast) ease;
     }
+    /* Compact form (size sm) hides the name/role, so balance the insets. */
+    :host(.kp-header--sm) .kp-header__user { height: 32px; padding-inline: 4px 6px; }
     .kp-header__user:hover { background: var(--kp-color-surface-muted); }
     :host(.kp-header--dark) .kp-header__user:hover { background: var(--kp-color-surface-on-dark-muted); }
 

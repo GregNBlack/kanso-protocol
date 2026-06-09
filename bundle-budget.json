@@ -7,7 +7,7 @@
       "maxGz": 2393
     },
     "ui/accordion": {
-      "currentGz": 3658,
+      "currentGz": 3670,
       "maxGz": 4300
     },
     "ui/alert": {
@@ -27,8 +27,8 @@
       "maxGz": 2400
     },
     "ui/badge": {
-      "currentGz": 2890,
-      "maxGz": 3400
+      "currentGz": 3401,
+      "maxGz": 4000
     },
     "ui/banner": {
       "currentGz": 2203,
@@ -39,8 +39,8 @@
       "maxGz": 5400
     },
     "ui/button": {
-      "currentGz": 5219,
-      "maxGz": 6100
+      "currentGz": 5334,
+      "maxGz": 6200
     },
     "ui/card": {
       "currentGz": 2539,
@@ -67,7 +67,7 @@
       "maxGz": 10200
     },
     "ui/dialog": {
-      "currentGz": 4272,
+      "currentGz": 4268,
       "maxGz": 5000
     },
     "ui/divider": {
@@ -75,7 +75,7 @@
       "maxGz": 1862
     },
     "ui/drawer": {
-      "currentGz": 4870,
+      "currentGz": 4888,
       "maxGz": 5700
     },
     "ui/empty-state": {
@@ -87,8 +87,8 @@
       "maxGz": 5700
     },
     "ui/filter-bar": {
-      "currentGz": 1854,
-      "maxGz": 2354
+      "currentGz": 1876,
+      "maxGz": 2376
     },
     "ui/form-field": {
       "currentGz": 3406,
@@ -103,7 +103,7 @@
       "maxGz": 1674
     },
     "ui/header": {
-      "currentGz": 3961,
+      "currentGz": 3987,
       "maxGz": 4600
     },
     "ui/i18n": {
@@ -211,7 +211,7 @@
       "maxGz": 4600
     },
     "ui/table-toolbar": {
-      "currentGz": 3161,
+      "currentGz": 3163,
       "maxGz": 3700
     },
     "ui/tabs": {
@@ -219,7 +219,7 @@
       "maxGz": 4100
     },
     "ui/textarea": {
-      "currentGz": 2762,
+      "currentGz": 2779,
       "maxGz": 3200
     },
     "ui/theme-toggle": {
