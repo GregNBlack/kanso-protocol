@@ -20,6 +20,7 @@ Conventions: `Tab` / `Shift+Tab` move between focusable elements everywhere and 
 | `slider` | `Arrow` keys step by `step`; `Shift`+`Arrow` and `PageUp` / `PageDown` step by `10 × step`; `Home` / `End` jump to min / max (thumb-focused). |
 | `form-field` | None directly — focus and keys belong to the wrapped control. |
 | `file-upload` | Drop zone is `role="button"`: `Enter` / `Space` open the file browser. |
+| `rich-text-editor` | Toolbar buttons are native `<button>`s (`Enter` / `Space`). The editing surface is a TipTap `contenteditable`, so standard rich-text shortcuts apply natively — `mod+B` / `mod+I` / `mod+U` (bold / italic / underline), etc. The link bar: `Enter` applies, `Escape` closes it. |
 
 ## Disclosure & navigation
 
@@ -32,6 +33,8 @@ Conventions: `Tab` / `Shift+Tab` move between focusable elements everywhere and 
 | `breadcrumbs` | Crumbs are native `<a>` / `<button>`; current crumb is an inert `<span aria-current="page">`. |
 | `pagination` | Page cells and prev/next are native `<button>`s (`Enter` / `Space`). |
 | `notification-item` | Row is focusable (`tabindex="0"`): `Enter` / `Space` activate (emits `click$`). |
+| `card` | Only when `[clickable]`: host is `role="button"` with `tabindex="0"` — `Enter` / `Space` activate (emit `cardClick`). Plain cards are inert containers. |
+| `theme-toggle` | `segmented` variant is a `role="radiogroup"` (`Arrow` keys move + select, like radio-group); `dropdown` variant opens a `role="listbox"` (`Arrow` keys navigate, `Enter` selects, `Escape` closes); `icon` variant is a single `<button>` toggle. |
 
 ## Overlays
 
