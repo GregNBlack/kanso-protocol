@@ -1,5 +1,11 @@
 # @kanso-protocol/elements
 
+## 0.1.3
+
+### Patch Changes
+
+- Rebuild the custom-elements bundle against `@kanso-protocol/ui@5.3.0` so the new Badge `counter` input and the textarea/button/filter-bar/header fixes are exposed as web components.
+
 ## 0.1.2
 
 ### Patch Changes
