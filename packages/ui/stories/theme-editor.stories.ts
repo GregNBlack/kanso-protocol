@@ -538,6 +538,10 @@ export class KpThemeEditorComponent implements OnDestroy {
 const meta: Meta<KpThemeEditorComponent> = {
   title: 'Foundations/Theme Editor',
   component: KpThemeEditorComponent,
+  // Opt out of the global autodocs: this is an interactive tool, so the
+  // single fullscreen story IS the page. Autodocs would add a redundant
+  // "Docs" entry + a "STORIES" subgroup that just re-render the editor.
+  tags: ['!autodocs'],
   parameters: {
     layout: 'fullscreen',
     // Dynamic color-picker tool — exclude from visual-regression snapshots.
