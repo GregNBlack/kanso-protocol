@@ -129,28 +129,24 @@ for (const story of STORIES) {
 
 // ─── RTL pass ──────────────────────────────────────────────────────────
 //
-// Components use CSS logical properties throughout; this freezes how the
-// direction-sensitive ones render under `dir="rtl"` so a future change that
-// reaches for a physical property (margin-left, left:, ::before chevrons)
-// shows up as a diff. Light theme only — RTL is about axis, not color, and
-// doubling by theme would just add noise. Kept to a directional subset
-// (icon side, chevrons, drawer/sidebar edge, breadcrumb separators, etc.).
-// Snapshots live in the same -snapshots dir so CI's [update-baselines]
-// commit step picks them up.
-const RTL_STORIES: StorySpec[] = [
-  { id: 'components-breadcrumbs--default',   name: 'breadcrumbs' },
-  { id: 'components-input--default',         name: 'input' },
-  { id: 'components-formfield--states',      name: 'form field' },
-  { id: 'components-pagination--default',    name: 'pagination' },
-  { id: 'components-drawer--default',        name: 'drawer' },
-  { id: 'components-tabs--default',          name: 'tabs' },
-  { id: 'components-numberstepper--default', name: 'number stepper' },
-  { id: 'components-select--default',        name: 'select' },
-  { id: 'patterns-sidebar--dark-variant',   name: 'sidebar' },
-  { id: 'patterns-header--saa-s-app',        name: 'header' },
-  { id: 'patterns-navitem--states',          name: 'nav item' },
-  { id: 'patterns-pageheader--composition',  name: 'page header' },
-];
+// Components use CSS logical properties throughout; this freezes how every
+// direction-sensitive story renders under `dir="rtl"` so a future change that
+// reaches for a physical property (margin-left, left:, ::before chevrons,
+// non-mirrored padding) shows up as a diff. Light theme only — RTL is about
+// axis, not color; doubling by theme would just add noise.
+//
+// Coverage is the full catalog MINUS the handful of stories that mirror
+// identically (centered glyphs / symmetric shapes) — snapshotting those would
+// only add noise, per the suite's curated-not-exhaustive stance. Snapshots
+// live in the same -snapshots dir so CI's [update-baselines] step picks them up.
+const RTL_EXCLUDE = new Set<string>([
+  'components-icon--sizes',               // centered glyphs — mirror-identical
+  'components-skeleton--default',         // symmetric placeholder blocks
+  'components-progress-circular--values', // centered ring
+  'components-divider--orientations',     // symmetric rules
+  'components-avatar--playground',        // centered circle
+]);
+const RTL_STORIES: StorySpec[] = STORIES.filter((s) => !RTL_EXCLUDE.has(s.id));
 
 async function setDir(page: Page, dir: 'ltr' | 'rtl'): Promise<void> {
   await page.evaluate((d) => {
