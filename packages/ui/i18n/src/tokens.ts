@@ -1,4 +1,5 @@
 import { InjectionToken, inject } from '@angular/core';
+import { KpValidationMessages, KP_DEFAULT_VALIDATION_MESSAGES } from './validation';
 
 /**
  * BCP-47 locale tag used by every Kanso component that calls into Intl
@@ -79,6 +80,11 @@ export interface KpLocaleStrings {
 
   // Toast — close button on every queued toast
   toastDismiss: string;
+
+  // Form-field validation messages, keyed by validator name. Folded in here
+  // so all localizable copy lives behind one token. `<kp-form-field>` re-bases
+  // on the English defaults, so an override may be partial (per-key).
+  validation: KpValidationMessages;
 }
 
 /**
@@ -129,6 +135,8 @@ export const KP_DEFAULT_STRINGS_EN: KpLocaleStrings = {
   paginationShowing: (from, to, total) => `Showing ${from}–${to} of ${total}`,
 
   toastDismiss: 'Dismiss',
+
+  validation: KP_DEFAULT_VALIDATION_MESSAGES,
 };
 
 /**

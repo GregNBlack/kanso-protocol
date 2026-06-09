@@ -1,6 +1,6 @@
 {
   "name": "@kanso-protocol/ui",
-  "version": "5.3.1",
+  "version": "5.4.0",
   "description": "Kanso Protocol — Angular design system (single package, per-component secondary entry points).",
   "license": "MIT",
   "author": "GregNBlack",
