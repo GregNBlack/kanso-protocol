@@ -66,6 +66,29 @@ describe('Menu (DropdownMenu + MenuItem)', () => {
       expect(host.querySelector('kp-menu-section-label')).not.toBeNull();
     });
 
+    it('Arrow / Home / End keys rove focus across menu items, skipping the section label', () => {
+      const { host } = setup();
+      const body = host.querySelector('.kp-dropdown-menu__body') as HTMLElement;
+      const items = Array.from(host.querySelectorAll('kp-menu-item')) as HTMLElement[];
+      const arrow = (key: string) =>
+        body.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true }));
+
+      arrow('ArrowDown');                              // no focus → first item
+      expect(document.activeElement).toBe(items[0]);
+      arrow('ArrowDown');                              // → second item
+      expect(document.activeElement).toBe(items[1]);
+      arrow('ArrowDown');                              // wraps → first
+      expect(document.activeElement).toBe(items[0]);
+      arrow('ArrowUp');                                // wraps back → last
+      expect(document.activeElement).toBe(items[1]);
+      arrow('Home');
+      expect(document.activeElement).toBe(items[0]);
+      arrow('End');
+      expect(document.activeElement).toBe(items[1]);
+      // the section label is never a focus target
+      expect(document.activeElement).not.toBe(host.querySelector('kp-menu-section-label'));
+    });
+
     it('search slot is absent by default', () => {
       expect(setup().host.querySelector('.kp-dropdown-menu__search')).toBeNull();
     });

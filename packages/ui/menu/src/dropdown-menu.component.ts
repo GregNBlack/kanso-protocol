@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
 import { KpInputComponent } from '@kanso-protocol/ui/input';
 import { KpButtonComponent } from '@kanso-protocol/ui/button';
 
@@ -37,7 +37,7 @@ import { KpButtonComponent } from '@kanso-protocol/ui/button';
         <div class="kp-dropdown-menu__divider"></div>
       </div>
     }
-    <div class="kp-dropdown-menu__body" role="menu">
+    <div #body class="kp-dropdown-menu__body" role="menu" (keydown)="onBodyKeydown($event)">
       <ng-content/>
     </div>
     @if (hasFooter) {
@@ -112,9 +112,40 @@ export class KpDropdownMenuComponent {
   @Output() primary = new EventEmitter<void>();
   @Output() cancel = new EventEmitter<void>();
 
+  @ViewChild('body') private bodyRef?: ElementRef<HTMLElement>;
+
   onSearchInput(event: Event): void {
     const v = (event.target as HTMLInputElement).value;
     this.searchValue = v;
     this.searchChange.emit(v);
+  }
+
+  /**
+   * Roving keyboard navigation for the WAI-ARIA `role="menu"` body. Arrow keys
+   * move focus across enabled menu items only — section labels, dividers, and
+   * disabled items are skipped by construction (the query matches just
+   * `role="menuitem"` without `aria-disabled`). `Tab` still works too.
+   */
+  onBodyKeydown(event: KeyboardEvent): void {
+    const keys = ['ArrowDown', 'ArrowUp', 'Home', 'End'];
+    if (!keys.includes(event.key) || !this.bodyRef) return;
+
+    const items = Array.from(
+      this.bodyRef.nativeElement.querySelectorAll<HTMLElement>(
+        '[role="menuitem"]:not([aria-disabled="true"])',
+      ),
+    );
+    if (items.length === 0) return;
+
+    const current = items.indexOf(document.activeElement as HTMLElement);
+    let next: number;
+    switch (event.key) {
+      case 'ArrowDown': next = current < 0 ? 0 : (current + 1) % items.length; break;
+      case 'ArrowUp':   next = current <= 0 ? items.length - 1 : current - 1; break;
+      case 'Home':      next = 0; break;
+      default:          next = items.length - 1; break; // End
+    }
+    event.preventDefault();
+    items[next].focus();
   }
 }
