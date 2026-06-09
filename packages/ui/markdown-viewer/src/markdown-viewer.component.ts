@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Input,
   OnChanges,
@@ -7,12 +8,20 @@ import {
   inject,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { marked } from 'marked';
 
 export type KpMarkdownViewerSize = 'sm' | 'md' | 'lg';
-export type KpMarkdownParser = (markdown: string) => string;
+/** A parser may be synchronous or async (the default lazy-loads `marked`). */
+export type KpMarkdownParser = (markdown: string) => string | Promise<string>;
 
-const defaultParser: KpMarkdownParser = (md) => marked.parse(md, { async: false }) as string;
+// `marked` is loaded on first render via dynamic import, so consumers that
+// don't render markdown eagerly can code-split it out of their initial bundle.
+// The module is cached after the first load.
+let markedModulePromise: Promise<typeof import('marked')> | null = null;
+const defaultParser: KpMarkdownParser = async (md) => {
+  markedModulePromise ??= import('marked');
+  const { marked } = await markedModulePromise;
+  return marked.parse(md, { async: false }) as string;
+};
 
 /**
  * Kanso Protocol — MarkdownViewer
@@ -204,6 +213,9 @@ export class KpMarkdownViewerComponent implements OnChanges {
   rendered: SafeHtml | string = '';
 
   private sanitizer = inject(DomSanitizer);
+  private cdr = inject(ChangeDetectorRef);
+  /** Guards against an earlier slow parse overwriting a newer one. */
+  private renderToken = 0;
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('content' in changes || 'parser' in changes || 'trusted' in changes) {
@@ -220,14 +232,31 @@ export class KpMarkdownViewerComponent implements OnChanges {
       this.rendered = '';
       return;
     }
-    let html: string;
+    // The parser may be sync (custom) or async (the default lazy-loads
+    // `marked`). Normalize to a promise; a token guards against an earlier
+    // slow parse landing after a newer one.
+    const token = ++this.renderToken;
+    const content = this.content;
+    let result: string | Promise<string>;
     try {
-      html = this.parser(this.content);
+      result = this.parser(content);
     } catch (err) {
       console.error('[kp-markdown-viewer] parser threw:', err);
       this.rendered = '';
       return;
     }
-    this.rendered = this.trusted ? this.sanitizer.bypassSecurityTrustHtml(html) : html;
+    Promise.resolve(result).then(
+      (html) => {
+        if (token !== this.renderToken) return; // superseded
+        this.rendered = this.trusted ? this.sanitizer.bypassSecurityTrustHtml(html) : html;
+        this.cdr.markForCheck();
+      },
+      (err) => {
+        if (token !== this.renderToken) return;
+        console.error('[kp-markdown-viewer] parser threw:', err);
+        this.rendered = '';
+        this.cdr.markForCheck();
+      },
+    );
   }
 }
