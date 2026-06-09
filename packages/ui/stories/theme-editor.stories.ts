@@ -167,12 +167,13 @@ function cloneModel(m: Model): Model {
       <div class="te__panel">
         <div class="te__row te__row--top">
           <h2 class="te__title">Theme Editor</h2>
-          <div class="te__modes" role="tablist" aria-label="Theme mode">
+          <div class="te__modes" role="group" aria-label="Theme mode">
             @for (m of modes; track m) {
               <button
                 type="button"
                 class="te__mode"
                 [class.te__mode--on]="mode() === m"
+                [attr.aria-pressed]="mode() === m"
                 (click)="setMode(m)">{{ m }}</button>
             }
           </div>
@@ -180,13 +181,13 @@ function cloneModel(m: Model): Model {
 
         <div class="te__brand">
           <label class="te__brand-label" for="te-brand">Brand color</label>
-          <input id="te-brand" type="color" class="te__brand-swatch"
+          <input id="te-brand" type="color" class="te__brand-swatch" aria-label="Brand color picker"
                  [value]="brand()" (input)="onBrand($any($event.target).value)"/>
-          <input type="text" class="te__brand-hex"
-                 [value]="brand()" (change)="onBrand($any($event.target).value)"/>
-          <button type="button" class="te__btn te__btn--primary" (click)="applyBrand()">Recolor brand</button>
+          <kp-input class="te__brand-hex" size="sm" [showClear]="false" ariaLabel="Brand color hex"
+                    [value]="brand()" (input)="onBrand($any($event.target).value)"/>
+          <button kpButton variant="default" color="primary" size="sm" (click)="applyBrand()">Recolor brand</button>
           <span class="te__hint">rotates the accent ramp hue — light + dark</span>
-          <button type="button" class="te__btn te__btn--secondary te__btn--reset" (click)="reset()">Reset</button>
+          <button kpButton variant="subtle" color="neutral" size="sm" class="te__reset" (click)="reset()">Reset</button>
         </div>
 
         <p class="te__section">Ramps — {{ mode() }} (click a swatch to edit)</p>
@@ -210,10 +211,10 @@ function cloneModel(m: Model): Model {
         </div>
 
         <div class="te__row te__actions">
-          <button type="button" class="te__btn te__btn--secondary" (click)="copy('css')">Copy CSS</button>
-          <button type="button" class="te__btn te__btn--secondary" (click)="download('css')">Download .css</button>
-          <button type="button" class="te__btn te__btn--secondary" (click)="copy('json')">Copy JSON</button>
-          <button type="button" class="te__btn te__btn--secondary" (click)="download('json')">Download .json</button>
+          <button kpButton variant="subtle" color="neutral" size="sm" (click)="copy('css')">Copy CSS</button>
+          <button kpButton variant="subtle" color="neutral" size="sm" (click)="download('css')">Download .css</button>
+          <button kpButton variant="subtle" color="neutral" size="sm" (click)="copy('json')">Copy JSON</button>
+          <button kpButton variant="subtle" color="neutral" size="sm" (click)="download('json')">Download .json</button>
         </div>
         <span class="te__status" aria-live="polite">{{ status() }}</span>
       </div>
@@ -225,12 +226,12 @@ function cloneModel(m: Model): Model {
             <!-- narrow form: input + select + stepper grouped -->
             <form class="te__pv-form" (submit)="$event.preventDefault()">
               <span class="te__pv-h">Form</span>
-              <kp-input placeholder="Your name"/>
-              <kp-select placeholder="Pick one" [options]="selectOptions"/>
-              <kp-number-stepper [min]="0" [max]="10" suffix=" pt"/>
+              <kp-input placeholder="Your name" ariaLabel="Your name"/>
+              <kp-select placeholder="Pick one" [options]="selectOptions" label="Status" [floatingLabel]="true"/>
+              <kp-number-stepper [min]="0" [max]="10" suffix=" pt" ariaLabel="Amount"/>
               <div class="te__pv-wrap">
                 <kp-checkbox [checked]="true">Remember me</kp-checkbox>
-                <kp-toggle [on]="true"/>
+                <kp-toggle [on]="true" ariaLabel="Notifications"/>
               </div>
               <button kpButton variant="default" color="primary">Submit</button>
             </form>
@@ -307,15 +308,15 @@ function cloneModel(m: Model): Model {
     .te__modes { display: inline-flex; gap: 4px; padding: 2px; border-radius: 8px; background: var(--kp-color-surface-muted); }
     .te__mode {
       all: unset; cursor: pointer; padding: 4px 12px; border-radius: 6px; font-size: 13px; text-transform: capitalize;
-      color: var(--kp-color-text-muted);
+      color: var(--kp-color-text-default);
     }
     .te__mode--on { background: var(--kp-color-surface-base); color: var(--kp-color-text-strong); box-shadow: var(--kp-elevation-overlay); }
 
     .te__brand { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px; border-radius: 8px; background: var(--kp-color-surface-subtle); margin-bottom: 16px; }
-    .te__btn--reset { margin-inline-start: auto; }
     .te__brand-label { font-size: 13px; color: var(--kp-color-text-default); }
-    .te__brand-swatch { width: 36px; height: 28px; border: 1px solid var(--kp-color-border-default); border-radius: 6px; background: none; cursor: pointer; padding: 0; }
-    .te__brand-hex { width: 90px; font: inherit; font-size: 13px; padding: 4px 8px; border: 1px solid var(--kp-color-border-default); border-radius: 6px; background: var(--kp-color-surface-base); color: var(--kp-color-text-strong); }
+    /* match the kp-input border token so the swatch reads like a Kanso field */
+    .te__brand-swatch { width: 36px; height: 28px; border: 1px solid var(--kp-color-input-border-rest); border-radius: 6px; background: none; cursor: pointer; padding: 0; }
+    .te__brand-hex { width: 120px; }
     .te__hint { font-size: 11px; color: var(--kp-color-text-muted); }
 
     .te__section { margin: 0 0 8px; font-size: 12px; font-weight: 600; color: var(--kp-color-text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
@@ -330,16 +331,10 @@ function cloneModel(m: Model): Model {
     .te__stop-num { font-size: 9px; color: var(--kp-color-text-muted); font-variant-numeric: tabular-nums; }
 
     .te__actions { flex-wrap: wrap; margin-top: 16px; }
-    .te__btn {
-      all: unset; cursor: pointer; padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 500;
-      box-sizing: border-box;
-    }
-    /* Primary — only "Recolor brand". */
-    .te__btn--primary { background: var(--kp-color-primary-default-bg-rest); color: var(--kp-color-foreground-on-saturated); }
-    .te__btn--primary:hover { background: var(--kp-color-primary-default-bg-hover); }
-    /* Secondary — outline/neutral; used for copy / download / reset. */
-    .te__btn--secondary { background: var(--kp-color-surface-base); color: var(--kp-color-text-default); border: 1px solid var(--kp-color-border-default); }
-    .te__btn--secondary:hover { background: var(--kp-color-surface-muted); }
+    /* Buttons are real kp-button instances (primary = Recolor, subtle/neutral
+       = secondary for copy/download/reset) so their colors + borders track the
+       Kanso tokens in both themes. Reset just gets pushed to the right. */
+    .te__reset { margin-inline-start: auto; }
     .te__status { display: block; margin-top: 8px; font-size: 12px; color: var(--kp-color-text-muted); min-height: 16px; }
 
     /* Distribute previews across the full width. The input/select/stepper

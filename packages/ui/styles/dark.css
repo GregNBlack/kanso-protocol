@@ -353,7 +353,7 @@
   --kp-color-nav-item-fg-active: var(--kp-color-blue-900);
   --kp-color-nav-item-fg-disabled: var(--kp-color-gray-500);
   --kp-color-nav-item-icon-active: var(--kp-color-blue-900);
-  --kp-color-header-nav-item-fg-active: var(--kp-color-blue-500);
+  --kp-color-header-nav-item-fg-active: var(--kp-color-blue-900);
   --kp-color-breadcrumbs-item-fg-link-rest: var(--kp-color-blue-900);
   --kp-color-table-header-fg: var(--kp-color-gray-600);
   --kp-color-table-row-fg: var(--kp-color-gray-900);
@@ -372,7 +372,7 @@
   --kp-color-tree-node-bg-selected: var(--kp-color-blue-50);
   --kp-color-surface-muted: var(--kp-color-gray-200);
   --kp-color-surface-strong: var(--kp-color-gray-300);
-  --kp-color-accent-primary-fg: var(--kp-color-blue-500);
+  --kp-color-accent-primary-fg: var(--kp-color-blue-900);
   --kp-color-accent-danger-fg: #f87171;
   --kp-color-accent-success-fg: #4ade80;
   --kp-color-accent-warning-fg: #fbbf24;
