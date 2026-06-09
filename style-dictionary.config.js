@@ -58,9 +58,10 @@ const cssVariablesLight = function ({ dictionary, options }) {
  * CSS custom property. Run with `tokens/themes/dark.json` as the only source
  * so the output contains only the deltas, not the full token set.
  */
-const cssVariablesDark = function ({ dictionary }) {
+const cssVariablesDark = function ({ dictionary, options }) {
+  const useRefs = options?.outputReferences;
   const lines = dictionary.allTokens.map(
-    (t) => `  --kp-${t.path.join('-')}: ${t.$value ?? t.value};`,
+    (t) => `  --kp-${t.path.join('-')}: ${useRefs ? renderRefValue(t) : (t.$value ?? t.value)};`,
   );
   return [
     '/**',
@@ -161,6 +162,12 @@ module.exports.dark = {
         {
           destination: 'dark.css',
           format: 'css/variables-dark',
+          // Keep the var() chain for semantic overrides that now reference a
+          // primitive stop (e.g. alert/badge subtle bg → {color.blue.100}).
+          // This makes dark brand-aware: overriding --kp-color-blue-* at
+          // runtime cascades to these tokens, exactly like the light theme.
+          // Primitive ramp stops have no references, so they stay literal.
+          options: { outputReferences: true },
         },
       ],
     },
