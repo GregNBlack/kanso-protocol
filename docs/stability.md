@@ -66,7 +66,7 @@ Status as of `5.4.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `form-field` | `stable` | docs ✓ · a11y ✓ · spec ✓(14) · visual ✓ | Validation messages via `KP_STRINGS.validation` (5.4.0); `KP_VALIDATION_MESSAGES` deprecated-but-honored. |
 | `icon` | `stable` | docs ✓ · a11y ✓ · spec ✓(12) · visual ✓ | Registry (`register` / `registerMany` / unknown-name warning) + size ramp now specced. |
 | `input` | `stable` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Password-reveal toggle is default behavior. |
-| `markdown-viewer` | `beta` | docs ✓ · a11y ✓ · spec ✓(10) · visual ✓ | **Open:** lazy-load the `marked` parser via dynamic import (bundle perf). |
+| `markdown-viewer` | `stable` | docs ✓ · a11y ✓ · spec ✓(12) · visual ✓ | Default parser lazy-loads `marked` via dynamic import (code-splittable); `[parser]` accepts sync **or** async parsers (5.5.0). |
 | `menu` | `stable` | docs ✓ · a11y ✓ · spec ✓(19) · visual ✓ | DropdownMenu / MenuItem / MenuDivider. Arrow / Home / End roving nav skips section labels, dividers, and disabled items (5.4.1). |
 | `number-stepper` | `stable` | docs ✓ · a11y ✓ · spec ✓(5) · visual ✓ | Integer + fractional via `[step]`. |
 | `pagination` | `stable` | docs ✓ · a11y ✓ · spec ✓(5) · visual ✓ | i18n-aware. "Go to page" input would be additive. |
@@ -88,7 +88,7 @@ Status as of `5.4.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `tree` | `beta` | docs ✓ · a11y ✓ · spec ✓(22) · visual ✓ | Roving tabindex + expand/collapse. **Open:** lazy-load contract for `expandable` nodes without `children`. |
 | `virtual-list` | `experimental` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Fixed-height window mode only. Variable-height, sticky group headers, and a load-more directive are still-evolving API — kept `experimental` on the API, not coverage. |
 
-**Components: 33 `stable` · 7 `beta` · 1 `experimental`.**
+**Components: 34 `stable` · 6 `beta` · 1 `experimental`.**
 
 ## Patterns
 
