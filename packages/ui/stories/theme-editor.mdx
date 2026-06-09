@@ -1,0 +1,21 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as ThemeEditor from './theme-editor.stories';
+
+{/*
+  Custom docs page for the Theme Editor. The underlying story is hidden from
+  the sidebar (tags: ['!dev', '!autodocs']) so the editor renders exactly once
+  here — default autodocs would render it twice (Primary + Stories), i.e. two
+  live instances fighting over the global override <style>. Canonical URL:
+  ?path=/docs/foundations-theme-editor--docs
+*/}
+
+<Meta of={ThemeEditor} />
+
+# Theme Editor
+
+Generate a custom Kanso theme. Pick a **brand color** to recolor the whole accent
+ramp (applies to light **and** dark at once), or hand-tune any stop of any ramp
+per mode. Edits apply live to the preview below; export the result as a CSS
+override block (load after `tokens.css`) or DTCG JSON.
+
+<Canvas of={ThemeEditor.Editor} sourceState="none" />

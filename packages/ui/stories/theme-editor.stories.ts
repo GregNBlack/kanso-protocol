@@ -538,10 +538,12 @@ export class KpThemeEditorComponent implements OnDestroy {
 const meta: Meta<KpThemeEditorComponent> = {
   title: 'Foundations/Theme Editor',
   component: KpThemeEditorComponent,
-  // Opt out of the global autodocs: this is an interactive tool, so the
-  // single fullscreen story IS the page. Autodocs would add a redundant
-  // "Docs" entry + a "STORIES" subgroup that just re-render the editor.
-  tags: ['!autodocs'],
+  // Single entry via a custom MDX docs page (`theme-editor.mdx`). The story
+  // is hidden from the sidebar (`!dev`) and auto-docs is off (`!autodocs`);
+  // the MDX renders the editor exactly once at the canonical `…--docs` URL.
+  // (Default autodocs would render the editor twice — Primary + Stories —
+  // i.e. two live instances fighting over the global override <style>.)
+  tags: ['!dev', '!autodocs'],
   parameters: {
     layout: 'fullscreen',
     // Dynamic color-picker tool — exclude from visual-regression snapshots.
