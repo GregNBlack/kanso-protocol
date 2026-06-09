@@ -42,7 +42,7 @@ A surface is **`stable`** when all hold:
 
 ## Components
 
-Status as of `5.1.2`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All components pass the a11y critical gate in both themes.
+Status as of `5.4.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All components pass the a11y critical gate in both themes.
 
 | Component | Status | Coverage | Notes / open questions |
 |---|---|---|---|
@@ -63,7 +63,7 @@ Status as of `5.1.2`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `drawer` | `stable` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | `side` is physical (not RTL-flipped); documented. |
 | `empty-state` | `stable` | docs ✓ · a11y ✓ · spec ✓(4) · visual ✓ | Slot-based. |
 | `file-upload` | `beta` | docs ✓ · a11y ✓ · spec ✓(15) · visual ✓ | Upload transport is consumer-implemented; `accept` is OS-level only. |
-| `form-field` | `stable` | docs ✓ · a11y ✓ · spec ✓(14) · visual ✓ | `KP_VALIDATION_MESSAGES` override contract specced. |
+| `form-field` | `stable` | docs ✓ · a11y ✓ · spec ✓(14) · visual ✓ | Validation messages via `KP_STRINGS.validation` (5.4.0); `KP_VALIDATION_MESSAGES` deprecated-but-honored. |
 | `icon` | `stable` | docs ✓ · a11y ✓ · spec ✓(12) · visual ✓ | Registry (`register` / `registerMany` / unknown-name warning) + size ramp now specced. |
 | `input` | `stable` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Password-reveal toggle is default behavior. |
 | `markdown-viewer` | `beta` | docs ✓ · a11y ✓ · spec ✓(10) · visual ✓ | **Open:** lazy-load the `marked` parser via dynamic import (bundle perf). |
@@ -81,14 +81,14 @@ Status as of `5.1.2`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `table` | `beta` | docs ✓ · a11y ✓ · spec ✓(16) · visual ✓ | Sort + selection. For >500 rows compose `<kp-virtual-list>`; a baked-in `<kp-table-virtual>` is planned (additive). |
 | `tabs` | `stable` | docs ✓ · a11y ✓ · spec ✓(11) · visual ✓ | Roving tabindex + overflow slot. |
 | `textarea` | `stable` | docs ✓ · a11y ✓ · spec ✓(9) · visual ✓ | Auto-resize + counter. |
-| `timepicker` | `beta` | docs ✓ · a11y ✓ · spec ✓(17) · visual ✓ | i18n-aware. **Open:** auto-detect 12h/24h from `KP_LOCALE` (currently `[format]`). |
+| `timepicker` | `stable` | docs ✓ · a11y ✓ · spec ✓(17) · visual ✓ | i18n-aware. `[format]` defaults to `"auto"` — derives 12h/24h from `KP_LOCALE` (5.4.0). |
 | `toast` | `beta` | docs ✓ · a11y ✓ · spec ✓(14) · visual n/a | **Open:** queue ordering across corners. Visual n/a — enter/exit animation is non-deterministic. |
 | `toggle` | `stable` | docs ✓ · a11y ✓ · spec ✓(5) · visual ✓ | `[ariaLabel]` supported. |
 | `tooltip` | `stable` | docs ✓ · a11y ✓ · spec ✓(9) · visual ✓ | `[kpTooltip]` directive; global default delay would be additive. |
 | `tree` | `beta` | docs ✓ · a11y ✓ · spec ✓(22) · visual ✓ | Roving tabindex + expand/collapse. **Open:** lazy-load contract for `expandable` nodes without `children`. |
 | `virtual-list` | `experimental` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Fixed-height window mode only. Variable-height, sticky group headers, and a load-more directive are still-evolving API — kept `experimental` on the API, not coverage. |
 
-**Components: 28 `stable` · 12 `beta` · 1 `experimental`.**
+**Components: 29 `stable` · 11 `beta` · 1 `experimental`.**
 
 ## Patterns
 
@@ -141,7 +141,7 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 | Tool | Status | Notes |
 |---|---|---|
 | `@kanso-protocol/mcp` | `stable` | Catalog server, **11 stdio tools** (`catalog_overview`, `list_components`, `get_component`, `list_patterns`, `get_pattern`, `list_tokens`, `get_token`, `figma_context`, `figma_for_component`, `figma_for_pattern`, `figma_for_icon`). `figma_for_*` / `get_component` return a `codeConnect` block resolving a Figma node ref → real `@kanso-protocol/ui/<name>` import. |
-| `@kanso-protocol/ui/i18n` | `beta` | `KP_LOCALE` / `KP_STRINGS` + Intl helpers. **Open:** fold `KP_VALIDATION_MESSAGES` into `KP_STRINGS`; auto-detect 12h/24h. |
+| `@kanso-protocol/ui/i18n` | `stable` | `KP_LOCALE` / `KP_STRINGS` (incl. `validation`) + Intl helpers. Validation messages folded into `KP_STRINGS.validation`; timepicker auto-detects 12h/24h (5.4.0). `KP_VALIDATION_MESSAGES` kept as a deprecated alias. |
 | `@kanso-protocol/elements` | `experimental` | Framework-agnostic custom elements (all 73 `kp-*` components) for React / Vue / plain HTML. `0.x` — API stable, packaging (single bundle, embeds Angular runtime) may evolve. Build + runtime smoke gated in CI (`web-components` job). See [`docs/web-components.md`](web-components.md). |
 | `publish-libs.js` | `stable` | Publishes unpublished `dist/packages/**` (`@kanso-protocol/ui` + `/mcp` + `/elements`). |
 | `kanso-lint-tokens` | `stable` | Architectural rule checker (raw colors, physical CSS, raw motion/shadows). |
@@ -149,7 +149,7 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 | `check-changelog.js` | `stable` | CI + pre-push hook. |
 | `check-no-stale-refs.js` | `stable` | CI guard: no pre-v5 package/path references. |
 | `check-lockfile-workspaces.js` | `stable` | CI guard: lockfile workspace set matches disk. |
-| Visual regression suite | `stable` | `e2e/visual.spec.ts` — 60 stories × 2 themes + 12 RTL = 132 snapshots; runs in CI in the Playwright container. |
+| Visual regression suite | `stable` | `e2e/visual.spec.ts` — 60 stories × 2 themes + 55 RTL = 175 snapshots; runs in CI in the Playwright container. |
 
 ## Coverage gaps — status
 
@@ -158,7 +158,7 @@ The audit's gaps have been closed; what remains `beta` is held by open **API que
 - ~~`icon` has no unit spec~~ → **done** (12 tests); promoted to `stable`.
 - ~~Behavioral patterns lacking specs~~ → **done**: every pattern now has a spec (app-shell 14 · filter-bar 13 · header 19 · nav-item 16 · notification-center 20 · page-header 14 · sidebar 27 · stat-card 16 · table-toolbar 17 · user-menu 17). app-shell, nav-item, and table-toolbar promoted to `stable`.
 - ~~No visual baseline~~ → **done** for the in-flow surfaces (file-upload, virtual-list, app-shell, nav-item, notification-center, settings-panel). `command-palette`, `rich-text-editor`, and `toast` are marked **visual n/a** — they render in a top-layer/portal or animate, so a `#storybook-root` snapshot can't capture them deterministically (this is a deliberate exclusion, not a gap).
-- ~~RTL pass~~ → **done**: `e2e/visual.spec.ts` snapshots a directional subset under `dir="rtl"`.
+- ~~RTL pass~~ → **done**: `e2e/visual.spec.ts` snapshots the full catalog (55 stories, all but 5 direction-neutral ones) under `dir="rtl"`.
 - ~~Keyboard-map doc~~ → **done**: [`docs/keyboard-map.md`](keyboard-map.md) — per-component chord reference.
 
 **Remaining is API-level only** — the `beta` surfaces each carry one open design question (multi-select chip groups, mobile header breakpoint, notification pagination, sidebar collapse persistence, sparkline, drag-reorder, presence indicator, combobox async API, etc.). Those are product decisions, not coverage debt; resolving each promotes its surface to `stable`.
