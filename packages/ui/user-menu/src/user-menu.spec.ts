@@ -224,4 +224,28 @@ describe('KpUserMenuComponent', () => {
       expect(host.querySelectorAll('.proj-item').length).toBe(2);
     });
   });
+
+  describe('presence indicator', () => {
+    function make(presence?: string | null): HTMLElement {
+      TestBed.configureTestingModule({ imports: [KpUserMenuComponent] });
+      const fix = TestBed.createComponent(KpUserMenuComponent);
+      if (presence !== undefined) fix.componentRef.setInput('presence', presence);
+      fix.detectChanges();
+      return fix.nativeElement as HTMLElement;
+    }
+
+    it('shows an online presence dot by default', () => {
+      const dot = make().querySelector('.kp-avatar__status');
+      expect(dot).not.toBeNull();
+      expect(dot?.getAttribute('data-status')).toBe('online');
+    });
+
+    it('reflects a custom presence', () => {
+      expect(make('busy').querySelector('.kp-avatar__status')?.getAttribute('data-status')).toBe('busy');
+    });
+
+    it('hides the dot when presence is null', () => {
+      expect(make(null).querySelector('.kp-avatar__status')).toBeNull();
+    });
+  });
 });

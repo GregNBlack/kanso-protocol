@@ -115,9 +115,9 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 | `stat-card` | `stable` | docs ✓ · a11y ✓ · spec ✓(18) · visual ✓ | Single-metric tile + trend + built-in data-driven sparkline (`[sparklineData]`, colored by trend tone); `[kpStatCardSparkline]` slot still overrides (5.6.0). |
 | `table-toolbar` | `stable` | docs ✓ · a11y ✓ · spec ✓(17) · visual ✓ | Search + filter + actions + bulk-select + density. |
 | `theme-toggle` | `stable` | docs ✓ · a11y ✓ · spec ✓(6) · visual ✓ | Light / dark / system. |
-| `user-menu` | `beta` | docs ✓ · a11y ✓ · spec ✓(17) · visual ✓ | Avatar + menu. **Open:** presence indicator as a separate component. |
+| `user-menu` | `stable` | docs ✓ · a11y ✓ · spec ✓(20) · visual ✓ | Avatar + menu with a `[presence]` dot (online/away/busy/offline, or null to hide) (5.8.0). |
 
-**Patterns: 14 `stable` · 6 `beta`.**
+**Patterns: 15 `stable` · 5 `beta`.**
 
 ## Documentation surface
 

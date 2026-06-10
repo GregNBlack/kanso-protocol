@@ -5,7 +5,7 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { KpAvatarComponent } from '@kanso-protocol/ui/avatar';
+import { KpAvatarComponent, KpAvatarStatus } from '@kanso-protocol/ui/avatar';
 import { KpMenuItemComponent } from '@kanso-protocol/ui/menu';
 
 export type KpUserMenuSize = 'sm' | 'md';
@@ -51,7 +51,7 @@ export interface KpUserMenuItem {
   host: { '[class]': 'hostClasses' },
   template: `
     <div class="kp-user-menu__info">
-      <kp-avatar [size]="avatarSize" [initials]="userInitials || null" [showStatus]="true" status="online"/>
+      <kp-avatar [size]="avatarSize" [initials]="userInitials || null" [showStatus]="presence !== null" [status]="presence ?? 'offline'"/>
       <div class="kp-user-menu__text">
         <span class="kp-user-menu__name-row">
           <span class="kp-user-menu__name">{{ userName }}</span>
@@ -185,6 +185,8 @@ export class KpUserMenuComponent {
   @Input() userName: string | null = 'Greg Black';
   @Input() userEmail: string | null = 'greg@example.com';
   @Input() userInitials: string | null = 'GB';
+  /** Presence dot on the avatar: `online` / `away` / `busy` / `offline`, or `null` to hide it. */
+  @Input() presence: KpAvatarStatus | null = 'online';
 
   @Input() showEmail = true;
   @Input() showPlanBadge = false;
