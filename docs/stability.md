@@ -110,14 +110,14 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 | `row` | `stable` | docs ✓ · a11y ✓ · spec — · visual — | Pure layout (flex primitive). |
 | `search-bar` | `stable` | docs ✓ · a11y ✓ · spec ✓(2) · visual ✓ | Inline + command-palette variants settled. |
 | `settings-panel` | `beta` | docs ✓ · a11y ✓ · spec ✓(3) · visual ✓ | SettingsRow children. **Open:** drag-to-reorder. |
-| `sidebar` | `beta` | docs ✓ · a11y ✓ · spec ✓(27) · visual ✓ | Expanded / collapsed. **Open:** persistent vs session-scoped collapse. |
+| `sidebar` | `stable` | docs ✓ · a11y ✓ · spec ✓(30) · visual ✓ | Expanded / collapsed; optional `[persistKey]` saves the choice to `localStorage` (SSR-safe), else session-scoped (5.7.0). |
 | `stack` | `stable` | docs ✓ · a11y ✓ · spec — · visual — | Pure layout (flex primitive). |
 | `stat-card` | `stable` | docs ✓ · a11y ✓ · spec ✓(18) · visual ✓ | Single-metric tile + trend + built-in data-driven sparkline (`[sparklineData]`, colored by trend tone); `[kpStatCardSparkline]` slot still overrides (5.6.0). |
 | `table-toolbar` | `stable` | docs ✓ · a11y ✓ · spec ✓(17) · visual ✓ | Search + filter + actions + bulk-select + density. |
 | `theme-toggle` | `stable` | docs ✓ · a11y ✓ · spec ✓(6) · visual ✓ | Light / dark / system. |
 | `user-menu` | `beta` | docs ✓ · a11y ✓ · spec ✓(17) · visual ✓ | Avatar + menu. **Open:** presence indicator as a separate component. |
 
-**Patterns: 13 `stable` · 7 `beta`.**
+**Patterns: 14 `stable` · 6 `beta`.**
 
 ## Documentation surface
 

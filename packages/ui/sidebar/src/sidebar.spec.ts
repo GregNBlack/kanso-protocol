@@ -324,6 +324,35 @@ describe('KpSidebarComponent', () => {
       expect(host.querySelector('[kpsidebarsearch]')).toBeNull();
     });
   });
+
+  describe('collapse persistence', () => {
+    const KEY = 'kp:test:sidebar-collapse';
+    afterEach(() => {
+      try { localStorage.removeItem(KEY); } catch { /* ignore */ }
+    });
+
+    it('persists the state to localStorage on toggle when persistKey is set', () => {
+      fixture.componentRef.setInput('persistKey', KEY);
+      fixture.detectChanges();
+      fixture.componentInstance.onToggle();
+      expect(localStorage.getItem(KEY)).toBe('collapsed');
+      fixture.componentInstance.onToggle();
+      expect(localStorage.getItem(KEY)).toBe('expanded');
+    });
+
+    it('restores the persisted state on init', () => {
+      localStorage.setItem(KEY, 'collapsed');
+      fixture.componentRef.setInput('persistKey', KEY);
+      fixture.detectChanges(); // ngOnInit reads the stored value
+      expect(fixture.componentInstance.widthState).toBe('collapsed');
+    });
+
+    it('does not write to localStorage without a persistKey', () => {
+      fixture.detectChanges();
+      fixture.componentInstance.onToggle();
+      expect(localStorage.getItem(KEY)).toBeNull();
+    });
+  });
 });
 
 describe('KpSidebarComponent — content projection slots', () => {

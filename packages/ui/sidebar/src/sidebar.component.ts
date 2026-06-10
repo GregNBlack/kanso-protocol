@@ -3,6 +3,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnInit,
   Output,
 } from '@angular/core';
 import { KpAvatarComponent } from '@kanso-protocol/ui/avatar';
@@ -441,9 +442,15 @@ export interface KpSidebarSection {
     :host(.kp-sidebar--collapsed) .kp-sidebar__footer { justify-content: center; padding-inline: 0; }
   `],
 })
-export class KpSidebarComponent {
+export class KpSidebarComponent implements OnInit {
   @Input() widthState: KpSidebarWidth = 'expanded';
   @Input() appearance: KpSidebarAppearance = 'light';
+  /**
+   * When set, the expanded/collapsed state is persisted to `localStorage`
+   * under this key and restored on init — so the choice survives reloads.
+   * Leave null for session-scoped (in-memory) collapse. SSR-safe.
+   */
+  @Input() persistKey: string | null = null;
 
   @Input() showLogo = true;
   @Input() logoText = 'Kanso Protocol';
@@ -459,9 +466,35 @@ export class KpSidebarComponent {
 
   @Output() toggle = new EventEmitter<KpSidebarWidth>();
 
+  ngOnInit(): void {
+    const saved = this.readPersisted();
+    if (saved) this.widthState = saved;
+  }
+
   onToggle(): void {
     this.widthState = this.widthState === 'expanded' ? 'collapsed' : 'expanded';
+    this.persist();
     this.toggle.emit(this.widthState);
+  }
+
+  /** SSR-safe read of the persisted state (null if no key / unavailable / invalid). */
+  private readPersisted(): KpSidebarWidth | null {
+    if (!this.persistKey) return null;
+    try {
+      const v = globalThis.localStorage?.getItem(this.persistKey);
+      return v === 'collapsed' || v === 'expanded' ? v : null;
+    } catch {
+      return null;
+    }
+  }
+
+  private persist(): void {
+    if (!this.persistKey) return;
+    try {
+      globalThis.localStorage?.setItem(this.persistKey, this.widthState);
+    } catch {
+      /* storage disabled / SSR — ignore */
+    }
   }
 
   onItemClick(item: KpSidebarNavItem): void {
