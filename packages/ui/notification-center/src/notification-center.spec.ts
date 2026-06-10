@@ -144,6 +144,43 @@ describe('KpNotificationCenterComponent', () => {
     expect(emitted.length).toBe(1);
     expect(emitted[0].id).toBe('n1');
   });
+
+  describe('pagination', () => {
+    const five: KpNotification[] = Array.from({ length: 5 }, (_, i) => ({
+      id: `p${i}`,
+      title: `Item ${i}`,
+    }));
+
+    it('shows all items and no "Show more" when pageSize is null', () => {
+      fixture.componentRef.setInput('notifications', five);
+      fixture.detectChanges();
+      expect(host.querySelectorAll('kp-notification-item').length).toBe(5);
+      expect(host.querySelector('.kp-notif-center__more')).toBeNull();
+    });
+
+    it('limits to pageSize and reveals more on "Show more" (emitting loadMore)', () => {
+      const loaded: number[] = [];
+      fixture.componentInstance.loadMore.subscribe((n) => loaded.push(n));
+      fixture.componentRef.setInput('notifications', five);
+      fixture.componentRef.setInput('pageSize', 2);
+      fixture.detectChanges();
+
+      expect(host.querySelectorAll('kp-notification-item').length).toBe(2);
+      const more = host.querySelector('.kp-notif-center__more') as HTMLButtonElement;
+      expect(more).not.toBeNull();
+
+      more.click();
+      fixture.detectChanges();
+      expect(host.querySelectorAll('kp-notification-item').length).toBe(4);
+      expect(loaded).toEqual([4]);
+
+      (host.querySelector('.kp-notif-center__more') as HTMLButtonElement).click();
+      fixture.detectChanges();
+      // all 5 revealed → button gone
+      expect(host.querySelectorAll('kp-notification-item').length).toBe(5);
+      expect(host.querySelector('.kp-notif-center__more')).toBeNull();
+    });
+  });
 });
 
 describe('KpNotificationItemComponent', () => {

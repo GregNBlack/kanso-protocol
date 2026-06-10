@@ -3,6 +3,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnInit,
   Output,
 } from '@angular/core';
 import { KpButtonComponent } from '@kanso-protocol/ui/button';
@@ -78,7 +79,7 @@ export interface KpNotification {
       @switch (state) {
         @case ('with-items') {
           <div class="kp-notif-center__list" role="list">
-            @for (n of notifications; track n.id) {
+            @for (n of visibleNotifications; track n.id) {
               <kp-notification-item
                 [title]="n.title"
                 [message]="n.message ?? null"
@@ -90,6 +91,11 @@ export interface KpNotification {
                 [avatarSrc]="n.avatarSrc ?? null"
                 (click$)="itemClick.emit(n)"
               />
+            }
+            @if (hasMore) {
+              <button class="kp-notif-center__more" kpButton size="sm" variant="ghost" color="primary" (click)="showMore()">
+                Show more ({{ notifications.length - visibleCount }})
+              </button>
             }
           </div>
         }
@@ -198,6 +204,7 @@ export interface KpNotification {
       overflow-y: auto;
     }
     .kp-notif-center__list { display: flex; flex-direction: column; }
+    .kp-notif-center__more { width: 100%; margin: 4px 0; }
 
     .kp-notif-center__empty {
       display: flex;
@@ -265,9 +272,15 @@ export interface KpNotification {
     }
   `],
 })
-export class KpNotificationCenterComponent {
+export class KpNotificationCenterComponent implements OnInit {
   @Input() state: KpNotificationCenterState = 'with-items';
   @Input() notifications: KpNotification[] = [];
+  /**
+   * Page size for long lists. When set, only the first `pageSize` items show;
+   * a "Show more" button reveals the next page (client-side) and emits
+   * `(loadMore)` so server-driven lists can append. Null = show all (default).
+   */
+  @Input() pageSize: number | null = null;
 
   @Input() showFilters = false;
   @Input() activeFilter = 'all';
@@ -284,6 +297,28 @@ export class KpNotificationCenterComponent {
   @Output() itemClick = new EventEmitter<KpNotification>();
   @Output() filterChange = new EventEmitter<string>();
   @Output() viewAll = new EventEmitter<void>();
+  /** Emitted when "Show more" is clicked — the new visible count. */
+  @Output() loadMore = new EventEmitter<number>();
+
+  /** How many items are currently revealed (grows by pageSize on "Show more"). */
+  visibleCount = Infinity;
+
+  ngOnInit(): void {
+    this.visibleCount = this.pageSize ?? Infinity;
+  }
+
+  get visibleNotifications(): KpNotification[] {
+    return this.pageSize == null ? this.notifications : this.notifications.slice(0, this.visibleCount);
+  }
+
+  get hasMore(): boolean {
+    return this.pageSize != null && this.visibleCount < this.notifications.length;
+  }
+
+  showMore(): void {
+    this.visibleCount += this.pageSize ?? 0;
+    this.loadMore.emit(this.visibleCount);
+  }
 
   get hostClasses(): string {
     return 'kp-notif-center';
