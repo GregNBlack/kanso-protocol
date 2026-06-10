@@ -47,7 +47,7 @@ export type KpPageHeaderAlign = 'start' | 'center' | 'end';
     '[style.--kp-ph-pad-bottom]': "showBottomDivider ? null : '0px'",
   },
   template: `
-    @if (showBreadcrumbs) {
+    @if (showBreadcrumbs && !collapsed) {
       <div class="kp-page-header__crumbs">
         <ng-content select="[kpPageHeaderBreadcrumbs]"/>
       </div>
@@ -64,7 +64,7 @@ export type KpPageHeaderAlign = 'start' | 'center' | 'end';
           <ng-content select="[kpPageHeaderTitle]">
             <h1 class="kp-page-header__title">{{ title }}</h1>
           </ng-content>
-          @if (showDescription && description) {
+          @if (showDescription && description && !collapsed) {
             <p class="kp-page-header__desc">{{ description }}</p>
           }
         </div>
@@ -233,10 +233,17 @@ export class KpPageHeaderComponent {
    * back-button should sit mid-height with the title.
    */
   @Input() align: KpPageHeaderAlign = 'start';
+  /**
+   * Compact mode — hides the breadcrumbs and description rows, keeping the
+   * title, actions, and tabs. Pair with your own scroll listener for a
+   * shrink-on-scroll header, or toggle it explicitly.
+   */
+  @Input() collapsed = false;
 
   @Output() backClick = new EventEmitter<void>();
 
   get hostClasses(): string {
-    return `kp-page-header kp-page-header--${this.size} kp-page-header--align-${this.align}`;
+    const c = `kp-page-header kp-page-header--${this.size} kp-page-header--align-${this.align}`;
+    return this.collapsed ? `${c} kp-page-header--collapsed` : c;
   }
 }
