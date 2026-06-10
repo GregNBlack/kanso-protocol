@@ -117,6 +117,24 @@ describe('KpPageHeaderComponent', () => {
     expect(host.querySelector('.kp-page-header__actions')).not.toBeNull();
     expect(host.querySelector('.kp-page-header__tabs')).not.toBeNull();
   });
+
+  it('collapsed mode hides the description + breadcrumbs, keeps the title', () => {
+    const { fix, host } = setup();
+    fix.componentRef.setInput('title', 'All projects');
+    fix.componentRef.setInput('description', '12 active projects');
+    fix.componentRef.setInput('showDescription', true);
+    fix.componentRef.setInput('showBreadcrumbs', true);
+    fix.detectChanges();
+    expect(host.querySelector('.kp-page-header__desc')).not.toBeNull();
+    expect(host.querySelector('.kp-page-header__crumbs')).not.toBeNull();
+
+    fix.componentRef.setInput('collapsed', true);
+    fix.detectChanges();
+    expect(host.className).toContain('kp-page-header--collapsed');
+    expect(host.querySelector('.kp-page-header__desc')).toBeNull();
+    expect(host.querySelector('.kp-page-header__crumbs')).toBeNull();
+    expect(host.querySelector('h1.kp-page-header__title')?.textContent).toContain('All projects');
+  });
 });
 
 describe('KpPageHeaderComponent — content projection', () => {

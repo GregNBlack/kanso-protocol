@@ -106,7 +106,7 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 | `nav-item` | `stable` | docs ✓ · a11y ✓ · spec ✓(16) · visual ✓ | Collapsed-mode `aria-label`, active state, depth. |
 | `notification-center` | `stable` | docs ✓ · a11y ✓ · spec ✓(22) · visual ✓ | Keyboard-operable rows; `[pageSize]` reveals long lists incrementally via a "Show more" button + `(loadMore)` for server-driven append (5.9.0). |
 | `page-error` | `stable` | docs ✓ · a11y ✓ · spec — · visual ✓ | Presentational (404 / 500 / generic). |
-| `page-header` | `beta` | docs ✓ · a11y ✓ · spec ✓(14) · visual ✓ | Title + breadcrumbs + actions + tabs. **Open:** collapsible variant. |
+| `page-header` | `stable` | docs ✓ · a11y ✓ · spec ✓(15) · visual ✓ | Title + breadcrumbs + actions + tabs; `[collapsed]` compact mode hides breadcrumbs + description (5.10.0). |
 | `row` | `stable` | docs ✓ · a11y ✓ · spec — · visual — | Pure layout (flex primitive). |
 | `search-bar` | `stable` | docs ✓ · a11y ✓ · spec ✓(2) · visual ✓ | Inline + command-palette variants settled. |
 | `settings-panel` | `beta` | docs ✓ · a11y ✓ · spec ✓(3) · visual ✓ | SettingsRow children. **Open:** drag-to-reorder. |
@@ -117,7 +117,7 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 | `theme-toggle` | `stable` | docs ✓ · a11y ✓ · spec ✓(6) · visual ✓ | Light / dark / system. |
 | `user-menu` | `stable` | docs ✓ · a11y ✓ · spec ✓(20) · visual ✓ | Avatar + menu with a `[presence]` dot (online/away/busy/offline, or null to hide) (5.8.0). |
 
-**Patterns: 16 `stable` · 4 `beta`.**
+**Patterns: 17 `stable` · 3 `beta`.**
 
 ## Documentation surface
 
