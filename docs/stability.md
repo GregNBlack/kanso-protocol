@@ -73,7 +73,7 @@ Status as of `5.4.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `popover` | `stable` | docs ✓ · a11y ✓ · spec ✓(24) · visual ✓ | Tracks its trigger — repositions on scroll/resize (rAF-throttled, capture-phase catches scrollable ancestors), detaches on close. |
 | `progress` | `stable` | docs ✓ · a11y ✓ · spec ✓(12) · visual ✓ | Linear / Circular / Segmented (both visual stories present). |
 | `radio` | `stable` | docs ✓ · a11y ✓ · spec ✓(6) · visual ✓ | Roving tabindex + CVA verified. |
-| `rich-text-editor` | `beta` | docs ✓ · a11y ✓ · spec ✓(17) · visual n/a | Image-upload protocol is consumer-implemented (needs a reference impl). Visual n/a — caret/selection state is non-deterministic. |
+| `rich-text-editor` | `stable` | docs ✓ · a11y ✓ · spec ✓(17) · visual n/a | `(imageUpload)` emits `{ file, resolve }` — host uploads + calls `resolve(url)` to insert (reference story shipped). Visual n/a — caret/selection is non-deterministic. |
 | `segmented-control` | `stable` | docs ✓ · a11y ✓ · spec ✓(6) · visual ✓ | Native radio group under the hood. |
 | `select` | `stable` | docs ✓ · a11y ✓ · spec ✓(16) · visual ✓ | Native `<select>` wrapper. A richer custom variant would be additive. |
 | `skeleton` | `stable` | docs ✓ · a11y ✓ · spec ✓(4) · visual ✓ | Box / text / circle. |
@@ -88,7 +88,7 @@ Status as of `5.4.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `tree` | `stable` | docs ✓ · a11y ✓ · spec ✓(25) · visual ✓ | Roving tabindex + expand/collapse + lazy-load: `(nodeExpand)` fires for expandable nodes with no children, `loading` shows a spinner row until populated (5.11.0). |
 | `virtual-list` | `stable` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Fixed-height window mode — API frozen for 5.x. Variable-height / sticky group headers ship as a **separate future package**, so the core stays stable. |
 
-**Components: 38 `stable` · 2 `beta` · 0 `experimental`.**
+**Components: 39 `stable` · 1 `beta` · 0 `experimental`.**
 
 ## Patterns
 

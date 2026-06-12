@@ -95,6 +95,35 @@ export const Error: Story = {
 };
 
 /**
+ * Image upload — reference implementation. The editor emits
+ * `(imageUpload)` with `{ file, resolve }`; the host uploads the file
+ * (here: reads it as a data URL, no server) and calls `resolve(url)`,
+ * which inserts the image. Swap the body for your real upload + CDN URL.
+ */
+export const ImageUpload: Story = {
+  name: 'Image upload',
+  render: () => ({
+    props: {
+      onImageUpload: (e: { file: File; resolve: (url: string | null) => void }) => {
+        const reader = new FileReader();
+        reader.onload = () => e.resolve(reader.result as string);
+        reader.onerror = () => e.resolve(null);
+        reader.readAsDataURL(e.file);
+      },
+    },
+    template: `
+      <div style="width:880px">
+        <kp-rich-text-editor
+          placeholder="Click the image button in the toolbar…"
+          value="<p>Insert an image via the toolbar — it's read as a data URL and inserted.</p>"
+          (imageUpload)="onImageUpload($event)">
+        </kp-rich-text-editor>
+      </div>
+    `,
+  }),
+};
+
+/**
  * Reactive-forms demo. The <code>value</code> of the editor lives in a
  * FormControl on the host component; Storybook's controls panel shows the
  * current HTML underneath.
