@@ -224,4 +224,32 @@ describe('KpTreeComponent', () => {
     cmp.onKeyDown(new KeyboardEvent('keydown', { key: 'ArrowUp' }), TREE[2]);
     expect(cmp.focusedId).toBe('locked');
   });
+
+  describe('lazy loading', () => {
+    const LAZY: KpTreeNode[] = [{ id: 'lazy', label: 'Lazy folder', expandable: true }];
+
+    it('emits (nodeExpand) when an expandable node with no children is expanded', () => {
+      const { fix, cmp } = setup({ data: LAZY });
+      const asked: string[] = [];
+      cmp.nodeExpand.subscribe((n) => asked.push(n.id));
+      cmp.toggleExpanded(LAZY[0], new MouseEvent('click'));
+      fix.detectChanges();
+      expect(asked).toEqual(['lazy']);
+    });
+
+    it('does not emit (nodeExpand) for a node that already has children', () => {
+      const { cmp } = setup();
+      const asked: string[] = [];
+      cmp.nodeExpand.subscribe((n) => asked.push(n.id));
+      cmp.toggleExpanded(TREE[0], new MouseEvent('click')); // 'src' has children
+      expect(asked).toEqual([]);
+    });
+
+    it('shows a loading row while node.loading and children are not yet populated', () => {
+      const { fix, host } = setup({ data: [{ id: 'lazy', label: 'Lazy', expandable: true, loading: true }], expanded: ['lazy'] });
+      fix.detectChanges();
+      expect(host.querySelector('.kp-tree__row--loading')).not.toBeNull();
+      expect(host.textContent).toContain('Loading');
+    });
+  });
 });
