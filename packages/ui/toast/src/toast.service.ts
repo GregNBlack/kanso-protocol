@@ -27,6 +27,7 @@ export class KpToastService {
       description: input.description,
       action: input.action,
       duration: input.duration ?? 5000,
+      position: input.position,
     };
     this._toasts.update((list) => [...list, toast]);
     if (toast.duration > 0) {

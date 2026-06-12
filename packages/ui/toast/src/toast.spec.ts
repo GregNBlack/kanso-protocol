@@ -152,4 +152,24 @@ describe('KpToastHostComponent', () => {
     action.click();
     expect(handler).toHaveBeenCalledWith(id);
   });
+
+  it('routes toasts by position — a host owns only its corner (unset → top-right)', () => {
+    const { cmp, svc } = setupHost({ position: 'top-right' });
+    svc.dismissAll();
+    const idDefault = svc.show({ title: 'A' });                          // unset → top-right
+    const idOther = svc.show({ title: 'B', position: 'bottom-left' });
+    const byId = (id: number) => cmp.toasts().find((t) => t.id === id)!;
+    expect(cmp.isOwnedByThisHost(byId(idDefault))).toBe(true);
+    expect(cmp.isOwnedByThisHost(byId(idOther))).toBe(false);
+  });
+
+  it('a non-default host owns only its matching-position toasts', () => {
+    const { cmp, svc } = setupHost({ position: 'bottom-left' });
+    svc.dismissAll();
+    const idDefault = svc.show({ title: 'A' });                          // top-right
+    const idBL = svc.show({ title: 'B', position: 'bottom-left' });
+    const byId = (id: number) => cmp.toasts().find((t) => t.id === id)!;
+    expect(cmp.isOwnedByThisHost(byId(idBL))).toBe(true);
+    expect(cmp.isOwnedByThisHost(byId(idDefault))).toBe(false);
+  });
 });
