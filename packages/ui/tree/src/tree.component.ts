@@ -30,6 +30,9 @@ export interface KpTreeNode {
   expandable?: boolean;
   disabled?: boolean;
   children?: KpTreeNode[];
+  /** Lazy-load: set true while fetching children for an expandable node —
+   *  the tree shows a loading row until `children` is populated. */
+  loading?: boolean;
 }
 
 /**
@@ -124,6 +127,14 @@ export interface KpTreeNode {
               <ng-container *ngTemplateOutlet="nodeTpl; context: { node: child, level: level + 1 }"></ng-container>
             }
           </ul>
+        } @else if (isExpandable(node) && isExpanded(node.id) && node.loading) {
+          <ul class="kp-tree__list kp-tree__list--nested" role="group">
+            <li class="kp-tree__node" role="treeitem" [attr.aria-level]="level + 2" aria-disabled="true">
+              <div class="kp-tree__row kp-tree__row--loading" [style.--kp-tree-row-level]="level + 1" aria-busy="true">
+                <span class="kp-tree__loading-text">Loading…</span>
+              </div>
+            </li>
+          </ul>
         }
       </li>
     </ng-template>
@@ -202,6 +213,8 @@ export interface KpTreeNode {
       flex: 0 0 auto;
     }
     .kp-tree__chevron--expanded { transform: rotate(90deg); }
+    .kp-tree__row--loading { cursor: default; }
+    .kp-tree__loading-text { font-size: 13px; color: var(--kp-color-text-muted); font-style: italic; }
     .kp-tree__chevron--placeholder { cursor: default; }
 
     .kp-tree__checkbox {
@@ -253,6 +266,9 @@ export class KpTreeComponent {
   @Output() readonly selectedChange = new EventEmitter<string | null>();
   @Output() readonly checkedChange = new EventEmitter<string[]>();
   @Output() readonly nodeClick = new EventEmitter<KpTreeNode>();
+  /** Emitted when an expandable node with no loaded `children` is expanded —
+   *  the consumer fetches, sets `loading`, then populates `children`. */
+  @Output() readonly nodeExpand = new EventEmitter<KpTreeNode>();
 
   /** @internal — id of the node that currently owns focus. Roving tabindex
    *  pattern: only this node is tabbable; arrow keys move focus around. */
@@ -279,11 +295,17 @@ export class KpTreeComponent {
   toggleExpanded(node: KpTreeNode, event: Event): void {
     event.stopPropagation();
     if (node.disabled) return;
-    const next = this.isExpanded(node.id)
-      ? this.expanded.filter((id) => id !== node.id)
-      : [...this.expanded, node.id];
+    const willExpand = !this.isExpanded(node.id);
+    const next = willExpand
+      ? [...this.expanded, node.id]
+      : this.expanded.filter((id) => id !== node.id);
     this.expanded = next;
     this.expandedChange.emit(next);
+    // Lazy-load: expanding an expandable node that has no children yet asks
+    // the consumer to fetch them.
+    if (willExpand && !node.children?.length) {
+      this.nodeExpand.emit(node);
+    }
   }
 
   onRowClick(node: KpTreeNode): void {
