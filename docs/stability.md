@@ -78,7 +78,7 @@ Status as of `5.4.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `select` | `stable` | docs ✓ · a11y ✓ · spec ✓(16) · visual ✓ | Native `<select>` wrapper. A richer custom variant would be additive. |
 | `skeleton` | `stable` | docs ✓ · a11y ✓ · spec ✓(4) · visual ✓ | Box / text / circle. |
 | `slider` | `stable` | docs ✓ · a11y ✓ · spec ✓(15) · visual ✓ | Single + range. Tick labels would be additive. |
-| `table` | `beta` | docs ✓ · a11y ✓ · spec ✓(16) · visual ✓ | Sort + selection. For >500 rows compose `<kp-virtual-list>`; a baked-in `<kp-table-virtual>` is planned (additive). |
+| `table` | `stable` | docs ✓ · a11y ✓ · spec ✓(16) · visual ✓ | Sort + selection. For >500 rows compose `<kp-virtual-list>` (documented); a baked-in `<kp-table-virtual>` remains a future **additive** package — not a blocker. |
 | `tabs` | `stable` | docs ✓ · a11y ✓ · spec ✓(11) · visual ✓ | Roving tabindex + overflow slot. |
 | `textarea` | `stable` | docs ✓ · a11y ✓ · spec ✓(9) · visual ✓ | Auto-resize + counter. |
 | `timepicker` | `stable` | docs ✓ · a11y ✓ · spec ✓(17) · visual ✓ | i18n-aware. `[format]` defaults to `"auto"` — derives 12h/24h from `KP_LOCALE` (5.4.0). |
@@ -86,9 +86,9 @@ Status as of `5.4.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `toggle` | `stable` | docs ✓ · a11y ✓ · spec ✓(5) · visual ✓ | `[ariaLabel]` supported. |
 | `tooltip` | `stable` | docs ✓ · a11y ✓ · spec ✓(9) · visual ✓ | `[kpTooltip]` directive; global default delay would be additive. |
 | `tree` | `beta` | docs ✓ · a11y ✓ · spec ✓(22) · visual ✓ | Roving tabindex + expand/collapse. **Open:** lazy-load contract for `expandable` nodes without `children`. |
-| `virtual-list` | `experimental` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Fixed-height window mode only. Variable-height, sticky group headers, and a load-more directive are still-evolving API — kept `experimental` on the API, not coverage. |
+| `virtual-list` | `stable` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Fixed-height window mode — API frozen for 5.x. Variable-height / sticky group headers ship as a **separate future package**, so the core stays stable. |
 
-**Components: 34 `stable` · 6 `beta` · 1 `experimental`.**
+**Components: 36 `stable` · 4 `beta` · 0 `experimental`.**
 
 ## Patterns
 
@@ -99,7 +99,7 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 | `app-shell` | `stable` | docs ✓ · a11y ✓ · spec ✓(14) · visual ✓ | Header + Sidebar + main composition. |
 | `banner` | `stable` | docs ✓ · a11y ✓ · spec — · visual ✓ | Presentational + single dismiss (no-logic exception). |
 | `container` | `stable` | docs ✓ · a11y ✓ · spec — · visual — | Pure layout (max-width + padding). |
-| `filter-bar` | `beta` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Active-filter chips. **Open:** multi-select chip groups. |
+| `filter-bar` | `stable` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Active-filter chips. Multi-value filters encode in the chip label ("Status: 2 selected"); the picker is consumer-owned by design. |
 | `form-section` | `stable` | docs ✓ · a11y ✓ · spec — · visual — | Presentational title block (no-logic exception). |
 | `grid` | `stable` | docs ✓ · a11y ✓ · spec — · visual — | Pure layout (equal-column responsive). |
 | `header` | `beta` | docs ✓ · a11y ✓ · spec ✓(19) · visual ✓ | Logo + nav + search + user-menu slot. **Open:** mobile breakpoint. |
@@ -117,7 +117,7 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 | `theme-toggle` | `stable` | docs ✓ · a11y ✓ · spec ✓(6) · visual ✓ | Light / dark / system. |
 | `user-menu` | `stable` | docs ✓ · a11y ✓ · spec ✓(20) · visual ✓ | Avatar + menu with a `[presence]` dot (online/away/busy/offline, or null to hide) (5.8.0). |
 
-**Patterns: 17 `stable` · 3 `beta`.**
+**Patterns: 18 `stable` · 2 `beta`.**
 
 ## Documentation surface
 
