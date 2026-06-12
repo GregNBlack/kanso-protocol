@@ -56,7 +56,7 @@ Status as of `5.4.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `card` | `stable` | docs ✓ · a11y ✓ · spec ✓(4) · visual ✓ | A `[clickable]` variant would be additive. |
 | `checkbox` | `stable` | docs ✓ · a11y ✓ · spec ✓(8) · visual ✓ | Indeterminate + ControlValueAccessor covered. |
 | `combobox` | `beta` | docs ✓ · a11y ✓ · spec ✓(15) · visual ✓ | **Open:** async-loading API — `(filter)` event vs `[items]` with debounced filter — not finalized. |
-| `command-palette` | `beta` | docs ✓ · a11y ✓ · spec ✓(14) · visual n/a | **Open:** global shortcut via DI vs `[shortcut]` input (multi-palette collisions). Visual n/a — renders in a top-layer `<dialog>`, not capturable in `#storybook-root`. |
+| `command-palette` | `stable` | docs ✓ · a11y ✓ · spec ✓(14) · visual n/a | Per-instance `[shortcut]` input (default `mod+k`, `null` disables) — no DI, no multi-palette collisions. Visual n/a — renders in a top-layer `<dialog>`. |
 | `datepicker` | `stable` | docs ✓ · a11y ✓ · spec ✓(25) · visual ✓ | Large surface (`single` + `range`, presets, min/max), i18n-aware. Range edge cases specced (25 tests); API frozen for 5.x. |
 | `dialog` | `stable` | docs ✓ · a11y ✓ · spec ✓(9) · visual ✓ | Native `<dialog>`; nested-Esc contract specced. |
 | `divider` | `stable` | docs ✓ · a11y ✓ · spec ✓(5) · visual ✓ | Horizontal / vertical / labeled. |
@@ -88,7 +88,7 @@ Status as of `5.4.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `tree` | `beta` | docs ✓ · a11y ✓ · spec ✓(22) · visual ✓ | Roving tabindex + expand/collapse. **Open:** lazy-load contract for `expandable` nodes without `children`. |
 | `virtual-list` | `stable` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Fixed-height window mode — API frozen for 5.x. Variable-height / sticky group headers ship as a **separate future package**, so the core stays stable. |
 
-**Components: 36 `stable` · 4 `beta` · 0 `experimental`.**
+**Components: 37 `stable` · 3 `beta` · 0 `experimental`.**
 
 ## Patterns
 
