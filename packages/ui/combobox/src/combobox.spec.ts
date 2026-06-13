@@ -193,4 +193,30 @@ describe('KpComboboxComponent', () => {
     cmp.onKeyDown(new KeyboardEvent('keydown', { key: 'Backspace' }));
     expect(onChange).toHaveBeenCalledWith(['us']);
   });
+
+  describe('async search', () => {
+    it('serverFilter skips client-side filtering (consumer supplies the filtered options)', () => {
+      const { cmp } = setup({ serverFilter: true });
+      cmp.query = 'no client match';
+      // all options pass through — filtering is the consumer's job
+      expect(cmp.filteredOptions.length).toBe(OPTIONS.length);
+    });
+
+    it('loading shows a loading row and suppresses the empty message', () => {
+      const { fix, cmp } = setup({ loading: true, options: [] });
+      cmp.onTriggerClick();
+      fix.detectChanges();
+      expect(document.querySelector('.kp-cb__loading')).not.toBeNull();
+      // the plain empty message (empty but not loading) is not shown
+      expect(document.querySelector('.kp-cb__empty:not(.kp-cb__loading)')).toBeNull();
+    });
+
+    it('debounces queryChange when filterDebounce is set', () => {
+      const { cmp } = setup({ filterDebounce: 200 });
+      const emitted: string[] = [];
+      cmp.queryChange.subscribe((q) => emitted.push(q));
+      cmp.onInput({ target: { value: 'ab' } } as unknown as Event);
+      expect(emitted).toEqual([]); // deferred — not emitted synchronously
+    });
+  });
 });
