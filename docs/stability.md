@@ -55,7 +55,7 @@ Status as of `5.4.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `button` | `stable` | docs ✓ · a11y ✓ · spec ✓(11) · visual ✓ | `[loading]` / `[disabled]` independent by design. |
 | `card` | `stable` | docs ✓ · a11y ✓ · spec ✓(4) · visual ✓ | A `[clickable]` variant would be additive. |
 | `checkbox` | `stable` | docs ✓ · a11y ✓ · spec ✓(8) · visual ✓ | Indeterminate + ControlValueAccessor covered. |
-| `combobox` | `beta` | docs ✓ · a11y ✓ · spec ✓(15) · visual ✓ | **Open:** async-loading API — `(filter)` event vs `[items]` with debounced filter — not finalized. |
+| `combobox` | `stable` | docs ✓ · a11y ✓ · spec ✓(19) · visual ✓ | Async search: `(queryChange)` (debounce via `[filterDebounce]`) is the fetch trigger; `[serverFilter]` skips client-side filtering; `[loading]` shows a loading row (5.13.0). |
 | `command-palette` | `stable` | docs ✓ · a11y ✓ · spec ✓(14) · visual n/a | Per-instance `[shortcut]` input (default `mod+k`, `null` disables) — no DI, no multi-palette collisions. Visual n/a — renders in a top-layer `<dialog>`. |
 | `datepicker` | `stable` | docs ✓ · a11y ✓ · spec ✓(25) · visual ✓ | Large surface (`single` + `range`, presets, min/max), i18n-aware. Range edge cases specced (25 tests); API frozen for 5.x. |
 | `dialog` | `stable` | docs ✓ · a11y ✓ · spec ✓(9) · visual ✓ | Native `<dialog>`; nested-Esc contract specced. |
@@ -88,7 +88,7 @@ Status as of `5.4.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `tree` | `stable` | docs ✓ · a11y ✓ · spec ✓(25) · visual ✓ | Roving tabindex + expand/collapse + lazy-load: `(nodeExpand)` fires for expandable nodes with no children, `loading` shows a spinner row until populated (5.11.0). |
 | `virtual-list` | `stable` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Fixed-height window mode — API frozen for 5.x. Variable-height / sticky group headers ship as a **separate future package**, so the core stays stable. |
 
-**Components: 40 `stable` · 0 `beta` · 0 `experimental`.**
+**Components: 41 `stable` · 0 `beta` · 0 `experimental`.**
 
 ## Patterns
 

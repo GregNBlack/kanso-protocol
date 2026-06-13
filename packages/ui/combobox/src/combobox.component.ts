@@ -152,7 +152,9 @@ export interface KpComboboxOption {
           </div>
         }
 
-        @if (filteredOptions.length === 0) {
+        @if (loading) {
+          <div class="kp-cb__empty kp-cb__loading" aria-live="polite">Loading…</div>
+        } @else if (filteredOptions.length === 0) {
           <div class="kp-cb__empty">{{ emptyMessage }}</div>
         }
       </div>
@@ -422,6 +424,14 @@ export class KpComboboxComponent implements ControlValueAccessor, AfterViewCheck
   @Input() ariaLabel = '';
   /** Force visual state for showcase/documentation purposes */
   @Input() forceState: KpState | null = null;
+  /** Show a loading row + suppress the empty message — for async search. */
+  @Input() loading = false;
+  /** Skip built-in client-side filtering: the consumer supplies already-filtered
+   *  `options` (server-side search) and uses `(queryChange)` as the fetch trigger. */
+  @Input() serverFilter = false;
+  /** Debounce (ms) before `(queryChange)` fires — handy for async. 0 = immediate. */
+  @Input() filterDebounce = 0;
+  private queryTimer: ReturnType<typeof setTimeout> | null = null;
 
   @Output() readonly openChange = new EventEmitter<boolean>();
   @Output() readonly queryChange = new EventEmitter<string>();
@@ -486,6 +496,7 @@ export class KpComboboxComponent implements ControlValueAccessor, AfterViewCheck
   }
 
   get filteredOptions(): KpComboboxOption[] {
+    if (this.serverFilter) return this.options; // consumer pre-filtered (async)
     const q = this.query.trim().toLowerCase();
     if (!q) return this.options;
     return this.options.filter((o) => o.label.toLowerCase().includes(q));
@@ -531,7 +542,15 @@ export class KpComboboxComponent implements ControlValueAccessor, AfterViewCheck
     this.query = el.value;
     this.activeIndex = 0;
     if (!this.isOpen) this.setOpen(true);
-    this.queryChange.emit(this.query);
+    if (this.filterDebounce > 0) {
+      if (this.queryTimer) clearTimeout(this.queryTimer);
+      this.queryTimer = setTimeout(() => {
+        this.queryTimer = null;
+        this.queryChange.emit(this.query);
+      }, this.filterDebounce);
+    } else {
+      this.queryChange.emit(this.query);
+    }
     this.cdr.markForCheck();
   }
 
@@ -660,6 +679,7 @@ export class KpComboboxComponent implements ControlValueAccessor, AfterViewCheck
   }
 
   ngOnDestroy(): void {
+    if (this.queryTimer) clearTimeout(this.queryTimer);
     // Guarded for SSR teardown — bare-metal platform-server has no `window`.
     if (typeof window !== 'undefined') {
       window.removeEventListener('scroll', this.reposition, true);
