@@ -233,6 +233,34 @@ describe('KpHeaderComponent', () => {
       expect(host.querySelector('.kp-header__user')).toBeNull();
     });
   });
+
+  describe('mobile breakpoint', () => {
+    const NAV = [{ label: 'Home', active: true }, { label: 'Docs' }];
+
+    it('keeps the nav inline when mobileBreakpoint is null (default)', () => {
+      const { fix, host } = setup();
+      fix.componentRef.setInput('navItems', NAV);
+      fix.detectChanges();
+      expect(host.querySelector('.kp-header__nav')).not.toBeNull();
+      expect(host.querySelector('.kp-header__hamburger')).toBeNull();
+    });
+
+    it('collapses to a hamburger below the breakpoint and emits (menuClick)', () => {
+      const { fix, host } = setup();
+      fix.componentRef.setInput('navItems', NAV);
+      // jsdom viewport (~1024) is narrower than this → mobile
+      fix.componentRef.setInput('mobileBreakpoint', 999999);
+      fix.detectChanges();
+      const burger = host.querySelector('.kp-header__hamburger') as HTMLButtonElement;
+      expect(burger).not.toBeNull();
+      expect(host.querySelector('.kp-header__nav')).toBeNull();
+
+      const clicked = vi.fn();
+      fix.componentInstance.menuClick.subscribe(clicked);
+      burger.click();
+      expect(clicked).toHaveBeenCalled();
+    });
+  });
 });
 
 @Component({
