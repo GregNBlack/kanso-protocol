@@ -109,7 +109,7 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 | `page-header` | `stable` | docs ✓ · a11y ✓ · spec ✓(15) · visual ✓ | Title + breadcrumbs + actions + tabs; `[collapsed]` compact mode hides breadcrumbs + description (5.10.0). |
 | `row` | `stable` | docs ✓ · a11y ✓ · spec — · visual — | Pure layout (flex primitive). |
 | `search-bar` | `stable` | docs ✓ · a11y ✓ · spec ✓(2) · visual ✓ | Inline + command-palette variants settled. |
-| `settings-panel` | `beta` | docs ✓ · a11y ✓ · spec ✓(3) · visual ✓ | SettingsRow children. **Open:** drag-to-reorder. |
+| `settings-panel` | `stable` | docs ✓ · a11y ✓ · spec ✓(3) · visual ✓ | SettingsRow children. Drag-to-reorder is consumer-composed by design (the app owns row order — compose your own DnD), consistent with the rest of the catalog. |
 | `sidebar` | `stable` | docs ✓ · a11y ✓ · spec ✓(30) · visual ✓ | Expanded / collapsed; optional `[persistKey]` saves the choice to `localStorage` (SSR-safe), else session-scoped (5.7.0). |
 | `stack` | `stable` | docs ✓ · a11y ✓ · spec — · visual — | Pure layout (flex primitive). |
 | `stat-card` | `stable` | docs ✓ · a11y ✓ · spec ✓(18) · visual ✓ | Single-metric tile + trend + built-in data-driven sparkline (`[sparklineData]`, colored by trend tone); `[kpStatCardSparkline]` slot still overrides (5.6.0). |
@@ -117,7 +117,7 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 | `theme-toggle` | `stable` | docs ✓ · a11y ✓ · spec ✓(6) · visual ✓ | Light / dark / system. |
 | `user-menu` | `stable` | docs ✓ · a11y ✓ · spec ✓(20) · visual ✓ | Avatar + menu with a `[presence]` dot (online/away/busy/offline, or null to hide) (5.8.0). |
 
-**Patterns: 19 `stable` · 1 `beta`.**
+**Patterns: 20 `stable` · 0 `beta`. 🎉 Whole catalog stable.**
 
 ## Documentation surface
 
@@ -161,7 +161,7 @@ The audit's gaps have been closed; what remains `beta` is held by open **API que
 - ~~RTL pass~~ → **done**: `e2e/visual.spec.ts` snapshots the full catalog (55 stories, all but 5 direction-neutral ones) under `dir="rtl"`.
 - ~~Keyboard-map doc~~ → **done**: [`docs/keyboard-map.md`](keyboard-map.md) — per-component chord reference.
 
-**Remaining is API-level only** — the `beta` surfaces each carry one open design question (multi-select chip groups, mobile header breakpoint, notification pagination, sidebar collapse persistence, sparkline, drag-reorder, presence indicator, combobox async API, etc.). Those are product decisions, not coverage debt; resolving each promotes its surface to `stable`.
+**All component and pattern surfaces are now `stable`** (5.4.0 → 5.14.0). Every open API question was resolved: timepicker locale format, i18n `KP_STRINGS.validation`, menu roving nav, popover scroll-track, markdown lazy-load, stat-card sparkline, sidebar collapse persistence, user-menu presence, notification-center pagination, page-header collapsed, tree lazy-load, toast per-corner routing, combobox async, header mobile breakpoint, command-palette `[shortcut]`, rich-text-editor image protocol; and the by-design cases (file-upload transport, filter-bar picker, settings-panel reorder, table/virtual-list virtualization) documented as consumer-composed. The only `experimental` surface left is the `@kanso-protocol/elements` **packaging** (custom-elements bundle), not any component API.
 
 ## Out of scope (by design)
 
