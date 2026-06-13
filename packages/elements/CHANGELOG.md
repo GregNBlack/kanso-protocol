@@ -1,5 +1,11 @@
 # @kanso-protocol/elements
 
+## 0.1.4
+
+### Patch Changes
+
+- **New: `<kp-table-virtual>`** — a windowed table for large datasets (>500 rows), bundling `<kp-table>` + `<kp-virtual-list>` so consumers don't wire virtualization by hand. A sticky header sits over a virtualized body; header and rows share one CSS grid template (give columns a `width` or they share `1fr`); fixed `[rowHeight]` keeps scrolling cheap. Reuses Table's `KpTableColumn` model with `accessor` text cells + `kpVirtualTableCell` templates for rich cells, and emits `(rowClick)`. Semantics are a labelled list (mirroring `<kp-virtual-list>`), not a `role="grid"`. New secondary entry point `@kanso-protocol/ui/table-virtual` (and a `kp-table-virtual` custom element). This closes the last roadmap "Later" item — the catalog is feature-complete and fully `stable`.
+
 ## 0.1.3
 
 ### Patch Changes

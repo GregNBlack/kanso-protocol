@@ -179,6 +179,9 @@
       "@kanso-protocol/ui/table-toolbar": [
         "packages/ui/table-toolbar/src/public-api.ts"
       ],
+      "@kanso-protocol/ui/table-virtual": [
+        "packages/ui/table-virtual/src/public-api.ts"
+      ],
       "@kanso-protocol/ui/tabs": [
         "packages/ui/tabs/src/public-api.ts"
       ],

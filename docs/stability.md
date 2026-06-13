@@ -78,7 +78,8 @@ Status as of `5.4.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `select` | `stable` | docs ✓ · a11y ✓ · spec ✓(16) · visual ✓ | Native `<select>` wrapper. A richer custom variant would be additive. |
 | `skeleton` | `stable` | docs ✓ · a11y ✓ · spec ✓(4) · visual ✓ | Box / text / circle. |
 | `slider` | `stable` | docs ✓ · a11y ✓ · spec ✓(15) · visual ✓ | Single + range. Tick labels would be additive. |
-| `table` | `stable` | docs ✓ · a11y ✓ · spec ✓(16) · visual ✓ | Sort + selection. For >500 rows compose `<kp-virtual-list>` (documented); a baked-in `<kp-table-virtual>` remains a future **additive** package — not a blocker. |
+| `table` | `stable` | docs ✓ · a11y ✓ · spec ✓(16) · visual ✓ | Sort + selection. For >500 rows use `<kp-table-virtual>`. |
+| `table-virtual` | `stable` | docs ✓ · a11y ✓ · spec ✓(5) · visual ✓ | Windowed table (`<kp-table>` + `<kp-virtual-list>`) for >500 rows: sticky header, fixed `[rowHeight]`, shared grid columns, `kpVirtualTableCell` templates (5.15.0). |
 | `tabs` | `stable` | docs ✓ · a11y ✓ · spec ✓(11) · visual ✓ | Roving tabindex + overflow slot. |
 | `textarea` | `stable` | docs ✓ · a11y ✓ · spec ✓(9) · visual ✓ | Auto-resize + counter. |
 | `timepicker` | `stable` | docs ✓ · a11y ✓ · spec ✓(17) · visual ✓ | i18n-aware. `[format]` defaults to `"auto"` — derives 12h/24h from `KP_LOCALE` (5.4.0). |
@@ -88,7 +89,7 @@ Status as of `5.4.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `tree` | `stable` | docs ✓ · a11y ✓ · spec ✓(25) · visual ✓ | Roving tabindex + expand/collapse + lazy-load: `(nodeExpand)` fires for expandable nodes with no children, `loading` shows a spinner row until populated (5.11.0). |
 | `virtual-list` | `stable` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Fixed-height window mode — API frozen for 5.x. Variable-height / sticky group headers ship as a **separate future package**, so the core stays stable. |
 
-**Components: 41 `stable` · 0 `beta` · 0 `experimental`.**
+**Components: 42 `stable` · 0 `beta` · 0 `experimental`.**
 
 ## Patterns
 
@@ -149,7 +150,7 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 | `check-changelog.js` | `stable` | CI + pre-push hook. |
 | `check-no-stale-refs.js` | `stable` | CI guard: no pre-v5 package/path references. |
 | `check-lockfile-workspaces.js` | `stable` | CI guard: lockfile workspace set matches disk. |
-| Visual regression suite | `stable` | `e2e/visual.spec.ts` — 60 stories × 2 themes + 55 RTL = 175 snapshots; runs in CI in the Playwright container. |
+| Visual regression suite | `stable` | `e2e/visual.spec.ts` — 61 stories × 2 themes + 56 RTL = 178 snapshots; runs in CI in the Playwright container. |
 
 ## Coverage gaps — status
 
