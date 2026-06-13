@@ -51,8 +51,8 @@
       "maxGz": 3300
     },
     "ui/combobox": {
-      "currentGz": 6439,
-      "maxGz": 7500
+      "currentGz": 6806,
+      "maxGz": 7900
     },
     "ui/command-palette": {
       "currentGz": 5194,
@@ -103,8 +103,8 @@
       "maxGz": 1674
     },
     "ui/header": {
-      "currentGz": 3987,
-      "maxGz": 4600
+      "currentGz": 4454,
+      "maxGz": 5200
     },
     "ui/i18n": {
       "currentGz": 3194,
@@ -131,8 +131,8 @@
       "maxGz": 3200
     },
     "ui/notification-center": {
-      "currentGz": 4053,
-      "maxGz": 4700
+      "currentGz": 4478,
+      "maxGz": 5200
     },
     "ui/number-stepper": {
       "currentGz": 4244,
@@ -143,8 +143,8 @@
       "maxGz": 2600
     },
     "ui/page-header": {
-      "currentGz": 2506,
-      "maxGz": 2900
+      "currentGz": 2665,
+      "maxGz": 3100
     },
     "ui/pagination": {
       "currentGz": 5219,
@@ -187,8 +187,8 @@
       "maxGz": 2500
     },
     "ui/sidebar": {
-      "currentGz": 3952,
-      "maxGz": 4600
+      "currentGz": 4326,
+      "maxGz": 5000
     },
     "ui/skeleton": {
       "currentGz": 2034,
@@ -214,6 +214,10 @@
       "currentGz": 3163,
       "maxGz": 3700
     },
+    "ui/table-virtual": {
+      "currentGz": 2837,
+      "maxGz": 3300
+    },
     "ui/tabs": {
       "currentGz": 3496,
       "maxGz": 4100
@@ -231,7 +235,7 @@
       "maxGz": 8000
     },
     "ui/toast": {
-      "currentGz": 4042,
+      "currentGz": 4076,
       "maxGz": 4700
     },
     "ui/toggle": {
@@ -243,12 +247,12 @@
       "maxGz": 7900
     },
     "ui/tree": {
-      "currentGz": 4670,
-      "maxGz": 5400
+      "currentGz": 4946,
+      "maxGz": 5700
     },
     "ui/user-menu": {
-      "currentGz": 2570,
-      "maxGz": 3000
+      "currentGz": 2654,
+      "maxGz": 3100
     },
     "ui/virtual-list": {
       "currentGz": 3362,

@@ -1,6 +1,6 @@
 {
   "name": "@kanso-protocol/elements",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "license": "MIT",
   "description": "Framework-agnostic custom elements for the Kanso Protocol design system — use <kp-*> components from React, Vue, Svelte, or plain HTML, no Angular required.",
   "author": "GregNBlack",

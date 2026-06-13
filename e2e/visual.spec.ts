@@ -68,6 +68,7 @@ const STORIES: StorySpec[] = [
   { id: 'components-tooltip--default',            name: 'tooltip — default' },
   { id: 'components-tree--default',               name: 'tree — default' },
   { id: 'components-virtuallist--ten-thousand-rows', name: 'virtual list — 10k rows' },
+  { id: 'components-tablevirtual--ten-thousand-rows', name: 'table virtual — 5k rows' },
 
   // ─── Patterns ────────────────────────────────────────────────────────
   { id: 'patterns-appshell--playground',          name: 'app shell — playground' },
