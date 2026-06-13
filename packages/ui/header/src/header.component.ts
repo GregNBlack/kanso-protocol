@@ -1,11 +1,14 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
+  HostListener,
   Input,
+  OnInit,
   Output,
+  inject,
 } from '@angular/core';
-import { NgTemplateOutlet } from '@angular/common';
 import { KpAvatarComponent } from '@kanso-protocol/ui/avatar';
 import { KpBadgeComponent } from '@kanso-protocol/ui/badge';
 
@@ -46,11 +49,16 @@ export interface KpHeaderNavItem {
  */
 @Component({
   selector: 'kp-header',
-  imports: [NgTemplateOutlet, KpAvatarComponent, KpBadgeComponent],
+  imports: [KpAvatarComponent, KpBadgeComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '[class]': 'hostClasses', role: 'banner' },
   template: `
     <div class="kp-header__left">
+      @if (isMobile) {
+        <button type="button" class="kp-header__icon-btn kp-header__hamburger" aria-label="Open menu" (click)="menuClick.emit()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      }
       @if (showLogo) {
         <div class="kp-header__logo">
           <ng-content select="[kpHeaderLogo]">
@@ -63,7 +71,7 @@ export interface KpHeaderNavItem {
           </ng-content>
         </div>
       }
-      @if (showMainNav && navItems?.length) {
+      @if (showMainNav && navItems?.length && !isMobile) {
         <nav class="kp-header__nav" aria-label="Primary">
           @for (item of navItems; track item.label) {
             <a class="kp-header__nav-item"
@@ -347,7 +355,7 @@ export interface KpHeaderNavItem {
         :host(.kp-header--dark) .kp-header__user-chevron { color: var(--kp-color-fg-on-dark-subtle); }
   `],
 })
-export class KpHeaderComponent {
+export class KpHeaderComponent implements OnInit {
   @Input() size: KpHeaderSize = 'md';
   @Input() appearance: KpHeaderAppearance = 'light';
 
@@ -356,6 +364,12 @@ export class KpHeaderComponent {
 
   @Input() showMainNav = true;
   @Input() navItems: KpHeaderNavItem[] = [];
+  /**
+   * Viewport width (px) below which the inline nav collapses to a hamburger
+   * that emits `(menuClick)` — wire it to open your Drawer / Sidebar. Null
+   * (default) keeps the nav inline at all widths. SSR-safe.
+   */
+  @Input() mobileBreakpoint: number | null = null;
 
   @Input() showSearch = false;
   @Input() searchPlaceholder = 'Search anything...';
@@ -378,6 +392,30 @@ export class KpHeaderComponent {
   @Output() notificationsClick = new EventEmitter<void>();
   @Output() ctaClick = new EventEmitter<void>();
   @Output() userMenuClick = new EventEmitter<void>();
+  /** Hamburger clicked (only shown below `mobileBreakpoint`). */
+  @Output() menuClick = new EventEmitter<void>();
+
+  private readonly cdr = inject(ChangeDetectorRef);
+  /** True when the viewport is narrower than `mobileBreakpoint`. */
+  isMobile = false;
+
+  ngOnInit(): void {
+    this.updateMobile();
+  }
+
+  @HostListener('window:resize')
+  onResize(): void {
+    const was = this.isMobile;
+    this.updateMobile();
+    if (was !== this.isMobile) this.cdr.markForCheck();
+  }
+
+  private updateMobile(): void {
+    this.isMobile =
+      this.mobileBreakpoint != null &&
+      typeof window !== 'undefined' &&
+      window.innerWidth < this.mobileBreakpoint;
+  }
 
   get hostClasses(): string {
     return `kp-header kp-header--${this.size} kp-header--${this.appearance}`;

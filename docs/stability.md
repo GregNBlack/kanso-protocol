@@ -102,7 +102,7 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 | `filter-bar` | `stable` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Active-filter chips. Multi-value filters encode in the chip label ("Status: 2 selected"); the picker is consumer-owned by design. |
 | `form-section` | `stable` | docs ✓ · a11y ✓ · spec — · visual — | Presentational title block (no-logic exception). |
 | `grid` | `stable` | docs ✓ · a11y ✓ · spec — · visual — | Pure layout (equal-column responsive). |
-| `header` | `beta` | docs ✓ · a11y ✓ · spec ✓(19) · visual ✓ | Logo + nav + search + user-menu slot. **Open:** mobile breakpoint. |
+| `header` | `stable` | docs ✓ · a11y ✓ · spec ✓(21) · visual ✓ | Logo + nav + search + user-menu slot; `[mobileBreakpoint]` collapses the nav to a hamburger emitting `(menuClick)` below that width (5.14.0). |
 | `nav-item` | `stable` | docs ✓ · a11y ✓ · spec ✓(16) · visual ✓ | Collapsed-mode `aria-label`, active state, depth. |
 | `notification-center` | `stable` | docs ✓ · a11y ✓ · spec ✓(22) · visual ✓ | Keyboard-operable rows; `[pageSize]` reveals long lists incrementally via a "Show more" button + `(loadMore)` for server-driven append (5.9.0). |
 | `page-error` | `stable` | docs ✓ · a11y ✓ · spec — · visual ✓ | Presentational (404 / 500 / generic). |
@@ -117,7 +117,7 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 | `theme-toggle` | `stable` | docs ✓ · a11y ✓ · spec ✓(6) · visual ✓ | Light / dark / system. |
 | `user-menu` | `stable` | docs ✓ · a11y ✓ · spec ✓(20) · visual ✓ | Avatar + menu with a `[presence]` dot (online/away/busy/offline, or null to hide) (5.8.0). |
 
-**Patterns: 18 `stable` · 2 `beta`.**
+**Patterns: 19 `stable` · 1 `beta`.**
 
 ## Documentation surface
 
