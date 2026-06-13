@@ -258,13 +258,13 @@ export class KpToastHostComponent implements AfterViewChecked, OnDestroy {
     return `kp-th__toast kp-th__toast--${t.appearance}`;
   }
 
-  /** In a multi-host world we'd route toasts to a specific host by position,
-   *  but v1 renders all of them in every host — callers place one host. */
-  isOwnedByThisHost(_t: KpToast): boolean {
-    // Render only the most recent `max` toasts so a burst doesn't flood the screen.
-    const list = this.toasts();
-    const shown = list.slice(-this.max);
-    return shown.includes(_t);
+  /** Route each toast to the host matching its `position` (unset → `top-right`,
+   *  the default), then show only the most recent `max` so a burst of toasts in
+   *  one corner doesn't flood the screen. Multiple hosts (one per corner) no
+   *  longer each render every toast. */
+  isOwnedByThisHost(t: KpToast): boolean {
+    const mine = this.toasts().filter((x) => (x.position ?? 'top-right') === this.position);
+    return mine.slice(-this.max).includes(t);
   }
 
   dismiss(id: number): void { this.toastSvc.dismiss(id); }

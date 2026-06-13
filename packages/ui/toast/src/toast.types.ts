@@ -13,6 +13,9 @@ export interface KpToast {
   /** Auto-dismiss duration in ms. `0` keeps the toast up until it's
    *  dismissed explicitly. Defaults to 5000. */
   duration: number;
+  /** Which corner this toast belongs to. A `<kp-toast-host>` renders only
+   *  toasts matching its own `[position]`; unset routes to `top-right`. */
+  position?: KpToastPosition;
 }
 
 /** Convenience — the arg shape callers pass to `KpToastService.show()`. */
@@ -22,4 +25,6 @@ export interface KpToastShowInput {
   description?: string;
   action?: { label: string; handler: (id: number) => void };
   duration?: number;
+  /** Target corner. Defaults to `top-right` (matches the default host). */
+  position?: KpToastPosition;
 }

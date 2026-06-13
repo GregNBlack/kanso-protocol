@@ -82,13 +82,13 @@ Status as of `5.4.0`. Coverage = `docs` · `a11y` · `spec(n)` · `visual`. All 
 | `tabs` | `stable` | docs ✓ · a11y ✓ · spec ✓(11) · visual ✓ | Roving tabindex + overflow slot. |
 | `textarea` | `stable` | docs ✓ · a11y ✓ · spec ✓(9) · visual ✓ | Auto-resize + counter. |
 | `timepicker` | `stable` | docs ✓ · a11y ✓ · spec ✓(17) · visual ✓ | i18n-aware. `[format]` defaults to `"auto"` — derives 12h/24h from `KP_LOCALE` (5.4.0). |
-| `toast` | `beta` | docs ✓ · a11y ✓ · spec ✓(14) · visual n/a | **Open:** queue ordering across corners. Visual n/a — enter/exit animation is non-deterministic. |
+| `toast` | `stable` | docs ✓ · a11y ✓ · spec ✓(16) · visual n/a | Per-corner routing — `show({ position })` targets a corner (unset → top-right); each `<kp-toast-host>` renders only its position's toasts, most-recent `[max]` (5.12.0). Visual n/a — animated. |
 | `toggle` | `stable` | docs ✓ · a11y ✓ · spec ✓(5) · visual ✓ | `[ariaLabel]` supported. |
 | `tooltip` | `stable` | docs ✓ · a11y ✓ · spec ✓(9) · visual ✓ | `[kpTooltip]` directive; global default delay would be additive. |
 | `tree` | `stable` | docs ✓ · a11y ✓ · spec ✓(25) · visual ✓ | Roving tabindex + expand/collapse + lazy-load: `(nodeExpand)` fires for expandable nodes with no children, `loading` shows a spinner row until populated (5.11.0). |
 | `virtual-list` | `stable` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Fixed-height window mode — API frozen for 5.x. Variable-height / sticky group headers ship as a **separate future package**, so the core stays stable. |
 
-**Components: 39 `stable` · 1 `beta` · 0 `experimental`.**
+**Components: 40 `stable` · 0 `beta` · 0 `experimental`.**
 
 ## Patterns
 
