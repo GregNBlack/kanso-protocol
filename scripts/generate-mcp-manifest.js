@@ -83,10 +83,19 @@ function readHostRoleAttr(obj) {
   return null;
 }
 
+// TypeScript prints a cross-file type reference as `import("/abs/path").Type`,
+// which (a) leaks the generating machine's absolute path into the committed
+// manifest and (b) breaks the CI freshness gate, since the path differs per
+// runner (/Users/… locally vs /home/runner/… in CI). Strip the import(...)
+// wrapper down to the bare type name — portable, deterministic, and what MCP
+// consumers actually want.
+function normalizeTypeText(t) {
+  return t.replace(/import\("[^"]*"\)\./g, '');
+}
+
 function typeText(prop) {
   const typeNode = prop.getTypeNode();
-  if (typeNode) return typeNode.getText();
-  return prop.getType().getText();
+  return normalizeTypeText(typeNode ? typeNode.getText() : prop.getType().getText());
 }
 
 function defaultValue(prop) {

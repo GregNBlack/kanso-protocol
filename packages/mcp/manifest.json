@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T11:42:13.810Z",
+  "generatedAt": "2026-07-06T12:24:22.911Z",
   "version": "4.3.0",
   "totals": {
     "components": 42,
@@ -1016,7 +1016,7 @@
         },
         {
           "name": "itemSelect",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/command-palette/src/command-palette.component\").KpCommandItem"
+          "payload": "KpCommandItem"
         }
       ],
       "ariaRole": null,
@@ -1142,7 +1142,7 @@
       "outputs": [
         {
           "name": "valueChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/datepicker/src/datepicker.component\").KpDatePickerValue"
+          "payload": "KpDatePickerValue"
         },
         {
           "name": "openChange",
@@ -1685,15 +1685,15 @@
       "outputs": [
         {
           "name": "filesAdded",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/file-upload/src/file-upload.component\").KpUploadFile[]"
+          "payload": "KpUploadFile[]"
         },
         {
           "name": "filesRejected",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/file-upload/src/file-upload.component\").KpFileRejection[]"
+          "payload": "KpFileRejection[]"
         },
         {
           "name": "fileRemoved",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/file-upload/src/file-upload.component\").KpUploadFile"
+          "payload": "KpUploadFile"
         }
       ],
       "ariaRole": null,
@@ -3063,7 +3063,7 @@
       "outputs": [
         {
           "name": "valueChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/slider/src/slider.component\").KpSliderValue"
+          "payload": "KpSliderValue"
         }
       ],
       "ariaRole": null,
@@ -3183,7 +3183,7 @@
         },
         {
           "name": "sortChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/table/src/table.component\").KpTableSort | null"
+          "payload": "KpTableSort | null"
         },
         {
           "name": "rowClick",
@@ -3533,7 +3533,7 @@
       "outputs": [
         {
           "name": "valueChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/timepicker/src/timepicker.component\").KpTimePickerValue"
+          "payload": "KpTimePickerValue"
         },
         {
           "name": "openChange",
@@ -3883,11 +3883,11 @@
         },
         {
           "name": "nodeClick",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/tree/src/tree.component\").KpTreeNode"
+          "payload": "KpTreeNode"
         },
         {
           "name": "nodeExpand",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/tree/src/tree.component\").KpTreeNode"
+          "payload": "KpTreeNode"
         }
       ],
       "ariaRole": null,
@@ -3971,7 +3971,7 @@
       "outputs": [
         {
           "name": "rangeChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/virtual-list/src/virtual-list.component\").KpVirtualRange"
+          "payload": "KpVirtualRange"
         }
       ],
       "ariaRole": null,
@@ -4739,7 +4739,7 @@
         },
         {
           "name": "itemClick",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/notification-center/src/notification-center.component\").KpNotification"
+          "payload": "KpNotification"
         },
         {
           "name": "filterChange",
@@ -5087,7 +5087,7 @@
         },
         {
           "name": "itemClick",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/search-bar/src/search-bar.component\").KpSearchResultItem"
+          "payload": "KpSearchResultItem"
         }
       ],
       "ariaRole": null,
@@ -5280,11 +5280,11 @@
       "outputs": [
         {
           "name": "toggle",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/sidebar/src/sidebar.component\").KpSidebarWidth"
+          "payload": "KpSidebarWidth"
         },
         {
           "name": "itemClick",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/sidebar/src/sidebar.component\").KpSidebarNavItem"
+          "payload": "KpSidebarNavItem"
         },
         {
           "name": "userMenuClick",
@@ -5582,7 +5582,7 @@
         },
         {
           "name": "densityChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/table-toolbar/src/table-toolbar.component\").KpTableToolbarDensity"
+          "payload": "KpTableToolbarDensity"
         },
         {
           "name": "columnsClick",
@@ -5678,7 +5678,7 @@
       "outputs": [
         {
           "name": "themeChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/theme-toggle/src/theme-toggle.component\").KpThemeValue"
+          "payload": "KpThemeValue"
         },
         {
           "name": "dropdownClick",

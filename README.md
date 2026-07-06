@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/GregNBlack/kanso-protocol/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/GregNBlack/kanso-protocol/actions/workflows/ci.yml)
 [![Storybook](https://img.shields.io/badge/Storybook-live-FF4785?logo=storybook&logoColor=white)](https://gregnblack.github.io/kanso-protocol)
-[![Figma Community](https://img.shields.io/badge/Figma-Community-F24E1E?logo=figma&logoColor=white)](https://www.figma.com/community/file/1633266134559104948)
+[![Figma Community](https://img.shields.io/badge/Figma-Community-F24E1E?logo=figma&logoColor=white)](https://www.figma.com/community/file/1655934833130278579)
 [![Tests](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FGregNBlack%2Fkanso-protocol%2Fmain%2F.github%2Fbadges%2Ftests.json)](https://gregnblack.github.io/kanso-protocol/?path=/docs/foundations-test-coverage--docs)
 [![MCP](https://img.shields.io/badge/MCP-ready-7c3aed)](https://www.npmjs.com/package/@kanso-protocol/mcp)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
@@ -36,7 +36,7 @@ Design tokens in W3C DTCG format serve as a single source of truth for both Figm
 ## Live Preview
 
 - **Storybook:** [gregnblack.github.io/kanso-protocol](https://gregnblack.github.io/kanso-protocol) — every component, pattern and example page with autodocs, live controls, and a light/dark theme toggle.
-- **Figma Community:** [figma.com/community/file/1633266134559104948](https://www.figma.com/community/file/1633266134559104948) — the full design library; duplicate it into your team to use the components, variables, and example pages directly.
+- **Figma Community:** [figma.com/community/file/1655934833130278579](https://www.figma.com/community/file/1655934833130278579) — the full design library; duplicate it into your team to use the components, variables, and example pages directly.
 
 ## AI-native: ship with an MCP server
 
@@ -501,7 +501,7 @@ Public API contract: [docs/templates/workspace.md](docs/templates/workspace.md).
 
 The full design library is published on Figma Community — duplicate it into your team to use the components, variables, and example pages directly:
 
-**[→ Kanso Protocol on Figma Community](https://www.figma.com/community/file/1633266134559104948)**
+**[→ Kanso Protocol on Figma Community](https://www.figma.com/community/file/1655934833130278579)**
 
 Inside: 42 components × variants, 20 patterns, 900+ W3C DTCG variables (light + dark modes), Iconography, and 5 example pages (Login, Dashboard, Settings, List View, Detail View).
 
