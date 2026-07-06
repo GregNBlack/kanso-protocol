@@ -117,7 +117,7 @@ Container border, background, and the inherited Button states are managed throug
 
 ## References
 
-- **Figma component**: [`NumberStepper` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3163-1486)
+- **Figma component**: [`NumberStepper` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3163-1486)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-numberstepper
 - **Source**: `packages/ui/number-stepper/src/number-stepper.component.ts`
 - **Tokens used**:

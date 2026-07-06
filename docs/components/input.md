@@ -104,7 +104,7 @@ Floating Label is a boolean property available on lg and xl only — on smaller 
 
 ## References
 
-- **Figma component**: [`Input` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=123-97)
+- **Figma component**: [`Input` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=123-97)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-input
 - **Source**: `packages/ui/input/src/input.component.ts`
 - **Tokens used**:

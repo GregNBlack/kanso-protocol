@@ -34,7 +34,7 @@ See [Stack → Gap → px](./stack.md#gap--px).
 
 ## References
 
-- **Figma pattern**: [`Row` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System)
+- **Figma pattern**: [`Row` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-row
 - **Source**: `packages/ui/row/src/`
 

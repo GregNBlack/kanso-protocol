@@ -93,7 +93,7 @@ None — Textarea is a leaf component.
 
 ## References
 
-- **Figma component**: [`Textarea` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3092-729)
+- **Figma component**: [`Textarea` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3092-729)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-textarea
 - **Source**: `packages/ui/textarea/src/textarea.component.ts`
 - **Tokens used**:

@@ -71,7 +71,7 @@ Spinner has no states — it's always "spinning" visually. In Figma the animatio
 
 ## References
 
-- **Figma component**: [`Spinner` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=18-17)
+- **Figma component**: [`Spinner` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=18-17)
 - **Source**: inline SVG in `packages/ui/button/src/button.component.ts` (Button loading state)
 - **Tokens used**:
   - `primitive.icon.size.{xs|sm|md|lg|xl}` for box size

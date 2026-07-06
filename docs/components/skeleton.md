@@ -58,7 +58,7 @@
 
 ## References
 
-- **Figma component**: [`Skeleton` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3483-8558)
+- **Figma component**: [`Skeleton` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3483-8558)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-skeleton
 - **Source**: `packages/ui/skeleton/src/`
 - **Tokens used**:

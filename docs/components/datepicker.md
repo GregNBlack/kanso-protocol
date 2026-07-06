@@ -121,7 +121,7 @@ Built-in defaults (used when `presets` is left null):
 
 ## References
 
-- **Figma component**: [`DatePicker` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System)
+- **Figma component**: [`DatePicker` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-datepicker
 - **Source**: `packages/ui/datepicker/src/`
 - **Tokens used**:

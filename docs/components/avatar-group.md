@@ -64,7 +64,7 @@ The count chip matches the avatar size so the row stays visually flush:
 
 ## References
 
-- **Figma component**: [`AvatarGroup` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System)
+- **Figma component**: [`AvatarGroup` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-avatargroup
 - **Source**: `packages/ui/avatar-group/src/`
 - **Tokens**: `avatar-group/count/bg`, `avatar-group/count/fg`

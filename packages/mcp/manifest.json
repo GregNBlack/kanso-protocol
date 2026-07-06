@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T12:24:22.911Z",
+  "generatedAt": "2026-07-06T13:59:17.394Z",
   "version": "4.3.0",
   "totals": {
     "components": 42,
@@ -7,9 +7,9 @@
     "tokens": 917
   },
   "figma": {
-    "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-    "fileName": "Design-System",
-    "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System",
+    "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
+    "fileName": "Kanso-Protocol-Design-System",
+    "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System",
     "pages": {
       "components": {
         "id": "0:1",
@@ -100,9 +100,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-accordion--docs",
       "sourcePath": "packages/ui/accordion/src/accordion.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11103",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11103"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11103"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -186,9 +186,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-alert--docs",
       "sourcePath": "packages/ui/alert/src/alert.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11044",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11044"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11044"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -288,9 +288,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-avatar--docs",
       "sourcePath": "packages/ui/avatar/src/avatar.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11139",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11139"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11139"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -430,9 +430,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-badge--docs",
       "sourcePath": "packages/ui/badge/src/badge.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11040",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11040"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11040"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -484,9 +484,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-breadcrumbs--docs",
       "sourcePath": "packages/ui/breadcrumbs/src/breadcrumbs.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11072",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11072"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11072"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -575,9 +575,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-button--docs",
       "sourcePath": "packages/ui/button/src/button.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:10993",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-10993"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-10993"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -683,9 +683,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-card--docs",
       "sourcePath": "packages/ui/card/src/card.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11091",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11091"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11091"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -799,9 +799,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-checkbox--docs",
       "sourcePath": "packages/ui/checkbox/src/checkbox.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11001",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11001"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11001"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -929,9 +929,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-combobox--docs",
       "sourcePath": "packages/ui/combobox/src/combobox.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11115",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11115"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11115"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1035,9 +1035,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-commandpalette--docs",
       "sourcePath": "packages/ui/command-palette/src/command-palette.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "4111:11234",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=4111-11234"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=4111-11234"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1173,9 +1173,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-datepicker--docs",
       "sourcePath": "packages/ui/datepicker/src/datepicker.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11119",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11119"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11119"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1301,9 +1301,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-dialog--docs",
       "sourcePath": "packages/ui/dialog/src/dialog.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11083",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11083"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11083"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1358,9 +1358,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-divider--docs",
       "sourcePath": "packages/ui/divider/src/divider.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11087",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11087"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11087"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1515,9 +1515,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-drawer--docs",
       "sourcePath": "packages/ui/drawer/src/drawer.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11099",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11099"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11099"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1582,9 +1582,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-emptystate--docs",
       "sourcePath": "packages/ui/empty-state/src/empty-state.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11095",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11095"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11095"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1706,9 +1706,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-fileupload--docs",
       "sourcePath": "packages/ui/file-upload/src/file-upload.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "4110:11270",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=4110-11270"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=4110-11270"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1784,9 +1784,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-formfield--docs",
       "sourcePath": "packages/ui/form-field/src/form-field.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11016",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11016"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11016"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1914,9 +1914,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-input--docs",
       "sourcePath": "packages/ui/input/src/input.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:10997",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-10997"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-10997"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1978,9 +1978,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-markdownviewer--docs",
       "sourcePath": "packages/ui/markdown-viewer/src/markdown-viewer.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "4109:11282",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=4109-11282"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=4109-11282"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -2077,9 +2077,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-menu--docs",
       "sourcePath": "packages/ui/menu/src/dropdown-menu.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11020",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11020"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11020"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -2172,9 +2172,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-numberstepper--docs",
       "sourcePath": "packages/ui/number-stepper/src/number-stepper.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11032",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11032"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11032"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -2306,9 +2306,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-pagination--docs",
       "sourcePath": "packages/ui/pagination/src/pagination.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11076",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11076"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11076"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -2414,9 +2414,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-popover--docs",
       "sourcePath": "packages/ui/popover/src/popover.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11052",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11052"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11052"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -2505,9 +2505,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-progress--docs",
       "sourcePath": "packages/ui/progress/src/progress-linear.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11056",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11056"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11056"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -2611,9 +2611,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-radio--docs",
       "sourcePath": "packages/ui/radio/src/radio.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11005",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11005"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11005"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -2691,9 +2691,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-richtexteditor--docs",
       "sourcePath": "packages/ui/rich-text-editor/src/rich-text-editor.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3849:11648",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3849-11648"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3849-11648"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -2767,9 +2767,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-segmentedcontrol--docs",
       "sourcePath": "packages/ui/segmented-control/src/segmented-control.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11036",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11036"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11036"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -2881,9 +2881,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-select--docs",
       "sourcePath": "packages/ui/select/src/select.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11028",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11028"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11028"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -2950,9 +2950,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-skeleton--docs",
       "sourcePath": "packages/ui/skeleton/src/skeleton.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11107",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11107"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11107"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -3085,9 +3085,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-slider--docs",
       "sourcePath": "packages/ui/slider/src/slider.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11111",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11111"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11111"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -3200,9 +3200,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-table--docs",
       "sourcePath": "packages/ui/table/src/table.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11131",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11131"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11131"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -3351,9 +3351,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tabs--docs",
       "sourcePath": "packages/ui/tabs/src/tabs.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11068",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11068"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11068"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -3450,9 +3450,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-textarea--docs",
       "sourcePath": "packages/ui/textarea/src/textarea.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11024",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11024"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11024"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -3552,9 +3552,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-timepicker--docs",
       "sourcePath": "packages/ui/timepicker/src/timepicker.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11123",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11123"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11123"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -3614,9 +3614,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-toast--docs",
       "sourcePath": "packages/ui/toast/src/toast-host.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11127",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11127"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11127"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -3718,9 +3718,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-toggle--docs",
       "sourcePath": "packages/ui/toggle/src/toggle.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11009",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11009"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11009"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -3800,9 +3800,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tooltip--docs",
       "sourcePath": "packages/ui/tooltip/src/tooltip.directive.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11048",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11048"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11048"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -3908,9 +3908,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tree--docs",
       "sourcePath": "packages/ui/tree/src/tree.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11135",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11135"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11135"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4042,9 +4042,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-appshell--docs",
       "sourcePath": "packages/ui/app-shell/src/app-shell.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7265",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7265"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7265"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4121,9 +4121,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-banner--docs",
       "sourcePath": "packages/ui/banner/src/banner.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7272",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7272"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7272"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4168,9 +4168,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-container--docs",
       "sourcePath": "packages/ui/container/src/container.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7280",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7280"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7280"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4244,9 +4244,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-filterbar--docs",
       "sourcePath": "packages/ui/filter-bar/src/filter-bar.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7288",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7288"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7288"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4319,9 +4319,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-formsection--docs",
       "sourcePath": "packages/ui/form-section/src/form-section.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7296",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7296"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7296"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4372,9 +4372,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-grid--docs",
       "sourcePath": "packages/ui/grid/src/grid.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7304",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7304"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7304"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4546,9 +4546,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-header--docs",
       "sourcePath": "packages/ui/header/src/header.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7312",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7312"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7312"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4656,9 +4656,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-navitem--docs",
       "sourcePath": "packages/ui/nav-item/src/nav-item.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7320",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7320"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7320"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4760,9 +4760,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-notificationcenter--docs",
       "sourcePath": "packages/ui/notification-center/src/notification-center.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7327",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7327"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7327"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4837,9 +4837,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-pageerror--docs",
       "sourcePath": "packages/ui/page-error/src/page-error.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7334",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7334"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7334"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4947,9 +4947,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-pageheader--docs",
       "sourcePath": "packages/ui/page-header/src/page-header.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7341",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7341"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7341"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5006,9 +5006,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-row--docs",
       "sourcePath": "packages/ui/row/src/row.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3825:7273",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3825-7273"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3825-7273"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5100,9 +5100,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-searchbar--docs",
       "sourcePath": "packages/ui/search-bar/src/search-bar.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7356",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7356"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7356"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5177,9 +5177,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-settingspanel--docs",
       "sourcePath": "packages/ui/settings-panel/src/settings-panel.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7364",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7364"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7364"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5297,9 +5297,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-sidebar--docs",
       "sourcePath": "packages/ui/sidebar/src/sidebar.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7372",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7372"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7372"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5344,9 +5344,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-stack--docs",
       "sourcePath": "packages/ui/stack/src/stack.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3825:7265",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3825-7265"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3825-7265"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5455,9 +5455,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-statcard--docs",
       "sourcePath": "packages/ui/stat-card/src/stat-card.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7387",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7387"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7387"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5623,9 +5623,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-tabletoolbar--docs",
       "sourcePath": "packages/ui/table-toolbar/src/table-toolbar.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7395",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7395"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7395"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5697,9 +5697,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-themetoggle--docs",
       "sourcePath": "packages/ui/theme-toggle/src/theme-toggle.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7403",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7403"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7403"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5800,9 +5800,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-usermenu--docs",
       "sourcePath": "packages/ui/user-menu/src/user-menu.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7411",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7411"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7411"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",

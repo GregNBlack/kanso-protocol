@@ -82,7 +82,7 @@ Persist `density` yourself (see the Don'ts) — the toolbar keeps no state.
 
 ## References
 
-- **Figma**: `TableToolbar` Component Set on the [📐 Patterns page](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System).
+- **Figma**: `TableToolbar` Component Set on the [📐 Patterns page](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System).
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-tabletoolbar
 - **Source**: `packages/ui/table-toolbar/src/`
 

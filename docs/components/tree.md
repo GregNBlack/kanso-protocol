@@ -88,7 +88,7 @@ Toggling a parent flips all its descendant leaves at once.
 
 ## References
 
-- **Figma component**: [`Tree` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System) (pending)
+- **Figma component**: [`Tree` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System) (pending)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tree
 - **Source**: `packages/ui/tree/src/`
 - **Tokens**: `tree/node-bg-*`, `tree/node-fg-*`, `tree/node-icon-*`, `tree/node-chevron`, `tree/indent-line`

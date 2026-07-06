@@ -24,6 +24,6 @@ A 1440×900 frame on `color/gray/50`. Three regions:
 
 ## Where it lives
 
-- **Figma**: `Settings` frame on the [🖼️ Example Pages](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System) page (right of `Dashboard`).
+- **Figma**: `Settings` frame on the [🖼️ Example Pages](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System) page (right of `Dashboard`).
 - **Storybook**: `Examples/Settings`.
 - **Source**: `packages/examples/settings/stories/settings.stories.ts`.

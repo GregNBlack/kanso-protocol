@@ -27,5 +27,5 @@ Inside the card, top to bottom:
 
 ## Where it lives
 
-- **Figma**: `Login` frame on the [🖼️ Example Pages](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System) page.
+- **Figma**: `Login` frame on the [🖼️ Example Pages](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System) page.
 - **Source for the atoms used**: `packages/ui/{form-field,input,checkbox,button,divider}` — no separate Angular package for the login page itself; consumers compose it from these atoms.

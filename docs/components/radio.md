@@ -111,7 +111,7 @@ Accompanying component `<kp-radio-group>` provides:
 
 ## References
 
-- **Figma component**: [`Radio` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3066-628)
+- **Figma component**: [`Radio` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3066-628)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-radio
 - **Source**:
   - `packages/ui/radio/src/radio.component.ts`

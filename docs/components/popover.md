@@ -131,7 +131,7 @@ When you wire the popover up to a trigger, the usual UX is:
 
 ## References
 
-- **Figma component**: [`Popover` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3271-8580)
+- **Figma component**: [`Popover` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3271-8580)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-popover
 - **Source**: `packages/ui/popover/src/popover.component.ts`
 - **Tokens used**:

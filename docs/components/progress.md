@@ -112,9 +112,9 @@ Host is `role="progressbar"` with `aria-valuemin=1`, `aria-valuemax=<total>`, `a
 ## References
 
 - **Figma component sets**:
-  - [`ProgressLinear`](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3326-8625)
-  - [`ProgressCircular`](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3329-8649)
-  - [`ProgressSegmented`](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3334-9288)
+  - [`ProgressLinear`](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3326-8625)
+  - [`ProgressCircular`](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3329-8649)
+  - [`ProgressSegmented`](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3334-9288)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-progress
 - **Source**: `packages/ui/progress/src/`
 - **Tokens used**:

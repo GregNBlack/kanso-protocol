@@ -125,7 +125,7 @@ Floating Label is a boolean available on lg and xl only.
 
 ## References
 
-- **Figma component**: [`Select` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3118-2901)
+- **Figma component**: [`Select` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3118-2901)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-select
 - **Source**: `packages/ui/select/src/select.component.ts`
 - **Tokens used**:

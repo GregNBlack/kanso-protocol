@@ -23,6 +23,6 @@ A 1440×900 frame painted with `color/gray/50`. Three regions:
 
 ## Where it lives
 
-- **Figma**: `Dashboard` frame on the [🖼️ Example Pages](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System) page (right of `Login`).
+- **Figma**: `Dashboard` frame on the [🖼️ Example Pages](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System) page (right of `Login`).
 - **Storybook**: `Examples/Dashboard` (full Angular composition rendered live).
 - **Source**: `packages/examples/dashboard/stories/dashboard.stories.ts`.
