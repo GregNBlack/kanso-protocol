@@ -41,7 +41,7 @@ npm run theme:brand -- "#7C3AED" > brand.css
 npm run theme:brand -- "#7C3AED" --selector ".brand-acme" > brand.css
 ```
 
-It emits the 11 accent stops, **keeping each stop's lightness + saturation from the reference ramp and swapping only the hue** — so the contrast relationships Kanso tunes for WCAG AA are preserved by construction:
+It emits the 11 accent stops, **keeping each stop's lightness + saturation from the reference ramp and swapping only the hue**:
 
 ```css
 :root {
@@ -62,7 +62,24 @@ import './brand.css';   // your generated accent override — wins by cascade or
 
 Every button, link, focus ring, selected state, accent badge, etc. now uses your hue. Status colors (success/warning/danger/info) and neutrals (gray) are intentionally untouched — recoloring those would break their meaning.
 
-> **Re-verify contrast for your hue.** The generator preserves the reference lightness ladder, so AA relationships hold in the common case, but a very light or very saturated brand hue can drift. Run the story you care about through the a11y addon (or `npm run test:storybook`) before shipping.
+> **Contrast is measured, not assumed.** The reference lightness ladder is a11y-tuned *for blue*: at a fixed lightness, luminance changes with hue, so a stop that clears WCAG AA on white at blue's hue can fail at yours — a yellow or cyan accent is far lighter than blue at the same lightness. The generator therefore **measures** the foreground stops and prints a per-stop report to **stderr**:
+>
+> ```text
+> contrast report — accent #EAB308 (hue 45°), AA needs 4.5:1
+>   stop 600 vs white: 1.80:1 (AA <needs 4.5>: FAIL)
+>   stop 700 vs white: 2.17:1 (AA <needs 4.5>: FAIL)
+>   stop 400 (accent) vs dark #18181B: 12.45:1 (AA <needs 4.5>: PASS)
+> ```
+>
+> It checks the stops that act as **foreground**: 600 and 700 on white (light-mode text/icon/accent) and 400 on the dark body surface `#18181B`. By default the lightness is kept exactly and failures are reported as warnings only.
+>
+> Pass **`--enforce-aa`** to auto-nudge any failing foreground stop's lightness (hue + saturation unchanged) until it clears AA; the adjustment is noted in the emitted CSS comment:
+>
+> ```bash
+> npm run theme:brand -- "#EAB308" --enforce-aa > brand.css
+> ```
+>
+> Either way, verify the story you care about through the a11y addon (or `npm run test:storybook`) before shipping — the tool only checks these representative foreground stops.
 
 ### Multi-brand on one page
 
@@ -118,7 +135,7 @@ Runtime overrides (§2) still win at the CSS-variable layer, so you can mix both
 
 ## What you can't theme (by design)
 
-- **Component anatomy / spacing ramp** — structural, not a brand surface. Density modes are tracked in [`docs/stability.md`](stability.md), not themable today.
+- **Component anatomy / spacing ramp** — structural, not a brand surface. There is no *global* density theme that re-scales the whole shell at once (making one would reverse this stance and touch every component). Density is available **per surface** via each component's `size` input — e.g. a compact data table is `<kp-table size="sm">`, wired from the toolbar's density toggle ([recipe](patterns/table-toolbar.md#wiring-density-to-a-table)).
 - **Motion durations / easing** — tokens exist but aren't a branding axis.
 
 See [`docs/tokens.md`](tokens.md) for the full token reference and [`docs/stability.md`](stability.md) for the open semantic-token questions.

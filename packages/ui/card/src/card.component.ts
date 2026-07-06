@@ -83,8 +83,8 @@ export type KpCardAppearance = 'default' | 'muted' | 'subtle' | 'elevated' | 'ou
     :host(.kp-card--clickable) { cursor: pointer; }
     :host(.kp-card--clickable:hover) { background: var(--kp-color-card-bg-muted); }
     :host(.kp-card--clickable:focus-visible) {
-      outline: 2px solid var(--kp-color-focus-ring);
-      outline-offset: 2px;
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-focus-ring);
+      outline-offset: var(--kp-focus-ring-offset);
     }
 
     .kp-card__header {
@@ -226,6 +226,18 @@ export type KpCardAppearance = 'default' | 'muted' | 'subtle' | 'elevated' | 'ou
     }
     :host(.kp-card--subtle.kp-card--clickable:hover) {
       background: var(--kp-color-surface-strong);
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
     }
   `],
 })

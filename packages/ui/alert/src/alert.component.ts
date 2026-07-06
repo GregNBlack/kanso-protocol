@@ -177,7 +177,7 @@ export type KpAlertActionPlacement = 'inline' | 'stacked';
     }
     .kp-alert__close:hover { opacity: 1; background: var(--kp-color-overlay-hover-light); }
     .kp-alert__close:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring);
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-focus-ring);
       outline-offset: 1px;
       opacity: 1;
     }
@@ -403,6 +403,18 @@ export type KpAlertActionPlacement = 'inline' | 'stacked';
       --kp-alert-fg-desc: var(--kp-color-alert-neutral-left-accent-fg-desc);
       --kp-alert-border: var(--kp-color-alert-neutral-left-accent-border);
       --kp-alert-accent: var(--kp-color-alert-neutral-left-accent-accent);
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
     }
   `],
 })

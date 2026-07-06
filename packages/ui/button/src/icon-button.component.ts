@@ -86,7 +86,7 @@ export type KpIconButtonSize = 'xs' | 'sm' | 'md';
       color: var(--kp-color-text-strong);
     }
     .kp-icon-button__btn:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring);
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-focus-ring);
       outline-offset: 1px;
     }
     .kp-icon-button__btn:disabled {
@@ -114,6 +114,18 @@ export type KpIconButtonSize = 'xs' | 'sm' | 'md';
       --kp-icon-button-size: 32px;
       --kp-icon-button-icon-size: 20px;
       --kp-icon-button-radius: 8px;
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
     }
   `],
 })

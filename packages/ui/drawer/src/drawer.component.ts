@@ -279,8 +279,8 @@ export type KpDrawerVariant = 'flush' | 'floating';
     }
     .kp-drawer__close:hover { background: var(--kp-color-surface-muted); }
     .kp-drawer__close:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring);
-      outline-offset: 2px;
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-focus-ring);
+      outline-offset: var(--kp-focus-ring-offset);
     }
     .kp-drawer__close svg { width: 18px; height: 18px; }
 

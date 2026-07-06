@@ -353,6 +353,36 @@ export interface KpHeaderNavItem {
 
     .kp-header__user-chevron { width: 14px; height: 14px; color: var(--kp-color-text-muted); }
         :host(.kp-header--dark) .kp-header__user-chevron { color: var(--kp-color-fg-on-dark-subtle); }
+
+    /* Windows High Contrast / forced-colors: the interactive controls in this
+       row draw no outline of their own (all: unset), and the active nav item
+       marks the current page with fg color only — both vanish when colors are
+       forced. Restore a focus ring and underline the current item. */
+    @media (forced-colors: active) {
+      .kp-header__nav-item:focus-visible,
+      .kp-header__icon-btn:focus-visible,
+      .kp-header__cta:focus-visible,
+      .kp-header__user:focus-visible {
+        outline: var(--kp-focus-ring-width) solid Highlight;
+        outline-offset: var(--kp-focus-ring-offset);
+      }
+      .kp-header__nav-item--active {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
   `],
 })
 export class KpHeaderComponent implements OnInit {

@@ -177,6 +177,18 @@ export interface KpUserMenuItem {
     }
     .kp-user-menu__row--danger .kp-user-menu__row-icon { color: var(--kp-color-menu-item-fg-danger-rest); }
     .kp-user-menu__row--danger:hover { background: var(--kp-color-danger-subtle-bg-rest); color: var(--kp-color-menu-item-fg-danger-hover); }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
   `],
 })
 export class KpUserMenuComponent {

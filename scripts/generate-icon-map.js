@@ -17,8 +17,8 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const TABLER_ROOT = path.join(ROOT, 'node_modules', '@tabler', 'icons', 'icons');
-const ALLOWLIST = path.join(ROOT, 'packages', 'components', 'icon', 'icons.allowlist.json');
-const OUT = path.join(ROOT, 'packages', 'components', 'icon', 'src', 'svg-map.generated.ts');
+const ALLOWLIST = path.join(ROOT, 'packages', 'ui', 'icon', 'icons.allowlist.json');
+const OUT = path.join(ROOT, 'packages', 'ui', 'icon', 'src', 'svg-map.generated.ts');
 
 function minifySvg(svg) {
   return svg

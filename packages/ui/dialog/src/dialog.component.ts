@@ -228,8 +228,8 @@ export type KpDialogFooterLayout = 'start' | 'end' | 'between' | 'stacked';
     }
     .kp-dialog__close:hover { background: var(--kp-color-surface-muted); }
     .kp-dialog__close:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring);
-      outline-offset: 2px;
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-focus-ring);
+      outline-offset: var(--kp-focus-ring-offset);
     }
     .kp-dialog__close svg {
       width: var(--kp-dialog-close-icon);

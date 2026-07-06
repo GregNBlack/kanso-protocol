@@ -86,7 +86,22 @@ if (fs.existsSync(FESM)) {
   }
 }
 
+// Framework-agnostic custom-elements bundle — a single self-contained esbuild
+// output (embeds the Angular runtime), not an fesm2022 dir. Gate it too so a
+// size regression in the `@kanso-protocol/elements` distribution can't ship
+// unnoticed. It's built by the `web-components` CI job (npm run build:elements),
+// not the `build` job — hence it's listed under `optional` in the budget so its
+// absence in a ui-only build doesn't trip the STALE guard.
+const ELEMENTS_MJS = path.join(DIST_DIR, 'elements', 'kanso-elements.mjs');
+if (fs.existsSync(ELEMENTS_MJS)) {
+  measured.push({ key: 'elements', gz: gzippedSize(ELEMENTS_MJS), mjsRelPath: path.relative(ROOT, ELEMENTS_MJS) });
+}
+
 measured.sort((a, b) => a.key.localeCompare(b.key));
+
+// Keys that are only built by specific CI jobs; a missing dist artifact for
+// these is not a STALE error (see bundle-budget.json "optional").
+const OPTIONAL = new Set(budgetFile.optional || []);
 
 // ─── Update mode ────────────────────────────────────────────────────────
 
@@ -96,6 +111,12 @@ if (UPDATE) {
     const headroom =
       gz < 2000 ? gz + 500 : Math.ceil((gz + Math.ceil(gz * 0.15)) / 100) * 100;
     next[key] = { currentGz: gz, maxGz: headroom };
+  }
+  // Preserve budget entries for optional (conditionally-built) keys whose
+  // artifact wasn't present this run — e.g. running --update after a ui-only
+  // build shouldn't drop the `elements` budget.
+  for (const key of Object.keys(budgets)) {
+    if (!next[key] && OPTIONAL.has(key)) next[key] = budgets[key];
   }
   budgetFile.packages = next;
   fs.writeFileSync(BUDGET_PATH, JSON.stringify(budgetFile, null, 2) + '\n');
@@ -146,6 +167,8 @@ for (const { key, gz } of measured) {
 
 for (const key of budgetKeys) {
   if (!measuredKeys.has(key)) {
+    // Optional keys are built by a different CI job; absence here is expected.
+    if (OPTIONAL.has(key)) continue;
     lines.push(
       `${COLOR_ERR}STALE${COLOR_RESET}    ${key.padEnd(32)}  ${COLOR_DIM}budget entry has no matching dist artifact (rename or removal?)${COLOR_RESET}`,
     );

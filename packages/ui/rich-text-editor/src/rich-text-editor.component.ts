@@ -260,7 +260,7 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       color: var(--kp-color-text-strong);
     }
     .kp-rte__btn:focus-visible {
-      outline: 2px solid var(--kp-color-accent-primary-fg);
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-accent-primary-fg);
       outline-offset: -2px;
     }
     .kp-rte__btn.is-active {
@@ -395,6 +395,33 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       color: var(--kp-color-text-disabled);
       pointer-events: none;
       height: 0;
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Forced-colors: keep the focus ring in the system palette, and keep the
+       active (pressed) toolbar buttons distinguishable — their on-state is
+       conveyed only via background + accent text, which flatten. */
+    @media (forced-colors: active) {
+      .kp-rte__btn:focus-visible {
+        outline: var(--kp-focus-ring-width) solid Highlight;
+        outline-offset: -2px;
+      }
+      .kp-rte__btn.is-active {
+        forced-color-adjust: none;
+        background: Highlight;
+        color: HighlightText;
+      }
     }
   `],
 })

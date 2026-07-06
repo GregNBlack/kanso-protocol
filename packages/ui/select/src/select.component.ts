@@ -436,6 +436,39 @@ export interface KpSelectOption {
       --kp-input-gap: 8px;
       --kp-input-clear-size: 24px; --kp-input-clear-icon: 16px;
     }
+
+    @media (forced-colors: active) {
+      /* Trigger focus is shown only by a border-color swap, which is
+         indistinguishable from the rest border once colors are forced.
+         Add a real outline ring for keyboard focus. */
+      .kp-select__trigger:focus-visible {
+        outline: var(--kp-focus-ring-width) solid Highlight !important;
+        outline-offset: var(--kp-focus-ring-offset);
+      }
+      /* Selected option relies on background + fg color, both flattened. */
+      .kp-select__option--selected {
+        forced-color-adjust: none;
+        background: Highlight;
+        color: HighlightText;
+      }
+      /* Keep the multi-select checkbox and its tick visible on Highlight. */
+      .kp-select__option--selected .kp-select__check {
+        border-color: HighlightText;
+        color: HighlightText;
+      }
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
   `]
 })
 export class KpSelectComponent implements ControlValueAccessor, AfterViewChecked, OnDestroy {

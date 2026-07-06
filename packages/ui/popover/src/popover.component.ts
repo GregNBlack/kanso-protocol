@@ -239,6 +239,16 @@ export type KpPopoverArrowPosition =
       --kp-popover-desc-size: 16px;  --kp-popover-desc-lh: 24px;
       --kp-popover-body-size: 16px;  --kp-popover-body-lh: 24px;
     }
+
+    /* Forced-colors: the panel's separation from the page is drawn purely
+       via drop-shadow (filter), which is dropped in forced-colors — the
+       popover would merge into the page. Give it a real border so the
+       floating surface keeps a visible boundary. */
+    @media (forced-colors: active) {
+      .kp-popover__body {
+        border: 1px solid CanvasText;
+      }
+    }
   `],
 })
 export class KpPopoverComponent {

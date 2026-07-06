@@ -319,7 +319,7 @@
   --kp-color-icon-interactive: var(--kp-color-blue-600); /** Clickable icon-links */
   --kp-color-icon-danger: var(--kp-color-red-600); /** Error, destructive actions */
   --kp-color-icon-success: var(--kp-color-green-600); /** Success, confirmation */
-  --kp-color-icon-warning: var(--kp-color-amber-500); /** Warning, attention needed */
+  --kp-color-icon-warning: var(--kp-color-amber-600); /** Warning, attention needed. audit-2026-07-06 — was amber.500 #F59E0B (2.15:1 on white, fails the 3:1 non-text/icon contrast of WCAG 1.4.11); amber.600 #D97706 → 3.19:1 and matches the icon family (danger/success both use the .600 stop). */
   --kp-color-form-label-default: var(--kp-color-gray-700); /** Default label color */
   --kp-color-form-label-disabled: var(--kp-color-gray-400); /** Disabled label */
   --kp-color-form-label-error: var(--kp-color-red-600); /** Error label */
@@ -912,6 +912,8 @@
   --kp-font-lineHeight-lg: 28px; /** Pairs with size lg (20px) */
   --kp-font-lineHeight-xl: 32px; /** Pairs with size xl (24px) */
   --kp-font-lineHeight-2xl: 40px; /** Pairs with size 2xl (32px) */
+  --kp-focus-ring-width: 2px; /** Focus-ring outline thickness. Was a hardcoded `2px` copy-pasted across ~28 outline declarations; tokenized so ring thickness is themeable and can't drift. Pairs with the color token --kp-color-focus-ring. */
+  --kp-focus-ring-offset: 2px; /** Focus-ring outline-offset — the gap between the element edge and the ring. Tokenized alongside width for the same reason. */
   --kp-layout-container-max-width-narrow: 640px;
   --kp-layout-container-max-width-medium: 960px;
   --kp-layout-container-max-width-wide: 1280px;

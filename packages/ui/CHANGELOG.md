@@ -1,5 +1,18 @@
 # @kanso-protocol/ui
 
+## 5.16.0
+
+### Minor Changes
+
+- Design-system integrity pass — make the architecture enforce what it declares.
+  - **Enforcement gates (CI + husky).** `validate:tokens` (state-matrix completeness, the rest→hover→active ramp-step invariant, dark-override existence); `check:contrast` (WCAG AA on curated foreground/background token pairs in both themes — caught and fixed `icon-warning`, which was 2.15:1); machine-readable stability (`docs/stability.json` + a README/stability drift guard); and the `raw-motion-duration` / `raw-shadow` lint rules promoted from warn to error.
+  - **Accessibility.** Tokenized focus ring (`--kp-focus-ring-width` / `-offset`); `prefers-reduced-motion` honored across all 43 animated components; `@media (forced-colors: active)` support for 29 interactive components (Windows High Contrast).
+  - **MCP.** New `check_composition` tool (12 total) flags mixed sizes in a row and beta-tier usage; the manifest is deduped (one primary record per component + `subSelectors`), carries a `stability` tier, includes the previously-missing `table-virtual`, is deterministic, and is guarded by a CI freshness gate; Figma-node lookups degrade gracefully instead of serving a wrong node.
+  - **Elements DX.** Ships `custom-elements.json` (Custom Elements Manifest) and generated `JSX.IntrinsicElements` types so `<kp-*>` type-checks in React/TSX; the elements bundle is now under the bundle-size budget; client-only SSR behavior is documented.
+  - **Brand tool.** `generate-brand-theme` now measures WCAG contrast per hue (with `--enforce-aa`) instead of asserting the false "preserved by construction" guarantee.
+
+  No breaking changes — every addition is additive and visually neutral (media-gated or value-identical).
+
 ## 5.15.0
 
 ### Minor Changes

@@ -146,8 +146,8 @@ export type KpToggleColor = 'primary' | 'danger';
     }
     :host(:has(.kp-toggle__input:focus-visible)) .kp-toggle__track,
     :host(.kp-toggle--focus) .kp-toggle__track {
-      outline: 2px solid var(--kp-color-focus-ring);
-      outline-offset: 2px;
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-focus-ring);
+      outline-offset: var(--kp-focus-ring-offset);
       border-radius: var(--kp-toggle-track-h);
     }
     :host(:has(.kp-toggle__input:disabled:not(:checked))),
@@ -182,6 +182,43 @@ export type KpToggleColor = 'primary' | 'danger';
     .kp-toggle__label {
       font-size: 14px;
       color: var(--kp-color-text-default);
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Windows High Contrast: the track/thumb are painted purely with
+       background-color + box-shadow, which flatten in forced-colors — the whole
+       switch (and its on/off state) would vanish. Give the track a system
+       border, paint the thumb in a contrasting system color, and pin the
+       checked track to the system accent so on vs off stays legible. */
+    @media (forced-colors: active) {
+      .kp-toggle__track {
+        forced-color-adjust: none;
+        background: Canvas;
+        border: 1px solid CanvasText;
+      }
+      .kp-toggle__thumb {
+        forced-color-adjust: none;
+        background: CanvasText;
+      }
+      :host(:has(.kp-toggle__input:checked)) .kp-toggle__track,
+      :host(.kp-toggle--on) .kp-toggle__track {
+        background: Highlight;
+      }
+      :host(:has(.kp-toggle__input:checked)) .kp-toggle__thumb,
+      :host(.kp-toggle--on) .kp-toggle__thumb {
+        background: HighlightText;
+      }
     }
   `],
 })

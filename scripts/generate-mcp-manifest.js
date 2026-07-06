@@ -196,8 +196,44 @@ function layerFromStory(entryDir) {
   return 'components';
 }
 
-// Scan the single packages/ui tree — one entry point per subfolder.
-function walkComponents(project, _unusedLayer, dir) {
+/**
+ * Choose the ONE primary class for a component folder from all its
+ * selector-bearing classes. A folder often exports several public classes
+ * (e.g. menu → DropdownMenu + MenuItem + MenuDivider + MenuSectionLabel);
+ * only the main one should be a top-level catalog record — the rest are
+ * sub-directives that would otherwise inflate `totals.components`.
+ *
+ * Preference order (first match wins):
+ *   1. the class named by codeConnect[layer][slug].primaryClass (authoritative)
+ *   2. the class whose selector is exactly `kp-<slug>`
+ *   3. the class named `Kp<Pascal(slug)>Component`
+ *   4. the class named `Kp<Pascal(slug)>Directive`
+ *   5. the class whose selector is exactly `[kp<Pascal(slug)>]` (attr directive)
+ *   6. the first class with an element selector starting `kp-`
+ *   7. index 0 (deterministic fallback)
+ */
+function pickPrimaryIndex(records, slug, layer, codeConnect) {
+  const pascal = humanize(slug);
+  const ccPrimary = codeConnect?.[layer]?.[slug]?.primaryClass;
+  const tests = [
+    (r) => ccPrimary && r.className === ccPrimary,
+    (r) => r.selector === `kp-${slug}`,
+    (r) => r.className === `Kp${pascal}Component`,
+    (r) => r.className === `Kp${pascal}Directive`,
+    (r) => r.selector === `[kp${pascal}]`,
+    (r) => /^kp-/.test(r.selector),
+  ];
+  for (const test of tests) {
+    const idx = records.findIndex(test);
+    if (idx >= 0) return idx;
+  }
+  return 0;
+}
+
+// Scan the single packages/ui tree — one entry point per subfolder. Emits
+// exactly ONE record per folder (the primary component/directive); any extra
+// public selectors in the same folder are collapsed into `subSelectors`.
+function walkComponents(project, dir, codeConnect, stabilityByName) {
   const items = [];
   if (!fs.existsSync(dir)) return items;
   const SKIP = new Set(['src', 'styles', 'stories']);
@@ -208,6 +244,8 @@ function walkComponents(project, _unusedLayer, dir) {
     if (!fs.statSync(entryDir).isDirectory()) continue;
     if (!fs.existsSync(srcDir)) continue;
     const layer = layerFromStory(entryDir);
+    // Gather every selector-bearing public class across the folder's files.
+    const records = [];
     for (const f of fs.readdirSync(srcDir)) {
       // Scan public component + directive files. Skip *-internal.* files —
       // those render visual chrome that's never exposed as a public symbol.
@@ -219,31 +257,68 @@ function walkComponents(project, _unusedLayer, dir) {
       const sourceText = sf.getFullText();
       for (const cls of sf.getClasses()) {
         const decoratorArgs = readDecoratorArg(cls);
-        if (!decoratorArgs) continue; // Not a @Component
+        if (!decoratorArgs) continue; // Not a @Component / @Directive
         const selector = readStringProp(decoratorArgs, 'selector');
         if (!selector) continue;
-        const { description, examples } = pickJsDoc(cls);
-        items.push({
-          name: slug,
-          className: cls.getName(),
-          selector,
-          layer,
-          package: '@kanso-protocol/ui',
-          import: `@kanso-protocol/ui/${slug}`,
-          description,
-          examples,
-          inputs: extractInputs(cls),
-          outputs: extractOutputs(cls),
-          ariaRole: readHostRoleAttr(decoratorArgs),
-          sizeRamp: extractSizes(cls),
-          keyboardPatterns: detectKeyboardPatterns(sourceText),
-          docsUrl: storybookUrl(layer, slug),
-          sourcePath: path.relative(ROOT, sf.getFilePath()),
-        });
+        records.push({ cls, decoratorArgs, selector, sourceText, className: cls.getName() });
       }
     }
+    if (!records.length) continue; // e.g. the i18n utility entry point — no UI surface.
+
+    const primaryIdx = pickPrimaryIndex(records, slug, layer, codeConnect);
+    const primary = records[primaryIdx];
+    // Every other selector in this folder becomes a sub-selector on the
+    // primary record (sorted for a deterministic manifest).
+    const subSelectors = records
+      .filter((_, i) => i !== primaryIdx)
+      .map((r) => r.selector)
+      .sort();
+    const { description, examples } = pickJsDoc(primary.cls);
+    items.push({
+      name: slug,
+      className: primary.className,
+      selector: primary.selector,
+      subSelectors,
+      stability: stabilityByName[slug] ?? null,
+      layer,
+      package: '@kanso-protocol/ui',
+      import: `@kanso-protocol/ui/${slug}`,
+      description,
+      examples,
+      inputs: extractInputs(primary.cls),
+      outputs: extractOutputs(primary.cls),
+      ariaRole: readHostRoleAttr(primary.decoratorArgs),
+      sizeRamp: extractSizes(primary.cls),
+      keyboardPatterns: detectKeyboardPatterns(primary.sourceText),
+      docsUrl: storybookUrl(layer, slug),
+      sourcePath: path.relative(ROOT, primary.cls.getSourceFile().getFilePath()),
+    });
   }
   return items;
+}
+
+/**
+ * Parse `docs/stability.md` per-surface tables to map surface name → tier.
+ * Rows look like `| \`accordion\` | \`stable\` | ... |`; we only accept a row
+ * whose second cell is one of the four known tiers, so prose tables (Token
+ * surface, which doesn't backtick its first cell) are naturally ignored.
+ * Read-only — this generator never edits stability.md.
+ */
+function parseStability() {
+  const p = path.join(ROOT, 'docs', 'stability.md');
+  const map = {};
+  if (!fs.existsSync(p)) return map;
+  const TIERS = new Set(['stable', 'beta', 'experimental', 'internal']);
+  const re = /^\|\s*`([^`]+)`\s*\|\s*`([^`]+)`\s*\|/;
+  for (const line of fs.readFileSync(p, 'utf8').split('\n')) {
+    const m = line.match(re);
+    if (!m) continue;
+    const [, name, tier] = m;
+    if (!TIERS.has(tier)) continue;
+    // First writer wins; component/pattern slugs are unique across their tables.
+    if (!(name in map)) map[name] = tier;
+  }
+  return map;
 }
 
 function parseTokens() {
@@ -310,8 +385,9 @@ function main() {
   });
 
   const figmaMap = loadFigmaMapping();
+  const stabilityByName = parseStability();
   // Single packages/ui tree; layer is derived per-entry from its story title.
-  const all = walkComponents(project, null, path.join(ROOT, 'packages', 'ui'));
+  const all = walkComponents(project, path.join(ROOT, 'packages', 'ui'), figmaMap?.codeConnect, stabilityByName);
   const components = all.filter((i) => i.layer === 'components');
   const patterns   = all.filter((i) => i.layer === 'patterns');
   const tokens     = parseTokens();
@@ -345,8 +421,23 @@ function main() {
     tokens,
   };
 
+  // Determinism for the CI freshness gate: `generatedAt` is a wall-clock
+  // stamp, so a naïve `git diff --exit-code` would flag every regeneration as
+  // "drift" purely from the timestamp. If nothing else changed, reuse the
+  // previous stamp so the output stays byte-identical and the gate fires only
+  // on real catalog drift (a new/renamed component, changed inputs, etc.).
+  if (fs.existsSync(OUT)) {
+    try {
+      const prev = JSON.parse(fs.readFileSync(OUT, 'utf8'));
+      const norm = (m) => JSON.stringify({ ...m, generatedAt: '' });
+      if (norm(manifest) === norm(prev)) manifest.generatedAt = prev.generatedAt;
+    } catch {
+      /* corrupt/absent previous manifest — fall through and write fresh */
+    }
+  }
+
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
-  fs.writeFileSync(OUT, JSON.stringify(manifest, null, 2));
+  fs.writeFileSync(OUT, JSON.stringify(manifest, null, 2) + '\n');
   const figmaCovered = componentsWithFigma.filter((c) => c.figma).length + patternsWithFigma.filter((p) => p.figma).length;
   console.log(`mcp manifest: ${manifest.totals.components} components, ${manifest.totals.patterns} patterns, ${manifest.totals.tokens} tokens, ${figmaCovered} figma node refs → ${path.relative(ROOT, OUT)}`);
 }

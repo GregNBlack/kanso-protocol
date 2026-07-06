@@ -282,6 +282,35 @@ export class KpTableHeaderDirective {
 
     /* Checkbox cell centers the KpCheckbox inside a fixed column width. */
     .kp-table__cell--checkbox kp-checkbox { display: inline-flex; }
+
+    @media (forced-colors: active) {
+      /* The header sort buttons reset all UA styling (all: unset), so
+         keyboard focus has no visible ring once colors are forced. */
+      .kp-table__header-button:focus-visible {
+        outline: var(--kp-focus-ring-width) solid Highlight;
+        outline-offset: var(--kp-focus-ring-offset);
+      }
+      /* Row selection is conveyed only by a background swap, which flattens
+         to the page color in forced-colors. Paint the selected row with
+         system Highlight so it stays distinguishable. */
+      .kp-table__row--selected {
+        forced-color-adjust: none;
+        background: Highlight !important;
+        color: HighlightText;
+      }
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
   `],
 })
 export class KpTableComponent<T = unknown> {

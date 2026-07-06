@@ -1,0 +1,16 @@
+{
+  "focus": {
+    "ring": {
+      "width": {
+        "$value": "2px",
+        "$type": "dimension",
+        "$description": "Focus-ring outline thickness. Was a hardcoded `2px` copy-pasted across ~28 outline declarations; tokenized so ring thickness is themeable and can't drift. Pairs with the color token --kp-color-focus-ring."
+      },
+      "offset": {
+        "$value": "2px",
+        "$type": "dimension",
+        "$description": "Focus-ring outline-offset — the gap between the element edge and the ring. Tokenized alongside width for the same reason."
+      }
+    }
+  }
+}

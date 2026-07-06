@@ -270,6 +270,34 @@ export interface KpNotification {
       padding: 8px 16px;
       border-top: 1px solid var(--kp-color-border-default);
     }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Forced-colors: the active filter is conveyed only via background +
+       accent text, both of which flatten. Pin it to system selection colors
+       so the active tab stays distinguishable. */
+    @media (forced-colors: active) {
+      .kp-notif-center__filter--active {
+        forced-color-adjust: none;
+        background: Highlight;
+        color: HighlightText;
+      }
+      .kp-notif-center__filter--active .kp-notif-center__count {
+        forced-color-adjust: none;
+        background: HighlightText;
+        color: Highlight;
+      }
+    }
   `],
 })
 export class KpNotificationCenterComponent implements OnInit {

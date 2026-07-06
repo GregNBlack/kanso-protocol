@@ -232,6 +232,41 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
       gap: 0;
       justify-content: center;
     }
+
+    /* Forced-colors (Windows High Contrast): the row button suppresses its
+       outline (all: unset) and the active state is drawn with a background +
+       fg tint and an accent indicator bar — all of which flatten. Restore a
+       focus ring and repaint the active row with the system Highlight pair. */
+    @media (forced-colors: active) {
+      .kp-nav-item__content:focus-visible {
+        outline: var(--kp-focus-ring-width) solid Highlight;
+        outline-offset: var(--kp-focus-ring-offset);
+      }
+      :host(.kp-nav-item--active) .kp-nav-item__content {
+        forced-color-adjust: none;
+        background: Highlight;
+        color: HighlightText;
+      }
+      :host(.kp-nav-item--active) .kp-nav-item__icon,
+      :host(.kp-nav-item--active) .kp-nav-item__chevron {
+        color: HighlightText;
+      }
+      :host(.kp-nav-item--active) .kp-nav-item__indicator {
+        background: Highlight;
+      }
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
   `],
 })
 export class KpNavItemComponent {

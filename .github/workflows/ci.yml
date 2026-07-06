@@ -38,6 +38,17 @@ jobs:
         run: node scripts/check-no-stale-refs.js
       - name: Lockfile workspaces in sync with disk
         run: node scripts/check-lockfile-workspaces.js
+      - name: Token integrity (matrix completeness + ramp-step + dark existence)
+        # Enforces the state matrix has no holes, that the mechanical
+        # rest→hover→active ramp step holds, and every dark override maps to a
+        # real light token. Makes the "no exception without a record" contract
+        # machine-checked instead of declared. See scripts/validate-tokens.js.
+        run: node scripts/validate-tokens.js
+      - name: Stability facts in sync (README + stability.md ↔ stability.json)
+        # docs/stability.json is the machine-readable tier source; this fails
+        # if README's status block or stability.md's summary counts drift from
+        # it. Kills the README-vs-stability contradiction class of bug.
+        run: node scripts/generate-stability.js --check
 
   build:
     runs-on: ubuntu-latest
@@ -52,6 +63,12 @@ jobs:
         run: npm run lint:tokens
       - name: Build tokens
         run: npm run build:tokens
+      - name: Contrast gate (WCAG AA, light + dark)
+        # Resolves the built --kp-color-* var() chains and computes real WCAG
+        # contrast for the curated fg/bg pairs in scripts/contrast-pairs.json,
+        # in BOTH themes. Fails below the required ratio — so an AA regression
+        # in a token pair can no longer ship on an unverified hand-comment.
+        run: npm run check:contrast
       - name: Build libraries
         run: npm run build:libs
       - name: Bundle-size budget gate
@@ -62,6 +79,15 @@ jobs:
         run: npm run check:bundle-size
       - name: Build MCP server
         run: npm run build:mcp
+      - name: MCP manifest is fresh (no drift)
+        # Regenerates packages/mcp/manifest.json and fails if it differs from
+        # the committed copy — blocks merging a stale catalog (e.g. a new
+        # component that was never re-catalogued, as happened with
+        # table-virtual). The generator is deterministic (stable generatedAt),
+        # so this only fires on genuine catalog drift, not timestamp churn.
+        run: |
+          node scripts/generate-mcp-manifest.js
+          git diff --exit-code packages/mcp/manifest.json
       - name: Build Storybook
         # KANSO_HIDE_AUDIT=1 drops the internal Foundations / Dark Theme Audit
         # page from CI builds — same flag used by deploy-storybook.yml so all
@@ -260,5 +286,11 @@ jobs:
         run: npm run build:tokens && npm run build:libs
       - name: Build custom-elements bundle
         run: npm run build:elements
+      - name: Bundle-size budget gate (incl. elements bundle)
+        # build:libs + build:elements both ran in this job, so this measures
+        # the ui fesm2022 entry points AND the framework-agnostic elements
+        # bundle (keyed `elements` in bundle-budget.json). Gates the 1.9 MB
+        # elements distribution that the ui-only `build` job can't see.
+        run: npm run check:bundle-size
       - name: Smoke — elements upgrade + render
         run: npm run test:elements

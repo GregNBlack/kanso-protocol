@@ -475,6 +475,54 @@ interface DayCell {
     :host(.kp-dp--md) { --kp-input-height: 36px; --kp-input-radius: 12px; --kp-input-padding-x: 12px; --kp-input-font-size: 16px; --kp-input-line-height: 1.5;   --kp-input-gap: 6px; --kp-input-clear-size: 20px; --kp-input-clear-icon: 14px; }
     :host(.kp-dp--lg) { --kp-input-height: 44px; --kp-input-radius: 14px; --kp-input-padding-x: 14px; --kp-input-font-size: 16px; --kp-input-line-height: 1.5;   --kp-input-gap: 8px; --kp-input-clear-size: 24px; --kp-input-clear-icon: 16px; }
     :host(.kp-dp--xl) { --kp-input-height: 52px; --kp-input-radius: 16px; --kp-input-padding-x: 16px; --kp-input-font-size: 20px; --kp-input-line-height: 1.4;   --kp-input-gap: 8px; --kp-input-clear-size: 24px; --kp-input-clear-icon: 16px; }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Windows High Contrast — the trigger focus cue and the day/month/year
+       selection states are drawn with border-color / background / box-shadow,
+       all of which flatten here. Restore them with system colors. */
+    @media (forced-colors: active) {
+      :host(:not(.kp-dp--disabled)) .kp-dp__trigger:focus-visible,
+      :host(.kp-dp--open) .kp-dp__trigger,
+      :host(.kp-dp--focus) .kp-dp__trigger {
+        outline: var(--kp-focus-ring-width) solid Highlight;
+        outline-offset: var(--kp-focus-ring-offset);
+      }
+      /* Selection + range fills lose their background — repaint with Highlight
+         so the chosen day(s) stay visible. */
+      .kp-dp__day--selected,
+      .kp-dp__day--range-start,
+      .kp-dp__day--range-end,
+      .kp-dp__day--in-range,
+      .kp-dp__month--selected,
+      .kp-dp__year--selected {
+        forced-color-adjust: none;
+        background: Highlight;
+        color: HighlightText;
+      }
+      /* Today ring is drawn with box-shadow (flattened) — restore with a border. */
+      .kp-dp__day--today {
+        outline: 1px solid CanvasText;
+        outline-offset: -3px;
+      }
+      /* Keyboard focus on a grid cell — all: unset stripped the UA outline. */
+      .kp-dp__day:focus-visible,
+      .kp-dp__month:focus-visible,
+      .kp-dp__year:focus-visible {
+        outline: var(--kp-focus-ring-width) solid Highlight;
+        outline-offset: -2px;
+      }
+    }
   `],
 })
 export class KpDatePickerComponent implements ControlValueAccessor, AfterViewChecked, OnDestroy {

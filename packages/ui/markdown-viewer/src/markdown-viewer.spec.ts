@@ -2,6 +2,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { KpMarkdownViewerComponent } from './markdown-viewer.component';
 
 describe('KpMarkdownViewerComponent', () => {
+  // Warm the `marked` module cache once before the async specs. The component
+  // lazy-loads `marked` via a dynamic import on first render (see
+  // defaultParser); that cold first import can resolve later than the fixed
+  // macrotask ticks in flush(), which made the first markdown spec race the
+  // import and see empty output. Pre-warming makes every render's import
+  // resolve from cache, so flush()'s ticks are always sufficient.
+  beforeAll(async () => {
+    await import('marked');
+  });
+
   function setup() {
     TestBed.configureTestingModule({ imports: [KpMarkdownViewerComponent] });
     const fix = TestBed.createComponent(KpMarkdownViewerComponent);

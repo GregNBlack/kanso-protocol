@@ -203,7 +203,7 @@ const RULES = [
   },
   {
     id: 'raw-motion-duration',
-    severity: 'warn',
+    severity: 'error',
     check(line) {
       // Look for `transition: ... <number>(ms|s) ...` or `animation: ...`
       // where no kp motion token is present on the same line.
@@ -219,7 +219,7 @@ const RULES = [
   },
   {
     id: 'raw-shadow',
-    severity: 'warn',
+    severity: 'error',
     check(line) {
       if (!/\bbox-shadow\s*:/.test(line)) return null;
       // Allowed: none, inherit, unset, or a `var(--kp-…)` reference.

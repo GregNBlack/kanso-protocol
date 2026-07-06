@@ -132,6 +132,21 @@ export type KpProgressColor = 'primary' | 'success' | 'danger' | 'warning' | 'ne
     :host(.kp-progress-linear--danger)  { --kp-progress-fill: var(--kp-color-progress-danger-fill); }
     :host(.kp-progress-linear--warning) { --kp-progress-fill: var(--kp-color-progress-warning-fill); }
     :host(.kp-progress-linear--neutral) { --kp-progress-fill: var(--kp-color-progress-neutral-fill); }
+
+    /* Forced-colors: the fill is conveyed via background-color over the
+       track, both of which flatten to the same system color and erase the
+       progress reading. Pin the fill to the accent color and outline the
+       track so the filled portion stays visible. */
+    @media (forced-colors: active) {
+      .kp-progress-linear__track {
+        forced-color-adjust: none;
+        border: 1px solid CanvasText;
+      }
+      .kp-progress-linear__bar {
+        forced-color-adjust: none;
+        background: Highlight;
+      }
+    }
   `],
 })
 export class KpProgressLinearComponent {

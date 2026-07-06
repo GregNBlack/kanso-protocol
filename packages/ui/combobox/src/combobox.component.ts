@@ -408,6 +408,46 @@ export interface KpComboboxOption {
       --kp-cb-option-font-size: 18px; --kp-cb-option-gap: 12px;
       --kp-cb-option-radius: 9px; --kp-cb-dropdown-radius: 16px;
     }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Windows High Contrast — the trigger's focus cue is a border-color swap
+       (flattened here) and the active option row is a background tint (also
+       flattened). Restore a real focus outline and repaint the active row. */
+    @media (forced-colors: active) {
+      :host(:not(.kp-cb--disabled)) .kp-cb__trigger:focus-within,
+      :host(.kp-cb--focus) .kp-cb__trigger,
+      :host(.kp-cb--open) .kp-cb__trigger {
+        outline: var(--kp-focus-ring-width) solid Highlight;
+        outline-offset: var(--kp-focus-ring-offset);
+      }
+      .kp-cb__option--active:not(.kp-cb__option--disabled) {
+        forced-color-adjust: none;
+        background: Highlight;
+        color: HighlightText;
+      }
+      .kp-cb__option--active:not(.kp-cb__option--disabled) mark {
+        background: transparent;
+        color: HighlightText;
+      }
+      .kp-cb__option--active .kp-cb__check-single,
+      .kp-cb__option--active .kp-cb__check {
+        forced-color-adjust: none;
+        color: HighlightText;
+        background: transparent;
+        border-color: HighlightText;
+      }
+    }
   `],
 })
 export class KpComboboxComponent implements ControlValueAccessor, AfterViewChecked, OnDestroy {

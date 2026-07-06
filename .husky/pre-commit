@@ -4,3 +4,9 @@
 # Suppress on a single line with `/* kanso-lint-disable <rule> -- <reason> */`.
 
 node scripts/lint-tokens.js --staged
+
+# Token integrity — completeness of the state matrix, the ramp-step invariant,
+# and dark-override existence. Whole-set (not staged-scoped) and fast; blocks
+# commits that introduce a matrix hole, break the ramp pattern, or add a
+# drifted dark override.
+node scripts/validate-tokens.js

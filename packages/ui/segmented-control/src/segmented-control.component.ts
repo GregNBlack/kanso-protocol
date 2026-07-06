@@ -180,7 +180,7 @@ let nextGroupId = 0;
     }
     .kp-segmented-control__input:focus-visible + .kp-segmented-control__icon,
     .kp-segmented-control__segment:has(.kp-segmented-control__input:focus-visible) {
-      outline: 2px solid var(--kp-color-focus-ring);
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-focus-ring);
       outline-offset: 1px;
     }
 
@@ -228,6 +228,31 @@ let nextGroupId = 0;
       --kp-segmented-pad-x: 16px; --kp-segmented-gap: 8px;
       --kp-segmented-fs: 20px; --kp-segmented-lh: 28px;
       --kp-segmented-icon-size: 24px;
+    }
+
+    /* The selected segment is indicated only by the pill's background,
+       which flattens in forced-colors mode and would leave every segment
+       looking identical. Paint the selected segment itself with system
+       Highlight so the current choice stays distinguishable. */
+    @media (forced-colors: active) {
+      .kp-segmented-control__segment--selected {
+        forced-color-adjust: none;
+        background: Highlight;
+        color: HighlightText;
+        border-radius: var(--kp-segmented-segment-radius);
+      }
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
     }
   `],
 })

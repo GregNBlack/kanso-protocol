@@ -440,6 +440,29 @@ export interface KpSidebarSection {
       transition: padding var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
     }
     :host(.kp-sidebar--collapsed) .kp-sidebar__footer { justify-content: center; padding-inline: 0; }
+
+    /* The toggle and footer-menu buttons reset all UA styling (all: unset),
+       so keyboard focus has no visible ring once colors are forced. Add a
+       real outline in forced-colors mode. */
+    @media (forced-colors: active) {
+      .kp-sidebar__toggle:focus-visible,
+      .kp-sidebar__footer-menu:focus-visible {
+        outline: var(--kp-focus-ring-width) solid Highlight;
+        outline-offset: var(--kp-focus-ring-offset);
+      }
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
   `],
 })
 export class KpSidebarComponent implements OnInit {
