@@ -25,19 +25,24 @@ tokens/                    DTCG JSON — single source of truth
   themes/                  per-theme overrides (e.g. dark)
 
 packages/
-  core/                    generated CSS + types (published)
-  components/{name}/       atomic primitives (Button, Input, …)
-  patterns/{name}/         opinionated compositions (AppShell, FilterBar, …)
-  examples/{name}/         full-page reference layouts (Storybook only)
+  ui/                      the single published Angular package (ADR 0002)
+    <name>/                one folder per component AND pattern — each a
+                           secondary entry point (@kanso-protocol/ui/<name>)
+    styles/                generated tokens.css / _tokens.scss / dark.css
+  elements/                framework-agnostic custom-elements bundle (@kanso-protocol/elements)
+  mcp/                     Model Context Protocol server (@kanso-protocol/mcp)
+  examples/                full-page reference layouts (Storybook only)
 
 docs/
   components/{name}.md     API contract per component
   patterns/{name}.md       API contract per pattern
   architecture-decision-record.md   design decisions log
 
-.storybook/                Storybook 8 config
+.storybook/                Storybook config
 tokens/                    DTCG source
 ```
+
+> **Note on layout:** the `5.0` line consolidated the former per-component packages (the pre-v5 `components/`, `patterns/`, and `core` folders) into the single `@kanso-protocol/ui` package with per-component secondary entry points ([ADR 0002](docs/adrs/0002-single-package-secondary-entry-points.md)). Everything lives under `packages/ui/<name>/` now.
 
 ## Golden rules
 
@@ -46,7 +51,7 @@ Read [`docs/architecture-decision-record.md`](docs/architecture-decision-record.
 1. **Every value is a token.** No hex, no magic numbers in component CSS. If you need a new value, add it to `tokens/primitive/` or `tokens/semantic/`, rebuild, and reference the resulting CSS variable.
 2. **Every component is standalone.** Don't add cross-component imports. If two components need shared logic, extract it to `@kanso-protocol/ui`.
 3. **Components don't depend on patterns.** The dependency graph flows `components → patterns → examples`. Never the reverse.
-4. **Every state is explicit.** Six states (rest / hover / active / focus / disabled / loading) — no opacity overlays, no `:hover { opacity: 0.8 }`.
+4. **Every state is explicit.** Six core states (rest / hover / active / focus / disabled / loading), plus `error` on form controls — each with its own token. No opacity overlays, no `:hover { opacity: 0.8 }`.
 5. **Match the Figma component.** The Figma library is updated in lockstep. If you add or change a variant in code, update Figma (and vice versa). See [Figma sync](#figma-sync).
 
 ## Token workflow
@@ -105,15 +110,16 @@ Patterns live under `packages/ui/{name}/` and follow the same layout as componen
 
 ## Coding conventions
 
-- **Angular:** v18+ standalone components, `OnPush`, signals where sensible, reactive forms over template-driven.
+- **Angular:** v21+ standalone components, `OnPush`, signals where sensible, reactive forms over template-driven.
 - **CSS:** inline in `styles:` array, BEM-ish class names (`kp-{component}__{element}--{modifier}`), `:host` for root styles, CSS vars for every color / size / spacing.
 - **Naming:** `Kp{Name}Component` for classes, `kp-{name}` for selectors, `kp-{name}__{slot}` for internal elements.
 - **Types:** exported from `src/index.ts`. Every public input / output has a jsdoc.
 - **Accessibility:**
   - Semantic HTML first (`<button>`, `<input>`, `<dialog>`) — no div-as-button.
-  - Focus is visible on every interactive element (2px outline, `--kp-color-focus-ring`).
-  - `aria-*` where semantics are incomplete (e.g. `aria-expanded` on accordion trigger, `aria-busy` on loading button).
-  - Loading state preserves focus — don't remove the element from the tab order.
+  - Focus visible on every interactive element via `:focus-visible` — a tokenized ring: `var(--kp-focus-ring-width) solid var(--kp-color-focus-ring)` at `var(--kp-focus-ring-offset)`. Don't hardcode the `2px`.
+  - `aria-*` where semantics are incomplete (`aria-expanded` on accordion trigger, `aria-busy` on loading button, `aria-invalid` on error inputs). The *disabled* mapping is element-family-specific: native form elements use the native `disabled` attribute; host-element controls (`kp-input`, `kp-select`) use `aria-disabled`.
+  - `loading` and `disabled` are **separate** inputs with distinct token ramps (`aria-busy` vs `aria-disabled`). On native form controls (`<button kpButton>`), `loading` also asserts the native `disabled` attribute while busy — deliberate, to block double-submit and the axe color-contrast rule — so a natively-loading control is not focusable *during* the load.
+  - Honor `@media (prefers-reduced-motion: reduce)` (collapse transitions/decorative animation) and add `@media (forced-colors: active)` rules for interactive controls (Windows High Contrast). Use logical properties (`margin-inline`, `text-align: start`) for RTL — physical CSS is lint-blocked.
 - **No comments that restate the code.** See `docs/architecture-decision-record.md#comment-policy` — comments should explain *why*, not *what*.
 
 ## Commit style
@@ -153,9 +159,9 @@ We do **not** use the `Co-Authored-By: Claude` trailer in this repo.
 
 ## Figma sync
 
-The Figma library lives at [this file](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6). Structure:
+The public library lives on [Figma Community](https://www.figma.com/community/file/1655934833130278579) — duplicate it to edit. (The previous source file was on an account that has since been retired; the editable master now lives under the maintainer's current account.) Structure:
 
-- 🧩 **Components** — 38 sections (one per component) with master set + parts + examples.
+- 🧩 **Components** — 42 sections (one per component) with master set + parts + examples.
 - 📐 **Patterns** — 20 sections.
 - 🖼️ **Example Pages** — 5 pages (Light + Dark pair each).
 
@@ -194,7 +200,7 @@ Running one suite during development: `npx ng test` then use the `p` (filter by 
 
 ## Building & publishing packages
 
-Every library (core + each component + each pattern) is published as its own npm package under the `@kanso-protocol/*` scope.
+The catalog ships as **three** published packages under the `@kanso-protocol/*` scope: **`ui`** (the single Angular package — every component and pattern is a secondary entry point, `@kanso-protocol/ui/<name>`, [ADR 0002](docs/adrs/0002-single-package-secondary-entry-points.md)), **`elements`** (framework-agnostic custom elements), and **`mcp`** (the MCP server).
 
 ### Build all
 
@@ -205,19 +211,19 @@ npm run build:libs     # ng-packagr → dist/packages/**/
 
 `build:libs` does three things:
 
-1. **Scaffolds** `ng-package.json` + `tsconfig.lib.json` for any package that lacks them (idempotent — safe to re-run).
-2. **Topologically sorts** packages by their `@kanso-protocol/*` imports, then builds in dependency order.
-3. **Re-points** `node_modules/@kanso-protocol/<pkg>` symlinks at the built `dist/**/` output, so downstream packages resolve the compiled FESM bundle rather than the raw TS source.
+1. **Scaffolds** `ng-package.json` + `tsconfig.lib.json` for any entry point that lacks them (idempotent — safe to re-run).
+2. **Builds** `@kanso-protocol/ui` via ng-packagr — one FESM bundle per secondary entry point.
+3. **Re-points** the `node_modules/@kanso-protocol/ui` symlink at the built `dist/` output, so the elements bundle and any consumer resolve the compiled FESM rather than raw TS source.
 
-Artifacts land in `dist/packages/{core,components,patterns}/<name>/` with `fesm2022/`, `types/`, `styles/` (core only), and a fully-formed `package.json` (exports map, `module`, `typings`, peer deps).
+Artifacts land in `dist/packages/ui/` (`fesm2022/` — one `.mjs` per entry point — plus `types/` and `styles/`) with a fully-formed `package.json` (exports map, `module`, `typings`, peer deps). The `elements` and `mcp` packages build separately (`npm run build:elements`, `npm run build:mcp`) into `dist/packages/{elements,mcp}/`.
 
 ### Build one
 
 ```bash
-npm run build:lib core          # or: button, pagination, stat-card, ...
+npm run build:lib button        # or: pagination, stat-card, table-virtual, ...
 ```
 
-Accepts the short folder name. If the target imports other workspace packages, build them first.
+Accepts the short entry-point folder name under `packages/ui/`.
 
 ### Versioning policy
 
@@ -256,7 +262,7 @@ To bypass for a legitimate reason (revert PRs, build-tooling-only commits that h
 
 ### Release workflow (changesets)
 
-Versioning and publishing are driven by [changesets](https://github.com/changesets/changesets). All `@kanso-protocol/*` packages are in the `fixed` group — they bump together.
+Versioning and publishing are driven by [changesets](https://github.com/changesets/changesets). The `@kanso-protocol/*` packages version **independently** (`.changeset/config.json` → `fixed: []`, `linked: []`) — a change to `mcp` doesn't force a `ui` bump. A single changeset can still list several packages when one change touches more than one (e.g. `ui` 5.16.0, `mcp` 4.3.0, `elements` 0.2.0 shipped together but at their own numbers).
 
 **When you make a change that should ship:**
 
@@ -264,14 +270,25 @@ Versioning and publishing are driven by [changesets](https://github.com/changese
 npx changeset             # choose affected packages + bump type + write a summary
 ```
 
-That writes a markdown file under `.changeset/`. Commit it with your PR.
+That writes a markdown file under `.changeset/`.
 
-**Release pipeline (automated on `main`):**
+**Preferred (maintainer) flow — local bump.** Rather than leaving the `.changeset/*.md` for the bot to open a separate "Version Packages" PR, consume it locally so the bump ships *in the same feature PR*:
 
-1. Merge a PR with changesets to `main`.
-2. `.github/workflows/release.yml` opens (or updates) a **"Version Packages"** PR — bumps every `@kanso-protocol/*` package.json + writes `CHANGELOG.md` entries.
+```bash
+npx changeset            # write the changeset(s)
+npx changeset version    # consume them → bump package.json + per-package CHANGELOGs
+# then add the root CHANGELOG.md umbrella entry, resync the lockfile
+npm install --package-lock-only --legacy-peer-deps
+```
+
+Commit the resulting bumps (no leftover `.md`) with your PR. On merge, `release.yml` finds no pending changesets and goes straight to publish — no Version PR.
+
+**Automated fallback (if you commit the `.md` instead):**
+
+1. Merge a PR that still contains `.changeset/*.md` to `main`.
+2. `.github/workflows/release.yml` (via `changesets/action`) opens (or updates) a **"Version Packages"** PR — bumps the affected `@kanso-protocol/*` package.json files + writes `CHANGELOG.md` entries.
 3. Merge that Version PR.
-4. The workflow runs again, sees no pending changesets, builds libraries, and runs `scripts/publish-libs.js` which walks `dist/packages/**/` and `npm publish`es each package whose `<name>@<version>` isn't on the registry yet.
+4. The workflow runs again, sees no pending changesets, builds, and runs `scripts/publish-libs.js` which walks `dist/packages/**/` and `npm publish`es each package whose `<name>@<version>` isn't on the registry yet.
 
 **Secrets required** (repo settings → Actions → Secrets):
 
