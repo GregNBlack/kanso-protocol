@@ -120,6 +120,20 @@ const SIZE_CFG: Record<KpProgressCircularSize, { d: number; s: number; valueFont
     :host(.kp-progress-circular--danger)  { --kp-progress-fill: var(--kp-color-progress-danger-fill); }
     :host(.kp-progress-circular--warning) { --kp-progress-fill: var(--kp-color-progress-warning-fill); }
     :host(.kp-progress-circular--neutral) { --kp-progress-fill: var(--kp-color-progress-neutral-fill); }
+
+    /* Forced-colors: the arc and track strokes flatten to the same system
+       color, erasing the progress reading. Pin the arc to the accent color
+       and the track to the foreground so the sweep stays visible. */
+    @media (forced-colors: active) {
+      .kp-progress-circular__track {
+        forced-color-adjust: none;
+        stroke: CanvasText;
+      }
+      .kp-progress-circular__arc {
+        forced-color-adjust: none;
+        stroke: Highlight;
+      }
+    }
   `],
 })
 export class KpProgressCircularComponent {

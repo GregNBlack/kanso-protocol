@@ -28,6 +28,11 @@ const fs = require('node:fs');
 // root), `elements` (the planned framework-agnostic custom-elements bundle).
 const STALE_PKG = /@kanso-protocol\/(?!ui\b|ui\/|mcp\b|source\b|elements\b)[a-z][a-z0-9-]*/;
 const STALE_PATH = /packages\/(components|patterns|core|i18n)\//;
+// Also catch the path.join(...) form: separate string args ('packages',
+// 'components', …) never form the slash literal above — which is exactly how a
+// stale `packages/components/icon` reference hid in generate-icon-map.js past
+// this guard. Matches e.g. 'packages', 'components' and "packages", "core".
+const STALE_PATH_JOIN = /['"]packages['"]\s*,\s*['"](components|patterns|core|i18n)['"]/;
 
 // Files that describe the OLD world on purpose — exempt by exact path or prefix.
 const ALLOW = [
@@ -62,7 +67,7 @@ for (const file of tracked) {
   }
   lines.forEach((line, i) => {
     const pkg = line.match(STALE_PKG);
-    const pth = line.match(STALE_PATH);
+    const pth = line.match(STALE_PATH) || line.match(STALE_PATH_JOIN);
     if (pkg) hits.push({ file, line: i + 1, kind: 'pkg', match: pkg[0], text: line.trim() });
     if (pth) hits.push({ file, line: i + 1, kind: 'path', match: pth[0], text: line.trim() });
   });

@@ -96,7 +96,7 @@ export type KpMenuItemSize = 'sm' | 'md' | 'lg';
     :host(:focus-visible),
     :host(.kp-menu-item--focus) {
       --kp-menu-item-bg: var(--kp-color-surface-subtle);
-      outline: 2px solid var(--kp-color-focus-ring);
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-focus-ring);
       outline-offset: -1px;
     }
     :host(.kp-menu-item--disabled) {
@@ -210,6 +210,34 @@ export type KpMenuItemSize = 'sm' | 'md' | 'lg';
       --kp-menu-item-height: auto;
       padding-top: 12px;
       padding-bottom: 12px;
+    }
+
+    /* Forced-colors (Windows High Contrast): the selected state is conveyed by
+       a background tint + accent fg, both of which flatten. Paint it with the
+       system Highlight pair so the selected item stays distinguishable; the
+       focus ring already uses outline, which survives. */
+    @media (forced-colors: active) {
+      :host(.kp-menu-item--selected) {
+        forced-color-adjust: none;
+        background: Highlight;
+        color: HighlightText;
+      }
+      :host(.kp-menu-item--selected) .kp-menu-item__icon,
+      :host(.kp-menu-item--selected) .kp-menu-item__trailing {
+        color: HighlightText;
+      }
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
     }
   `]
 })

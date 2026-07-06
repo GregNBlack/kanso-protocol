@@ -129,6 +129,32 @@ type KpProgressColor = 'primary' | 'success' | 'danger' | 'warning' | 'neutral';
     :host(.kp-progress-segmented--danger)  { --kp-progress-fill: var(--kp-color-progress-danger-fill); }
     :host(.kp-progress-segmented--warning) { --kp-progress-fill: var(--kp-color-progress-warning-fill); }
     :host(.kp-progress-segmented--neutral) { --kp-progress-fill: var(--kp-color-progress-neutral-fill); }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Forced-colors: complete vs incomplete segments are conveyed only via
+       background-color, which flattens. Outline every segment so the total
+       stays readable, and fill completed ones with the accent color. */
+    @media (forced-colors: active) {
+      .kp-progress-segmented__segment {
+        forced-color-adjust: none;
+        border: 1px solid CanvasText;
+      }
+      .kp-progress-segmented__segment--complete {
+        forced-color-adjust: none;
+        background: Highlight;
+      }
+    }
   `],
 })
 export class KpProgressSegmentedComponent {

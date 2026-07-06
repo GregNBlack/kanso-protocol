@@ -93,7 +93,7 @@ Implements `ControlValueAccessor`. In single mode `ngModel` is a `string \| null
 
 ## References
 
-- **Figma component**: [`Combobox` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System)
+- **Figma component**: [`Combobox` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-combobox
 - **Source**: `packages/ui/combobox/src/`
 - **Tokens used**:

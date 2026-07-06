@@ -94,7 +94,7 @@ Each `side` has its own slide-in animation; backdrop fades in independently.
 
 ## References
 
-- **Figma component**: [`Drawer` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3476-8207)
+- **Figma component**: [`Drawer` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3476-8207)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-drawer
 - **Source**: `packages/ui/drawer/src/`
 - **Tokens used**:

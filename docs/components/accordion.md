@@ -83,7 +83,7 @@ Each `<kp-accordion-item>` renders a clickable trigger (title + optional descrip
 
 ## References
 
-- **Figma components**: [`Accordion` container](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3481-8668) · [`AccordionItem` atom](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3480-8218)
+- **Figma components**: [`Accordion` container](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3481-8668) · [`AccordionItem` atom](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3480-8218)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-accordion
 - **Source**: `packages/ui/accordion/src/`
 - **Tokens used**:

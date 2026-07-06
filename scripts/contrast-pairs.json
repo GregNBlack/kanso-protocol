@@ -1,0 +1,262 @@
+[
+  {
+    "fg": "accent-primary-fg",
+    "bg": "surface-base",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Brand accent text on the page/card surface. audit-2026-05-12 claims 7.46:1 (blue.700 on white)."
+  },
+  {
+    "fg": "accent-danger-fg",
+    "bg": "surface-base",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Danger accent text on the page/card surface. audit claims 6.27:1 (red.700 on white)."
+  },
+  {
+    "fg": "accent-success-fg",
+    "bg": "surface-base",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Success accent text on the page/card surface. audit claims 4.74:1 (green.700 on white)."
+  },
+  {
+    "fg": "accent-warning-fg",
+    "bg": "surface-base",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Warning accent text on the page/card surface. audit claims 5.53:1 (amber.700 on white)."
+  },
+  {
+    "fg": "accent-info-fg",
+    "bg": "surface-base",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Info accent text on the page/card surface. audit claims 5.54:1 (cyan.700 on white)."
+  },
+
+  {
+    "fg": "text-strong",
+    "bg": "surface-base",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Headings / emphasized text on the page/card surface."
+  },
+  {
+    "fg": "text-default",
+    "bg": "surface-base",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Default body text on the page/card surface."
+  },
+  {
+    "fg": "text-muted",
+    "bg": "surface-base",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Secondary/caption text on the page/card surface — carries a dark-mode override for AA."
+  },
+
+  {
+    "fg": "primary-default-fg-rest",
+    "bg": "primary-default-bg-rest",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Solid primary button label on its saturated fill (white on blue.600)."
+  },
+  {
+    "fg": "danger-default-fg-rest",
+    "bg": "danger-default-bg-rest",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Solid danger button label on its saturated fill (white on red.600)."
+  },
+  {
+    "fg": "neutral-default-fg-rest",
+    "bg": "neutral-default-bg-rest",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Solid neutral button label on its dark fill."
+  },
+
+  {
+    "fg": "primary-subtle-fg-rest",
+    "bg": "primary-subtle-bg-rest",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Subtle primary button label on its tinted fill (blue.700 on blue.50)."
+  },
+  {
+    "fg": "danger-subtle-fg-rest",
+    "bg": "danger-subtle-bg-rest",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Subtle danger button label on its tinted fill."
+  },
+  {
+    "fg": "neutral-subtle-fg-rest",
+    "bg": "neutral-subtle-bg-rest",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Subtle neutral button label on its tinted fill."
+  },
+
+  {
+    "fg": "badge-primary-filled-fg",
+    "bg": "badge-primary-filled-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Filled primary badge label on its saturated fill."
+  },
+  {
+    "fg": "badge-danger-filled-fg",
+    "bg": "badge-danger-filled-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Filled danger badge label on its saturated fill."
+  },
+  {
+    "fg": "badge-success-filled-fg",
+    "bg": "badge-success-filled-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Filled success badge label on its saturated fill (white on green.700)."
+  },
+  {
+    "fg": "badge-warning-filled-fg",
+    "bg": "badge-warning-filled-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Filled warning badge label — dark text on amber fill (amber is too light for white)."
+  },
+  {
+    "fg": "badge-info-filled-fg",
+    "bg": "badge-info-filled-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Filled info badge label on its saturated fill (white on cyan.700)."
+  },
+  {
+    "fg": "badge-neutral-filled-fg",
+    "bg": "badge-neutral-filled-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Filled neutral badge label on its dark fill."
+  },
+
+  {
+    "fg": "badge-primary-subtle-fg",
+    "bg": "badge-primary-subtle-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Subtle primary badge label on its tinted fill."
+  },
+  {
+    "fg": "badge-danger-subtle-fg",
+    "bg": "badge-danger-subtle-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Subtle danger badge label on its tinted fill."
+  },
+  {
+    "fg": "badge-success-subtle-fg",
+    "bg": "badge-success-subtle-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Subtle success badge label on its tinted fill."
+  },
+  {
+    "fg": "badge-warning-subtle-fg",
+    "bg": "badge-warning-subtle-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Subtle warning badge label on its tinted fill."
+  },
+  {
+    "fg": "badge-info-subtle-fg",
+    "bg": "badge-info-subtle-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Subtle info badge label on its tinted fill."
+  },
+  {
+    "fg": "badge-neutral-subtle-fg",
+    "bg": "badge-neutral-subtle-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Subtle neutral badge label on its tinted fill."
+  },
+
+  {
+    "fg": "alert-primary-subtle-fg-desc",
+    "bg": "alert-primary-subtle-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Primary subtle-alert body text on the alert's tinted background."
+  },
+  {
+    "fg": "alert-danger-subtle-fg-desc",
+    "bg": "alert-danger-subtle-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Danger subtle-alert body text on the alert's tinted background."
+  },
+  {
+    "fg": "alert-success-subtle-fg-desc",
+    "bg": "alert-success-subtle-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Success subtle-alert body text on the alert's tinted background."
+  },
+  {
+    "fg": "alert-warning-subtle-fg-desc",
+    "bg": "alert-warning-subtle-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Warning subtle-alert body text on the alert's tinted background."
+  },
+  {
+    "fg": "alert-info-subtle-fg-desc",
+    "bg": "alert-info-subtle-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Info subtle-alert body text on the alert's tinted background."
+  },
+
+  {
+    "fg": "stepper-label-active",
+    "bg": "surface-base",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Active step label text on the page/card surface."
+  },
+
+  {
+    "fg": "icon-primary",
+    "bg": "surface-base",
+    "theme": "both",
+    "level": "AA-ui",
+    "note": "Default icon glyph on the page/card surface — non-text UI, 3:1."
+  },
+  {
+    "fg": "icon-danger",
+    "bg": "surface-base",
+    "theme": "both",
+    "level": "AA-ui",
+    "note": "Danger icon glyph on the page/card surface — non-text UI, 3:1."
+  },
+  {
+    "fg": "icon-success",
+    "bg": "surface-base",
+    "theme": "both",
+    "level": "AA-ui",
+    "note": "Success icon glyph on the page/card surface — non-text UI, 3:1."
+  },
+  {
+    "fg": "icon-warning",
+    "bg": "surface-base",
+    "theme": "both",
+    "level": "AA-ui",
+    "note": "Warning icon glyph on the page/card surface — non-text UI, 3:1."
+  }
+]

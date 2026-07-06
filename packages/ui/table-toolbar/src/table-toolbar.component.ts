@@ -256,6 +256,17 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
 
     /* Inline icons inside buttons */
     :host .ti { font-size: 14px; line-height: 1; }
+
+    /* Windows High Contrast: the active density segment reads as active only
+       via background + box-shadow, both flattened in forced-colors — pin it to
+       a system accent so the current density stays distinguishable. */
+    @media (forced-colors: active) {
+      .kp-tt__density-btn--active {
+        forced-color-adjust: none;
+        background: Highlight;
+        color: HighlightText;
+      }
+    }
   `],
 })
 export class KpTableToolbarComponent {

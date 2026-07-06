@@ -50,7 +50,7 @@ interface KpFilterChip {
 
 ## References
 
-- **Figma**: `FilterBar` Component Set on the [📐 Patterns page](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System).
+- **Figma**: `FilterBar` Component Set on the [📐 Patterns page](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System).
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-filterbar
 - **Source**: `packages/ui/filter-bar/src/`
 

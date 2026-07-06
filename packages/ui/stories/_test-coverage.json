@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-08T05:54:50.732Z",
-  "totalSpecs": 55,
-  "totalTests": 653,
-  "totalPackages": 62,
+  "generatedAt": "2026-07-06T10:41:48.455Z",
+  "totalSpecs": 56,
+  "totalTests": 683,
+  "totalPackages": 63,
   "items": [
     {
       "layer": "components",
@@ -112,7 +112,7 @@
       "specFiles": [
         "packages/ui/combobox/src/combobox.spec.ts"
       ],
-      "tests": 16
+      "tests": 19
     },
     {
       "layer": "components",
@@ -178,7 +178,7 @@
       "specFiles": [
         "packages/ui/menu/src/menu.spec.ts"
       ],
-      "tests": 18
+      "tests": 19
     },
     {
       "layer": "components",
@@ -244,7 +244,7 @@
       "specFiles": [
         "packages/ui/markdown-viewer/src/markdown-viewer.spec.ts"
       ],
-      "tests": 10
+      "tests": 12
     },
     {
       "layer": "components",
@@ -278,7 +278,7 @@
         "packages/ui/popover/src/popover.directive.spec.ts",
         "packages/ui/popover/src/popover.spec.ts"
       ],
-      "tests": 24
+      "tests": 25
     },
     {
       "layer": "components",
@@ -372,6 +372,17 @@
     },
     {
       "layer": "components",
+      "name": "table-virtual",
+      "title": "Components/TableVirtual",
+      "storybookId": "components-tablevirtual--docs",
+      "specFile": "packages/ui/table-virtual/src/table-virtual.spec.ts",
+      "specFiles": [
+        "packages/ui/table-virtual/src/table-virtual.spec.ts"
+      ],
+      "tests": 5
+    },
+    {
+      "layer": "components",
       "name": "tabs",
       "title": "Components/Tabs",
       "storybookId": "components-tabs--docs",
@@ -434,7 +445,7 @@
       "specFiles": [
         "packages/ui/tree/src/tree.spec.ts"
       ],
-      "tests": 22
+      "tests": 25
     },
     {
       "layer": "components",
@@ -489,7 +500,7 @@
       "specFiles": [
         "packages/ui/header/src/header.spec.ts"
       ],
-      "tests": 19
+      "tests": 21
     },
     {
       "layer": "patterns",
@@ -511,7 +522,7 @@
       "specFiles": [
         "packages/ui/page-header/src/page-header.spec.ts"
       ],
-      "tests": 14
+      "tests": 15
     },
     {
       "layer": "patterns",
@@ -544,7 +555,7 @@
       "specFiles": [
         "packages/ui/sidebar/src/sidebar.spec.ts"
       ],
-      "tests": 27
+      "tests": 30
     },
     {
       "layer": "patterns",
@@ -555,7 +566,7 @@
       "specFiles": [
         "packages/ui/stat-card/src/stat-card.spec.ts"
       ],
-      "tests": 16
+      "tests": 18
     },
     {
       "layer": "patterns",
@@ -588,7 +599,7 @@
       "specFiles": [
         "packages/ui/user-menu/src/user-menu.spec.ts"
       ],
-      "tests": 17
+      "tests": 20
     },
     {
       "layer": "patterns",
@@ -599,7 +610,7 @@
       "specFiles": [
         "packages/ui/notification-center/src/notification-center.spec.ts"
       ],
-      "tests": 20
+      "tests": 22
     },
     {
       "layer": "components",
@@ -610,7 +621,7 @@
       "specFiles": [
         "packages/ui/toast/src/toast.spec.ts"
       ],
-      "tests": 14
+      "tests": 16
     }
   ],
   "missing": [

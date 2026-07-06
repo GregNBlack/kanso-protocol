@@ -358,6 +358,35 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
     :host(.kp-tp--sm) { --kp-input-height: 28px; --kp-input-radius: 10px; --kp-input-padding-x: 8px;  --kp-input-font-size: 14px; --kp-input-line-height: 1.428; --kp-input-gap: 5px; --kp-input-clear-size: 16px; --kp-input-clear-icon: 12px; }
     :host(.kp-tp--md) { --kp-input-height: 36px; --kp-input-radius: 12px; --kp-input-padding-x: 12px; --kp-input-font-size: 16px; --kp-input-line-height: 1.5;   --kp-input-gap: 6px; --kp-input-clear-size: 20px; --kp-input-clear-icon: 14px; }
     :host(.kp-tp--lg) { --kp-input-height: 44px; --kp-input-radius: 14px; --kp-input-padding-x: 14px; --kp-input-font-size: 16px; --kp-input-line-height: 1.5;   --kp-input-gap: 8px; --kp-input-clear-size: 24px; --kp-input-clear-icon: 16px; }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. Also stops the smooth
+       column auto-scroll from animating. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Windows High Contrast: trigger focus is a border-color swap (flattens),
+       and the selected time cell reads only via background — both disappear in
+       forced-colors. Add a real focus ring and pin the selected cell to a
+       system accent. */
+    @media (forced-colors: active) {
+      :host(:not(.kp-tp--disabled):not(.kp-tp--error)) .kp-tp__trigger:focus-visible {
+        outline: var(--kp-focus-ring-width) solid Highlight;
+        outline-offset: var(--kp-focus-ring-offset);
+      }
+      .kp-tp__item--selected {
+        forced-color-adjust: none;
+        background: Highlight;
+        color: HighlightText;
+      }
+    }
   `],
 })
 export class KpTimePickerComponent implements ControlValueAccessor, AfterViewChecked, OnDestroy {

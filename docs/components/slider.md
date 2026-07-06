@@ -110,7 +110,7 @@ Works with both template-driven and reactive forms via `ControlValueAccessor`. I
 
 ## References
 
-- **Figma component**: [`Slider` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System)
+- **Figma component**: [`Slider` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-slider
 - **Source**: `packages/ui/slider/src/`
 - **Tokens used**:

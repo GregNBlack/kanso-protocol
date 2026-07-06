@@ -108,8 +108,8 @@ export type KpPaginationNavDirection = 'prev' | 'next';
       color: var(--kp-color-pagination-item-fg-active);
     }
     .kp-pi__btn:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring);
-      outline-offset: 2px;
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-focus-ring);
+      outline-offset: var(--kp-focus-ring-offset);
     }
 
     .kp-pi__icon {
@@ -201,6 +201,34 @@ export type KpPaginationNavDirection = 'prev' | 'next';
     :host(.kp-pi--sm.kp-pi--nav-text) .kp-pi__btn,
     :host(.kp-pi--sm.kp-pi--nav-icon-text) .kp-pi__btn {
       padding: 0 12px;
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Forced-colors: keep the focus ring visible in the system palette, and
+       keep the current page distinguishable — its selected state is conveyed
+       only via background/foreground colors, which flatten. */
+    @media (forced-colors: active) {
+      .kp-pi__btn:focus-visible {
+        outline: var(--kp-focus-ring-width) solid Highlight;
+        outline-offset: var(--kp-focus-ring-offset);
+      }
+      :host(.kp-pi--selected) .kp-pi__btn,
+      :host(.kp-pi--selected) .kp-pi__btn:hover {
+        forced-color-adjust: none;
+        background: Highlight;
+        color: HighlightText;
+      }
     }
   `],
 })

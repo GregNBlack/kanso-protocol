@@ -89,6 +89,29 @@ Four surfaces can't be plain custom elements (they're attribute selectors on nat
 
 The bundle embeds the Angular runtime, so it's ~1.9 MB minified (~300–400 KB gzipped) for all 73 components. That's the cost of a framework-agnostic distribution. For per-component or per-app trimming, tree-shake by building a custom entry that imports only the `KANSO_ELEMENTS` subset you need (the registry is plain data). **Angular apps should use `@kanso-protocol/ui` instead** — same components, no embedded runtime, full tree-shaking.
 
+## Server-side rendering
+
+**The `<kp-*>` custom elements are client-upgrade-only — they do not server-render.** The bundle bootstraps a browser-platform Angular application (`createApplication` from `@angular/platform-browser`) and its auto-define is gated on `typeof customElements !== 'undefined'`, which is false in Node. So under React/Next.js (or any) SSR, `<kp-badge>Active</kp-badge>` is emitted to the server HTML as an un-upgraded element — its projected light-DOM children render, but Kanso's own markup/styling only appears after the bundle loads and upgrades it on the client. Plan for that flash:
+
+- Reserve layout space (fixed height / skeleton) for elements that render empty pre-upgrade, so hydration doesn't shift the page.
+- Or gate the element behind a client-only boundary (e.g. Next.js `dynamic(..., { ssr: false })`).
+
+> The **`SSR-safe`** guarantee in [`docs/ssr.md`](ssr.md) applies to the native Angular package [`@kanso-protocol/ui`](getting-started.md) with `@angular/ssr`, **not** to the custom-elements bundle. If you need true server-rendered Kanso markup, that path is Angular-only today. (Declarative Shadow DOM SSR is incompatible with Kanso's deliberate light-DOM + global-token architecture.)
+
+## TypeScript & JSX
+
+The package ships generated type metadata so `<kp-*>` type-checks in a TSX/React project instead of erroring as an unknown element:
+
+- **`custom-elements.json`** — a [Custom Elements Manifest](https://github.com/webcomponents/custom-elements-manifest) describing every tag's attributes, properties, and events. IDEs and tools that read the CEM get autocomplete + hover docs.
+- **JSX types** — importing `@kanso-protocol/elements` augments `JSX.IntrinsicElements` with a typed entry per tag (props derived from each component's `@Input()`s, plus `ref`). No hand-written `declare global` needed.
+
+```tsx
+// after `import '@kanso-protocol/elements'` — <kp-select> is now type-checked
+<kp-select size="md" placeholder="Pick one" />
+```
+
+React 19 forwards custom-element properties and events natively, so object inputs and `on…` events work without the `useRef` + `addEventListener` recipe shown above (still required on React ≤ 18).
+
 ## How it works (for maintainers)
 
 - `scripts/generate-elements-registry.js` scans `packages/ui` for `kp-*` selectors → `packages/elements/src/registry.generated.ts` (`{ tag, component }[]`).

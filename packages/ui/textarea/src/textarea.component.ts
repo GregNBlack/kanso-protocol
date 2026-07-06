@@ -211,6 +211,28 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
       --kp-textarea-radius: 14px; --kp-textarea-fs: 16px; --kp-textarea-lh: 24px;
       --kp-textarea-min-h: 88px;
     }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Windows High Contrast: focus is signalled by a border-color swap, and
+       borders flatten to a single system color in forced-colors, so focus
+       becomes invisible. Add a real outline ring on focus-within. */
+    @media (forced-colors: active) {
+      :host(:focus-within) {
+        outline: var(--kp-focus-ring-width) solid Highlight;
+        outline-offset: var(--kp-focus-ring-offset);
+      }
+    }
   `]
 })
 export class KpTextareaComponent implements ControlValueAccessor {

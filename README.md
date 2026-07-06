@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/GregNBlack/kanso-protocol/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/GregNBlack/kanso-protocol/actions/workflows/ci.yml)
 [![Storybook](https://img.shields.io/badge/Storybook-live-FF4785?logo=storybook&logoColor=white)](https://gregnblack.github.io/kanso-protocol)
-[![Figma Community](https://img.shields.io/badge/Figma-Community-F24E1E?logo=figma&logoColor=white)](https://www.figma.com/community/file/1633266134559104948)
+[![Figma Community](https://img.shields.io/badge/Figma-Community-F24E1E?logo=figma&logoColor=white)](https://www.figma.com/community/file/1655934833130278579)
 [![Tests](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FGregNBlack%2Fkanso-protocol%2Fmain%2F.github%2Fbadges%2Ftests.json)](https://gregnblack.github.io/kanso-protocol/?path=/docs/foundations-test-coverage--docs)
 [![MCP](https://img.shields.io/badge/MCP-ready-7c3aed)](https://www.npmjs.com/package/@kanso-protocol/mcp)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
@@ -11,7 +11,9 @@
 
 Design tokens in W3C DTCG format serve as a single source of truth for both Figma and code. Rules are embedded in architecture, not in agreements. Native Angular components ship as [`@kanso-protocol/ui`](https://www.npmjs.com/package/@kanso-protocol/ui); the same components compile to framework-agnostic custom elements as [`@kanso-protocol/elements`](https://www.npmjs.com/package/@kanso-protocol/elements) for React, Vue, or plain HTML.
 
-> **Status: `5.x` stable.** Per the [stability matrix](docs/stability.md), 40 of 61 surfaces are `stable` (API frozen for `5.x`) and the rest `beta` (held by open API questions, not missing coverage); only `virtual-list` is still `experimental`. Pin exact versions in production. The `5.0` line consolidated the former 64 per-component packages into a single `@kanso-protocol/ui` package with per-component secondary entry points ([ADR 0002](docs/adrs/0002-single-package-secondary-entry-points.md)) — install once, import per-subpath, tree-shaking preserved. **Upgrading from 4.x?** Follow the [v5 migration guide](docs/MIGRATION-v5.md) (mechanical import-path change; no component API changed). See [`docs/roadmap.md`](docs/roadmap.md) for what's next and the [changelog](CHANGELOG.md) for what landed.
+<!-- stability:start -->
+> **Status: `5.x` stable.** Per the [stability matrix](docs/stability.md), the entire component and pattern catalog is `stable` — every component and pattern has its API frozen for `5.x`, with no breaking change without a major bump. The only non-`stable` surfaces are 4 `beta` token layers (Color (semantic), Typography, Motion, Elevation — held by open API questions, not missing coverage) and the `@kanso-protocol/elements` package (`experimental` `0.x` — custom-elements packaging, not any component API). Pin exact versions in production. The `5.0` line consolidated the former 64 per-component packages into a single `@kanso-protocol/ui` package with per-component secondary entry points ([ADR 0002](docs/adrs/0002-single-package-secondary-entry-points.md)) — install once, import per-subpath, tree-shaking preserved. **Upgrading from 4.x?** Follow the [v5 migration guide](docs/MIGRATION-v5.md) (mechanical import-path change; no component API changed). See [`docs/roadmap.md`](docs/roadmap.md) for what's next and the [changelog](CHANGELOG.md) for what landed.
+<!-- stability:end -->
 
 ---
 
@@ -20,18 +22,21 @@ Design tokens in W3C DTCG format serve as a single source of truth for both Figm
 簡素 (*kanso*) — one of the seven principles of Japanese aesthetics — is the practice of restraint and the removal of the unnecessary. The library follows the same idea: a small, opinionated, internally consistent surface where the rules live in the code, not in conventions.
 
 - **Every value is a token.** Components never carry magic numbers or inline hex. CSS custom properties — generated from W3C DTCG tokens — are the single source of truth shared between Figma and code.
+- **The rules are enforced, not just declared.** The contracts live in CI as gates, not conventions: token integrity (state-matrix completeness + the ramp-step invariant + dark-override existence), WCAG AA contrast measured on real token pairs in both themes, an architectural lint (no raw color / motion / shadow / physical CSS), machine-checked stability facts, and a fresh, drift-free MCP catalog.
 - **Every component follows the same anatomy.** Container → Content → Element. New components don't introduce a new mental model.
-- **Every state is explicit.** Six named states (rest / hover / active / focus / disabled / loading), each with its own color and motion tokens.
+- **Every state is explicit.** Six named states (rest / hover / active / focus / disabled / loading; form controls add `error`), each with its own color and motion tokens.
+- **Accessible by construction.** `:focus-visible` rings (width / offset / color all tokenized), `prefers-reduced-motion` honored by every component, `@media (forced-colors: active)` support for Windows High Contrast, logical properties for RTL, and contrast pairs gated at AA in CI.
 - **No exception without a record.** When a component departs from the contract, the deviation lives as an ADR with a reason — not as an undocumented one-off.
 - **Designed to stay small.** Components are added intentionally, when there's a clear need — not because something might be useful.
 - **One package, per-component entry points.** `npm i @kanso-protocol/ui`, then import each component from its own subpath (`@kanso-protocol/ui/button`). Tree-shaking ships only what you reference.
 - **Not just Angular.** The same components ship as framework-agnostic custom elements (`@kanso-protocol/elements`) — use `<kp-*>` from React, Vue, Svelte, or plain HTML. SSR-safe out of the box with `@angular/ssr`.
-- **AI-native.** Ships with `@kanso-protocol/mcp` — a Model Context Protocol server that exposes the live, typed catalog to Claude Code, Cursor, and VS Code, so the assistant authors Kanso UI from the actual API instead of from training-data guesses.
+- **AI-native.** Ships with `@kanso-protocol/mcp` — a Model Context Protocol server (12 tools) that exposes the live, typed catalog to Claude Code, Cursor, and VS Code, so the assistant authors Kanso UI from the actual API instead of from training-data guesses. Includes `check_composition`, which flags contract violations a linter can't catch at runtime (mixed sizes in a row, beta-tier usage).
+- **Typed for React/TSX too.** `@kanso-protocol/elements` ships a Custom Elements Manifest (`custom-elements.json`) and `JSX.IntrinsicElements` types, so `<kp-select size="md" />` type-checks in a React/Vue project instead of erroring as an unknown element.
 
 ## Live Preview
 
 - **Storybook:** [gregnblack.github.io/kanso-protocol](https://gregnblack.github.io/kanso-protocol) — every component, pattern and example page with autodocs, live controls, and a light/dark theme toggle.
-- **Figma Community:** [figma.com/community/file/1633266134559104948](https://www.figma.com/community/file/1633266134559104948) — the full design library; duplicate it into your team to use the components, variables, and example pages directly.
+- **Figma Community:** [figma.com/community/file/1655934833130278579](https://www.figma.com/community/file/1655934833130278579) — the full design library; duplicate it into your team to use the components, variables, and example pages directly.
 
 ## AI-native: ship with an MCP server
 
@@ -60,7 +65,7 @@ claude mcp add kanso -- npx @kanso-protocol/mcp
 }
 ```
 
-Restart Claude Code, then run `/mcp` to confirm `kanso` appears as ✔ connected with 11 tools.
+Restart Claude Code, then run `/mcp` to confirm `kanso` appears as ✔ connected with 12 tools.
 
 </details>
 
@@ -110,7 +115,7 @@ command: npx
 args:    ["@kanso-protocol/mcp"]
 ```
 
-The server registers eleven tools at startup (`catalog_overview`, `list_components`, `get_component`, `list_patterns`, `get_pattern`, `list_tokens`, `get_token`, `figma_context`, `figma_for_component`, `figma_for_pattern`, `figma_for_icon`).
+The server registers twelve tools at startup (`catalog_overview`, `list_components`, `get_component`, `list_patterns`, `get_pattern`, `check_composition`, `list_tokens`, `get_token`, `figma_context`, `figma_for_component`, `figma_for_pattern`, `figma_for_icon`).
 
 </details>
 
@@ -304,7 +309,7 @@ export class MyComponent {
 
 ## Components
 
-41 components, one package. Install once; import each from its own entry point. Tokens live at the package root (`@kanso-protocol/ui` + `@kanso-protocol/ui/styles/*`) and load once for any component to render correctly.
+42 components, one package. Install once; import each from its own entry point. Tokens live at the package root (`@kanso-protocol/ui` + `@kanso-protocol/ui/styles/*`) and load once for any component to render correctly.
 
 ```bash
 npm i @kanso-protocol/ui
@@ -354,6 +359,7 @@ Every component has a formal API contract (props, variants, states, a11y rules) 
 | Skeleton | [skeleton.md](docs/components/skeleton.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-skeleton--docs) | `@kanso-protocol/ui/skeleton` |
 | Slider | [slider.md](docs/components/slider.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-slider--docs) | `@kanso-protocol/ui/slider` |
 | Table | [table.md](docs/components/table.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-table--docs) | `@kanso-protocol/ui/table` |
+| TableVirtual | [table-virtual.md](docs/components/table-virtual.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tablevirtual--docs) | `@kanso-protocol/ui/table-virtual` |
 | Tabs | [tabs.md](docs/components/tabs.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tabs--docs) | `@kanso-protocol/ui/tabs` |
 | Textarea | [textarea.md](docs/components/textarea.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-textarea--docs) | `@kanso-protocol/ui/textarea` |
 | TimePicker | [timepicker.md](docs/components/timepicker.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-timepicker--docs) | `@kanso-protocol/ui/timepicker` |
@@ -495,9 +501,9 @@ Public API contract: [docs/templates/workspace.md](docs/templates/workspace.md).
 
 The full design library is published on Figma Community — duplicate it into your team to use the components, variables, and example pages directly:
 
-**[→ Kanso Protocol on Figma Community](https://www.figma.com/community/file/1633266134559104948)**
+**[→ Kanso Protocol on Figma Community](https://www.figma.com/community/file/1655934833130278579)**
 
-Inside: 41 components × variants, 20 patterns, 900+ W3C DTCG variables (light + dark modes), Iconography, and 5 example pages (Login, Dashboard, Settings, List View, Detail View).
+Inside: 42 components × variants, 20 patterns, 900+ W3C DTCG variables (light + dark modes), Iconography, and 5 example pages (Login, Dashboard, Settings, List View, Detail View).
 
 ### Token sync
 

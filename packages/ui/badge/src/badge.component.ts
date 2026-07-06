@@ -156,7 +156,7 @@ export type KpBadgeColor =
     }
     .kp-badge__close:hover { opacity: 1; background: var(--kp-color-overlay-hover-medium); }
     .kp-badge__close:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring);
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-focus-ring);
       outline-offset: 1px;
       opacity: 1;
     }
@@ -376,6 +376,18 @@ export type KpBadgeColor =
       --kp-badge-fg: var(--kp-color-badge-neutral-dot-fg);
       --kp-badge-border: transparent;
       --kp-badge-dot: var(--kp-color-badge-neutral-dot-dot);
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
     }
   `],
 })

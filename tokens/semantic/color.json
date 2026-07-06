@@ -123,7 +123,7 @@
       "interactive": { "$value": "{color.blue.600}", "$type": "color", "$description": "Clickable icon-links" },
       "danger":      { "$value": "{color.red.600}", "$type": "color", "$description": "Error, destructive actions" },
       "success":     { "$value": "{color.green.600}", "$type": "color", "$description": "Success, confirmation" },
-      "warning":     { "$value": "{color.amber.500}", "$type": "color", "$description": "Warning, attention needed" }
+      "warning":     { "$value": "{color.amber.600}", "$type": "color", "$description": "Warning, attention needed. audit-2026-07-06 — was amber.500 #F59E0B (2.15:1 on white, fails the 3:1 non-text/icon contrast of WCAG 1.4.11); amber.600 #D97706 → 3.19:1 and matches the icon family (danger/success both use the .600 stop)." }
     },
 
     "form": {

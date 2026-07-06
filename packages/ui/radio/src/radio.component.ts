@@ -131,8 +131,8 @@ export type KpRadioColor = 'primary' | 'danger';
     :host(.kp-radio--active) { --kp-radio-border: var(--kp-color-text-muted); }
     :host(:has(.kp-radio__input:focus-visible)) .kp-radio__box,
     :host(.kp-radio--focus) .kp-radio__box {
-      outline: 2px solid var(--kp-color-focus-ring);
-      outline-offset: 2px;
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-focus-ring);
+      outline-offset: var(--kp-focus-ring-offset);
     }
     :host(:has(.kp-radio__input:disabled)),
     :host(.kp-radio--disabled) {
@@ -174,6 +174,34 @@ export type KpRadioColor = 'primary' | 'danger';
     :host(.kp-radio--lg) { --kp-radio-size: 24px; --kp-radio-border-width: 1.5px; --kp-radio-dot-size: 10px; }
 
     .kp-radio__label { font-size: 14px; color: var(--kp-color-text-default); }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Forced-colors: keep the focus ring in the system palette, and pin the
+       checked dot to the accent color so the selected state stays visible
+       (its fill color would otherwise flatten). */
+    @media (forced-colors: active) {
+      :host(:has(.kp-radio__input:focus-visible)) .kp-radio__box,
+      :host(.kp-radio--focus) .kp-radio__box {
+        outline: var(--kp-focus-ring-width) solid Highlight;
+        outline-offset: var(--kp-focus-ring-offset);
+      }
+      :host(:has(.kp-radio__input:checked)) .kp-radio__dot,
+      :host(.kp-radio--checked) .kp-radio__dot {
+        forced-color-adjust: none;
+        background: Highlight;
+      }
+    }
   `],
 })
 export class KpRadioComponent implements OnInit, OnDestroy, ControlValueAccessor {

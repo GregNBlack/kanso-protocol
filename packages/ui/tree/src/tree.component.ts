@@ -248,6 +248,34 @@ export interface KpTreeNode {
       background: var(--kp-color-surface-muted);
       color: var(--kp-color-text-default);
     }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Windows High Contrast: the selected row reads only via background-color,
+       which flattens in forced-colors — pin it to a system accent and keep the
+       row's label, icon, and chevron legible on top of it. */
+    @media (forced-colors: active) {
+      .kp-tree__row--selected {
+        forced-color-adjust: none;
+        background: Highlight;
+        color: HighlightText;
+      }
+      .kp-tree__row--selected .kp-tree__icon,
+      .kp-tree__row--selected .kp-tree__chevron {
+        forced-color-adjust: none;
+        color: HighlightText;
+      }
+    }
   `],
 })
 export class KpTreeComponent {

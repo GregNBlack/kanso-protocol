@@ -224,7 +224,7 @@ let nextRadioGroupId = 0;
       color: var(--kp-color-segmented-segment-fg-unselected-hover);
     }
     .kp-theme-toggle__segment:has(.kp-theme-toggle__radio:focus-visible) {
-      outline: 2px solid var(--kp-color-focus-ring);
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-focus-ring);
       outline-offset: 1px;
     }
     .kp-theme-toggle__segment--selected {
@@ -335,6 +335,33 @@ let nextRadioGroupId = 0;
       --kp-theme-btn: 44px;
       --kp-theme-seg: 36px;
       --kp-theme-glyph: 20px;
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Windows High Contrast: the segmented selection is drawn by the sliding
+       pill (background + box-shadow) and a subtle fg tint — both flatten in
+       forced-colors, leaving no visible selection. Pin the pill to a system
+       accent and make the selected segment legible on top of it. */
+    @media (forced-colors: active) {
+      .kp-theme-toggle__pill {
+        forced-color-adjust: none;
+        background: Highlight;
+      }
+      .kp-theme-toggle__segment--selected {
+        forced-color-adjust: none;
+        color: HighlightText;
+      }
     }
   `],
 })

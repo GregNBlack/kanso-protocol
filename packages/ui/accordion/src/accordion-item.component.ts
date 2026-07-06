@@ -88,7 +88,7 @@ export type KpAccordionItemSize = 'sm' | 'md' | 'lg';
     }
     .kp-ai__trigger:hover:not([disabled]) { background: var(--kp-color-accordion-trigger-bg-hover); }
     .kp-ai__trigger:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring);
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-focus-ring);
       outline-offset: -2px;
     }
     .kp-ai__trigger[disabled] {

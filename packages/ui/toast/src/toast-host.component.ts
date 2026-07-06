@@ -169,8 +169,8 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
     }
         .kp-th__action:hover { background: var(--kp-color-overlay-primary-hover); }
     .kp-th__action:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring);
-      outline-offset: 2px;
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-focus-ring);
+      outline-offset: var(--kp-focus-ring-offset);
     }
 
     /* The close button is rendered as kp-icon-button. Color is bound to

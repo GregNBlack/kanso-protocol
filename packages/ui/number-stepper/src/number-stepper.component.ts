@@ -225,6 +225,18 @@ function coerceNumberOrNull(v: unknown): number | null {
       --kp-stepper-height: 52px; --kp-stepper-radius: 16px; --kp-stepper-pad-x: 12px;
       --kp-stepper-fs: 18px; --kp-stepper-lh: 24px;
     }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
   `],
 })
 export class KpNumberStepperComponent implements ControlValueAccessor {

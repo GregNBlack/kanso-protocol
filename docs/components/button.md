@@ -101,7 +101,7 @@ Total visual combinations: 5 × 4 × 3 × 6 = **360**. Managed in Figma via Vari
 
 ## References
 
-- **Figma component**: [`Button` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=36-12)
+- **Figma component**: [`Button` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=36-12)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-button
 - **Source**: `packages/ui/button/src/button.component.ts`
 - **Tokens used**:

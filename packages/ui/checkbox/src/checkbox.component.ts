@@ -149,8 +149,8 @@ export type KpCheckboxColor = 'primary' | 'danger';
     }
     :host(:has(.kp-checkbox__input:focus-visible)),
     :host(.kp-checkbox--focus) .kp-checkbox__box {
-      outline: 2px solid var(--kp-color-focus-ring);
-      outline-offset: 2px;
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-focus-ring);
+      outline-offset: var(--kp-focus-ring-offset);
     }
     :host(:has(.kp-checkbox__input:disabled)),
     :host(.kp-checkbox--disabled) {
@@ -220,6 +220,45 @@ export type KpCheckboxColor = 'primary' | 'danger';
     .kp-checkbox__label {
       font-size: 14px;
       color: var(--kp-color-text-default);
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Windows High Contrast — background-color is flattened, so the checked
+       and indeterminate accent fill would vanish. Opt the box back in and
+       repaint the fill + mark with system colors so state stays visible. */
+    @media (forced-colors: active) {
+      :host(:has(.kp-checkbox__input:focus-visible)) .kp-checkbox__box,
+      :host(.kp-checkbox--focus) .kp-checkbox__box {
+        outline: var(--kp-focus-ring-width) solid Highlight;
+        outline-offset: var(--kp-focus-ring-offset);
+      }
+      :host(:has(.kp-checkbox__input:checked)) .kp-checkbox__box,
+      :host(:has(.kp-checkbox__input:indeterminate)) .kp-checkbox__box,
+      :host(.kp-checkbox--checked) .kp-checkbox__box,
+      :host(.kp-checkbox--indeterminate) .kp-checkbox__box {
+        forced-color-adjust: none;
+        background: Highlight;
+        border-color: Highlight;
+      }
+      :host(:has(.kp-checkbox__input:checked)) .kp-checkbox__icon,
+      :host(.kp-checkbox--checked) .kp-checkbox__icon {
+        color: HighlightText;
+      }
+      :host(:has(.kp-checkbox__input:indeterminate)) .kp-checkbox__minus,
+      :host(.kp-checkbox--indeterminate) .kp-checkbox__minus {
+        background: HighlightText;
+      }
     }
   `],
 })

@@ -109,8 +109,8 @@ export type KpBreadcrumbItemType = 'link' | 'current' | 'ellipsis';
     a.kp-bc-item__content,
     button.kp-bc-item__content { cursor: pointer; }
     .kp-bc-item__content:focus-visible {
-      outline: 2px solid var(--kp-color-focus-ring);
-      outline-offset: 2px;
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-focus-ring);
+      outline-offset: var(--kp-focus-ring-offset);
     }
 
     .kp-bc-item__icon {
@@ -182,6 +182,18 @@ export type KpBreadcrumbItemType = 'link' | 'current' | 'ellipsis';
       --kp-bc-font-size: 14px;
       --kp-bc-line-height: 20px;
       --kp-bc-icon-size: 16px;
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
     }
   `],
 })

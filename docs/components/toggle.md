@@ -93,7 +93,7 @@ Track corner-radius is always half its height (pill shape). Thumb offset from ed
 
 ## References
 
-- **Figma component**: [`Toggle` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3064-158)
+- **Figma component**: [`Toggle` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3064-158)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-toggle
 - **Source**: `packages/ui/toggle/src/toggle.component.ts`
 - **Tokens used**:

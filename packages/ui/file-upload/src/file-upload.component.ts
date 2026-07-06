@@ -181,8 +181,8 @@ let nextId = 0;
       background: var(--kp-color-surface-muted);
     }
     .kp-file-upload__zone:has(.kp-file-upload__input:focus-visible) {
-      outline: 2px solid var(--kp-color-accent-primary-fg);
-      outline-offset: 2px;
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-accent-primary-fg);
+      outline-offset: var(--kp-focus-ring-offset);
     }
     .kp-file-upload__zone--dragover {
       border-color: var(--kp-color-accent-primary-fg);
@@ -309,7 +309,7 @@ let nextId = 0;
     }
     .kp-file-upload__item-remove:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-default); }
     .kp-file-upload__item-remove:focus-visible {
-      outline: 2px solid var(--kp-color-accent-primary-fg);
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-accent-primary-fg);
       outline-offset: 1px;
     }
     .kp-file-upload__item-remove svg { width: 14px; height: 14px; }
@@ -318,6 +318,20 @@ let nextId = 0;
       .kp-file-upload__zone,
       .kp-file-upload__bar-fill,
       .kp-file-upload__item-remove { transition: none; }
+    }
+
+    /* Windows High Contrast — both the progress fill and the drag-over cue
+       are drawn with background-color, which flattens to Canvas here and
+       would vanish. Repaint them with system colors so they stay visible. */
+    @media (forced-colors: active) {
+      .kp-file-upload__bar-fill {
+        forced-color-adjust: none;
+        background: Highlight;
+      }
+      .kp-file-upload__zone--dragover {
+        outline: var(--kp-focus-ring-width) solid Highlight;
+        outline-offset: -2px;
+      }
     }
   `],
 })

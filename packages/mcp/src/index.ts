@@ -18,7 +18,7 @@
  */
 
 import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
@@ -55,10 +55,16 @@ interface CodeConnectRef {
   storybook: string;
 }
 
+type Stability = 'stable' | 'beta' | 'experimental' | 'internal';
+
 interface ComponentMeta {
   name: string;
   className: string;
   selector: string;
+  /** Additional public selectors exported by the same folder (sub-directives). */
+  subSelectors: string[];
+  /** API stability tier, parsed from docs/stability.md; null when unlisted. */
+  stability: Stability | null;
   layer: 'components' | 'patterns';
   package: string;
   description: string;
@@ -86,7 +92,9 @@ interface FigmaContext {
   fileName: string;
   url: string;
   pages: Record<string, { id: string; name: string }>;
-  iconLibrary: { fileKey: string; name: string };
+  // Optional: Tabler glyphs may be inlined into the main file, in which case
+  // there is no separate library fileKey (only a $comment lives here).
+  iconLibrary?: { fileKey?: string; name?: string };
   foundations: Record<string, string>;
 }
 
@@ -146,9 +154,20 @@ function summarize(c: ComponentMeta) {
     name: c.name,
     selector: c.selector,
     package: c.package,
+    stability: c.stability,
     summary: c.description.split('\n')[0] || '',
     ariaRole: c.ariaRole,
   };
+}
+
+/** Tally records by stability tier, e.g. { stable: 42, beta: 0 }. */
+function stabilityBreakdown(records: ComponentMeta[]): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const r of records) {
+    const tier = r.stability ?? 'unlisted';
+    out[tier] = (out[tier] ?? 0) + 1;
+  }
+  return out;
 }
 
 const manifest = loadManifest();
@@ -167,7 +186,9 @@ interface ToolDef {
   handler: (args: Record<string, unknown>) => string | { error: string };
 }
 
-const tools: ToolDef[] = [
+// Exported so the tool registry can be exercised in isolation (tests /
+// verification harnesses) without spinning up the stdio transport.
+export const tools: ToolDef[] = [
   {
     name: 'catalog_overview',
     title: 'Catalog overview',
@@ -177,6 +198,10 @@ const tools: ToolDef[] = [
       version: manifest.version,
       generatedAt: manifest.generatedAt,
       totals: manifest.totals,
+      stability: {
+        components: stabilityBreakdown(manifest.components),
+        patterns: stabilityBreakdown(manifest.patterns),
+      },
       docs: 'https://gregnblack.github.io/kanso-protocol/',
       repo: 'https://github.com/GregNBlack/kanso-protocol',
     }, null, 2),
@@ -231,6 +256,71 @@ const tools: ToolDef[] = [
       const hit = manifest.patterns.find((p) => p.name === key || p.selector === `kp-${key}`);
       if (!hit) return { error: `No pattern named "${raw}". Call list_patterns to see available names.` };
       return JSON.stringify(hit, null, 2);
+    },
+  },
+  {
+    name: 'check_composition',
+    title: 'Check a composition for contract violations',
+    description:
+      'Given a set of Kanso surfaces you intend to place together (one row / toolbar / form group) with the size you plan to use, flag design-contract violations a linter cannot catch — because they are runtime composition, not static CSS. Reports: (1) mixed sizes in the same composition (anatomy.md — an Input at md next to a Button at sm never lines up, since radius/padding/font-size scale together); (2) a size that is not in a surface\'s size ramp; (3) use of a beta / experimental surface (API may change). Advisory — call before composing UI to catch mismatches early.',
+    inputSchema: {
+      type: 'object',
+      properties: {
+        items: {
+          type: 'array',
+          description: 'Surfaces you intend to place together, each with the size you plan to use.',
+          items: {
+            type: 'object',
+            properties: {
+              component: { type: 'string', description: 'Short name or selector, e.g. "button" or "kp-input"' },
+              size: { type: 'string', description: 'Chosen size, e.g. "md". Omit for surfaces with no size ramp.' },
+            },
+            required: ['component'],
+          },
+        },
+      },
+      required: ['items'],
+    },
+    handler: (args) => {
+      const items = Array.isArray(args.items) ? (args.items as Array<Record<string, unknown>>) : null;
+      if (!items || !items.length) return { error: 'Provide a non-empty `items` array of { component, size }.' };
+      const violations: string[] = [];
+      const warnings: string[] = [];
+      const resolved: Array<{ name: string; size: string | null; sizeRamp: string[]; stability: Stability | null }> = [];
+      for (const it of items) {
+        const raw = String((it && it.component) ?? '');
+        const key = raw.replace(/^kp-/, '').toLowerCase();
+        const hit =
+          manifest.components.find(
+            (c) => c.name === key || c.selector === `kp-${key}` || c.className.toLowerCase() === `kp${key.replace(/-/g, '')}component`,
+          ) || manifest.patterns.find((p) => p.name === key || p.selector === `kp-${key}`);
+        if (!hit) {
+          violations.push(`Unknown surface "${raw}" — call list_components / list_patterns to see valid names.`);
+          continue;
+        }
+        const size = it && it.size != null ? String(it.size) : null;
+        const ramp = hit.sizeRamp ?? [];
+        if (size && ramp.length && !ramp.includes(size)) {
+          violations.push(`${hit.name}: size "${size}" is not in its ramp [${ramp.join(', ')}].`);
+        }
+        if (hit.stability && hit.stability !== 'stable') {
+          warnings.push(`${hit.name} is ${hit.stability} — its API may change; pin exact versions.`);
+        }
+        resolved.push({ name: hit.name, size, sizeRamp: ramp, stability: hit.stability });
+      }
+      // Mixed sizes in one composition — only among items that declared a size.
+      const sizes = [...new Set(resolved.filter((r) => r.size).map((r) => r.size as string))];
+      if (sizes.length > 1) {
+        violations.push(
+          `Mixed sizes in one composition: ${sizes.join(', ')}. Components placed together must share a single size — radius, padding, and font-size scale together (see docs/component-anatomy.md). Pick one size for the row.`,
+        );
+      }
+      const ok = violations.length === 0;
+      return JSON.stringify(
+        { ok, verdict: ok ? (warnings.length ? 'ok with warnings' : 'ok') : 'contract violation', violations, warnings, resolved },
+        null,
+        2,
+      );
     },
   },
   {
@@ -332,7 +422,16 @@ const tools: ToolDef[] = [
       );
       if (!hit) return { error: `No component named "${raw}". Call list_components to see available names.` };
       if (!hit.figma) {
-        return { error: `Component "${hit.name}" exists but has no Figma node mapping. Add it to packages/mcp/figma-mapping.json and regenerate the manifest.` };
+        // Graceful, non-error result: the component is real but no Figma node
+        // is mapped yet. We deliberately return null rather than guess a node
+        // ID so the bridge never points the agent at the WRONG frame.
+        return JSON.stringify({
+          component: hit.name,
+          package: hit.package,
+          figmaNode: null,
+          message: `No Figma node mapped yet for component "${hit.name}". Use the codeConnect import below; to add a Figma frame, map it in packages/mcp/figma-mapping.json and regenerate the manifest.`,
+          codeConnect: hit.codeConnect ?? null,
+        }, null, 2);
       }
       return JSON.stringify({
         component: hit.name,
@@ -365,7 +464,14 @@ const tools: ToolDef[] = [
       const hit = manifest.patterns.find((p) => p.name === key || p.selector === `kp-${key}`);
       if (!hit) return { error: `No pattern named "${raw}". Call list_patterns to see available names.` };
       if (!hit.figma) {
-        return { error: `Pattern "${hit.name}" exists but has no Figma node mapping.` };
+        // Graceful, non-error result — real pattern, no Figma node mapped yet.
+        return JSON.stringify({
+          pattern: hit.name,
+          package: hit.package,
+          figmaNode: null,
+          message: `No Figma node mapped yet for pattern "${hit.name}". Use the codeConnect import below; to add a Figma frame, map it in packages/mcp/figma-mapping.json and regenerate the manifest.`,
+          codeConnect: hit.codeConnect ?? null,
+        }, null, 2);
       }
       return JSON.stringify({
         pattern: hit.name,
@@ -388,12 +494,23 @@ const tools: ToolDef[] = [
       },
     },
     handler: (args) => {
-      if (!figma?.iconLibrary) return { error: 'Icon library mapping is not configured.' };
       const query = args.query ? String(args.query).trim() : null;
+      // Graceful, non-error result when no external icon library file is mapped.
+      // Tabler glyphs are now inlined into the main Design System file (see the
+      // figma-mapping.json iconLibrary note), so there is no separate fileKey to
+      // hand back — returning null beats pointing the agent at an undefined key.
+      if (!figma?.iconLibrary?.fileKey) {
+        return JSON.stringify({
+          fileKey: null,
+          message: 'No standalone Figma icon library mapped yet. Tabler glyphs are inlined into the main Design System file; call figma_context for its fileKey, then use Figma MCP\'s search_design_system to find a glyph by name.',
+          suggestedSearchQuery: query,
+          designSystemFileKey: figma?.fileKey ?? null,
+        }, null, 2);
+      }
       return JSON.stringify({
         fileKey: figma.iconLibrary.fileKey,
-        libraryName: figma.iconLibrary.name,
-        url: `https://www.figma.com/design/${figma.iconLibrary.fileKey}/${encodeURIComponent(figma.iconLibrary.name)}`,
+        libraryName: figma.iconLibrary.name ?? 'Icons',
+        url: `https://www.figma.com/design/${figma.iconLibrary.fileKey}/${encodeURIComponent(figma.iconLibrary.name ?? 'Icons')}`,
         suggestedSearchQuery: query,
         relatedFigmaTools: [
           { tool: 'search_design_system', purpose: 'Find the icon by name across the Tabler Icon Pack.' },
@@ -437,5 +554,12 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
   return { content: [{ type: 'text', text: result as string }] };
 });
 
-const transport = new StdioServerTransport();
-await server.connect(transport);
+// Only attach the stdio transport when run as the CLI entry point (the
+// `kanso-mcp` bin / `node dist/index.js`). When the module is imported — e.g.
+// by a test harness that exercises `tools` directly — we skip connect() so it
+// doesn't block on stdin.
+const invokedPath = process.argv[1] ? pathToFileURL(process.argv[1]).href : '';
+if (import.meta.url === invokedPath) {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+}

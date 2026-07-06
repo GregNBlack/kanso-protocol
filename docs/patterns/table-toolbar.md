@@ -34,6 +34,39 @@ Switching `mode` to `bulk-select` hides the default bar and shows a selection su
 - **default mode**: `searchChange`, `filterClick`, `sortClick`, `densityChange(density)`, `columnsClick`, `exportClick`, `createClick`
 - **bulk-select mode**: `clearSelection`, `bulkExport`, `bulkTag`, `bulkMove`, `bulkDelete`
 
+### Wiring density to a table
+
+`densityChange` is a plain output — the toolbar is presentational and does **not**
+resize a table by itself. You own the density state and map it to the table's
+`size` (and `virtual-list` / `table-virtual` `rowHeight`). The mapping is 1:1:
+
+| Toolbar density | `kp-table` / `kp-table-virtual` `size` | `rowHeight` |
+|---|---|---|
+| `compact` | `sm` | `40` |
+| `comfortable` *(default)* | `md` | `48` |
+| `spacious` | `lg` | `56` |
+
+```ts
+// component
+readonly DENSITY_SIZE = { compact: 'sm', comfortable: 'md', spacious: 'lg' } as const;
+density: KpTableToolbarDensity = 'comfortable';
+```
+
+```html
+<kp-table-toolbar [showDensity]="true" [density]="density"
+                  (densityChange)="density = $event"></kp-table-toolbar>
+<kp-table [size]="DENSITY_SIZE[density]"> … </kp-table>
+```
+
+Persist `density` yourself (see the Don'ts) — the toolbar keeps no state.
+
+> **App-wide density** (one preference tightening the *whole* shell — forms,
+> menus, nav — not just tables) is intentionally not a single switch today:
+> Kanso density is per-surface via each component's `size` input. Making it a
+> global cascade is a tracked design decision (it would reverse the "spacing is
+> structural, not a brand axis" stance in [theming.md](../theming.md) and touch
+> every component). Until then, use `size` per surface as above.
+
 ## Do / Don't
 
 ### Do
@@ -49,7 +82,7 @@ Switching `mode` to `bulk-select` hides the default bar and shows a selection su
 
 ## References
 
-- **Figma**: `TableToolbar` Component Set on the [📐 Patterns page](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System).
+- **Figma**: `TableToolbar` Component Set on the [📐 Patterns page](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System).
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-tabletoolbar
 - **Source**: `packages/ui/table-toolbar/src/`
 

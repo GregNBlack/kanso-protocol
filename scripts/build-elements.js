@@ -78,8 +78,9 @@ function sh(cmd) {
   execSync(cmd, { cwd: ROOT, stdio: 'inherit' });
 }
 
-// 1. registry
+// 1. registry + type metadata (custom-elements.json + JSX augmentation)
 sh('node scripts/generate-elements-registry.js');
+sh('node scripts/generate-elements-types.js');
 
 // 2. AOT lib must exist; build:libs repoints node_modules/@kanso-protocol/ui
 //    at dist/packages/ui (fesm2022, AOT) so esbuild resolves to compiled JS.
@@ -108,13 +109,20 @@ esbuild
   })
   .then(() => {
     // Stage the publishable package alongside the bundle: manifest, README,
-    // and a minimal type declaration (the bundle's only export).
+    // the Custom Elements Manifest, and the type declarations (the runtime
+    // export + the generated JSX augmentation so <kp-*> type-checks in TSX).
     fs.copyFileSync(path.join(SRC_PKG, 'package.json'), path.join(DEST, 'package.json'));
     fs.copyFileSync(path.join(SRC_PKG, 'README.md'), path.join(DEST, 'README.md'));
+    fs.copyFileSync(
+      path.join(SRC_PKG, 'custom-elements.json'),
+      path.join(DEST, 'custom-elements.json'),
+    );
+    const jsxAug = fs.readFileSync(path.join(SRC_PKG, 'src', 'jsx.generated.d.ts'), 'utf8');
     fs.writeFileSync(
       path.join(DEST, 'kanso-elements.d.ts'),
       '/** Define every Kanso `kp-*` custom element. Idempotent. */\n' +
-        'export declare function defineKansoElements(): Promise<void>;\n',
+        'export declare function defineKansoElements(): Promise<void>;\n\n' +
+        jsxAug,
     );
     const kb = (fs.statSync(OUT).size / 1024).toFixed(0);
     const { name, version } = JSON.parse(fs.readFileSync(path.join(DEST, 'package.json'), 'utf8'));

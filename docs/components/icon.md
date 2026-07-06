@@ -180,7 +180,7 @@ catching missing register calls while wiring up screens.
 
 ## References
 
-- **Figma component**: [`icon` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=70-245)
+- **Figma component**: [`icon` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=70-245)
 - **Source**: the `icon` entry point of [`@kanso-protocol/ui`](https://www.npmjs.com/package/@kanso-protocol/ui), imported as `@kanso-protocol/ui/icon`
 - **Allowlist**: [`packages/ui/icon/icons.allowlist.json`](https://github.com/GregNBlack/kanso-protocol/blob/main/packages/ui/icon/icons.allowlist.json)
 - **Full Tabler library**: [`@tabler/icons`](https://www.npmjs.com/package/@tabler/icons) on npm; [tabler.io/icons](https://tabler.io/icons) browser

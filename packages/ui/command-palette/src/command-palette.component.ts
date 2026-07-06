@@ -253,7 +253,7 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
       transition: background var(--kp-motion-duration-fast) ease;
     }
     .kp-cmdk__item:focus-visible {
-      outline: 2px solid var(--kp-color-accent-primary-fg);
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-accent-primary-fg);
       outline-offset: -2px;
     }
     .kp-cmdk__item--active {
@@ -305,6 +305,23 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
     @media (prefers-reduced-motion: reduce) {
       .kp-cmdk__clear,
       .kp-cmdk__item { transition: none; }
+    }
+
+    /* Windows High Contrast — the active (keyboard-highlighted) row is a
+       background tint that flattens here, making the current item
+       indistinguishable. Repaint it with system colors. */
+    @media (forced-colors: active) {
+      .kp-cmdk__item--active {
+        forced-color-adjust: none;
+        background: Highlight;
+        color: HighlightText;
+      }
+      .kp-cmdk__item--active .kp-cmdk__item-hint { color: HighlightText; }
+      .kp-cmdk__item--active .kp-cmdk__item-shortcut {
+        background: HighlightText;
+        color: Highlight;
+        border-color: HighlightText;
+      }
     }
   `],
 })

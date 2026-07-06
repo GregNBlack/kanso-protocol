@@ -173,7 +173,7 @@ Focus is handled via `:focus-visible` with the standard focus ring on any intera
 
 ## References
 
-- **Figma components**: [`Breadcrumbs` container](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3389-5179) · [`BreadcrumbItem` atom](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3382-4584) · [`BreadcrumbSeparator` atom](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3387-4564)
+- **Figma components**: [`Breadcrumbs` container](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3389-5179) · [`BreadcrumbItem` atom](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3382-4584) · [`BreadcrumbSeparator` atom](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3387-4564)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-breadcrumbs
 - **Source**: `packages/ui/breadcrumbs/src/`
 - **Tokens used**:

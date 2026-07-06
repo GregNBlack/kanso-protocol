@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-06-08T05:55:59.377Z",
-  "version": "4.2.1",
+  "generatedAt": "2026-07-06T13:59:17.394Z",
+  "version": "4.3.0",
   "totals": {
-    "components": 59,
-    "patterns": 22,
-    "tokens": 915
+    "components": 42,
+    "patterns": 20,
+    "tokens": 917
   },
   "figma": {
-    "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-    "fileName": "Design-System",
-    "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System",
+    "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
+    "fileName": "Kanso-Protocol-Design-System",
+    "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System",
     "pages": {
       "components": {
         "id": "0:1",
@@ -58,96 +58,12 @@
   "components": [
     {
       "name": "accordion",
-      "className": "KpAccordionItemComponent",
-      "selector": "kp-accordion-item",
-      "layer": "components",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/accordion",
-      "description": "Kanso Protocol — AccordionItem (atom)\n\nExpandable row: a clickable trigger with title / optional description /\nchevron, and a content panel that renders when `[expanded]` is true.\nDrive `[expanded]` from a parent — either manually or via\n`<kp-accordion>` which coordinates single/multi behavior.",
-      "examples": [],
-      "inputs": [
-        {
-          "name": "size",
-          "type": "KpAccordionItemSize",
-          "default": "'md'",
-          "description": ""
-        },
-        {
-          "name": "title",
-          "type": "string",
-          "default": "''",
-          "description": ""
-        },
-        {
-          "name": "description",
-          "type": "string",
-          "default": "''",
-          "description": ""
-        },
-        {
-          "name": "showDescription",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        },
-        {
-          "name": "showIconLeft",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        },
-        {
-          "name": "disabled",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        },
-        {
-          "name": "expanded",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        },
-        {
-          "name": "lastInGroup",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        }
-      ],
-      "outputs": [
-        {
-          "name": "expandedChange",
-          "payload": "boolean"
-        }
-      ],
-      "ariaRole": null,
-      "sizeRamp": [
-        "sm",
-        "md",
-        "lg"
-      ],
-      "keyboardPatterns": [],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-accordion--docs",
-      "sourcePath": "packages/ui/accordion/src/accordion-item.component.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3805:11103",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11103"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpAccordionComponent",
-        "selector": "kp-accordion",
-        "import": "import { KpAccordionComponent } from '@kanso-protocol/ui/accordion';",
-        "docs": "docs/components/accordion.md",
-        "storybook": "components-accordion--docs"
-      }
-    },
-    {
-      "name": "accordion",
       "className": "KpAccordionComponent",
       "selector": "kp-accordion",
+      "subSelectors": [
+        "kp-accordion-item"
+      ],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/accordion",
@@ -184,9 +100,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-accordion--docs",
       "sourcePath": "packages/ui/accordion/src/accordion.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11103",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11103"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11103"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -201,6 +117,8 @@
       "name": "alert",
       "className": "KpAlertComponent",
       "selector": "kp-alert",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/alert",
@@ -268,9 +186,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-alert--docs",
       "sourcePath": "packages/ui/alert/src/alert.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11044",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11044"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11044"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -285,6 +203,8 @@
       "name": "avatar",
       "className": "KpAvatarComponent",
       "selector": "kp-avatar",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/avatar",
@@ -368,9 +288,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-avatar--docs",
       "sourcePath": "packages/ui/avatar/src/avatar.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11139",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11139"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11139"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -385,6 +305,8 @@
       "name": "avatar-group",
       "className": "KpAvatarGroupComponent",
       "selector": "kp-avatar-group",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/avatar-group",
@@ -420,11 +342,6 @@
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-avatargroup--docs",
       "sourcePath": "packages/ui/avatar-group/src/avatar-group.component.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3805:11139",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11139"
-      },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
         "primaryClass": "KpAvatarGroupComponent",
@@ -438,6 +355,8 @@
       "name": "badge",
       "className": "KpBadgeComponent",
       "selector": "kp-badge",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/badge",
@@ -477,6 +396,12 @@
           "description": "Counter shape: a tight circle for short numeric content (notification badges, \"1\", \"12\", \"99+\"). Use `pill` for word-bearing chips."
         },
         {
+          "name": "counter",
+          "type": "number | string | null",
+          "default": "null",
+          "description": "Numeric counter rendered as a small chip after the label (same idea as the\ncount chip in Tabs). Fully additive: it shows only when set and never\nchanges the label, icon, dot, or shape. Set a number (or \"99+\") to show it;\nleave null/'' to hide. This is the \"just a number\" counter — distinct from\n`count`, which reshapes the whole badge into a circle."
+        },
+        {
           "name": "showLeadingDot",
           "type": "boolean",
           "default": "false",
@@ -505,9 +430,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-badge--docs",
       "sourcePath": "packages/ui/badge/src/badge.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11040",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11040"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11040"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -520,189 +445,14 @@
     },
     {
       "name": "breadcrumbs",
-      "className": "KpBreadcrumbItemComponent",
-      "selector": "kp-breadcrumb-item",
-      "layer": "components",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/breadcrumbs",
-      "description": "Kanso Protocol — BreadcrumbItem (atom)\n\nSingle breadcrumb cell. Renders as an `<a>` for `type=\"link\"` with an\n`href`, a `<button>` for `type=\"link\"` without one, a plain `<span>`\nfor `type=\"current\"`, or a `<button>` for `type=\"ellipsis\"`\n(clickable — callers typically open a Popover / DropdownMenu from it).\n\nProjects a leading icon via `[kpBreadcrumbIcon]`. Size is usually set\nby the parent `<kp-breadcrumbs>`.",
-      "examples": [
-        "<kp-breadcrumb-item type=\"link\" href=\"/projects\">\n  <svg kpBreadcrumbIcon .../>\n  Projects\n</kp-breadcrumb-item>"
-      ],
-      "inputs": [
-        {
-          "name": "size",
-          "type": "KpBreadcrumbItemSize",
-          "default": "'md'",
-          "description": ""
-        },
-        {
-          "name": "type",
-          "type": "KpBreadcrumbItemType",
-          "default": "'link'",
-          "description": ""
-        },
-        {
-          "name": "label",
-          "type": "string",
-          "default": "''",
-          "description": ""
-        },
-        {
-          "name": "href",
-          "type": "string | null",
-          "default": "null",
-          "description": ""
-        },
-        {
-          "name": "disabled",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        },
-        {
-          "name": "ariaLabel",
-          "type": "string",
-          "default": "''",
-          "description": ""
-        }
-      ],
-      "outputs": [
-        {
-          "name": "itemClick",
-          "payload": "MouseEvent"
-        }
-      ],
-      "ariaRole": "listitem",
-      "sizeRamp": [
-        "sm",
-        "md"
-      ],
-      "keyboardPatterns": [
-        "Home"
-      ],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-breadcrumbs--docs",
-      "sourcePath": "packages/ui/breadcrumbs/src/breadcrumb-item.component.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3805:11072",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11072"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpBreadcrumbsComponent",
-        "selector": "kp-breadcrumbs",
-        "import": "import { KpBreadcrumbsComponent } from '@kanso-protocol/ui/breadcrumbs';",
-        "docs": "docs/components/breadcrumbs.md",
-        "storybook": "components-breadcrumbs--docs"
-      }
-    },
-    {
-      "name": "breadcrumbs",
-      "className": "KpBreadcrumbSeparatorComponent",
-      "selector": "kp-breadcrumb-separator",
-      "layer": "components",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/breadcrumbs",
-      "description": "Kanso Protocol — BreadcrumbSeparator (atom)\n\nVisual glue between `<kp-breadcrumb-item>`s. Inert — not announced by\nscreen readers. Ships with three variants: a gray chevron, a gray\nslash, and a small accent-colored dot.",
-      "examples": [],
-      "inputs": [
-        {
-          "name": "size",
-          "type": "KpBreadcrumbItemSize",
-          "default": "'md'",
-          "description": ""
-        },
-        {
-          "name": "type",
-          "type": "KpBreadcrumbSeparatorType",
-          "default": "'chevron'",
-          "description": ""
-        }
-      ],
-      "outputs": [],
-      "ariaRole": "presentation",
-      "sizeRamp": [
-        "sm",
-        "md"
-      ],
-      "keyboardPatterns": [],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-breadcrumbs--docs",
-      "sourcePath": "packages/ui/breadcrumbs/src/breadcrumb-separator.component.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3805:11072",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11072"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpBreadcrumbsComponent",
-        "selector": "kp-breadcrumbs",
-        "import": "import { KpBreadcrumbsComponent } from '@kanso-protocol/ui/breadcrumbs';",
-        "docs": "docs/components/breadcrumbs.md",
-        "storybook": "components-breadcrumbs--docs"
-      }
-    },
-    {
-      "name": "breadcrumbs",
-      "className": "KpBreadcrumbsAutoComponent",
-      "selector": "kp-breadcrumbs-auto",
-      "layer": "components",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/breadcrumbs",
-      "description": "Kanso Protocol — BreadcrumbsAuto\n\nDrop-in replacement for the composable `<kp-breadcrumbs>` API that\nbuilds its trail from the Angular router state. Walks the current\n`ActivatedRouteSnapshot` tree from root to leaf, picks every route\nthat defines `data.breadcrumb`, and renders the full path\nautomatically — updating on every `NavigationEnd`.\n\nThe last collected entry becomes `type=\"current\"`; everything before\nit is `type=\"link\"` with an `href` built from the accumulated URL\nsegments. If you need richer content (icons, ellipsis collapsing),\nfall back to the manual `<kp-breadcrumbs>` composition.",
-      "examples": [
-        "// route config\nconst routes = [\n  { path: '', data: { breadcrumb: 'Home' } },\n  { path: 'projects', data: { breadcrumb: 'Projects' }, children: [\n    { path: ':id', data: { breadcrumb: (r) => r.paramMap.get('id') ?? 'Detail' } }\n  ]}\n];\n\n// template — anywhere inside a routed component\n<kp-breadcrumbs-auto size=\"md\" separator=\"chevron\"/>"
-      ],
-      "inputs": [
-        {
-          "name": "size",
-          "type": "KpBreadcrumbsSize",
-          "default": "'md'",
-          "description": ""
-        },
-        {
-          "name": "separator",
-          "type": "KpBreadcrumbSeparatorType",
-          "default": "'chevron'",
-          "description": ""
-        },
-        {
-          "name": "ariaLabel",
-          "type": "string",
-          "default": "'Breadcrumb'",
-          "description": ""
-        }
-      ],
-      "outputs": [],
-      "ariaRole": null,
-      "sizeRamp": [
-        "sm",
-        "md"
-      ],
-      "keyboardPatterns": [
-        "Home"
-      ],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-breadcrumbs--docs",
-      "sourcePath": "packages/ui/breadcrumbs/src/breadcrumbs-auto.component.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3805:11072",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11072"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpBreadcrumbsComponent",
-        "selector": "kp-breadcrumbs",
-        "import": "import { KpBreadcrumbsComponent } from '@kanso-protocol/ui/breadcrumbs';",
-        "docs": "docs/components/breadcrumbs.md",
-        "storybook": "components-breadcrumbs--docs"
-      }
-    },
-    {
-      "name": "breadcrumbs",
       "className": "KpBreadcrumbsComponent",
       "selector": "kp-breadcrumbs",
+      "subSelectors": [
+        "kp-breadcrumb-item",
+        "kp-breadcrumb-separator",
+        "kp-breadcrumbs-auto"
+      ],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/breadcrumbs",
@@ -734,9 +484,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-breadcrumbs--docs",
       "sourcePath": "packages/ui/breadcrumbs/src/breadcrumbs.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11072",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11072"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11072"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -751,6 +501,10 @@
       "name": "button",
       "className": "KpButtonComponent",
       "selector": "button[kpButton]",
+      "subSelectors": [
+        "kp-icon-button"
+      ],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/button",
@@ -799,7 +553,7 @@
           "name": "iconOnly",
           "type": "boolean",
           "default": "false",
-          "description": "Hides the label and makes the button square — pair with an icon and `aria-label`."
+          "description": "Hides the label and makes the button square — pair with an icon and `aria-label`.\n      booleanAttribute so a bare `iconOnly` attribute coerces to true (a plain\n      `@Input() = false` left a bare attribute as the falsy empty string)."
         },
         {
           "name": "forceState",
@@ -821,69 +575,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-button--docs",
       "sourcePath": "packages/ui/button/src/button.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:10993",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-10993"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpButtonComponent",
-        "selector": "kp-button",
-        "import": "import { KpButtonComponent } from '@kanso-protocol/ui/button';",
-        "docs": "docs/components/button.md",
-        "storybook": "components-button--docs"
-      }
-    },
-    {
-      "name": "button",
-      "className": "KpIconButtonComponent",
-      "selector": "kp-icon-button",
-      "layer": "components",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/button",
-      "description": "Kanso Protocol — IconButton (atom)",
-      "examples": [
-        "(still works in 4.x but logs a deprecation notice on first use)\n<kp-icon-button size=\"sm\" ariaLabel=\"Close\" (click)=\"close()\">\n<svg viewBox=\"0 0 24 24\" fill=\"none\" aria-hidden=\"true\">\n<path d=\"M18 6 6 18M6 6l12 12\" stroke=\"currentColor\"\n  stroke-width=\"2\" stroke-linecap=\"round\"/>\n</svg>\n</kp-icon-button>"
-      ],
-      "inputs": [
-        {
-          "name": "size",
-          "type": "KpIconButtonSize",
-          "default": "'sm'",
-          "description": ""
-        },
-        {
-          "name": "ariaLabel",
-          "type": "string",
-          "default": "''",
-          "description": ""
-        },
-        {
-          "name": "disabled",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        }
-      ],
-      "outputs": [
-        {
-          "name": "buttonClick",
-          "payload": "MouseEvent"
-        }
-      ],
-      "ariaRole": null,
-      "sizeRamp": [
-        "xs",
-        "sm",
-        "md"
-      ],
-      "keyboardPatterns": [],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-button--docs",
-      "sourcePath": "packages/ui/button/src/icon-button.component.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3805:10993",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-10993"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-10993"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -898,6 +592,8 @@
       "name": "card",
       "className": "KpCardComponent",
       "selector": "kp-card",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/card",
@@ -987,9 +683,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-card--docs",
       "sourcePath": "packages/ui/card/src/card.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11091",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11091"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11091"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1004,6 +700,8 @@
       "name": "checkbox",
       "className": "KpCheckboxComponent",
       "selector": "kp-checkbox",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/checkbox",
@@ -1101,9 +799,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-checkbox--docs",
       "sourcePath": "packages/ui/checkbox/src/checkbox.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11001",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11001"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11001"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1118,6 +816,8 @@
       "name": "combobox",
       "className": "KpComboboxComponent",
       "selector": "kp-combobox",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/combobox",
@@ -1179,6 +879,24 @@
           "type": "KpState | null",
           "default": "null",
           "description": "Force visual state for showcase/documentation purposes"
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "default": "false",
+          "description": "Show a loading row + suppress the empty message — for async search."
+        },
+        {
+          "name": "serverFilter",
+          "type": "boolean",
+          "default": "false",
+          "description": "Skip built-in client-side filtering: the consumer supplies already-filtered\n `options` (server-side search) and uses `(queryChange)` as the fetch trigger."
+        },
+        {
+          "name": "filterDebounce",
+          "type": "number",
+          "default": "0",
+          "description": "Debounce (ms) before `(queryChange)` fires — handy for async. 0 = immediate."
         }
       ],
       "outputs": [
@@ -1211,9 +929,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-combobox--docs",
       "sourcePath": "packages/ui/combobox/src/combobox.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11115",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11115"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11115"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1228,6 +946,8 @@
       "name": "command-palette",
       "className": "KpCommandPaletteComponent",
       "selector": "kp-command-palette",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/command-palette",
@@ -1296,7 +1016,7 @@
         },
         {
           "name": "itemSelect",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/command-palette/src/command-palette.component\").KpCommandItem"
+          "payload": "KpCommandItem"
         }
       ],
       "ariaRole": null,
@@ -1315,9 +1035,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-commandpalette--docs",
       "sourcePath": "packages/ui/command-palette/src/command-palette.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "4111:11234",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=4111-11234"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=4111-11234"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1332,6 +1052,8 @@
       "name": "datepicker",
       "className": "KpDatePickerComponent",
       "selector": "kp-date-picker",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/datepicker",
@@ -1420,7 +1142,7 @@
       "outputs": [
         {
           "name": "valueChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/datepicker/src/datepicker.component\").KpDatePickerValue"
+          "payload": "KpDatePickerValue"
         },
         {
           "name": "openChange",
@@ -1451,9 +1173,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-datepicker--docs",
       "sourcePath": "packages/ui/datepicker/src/datepicker.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11119",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11119"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11119"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1468,6 +1190,8 @@
       "name": "dialog",
       "className": "KpDialogComponent",
       "selector": "kp-dialog",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/dialog",
@@ -1577,9 +1301,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-dialog--docs",
       "sourcePath": "packages/ui/dialog/src/dialog.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11083",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11083"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11083"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1594,6 +1318,8 @@
       "name": "divider",
       "className": "KpDividerComponent",
       "selector": "kp-divider",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/divider",
@@ -1632,9 +1358,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-divider--docs",
       "sourcePath": "packages/ui/divider/src/divider.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11087",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11087"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11087"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1649,6 +1375,8 @@
       "name": "drawer",
       "className": "KpDrawerComponent",
       "selector": "kp-drawer",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/drawer",
@@ -1787,9 +1515,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-drawer--docs",
       "sourcePath": "packages/ui/drawer/src/drawer.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11099",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11099"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11099"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1804,6 +1532,8 @@
       "name": "empty-state",
       "className": "KpEmptyStateComponent",
       "selector": "kp-empty-state",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/empty-state",
@@ -1852,9 +1582,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-emptystate--docs",
       "sourcePath": "packages/ui/empty-state/src/empty-state.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11095",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11095"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11095"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1869,6 +1599,8 @@
       "name": "file-upload",
       "className": "KpFileUploadComponent",
       "selector": "kp-file-upload",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/file-upload",
@@ -1953,15 +1685,15 @@
       "outputs": [
         {
           "name": "filesAdded",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/file-upload/src/file-upload.component\").KpUploadFile[]"
+          "payload": "KpUploadFile[]"
         },
         {
           "name": "filesRejected",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/file-upload/src/file-upload.component\").KpFileRejection[]"
+          "payload": "KpFileRejection[]"
         },
         {
           "name": "fileRemoved",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/file-upload/src/file-upload.component\").KpUploadFile"
+          "payload": "KpUploadFile"
         }
       ],
       "ariaRole": null,
@@ -1974,9 +1706,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-fileupload--docs",
       "sourcePath": "packages/ui/file-upload/src/file-upload.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "4110:11270",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=4110-11270"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=4110-11270"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -1991,6 +1723,8 @@
       "name": "form-field",
       "className": "KpFormFieldComponent",
       "selector": "kp-form-field",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/form-field",
@@ -2050,9 +1784,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-formfield--docs",
       "sourcePath": "packages/ui/form-field/src/form-field.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11016",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11016"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11016"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -2067,6 +1801,8 @@
       "name": "icon",
       "className": "KpIconComponent",
       "selector": "kp-icon",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/icon",
@@ -2094,6 +1830,8 @@
       "name": "input",
       "className": "KpInputComponent",
       "selector": "kp-input",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/input",
@@ -2176,9 +1914,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-input--docs",
       "sourcePath": "packages/ui/input/src/input.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:10997",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-10997"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-10997"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -2193,6 +1931,8 @@
       "name": "markdown-viewer",
       "className": "KpMarkdownViewerComponent",
       "selector": "kp-markdown-viewer",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/markdown-viewer",
@@ -2238,9 +1978,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-markdownviewer--docs",
       "sourcePath": "packages/ui/markdown-viewer/src/markdown-viewer.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "4109:11282",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=4109-11282"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=4109-11282"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -2255,6 +1995,12 @@
       "name": "menu",
       "className": "KpDropdownMenuComponent",
       "selector": "kp-dropdown-menu",
+      "subSelectors": [
+        "kp-menu-divider",
+        "kp-menu-item",
+        "kp-menu-section-label"
+      ],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/menu",
@@ -2322,171 +2068,18 @@
       ],
       "ariaRole": null,
       "sizeRamp": [],
-      "keyboardPatterns": [],
+      "keyboardPatterns": [
+        "ArrowUp",
+        "ArrowDown",
+        "Home",
+        "End"
+      ],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-menu--docs",
       "sourcePath": "packages/ui/menu/src/dropdown-menu.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11020",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11020"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpDropdownMenuComponent",
-        "selector": "kp-dropdown-menu",
-        "import": "import { KpDropdownMenuComponent } from '@kanso-protocol/ui/menu';",
-        "docs": "docs/components/dropdown-menu.md",
-        "storybook": "components-dropdownmenu--docs"
-      }
-    },
-    {
-      "name": "menu",
-      "className": "KpMenuDividerComponent",
-      "selector": "kp-menu-divider",
-      "layer": "components",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/menu",
-      "description": "Kanso Protocol — MenuDivider\n\nThin horizontal separator between groups of menu items.",
-      "examples": [],
-      "inputs": [],
-      "outputs": [],
-      "ariaRole": "separator",
-      "sizeRamp": [],
-      "keyboardPatterns": [],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-menu--docs",
-      "sourcePath": "packages/ui/menu/src/menu-divider.component.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3805:11020",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11020"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpDropdownMenuComponent",
-        "selector": "kp-dropdown-menu",
-        "import": "import { KpDropdownMenuComponent } from '@kanso-protocol/ui/menu';",
-        "docs": "docs/components/dropdown-menu.md",
-        "storybook": "components-dropdownmenu--docs"
-      }
-    },
-    {
-      "name": "menu",
-      "className": "KpMenuItemComponent",
-      "selector": "kp-menu-item",
-      "layer": "components",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/menu",
-      "description": "Kanso Protocol — MenuItem\n\nSingle option inside a DropdownMenu. Supports 3 sizes, optional icon slot,\ndescription (lg), shortcut/chevron trailing, and selected/danger variants.\n\nProjection slots:\n  [kpMenuItemLeading]  — slot before label (e.g. Checkbox/Radio)\n  [kpMenuItemIcon]     — icon left slot\n  [kpMenuItemTrailing] — custom trailing content (overrides shortcut/chevron)",
-      "examples": [
-        "<kp-menu-item label=\"Edit\" shortcut=\"⌘E\">\n  <svg kpMenuItemIcon>...</svg>\n</kp-menu-item>"
-      ],
-      "inputs": [
-        {
-          "name": "size",
-          "type": "KpMenuItemSize",
-          "default": "'md'",
-          "description": ""
-        },
-        {
-          "name": "label",
-          "type": "string",
-          "default": "''",
-          "description": ""
-        },
-        {
-          "name": "description",
-          "type": "string",
-          "default": "''",
-          "description": ""
-        },
-        {
-          "name": "shortcut",
-          "type": "string",
-          "default": "''",
-          "description": ""
-        },
-        {
-          "name": "hasChevron",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        },
-        {
-          "name": "selected",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        },
-        {
-          "name": "danger",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        },
-        {
-          "name": "disabled",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        },
-        {
-          "name": "forceState",
-          "type": "KpState | null",
-          "default": "null",
-          "description": ""
-        }
-      ],
-      "outputs": [],
-      "ariaRole": "menuitem",
-      "sizeRamp": [
-        "sm",
-        "md",
-        "lg"
-      ],
-      "keyboardPatterns": [],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-menu--docs",
-      "sourcePath": "packages/ui/menu/src/menu-item.component.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3805:11020",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11020"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpDropdownMenuComponent",
-        "selector": "kp-dropdown-menu",
-        "import": "import { KpDropdownMenuComponent } from '@kanso-protocol/ui/menu';",
-        "docs": "docs/components/dropdown-menu.md",
-        "storybook": "components-dropdownmenu--docs"
-      }
-    },
-    {
-      "name": "menu",
-      "className": "KpMenuSectionLabelComponent",
-      "selector": "kp-menu-section-label",
-      "layer": "components",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/menu",
-      "description": "Kanso Protocol — MenuSectionLabel\n\nSmall uppercase heading used to group items inside a DropdownMenu.",
-      "examples": [],
-      "inputs": [
-        {
-          "name": "label",
-          "type": "string",
-          "default": "''",
-          "description": ""
-        }
-      ],
-      "outputs": [],
-      "ariaRole": null,
-      "sizeRamp": [],
-      "keyboardPatterns": [],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-menu--docs",
-      "sourcePath": "packages/ui/menu/src/menu-section-label.component.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3805:11020",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11020"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11020"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -2501,6 +2094,8 @@
       "name": "number-stepper",
       "className": "KpNumberStepperComponent",
       "selector": "kp-number-stepper",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/number-stepper",
@@ -2577,9 +2172,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-numberstepper--docs",
       "sourcePath": "packages/ui/number-stepper/src/number-stepper.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11032",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11032"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11032"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -2592,102 +2187,12 @@
     },
     {
       "name": "pagination",
-      "className": "KpPaginationItemComponent",
-      "selector": "kp-pagination-item",
-      "layer": "components",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/pagination",
-      "description": "Kanso Protocol — PaginationItem (atom)\n\nSingle cell in a pagination strip. Renders as a page-pill for\n`type=\"page\"` (rounded-square with size-specific radius), a\nchevron/text-nav button for `type=\"nav\"`, or a static `…`\nellipsis for `type=\"ellipsis\"`.\n\nUsually driven by the parent `<kp-pagination>`. You can drop items\nstandalone if you're assembling a bespoke pagination layout, but for\nthe common case let the container compute the range and emit events.",
-      "examples": [],
-      "inputs": [
-        {
-          "name": "size",
-          "type": "KpPaginationItemSize",
-          "default": "'md'",
-          "description": ""
-        },
-        {
-          "name": "type",
-          "type": "KpPaginationItemType",
-          "default": "'page'",
-          "description": ""
-        },
-        {
-          "name": "page",
-          "type": "number | null",
-          "default": "null",
-          "description": ""
-        },
-        {
-          "name": "selected",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        },
-        {
-          "name": "disabled",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        },
-        {
-          "name": "navMode",
-          "type": "KpPaginationNavMode",
-          "default": "'icon'",
-          "description": ""
-        },
-        {
-          "name": "navDirection",
-          "type": "KpPaginationNavDirection",
-          "default": "'prev'",
-          "description": ""
-        },
-        {
-          "name": "navLabel",
-          "type": "string | null",
-          "default": "null",
-          "description": ""
-        },
-        {
-          "name": "ariaLabel",
-          "type": "string | null",
-          "default": "null",
-          "description": ""
-        }
-      ],
-      "outputs": [
-        {
-          "name": "itemClick",
-          "payload": "MouseEvent"
-        }
-      ],
-      "ariaRole": null,
-      "sizeRamp": [
-        "sm",
-        "md",
-        "lg"
-      ],
-      "keyboardPatterns": [],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-pagination--docs",
-      "sourcePath": "packages/ui/pagination/src/pagination-item.component.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3805:11076",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11076"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpPaginationComponent",
-        "selector": "kp-pagination",
-        "import": "import { KpPaginationComponent } from '@kanso-protocol/ui/pagination';",
-        "docs": "docs/components/pagination.md",
-        "storybook": "components-pagination--docs"
-      }
-    },
-    {
-      "name": "pagination",
       "className": "KpPaginationComponent",
       "selector": "kp-pagination",
+      "subSelectors": [
+        "kp-pagination-item"
+      ],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/pagination",
@@ -2801,9 +2306,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-pagination--docs",
       "sourcePath": "packages/ui/pagination/src/pagination.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11076",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11076"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11076"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -2818,6 +2323,10 @@
       "name": "popover",
       "className": "KpPopoverComponent",
       "selector": "kp-popover",
+      "subSelectors": [
+        "[kpPopover]"
+      ],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/popover",
@@ -2905,9 +2414,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-popover--docs",
       "sourcePath": "packages/ui/popover/src/popover.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11052",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11052"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11052"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -2916,164 +2425,17 @@
         "import": "import { KpPopoverComponent } from '@kanso-protocol/ui/popover';",
         "docs": "docs/components/popover.md",
         "storybook": "components-popover--docs"
-      }
-    },
-    {
-      "name": "popover",
-      "className": "KpPopoverDirective",
-      "selector": "[kpPopover]",
-      "layer": "components",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/popover",
-      "description": "Kanso Protocol — Popover directive.\n\nAttaches a floating panel to any element. The panel content is a\n`TemplateRef`, so you control its markup completely (a menu, a form,\na `<kp-popover>` chrome component, anything).\n\nTriggers:\n- `click` (default) — toggle on click; close on outside-click / Escape\n- `hover` — open on mouseenter, close on mouseleave (with a small grace delay)\n- `manual` — only `open()` / `close()` / `toggle()` from a template ref\n\nPositioned against the trigger with viewport-edge flipping (shared math\nwith the tooltip directive). Renders into the nearest open `<dialog>`\n(so it sits above modals) or `document.body`.",
-      "examples": [
-        "<button [kpPopover]=\"menuTpl\">Actions</button>\n<ng-template #menuTpl>\n  <kp-popover [closable]=\"false\">\n    <button kpButton variant=\"ghost\">Edit</button>\n    <button kpButton variant=\"ghost\" color=\"danger\">Delete</button>\n  </kp-popover>\n</ng-template>",
-        "<!-- avatar menu, the motivating case -->\n<kp-avatar [kpPopover]=\"avatarMenu\" kpPopoverPosition=\"bottom\" />"
-      ],
-      "inputs": [
-        {
-          "name": "content",
-          "type": "TemplateRef<unknown> | null",
-          "default": "null",
-          "description": "Panel content. `null` disables the popover."
-        },
-        {
-          "name": "kpPopoverPosition",
-          "type": "KpOverlaySide",
-          "default": "'bottom'",
-          "description": ""
-        },
-        {
-          "name": "kpPopoverTrigger",
-          "type": "KpPopoverTrigger",
-          "default": "'click'",
-          "description": ""
-        },
-        {
-          "name": "kpPopoverGap",
-          "type": "number",
-          "default": "DEFAULT_GAP",
-          "description": ""
-        },
-        {
-          "name": "kpPopoverDisabled",
-          "type": "boolean",
-          "default": "false",
-          "description": "Hard-disable regardless of content."
-        }
-      ],
-      "outputs": [
-        {
-          "name": "kpPopoverOpened",
-          "payload": "void"
-        },
-        {
-          "name": "kpPopoverClosed",
-          "payload": "void"
-        }
-      ],
-      "ariaRole": null,
-      "sizeRamp": [],
-      "keyboardPatterns": [
-        "Escape"
-      ],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-popover--docs",
-      "sourcePath": "packages/ui/popover/src/popover.directive.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3805:11052",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11052"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpPopoverComponent",
-        "selector": "kp-popover",
-        "import": "import { KpPopoverComponent } from '@kanso-protocol/ui/popover';",
-        "docs": "docs/components/popover.md",
-        "storybook": "components-popover--docs"
-      }
-    },
-    {
-      "name": "progress",
-      "className": "KpProgressCircularComponent",
-      "selector": "kp-progress-circular",
-      "layer": "components",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/progress",
-      "description": "Kanso Protocol — ProgressCircular\n\nCircular determinate or indeterminate progress, drawn as two SVG\ncircles — a full track ring and a stroked arc that sweeps clockwise\nfrom 12 o'clock.",
-      "examples": [
-        "<kp-progress-circular [value]=\"65\" color=\"primary\" [showValue]=\"true\"/>\n<kp-progress-circular [indeterminate]=\"true\" size=\"md\"/>"
-      ],
-      "inputs": [
-        {
-          "name": "size",
-          "type": "KpProgressCircularSize",
-          "default": "'md'",
-          "description": ""
-        },
-        {
-          "name": "color",
-          "type": "KpProgressColor",
-          "default": "'primary'",
-          "description": ""
-        },
-        {
-          "name": "value",
-          "type": "number",
-          "default": "0",
-          "description": ""
-        },
-        {
-          "name": "indeterminate",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        },
-        {
-          "name": "showValue",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        },
-        {
-          "name": "ariaLabel",
-          "type": "string",
-          "default": "'Progress'",
-          "description": "Accessible name for screen readers."
-        }
-      ],
-      "outputs": [],
-      "ariaRole": "progressbar",
-      "sizeRamp": [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl"
-      ],
-      "keyboardPatterns": [
-        "Space"
-      ],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-progress--docs",
-      "sourcePath": "packages/ui/progress/src/progress-circular.component.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3805:11056",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11056"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpProgressLinearComponent",
-        "selector": "kp-progress-linear",
-        "import": "import { KpProgressLinearComponent } from '@kanso-protocol/ui/progress';",
-        "docs": "docs/components/progress.md",
-        "storybook": "components-progress-linear--docs"
       }
     },
     {
       "name": "progress",
       "className": "KpProgressLinearComponent",
       "selector": "kp-progress-linear",
+      "subSelectors": [
+        "kp-progress-circular",
+        "kp-progress-segmented"
+      ],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/progress",
@@ -3143,9 +2505,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-progress--docs",
       "sourcePath": "packages/ui/progress/src/progress-linear.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11056",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11056"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11056"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -3154,166 +2516,16 @@
         "import": "import { KpProgressLinearComponent } from '@kanso-protocol/ui/progress';",
         "docs": "docs/components/progress.md",
         "storybook": "components-progress-linear--docs"
-      }
-    },
-    {
-      "name": "progress",
-      "className": "KpProgressSegmentedComponent",
-      "selector": "kp-progress-segmented",
-      "layer": "components",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/progress",
-      "description": "Kanso Protocol — ProgressSegmented\n\nStepper-style progress: a row of pill-shaped segments, each filled when\nits step is complete. Use for multi-step flows (Details → Review →\nConfirm → Done) where the user can see both total and current step at a\nglance.",
-      "examples": [
-        "<kp-progress-segmented [total]=\"4\" [current]=\"2\"\n  [showLabels]=\"true\" [labels]=\"['Details','Payment','Review','Done']\"\n  [showStepCounter]=\"true\"/>"
-      ],
-      "inputs": [
-        {
-          "name": "size",
-          "type": "KpProgressSegmentedSize",
-          "default": "'md'",
-          "description": ""
-        },
-        {
-          "name": "color",
-          "type": "KpProgressColor",
-          "default": "'primary'",
-          "description": ""
-        },
-        {
-          "name": "total",
-          "type": "number",
-          "default": "5",
-          "description": ""
-        },
-        {
-          "name": "current",
-          "type": "number",
-          "default": "1",
-          "description": ""
-        },
-        {
-          "name": "showLabels",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        },
-        {
-          "name": "showStepCounter",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        },
-        {
-          "name": "labels",
-          "type": "string[]",
-          "default": "[]",
-          "description": ""
-        },
-        {
-          "name": "stepCounterText",
-          "type": "string | null",
-          "default": "null",
-          "description": "Overrides the auto-generated \"Step X of Y\" text"
-        },
-        {
-          "name": "ariaLabel",
-          "type": "string",
-          "default": "'Progress'",
-          "description": "Accessible name for screen readers."
-        }
-      ],
-      "outputs": [],
-      "ariaRole": "progressbar",
-      "sizeRamp": [
-        "xs",
-        "sm",
-        "md",
-        "lg"
-      ],
-      "keyboardPatterns": [],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-progress--docs",
-      "sourcePath": "packages/ui/progress/src/progress-segmented.component.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3805:11056",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11056"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpProgressLinearComponent",
-        "selector": "kp-progress-linear",
-        "import": "import { KpProgressLinearComponent } from '@kanso-protocol/ui/progress';",
-        "docs": "docs/components/progress.md",
-        "storybook": "components-progress-linear--docs"
-      }
-    },
-    {
-      "name": "radio",
-      "className": "KpRadioGroupComponent",
-      "selector": "kp-radio-group",
-      "layer": "components",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/radio",
-      "description": "Kanso Protocol — Radio Group\n\nContainer that coordinates a set of kp-radio elements. Selecting one\nautomatically deselects the others. Integrates with Reactive/Template forms.",
-      "examples": [
-        "<kp-radio-group [(value)]=\"selected\" name=\"plan\">\n  <kp-radio value=\"free\">Free</kp-radio>\n  <kp-radio value=\"pro\">Pro</kp-radio>\n  <kp-radio value=\"team\">Team</kp-radio>\n</kp-radio-group>"
-      ],
-      "inputs": [
-        {
-          "name": "value",
-          "type": "unknown",
-          "default": "null",
-          "description": ""
-        },
-        {
-          "name": "name",
-          "type": "string",
-          "default": "''",
-          "description": ""
-        },
-        {
-          "name": "disabled",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        },
-        {
-          "name": "orientation",
-          "type": "'vertical' | 'horizontal'",
-          "default": "'vertical'",
-          "description": ""
-        }
-      ],
-      "outputs": [
-        {
-          "name": "valueChange",
-          "payload": "unknown"
-        }
-      ],
-      "ariaRole": "radiogroup",
-      "sizeRamp": [],
-      "keyboardPatterns": [],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-radio--docs",
-      "sourcePath": "packages/ui/radio/src/radio-group.component.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3805:11005",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11005"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpRadioComponent",
-        "selector": "kp-radio",
-        "import": "import { KpRadioComponent } from '@kanso-protocol/ui/radio';",
-        "docs": "docs/components/radio.md",
-        "storybook": "components-radio--docs"
       }
     },
     {
       "name": "radio",
       "className": "KpRadioComponent",
       "selector": "kp-radio",
+      "subSelectors": [
+        "kp-radio-group"
+      ],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/radio",
@@ -3399,9 +2611,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-radio--docs",
       "sourcePath": "packages/ui/radio/src/radio.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11005",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11005"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11005"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -3416,6 +2628,8 @@
       "name": "rich-text-editor",
       "className": "KpRichTextEditorComponent",
       "selector": "kp-rich-text-editor",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/rich-text-editor",
@@ -3477,9 +2691,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-richtexteditor--docs",
       "sourcePath": "packages/ui/rich-text-editor/src/rich-text-editor.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3849:11648",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3849-11648"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3849-11648"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -3494,6 +2708,8 @@
       "name": "segmented-control",
       "className": "KpSegmentedControlComponent",
       "selector": "kp-segmented-control",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/segmented-control",
@@ -3551,9 +2767,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-segmentedcontrol--docs",
       "sourcePath": "packages/ui/segmented-control/src/segmented-control.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11036",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11036"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11036"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -3568,6 +2784,8 @@
       "name": "select",
       "className": "KpSelectComponent",
       "selector": "kp-select",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/select",
@@ -3663,9 +2881,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-select--docs",
       "sourcePath": "packages/ui/select/src/select.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11028",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11028"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11028"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -3680,6 +2898,8 @@
       "name": "skeleton",
       "className": "KpSkeletonComponent",
       "selector": "kp-skeleton",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/skeleton",
@@ -3730,9 +2950,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-skeleton--docs",
       "sourcePath": "packages/ui/skeleton/src/skeleton.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11107",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11107"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11107"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -3747,6 +2967,8 @@
       "name": "slider",
       "className": "KpSliderComponent",
       "selector": "kp-slider",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/slider",
@@ -3841,7 +3063,7 @@
       "outputs": [
         {
           "name": "valueChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/slider/src/slider.component\").KpSliderValue"
+          "payload": "KpSliderValue"
         }
       ],
       "ariaRole": null,
@@ -3863,9 +3085,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-slider--docs",
       "sourcePath": "packages/ui/slider/src/slider.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11111",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11111"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11111"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -3878,82 +3100,13 @@
     },
     {
       "name": "table",
-      "className": "KpTableCellDirective",
-      "selector": "ng-template[kpTableCell]",
-      "layer": "components",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/table",
-      "description": "`<ng-template kpTableCell=\"columnId\" let-row let-i=\"index\">` — custom cell renderer per column.",
-      "examples": [],
-      "inputs": [
-        {
-          "name": "columnId",
-          "type": "string",
-          "default": null,
-          "description": ""
-        }
-      ],
-      "outputs": [],
-      "ariaRole": null,
-      "sizeRamp": [],
-      "keyboardPatterns": [],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-table--docs",
-      "sourcePath": "packages/ui/table/src/table.component.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3805:11131",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11131"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpTableComponent",
-        "selector": "kp-table",
-        "import": "import { KpTableComponent } from '@kanso-protocol/ui/table';",
-        "docs": "docs/components/table.md",
-        "storybook": "components-table--docs"
-      }
-    },
-    {
-      "name": "table",
-      "className": "KpTableHeaderDirective",
-      "selector": "ng-template[kpTableHeader]",
-      "layer": "components",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/table",
-      "description": "`<ng-template kpTableHeader=\"columnId\">` — custom header renderer per column.",
-      "examples": [],
-      "inputs": [
-        {
-          "name": "columnId",
-          "type": "string",
-          "default": null,
-          "description": ""
-        }
-      ],
-      "outputs": [],
-      "ariaRole": null,
-      "sizeRamp": [],
-      "keyboardPatterns": [],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-table--docs",
-      "sourcePath": "packages/ui/table/src/table.component.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3805:11131",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11131"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpTableComponent",
-        "selector": "kp-table",
-        "import": "import { KpTableComponent } from '@kanso-protocol/ui/table';",
-        "docs": "docs/components/table.md",
-        "storybook": "components-table--docs"
-      }
-    },
-    {
-      "name": "table",
       "className": "KpTableComponent",
       "selector": "kp-table",
+      "subSelectors": [
+        "ng-template[kpTableCell]",
+        "ng-template[kpTableHeader]"
+      ],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/table",
@@ -4030,7 +3183,7 @@
         },
         {
           "name": "sortChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/table/src/table.component\").KpTableSort | null"
+          "payload": "KpTableSort | null"
         },
         {
           "name": "rowClick",
@@ -4047,9 +3200,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-table--docs",
       "sourcePath": "packages/ui/table/src/table.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11131",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11131"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11131"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4061,81 +3214,106 @@
       }
     },
     {
-      "name": "tabs",
-      "className": "KpTabComponent",
-      "selector": "button[kpTab]",
+      "name": "table-virtual",
+      "className": "KpTableVirtualComponent",
+      "selector": "kp-table-virtual",
+      "subSelectors": [
+        "ng-template[kpVirtualTableCell]"
+      ],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/tabs",
-      "description": "Kanso Protocol — Tab (atom)\n\nAttribute-selector on a real native `<button role=\"tab\">`. Sits inside\na `<kp-tabs role=\"tablist\">`. Native button gives Enter+Space\nactivation, focus-visible, and disabled. Arrow-key navigation between\ntabs is owned by the parent `<kp-tabs>` via roving tabindex.",
+      "import": "@kanso-protocol/ui/table-virtual",
+      "description": "Kanso Protocol — TableVirtual\n\nA windowed table for large datasets (>500 rows) — `<kp-table>` + `<kp-virtual-list>`\nbaked together so consumers don't wire virtualization by hand. A sticky header\nsits above a virtualized body; columns align via a shared CSS grid template, so\ngive each column a `width` (or they share `1fr`). Fixed `[rowHeight]` (no\nper-row measurement) keeps scrolling cheap.\n\nSemantics mirror `<kp-virtual-list>` (a windowed list of rows) — ARIA grid\nsemantics over a windowed set aren't sound, so this is a labelled list, not a\n`role=\"grid\"`. For small, fully-rendered tables use `<kp-table>`.",
       "examples": [
-        "<button kpTab label=\"Inbox\" [selected]=\"current === 'inbox'\" (click)=\"current='inbox'\">\n  <svg kpTabIcon .../>\n  <kp-badge kpTabBadge>12</kp-badge>\n</button>"
+        "<kp-table-virtual\n  [columns]=\"cols\"\n  [data]=\"rows\"\n  [rowHeight]=\"44\"\n  [viewportHeight]=\"480\"\n  ariaLabel=\"Transactions\">\n  <ng-template kpVirtualTableCell=\"status\" let-row>\n    <kp-badge size=\"sm\">{{ row.status }}</kp-badge>\n  </ng-template>\n</kp-table-virtual>"
       ],
       "inputs": [
         {
+          "name": "columns",
+          "type": "KpTableColumn<T>[]",
+          "default": "[]",
+          "description": ""
+        },
+        {
+          "name": "data",
+          "type": "T[]",
+          "default": "[]",
+          "description": ""
+        },
+        {
           "name": "size",
-          "type": "KpTabSize",
+          "type": "KpTableSize",
           "default": "'md'",
           "description": ""
         },
         {
-          "name": "label",
-          "type": "string",
-          "default": "''",
+          "name": "rowHeight",
+          "type": "number",
+          "default": "48",
+          "description": "Fixed row height in px (no per-row measurement — keeps scrolling cheap)."
+        },
+        {
+          "name": "viewportHeight",
+          "type": "number",
+          "default": "480",
+          "description": "Height of the scrolling body viewport in px."
+        },
+        {
+          "name": "overscan",
+          "type": "number",
+          "default": "4",
           "description": ""
         },
         {
-          "name": "selected",
+          "name": "striped",
           "type": "boolean",
           "default": "false",
           "description": ""
         },
         {
-          "name": "disabled",
+          "name": "bordered",
           "type": "boolean",
           "default": "false",
           "description": ""
         },
         {
-          "name": "fullWidth",
-          "type": "boolean",
-          "default": "false",
-          "description": "Set by the parent `<kp-tabs>` when `fullWidth` is enabled on the container"
+          "name": "ariaLabel",
+          "type": "string | null",
+          "default": "null",
+          "description": ""
+        },
+        {
+          "name": "trackBy",
+          "type": "((index: number, item: T) => unknown) | null",
+          "default": "null",
+          "description": ""
         }
       ],
       "outputs": [
         {
-          "name": "selectedChange",
-          "payload": "boolean"
+          "name": "rowClick",
+          "payload": "T"
         }
       ],
-      "ariaRole": "tab",
+      "ariaRole": null,
       "sizeRamp": [
         "sm",
         "md",
         "lg"
       ],
       "keyboardPatterns": [],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tabs--docs",
-      "sourcePath": "packages/ui/tabs/src/tab.component.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3805:11068",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11068"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpTabsComponent",
-        "selector": "kp-tabs",
-        "import": "import { KpTabsComponent } from '@kanso-protocol/ui/tabs';",
-        "docs": "docs/components/tabs.md",
-        "storybook": "components-tabs--docs"
-      }
+      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tablevirtual--docs",
+      "sourcePath": "packages/ui/table-virtual/src/table-virtual.component.ts"
     },
     {
       "name": "tabs",
       "className": "KpTabsComponent",
       "selector": "kp-tabs",
+      "subSelectors": [
+        "button[kpTab]"
+      ],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/tabs",
@@ -4173,9 +3351,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tabs--docs",
       "sourcePath": "packages/ui/tabs/src/tabs.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11068",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11068"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11068"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4190,6 +3368,8 @@
       "name": "textarea",
       "className": "KpTextareaComponent",
       "selector": "kp-textarea",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/textarea",
@@ -4270,9 +3450,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-textarea--docs",
       "sourcePath": "packages/ui/textarea/src/textarea.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11024",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11024"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11024"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4287,6 +3467,8 @@
       "name": "timepicker",
       "className": "KpTimePickerComponent",
       "selector": "kp-time-picker",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/timepicker",
@@ -4302,8 +3484,8 @@
         {
           "name": "format",
           "type": "KpTimePickerFormat",
-          "default": "'24h'",
-          "description": ""
+          "default": "'auto'",
+          "description": "`'auto'` (default) derives 12h/24h from `KP_LOCALE`; set `'12h'`/`'24h'` to force."
         },
         {
           "name": "showSeconds",
@@ -4351,7 +3533,7 @@
       "outputs": [
         {
           "name": "valueChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/timepicker/src/timepicker.component\").KpTimePickerValue"
+          "payload": "KpTimePickerValue"
         },
         {
           "name": "openChange",
@@ -4370,9 +3552,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-timepicker--docs",
       "sourcePath": "packages/ui/timepicker/src/timepicker.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11123",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11123"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11123"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4387,6 +3569,8 @@
       "name": "toast",
       "className": "KpToastHostComponent",
       "selector": "kp-toast-host",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/toast",
@@ -4430,9 +3614,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-toast--docs",
       "sourcePath": "packages/ui/toast/src/toast-host.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11127",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11127"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11127"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4447,6 +3631,8 @@
       "name": "toggle",
       "className": "KpToggleComponent",
       "selector": "kp-toggle",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/toggle",
@@ -4532,9 +3718,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-toggle--docs",
       "sourcePath": "packages/ui/toggle/src/toggle.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11009",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11009"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11009"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4547,81 +3733,12 @@
     },
     {
       "name": "tooltip",
-      "className": "KpClipboardCopyDirective",
-      "selector": "[kpClipboardCopy]",
-      "layer": "components",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/tooltip",
-      "description": "Kanso Protocol — Clipboard-copy directive.\n\nClick the host element to copy text to the clipboard; a brief tooltip\nhint (\"Copied\") appears for `kpClipboardDuration` ms. Reuses the\ntooltip's visual chrome + the shared overlay positioning.",
-      "examples": [
-        "<code [kpClipboardCopy]=\"snippet\">{{ snippet }}</code>",
-        "<button [kpClipboardCopy]=\"token\"\n        kpClipboardHint=\"Token copied!\"\n        kpClipboardPosition=\"top\">Copy token</button>"
-      ],
-      "inputs": [
-        {
-          "name": "text",
-          "type": "string | null",
-          "default": "null",
-          "description": "Text to copy. `null`/empty disables the copy action."
-        },
-        {
-          "name": "kpClipboardHint",
-          "type": "string",
-          "default": "'Copied'",
-          "description": "Hint shown after a successful copy."
-        },
-        {
-          "name": "kpClipboardPosition",
-          "type": "KpOverlaySide",
-          "default": "'top'",
-          "description": "Hint placement relative to the trigger."
-        },
-        {
-          "name": "kpClipboardDuration",
-          "type": "number",
-          "default": "DEFAULT_HINT_DURATION",
-          "description": "How long the hint stays visible, in ms."
-        },
-        {
-          "name": "kpClipboardDisabled",
-          "type": "boolean",
-          "default": "false",
-          "description": "Hard-disable regardless of text."
-        }
-      ],
-      "outputs": [
-        {
-          "name": "kpCopied",
-          "payload": "string"
-        },
-        {
-          "name": "kpCopyFailed",
-          "payload": "unknown"
-        }
-      ],
-      "ariaRole": null,
-      "sizeRamp": [],
-      "keyboardPatterns": [],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tooltip--docs",
-      "sourcePath": "packages/ui/tooltip/src/clipboard-copy.directive.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3805:11048",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11048"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpTooltipComponent",
-        "selector": "kp-tooltip",
-        "import": "import { KpTooltipComponent } from '@kanso-protocol/ui/tooltip';",
-        "docs": "docs/components/tooltip.md",
-        "storybook": "components-tooltip--docs"
-      }
-    },
-    {
-      "name": "tooltip",
       "className": "KpTooltipDirective",
       "selector": "[kpTooltip]",
+      "subSelectors": [
+        "[kpClipboardCopy]"
+      ],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/tooltip",
@@ -4683,9 +3800,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tooltip--docs",
       "sourcePath": "packages/ui/tooltip/src/tooltip.directive.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11048",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11048"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11048"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4700,6 +3817,8 @@
       "name": "tree",
       "className": "KpTreeComponent",
       "selector": "kp-tree",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/tree",
@@ -4764,7 +3883,11 @@
         },
         {
           "name": "nodeClick",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/tree/src/tree.component\").KpTreeNode"
+          "payload": "KpTreeNode"
+        },
+        {
+          "name": "nodeExpand",
+          "payload": "KpTreeNode"
         }
       ],
       "ariaRole": null,
@@ -4785,9 +3908,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tree--docs",
       "sourcePath": "packages/ui/tree/src/tree.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3805:11135",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3805-11135"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3805-11135"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4800,35 +3923,12 @@
     },
     {
       "name": "virtual-list",
-      "className": "KpVirtualRowDirective",
-      "selector": "[kpVirtualRow]",
-      "layer": "components",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/virtual-list",
-      "description": "Marker directive — pairs the row template with `<kp-virtual-list>`.",
-      "examples": [
-        "<kp-virtual-list ...>\n  <ng-template kpVirtualRow let-item let-i=\"index\">\n    <div>row {{ i }}: {{ item.name }}</div>\n  </ng-template>\n</kp-virtual-list>"
-      ],
-      "inputs": [],
-      "outputs": [],
-      "ariaRole": null,
-      "sizeRamp": [],
-      "keyboardPatterns": [],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-virtuallist--docs",
-      "sourcePath": "packages/ui/virtual-list/src/virtual-list.component.ts",
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpVirtualListComponent",
-        "selector": "kp-virtual-list",
-        "import": "import { KpVirtualListComponent } from '@kanso-protocol/ui/virtual-list';",
-        "docs": "docs/components/virtual-list.md",
-        "storybook": "components-virtuallist--docs"
-      }
-    },
-    {
-      "name": "virtual-list",
       "className": "KpVirtualListComponent",
       "selector": "kp-virtual-list",
+      "subSelectors": [
+        "[kpVirtualRow]"
+      ],
+      "stability": "stable",
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/virtual-list",
@@ -4871,7 +3971,7 @@
       "outputs": [
         {
           "name": "rangeChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/virtual-list/src/virtual-list.component\").KpVirtualRange"
+          "payload": "KpVirtualRange"
         }
       ],
       "ariaRole": null,
@@ -4894,6 +3994,8 @@
       "name": "app-shell",
       "className": "KpAppShellComponent",
       "selector": "kp-app-shell",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/app-shell",
@@ -4940,9 +4042,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-appshell--docs",
       "sourcePath": "packages/ui/app-shell/src/app-shell.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7265",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7265"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7265"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -4957,6 +4059,8 @@
       "name": "banner",
       "className": "KpBannerComponent",
       "selector": "kp-banner",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/banner",
@@ -5017,9 +4121,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-banner--docs",
       "sourcePath": "packages/ui/banner/src/banner.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7272",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7272"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7272"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5034,6 +4138,8 @@
       "name": "container",
       "className": "KpContainerComponent",
       "selector": "kp-container",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/container",
@@ -5062,9 +4168,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-container--docs",
       "sourcePath": "packages/ui/container/src/container.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7280",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7280"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7280"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5079,6 +4185,8 @@
       "name": "filter-bar",
       "className": "KpFilterBarComponent",
       "selector": "kp-filter-bar",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/filter-bar",
@@ -5136,9 +4244,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-filterbar--docs",
       "sourcePath": "packages/ui/filter-bar/src/filter-bar.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7288",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7288"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7288"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5153,6 +4261,8 @@
       "name": "form-section",
       "className": "KpFormSectionComponent",
       "selector": "kp-form-section",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/form-section",
@@ -5209,9 +4319,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-formsection--docs",
       "sourcePath": "packages/ui/form-section/src/form-section.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7296",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7296"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7296"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5226,6 +4336,8 @@
       "name": "grid",
       "className": "KpGridComponent",
       "selector": "kp-grid",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/grid",
@@ -5260,9 +4372,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-grid--docs",
       "sourcePath": "packages/ui/grid/src/grid.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7304",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7304"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7304"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5277,6 +4389,8 @@
       "name": "header",
       "className": "KpHeaderComponent",
       "selector": "kp-header",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/header",
@@ -5320,6 +4434,12 @@
           "type": "KpHeaderNavItem[]",
           "default": "[]",
           "description": ""
+        },
+        {
+          "name": "mobileBreakpoint",
+          "type": "number | null",
+          "default": "null",
+          "description": "Viewport width (px) below which the inline nav collapses to a hamburger\nthat emits `(menuClick)` — wire it to open your Drawer / Sidebar. Null\n(default) keeps the nav inline at all widths. SSR-safe."
         },
         {
           "name": "showSearch",
@@ -5410,6 +4530,10 @@
         {
           "name": "userMenuClick",
           "payload": "void"
+        },
+        {
+          "name": "menuClick",
+          "payload": "void"
         }
       ],
       "ariaRole": null,
@@ -5422,9 +4546,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-header--docs",
       "sourcePath": "packages/ui/header/src/header.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7312",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7312"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7312"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5439,6 +4563,8 @@
       "name": "nav-item",
       "className": "KpNavItemComponent",
       "selector": "kp-nav-item",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/nav-item",
@@ -5530,9 +4656,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-navitem--docs",
       "sourcePath": "packages/ui/nav-item/src/nav-item.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7320",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7320"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7320"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5547,6 +4673,10 @@
       "name": "notification-center",
       "className": "KpNotificationCenterComponent",
       "selector": "kp-notification-center",
+      "subSelectors": [
+        "kp-notification-item"
+      ],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/notification-center",
@@ -5566,6 +4696,12 @@
           "type": "KpNotification[]",
           "default": "[]",
           "description": ""
+        },
+        {
+          "name": "pageSize",
+          "type": "number | null",
+          "default": "null",
+          "description": "Page size for long lists. When set, only the first `pageSize` items show;\na \"Show more\" button reveals the next page (client-side) and emits\n`(loadMore)` so server-driven lists can append. Null = show all (default)."
         },
         {
           "name": "showFilters",
@@ -5603,7 +4739,7 @@
         },
         {
           "name": "itemClick",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/notification-center/src/notification-center.component\").KpNotification"
+          "payload": "KpNotification"
         },
         {
           "name": "filterChange",
@@ -5612,6 +4748,10 @@
         {
           "name": "viewAll",
           "payload": "void"
+        },
+        {
+          "name": "loadMore",
+          "payload": "number"
         }
       ],
       "ariaRole": null,
@@ -5620,93 +4760,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-notificationcenter--docs",
       "sourcePath": "packages/ui/notification-center/src/notification-center.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7327",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7327"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpNotificationCenterComponent",
-        "selector": "kp-notification-center",
-        "import": "import { KpNotificationCenterComponent } from '@kanso-protocol/ui/notification-center';",
-        "docs": "docs/patterns/notification-center.md",
-        "storybook": "patterns-notificationcenter--docs"
-      }
-    },
-    {
-      "name": "notification-center",
-      "className": "KpNotificationItemComponent",
-      "selector": "kp-notification-item",
-      "layer": "patterns",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/notification-center",
-      "description": "",
-      "examples": [],
-      "inputs": [
-        {
-          "name": "read",
-          "type": "boolean",
-          "default": "false",
-          "description": ""
-        },
-        {
-          "name": "title",
-          "type": "string",
-          "default": "'Notification title'",
-          "description": ""
-        },
-        {
-          "name": "message",
-          "type": "string | null",
-          "default": "null",
-          "description": ""
-        },
-        {
-          "name": "time",
-          "type": "string | null",
-          "default": "null",
-          "description": ""
-        },
-        {
-          "name": "icon",
-          "type": "string | null",
-          "default": "'bell'",
-          "description": ""
-        },
-        {
-          "name": "appearance",
-          "type": "KpNotificationAppearance",
-          "default": "'neutral'",
-          "description": ""
-        },
-        {
-          "name": "avatarInitials",
-          "type": "string | null",
-          "default": "null",
-          "description": ""
-        },
-        {
-          "name": "avatarSrc",
-          "type": "string | null",
-          "default": "null",
-          "description": ""
-        }
-      ],
-      "outputs": [
-        {
-          "name": "click$",
-          "payload": "void"
-        }
-      ],
-      "ariaRole": null,
-      "sizeRamp": [],
-      "keyboardPatterns": [],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-notificationcenter--docs",
-      "sourcePath": "packages/ui/notification-center/src/notification-item.component.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3822:7327",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7327"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7327"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5721,6 +4777,8 @@
       "name": "page-error",
       "className": "KpPageErrorComponent",
       "selector": "kp-page-error",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/page-error",
@@ -5779,9 +4837,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-pageerror--docs",
       "sourcePath": "packages/ui/page-error/src/page-error.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7334",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7334"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7334"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5796,6 +4854,8 @@
       "name": "page-header",
       "className": "KpPageHeaderComponent",
       "selector": "kp-page-header",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/page-header",
@@ -5863,6 +4923,12 @@
           "type": "KpPageHeaderAlign",
           "default": "'start'",
           "description": "Cross-axis alignment of the back-button + title + actions row.\nDefault 'start' (optical baseline alignment for multi-line headers\nwith a description). 'center' for single-line headers where the\nback-button should sit mid-height with the title."
+        },
+        {
+          "name": "collapsed",
+          "type": "boolean",
+          "default": "false",
+          "description": "Compact mode — hides the breadcrumbs and description rows, keeping the\ntitle, actions, and tabs. Pair with your own scroll listener for a\nshrink-on-scroll header, or toggle it explicitly."
         }
       ],
       "outputs": [
@@ -5881,9 +4947,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-pageheader--docs",
       "sourcePath": "packages/ui/page-header/src/page-header.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7341",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7341"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7341"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5898,6 +4964,8 @@
       "name": "row",
       "className": "KpRowComponent",
       "selector": "kp-row",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/row",
@@ -5938,9 +5006,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-row--docs",
       "sourcePath": "packages/ui/row/src/row.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3825:7273",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3825-7273"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3825-7273"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -5955,6 +5023,8 @@
       "name": "search-bar",
       "className": "KpSearchBarComponent",
       "selector": "kp-search-bar",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/search-bar",
@@ -6017,7 +5087,7 @@
         },
         {
           "name": "itemClick",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/search-bar/src/search-bar.component\").KpSearchResultItem"
+          "payload": "KpSearchResultItem"
         }
       ],
       "ariaRole": null,
@@ -6030,9 +5100,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-searchbar--docs",
       "sourcePath": "packages/ui/search-bar/src/search-bar.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7356",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7356"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7356"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -6047,6 +5117,10 @@
       "name": "settings-panel",
       "className": "KpSettingsPanelComponent",
       "selector": "kp-settings-panel",
+      "subSelectors": [
+        "kp-settings-row"
+      ],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/settings-panel",
@@ -6103,76 +5177,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-settingspanel--docs",
       "sourcePath": "packages/ui/settings-panel/src/settings-panel.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7364",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7364"
-      },
-      "codeConnect": {
-        "npm": "@kanso-protocol/ui",
-        "primaryClass": "KpSettingsPanelComponent",
-        "selector": "kp-settings-panel",
-        "import": "import { KpSettingsPanelComponent } from '@kanso-protocol/ui/settings-panel';",
-        "docs": "docs/patterns/settings-panel.md",
-        "storybook": "patterns-settingspanel--docs"
-      }
-    },
-    {
-      "name": "settings-panel",
-      "className": "KpSettingsRowComponent",
-      "selector": "kp-settings-row",
-      "layer": "patterns",
-      "package": "@kanso-protocol/ui",
-      "import": "@kanso-protocol/ui/settings-panel",
-      "description": "Kanso Protocol — SettingsRow\n\nOne row inside a `<kp-settings-panel>`. Title + optional description\non the left, a Control slot on the right (toggle, select, input,\nbutton, badge — anything you project in). Bottom divider on by\ndefault; consumers usually turn it off on the last row of a panel.",
-      "examples": [
-        "<kp-settings-row title=\"Email notifications\"\n                 description=\"Receive an email when something important happens.\">\n  <kp-toggle [on]=\"true\"/>\n</kp-settings-row>"
-      ],
-      "inputs": [
-        {
-          "name": "size",
-          "type": "KpSettingsRowSize",
-          "default": "'md'",
-          "description": ""
-        },
-        {
-          "name": "title",
-          "type": "string",
-          "default": "'Setting name'",
-          "description": ""
-        },
-        {
-          "name": "description",
-          "type": "string",
-          "default": "''",
-          "description": ""
-        },
-        {
-          "name": "showDescription",
-          "type": "boolean",
-          "default": "true",
-          "description": ""
-        },
-        {
-          "name": "showDivider",
-          "type": "boolean",
-          "default": "true",
-          "description": ""
-        }
-      ],
-      "outputs": [],
-      "ariaRole": null,
-      "sizeRamp": [
-        "sm",
-        "md",
-        "lg"
-      ],
-      "keyboardPatterns": [],
-      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-settingspanel--docs",
-      "sourcePath": "packages/ui/settings-panel/src/settings-row.component.ts",
-      "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
-        "nodeId": "3822:7364",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7364"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7364"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -6187,6 +5194,8 @@
       "name": "sidebar",
       "className": "KpSidebarComponent",
       "selector": "kp-sidebar",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/sidebar",
@@ -6206,6 +5215,12 @@
           "type": "KpSidebarAppearance",
           "default": "'light'",
           "description": ""
+        },
+        {
+          "name": "persistKey",
+          "type": "string | null",
+          "default": "null",
+          "description": "When set, the expanded/collapsed state is persisted to `localStorage`\nunder this key and restored on init — so the choice survives reloads.\nLeave null for session-scoped (in-memory) collapse. SSR-safe."
         },
         {
           "name": "showLogo",
@@ -6265,11 +5280,11 @@
       "outputs": [
         {
           "name": "toggle",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/sidebar/src/sidebar.component\").KpSidebarWidth"
+          "payload": "KpSidebarWidth"
         },
         {
           "name": "itemClick",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/sidebar/src/sidebar.component\").KpSidebarNavItem"
+          "payload": "KpSidebarNavItem"
         },
         {
           "name": "userMenuClick",
@@ -6282,9 +5297,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-sidebar--docs",
       "sourcePath": "packages/ui/sidebar/src/sidebar.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7372",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7372"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7372"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -6299,6 +5314,8 @@
       "name": "stack",
       "className": "KpStackComponent",
       "selector": "kp-stack",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/stack",
@@ -6327,9 +5344,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-stack--docs",
       "sourcePath": "packages/ui/stack/src/stack.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3825:7265",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3825-7265"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3825-7265"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -6344,6 +5361,8 @@
       "name": "stat-card",
       "className": "KpStatCardComponent",
       "selector": "kp-stat-card",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/stat-card",
@@ -6417,6 +5436,12 @@
           "type": "boolean",
           "default": "false",
           "description": ""
+        },
+        {
+          "name": "sparklineData",
+          "type": "number[] | null",
+          "default": "null",
+          "description": "Built-in sparkline: pass a numeric series (≥2 points) to draw an inline\n trend line. Ignored if you project your own `[kpStatCardSparkline]`."
         }
       ],
       "outputs": [],
@@ -6430,9 +5455,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-statcard--docs",
       "sourcePath": "packages/ui/stat-card/src/stat-card.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7387",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7387"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7387"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -6447,6 +5472,8 @@
       "name": "table-toolbar",
       "className": "KpTableToolbarComponent",
       "selector": "kp-table-toolbar",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/table-toolbar",
@@ -6555,7 +5582,7 @@
         },
         {
           "name": "densityChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/table-toolbar/src/table-toolbar.component\").KpTableToolbarDensity"
+          "payload": "KpTableToolbarDensity"
         },
         {
           "name": "columnsClick",
@@ -6596,9 +5623,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-tabletoolbar--docs",
       "sourcePath": "packages/ui/table-toolbar/src/table-toolbar.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7395",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7395"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7395"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -6613,6 +5640,8 @@
       "name": "theme-toggle",
       "className": "KpThemeToggleComponent",
       "selector": "kp-theme-toggle",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/theme-toggle",
@@ -6649,7 +5678,7 @@
       "outputs": [
         {
           "name": "themeChange",
-          "payload": "import(\"/Users/greore/kanso-protocol/packages/ui/theme-toggle/src/theme-toggle.component\").KpThemeValue"
+          "payload": "KpThemeValue"
         },
         {
           "name": "dropdownClick",
@@ -6668,9 +5697,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-themetoggle--docs",
       "sourcePath": "packages/ui/theme-toggle/src/theme-toggle.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7403",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7403"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7403"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -6685,6 +5714,8 @@
       "name": "user-menu",
       "className": "KpUserMenuComponent",
       "selector": "kp-user-menu",
+      "subSelectors": [],
+      "stability": "stable",
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/user-menu",
@@ -6716,6 +5747,12 @@
           "type": "string | null",
           "default": "'GB'",
           "description": ""
+        },
+        {
+          "name": "presence",
+          "type": "KpAvatarStatus | null",
+          "default": "'online'",
+          "description": "Presence dot on the avatar: `online` / `away` / `busy` / `offline`, or `null` to hide it."
         },
         {
           "name": "showEmail",
@@ -6763,9 +5800,9 @@
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/patterns-usermenu--docs",
       "sourcePath": "packages/ui/user-menu/src/user-menu.component.ts",
       "figma": {
-        "fileKey": "ahRfe4BdMAyoK0I3lnicp6",
+        "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
         "nodeId": "3822:7411",
-        "url": "https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3822-7411"
+        "url": "https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3822-7411"
       },
       "codeConnect": {
         "npm": "@kanso-protocol/ui",
@@ -8664,7 +7701,7 @@
     },
     {
       "name": "--kp-color-icon-warning",
-      "value": "var(--kp-color-amber-500)",
+      "value": "var(--kp-color-amber-600)",
       "category": "color",
       "subPath": "icon-warning"
     },
@@ -12177,6 +11214,18 @@
       "value": "32px",
       "category": "font",
       "subPath": "size-2xl"
+    },
+    {
+      "name": "--kp-focus-ring-width",
+      "value": "2px",
+      "category": "focus",
+      "subPath": "ring-width"
+    },
+    {
+      "name": "--kp-focus-ring-offset",
+      "value": "2px",
+      "category": "focus",
+      "subPath": "ring-offset"
     },
     {
       "name": "--kp-layout-container-max-width-narrow",

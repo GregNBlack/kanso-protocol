@@ -122,8 +122,8 @@ Per-size sizing:
 
 ## References
 
-- **Figma component**: [`SegmentedControl` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3180-2075)
-- **Figma Segment primitive**: [`Segment` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3179-5338)
+- **Figma component**: [`SegmentedControl` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3180-2075)
+- **Figma Segment primitive**: [`Segment` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3179-5338)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-segmentedcontrol
 - **Source**: `packages/ui/segmented-control/src/segmented-control.component.ts`
 - **Tokens used**:

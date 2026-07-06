@@ -210,6 +210,34 @@ export type KpSliderValue = number | readonly [number, number];
       color: var(--kp-color-slider-label);
       font-variant-numeric: tabular-nums;
     }
+
+    @media (forced-colors: active) {
+      /* The thumb focus ring is drawn with box-shadow, which forced-colors
+         flattens away. Restore a real outline for keyboard focus. */
+      .kp-sl__thumb:focus-visible {
+        outline: var(--kp-focus-ring-width) solid Highlight;
+        outline-offset: var(--kp-focus-ring-offset);
+      }
+      /* The filled portion of the track conveys the value via background,
+         which would flatten to the page color and become indistinguishable
+         from the empty track. Force it to a system accent. */
+      .kp-sl__track-fill {
+        forced-color-adjust: none;
+        background: Highlight;
+      }
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
   `],
 })
 export class KpSliderComponent implements ControlValueAccessor, OnDestroy {

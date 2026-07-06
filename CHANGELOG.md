@@ -12,6 +12,25 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-07-06 — feat: design-system integrity — enforce what the system declares
+
+A cross-cutting pass that turns Kanso's stated contracts into machine-checked gates, raises the accessibility ceiling, and hardens the AI + React developer experience. Every change is additive and visually neutral (media-gated or value-identical) — no component API changed.
+
+### Bumps
+
+- `@kanso-protocol/ui` `5.15.0` → `5.16.0` *(minor — a11y additions, tokenized focus ring, `icon.warning` AA fix)*
+- `@kanso-protocol/mcp` `4.2.1` → `4.3.0` *(minor — `check_composition` tool, deduped/stability-tiered/deterministic manifest)*
+- `@kanso-protocol/elements` `0.1.4` → `0.2.0` *(minor — Custom Elements Manifest + JSX types, bundle-size gated)*
+
+### What changed
+
+- **Enforcement (CI + husky).** `validate:tokens` — state-matrix completeness (216/216), the rest→hover→active ramp-step invariant, and dark-override existence. `check:contrast` — WCAG AA measured on curated foreground/background token pairs in both themes (caught and fixed `--kp-color-icon-warning`, which resolved to 2.15:1 on white). `check:stability` — `docs/stability.json` as the machine-readable tier source with a README/stability.md drift guard. The `raw-motion-duration` / `raw-shadow` lint rules promoted from warn to error. `check-no-stale-refs` extended to catch the `path.join('packages','components',…)` form.
+- **Accessibility.** Focus ring tokenized (`--kp-focus-ring-width` / `-offset`; 33 inline `2px` sites replaced, value-identical); `prefers-reduced-motion` honored by all 43 animated components (was 10); `@media (forced-colors: active)` support added to 29 interactive components for Windows High Contrast.
+- **MCP.** New `check_composition` tool flags mixed sizes in a row and beta-tier usage (12 tools total). The manifest is deduped (one primary record per component + `subSelectors`), carries a `stability` tier, includes the previously-missing `table-virtual`, is deterministic, and is guarded by a CI freshness gate; Figma-node lookups degrade gracefully instead of serving a wrong node.
+- **Elements / React DX.** Ships `custom-elements.json` (Custom Elements Manifest) and generated `JSX.IntrinsicElements` types, so `<kp-*>` type-checks in React/TSX; the ~1.9 MB bundle is now under the bundle-size budget; client-only SSR behavior is documented in `docs/web-components.md`.
+- **Brand tool.** `generate-brand-theme` now measures WCAG contrast per hue (with an `--enforce-aa` flag) instead of asserting the false "contrast preserved by construction" guarantee.
+- **Fixes.** Restored the missing `icons.allowlist.json` and corrected `generate-icon-map.js`'s stale v5 paths (`svg-map.generated.ts` reproduces byte-identically); README component count corrected to 42 with the `table-virtual` row; docs reconciled with code (state model incl. `error`, family-specific ARIA mapping, anatomy).
+
 ## 2026-05-05 — refactor(tokens): semantic `color.foreground.on-saturated` primitive
 
 Aligns code tokens with the Figma library by introducing an explicit primitive for "always-white text on saturated brand backgrounds". Replaces 30 inline `{color.white}` aliases that previously needed the `#FFFFFF` override list in `dark.json` because `color.white` itself inverts to `#18181B` (the elevation surface). Same final pixels, cleaner architecture, and lets Tokens Studio sync code → Figma without overwriting the manually-added Figma primitive.

@@ -282,6 +282,28 @@ import { KpSize, KpState } from '@kanso-protocol/ui';
       --kp-input-gap: 8px;
       --kp-input-clear-size: 24px; --kp-input-clear-icon: 16px;
     }
+
+    /* Forced-colors (Windows High Contrast): the focus state is drawn only via
+       border-color (outline is suppressed), which flattens to CanvasText and
+       becomes indistinguishable from the rest border. Restore a real ring. */
+    @media (forced-colors: active) {
+      :host(:focus-within) {
+        outline: var(--kp-focus-ring-width) solid Highlight;
+        outline-offset: var(--kp-focus-ring-offset);
+      }
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
   `]
 })
 export class KpInputComponent implements ControlValueAccessor {

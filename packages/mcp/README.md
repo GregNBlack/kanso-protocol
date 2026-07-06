@@ -4,7 +4,7 @@
 
 ## What you get
 
-Eleven tools, all running locally over stdio.
+Twelve tools, all running locally over stdio.
 
 **Catalog** — typed metadata extracted from the source code at build time:
 
@@ -15,6 +15,7 @@ Eleven tools, all running locally over stdio.
 | `get_component` | Full record — inputs (name/type/default), outputs, ARIA role, keyboard patterns, Storybook URL, **plus the Figma node ref**. |
 | `list_patterns` | Same shape, for higher-level pattern packages. |
 | `get_pattern` | Full record for one pattern. |
+| `check_composition` | Given surfaces you plan to place together with their `size`, flags contract violations a linter can't catch at runtime: mixed sizes in one row, a size outside a surface's ramp, or use of a beta/experimental surface. |
 | `list_tokens` | Every CSS variable from `tokens.css`, optionally filtered by category or substring. |
 | `get_token` | One token by name (with or without the `--kp-` prefix). |
 
@@ -67,7 +68,7 @@ claude mcp add kanso -- npx @kanso-protocol/mcp
 }
 ```
 
-Restart Claude Code, then run `/mcp` to confirm `kanso` appears as ✔ connected with 7 tools.
+Restart Claude Code, then run `/mcp` to confirm `kanso` appears as ✔ connected with 12 tools.
 
 ### Cursor
 

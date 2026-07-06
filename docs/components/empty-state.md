@@ -60,7 +60,7 @@ The illustration is a circular gray container; project an icon SVG into the `[kp
 
 ## References
 
-- **Figma component**: [`EmptyState` Component Set](https://www.figma.com/design/ahRfe4BdMAyoK0I3lnicp6/Design-System?node-id=3470-7933)
+- **Figma component**: [`EmptyState` Component Set](https://www.figma.com/design/lhWTPOMJMCNhnwM9nNMCuH/Kanso-Protocol-Design-System?node-id=3470-7933)
 - **Storybook**: https://gregnblack.github.io/kanso-protocol/?path=/docs/components-emptystate
 - **Source**: `packages/ui/empty-state/src/`
 - **Tokens used**:

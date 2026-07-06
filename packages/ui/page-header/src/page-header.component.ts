@@ -212,6 +212,18 @@ export type KpPageHeaderAlign = 'start' | 'center' | 'end';
       --kp-ph-gap-tabs: 32px;
       --kp-ph-pad-bottom: 32px;
     }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
   `],
 })
 export class KpPageHeaderComponent {

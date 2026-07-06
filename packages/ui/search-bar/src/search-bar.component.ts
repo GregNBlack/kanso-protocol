@@ -275,6 +275,28 @@ export interface KpSearchResultGroup {
       font-size: 10px;
     }
     .kp-search-bar__footer-brand { margin-inline-start: auto; color: var(--kp-color-text-disabled); }
+
+    /* The inline focus indicator is drawn with box-shadow, which is
+       flattened away in forced-colors mode. Restore a real outline ring
+       so keyboard focus stays visible in Windows High Contrast. */
+    @media (forced-colors: active) {
+      .kp-search-bar__wrap:focus-within {
+        outline: var(--kp-focus-ring-width) solid Highlight;
+        outline-offset: var(--kp-focus-ring-offset);
+      }
+    }
+
+    /* Respect the OS reduced-motion setting: collapse transitions and
+       decorative animation to effectively instant. */
+    @media (prefers-reduced-motion: reduce) {
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
   `],
 })
 export class KpSearchBarComponent {

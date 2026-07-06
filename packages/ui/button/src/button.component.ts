@@ -120,8 +120,8 @@ export type KpButtonColor = 'primary' | 'danger' | 'neutral';
 
     :host(:focus-visible),
     :host(.kp-button--focus) {
-      outline: 2px solid var(--kp-color-focus-ring);
-      outline-offset: 2px;
+      outline: var(--kp-focus-ring-width) solid var(--kp-color-focus-ring);
+      outline-offset: var(--kp-focus-ring-offset);
     }
 
     :host([disabled]),
