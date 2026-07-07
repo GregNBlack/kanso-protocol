@@ -33,6 +33,7 @@ A large maintainability + reach release. Structural token/theme work, three new 
 - **Charts adapter.** `@kanso-protocol/ui/charts` — a dependency-free token bridge (`kansoEChartsTheme` / `kansoChartColors`) that styles your own chart library with Kanso tokens. No charts component shipped.
 - **Component polish.** Rich `<kp-select>` options (optional `icon` + `description`); Notification Center incremental pagination (`[pageSize]` window + "Show N more" + `(loadMore)`); anchor-aware Popover positioning (tracks the trigger, auto-closes on scroll-out); a Storybook `Choosing a component` decision matrix.
 - **Derived action matrix.** The 216-combo action-role state matrix is now machine-*derived* from two rule templates (saturated for `primary`/`danger`, neutral for `neutral`); `check:matrix` fails CI if any committed cell diverges from the spec, extending `validate:tokens` (which only pins completeness + the solid-default ramp) to every variant and state.
+- **Fixes surfaced by the new gates.** The reduced-motion CI spec (now actually reached in the a11y job) caught the `accordion` chevron transition escaping its reduced-motion block — fixed to the catalog-standard `:host *` collapse; the Notification Center "Show more" control moved out of the `role="list"` container (`aria-required-children`).
 
 ## 2026-07-06 — feat: design-system integrity — enforce what the system declares
 

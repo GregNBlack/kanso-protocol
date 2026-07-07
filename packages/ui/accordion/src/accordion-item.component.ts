@@ -174,9 +174,17 @@ export type KpAccordionItemSize = 'sm' | 'md' | 'lg';
       line-height: var(--kp-ai-ct-lh);
     }
 
-    /* Respect OS-level reduce-motion preference — no height transition. */
+    /* Respect the OS reduced-motion setting: collapse every transition and
+       decorative animation (the panel height AND the chevron rotate) to
+       effectively instant, matching the rest of the catalog. */
     @media (prefers-reduced-motion: reduce) {
-      .kp-ai__panel { transition: none; }
+      :host,
+      :host * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
     }
 
     :host(.kp-ai--sm) {

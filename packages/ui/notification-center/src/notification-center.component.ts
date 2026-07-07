@@ -91,20 +91,20 @@ export interface KpNotification {
                 (click$)="itemClick.emit(n)"
               />
             }
-            @if (hasMore) {
-              <button
-                class="kp-notif-center__more"
-                kpButton
-                size="sm"
-                variant="ghost"
-                color="primary"
-                [attr.aria-label]="'Show ' + remainingCount + ' more notifications'"
-                (click)="showMore()"
-              >
-                Show {{ remainingCount }} more
-              </button>
-            }
           </div>
+          @if (hasMore) {
+            <button
+              class="kp-notif-center__more"
+              kpButton
+              size="sm"
+              variant="ghost"
+              color="primary"
+              [attr.aria-label]="'Show ' + remainingCount + ' more notifications'"
+              (click)="showMore()"
+            >
+              Show {{ remainingCount }} more
+            </button>
+          }
         }
         @case ('empty') {
           <div class="kp-notif-center__empty">

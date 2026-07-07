@@ -67,10 +67,15 @@ async function maxTransitionMs(page: Page): Promise<number> {
 }
 
 test.describe('prefers-reduced-motion: reduce collapses transitions', () => {
+  // `test.use({ reducedMotion })` doesn't reliably reach the context when the
+  // project `use` spreads a device descriptor, so emulate the media feature
+  // explicitly per page (a direct CDP call) before navigating — this is what
+  // actually flips `@media (prefers-reduced-motion: reduce)` on.
   test.use({ reducedMotion: 'reduce' });
 
   for (const id of STORIES) {
     test(id, async ({ page }) => {
+      await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.goto(`/iframe.html?id=${id}&viewMode=story`);
       await page.waitForSelector('#storybook-root', { state: 'attached' });
       await page.waitForLoadState('networkidle');
