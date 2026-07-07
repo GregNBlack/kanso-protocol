@@ -3,6 +3,7 @@
     "duration": {
       "$type": "duration",
       "$description": "Fast/normal/slow cover state transitions; spin/shimmer cover infinite indeterminate loops where the duration is intentionally long enough to read the animation, not just acknowledge it.",
+      "instant":  { "$value": "100ms", "$description": "Micro-interactions that should read as immediate — a hair quicker than fast (e.g. calendar/clock cell color shifts)." },
       "fast":     { "$value": "120ms", "$description": "Hover, focus, color/border state changes." },
       "normal":   { "$value": "200ms", "$description": "Overlay enter/exit, accordion expand, larger transitions." },
       "slow":     { "$value": "300ms", "$description": "Page-level changes; rare." },

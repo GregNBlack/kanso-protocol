@@ -103,7 +103,7 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
       cursor: pointer;
       transition:
         background var(--kp-motion-duration-fast) ease,
-        color 120ms ease,
+        color var(--kp-motion-duration-fast) ease,
         padding-inline-start var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
         padding-inline-end var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1),
         gap var(--kp-motion-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);

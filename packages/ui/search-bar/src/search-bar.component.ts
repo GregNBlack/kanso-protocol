@@ -149,7 +149,7 @@ export interface KpSearchResultGroup {
       border: 1px solid var(--kp-color-input-border-rest);
       border-radius: var(--kp-search-radius, 12px);
       background: var(--kp-color-input-bg-default);
-      transition: background var(--kp-motion-duration-fast) ease, border-color 120ms ease, box-shadow 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, border-color var(--kp-motion-duration-fast) ease, box-shadow var(--kp-motion-duration-fast) ease;
     }
     .kp-search-bar__wrap--focused,
     .kp-search-bar__wrap:focus-within {
@@ -245,7 +245,7 @@ export interface KpSearchResultGroup {
       font-size: 13px;
       color: var(--kp-color-text-default);
       cursor: pointer;
-      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color var(--kp-motion-duration-fast) ease;
     }
     .kp-search-bar__item:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-strong); }
     .kp-search-bar__item-icon { font-size: 16px; color: var(--kp-color-text-muted); }

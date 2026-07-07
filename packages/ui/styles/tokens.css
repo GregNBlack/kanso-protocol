@@ -506,7 +506,7 @@
   --kp-color-alert-primary-subtle-accent: var(--kp-color-blue-600);
   --kp-color-alert-primary-solid-bg: var(--kp-color-blue-600);
   --kp-color-alert-primary-solid-fg-title: var(--kp-color-foreground-on-saturated);
-  --kp-color-alert-primary-solid-fg-desc: var(--kp-color-blue-50);
+  --kp-color-alert-primary-solid-fg-desc: var(--kp-color-foreground-on-saturated);
   --kp-color-alert-primary-solid-border: var(--kp-color-blue-600);
   --kp-color-alert-primary-solid-icon: var(--kp-color-foreground-on-saturated);
   --kp-color-alert-primary-solid-accent: var(--kp-color-foreground-on-saturated);
@@ -530,7 +530,7 @@
   --kp-color-alert-danger-subtle-accent: var(--kp-color-red-600);
   --kp-color-alert-danger-solid-bg: var(--kp-color-red-600);
   --kp-color-alert-danger-solid-fg-title: var(--kp-color-foreground-on-saturated);
-  --kp-color-alert-danger-solid-fg-desc: var(--kp-color-red-50);
+  --kp-color-alert-danger-solid-fg-desc: var(--kp-color-foreground-on-saturated);
   --kp-color-alert-danger-solid-border: var(--kp-color-red-600);
   --kp-color-alert-danger-solid-icon: var(--kp-color-foreground-on-saturated);
   --kp-color-alert-danger-solid-accent: var(--kp-color-foreground-on-saturated);
@@ -552,10 +552,10 @@
   --kp-color-alert-success-subtle-border: var(--kp-color-green-200);
   --kp-color-alert-success-subtle-icon: var(--kp-color-green-600);
   --kp-color-alert-success-subtle-accent: var(--kp-color-green-600);
-  --kp-color-alert-success-solid-bg: var(--kp-color-green-600);
+  --kp-color-alert-success-solid-bg: var(--kp-color-green-700);
   --kp-color-alert-success-solid-fg-title: var(--kp-color-foreground-on-saturated);
   --kp-color-alert-success-solid-fg-desc: var(--kp-color-green-50);
-  --kp-color-alert-success-solid-border: var(--kp-color-green-600);
+  --kp-color-alert-success-solid-border: var(--kp-color-green-700);
   --kp-color-alert-success-solid-icon: var(--kp-color-foreground-on-saturated);
   --kp-color-alert-success-solid-accent: var(--kp-color-foreground-on-saturated);
   --kp-color-alert-success-outline-bg: var(--kp-color-white);
@@ -578,7 +578,7 @@
   --kp-color-alert-warning-subtle-accent: var(--kp-color-amber-500);
   --kp-color-alert-warning-solid-bg: var(--kp-color-amber-500);
   --kp-color-alert-warning-solid-fg-title: var(--kp-color-gray-900);
-  --kp-color-alert-warning-solid-fg-desc: var(--kp-color-amber-900);
+  --kp-color-alert-warning-solid-fg-desc: var(--kp-color-amber-950);
   --kp-color-alert-warning-solid-border: var(--kp-color-amber-500);
   --kp-color-alert-warning-solid-icon: var(--kp-color-gray-900);
   --kp-color-alert-warning-solid-accent: var(--kp-color-gray-900);
@@ -600,10 +600,10 @@
   --kp-color-alert-info-subtle-border: var(--kp-color-cyan-200);
   --kp-color-alert-info-subtle-icon: var(--kp-color-cyan-600);
   --kp-color-alert-info-subtle-accent: var(--kp-color-cyan-600);
-  --kp-color-alert-info-solid-bg: var(--kp-color-cyan-600);
+  --kp-color-alert-info-solid-bg: var(--kp-color-cyan-700);
   --kp-color-alert-info-solid-fg-title: var(--kp-color-foreground-on-saturated);
   --kp-color-alert-info-solid-fg-desc: var(--kp-color-cyan-50);
-  --kp-color-alert-info-solid-border: var(--kp-color-cyan-600);
+  --kp-color-alert-info-solid-border: var(--kp-color-cyan-700);
   --kp-color-alert-info-solid-icon: var(--kp-color-foreground-on-saturated);
   --kp-color-alert-info-solid-accent: var(--kp-color-foreground-on-saturated);
   --kp-color-alert-info-outline-bg: var(--kp-color-white);
@@ -779,10 +779,10 @@
   --kp-color-datepicker-day-bg-range-edge: var(--kp-color-blue-600);
   --kp-color-datepicker-day-fg-rest: var(--kp-color-gray-900);
   --kp-color-datepicker-day-fg-hover: var(--kp-color-gray-900);
-  --kp-color-datepicker-day-fg-selected: var(--kp-color-white);
+  --kp-color-datepicker-day-fg-selected: var(--kp-color-foreground-on-saturated);
   --kp-color-datepicker-day-fg-today: var(--kp-color-blue-600);
   --kp-color-datepicker-day-fg-in-range: var(--kp-color-blue-700);
-  --kp-color-datepicker-day-fg-range-edge: var(--kp-color-white);
+  --kp-color-datepicker-day-fg-range-edge: var(--kp-color-foreground-on-saturated);
   --kp-color-datepicker-day-fg-outside: var(--kp-color-gray-400);
   --kp-color-datepicker-day-fg-disabled: var(--kp-color-gray-300);
   --kp-color-datepicker-day-today-ring: var(--kp-color-blue-600); /** Ring around today's date */
@@ -861,6 +861,7 @@
   --kp-icon-stroke-md: 1.5px; /** Stroke width for 18px icons */
   --kp-icon-stroke-lg: 1.75px; /** Stroke width for 22px icons */
   --kp-icon-stroke-xl: 2px; /** Stroke width for 24px icons — standard Tabler default */
+  --kp-motion-duration-instant: 100ms; /** Micro-interactions that should read as immediate — a hair quicker than fast (e.g. calendar/clock cell color shifts). */
   --kp-motion-duration-fast: 120ms; /** Hover, focus, color/border state changes. */
   --kp-motion-duration-normal: 200ms; /** Overlay enter/exit, accordion expand, larger transitions. */
   --kp-motion-duration-slow: 300ms; /** Page-level changes; rare. */

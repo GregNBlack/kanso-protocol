@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-07-06T13:59:17.394Z",
+  "generatedAt": "2026-07-07T10:54:21.661Z",
   "version": "4.3.0",
   "totals": {
     "components": 42,
     "patterns": 20,
-    "tokens": 917
+    "tokens": 918
   },
   "figma": {
     "fileKey": "lhWTPOMJMCNhnwM9nNMCuH",
@@ -8823,7 +8823,7 @@
     },
     {
       "name": "--kp-color-alert-primary-solid-fg-desc",
-      "value": "var(--kp-color-blue-50)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "alert-primary-solid-fg-desc"
     },
@@ -8967,7 +8967,7 @@
     },
     {
       "name": "--kp-color-alert-danger-solid-fg-desc",
-      "value": "var(--kp-color-red-50)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "alert-danger-solid-fg-desc"
     },
@@ -9099,7 +9099,7 @@
     },
     {
       "name": "--kp-color-alert-success-solid-bg",
-      "value": "var(--kp-color-green-600)",
+      "value": "var(--kp-color-green-700)",
       "category": "color",
       "subPath": "alert-success-solid-bg"
     },
@@ -9117,7 +9117,7 @@
     },
     {
       "name": "--kp-color-alert-success-solid-border",
-      "value": "var(--kp-color-green-600)",
+      "value": "var(--kp-color-green-700)",
       "category": "color",
       "subPath": "alert-success-solid-border"
     },
@@ -9255,7 +9255,7 @@
     },
     {
       "name": "--kp-color-alert-warning-solid-fg-desc",
-      "value": "var(--kp-color-amber-900)",
+      "value": "var(--kp-color-amber-950)",
       "category": "color",
       "subPath": "alert-warning-solid-fg-desc"
     },
@@ -9387,7 +9387,7 @@
     },
     {
       "name": "--kp-color-alert-info-solid-bg",
-      "value": "var(--kp-color-cyan-600)",
+      "value": "var(--kp-color-cyan-700)",
       "category": "color",
       "subPath": "alert-info-solid-bg"
     },
@@ -9405,7 +9405,7 @@
     },
     {
       "name": "--kp-color-alert-info-solid-border",
-      "value": "var(--kp-color-cyan-600)",
+      "value": "var(--kp-color-cyan-700)",
       "category": "color",
       "subPath": "alert-info-solid-border"
     },
@@ -10461,7 +10461,7 @@
     },
     {
       "name": "--kp-color-datepicker-day-fg-selected",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "datepicker-day-fg-selected"
     },
@@ -10479,7 +10479,7 @@
     },
     {
       "name": "--kp-color-datepicker-day-fg-range-edge",
-      "value": "var(--kp-color-white)",
+      "value": "var(--kp-color-foreground-on-saturated)",
       "category": "color",
       "subPath": "datepicker-day-fg-range-edge"
     },
@@ -10950,6 +10950,12 @@
       "value": "2px",
       "category": "icon",
       "subPath": "stroke-xl"
+    },
+    {
+      "name": "--kp-motion-duration-instant",
+      "value": "100ms",
+      "category": "motion",
+      "subPath": "duration-instant"
     },
     {
       "name": "--kp-motion-duration-fast",

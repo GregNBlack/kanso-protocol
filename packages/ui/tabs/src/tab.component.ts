@@ -63,7 +63,7 @@ export type KpTabSize = 'sm' | 'md' | 'lg';
       font-size: var(--kp-tab-font-size);
       line-height: var(--kp-tab-line-height);
       font-weight: 500;
-      transition: border-color var(--kp-motion-duration-fast) ease, color 120ms ease;
+      transition: border-color var(--kp-motion-duration-fast) ease, color var(--kp-motion-duration-fast) ease;
     }
     :host(.kp-tab--full-width) { flex: 1 1 0; }
 

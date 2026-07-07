@@ -128,6 +128,11 @@ let nextGroupId = 0;
       z-index: 0;
     }
     :host(.kp-segmented-control--ready) .kp-segmented-control__pill {
+      /* Bespoke pill-slide spring: 240/160ms + a custom spring curve,
+         intentionally OFF the shared fast/normal/slow + in/out/in-out motion
+         scale. This is the control's signature interaction; a one-off spring
+         is deliberately not promoted to a shared token (minimalism). Recorded
+         here so it reads as an intentional exception, not a stray magic number. */
       transition:
         transform 240ms cubic-bezier(0.32, 0.72, 0, 1),
         width     240ms cubic-bezier(0.32, 0.72, 0, 1),

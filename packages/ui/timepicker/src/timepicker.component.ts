@@ -206,7 +206,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       background: var(--kp-color-input-bg-default);
       color: var(--kp-color-input-fg-default);
       cursor: pointer;
-      transition: border-color var(--kp-motion-duration-fast) ease, background 120ms ease;
+      transition: border-color var(--kp-motion-duration-fast) ease, background var(--kp-motion-duration-fast) ease;
     }
     :host(:not(.kp-tp--disabled):not(.kp-tp--error)) .kp-tp__trigger:hover,
     :host(.kp-tp--hover) .kp-tp__trigger {
@@ -250,7 +250,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       border-radius: 4px;
       color: var(--kp-color-text-muted);
       cursor: pointer;
-      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color var(--kp-motion-duration-fast) ease;
     }
     .kp-tp__clear:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-default); }
     .kp-tp__clear svg { width: var(--kp-input-clear-icon, 14px); height: var(--kp-input-clear-icon, 14px); }
@@ -332,7 +332,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
       font-variant-numeric: tabular-nums;
       color: var(--kp-color-datepicker-day-fg-rest);
       cursor: pointer;
-      transition: background var(--kp-motion-duration-fast) ease, color 100ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color var(--kp-motion-duration-instant) ease;
       flex-shrink: 0;
     }
     .kp-tp__item:hover:not(.kp-tp__item--selected) {

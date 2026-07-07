@@ -109,7 +109,6 @@
   --kp-color-alert-primary-subtle-fg-title: var(--kp-color-gray-950);
   --kp-color-alert-primary-subtle-fg-desc: var(--kp-color-blue-900);
   --kp-color-alert-primary-subtle-border: rgba(0, 0, 0, 0);
-  --kp-color-alert-primary-solid-fg-desc: var(--kp-color-blue-900);
   --kp-color-alert-primary-outline-bg: var(--kp-color-gray-50);
   --kp-color-alert-primary-outline-fg-title: var(--kp-color-blue-900);
   --kp-color-alert-primary-outline-fg-desc: var(--kp-color-gray-600);
@@ -122,7 +121,6 @@
   --kp-color-alert-danger-subtle-fg-title: var(--kp-color-gray-950);
   --kp-color-alert-danger-subtle-fg-desc: var(--kp-color-red-900);
   --kp-color-alert-danger-subtle-border: rgba(0, 0, 0, 0);
-  --kp-color-alert-danger-solid-fg-desc: var(--kp-color-red-900);
   --kp-color-alert-danger-outline-bg: var(--kp-color-gray-50);
   --kp-color-alert-danger-outline-fg-title: #fecaca;
   --kp-color-alert-danger-outline-fg-desc: var(--kp-color-gray-600);
@@ -148,6 +146,8 @@
   --kp-color-alert-warning-subtle-fg-title: var(--kp-color-gray-950);
   --kp-color-alert-warning-subtle-fg-desc: var(--kp-color-amber-900);
   --kp-color-alert-warning-subtle-border: rgba(0, 0, 0, 0);
+  --kp-color-alert-warning-solid-fg-title: var(--kp-color-gray-100);
+  --kp-color-alert-warning-solid-fg-desc: var(--kp-color-amber-50);
   --kp-color-alert-warning-outline-bg: var(--kp-color-gray-50);
   --kp-color-alert-warning-outline-fg-title: #fde68a;
   --kp-color-alert-warning-outline-fg-desc: var(--kp-color-gray-600);
@@ -336,7 +336,9 @@
   --kp-color-avatar-group-count-bg: var(--kp-color-gray-200);
   --kp-color-avatar-group-count-fg: var(--kp-color-gray-950);
   --kp-color-checkbox-border-hover: var(--kp-color-gray-500);
+  --kp-color-stepper-label-error: #f87171;
   --kp-color-menu-item-fg-selected: var(--kp-color-blue-900);
+  --kp-color-menu-item-fg-danger-rest: #f87171;
   --kp-color-segmented-track-bg: var(--kp-color-gray-200);
   --kp-color-segmented-segment-bg-selected: var(--kp-color-gray-300);
   --kp-color-input-bg-default: #0e0f13;
@@ -367,6 +369,7 @@
   --kp-color-divider-label: var(--kp-color-gray-600);
   --kp-color-datepicker-day-fg-rest: var(--kp-color-gray-900);
   --kp-color-datepicker-day-fg-outside: var(--kp-color-gray-500);
+  --kp-color-datepicker-day-fg-in-range: var(--kp-color-blue-900);
   --kp-color-sidebar-section-label: var(--kp-color-gray-600);
   --kp-color-text-muted: var(--kp-color-gray-600);
   --kp-color-text-disabled: var(--kp-color-gray-600);

@@ -49,6 +49,12 @@ jobs:
         # if README's status block or stability.md's summary counts drift from
         # it. Kills the README-vs-stability contradiction class of bug.
         run: node scripts/generate-stability.js --check
+      - name: Coverage gate (docs + spec exist for every stable surface)
+        # Turns two declared-but-unenforced stability.md rubric criteria into a
+        # gate: every component/pattern has a contract doc, and every `stable`
+        # non-exempt surface (pure-layout/presentational excepted) has a unit
+        # spec. See scripts/check-coverage.js.
+        run: node scripts/check-coverage.js
 
   build:
     runs-on: ubuntu-latest
@@ -156,10 +162,12 @@ jobs:
         # built/served static bundle, producing "story missing" errors.
         env:
           KANSO_HIDE_AUDIT: '1'
+          # reduced-motion.spec (Playwright) reads STORYBOOK_URL for its baseURL.
+          STORYBOOK_URL: http://localhost:6006
         run: |
           npx concurrently -k -s first -n "SB,TEST" \
             "npx http-server storybook-static --port 6006 --silent" \
-            "npx wait-on tcp:6006 && npm run test:storybook -- --url http://localhost:6006"
+            "npx wait-on tcp:6006 && npm run test:storybook -- --url http://localhost:6006 && npm run test:reduced-motion"
 
   visual-regression:
     # Pixel-level visual regression against committed baselines in

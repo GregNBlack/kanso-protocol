@@ -179,7 +179,7 @@ export interface KpNotification {
       font-weight: 500;
       color: var(--kp-color-text-muted);
       cursor: pointer;
-      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color var(--kp-motion-duration-fast) ease;
     }
     .kp-notif-center__filter:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-strong); }
     .kp-notif-center__filter--active { background: var(--kp-color-primary-subtle-bg-rest); color: var(--kp-color-accent-primary-fg); }

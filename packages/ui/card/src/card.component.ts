@@ -78,7 +78,7 @@ export type KpCardAppearance = 'default' | 'muted' | 'subtle' | 'elevated' | 'ou
       background: var(--kp-card-bg);
       border: 1px solid var(--kp-card-border);
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
-      transition: background var(--kp-motion-duration-fast) ease, box-shadow 120ms ease, transform 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, box-shadow var(--kp-motion-duration-fast) ease, transform var(--kp-motion-duration-fast) ease;
     }
     :host(.kp-card--clickable) { cursor: pointer; }
     :host(.kp-card--clickable:hover) { background: var(--kp-color-card-bg-muted); }

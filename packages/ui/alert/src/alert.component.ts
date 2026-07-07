@@ -173,7 +173,7 @@ export type KpAlertActionPlacement = 'inline' | 'stacked';
       color: var(--kp-alert-fg-title);
       cursor: pointer;
       opacity: 0.75;
-      transition: opacity var(--kp-motion-duration-fast) ease, background 120ms ease;
+      transition: opacity var(--kp-motion-duration-fast) ease, background var(--kp-motion-duration-fast) ease;
     }
     .kp-alert__close:hover { opacity: 1; background: var(--kp-color-overlay-hover-light); }
     .kp-alert__close:focus-visible {

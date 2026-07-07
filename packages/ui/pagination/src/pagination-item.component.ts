@@ -96,7 +96,7 @@ export type KpPaginationNavDirection = 'prev' | 'next';
       font-weight: 500;
       font-variant-numeric: tabular-nums;
       cursor: pointer;
-      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color var(--kp-motion-duration-fast) ease;
     }
     .kp-pi__btn.kp-pi--icon-only { padding: 0; }
     .kp-pi__btn:hover {

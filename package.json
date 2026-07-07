@@ -28,6 +28,7 @@
     "validate:tokens": "node scripts/validate-tokens.js",
     "check:contrast": "node scripts/check-contrast.js",
     "check:stability": "node scripts/generate-stability.js --check",
+    "check:coverage": "node scripts/check-coverage.js",
     "check:bundle-size": "node scripts/check-bundle-size.js",
     "check:bundle-size:update": "node scripts/check-bundle-size.js --update",
     "check:stale-refs": "node scripts/check-no-stale-refs.js",
@@ -44,6 +45,7 @@
     "test": "ng test",
     "test:watch": "ng test --watch",
     "test:storybook": "test-storybook --config-dir .storybook",
+    "test:reduced-motion": "playwright test e2e/reduced-motion.spec.ts --config e2e/playwright.config.ts",
     "test:visual": "playwright test e2e/visual.spec.ts --config e2e/playwright.config.ts",
     "test:visual:update": "playwright test e2e/visual.spec.ts --config e2e/playwright.config.ts --update-snapshots"
   },

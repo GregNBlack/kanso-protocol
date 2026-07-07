@@ -237,7 +237,7 @@ interface DayCell {
       background: var(--kp-color-input-bg-default);
       color: var(--kp-color-input-fg-default);
       cursor: pointer;
-      transition: border-color var(--kp-motion-duration-fast) ease, background 120ms ease;
+      transition: border-color var(--kp-motion-duration-fast) ease, background var(--kp-motion-duration-fast) ease;
     }
     :host(:not(.kp-dp--disabled):not(.kp-dp--error)) .kp-dp__trigger:hover,
     :host(.kp-dp--hover) .kp-dp__trigger {
@@ -280,7 +280,7 @@ interface DayCell {
       border-radius: 4px;
       color: var(--kp-color-text-muted);
       cursor: pointer;
-      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color var(--kp-motion-duration-fast) ease;
     }
     .kp-dp__clear:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-default); }
     .kp-dp__clear svg { width: var(--kp-input-clear-icon, 14px); height: var(--kp-input-clear-icon, 14px); }
@@ -396,7 +396,7 @@ interface DayCell {
       color: var(--kp-color-datepicker-day-fg-rest);
       cursor: pointer;
       box-sizing: border-box;
-      transition: background var(--kp-motion-duration-fast) ease, color 100ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color var(--kp-motion-duration-instant) ease;
     }
     .kp-dp__day:hover:not([disabled]):not(.kp-dp__day--selected):not(.kp-dp__day--range-start):not(.kp-dp__day--range-end) {
       background: var(--kp-color-datepicker-day-bg-hover);
@@ -456,7 +456,7 @@ interface DayCell {
       font-size: 13px;
       color: var(--kp-color-text-default);
       cursor: pointer;
-      transition: background var(--kp-motion-duration-fast) ease, color 100ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color var(--kp-motion-duration-instant) ease;
     }
     .kp-dp__month:hover,
     .kp-dp__year:hover {

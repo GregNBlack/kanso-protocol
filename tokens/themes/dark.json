@@ -396,12 +396,6 @@
             "$description": "audit-2026-05-06 — subtle alerts in dark feel cleaner without a border; the tinted bg defines the box"
           }
         },
-        "solid": {
-          "fg-desc": {
-            "$value": "{color.blue.900}",
-            "$description": "audit-2026-05-06 r3 — hold at blue-100 light; without override the alias cascades to blue.50 dark = #172554 which is dark text on bright bg — wrong"
-          }
-        },
         "outline": {
           "bg": {
             "$value": "{color.gray.50}",
@@ -454,12 +448,6 @@
           },
           "border": {
             "$value": "transparent"
-          }
-        },
-        "solid": {
-          "fg-desc": {
-            "$value": "{color.red.900}",
-            "$description": "audit-2026-05-06 r3 — red-100 light"
           }
         },
         "outline": {
@@ -562,6 +550,16 @@
           },
           "border": {
             "$value": "transparent"
+          }
+        },
+        "solid": {
+          "fg-title": {
+            "$value": "{color.gray.100}",
+            "$description": "audit-2026-07-07 — force gray.900 LIGHT hex #18181B (via gray.100 dark) so the title stays dark ink on the fixed amber.500 pivot; default cascade inverts gray.900 → #F4F4F5 (~1.95:1). Mirrors badge.warning.filled.fg."
+          },
+          "fg-desc": {
+            "$value": "{color.amber.50}",
+            "$description": "audit-2026-07-07 — force amber.950 LIGHT hex #451A03 (via amber.50 dark) so the warm desc ink stays dark on amber.500; default cascade inverts amber.950 → #FFFBEB (~1.93:1). ~6.97:1 both themes."
           }
         },
         "outline": {
@@ -1361,12 +1359,26 @@
         }
       }
     },
+    "stepper": {
+      "label": {
+        "error": {
+          "$value": "#F87171",
+          "$description": "audit-2026-07-07 — red.400 LIGHT hex #F87171; default cascade keeps red.700 = #B91C1C (2.74:1 on surface-base dark, fails AA). Mirrors accent.danger.fg dark override."
+        }
+      }
+    },
     "menu": {
       "item": {
         "fg": {
           "selected": {
             "$value": "{color.blue.900}",
             "$description": "audit-2026-05-07 r2 — blue-100 light, one step brighter than the r1 #BFDBFE which was still hard to read on the dark selected bg"
+          }
+        },
+        "fg-danger": {
+          "rest": {
+            "$value": "#F87171",
+            "$description": "audit-2026-07-07 — red.400 LIGHT hex #F87171; default cascade keeps red.600 = #DC2626 (3.67:1 on menu surface dark, fails AA). Mirrors accent.danger.fg dark override."
           }
         }
       }
@@ -1552,6 +1564,10 @@
           "outside": {
             "$value": "{color.gray.500}",
             "$description": "designer-pass"
+          },
+          "in-range": {
+            "$value": "{color.blue.900}",
+            "$description": "audit-2026-07-07 — blue.900 dark = #DBEAFE, readable on the in-range bg (blue.50 dark = #172554 deep navy). Default cascade keeps blue.700 = #1D4ED8 → 2.19:1. Mirrors menu/nav/tree selected fg."
           }
         }
       }

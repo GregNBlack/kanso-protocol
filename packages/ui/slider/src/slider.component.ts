@@ -178,7 +178,7 @@ export type KpSliderValue = number | readonly [number, number];
       box-shadow: var(--kp-elevation-raised);
       cursor: grab;
       transform: translateX(-50%);
-      transition: border-color var(--kp-motion-duration-fast) ease, box-shadow 120ms ease;
+      transition: border-color var(--kp-motion-duration-fast) ease, box-shadow var(--kp-motion-duration-fast) ease;
       box-sizing: border-box;
       touch-action: none;
     }

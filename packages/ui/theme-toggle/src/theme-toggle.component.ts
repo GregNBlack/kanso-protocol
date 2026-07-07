@@ -156,7 +156,7 @@ let nextRadioGroupId = 0;
       border-radius: 8px;
       color: var(--kp-color-text-muted);
       cursor: pointer;
-      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color var(--kp-motion-duration-fast) ease;
     }
     .kp-theme-toggle__icon-btn:hover { background: var(--kp-color-surface-muted); color: var(--kp-color-text-strong); }
 
@@ -262,7 +262,7 @@ let nextRadioGroupId = 0;
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;
-      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color var(--kp-motion-duration-fast) ease;
     }
     .kp-theme-toggle__dropdown:hover,
     .kp-theme-toggle__dropdown--open {
@@ -297,7 +297,7 @@ let nextRadioGroupId = 0;
       font-size: 13px;
       color: var(--kp-color-text-default);
       cursor: pointer;
-      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color var(--kp-motion-duration-fast) ease;
     }
     .kp-theme-toggle__option:hover {
       background: var(--kp-color-surface-muted);

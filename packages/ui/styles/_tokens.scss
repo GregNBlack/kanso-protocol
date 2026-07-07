@@ -190,6 +190,7 @@ $kp-icon-stroke-sm: 1.35px; // Stroke width for 16px icons
 $kp-icon-stroke-md: 1.5px; // Stroke width for 18px icons
 $kp-icon-stroke-lg: 1.75px; // Stroke width for 22px icons
 $kp-icon-stroke-xl: 2px; // Stroke width for 24px icons — standard Tabler default
+$kp-motion-duration-instant: 100ms; // Micro-interactions that should read as immediate — a hair quicker than fast (e.g. calendar/clock cell color shifts).
 $kp-motion-duration-fast: 120ms; // Hover, focus, color/border state changes.
 $kp-motion-duration-normal: 200ms; // Overlay enter/exit, accordion expand, larger transitions.
 $kp-motion-duration-slow: 300ms; // Page-level changes; rare.
@@ -597,7 +598,7 @@ $kp-color-alert-primary-subtle-icon: $kp-color-blue-600;
 $kp-color-alert-primary-subtle-accent: $kp-color-blue-600;
 $kp-color-alert-primary-solid-bg: $kp-color-blue-600;
 $kp-color-alert-primary-solid-fg-title: $kp-color-foreground-on-saturated;
-$kp-color-alert-primary-solid-fg-desc: $kp-color-blue-50;
+$kp-color-alert-primary-solid-fg-desc: $kp-color-foreground-on-saturated;
 $kp-color-alert-primary-solid-border: $kp-color-blue-600;
 $kp-color-alert-primary-solid-icon: $kp-color-foreground-on-saturated;
 $kp-color-alert-primary-solid-accent: $kp-color-foreground-on-saturated;
@@ -621,7 +622,7 @@ $kp-color-alert-danger-subtle-icon: $kp-color-red-600;
 $kp-color-alert-danger-subtle-accent: $kp-color-red-600;
 $kp-color-alert-danger-solid-bg: $kp-color-red-600;
 $kp-color-alert-danger-solid-fg-title: $kp-color-foreground-on-saturated;
-$kp-color-alert-danger-solid-fg-desc: $kp-color-red-50;
+$kp-color-alert-danger-solid-fg-desc: $kp-color-foreground-on-saturated;
 $kp-color-alert-danger-solid-border: $kp-color-red-600;
 $kp-color-alert-danger-solid-icon: $kp-color-foreground-on-saturated;
 $kp-color-alert-danger-solid-accent: $kp-color-foreground-on-saturated;
@@ -643,10 +644,10 @@ $kp-color-alert-success-subtle-fg-desc: $kp-color-green-800;
 $kp-color-alert-success-subtle-border: $kp-color-green-200;
 $kp-color-alert-success-subtle-icon: $kp-color-green-600;
 $kp-color-alert-success-subtle-accent: $kp-color-green-600;
-$kp-color-alert-success-solid-bg: $kp-color-green-600;
+$kp-color-alert-success-solid-bg: $kp-color-green-700;
 $kp-color-alert-success-solid-fg-title: $kp-color-foreground-on-saturated;
 $kp-color-alert-success-solid-fg-desc: $kp-color-green-50;
-$kp-color-alert-success-solid-border: $kp-color-green-600;
+$kp-color-alert-success-solid-border: $kp-color-green-700;
 $kp-color-alert-success-solid-icon: $kp-color-foreground-on-saturated;
 $kp-color-alert-success-solid-accent: $kp-color-foreground-on-saturated;
 $kp-color-alert-success-outline-bg: $kp-color-white;
@@ -669,7 +670,7 @@ $kp-color-alert-warning-subtle-icon: $kp-color-amber-600;
 $kp-color-alert-warning-subtle-accent: $kp-color-amber-500;
 $kp-color-alert-warning-solid-bg: $kp-color-amber-500;
 $kp-color-alert-warning-solid-fg-title: $kp-color-gray-900;
-$kp-color-alert-warning-solid-fg-desc: $kp-color-amber-900;
+$kp-color-alert-warning-solid-fg-desc: $kp-color-amber-950;
 $kp-color-alert-warning-solid-border: $kp-color-amber-500;
 $kp-color-alert-warning-solid-icon: $kp-color-gray-900;
 $kp-color-alert-warning-solid-accent: $kp-color-gray-900;
@@ -691,10 +692,10 @@ $kp-color-alert-info-subtle-fg-desc: $kp-color-cyan-800;
 $kp-color-alert-info-subtle-border: $kp-color-cyan-200;
 $kp-color-alert-info-subtle-icon: $kp-color-cyan-600;
 $kp-color-alert-info-subtle-accent: $kp-color-cyan-600;
-$kp-color-alert-info-solid-bg: $kp-color-cyan-600;
+$kp-color-alert-info-solid-bg: $kp-color-cyan-700;
 $kp-color-alert-info-solid-fg-title: $kp-color-foreground-on-saturated;
 $kp-color-alert-info-solid-fg-desc: $kp-color-cyan-50;
-$kp-color-alert-info-solid-border: $kp-color-cyan-600;
+$kp-color-alert-info-solid-border: $kp-color-cyan-700;
 $kp-color-alert-info-solid-icon: $kp-color-foreground-on-saturated;
 $kp-color-alert-info-solid-accent: $kp-color-foreground-on-saturated;
 $kp-color-alert-info-outline-bg: $kp-color-white;
@@ -863,10 +864,10 @@ $kp-color-datepicker-day-bg-in-range: $kp-color-blue-50;
 $kp-color-datepicker-day-bg-range-edge: $kp-color-blue-600;
 $kp-color-datepicker-day-fg-rest: $kp-color-gray-900;
 $kp-color-datepicker-day-fg-hover: $kp-color-gray-900;
-$kp-color-datepicker-day-fg-selected: $kp-color-white;
+$kp-color-datepicker-day-fg-selected: $kp-color-foreground-on-saturated;
 $kp-color-datepicker-day-fg-today: $kp-color-blue-600;
 $kp-color-datepicker-day-fg-in-range: $kp-color-blue-700;
-$kp-color-datepicker-day-fg-range-edge: $kp-color-white;
+$kp-color-datepicker-day-fg-range-edge: $kp-color-foreground-on-saturated;
 $kp-color-datepicker-day-fg-outside: $kp-color-gray-400;
 $kp-color-datepicker-day-fg-disabled: $kp-color-gray-300;
 $kp-color-datepicker-day-today-ring: $kp-color-blue-600; // Ring around today's date
