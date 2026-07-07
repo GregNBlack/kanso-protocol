@@ -44,6 +44,13 @@ jobs:
         # real light token. Makes the "no exception without a record" contract
         # machine-checked instead of declared. See scripts/validate-tokens.js.
         run: node scripts/validate-tokens.js
+      - name: Action matrix is derivable (216 cells match the 2-template spec)
+        # validate-tokens proves the matrix is complete + the solid-default ramp
+        # walks one step; this proves every one of the 216 cells equals what the
+        # derivation spec (scripts/generate-matrix.js) says — so a hand-edit that
+        # breaks the subtle/outline/ghost derivation (which validate-tokens leaves
+        # un-ramped) fails here instead of shipping.
+        run: node scripts/generate-matrix.js --check
       - name: Stability facts in sync (README + stability.md ↔ stability.json)
         # docs/stability.json is the machine-readable tier source; this fails
         # if README's status block or stability.md's summary counts drift from

@@ -54,7 +54,9 @@ const fakeMessages = (n: number) =>
   });
 
 // Height model matching the rendered template: 40px chrome + 20px per text line.
-const messageHeight = (_i: number, m: { lines: number }) => 40 + m.lines * 20;
+// Param is typed `unknown` to satisfy KpItemHeightFn<unknown> (the story binds
+// the component at its default generic), narrowed to the known message shape.
+const messageHeight = (_i: number, m: unknown) => 40 + (m as { lines: number }).lines * 20;
 
 export const VariableMessages: Story = {
   args: {

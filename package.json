@@ -28,6 +28,8 @@
     "lint:tokens:staged": "node scripts/lint-tokens.js --staged",
     "lint:changelog": "node scripts/check-changelog.js",
     "validate:tokens": "node scripts/validate-tokens.js",
+    "generate:matrix": "node scripts/generate-matrix.js",
+    "check:matrix": "node scripts/generate-matrix.js --check",
     "check:contrast": "node scripts/check-contrast.js",
     "check:stability": "node scripts/generate-stability.js --check",
     "check:coverage": "node scripts/check-coverage.js",

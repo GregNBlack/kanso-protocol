@@ -12,6 +12,7 @@
   - **Rich `<kp-select>` options** — optional `icon` + `description` on `KpSelectOption`; the selected option's icon mirrors into the single-select trigger. Plain label-only options render exactly as before.
   - **Notification Center incremental pagination** — `[pageSize]` window + a "Show N more" control + `(loadMore)` emitting `{ visible, total }`; the window resets when the `notifications` list is replaced.
   - **Anchor-aware Popover** — the `[kpPopover]` directive tracks its trigger on scroll/resize and auto-closes when the anchor scrolls out of view (IntersectionObserver), fixing the scroll-detach bug. New `kpPopoverCloseOnAnchorHidden` input (default `true`) opts out.
+  - **Derived action matrix.** The 216-combo action-role state matrix is now machine-derived from two rule templates (saturated for `primary`/`danger`, neutral for `neutral`); `check:matrix` fails CI if any committed cell diverges from the spec — extending `validate:tokens` (completeness + solid-default ramp) to every variant/state.
 
 ## 5.16.0
 

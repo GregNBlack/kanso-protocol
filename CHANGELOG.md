@@ -32,6 +32,7 @@ A large maintainability + reach release. Structural token/theme work, three new 
 - **Variable-height virtualization.** `@kanso-protocol/ui/variable-virtual-list` — cumulative-offset binary search for differing row heights; a uniform height reduces to the fixed-height fast path, so `virtual-list` stays simple.
 - **Charts adapter.** `@kanso-protocol/ui/charts` — a dependency-free token bridge (`kansoEChartsTheme` / `kansoChartColors`) that styles your own chart library with Kanso tokens. No charts component shipped.
 - **Component polish.** Rich `<kp-select>` options (optional `icon` + `description`); Notification Center incremental pagination (`[pageSize]` window + "Show N more" + `(loadMore)`); anchor-aware Popover positioning (tracks the trigger, auto-closes on scroll-out); a Storybook `Choosing a component` decision matrix.
+- **Derived action matrix.** The 216-combo action-role state matrix is now machine-*derived* from two rule templates (saturated for `primary`/`danger`, neutral for `neutral`); `check:matrix` fails CI if any committed cell diverges from the spec, extending `validate:tokens` (which only pins completeness + the solid-default ramp) to every variant and state.
 
 ## 2026-07-06 — feat: design-system integrity — enforce what the system declares
 

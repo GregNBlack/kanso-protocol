@@ -113,7 +113,11 @@ error`) — button-family components use the first six, form-family components a
 > mandatory*. The nine that differ from `rest` (subtle/outline/ghost `border`)
 > encode a focus-border a component can opt into instead of the ring. This is
 > deliberate provisioning, not dead tokens — removing them would punch holes in
-> the completeness invariant the token validator enforces.
+> the completeness invariant the token validator enforces. The whole 216-cell
+> matrix (these focus borders included) is machine-*derived* from two rule
+> templates — a saturated one for `primary` / `danger`, a neutral one for
+> `neutral` — and `npm run check:matrix` fails CI if any committed cell diverges
+> from that derivation, so the focus tokens can't silently drift out of pattern.
 
 Three rules that catch most mistakes:
 
