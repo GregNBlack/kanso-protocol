@@ -1,6 +1,8 @@
 # 簡素 Kanso Protocol
 
 [![CI](https://github.com/GregNBlack/kanso-protocol/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/GregNBlack/kanso-protocol/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@kanso-protocol/ui?logo=npm&label=npm)](https://www.npmjs.com/package/@kanso-protocol/ui)
+[![downloads](https://img.shields.io/npm/dm/@kanso-protocol/ui?label=downloads)](https://www.npmjs.com/package/@kanso-protocol/ui)
 [![Storybook](https://img.shields.io/badge/Storybook-live-FF4785?logo=storybook&logoColor=white)](https://gregnblack.github.io/kanso-protocol)
 [![Figma Community](https://img.shields.io/badge/Figma-Community-F24E1E?logo=figma&logoColor=white)](https://www.figma.com/community/file/1655934833130278579)
 [![Tests](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FGregNBlack%2Fkanso-protocol%2Fmain%2F.github%2Fbadges%2Ftests.json)](https://gregnblack.github.io/kanso-protocol/?path=/docs/foundations-test-coverage--docs)
