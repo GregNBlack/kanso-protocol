@@ -1,0 +1,291 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Foundations/Choosing a Component" />
+
+<style>{`
+  .kp-choose-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 28px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .kp-choose-table th,
+  .kp-choose-table td {
+    padding: 8px 12px;
+    border: 1px solid var(--kp-color-border-default, #e4e4e7);
+    text-align: left;
+    vertical-align: top;
+  }
+  .kp-choose-table th {
+    background: var(--kp-color-surface-muted, #f4f4f5);
+    font-weight: 600;
+  }
+  .kp-choose-table td:first-child {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .kp-choose-axis {
+    margin: 0 0 4px;
+    padding: 10px 14px;
+    border-inline-start: 3px solid var(--kp-color-border-strong, #a1a1aa);
+    background: var(--kp-color-surface-muted, #f4f4f5);
+    border-radius: 0 6px 6px 0;
+  }
+`}</style>
+
+# Choosing a Component
+
+Several Kanso components solve overlapping problems. This page is the fast
+chooser for the pairs and families people confuse most often — each row names
+the component, when to reach for it, and what to use instead, and links
+straight to its Storybook docs.
+
+> **See also:** *Foundations/Decision Matrix* for the full catalog-wide table
+> (layout primitives, loading states, forms), and every component's own
+> **Do / Don't** section for edge cases.
+
+---
+
+## Combobox vs Select
+
+<p className="kp-choose-axis">
+  Use <strong>Select</strong> when the list is short (~3–50) and the user just
+  picks; use <strong>Combobox</strong> when the list is long enough that the
+  user needs to type-to-filter. Both commit to a <em>known</em> value — for
+  arbitrary free text, use <a href="?path=/docs/components-input--docs">Input</a>.
+</p>
+
+<table className="kp-choose-table">
+  <thead>
+    <tr><th>Component</th><th>Reach for it when…</th><th>Skip it for…</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="?path=/docs/components-select--docs">Select</a></td>
+      <td>A bounded, short-to-medium list of known values (~3–50) where a plain click-to-pick trigger is enough; matches Input's size grammar in a form row.</td>
+      <td>Long lists (users can't scan them) — or 2 options, where Radio / Toggle is clearer.</td>
+    </tr>
+    <tr>
+      <td><a href="?path=/docs/components-combobox--docs">Combobox</a></td>
+      <td>A long list of known values (countries, tags, SKUs) where an embedded text input to filter-as-you-type earns its keep. Single or multi.</td>
+      <td>Free-form text — it snaps to a known option on commit. Also cap synchronous mode at ~500 options.</td>
+    </tr>
+  </tbody>
+</table>
+
+## DropdownMenu (Menu) vs Select
+
+<p className="kp-choose-axis">
+  Use <strong>DropdownMenu</strong> when picking an item fires an
+  <em>action</em>; use <strong>Select</strong> when picking sets a form
+  <em>value</em>.
+</p>
+
+<table className="kp-choose-table">
+  <thead>
+    <tr><th>Component</th><th>Reach for it when…</th><th>Skip it for…</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="?path=/docs/components-dropdownmenu--docs">DropdownMenu</a></td>
+      <td>A list of commands / actions off a single trigger. Add the search variant past ~10 items, or the footer variant when the menu needs an explicit "apply" step.</td>
+      <td>Capturing a form value (use Select) or page navigation (use the sidebar / nav rail).</td>
+    </tr>
+    <tr>
+      <td><a href="?path=/docs/components-select--docs">Select</a></td>
+      <td>The chosen item <em>is</em> the field's value — it implements <code>ControlValueAccessor</code>, so it binds with <code>ngModel</code> / reactive forms.</td>
+      <td>Triggering side-effects on click rather than committing a value.</td>
+    </tr>
+  </tbody>
+</table>
+
+## Dialog vs Drawer vs Popover
+
+<p className="kp-choose-axis">
+  Use <strong>Dialog</strong> when the task must interrupt and is short; use
+  <strong>Drawer</strong> when it's longer or contextual to the page; use
+  <strong>Popover</strong> for a lightweight, non-blocking panel anchored to a
+  trigger.
+</p>
+
+<table className="kp-choose-table">
+  <thead>
+    <tr><th>Component</th><th>Reach for it when…</th><th>Skip it for…</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="?path=/docs/components-dialog--docs">Dialog</a></td>
+      <td>A short, modal, attention-demanding task — confirm, edit one field, destructive-action guard. Centered, with backdrop and focus trap.</td>
+      <td>Long-form content (use Drawer or a routed page) or inline disclosure (use Popover).</td>
+    </tr>
+    <tr>
+      <td><a href="?path=/docs/components-drawer--docs">Drawer</a></td>
+      <td>A longer or contextual flow — multi-step form, side detail panel, filters/nav. Same slot + focus model as Dialog, anchored to a screen edge.</td>
+      <td>A quick interrupt that should block the whole screen (use Dialog).</td>
+    </tr>
+    <tr>
+      <td><a href="?path=/docs/components-popover--docs">Popover</a></td>
+      <td>A focused, click-triggered, non-blocking panel — one decision, one small form, up to ~3 actions, anchored to its trigger with an arrow.</td>
+      <td>Blocking confirmations that need full attention (use Dialog) or a fleeting text hint (use Tooltip).</td>
+    </tr>
+  </tbody>
+</table>
+
+## Tooltip vs Popover
+
+<p className="kp-choose-axis">
+  Use <strong>Tooltip</strong> when the content is purely informational text;
+  use <strong>Popover</strong> when the content is interactive.
+</p>
+
+<table className="kp-choose-table">
+  <thead>
+    <tr><th>Component</th><th>Reach for it when…</th><th>Skip it for…</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="?path=/docs/components-tooltip--docs">Tooltip</a></td>
+      <td>A short read-only hint on a focusable element. Auto-shows on hover/focus, hides on leave/blur/Escape — nothing inside is clickable.</td>
+      <td>Anything with links, buttons, or fields — hover targets can't be reached.</td>
+    </tr>
+    <tr>
+      <td><a href="?path=/docs/components-popover--docs">Popover</a></td>
+      <td>Interactive content the user needs to reach — links, buttons, a quick form.</td>
+      <td>A one-line explanatory hint (use Tooltip).</td>
+    </tr>
+  </tbody>
+</table>
+
+## Toast vs Alert vs Banner
+
+<p className="kp-choose-axis">
+  Use <strong>Toast</strong> for a transient, per-action confirmation; use
+  <strong>Alert</strong> for a persistent message scoped to a content area; use
+  <strong>Banner</strong> for an app-wide message across the whole session. The
+  axes are <em>scope</em> and <em>persistence</em>.
+</p>
+
+<table className="kp-choose-table">
+  <thead>
+    <tr><th>Component</th><th>Reach for it when…</th><th>Skip it for…</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="?path=/docs/components-toast--docs">Toast</a></td>
+      <td>A transient, corner notification that confirms a recent action and auto-dismisses ("Saved", "Task archived — Undo"). One host per app.</td>
+      <td>Form validation (use inline errors) or anything the user must not miss (unless you set duration 0).</td>
+    </tr>
+    <tr>
+      <td><a href="?path=/docs/components-alert--docs">Alert</a></td>
+      <td>A persistent, in-page message scoped to a specific area — status, warning, recoverable error, informational note.</td>
+      <td>Transient confirmations (use Toast) or blocking confirmations (use Dialog).</td>
+    </tr>
+    <tr>
+      <td><a href="?path=/docs/patterns-banner--docs">Banner</a></td>
+      <td>A global, full-width strip under the Header for app-wide temporary state — trial status, maintenance, payment alert, feature launch. Mounts in AppShell's banner slot.</td>
+      <td>Per-page notices (use Alert) or navigation (that's the Header).</td>
+    </tr>
+  </tbody>
+</table>
+
+## Table vs VirtualList vs TableVirtual
+
+<p className="kp-choose-axis">
+  Use <strong>Table</strong> for columnar, sortable data under ~500 rows; use
+  <strong>VirtualList</strong> for huge single-template lists; use
+  <strong>TableVirtual</strong> when you need <em>both</em> columns and scale.
+</p>
+
+<table className="kp-choose-table">
+  <thead>
+    <tr><th>Component</th><th>Reach for it when…</th><th>Skip it for…</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="?path=/docs/components-table--docs">Table</a></td>
+      <td>Multi-column data with sortable headers, optional selection, and per-column cell templates — up to ~500 rows.</td>
+      <td>Tens of thousands of rows (the DOM won't keep up — use TableVirtual).</td>
+    </tr>
+    <tr>
+      <td><a href="?path=/docs/components-virtuallist--docs">VirtualList</a></td>
+      <td>A very long list of fixed-height rows rendered from one item template (feeds, logs, chat) — only visible rows hit the DOM.</td>
+      <td>Columnar data with sortable headers (use Table / TableVirtual) or variable row heights.</td>
+    </tr>
+    <tr>
+      <td><a href="?path=/docs/components-tablevirtual--docs">TableVirtual</a></td>
+      <td>&gt;500 rows <em>and</em> you still need columns/sort — a sticky header over a virtualized body, wired together for you.</td>
+      <td>Small tables where plain Table is simpler.</td>
+    </tr>
+  </tbody>
+</table>
+
+## SegmentedControl vs Tabs vs Radio
+
+<p className="kp-choose-axis">
+  Use <strong>SegmentedControl</strong> to set a single value from 2–5 options
+  shown at once; use <strong>Tabs</strong> to switch between panels of content;
+  use <strong>Radio</strong> for a mutually-exclusive form value with any number
+  of options.
+</p>
+
+<table className="kp-choose-table">
+  <thead>
+    <tr><th>Component</th><th>Reach for it when…</th><th>Skip it for…</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="?path=/docs/components-segmentedcontrol--docs">SegmentedControl</a></td>
+      <td>2–5 mutually-exclusive options worth showing all at once that set a single value — view mode, time period, pricing tier. Sits in a form row.</td>
+      <td>More than 5 options (use Radio / Select), multi-select (use a Checkbox group), or switching content panels (use Tabs).</td>
+    </tr>
+    <tr>
+      <td><a href="?path=/docs/components-tabs--docs">Tabs</a></td>
+      <td>Switching between panels / pages of content under one header (up to ~6 inline). Passive chrome — selection state lives in your code or router.</td>
+      <td>Setting a plain value (use SegmentedControl) or primary app navigation (that's the nav rail).</td>
+    </tr>
+    <tr>
+      <td><a href="?path=/docs/components-radio--docs">Radio</a></td>
+      <td>A mutually-exclusive choice submitted with a form, any number of options, wrapped in a <code>radio-group</code>. Order by frequency, not alphabetically.</td>
+      <td>A boolean yes/no (use Checkbox or Toggle) or a compact mode toggle (use SegmentedControl).</td>
+    </tr>
+  </tbody>
+</table>
+
+## NumberStepper vs Input (type=number)
+
+<p className="kp-choose-axis">
+  Use <strong>NumberStepper</strong> for a bounded, discrete quantity the user
+  nudges; use <strong>Input type=number</strong> for unbounded or high-precision
+  numeric entry the user types.
+</p>
+
+<table className="kp-choose-table">
+  <thead>
+    <tr><th>Component</th><th>Reach for it when…</th><th>Skip it for…</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="?path=/docs/components-numberstepper--docs">NumberStepper</a></td>
+      <td>Bounded, discrete numeric input with integrated − / + controls — quantity, age, rating, count. Set <code>min</code>/<code>max</code> so the buttons disable at the limits; use prefix/suffix for units.</td>
+      <td>Unbounded or high-precision values, or steps smaller than 1 (mobile keypads expect integers).</td>
+    </tr>
+    <tr>
+      <td><a href="?path=/docs/components-input--docs">Input</a> (<code>type="number"</code>)</td>
+      <td>Free-form numeric entry where the user types the value and there's no natural small range to step through — prices, measurements, high-precision figures.</td>
+      <td>Small, nudge-friendly ranges where − / + is faster (use NumberStepper).</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Still unsure?
+
+- No row fits? Start with the component's own page in *Components/* — every one
+  has a **Do / Don't** section that covers edge cases.
+- Two components could both work? Prefer the more conservative API (fewer
+  inputs, smaller bundle) and the one marked `stable` in *Foundations/Decision
+  Matrix* / [`docs/stability.md`](https://github.com/GregNBlack/kanso-protocol/blob/main/docs/stability.md).
+- Genuinely ambiguous? Open a discussion on GitHub — "X vs Y" questions often
+  surface a gap this page should grow to cover.

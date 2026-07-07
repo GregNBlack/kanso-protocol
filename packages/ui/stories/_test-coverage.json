@@ -1,9 +1,20 @@
 {
-  "generatedAt": "2026-07-06T10:41:48.455Z",
-  "totalSpecs": 56,
-  "totalTests": 683,
-  "totalPackages": 63,
+  "generatedAt": "2026-07-07T12:56:45.926Z",
+  "totalSpecs": 59,
+  "totalTests": 748,
+  "totalPackages": 66,
   "items": [
+    {
+      "layer": "components",
+      "name": "charts",
+      "title": null,
+      "storybookId": null,
+      "specFile": "packages/ui/charts/src/charts.spec.ts",
+      "specFiles": [
+        "packages/ui/charts/src/charts.spec.ts"
+      ],
+      "tests": 8
+    },
     {
       "layer": "components",
       "name": "accordion",
@@ -211,7 +222,7 @@
       "specFiles": [
         "packages/ui/form-field/src/form-field.spec.ts"
       ],
-      "tests": 14
+      "tests": 17
     },
     {
       "layer": "components",
@@ -278,7 +289,7 @@
         "packages/ui/popover/src/popover.directive.spec.ts",
         "packages/ui/popover/src/popover.spec.ts"
       ],
-      "tests": 25
+      "tests": 29
     },
     {
       "layer": "components",
@@ -335,7 +346,7 @@
       "specFiles": [
         "packages/ui/select/src/select.spec.ts"
       ],
-      "tests": 16
+      "tests": 20
     },
     {
       "layer": "components",
@@ -368,7 +379,7 @@
       "specFiles": [
         "packages/ui/table/src/table.spec.ts"
       ],
-      "tests": 16
+      "tests": 21
     },
     {
       "layer": "components",
@@ -412,7 +423,7 @@
       "specFiles": [
         "packages/ui/timepicker/src/timepicker.spec.ts"
       ],
-      "tests": 17
+      "tests": 23
     },
     {
       "layer": "components",
@@ -449,6 +460,17 @@
     },
     {
       "layer": "components",
+      "name": "variable-virtual-list",
+      "title": "Components/VariableVirtualList",
+      "storybookId": "components-variablevirtuallist--docs",
+      "specFile": "packages/ui/variable-virtual-list/src/variable-virtual-list.spec.ts",
+      "specFiles": [
+        "packages/ui/variable-virtual-list/src/variable-virtual-list.spec.ts"
+      ],
+      "tests": 19
+    },
+    {
+      "layer": "components",
       "name": "virtual-list",
       "title": "Components/VirtualList",
       "storybookId": "components-virtuallist--docs",
@@ -457,6 +479,17 @@
         "packages/ui/virtual-list/src/virtual-list.spec.ts"
       ],
       "tests": 13
+    },
+    {
+      "layer": "components",
+      "name": "density",
+      "title": null,
+      "storybookId": null,
+      "specFile": "packages/ui/density/src/density.spec.ts",
+      "specFiles": [
+        "packages/ui/density/src/density.spec.ts"
+      ],
+      "tests": 7
     },
     {
       "layer": "utilities",
@@ -566,7 +599,7 @@
       "specFiles": [
         "packages/ui/stat-card/src/stat-card.spec.ts"
       ],
-      "tests": 18
+      "tests": 25
     },
     {
       "layer": "patterns",
@@ -610,7 +643,7 @@
       "specFiles": [
         "packages/ui/notification-center/src/notification-center.spec.ts"
       ],
-      "tests": 22
+      "tests": 24
     },
     {
       "layer": "components",

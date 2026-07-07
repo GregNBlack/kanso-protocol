@@ -42,6 +42,13 @@ let POPOVER_ID_SEQ = 0;
  * with the tooltip directive). Renders into the nearest open `<dialog>`
  * (so it sits above modals) or `document.body`.
  *
+ * Anchor-aware while open: scroll (capture-phase, catches nested scroll
+ * containers) + resize listeners recompute the position so the panel tracks
+ * its trigger, and an `IntersectionObserver` on the trigger closes the panel
+ * when the anchor scrolls entirely out of view (a stale panel clamped to a
+ * screen edge is worse than a graceful close). Opt out of the auto-close via
+ * `[kpPopoverCloseOnAnchorHidden]="false"`.
+ *
  * @example
  * <button [kpPopover]="menuTpl">Actions</button>
  * <ng-template #menuTpl>
@@ -68,6 +75,14 @@ export class KpPopoverDirective implements OnDestroy {
   @Input() kpPopoverGap = DEFAULT_GAP;
   /** Hard-disable regardless of content. */
   @Input() kpPopoverDisabled = false;
+  /**
+   * Close the panel automatically when the trigger scrolls entirely out of
+   * the viewport (via `IntersectionObserver`). Fixes the scroll-detach case
+   * where the panel would otherwise linger, clamped to a screen edge, with
+   * no visible anchor. Set to `false` to keep the panel open while the
+   * anchor is off-screen — it still tracks the trigger on scroll/resize.
+   */
+  @Input() kpPopoverCloseOnAnchorHidden = true;
 
   @Output() readonly kpPopoverOpened = new EventEmitter<void>();
   @Output() readonly kpPopoverClosed = new EventEmitter<void>();
@@ -84,6 +99,7 @@ export class KpPopoverDirective implements OnDestroy {
   private hideTimer: ReturnType<typeof setTimeout> | null = null;
   private readonly panelId = `kp-popover-${++POPOVER_ID_SEQ}`;
   private rafId: number | null = null;
+  private anchorObserver: IntersectionObserver | null = null;
 
   /**
    * Reposition while open on scroll/resize so the fixed-positioned panel
@@ -98,6 +114,23 @@ export class KpPopoverDirective implements OnDestroy {
       this.rafId = null;
       if (this.panel) this.positionPanel(this.panel);
     });
+  };
+
+  /**
+   * Close the panel once the trigger has scrolled entirely out of the
+   * viewport. Fires outside Angular's zone (IntersectionObserver callbacks
+   * are not zone-patched reliably), so re-enter the zone for close(). Only
+   * acts on the last entry going non-intersecting; the initial observe()
+   * callback for a visible trigger reports `isIntersecting: true` and is a
+   * no-op.
+   */
+  private readonly onAnchorVisibilityChange = (
+    entries: IntersectionObserverEntry[],
+  ): void => {
+    const entry = entries[entries.length - 1];
+    if (this.isOpen && entry && !entry.isIntersecting) {
+      this.ngZone.run(() => this.close());
+    }
   };
 
   get isOpen(): boolean { return this.viewRef != null; }
@@ -185,6 +218,17 @@ export class KpPopoverDirective implements OnDestroy {
         window.addEventListener('scroll', this.onViewportChange, true);
         window.addEventListener('resize', this.onViewportChange);
       }
+      // Auto-close when the anchor scrolls out of view. Observing against the
+      // viewport (default root) catches nested-container scroll too, since a
+      // trigger scrolled out of an ancestor also leaves the viewport once its
+      // container clips it. Feature-detected for SSR / older engines.
+      if (
+        this.kpPopoverCloseOnAnchorHidden &&
+        typeof IntersectionObserver !== 'undefined'
+      ) {
+        this.anchorObserver = new IntersectionObserver(this.onAnchorVisibilityChange);
+        this.anchorObserver.observe(this.host.nativeElement);
+      }
     });
 
     this.kpPopoverOpened.emit();
@@ -198,6 +242,7 @@ export class KpPopoverDirective implements OnDestroy {
       window.removeEventListener('scroll', this.onViewportChange, true);
       window.removeEventListener('resize', this.onViewportChange);
     }
+    if (this.anchorObserver) { this.anchorObserver.disconnect(); this.anchorObserver = null; }
     if (this.rafId != null) { cancelAnimationFrame(this.rafId); this.rafId = null; }
 
     this.host.nativeElement.removeAttribute('aria-expanded');

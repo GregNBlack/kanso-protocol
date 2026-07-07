@@ -105,6 +105,20 @@ error`) — button-family components use the first six, form-family components a
 | `loading` | Spinner replaces a slot, layout preserved | `aria-busy="true"` |
 | `error` *(form controls)* | Border + helper text turn danger | `aria-invalid="true"` |
 
+> **On the `*-focus` matrix tokens.** The action matrix defines a full set of
+> per-variant `bg/fg/border` values for `focus` (216-combo completeness + Figma
+> parity), but interactive components render focus with the tokenized
+> `:focus-visible` **ring** (`--kp-color-focus-ring`), not by swapping the
+> surface — so those matrix `*-focus` colors are intentionally *available, not
+> mandatory*. The nine that differ from `rest` (subtle/outline/ghost `border`)
+> encode a focus-border a component can opt into instead of the ring. This is
+> deliberate provisioning, not dead tokens — removing them would punch holes in
+> the completeness invariant the token validator enforces. The whole 216-cell
+> matrix (these focus borders included) is machine-*derived* from two rule
+> templates — a saturated one for `primary` / `danger`, a neutral one for
+> `neutral` — and `npm run check:matrix` fails CI if any committed cell diverges
+> from that derivation, so the focus tokens can't silently drift out of pattern.
+
 Three rules that catch most mistakes:
 
 1. **`loading` is not `disabled`.** They are *separate* boolean inputs with

@@ -294,7 +294,7 @@ export interface KpSidebarSection {
       border-radius: 6px;
       color: var(--kp-color-text-muted);
       cursor: pointer;
-      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color var(--kp-motion-duration-fast) ease;
     }
     .kp-sidebar__toggle:hover {
       background: var(--kp-color-surface-muted);

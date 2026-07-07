@@ -1,0 +1,22 @@
+{
+  "$comment": "Build config for @kanso-protocol/react. tsc emits ESM JS + .d.ts (+ sourcemap) for the generated wrappers into dist/packages/react. Run via `npm run build:react` (packages/react/build.mjs), which also stages package.json + README.md alongside the output so publish-libs.js discovers it.",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "jsx": "react",
+    "declaration": true,
+    "declarationMap": false,
+    "sourceMap": true,
+    "outDir": "../../dist/packages/react",
+    "rootDir": "src",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmitOnError": true,
+    "types": []
+  },
+  "include": ["src"]
+}

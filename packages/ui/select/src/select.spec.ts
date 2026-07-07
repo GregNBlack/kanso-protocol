@@ -8,6 +8,13 @@ describe('KpSelectComponent', () => {
     { value: 'cherry', label: 'Cherry', disabled: true },
   ];
 
+  // Icons + descriptions are optional per-option enrichments.
+  const RICH: KpSelectOption[] = [
+    { value: 'card', label: 'Card', icon: 'credit-card', description: 'Pay with a saved card' },
+    { value: 'cash', label: 'Cash', icon: 'currency-dollar' },
+    { value: 'later', label: 'Later', description: 'Invoice me monthly' },
+  ];
+
   function setup(extra: Record<string, unknown> = {}) {
     TestBed.configureTestingModule({ imports: [KpSelectComponent] });
     const fix = TestBed.createComponent(KpSelectComponent);
@@ -135,6 +142,49 @@ describe('KpSelectComponent', () => {
     cmp.toggle();
     fix.detectChanges();
     expect(host.classList.contains('kp-select--open')).toBe(true);
+  });
+
+  it('renders an Icon (kp-icon) only for options that declare one', () => {
+    const { fix, cmp } = setup({ options: RICH });
+    cmp.toggle();
+    fix.detectChanges();
+    const rows = opts();
+    expect(rows[0].querySelector('kp-icon')).toBeTruthy();  // card
+    expect(rows[1].querySelector('kp-icon')).toBeTruthy();  // cash
+    expect(rows[2].querySelector('kp-icon')).toBeNull();    // later — no icon
+  });
+
+  it('renders the description line and associates it via aria-label', () => {
+    const { fix, cmp } = setup({ options: RICH });
+    cmp.toggle();
+    fix.detectChanges();
+    const rows = opts();
+    const desc = rows[0].querySelector('.kp-select__option-description');
+    expect(desc?.textContent).toContain('Pay with a saved card');
+    expect(rows[0].getAttribute('aria-label')).toBe('Card, Pay with a saved card');
+    expect(rows[1].querySelector('.kp-select__option-description')).toBeNull(); // cash — no description
+  });
+
+  it('plain (label-only) options render no icon or description slot', () => {
+    const { fix, cmp } = setup();
+    cmp.toggle();
+    fix.detectChanges();
+    const rows = opts();
+    expect(rows.every((r) => r.querySelector('kp-icon') === null)).toBe(true);
+    expect(rows.every((r) => r.querySelector('.kp-select__option-description') === null)).toBe(true);
+    expect(rows.every((r) => r.getAttribute('aria-label') === null)).toBe(true);
+    expect(rows[0].querySelector('.kp-select__option-label')?.textContent).toContain('Apple');
+  });
+
+  it('shows the selected option icon in the trigger (single mode)', () => {
+    const { fix, host, cmp } = setup({ options: RICH });
+    cmp.writeValue('card');
+    fix.detectChanges();
+    expect(trigger(host).querySelector('kp-icon.kp-select__value-icon')).toBeTruthy();
+    // Option without an icon leaves the trigger glyph off.
+    cmp.writeValue('later');
+    fix.detectChanges();
+    expect(trigger(host).querySelector('kp-icon.kp-select__value-icon')).toBeNull();
   });
 
   it('renders a hidden form-mirror <input> alongside the trigger', () => {

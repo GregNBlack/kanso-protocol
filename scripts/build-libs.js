@@ -28,7 +28,7 @@ const distPkgPath = path.join(DIST, 'package.json');
 const distPkg = JSON.parse(fs.readFileSync(distPkgPath, 'utf8'));
 distPkg.exports = distPkg.exports || {};
 distPkg.exports['./styles/*'] = { default: './styles/*' };
-for (const f of ['tokens.css', 'dark.css', '_tokens.scss']) {
+for (const f of ['tokens.css', 'dark.css', 'high-contrast.css', '_tokens.scss']) {
   distPkg.exports['./styles/' + f] = { default: './styles/' + f };
 }
 fs.writeFileSync(distPkgPath, JSON.stringify(distPkg, null, 2) + '\n');

@@ -9,6 +9,7 @@ import {
   resolveErrorMessage,
 } from './validation-messages';
 import { KpInputComponent } from '@kanso-protocol/ui/input';
+import { KP_STRINGS } from '@kanso-protocol/ui/i18n';
 
 describe('KpFormFieldComponent — static props', () => {
   function setup() {
@@ -138,6 +139,65 @@ describe('KpFormFieldComponent — auto-error from NgControl', () => {
     ctrl.setValue('valid@email.com');
     fix.detectChanges();
     expect(root.querySelector('kp-form-field')!.className).not.toContain('kp-form-field--error');
+  });
+
+  it('KP_STRINGS.validation localizes the auto-error message', () => {
+    TestBed.configureTestingModule({
+      imports: [HostComp],
+      providers: [
+        { provide: KP_STRINGS, useValue: { validation: { required: 'Обязательное поле' } } },
+      ],
+    });
+    const fix = TestBed.createComponent(HostComp);
+    fix.detectChanges();
+    const root = fix.nativeElement as HTMLElement;
+
+    const ctrl = fix.componentInstance.ctrl;
+    ctrl.markAsTouched();
+    ctrl.updateValueAndValidity();
+    fix.detectChanges();
+    expect(root.querySelector('.kp-form-field__helper')?.textContent).toBe('Обязательное поле');
+  });
+
+  it('partial KP_STRINGS.validation still falls back to defaults for untouched keys', () => {
+    TestBed.configureTestingModule({
+      imports: [HostComp],
+      providers: [
+        // Override only `required`; `minlength` must keep its English default.
+        { provide: KP_STRINGS, useValue: { validation: { required: 'Обязательное поле' } } },
+      ],
+    });
+    const fix = TestBed.createComponent(HostComp);
+    fix.detectChanges();
+    const root = fix.nativeElement as HTMLElement;
+
+    const ctrl = fix.componentInstance.ctrl;
+    ctrl.setValue('ab'); // trips minlength(3)
+    ctrl.markAsTouched();
+    ctrl.updateValueAndValidity();
+    fix.detectChanges();
+    expect(root.querySelector('.kp-form-field__helper')?.textContent)
+      .toContain('At least 3 characters');
+  });
+
+  it('deprecated KP_VALIDATION_MESSAGES still works and wins over KP_STRINGS.validation', () => {
+    TestBed.configureTestingModule({
+      imports: [HostComp],
+      providers: [
+        { provide: KP_STRINGS, useValue: { validation: { required: 'from KP_STRINGS' } } },
+        { provide: KP_VALIDATION_MESSAGES, useValue: { required: 'from legacy token' } },
+      ],
+    });
+    const fix = TestBed.createComponent(HostComp);
+    fix.detectChanges();
+    const root = fix.nativeElement as HTMLElement;
+
+    const ctrl = fix.componentInstance.ctrl;
+    ctrl.markAsTouched();
+    ctrl.updateValueAndValidity();
+    fix.detectChanges();
+    // Merge order (highest wins): [errors] → KP_VALIDATION_MESSAGES → KP_STRINGS.validation → defaults.
+    expect(root.querySelector('.kp-form-field__helper')?.textContent).toBe('from legacy token');
   });
 });
 

@@ -363,8 +363,6 @@ declare global {
   }
   interface KpNotificationCenterComponentJsx extends KpElementBaseAttributes {
     state?: 'with-items' | 'empty' | 'loading' | (string & {});
-    notifications?: any;
-    pageSize?: number | string;
     showFilters?: boolean | "true" | "false";
     activeFilter?: string;
     filters?: any;
@@ -610,9 +608,9 @@ declare global {
     trendDescription?: string;
     showSparkline?: boolean | "true" | "false";
     sparklineData?: any;
+    sparklineTrend?: string;
   }
   interface KpTableComponentJsx extends KpElementBaseAttributes {
-    size?: 'sm' | 'md' | 'lg' | (string & {});
     columns?: any;
     data?: any;
     striped?: boolean | "true" | "false";
@@ -723,6 +721,14 @@ declare global {
     showThemeToggle?: boolean | "true" | "false";
     showHelpLink?: boolean | "true" | "false";
   }
+  interface KpVariableVirtualListComponentJsx extends KpElementBaseAttributes {
+    items?: any;
+    itemHeight?: string;
+    estimatedItemHeight?: number | string;
+    viewportHeight?: number | string;
+    overscan?: number | string;
+    trackBy?: number | string;
+  }
   interface KpVirtualListComponentJsx extends KpElementBaseAttributes {
     items?: any;
     itemHeight?: number | string;
@@ -806,6 +812,7 @@ declare global {
       'kp-toggle': KpToggleComponentJsx;
       'kp-tree': KpTreeComponentJsx;
       'kp-user-menu': KpUserMenuComponentJsx;
+      'kp-variable-virtual-list': KpVariableVirtualListComponentJsx;
       'kp-virtual-list': KpVirtualListComponentJsx;
     }
   }

@@ -8,9 +8,11 @@ import {
   Output,
   QueryList,
   TemplateRef,
+  inject,
 } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { KpCheckboxComponent } from '@kanso-protocol/ui/checkbox';
+import { KP_DENSITY, DENSITY_SIZE } from '@kanso-protocol/ui/density';
 
 export type KpTableSize = 'sm' | 'md' | 'lg';
 export type KpTableSortDirection = 'asc' | 'desc';
@@ -314,7 +316,40 @@ export class KpTableHeaderDirective {
   `],
 })
 export class KpTableComponent<T = unknown> {
-  @Input() size: KpTableSize = 'md';
+  /**
+   * App-level density getter (optional). When no explicit `[size]` is set, the
+   * table defaults to `DENSITY_SIZE[density()]`; absent a provider it resolves
+   * to `comfortable` → `md`, i.e. the historical default.
+   * @see provideKansoDensity in `@kanso-protocol/ui/density`
+   */
+  private readonly _density = inject(KP_DENSITY, { optional: true });
+
+  /**
+   * `null` sentinel = `[size]` was never set, so the density default applies.
+   * Any assigned value (incl. `'md'`) counts as an explicit size that wins
+   * over app-level density.
+   */
+  private _size: KpTableSize | null = null;
+
+  /** Row density. Explicit `[size]` always wins over app-level `provideKansoDensity`. */
+  @Input()
+  set size(value: KpTableSize) {
+    this._size = value;
+  }
+  get size(): KpTableSize {
+    return this.effectiveSize;
+  }
+
+  /**
+   * Resolved size actually rendered: the explicit `[size]` if one was set,
+   * otherwise the app-level density mapped through `DENSITY_SIZE` (falling
+   * back to `comfortable` → `md` when no density is provided).
+   */
+  get effectiveSize(): KpTableSize {
+    if (this._size != null) return this._size;
+    return DENSITY_SIZE[this._density?.() ?? 'comfortable'];
+  }
+
   @Input() columns: KpTableColumn<T>[] = [];
   @Input() data: T[] = [];
   @Input() striped = false;
@@ -334,7 +369,7 @@ export class KpTableComponent<T = unknown> {
   @ContentChildren(KpTableHeaderDirective) headerTemplates!: QueryList<KpTableHeaderDirective>;
 
   get hostClasses(): string {
-    const c = ['kp-table', `kp-table--${this.size}`];
+    const c = ['kp-table', `kp-table--${this.effectiveSize}`];
     if (this.striped) c.push('kp-table--striped');
     if (this.bordered) c.push('kp-table--bordered');
     if (this.selectable) c.push('kp-table--selectable');

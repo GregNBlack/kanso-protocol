@@ -66,6 +66,13 @@ jobs:
       - name: Build custom-elements bundle
         run: npm run build:elements
 
+      - name: Build React wrappers
+        # Emits dist/packages/react/{index.js,index.d.ts,package.json,README.md}
+        # so publish-libs.js (which walks dist/packages/**) discovers and ships
+        # @kanso-protocol/react alongside ui / elements / mcp. Must run before
+        # the publish step below.
+        run: npm run build:react
+
       - name: Create release PR or publish
         uses: changesets/action@v1
         with:

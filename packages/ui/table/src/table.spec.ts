@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { provideKansoDensity } from '@kanso-protocol/ui/density';
 import { KpTableColumn, KpTableComponent } from './table.component';
 
 interface Row {
@@ -162,5 +163,67 @@ describe('KpTableComponent', () => {
     fix.detectChanges();
     const btn = host.querySelector('.kp-table__header-button') as HTMLButtonElement;
     expect(btn.getAttribute('aria-label')).toBe('actions');
+  });
+
+  describe('app-level density (provideKansoDensity)', () => {
+    // A density-provided TestBed can't reuse the top-level `setup` (which
+    // configures its own module), so build the fixture here with providers.
+    function setupWithProviders(
+      providers: unknown[],
+      extra: Record<string, unknown> = {},
+    ) {
+      TestBed.configureTestingModule({
+        imports: [KpTableComponent],
+        providers: providers as never[],
+      });
+      const fix = TestBed.createComponent(KpTableComponent<Row>);
+      fix.componentRef.setInput('columns', COLUMNS);
+      fix.componentRef.setInput('data', ROWS);
+      for (const [k, v] of Object.entries(extra)) fix.componentRef.setInput(k, v);
+      fix.detectChanges();
+      return { fix, host: fix.nativeElement as HTMLElement, cmp: fix.componentInstance };
+    }
+
+    it('no provider + no size renders kp-table--md (byte-identical to today)', () => {
+      const { host, cmp } = setup();
+      expect(host.classList.contains('kp-table--md')).toBe(true);
+      expect(host.classList.contains('kp-table--sm')).toBe(false);
+      expect(host.classList.contains('kp-table--lg')).toBe(false);
+      expect(cmp.effectiveSize).toBe('md');
+    });
+
+    it('density "compact" sets the default size to sm on an un-sized table', () => {
+      const { host, cmp } = setupWithProviders([provideKansoDensity('compact')]);
+      expect(cmp.effectiveSize).toBe('sm');
+      expect(host.classList.contains('kp-table--sm')).toBe(true);
+      expect(host.classList.contains('kp-table--md')).toBe(false);
+    });
+
+    it('density "spacious" sets the default size to lg on an un-sized table', () => {
+      const { host, cmp } = setupWithProviders([provideKansoDensity('spacious')]);
+      expect(cmp.effectiveSize).toBe('lg');
+      expect(host.classList.contains('kp-table--lg')).toBe(true);
+    });
+
+    it('explicit [size] wins over app-level density', () => {
+      const { host, cmp } = setupWithProviders(
+        [provideKansoDensity('compact')],
+        { size: 'lg' },
+      );
+      expect(cmp.effectiveSize).toBe('lg');
+      expect(host.classList.contains('kp-table--lg')).toBe(true);
+      expect(host.classList.contains('kp-table--sm')).toBe(false);
+    });
+
+    it('an explicit size equal to the density default is still honored', () => {
+      // size="md" under a compact provider must render md, not sm — any
+      // assigned value counts as explicit and wins.
+      const { host, cmp } = setupWithProviders(
+        [provideKansoDensity('compact')],
+        { size: 'md' },
+      );
+      expect(cmp.effectiveSize).toBe('md');
+      expect(host.classList.contains('kp-table--md')).toBe(true);
+    });
   });
 });

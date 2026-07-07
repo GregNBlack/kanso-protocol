@@ -134,6 +134,34 @@ function suppressionsForLine(prevLine, currLine) {
   return suppressed;
 }
 
+// ─── var(...) span finder ────────────────────────────────────────────────
+// Return the [start, end] character ranges (inclusive) covered by each
+// `var(...)` expression on a line, balancing parens so nested var() and
+// their fallbacks (e.g. `var(--kp-motion-duration-fast, 100ms)`) are fully
+// enclosed. Lets a declaration-level rule tell a token reference (or a
+// literal living inside its fallback) apart from a raw literal sitting
+// beside it in the same shorthand.
+
+function varSpans(line) {
+  const spans = [];
+  const re = /var\s*\(/gi;
+  let m;
+  while ((m = re.exec(line)) !== null) {
+    let depth = 0;
+    let i = m.index + m[0].length - 1; // index of the opening '('
+    for (; i < line.length; i++) {
+      if (line[i] === '(') depth++;
+      else if (line[i] === ')') {
+        depth--;
+        if (depth === 0) break;
+      }
+    }
+    spans.push([m.index, i]);
+    re.lastIndex = i + 1;
+  }
+  return spans;
+}
+
 // ─── Rules ──────────────────────────────────────────────────────────────
 
 const RULES = [
@@ -205,26 +233,42 @@ const RULES = [
     id: 'raw-motion-duration',
     severity: 'error',
     check(line) {
-      // Look for `transition: ... <number>(ms|s) ...` or `animation: ...`
-      // where no kp motion token is present on the same line.
+      // Declaration-level: a transition/animation shorthand can list several
+      // properties on one line, only some tokenized. Flag a raw ms/s duration
+      // even when a var(--kp-motion-*) token appears elsewhere on the same
+      // line — e.g.
+      // `transition: background var(--kp-motion-duration-fast) ease, color 120ms ease`.
+      // Durations that sit *inside* a var(...) fallback (e.g.
+      // `var(--kp-motion-duration-fast, 100ms)`) are intentional and skipped.
       if (!/\b(?:transition|animation)\s*:/.test(line)) return null;
-      if (/var\(--kp-motion/.test(line)) return null;
-      const m = line.match(/\b(\d+(?:\.\d+)?(?:ms|s))\b/);
-      if (!m) return null;
-      return {
-        column: m.index + 1,
-        message: `Raw motion duration "${m[0]}" — use var(--kp-motion-duration-*).`,
-      };
+      const spans = varSpans(line);
+      const re = /\b\d+(?:\.\d+)?(?:ms|s)\b/g;
+      let m;
+      while ((m = re.exec(line)) !== null) {
+        const start = m.index;
+        if (spans.some(([a, b]) => start >= a && start <= b)) continue;
+        return {
+          column: start + 1,
+          message: `Raw motion duration "${m[0]}" — use var(--kp-motion-duration-*).`,
+        };
+      }
+      return null;
     },
   },
   {
     id: 'raw-shadow',
     severity: 'error',
     check(line) {
-      if (!/\bbox-shadow\s*:/.test(line)) return null;
-      // Allowed: none, inherit, unset, or a `var(--kp-…)` reference.
-      if (/box-shadow\s*:\s*(none|inherit|unset|initial|0\b)/.test(line)) return null;
-      if (/var\(--kp-/.test(line)) return null;
+      // Declaration-level: inspect only this box-shadow's own value (up to the
+      // next `;`), so a var(--kp-…) token on a *different* declaration sharing
+      // the line can't cloak a raw shadow here.
+      const m = line.match(/box-shadow\s*:\s*([^;]*)/);
+      if (!m) return null;
+      const value = m[1].trim();
+      // Allowed: none/inherit/unset/initial, a bare `0`, or a value that
+      // composes from a var(--kp-…) token.
+      if (/^(none|inherit|unset|initial|0)\b/.test(value)) return null;
+      if (/var\(--kp-/.test(value)) return null;
       return {
         column: line.indexOf('box-shadow') + 1,
         message: `Raw box-shadow — extract to var(--kp-shadow-*) or compose from var(--kp-color-*) tokens.`,

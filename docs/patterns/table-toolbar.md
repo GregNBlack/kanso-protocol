@@ -60,12 +60,14 @@ density: KpTableToolbarDensity = 'comfortable';
 
 Persist `density` yourself (see the Don'ts) — the toolbar keeps no state.
 
-> **App-wide density** (one preference tightening the *whole* shell — forms,
-> menus, nav — not just tables) is intentionally not a single switch today:
-> Kanso density is per-surface via each component's `size` input. Making it a
-> global cascade is a tracked design decision (it would reverse the "spacing is
-> structural, not a brand axis" stance in [theming.md](../theming.md) and touch
-> every component). Until then, use `size` per surface as above.
+> **App-wide density** — one preference that sets the *default* `size` for
+> size-aware components — now exists via `provideKansoDensity()` from
+> `@kanso-protocol/ui/density`. It's an opt-in default, not a global cascade:
+> an explicit `[size]` always wins, and each component adopts it independently
+> (Table honors it today; others use the same 3-line pattern as they adopt).
+> The toolbar toggle above is the *per-surface* control; `provideKansoDensity`
+> is the *app-wide* default. See [density.md](./density.md) — and back it with
+> a signal if you want this toggle to drive the whole shell.
 
 ## Do / Don't
 

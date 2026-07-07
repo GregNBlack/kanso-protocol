@@ -15,13 +15,30 @@ Items come from `[notifications]`. Either an `avatarInitials`/`avatarSrc` (user-
 | Input | Type | Default | Description |
 |-------|------|---------|-------------|
 | `state` | `'with-items' \| 'empty' \| 'loading'` | `'with-items'` | Body state |
-| `notifications` | `KpNotification[]` | `[]` | Rendered when state is `with-items` |
+| `notifications` | `KpNotification[]` | `[]` | Rendered when state is `with-items`. Replacing the array identity resets the reveal window to page 1. |
+| `pageSize` | `number \| null` | `null` | Incremental reveal window. When set, only the first `pageSize` items render; a "Show N more" control reveals the next page. `null` = render all (default). |
 | `showFilters` | `boolean` | `false` | Filter chips (All / Unread / Mentions) |
 | `activeFilter` | `string` | `'all'` | |
 | `filters` | `{ id; label; count? }[]` | default 3 | Override filter chips |
 | `showFooter` | `boolean` | `true` | "View all" button |
 
-Outputs: `markAllRead`, `settingsClick`, `itemClick(notification)`, `filterChange(id)`, `viewAll`.
+Outputs: `markAllRead`, `settingsClick`, `itemClick(notification)`, `filterChange(id)`, `viewAll`, `loadMore({ visible, total })`.
+
+### Incremental reveal (long lists)
+
+Long lists should not render every row up front. Set `pageSize` to cap the initial render; the panel then shows the first page plus a **"Show N more"** control (the Kanso ghost Button) that widens the visible window by one page per press. `hasMore` hides the control once every item is visible.
+
+The reveal is **presentational** — the component only ever shows items it already holds in `[notifications]`. For server-driven feeds, listen to `(loadMore)`: it fires after each press with `{ visible, total }` (how many are now shown and how many are held locally), so the app can fetch and append the next batch as `visible` approaches `total`.
+
+```html
+<kp-notification-center
+  [notifications]="items"
+  [pageSize]="8"
+  (loadMore)="onLoadMore($event)"
+/>
+```
+
+Swapping the `[notifications]` array reference (e.g. on a filter change) collapses the window back to the first page, so a fresh list never starts scrolled open. With `pageSize` unset the behavior is unchanged: all items render and no control appears.
 
 ### `KpNotification`
 
@@ -65,4 +82,5 @@ Atomic list row. Same fields as above, emits `click$`.
 
 ## Changelog
 
+- `0.2.0` — Incremental reveal for long lists: `[pageSize]` + "Show N more" control + `(loadMore)` `{ visible, total }`; window resets when the list is replaced.
 - `0.1.0` — Initial release. 3 states, filter chips, Avatar + icon paths, footer CTA.

@@ -1,5 +1,20 @@
 # @kanso-protocol/ui
 
+## 5.17.0
+
+### Minor Changes
+
+- Structural + product additions — all additive, no component API changed, visually neutral except where a new feature is opted into.
+  - **Density seam.** `provideKansoDensity()` + `KP_DENSITY` from `@kanso-protocol/ui/density`: one app-level preference (`compact`/`comfortable`/`spacious`) sets the _default_ size for size-aware components; an explicit `[size]` always wins. Table honors it today; others adopt the same 3-line pattern as needed.
+  - **N-theme build + high-contrast theme.** The token build generalized from hard-coded light/dark to a `THEMES` list (`dark.css` is byte-identical); adding a theme is dropping `tokens/themes/<name>.json` + a list entry. A `[data-theme="high-contrast"]` theme ships as the first extra theme (all 82 curated contrast pairs pass AA, pillars at AAA). `generate-brand-theme` gained `--neutral` / `--status` ramp overrides with per-hue WCAG enforcement.
+  - **New: `@kanso-protocol/ui/variable-virtual-list`** — variable-height window virtualization via a cumulative-offset prefix sum + binary search; a uniform `[itemHeight]` reduces byte-for-byte to the fixed-height `virtual-list` fast path.
+  - **New: `@kanso-protocol/ui/charts`** — a dependency-free token bridge (`kansoEChartsTheme` / `kansoChartColors`) that styles your own chart library (ECharts / Chart.js) with Kanso tokens. No charts component shipped.
+  - **Rich `<kp-select>` options** — optional `icon` + `description` on `KpSelectOption`; the selected option's icon mirrors into the single-select trigger. Plain label-only options render exactly as before.
+  - **Notification Center incremental pagination** — `[pageSize]` window + a "Show N more" control + `(loadMore)` emitting `{ visible, total }`; the window resets when the `notifications` list is replaced.
+  - **Anchor-aware Popover** — the `[kpPopover]` directive tracks its trigger on scroll/resize and auto-closes when the anchor scrolls out of view (IntersectionObserver), fixing the scroll-detach bug. New `kpPopoverCloseOnAnchorHidden` input (default `true`) opts out.
+  - **Derived action matrix.** The 216-combo action-role state matrix is now machine-derived from two rule templates (saturated for `primary`/`danger`, neutral for `neutral`); `check:matrix` fails CI if any committed cell diverges from the spec — extending `validate:tokens` (completeness + solid-default ramp) to every variant/state.
+  - **Fixes.** `accordion` chevron transition now collapses under `prefers-reduced-motion` (was escaping its reduced-motion block; caught by the reduced-motion CI spec); Notification Center's "Show more" control moved out of the `role="list"` container to satisfy `aria-required-children`.
+
 ## 5.16.0
 
 ### Minor Changes

@@ -7,8 +7,8 @@
   "optionalNote": "Keys built by a job other than `build` (the framework-agnostic elements bundle is built by the `web-components` CI job). Their absence in a ui-only run is not a STALE error; when present they are gated normally.",
   "packages": {
     "elements": {
-      "currentGz": 482407,
-      "maxGz": 554800
+      "currentGz": 486881,
+      "maxGz": 560000
     },
     "ui": {
       "currentGz": 1893,
@@ -19,7 +19,7 @@
       "maxGz": 4300
     },
     "ui/alert": {
-      "currentGz": 3230,
+      "currentGz": 3226,
       "maxGz": 3800
     },
     "ui/app-shell": {
@@ -35,7 +35,7 @@
       "maxGz": 2400
     },
     "ui/badge": {
-      "currentGz": 3487,
+      "currentGz": 3484,
       "maxGz": 4100
     },
     "ui/banner": {
@@ -51,8 +51,12 @@
       "maxGz": 6300
     },
     "ui/card": {
-      "currentGz": 2630,
+      "currentGz": 2627,
       "maxGz": 3100
+    },
+    "ui/charts": {
+      "currentGz": 2024,
+      "maxGz": 2400
     },
     "ui/checkbox": {
       "currentGz": 3008,
@@ -71,8 +75,12 @@
       "maxGz": 1561
     },
     "ui/datepicker": {
-      "currentGz": 9009,
+      "currentGz": 9008,
       "maxGz": 10400
+    },
+    "ui/density": {
+      "currentGz": 1316,
+      "maxGz": 1816
     },
     "ui/dialog": {
       "currentGz": 4279,
@@ -111,7 +119,7 @@
       "maxGz": 1674
     },
     "ui/header": {
-      "currentGz": 4629,
+      "currentGz": 4627,
       "maxGz": 5400
     },
     "ui/i18n": {
@@ -135,12 +143,12 @@
       "maxGz": 5300
     },
     "ui/nav-item": {
-      "currentGz": 2937,
+      "currentGz": 2934,
       "maxGz": 3400
     },
     "ui/notification-center": {
-      "currentGz": 4623,
-      "maxGz": 5400
+      "currentGz": 5032,
+      "maxGz": 5800
     },
     "ui/number-stepper": {
       "currentGz": 4322,
@@ -155,12 +163,12 @@
       "maxGz": 3200
     },
     "ui/pagination": {
-      "currentGz": 5372,
+      "currentGz": 5369,
       "maxGz": 6200
     },
     "ui/popover": {
-      "currentGz": 6396,
-      "maxGz": 7400
+      "currentGz": 7104,
+      "maxGz": 8200
     },
     "ui/progress": {
       "currentGz": 4160,
@@ -171,7 +179,7 @@
       "maxGz": 4000
     },
     "ui/rich-text-editor": {
-      "currentGz": 6873,
+      "currentGz": 6870,
       "maxGz": 8000
     },
     "ui/row": {
@@ -179,7 +187,7 @@
       "maxGz": 1706
     },
     "ui/search-bar": {
-      "currentGz": 3396,
+      "currentGz": 3397,
       "maxGz": 4000
     },
     "ui/segmented-control": {
@@ -187,15 +195,15 @@
       "maxGz": 4200
     },
     "ui/select": {
-      "currentGz": 6136,
-      "maxGz": 7100
+      "currentGz": 6567,
+      "maxGz": 7600
     },
     "ui/settings-panel": {
       "currentGz": 2161,
       "maxGz": 2500
     },
     "ui/sidebar": {
-      "currentGz": 4473,
+      "currentGz": 4469,
       "maxGz": 5200
     },
     "ui/skeleton": {
@@ -203,7 +211,7 @@
       "maxGz": 2400
     },
     "ui/slider": {
-      "currentGz": 4515,
+      "currentGz": 4512,
       "maxGz": 5200
     },
     "ui/stack": {
@@ -211,12 +219,12 @@
       "maxGz": 1509
     },
     "ui/stat-card": {
-      "currentGz": 2743,
-      "maxGz": 3200
+      "currentGz": 3354,
+      "maxGz": 3900
     },
     "ui/table": {
-      "currentGz": 4165,
-      "maxGz": 4800
+      "currentGz": 4624,
+      "maxGz": 5400
     },
     "ui/table-toolbar": {
       "currentGz": 3201,
@@ -227,7 +235,7 @@
       "maxGz": 3300
     },
     "ui/tabs": {
-      "currentGz": 3579,
+      "currentGz": 3578,
       "maxGz": 4200
     },
     "ui/textarea": {
@@ -235,7 +243,7 @@
       "maxGz": 3400
     },
     "ui/theme-toggle": {
-      "currentGz": 4288,
+      "currentGz": 4287,
       "maxGz": 5000
     },
     "ui/timepicker": {
@@ -261,6 +269,10 @@
     "ui/user-menu": {
       "currentGz": 2735,
       "maxGz": 3200
+    },
+    "ui/variable-virtual-list": {
+      "currentGz": 4320,
+      "maxGz": 5000
     },
     "ui/virtual-list": {
       "currentGz": 3362,

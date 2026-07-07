@@ -148,7 +148,7 @@ export type KpBadgeColor =
       border-radius: var(--kp-badge-close-radius);
       color: currentColor;
       opacity: 0.75;
-      transition: opacity var(--kp-motion-duration-fast) ease, background 120ms ease;
+      transition: opacity var(--kp-motion-duration-fast) ease, background var(--kp-motion-duration-fast) ease;
     }
     .kp-badge__close svg {
       width: var(--kp-badge-close-size);

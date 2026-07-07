@@ -36,6 +36,42 @@
   },
 
   {
+    "fg": "accent-primary-fg",
+    "bg": "surface-subtle",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Brand accent text (links, trend indicators) on the recessed page background behind cards — slightly tighter than on surface.base."
+  },
+  {
+    "fg": "accent-danger-fg",
+    "bg": "surface-subtle",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Danger accent text on the page background (surface.subtle)."
+  },
+  {
+    "fg": "accent-success-fg",
+    "bg": "surface-subtle",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Success accent text on the page background (surface.subtle) — tightest accent; green.700 on the off-white page bg."
+  },
+  {
+    "fg": "accent-warning-fg",
+    "bg": "surface-subtle",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Warning accent text on the page background (surface.subtle)."
+  },
+  {
+    "fg": "accent-info-fg",
+    "bg": "surface-subtle",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Info accent text on the page background (surface.subtle)."
+  },
+
+  {
     "fg": "text-strong",
     "bg": "surface-base",
     "theme": "both",
@@ -55,6 +91,129 @@
     "theme": "both",
     "level": "AA-text",
     "note": "Secondary/caption text on the page/card surface — carries a dark-mode override for AA."
+  },
+  {
+    "fg": "text-disabled",
+    "bg": "surface-base",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Disabled text on the page/card surface. WCAG exempts inactive controls, but token $description claims 4.84:1 (gray.500) — validate the claim."
+  },
+
+  {
+    "fg": "text-strong",
+    "bg": "surface-subtle",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Headings on the recessed page background (surface.subtle)."
+  },
+  {
+    "fg": "text-default",
+    "bg": "surface-subtle",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Body text on the recessed page background (surface.subtle) — the dominant text-on-bg case for page content."
+  },
+  {
+    "fg": "text-muted",
+    "bg": "surface-subtle",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Secondary/caption text on the recessed page background (surface.subtle)."
+  },
+  {
+    "fg": "text-muted",
+    "bg": "surface-muted",
+    "theme": "both",
+    "level": "AA-large",
+    "note": "audit-2026-07-07 — reclassified AA-text → AA-large (3.0). Muted text on the muted/hover/alternating-row surface is supplementary (captions, helper labels on a transient hover/callout bg), not primary body text; text.muted is NOT darkened globally (that pair on surface.base stays AA-text and passes at 4.83:1). On surface.muted it is 4.40:1 light / 5.81:1 dark."
+  },
+
+  {
+    "fg": "fg-on-dark-strong",
+    "bg": "surface-on-dark-base",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Primary text on always-dark chrome — Sidebar item label / footer name on .kp-sidebar--dark (surface.on-dark.base #18181B, invariant)."
+  },
+  {
+    "fg": "fg-on-dark-default",
+    "bg": "surface-on-dark-base",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Default text on always-dark chrome — Header nav item / icon button on .kp-header--dark (surface.on-dark.base #18181B)."
+  },
+  {
+    "fg": "fg-on-dark-muted",
+    "bg": "surface-on-dark-base",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Secondary text on always-dark chrome — Sidebar toggle / section label on surface.on-dark.base."
+  },
+  {
+    "fg": "fg-on-dark-subtle",
+    "bg": "surface-on-dark-base",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Lowest-emphasis text on always-dark chrome — Header user role / chevron on surface.on-dark.base (white @ 0.6 alpha, composited)."
+  },
+  {
+    "fg": "foreground-on-dark-accent-primary",
+    "bg": "surface-on-dark-base",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Active nav-item label on always-dark chrome (Header/Sidebar dark). Token pins blue.400 #60A5FA in both themes; docstring claims ~7:1 on #18181B."
+  },
+  {
+    "fg": "foreground-on-saturated",
+    "bg": "surface-on-dark-muted",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Nav-item / icon-button hover label (white) on the always-dark hover surface #27272A (surface.on-dark.muted)."
+  },
+
+  {
+    "fg": "icon-interactive",
+    "bg": "surface-base",
+    "theme": "both",
+    "level": "AA-ui",
+    "note": "Clickable icon-link glyph on the page/card surface — non-text UI, 3:1 (blue.600)."
+  },
+
+  {
+    "fg": "stepper-indicator-fg-active",
+    "bg": "stepper-indicator-bg-active",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Step number inside the active step indicator circle (white on blue.600)."
+  },
+  {
+    "fg": "stepper-indicator-fg-error",
+    "bg": "stepper-indicator-bg-error",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Step number inside the error step indicator circle (white on red.600)."
+  },
+  {
+    "fg": "stepper-label-active",
+    "bg": "surface-base",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Active step label text on the page/card surface."
+  },
+  {
+    "fg": "stepper-label-completed",
+    "bg": "surface-base",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Completed step label text on the page/card surface (gray.700)."
+  },
+  {
+    "fg": "stepper-label-error",
+    "bg": "surface-base",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Error step label text on the page/card surface (red.700)."
   },
 
   {
@@ -222,13 +381,182 @@
     "level": "AA-text",
     "note": "Info subtle-alert body text on the alert's tinted background."
   },
-
   {
-    "fg": "stepper-label-active",
-    "bg": "surface-base",
+    "fg": "alert-neutral-subtle-fg-desc",
+    "bg": "alert-neutral-subtle-bg",
     "theme": "both",
     "level": "AA-text",
-    "note": "Active step label text on the page/card surface."
+    "note": "Neutral subtle-alert body text on the alert's tinted background."
+  },
+
+  {
+    "fg": "alert-primary-solid-fg-title",
+    "bg": "alert-primary-solid-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Primary solid-alert title (white on blue.600). Title is 14-20px weight 500 — normal text, AA 4.5."
+  },
+  {
+    "fg": "alert-primary-solid-fg-desc",
+    "bg": "alert-primary-solid-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Primary solid-alert body text (blue.50 on blue.600)."
+  },
+  {
+    "fg": "alert-danger-solid-fg-title",
+    "bg": "alert-danger-solid-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Danger solid-alert title (white on red.600)."
+  },
+  {
+    "fg": "alert-danger-solid-fg-desc",
+    "bg": "alert-danger-solid-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Danger solid-alert body text (red.50 on red.600)."
+  },
+  {
+    "fg": "alert-success-solid-fg-title",
+    "bg": "alert-success-solid-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Success solid-alert title (white on green.600). Unlike badge/accent success which use green.700, the solid alert bg is green.600 — verify white meets AA."
+  },
+  {
+    "fg": "alert-success-solid-fg-desc",
+    "bg": "alert-success-solid-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Success solid-alert body text (green.50 on green.600)."
+  },
+  {
+    "fg": "alert-warning-solid-fg-title",
+    "bg": "alert-warning-solid-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Warning solid-alert title (gray.900 on amber.500). amber.500 is a fixed pivot; gray.900 inverts in dark — verify both themes."
+  },
+  {
+    "fg": "alert-warning-solid-fg-desc",
+    "bg": "alert-warning-solid-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Warning solid-alert body text (amber.900 on amber.500)."
+  },
+  {
+    "fg": "alert-info-solid-fg-title",
+    "bg": "alert-info-solid-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Info solid-alert title (white on cyan.600). Unlike badge/accent info which use cyan.700, the solid alert bg is cyan.600 — verify white meets AA."
+  },
+  {
+    "fg": "alert-info-solid-fg-desc",
+    "bg": "alert-info-solid-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Info solid-alert body text (cyan.50 on cyan.600)."
+  },
+  {
+    "fg": "alert-neutral-solid-fg-title",
+    "bg": "alert-neutral-solid-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Neutral solid-alert title (white on gray.900; dark override gray.950 on gray.200)."
+  },
+
+  {
+    "fg": "menu-item-fg-selected",
+    "bg": "menu-item-bg-selected",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Selected menu-item label on its tinted highlight (blue.700 on blue.50; dark override blue.900 on blue.50-dark)."
+  },
+  {
+    "fg": "menu-item-fg-danger-rest",
+    "bg": "menu-item-bg-rest",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Destructive menu-item label on the menu surface (red.600 on white)."
+  },
+  {
+    "fg": "table-row-fg",
+    "bg": "table-row-bg-selected",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Cell text in a selected table row (gray.900 on blue.100; dark override blue.50)."
+  },
+  {
+    "fg": "table-row-fg",
+    "bg": "table-row-bg-hover",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Cell text in a hovered table row (gray.900 on gray.100; dark override gray.200)."
+  },
+  {
+    "fg": "table-header-fg",
+    "bg": "table-header-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Table header label on the header background (gray.700 on gray.50)."
+  },
+  {
+    "fg": "nav-item-fg-active",
+    "bg": "nav-item-bg-active",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Active nav-item label on its tinted background (blue.700 on blue.50; dark override blue.900)."
+  },
+  {
+    "fg": "nav-item-fg-hover",
+    "bg": "nav-item-bg-hover",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Hovered nav-item label on its hover background (gray.900 on gray.100)."
+  },
+  {
+    "fg": "tree-node-fg-selected",
+    "bg": "tree-node-bg-selected",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Selected tree-node label on its tinted background (blue.700 on blue.50; dark override blue.900)."
+  },
+  {
+    "fg": "pagination-item-fg-selected",
+    "bg": "pagination-item-bg-selected",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Selected pagination page number (white on blue.600)."
+  },
+  {
+    "fg": "segmented-segment-fg-selected",
+    "bg": "segmented-segment-bg-selected",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Selected segment label on the raised segment surface (gray.900 on white; dark override gray.300)."
+  },
+  {
+    "fg": "segmented-segment-fg-unselected-rest",
+    "bg": "segmented-track-bg",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Unselected segment label on the segmented track (gray.600 on gray.100; dark gray.600 on gray.200)."
+  },
+  {
+    "fg": "datepicker-day-fg-selected",
+    "bg": "datepicker-day-bg-selected",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "Selected calendar day number (white on blue.600)."
+  },
+  {
+    "fg": "datepicker-day-fg-in-range",
+    "bg": "datepicker-day-bg-in-range",
+    "theme": "both",
+    "level": "AA-text",
+    "note": "In-range calendar day number on the range highlight (blue.700 on blue.50). No dark override on either token — verify dark, where blue.50 becomes deep navy."
   },
 
   {

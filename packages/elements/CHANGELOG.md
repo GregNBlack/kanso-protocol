@@ -1,5 +1,12 @@
 # @kanso-protocol/elements
 
+## 0.3.0
+
+### Minor Changes
+
+- - **Tree-shakeable per-component entry points.** `@kanso-protocol/elements/<name>` registers just that element (`defineKp<Name>()` / side-effect import); the all-in-one `@kanso-protocol/elements` bundle is unchanged. Entries are generated from the same catalog and share one lazily-created zoneless Angular runtime, so importing several still spins up one runtime.
+  - **Native `<form>` participation via `ElementInternals`.** Form-control elements (input, textarea, number-stepper, slider, checkbox, toggle, radio, date-picker, time-picker) are now `formAssociated`: they reflect their value with `setFormValue`, and implement `formResetCallback` + `formDisabledCallback`. Feature-detected (no-op where `ElementInternals` is unsupported) and done entirely in the wrapper layer — the Angular components' `ControlValueAccessor` is untouched.
+
 ## 0.2.0
 
 ### Minor Changes

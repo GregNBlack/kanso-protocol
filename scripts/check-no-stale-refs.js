@@ -25,8 +25,9 @@ const fs = require('node:fs');
 
 // First-party package names that are NOT pre-v5 per-component packages:
 // `ui` (the single package), `mcp` (the server), `source` (private repo
-// root), `elements` (the planned framework-agnostic custom-elements bundle).
-const STALE_PKG = /@kanso-protocol\/(?!ui\b|ui\/|mcp\b|source\b|elements\b)[a-z][a-z0-9-]*/;
+// root), `elements` (the framework-agnostic custom-elements bundle), and
+// `react` (the typed React wrappers over those custom elements).
+const STALE_PKG = /@kanso-protocol\/(?!ui\b|ui\/|mcp\b|source\b|elements\b|react\b)[a-z][a-z0-9-]*/;
 const STALE_PATH = /packages\/(components|patterns|core|i18n)\//;
 // Also catch the path.join(...) form: separate string args ('packages',
 // 'components', …) never form the slash literal above — which is exactly how a

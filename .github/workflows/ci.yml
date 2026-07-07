@@ -44,11 +44,24 @@ jobs:
         # real light token. Makes the "no exception without a record" contract
         # machine-checked instead of declared. See scripts/validate-tokens.js.
         run: node scripts/validate-tokens.js
+      - name: Action matrix is derivable (216 cells match the 2-template spec)
+        # validate-tokens proves the matrix is complete + the solid-default ramp
+        # walks one step; this proves every one of the 216 cells equals what the
+        # derivation spec (scripts/generate-matrix.js) says — so a hand-edit that
+        # breaks the subtle/outline/ghost derivation (which validate-tokens leaves
+        # un-ramped) fails here instead of shipping.
+        run: node scripts/generate-matrix.js --check
       - name: Stability facts in sync (README + stability.md ↔ stability.json)
         # docs/stability.json is the machine-readable tier source; this fails
         # if README's status block or stability.md's summary counts drift from
         # it. Kills the README-vs-stability contradiction class of bug.
         run: node scripts/generate-stability.js --check
+      - name: Coverage gate (docs + spec exist for every stable surface)
+        # Turns two declared-but-unenforced stability.md rubric criteria into a
+        # gate: every component/pattern has a contract doc, and every `stable`
+        # non-exempt surface (pure-layout/presentational excepted) has a unit
+        # spec. See scripts/check-coverage.js.
+        run: node scripts/check-coverage.js
 
   build:
     runs-on: ubuntu-latest
@@ -156,10 +169,12 @@ jobs:
         # built/served static bundle, producing "story missing" errors.
         env:
           KANSO_HIDE_AUDIT: '1'
+          # reduced-motion.spec (Playwright) reads STORYBOOK_URL for its baseURL.
+          STORYBOOK_URL: http://localhost:6006
         run: |
           npx concurrently -k -s first -n "SB,TEST" \
             "npx http-server storybook-static --port 6006 --silent" \
-            "npx wait-on tcp:6006 && npm run test:storybook -- --url http://localhost:6006"
+            "npx wait-on tcp:6006 && npm run test:storybook -- --url http://localhost:6006 && npm run test:reduced-motion"
 
   visual-regression:
     # Pixel-level visual regression against committed baselines in
@@ -286,6 +301,14 @@ jobs:
         run: npm run build:tokens && npm run build:libs
       - name: Build custom-elements bundle
         run: npm run build:elements
+      - name: Build React wrappers (generate + typecheck + emit .d.ts)
+        # Regenerates the typed forwardRef wrappers from packages/ui, then
+        # tsc-compiles them to ESM + .d.ts under dist/packages/react. Pure
+        # wrappers over the <kp-*> custom elements (react + @kanso-protocol/elements
+        # stay external as peer deps), so there's no bundle-budget entry — this
+        # step gates that the generated wrappers still typecheck against the
+        # current component inputs/outputs.
+        run: npm run build:react
       - name: Bundle-size budget gate (incl. elements bundle)
         # build:libs + build:elements both ran in this job, so this measures
         # the ui fesm2022 entry points AND the framework-agnostic elements

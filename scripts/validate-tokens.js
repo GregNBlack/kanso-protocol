@@ -320,10 +320,22 @@ function main() {
   // Merged tree used only for alias resolution (primitive + semantic).
   const mergedTree = deepMerge(primitive, semantic);
 
-  // Light leaf-name set (flattened) = semantic ∪ primitive.
+  // Light leaf-name set (flattened) for the dark-existence check = EVERY light
+  // token file under tokens/primitive/ and tokens/semantic/ (color, elevation,
+  // spacing, typography, motion, radius, sizing, …) — not just color. dark.json
+  // may override any of them (e.g. the dark-mode elevation shadows), so the
+  // light set has to span all of them or non-color dark overrides false-flag.
   const lightLeafNames = new Set();
-  collectLeafNames(semantic, [], lightLeafNames);
-  collectLeafNames(primitive, [], lightLeafNames);
+  for (const dir of new Set([path.dirname(PRIMITIVE_PATH), path.dirname(SEMANTIC_PATH)])) {
+    for (const f of fs.readdirSync(dir)) {
+      if (!f.endsWith('.json')) continue;
+      try {
+        collectLeafNames(readJson(path.join(dir, f)), [], lightLeafNames);
+      } catch {
+        /* unreadable/!json — skip */
+      }
+    }
+  }
 
   const errors = [];
   const nComplete = checkCompleteness(semantic, mergedTree, errors);

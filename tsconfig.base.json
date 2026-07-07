@@ -53,6 +53,9 @@
       "@kanso-protocol/ui/card": [
         "packages/ui/card/src/public-api.ts"
       ],
+      "@kanso-protocol/ui/charts": [
+        "packages/ui/charts/src/public-api.ts"
+      ],
       "@kanso-protocol/ui/checkbox": [
         "packages/ui/checkbox/src/public-api.ts"
       ],
@@ -67,6 +70,9 @@
       ],
       "@kanso-protocol/ui/datepicker": [
         "packages/ui/datepicker/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/density": [
+        "packages/ui/density/src/public-api.ts"
       ],
       "@kanso-protocol/ui/dialog": [
         "packages/ui/dialog/src/public-api.ts"
@@ -208,6 +214,9 @@
       ],
       "@kanso-protocol/ui/user-menu": [
         "packages/ui/user-menu/src/public-api.ts"
+      ],
+      "@kanso-protocol/ui/variable-virtual-list": [
+        "packages/ui/variable-virtual-list/src/public-api.ts"
       ],
       "@kanso-protocol/ui/virtual-list": [
         "packages/ui/virtual-list/src/public-api.ts"

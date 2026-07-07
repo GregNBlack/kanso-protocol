@@ -1,0 +1,96 @@
+{
+  "$description": "High-contrast theme (first pass) applied under [data-theme=\"high-contrast\"]. A LIGHT-based, maximum-contrast theme authored with the same primitive-ramp-override cascade dark.json uses: the gray ramp is pushed to a black-on-white ladder so that every var(--kp-color-gray-*) reference cascades to a maximum-contrast value. Result — text, icons, borders and muted text all clear WCAG AAA (>=7:1) on the white page surface. Accents (blue/red/green/amber/cyan) are intentionally NOT overridden: they keep their light-theme stops, which are already the strongest (darkest) audited foreground stops, so brand/status colors stay recognisable and at least AA. The static prelude (color-scheme: light; background-color: #FFFFFF; color: #000000) is added by the theme css format in style-dictionary.config.js. Because the gray ramp is inverted for CONTRAST rather than for a dark surface, a handful of gray-200/300 stops that double as *tinted surfaces* (not borders) would cascade too dark and bury their own content — those are pinned back to light explicitly at the bottom, exactly like dark.json pins its alert/badge subtle backgrounds. Known first-pass limitations (documented, not bugs): disabled control chrome (button/input/icon disabled states that alias gray.200/300) is left on the darkened ramp — WCAG exempts disabled controls from contrast, and the darker chrome still reads as inactive next to the saturated enabled states; and colored status FOREGROUNDS keep their light AA-tuned stops (several are already >=7:1, the rest >=4.5:1) rather than being pushed to AAA. A future pass can tighten both.",
+  "color": {
+    "$type": "color",
+    "gray": {
+      "$description": "Maximum-contrast black-on-white ladder. 50/100 stay near-white (light surfaces); 200/300 jump to strong near-black borders (>=7:1 on white); 400-950 are the text / icon / dark-surface end, all >=14:1. The 100->200 luminance cliff is deliberate: those two roles (light surface vs. strong border) can't share a lightness. Every stop is monotonic in luminance so the semantic cascade (text/border/muted/surface) stays ordered.",
+      "50":  { "$value": "#FFFFFF", "$description": "Lightest surface — surface.subtle / hover. Pure white." },
+      "100": { "$value": "#F2F2F2", "$description": "Muted surface / faint divider / table-hover. Near-white; black text 18.8:1." },
+      "200": { "$value": "#565656", "$description": "Standard control & card borders (border.default). 7.34:1 on white — strong, near the AAA border target." },
+      "300": { "$value": "#3D3D3D", "$description": "Emphasized borders + input/checkbox border (border.strong). 10.9:1 on white." },
+      "400": { "$value": "#2B2B2B", "$description": "Decorative icons / separators / status dots (icon.secondary). 14.2:1 on white." },
+      "500": { "$value": "#242424", "$description": "Muted & disabled text, helpers, placeholders (text.muted). 15.5:1 on white — AAA." },
+      "600": { "$value": "#1A1A1A", "$description": "Secondary text (link-rest, descriptions). 17.4:1 on white." },
+      "700": { "$value": "#121212", "$description": "Body text & primary icons (text.default / icon.primary). 18.7:1 on white." },
+      "800": { "$value": "#0A0A0A", "$description": "Near-black — neutral button hover, tooltip border." },
+      "900": { "$value": "#000000", "$description": "Headings / text.strong AND dark surfaces (tooltip / neutral solid / dark header+sidebar). Pure black works as both max-contrast ink on white and a black surface under white text." },
+      "950": { "$value": "#000000", "$description": "Deepest ink." }
+    },
+    "focus": {
+      "ring": {
+        "$value": "#1D4ED8",
+        "$description": "High-visibility focus ring. Default focus.ring is blue.400 (~2:1 on white — barely visible). This pins it to blue.700 #1D4ED8 (6.7:1 on the white HC surface) — a literal, not a var(--kp-color-blue-700) alias, because this theme file redefines only the gray ramp, so the blue ramp isn't in its source to alias. A brand-blue override would therefore not recolor the HC ring; a future pass can restore the alias by carrying the blue ramp in this file."
+      }
+    },
+    "surface": {
+      "strong": {
+        "$value": "#E4E4E4",
+        "$description": "surface.strong (active row / pressed) aliases gray.200, which is now a near-black BORDER. Pin it back to a light gray so pressed rows stay a light surface — black text lands 16.5:1. Kept one step darker than surface.muted (gray.100 #F2F2F2) so the elevation step survives."
+      }
+    },
+    "neutral": {
+      "subtle": {
+        "bg": {
+          "hover": {
+            "$value": "#E4E4E4",
+            "$description": "neutral.subtle button hover aliases gray.200 (now a dark border). Pinned light so the subtle button's dark fg (gray.700+) stays readable on hover."
+          },
+          "active": {
+            "$value": "#D4D4D4",
+            "$description": "neutral.subtle active aliases gray.300 (now a darker border). Pinned light, one step darker than hover; black text 14.2:1."
+          }
+        }
+      },
+      "ghost": {
+        "bg": {
+          "active": {
+            "$value": "#E4E4E4",
+            "$description": "neutral.ghost active aliases gray.200 (now a dark border). Pinned light so the ghost button's dark fg stays readable."
+          }
+        }
+      }
+    },
+    "segmented": {
+      "segment": {
+        "bg": {
+          "unselected-hover": {
+            "$value": "#E4E4E4",
+            "$description": "Hovered (unselected) segment aliases gray.200 (now a dark border). Pinned light so the segment's dark hover fg (gray.900) stays readable."
+          }
+        }
+      }
+    },
+    "avatar": {
+      "bg": {
+        "default": {
+          "$value": "#E4E4E4",
+          "$description": "Default avatar disc aliases gray.200 (now a dark border). Pinned light so the initials (avatar.fg.default = gray.700, near-black) read on the disc — matches the light tinted discs of the other avatar variants."
+        }
+      }
+    },
+    "avatar-group": {
+      "count": {
+        "bg": {
+          "$value": "#E4E4E4",
+          "$description": "+N count chip aliases gray.200 (now a dark border). Pinned light so the count fg (gray.700) stays readable."
+        }
+      }
+    },
+    "skeleton": {
+      "bg-highlight": {
+        "$value": "#E4E4E4",
+        "$description": "Shimmer highlight aliases gray.200 (now a dark border). Pinned light so the loading shimmer sweeps light-on-light instead of pulsing a jarring near-black band across the placeholder."
+      }
+    },
+    "alert": {
+      "neutral": {
+        "solid": {
+          "fg-desc": {
+            "$value": "#E4E4E4",
+            "$description": "Description text of the neutral SOLID alert (bg = gray.900 = pure black). It aliases gray.300, which is now near-black — invisible on the black solid bg. Pinned to a light gray (16.5:1 on black) so the solid alert body stays readable, matching its white title."
+          }
+        }
+      }
+    }
+  }
+}

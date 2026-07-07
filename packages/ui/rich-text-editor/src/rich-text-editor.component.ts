@@ -253,7 +253,7 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       border-radius: 6px;
       color: var(--kp-color-text-default);
       cursor: pointer;
-      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color var(--kp-motion-duration-fast) ease;
     }
     .kp-rte__btn:hover:not([disabled]) {
       background: var(--kp-color-surface-muted);
@@ -309,7 +309,7 @@ export type KpRichTextEditorSize = 'sm' | 'md' | 'lg';
       font-weight: 500;
       color: var(--kp-color-text-default);
       cursor: pointer;
-      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color var(--kp-motion-duration-fast) ease;
     }
     .kp-rte__link-btn:hover:not([disabled]) {
       background: var(--kp-color-surface-muted);

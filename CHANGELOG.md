@@ -12,6 +12,29 @@ See [`CONTRIBUTING.md` → Versioning policy](CONTRIBUTING.md#versioning-policy)
 
 ---
 
+## 2026-07-07 — feat: roadmap tiers — density, N-theme, React wrappers, granular elements
+
+A large maintainability + reach release. Structural token/theme work, three new consumer surfaces (density, variable-height virtualization, a charts token bridge), a typed React package, tree-shakeable custom elements with native-form participation, and the remaining roadmap "Later" items. Every change is additive — no component API changed; new behavior is opt-in.
+
+### Bumps
+
+- `@kanso-protocol/ui` `5.16.0` → `5.17.0` *(minor — density seam, high-contrast theme, `variable-virtual-list` + `charts` entry points, rich `<kp-select>` options, Notification Center pagination, anchor-aware Popover)*
+- `@kanso-protocol/elements` `0.2.0` → `0.3.0` *(minor — tree-shakeable per-component entries + `ElementInternals` native-form participation)*
+- `@kanso-protocol/mcp` `4.3.0` → `4.4.0` *(minor — catalog refresh: `variable-virtual-list`, rich-select, notification pagination)*
+- `@kanso-protocol/react` `0.1.0` *(new — typed React wrappers over the `<kp-*>` custom elements)*
+
+### What changed
+
+- **Density seam.** `provideKansoDensity()` + `KP_DENSITY` from `@kanso-protocol/ui/density` — one app-level preference sets the *default* size for size-aware components; an explicit `[size]` always wins. Table honors it today.
+- **N-theme build + high-contrast theme.** The Style Dictionary build generalized from hard-coded light/dark to a `THEMES` list — `dark.css` is byte-identical, and adding a theme is just dropping `tokens/themes/<name>.json` + a list entry. A `[data-theme="high-contrast"]` theme ships as the first extra theme (all 82 curated contrast pairs pass AA, gray pillars at AAA). `generate-brand-theme` gained `--neutral` / `--status` ramp overrides with per-hue WCAG enforcement.
+- **Typed React wrappers.** New `@kanso-protocol/react` (`0.x`) — generated `<KpButton>` / `<KpSelect>` / … `forwardRef` wrappers over the custom elements, with object-prop and event support on React 18/19. Thin over `@kanso-protocol/elements`, not a rewrite.
+- **Tree-shakeable elements + native forms.** `@kanso-protocol/elements/<name>` registers a single element alongside the unchanged all-in-one bundle; form-control elements participate in native `<form>` submit/reset via `ElementInternals`.
+- **Variable-height virtualization.** `@kanso-protocol/ui/variable-virtual-list` — cumulative-offset binary search for differing row heights; a uniform height reduces to the fixed-height fast path, so `virtual-list` stays simple.
+- **Charts adapter.** `@kanso-protocol/ui/charts` — a dependency-free token bridge (`kansoEChartsTheme` / `kansoChartColors`) that styles your own chart library with Kanso tokens. No charts component shipped.
+- **Component polish.** Rich `<kp-select>` options (optional `icon` + `description`); Notification Center incremental pagination (`[pageSize]` window + "Show N more" + `(loadMore)`); anchor-aware Popover positioning (tracks the trigger, auto-closes on scroll-out); a Storybook `Choosing a component` decision matrix.
+- **Derived action matrix.** The 216-combo action-role state matrix is now machine-*derived* from two rule templates (saturated for `primary`/`danger`, neutral for `neutral`); `check:matrix` fails CI if any committed cell diverges from the spec, extending `validate:tokens` (which only pins completeness + the solid-default ramp) to every variant and state.
+- **Fixes surfaced by the new gates.** The reduced-motion CI spec (now actually reached in the a11y job) caught the `accordion` chevron transition escaping its reduced-motion block — fixed to the catalog-standard `:host *` collapse; the Notification Center "Show more" control moved out of the `role="list"` container (`aria-required-children`).
+
 ## 2026-07-06 — feat: design-system integrity — enforce what the system declares
 
 A cross-cutting pass that turns Kanso's stated contracts into machine-checked gates, raises the accessibility ceiling, and hardens the AI + React developer experience. Every change is additive and visually neutral (media-gated or value-identical) — no component API changed.

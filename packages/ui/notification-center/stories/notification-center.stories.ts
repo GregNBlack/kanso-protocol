@@ -18,6 +18,18 @@ const FILTERS = [
   { id: 'mentions', label: 'Mentions', count: 1 },
 ];
 
+// A long feed to exercise incremental reveal — only the first `pageSize` render
+// until "Show more" is pressed, so the panel never renders everything up front.
+const LONG_LIST: KpNotification[] = Array.from({ length: 24 }, (_, i) => ({
+  id: `long-${i}`,
+  icon: 'bell',
+  appearance: 'neutral',
+  title: `Activity ${i + 1}`,
+  message: `Event #${i + 1} in your workspace feed`,
+  time: `${i + 1}h ago`,
+  read: i > 2,
+}));
+
 const meta: Meta<KpNotificationCenterComponent> = {
   title: 'Patterns/NotificationCenter',
   component: KpNotificationCenterComponent,
@@ -66,4 +78,11 @@ export const States: Story = {
 
 export const WithFilters: Story = {
   args: { state: 'with-items', notifications: ITEMS, showFilters: true, filters: FILTERS, activeFilter: 'unread' },
+};
+
+// Incremental reveal: 24 items, pageSize 5. The list renders 5 rows plus a
+// "Show 19 more" control; each press reveals the next page and emits (loadMore)
+// with { visible, total } so a real app can lazy-fetch. Null pageSize = show all.
+export const IncrementalReveal: Story = {
+  args: { state: 'with-items', notifications: LONG_LIST, pageSize: 5, showFooter: true },
 };

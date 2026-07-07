@@ -222,7 +222,7 @@ export interface KpHeaderNavItem {
       font-weight: 500;
       color: var(--kp-color-header-nav-item-fg-rest);
       text-decoration: none;
-      transition: background var(--kp-motion-duration-fast) ease, color 120ms ease;
+      transition: background var(--kp-motion-duration-fast) ease, color var(--kp-motion-duration-fast) ease;
     }
     .kp-header__nav-item:hover {
       color: var(--kp-color-header-nav-item-fg-hover);

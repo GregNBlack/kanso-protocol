@@ -17,11 +17,16 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DOCUMENT } from '@angular/common';
 
 import { KpSize, KpState, findPortalTarget } from '@kanso-protocol/ui';
+import { KpIconComponent } from '@kanso-protocol/ui/icon';
 
 export interface KpSelectOption {
   value: string;
   label: string;
   disabled?: boolean;
+  /** Optional leading glyph — a Tabler icon name rendered via the shared Icon component. */
+  icon?: string;
+  /** Optional secondary line rendered under the label in a muted style. */
+  description?: string;
 }
 
 /**
@@ -37,7 +42,7 @@ export interface KpSelectOption {
  */
 @Component({
   selector: 'kp-select',
-  imports: [],
+  imports: [KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
@@ -75,6 +80,9 @@ export interface KpSelectOption {
       (click)="toggle()">
 
       <span class="kp-select__field-wrap">
+        @if (selectedIcon(); as icon) {
+          <kp-icon class="kp-select__value-icon" [name]="icon" [size]="size" aria-hidden="true" />
+        }
         <span class="kp-select__value" [class.kp-select__value--placeholder]="isPlaceholderShown()">
           {{ displayText() }}
         </span>
@@ -113,8 +121,10 @@ export interface KpSelectOption {
             role="option"
             [class.kp-select__option--selected]="isSelected(opt)"
             [class.kp-select__option--disabled]="opt.disabled"
+            [class.kp-select__option--rich]="opt.description"
             [attr.aria-selected]="isSelected(opt)"
             [attr.aria-disabled]="opt.disabled || null"
+            [attr.aria-label]="opt.description ? opt.label + ', ' + opt.description : null"
             (click)="pick(opt, $event)">
 
             @if (multiple) {
@@ -127,7 +137,16 @@ export interface KpSelectOption {
               </span>
             }
 
-            <span class="kp-select__option-label">{{ opt.label }}</span>
+            @if (opt.icon) {
+              <kp-icon class="kp-select__option-icon" [name]="opt.icon" size="sm" aria-hidden="true" />
+            }
+
+            <span class="kp-select__option-text">
+              <span class="kp-select__option-label">{{ opt.label }}</span>
+              @if (opt.description) {
+                <span class="kp-select__option-description">{{ opt.description }}</span>
+              }
+            </span>
 
             @if (!multiple && isSelected(opt)) {
               <span class="kp-select__check-single" aria-hidden="true">
@@ -237,6 +256,14 @@ export interface KpSelectOption {
       color: var(--kp-color-input-placeholder-default);
     }
     :host(.kp-select--disabled) .kp-select__value {
+      color: var(--kp-color-input-fg-disabled);
+    }
+
+    /* Leading glyph mirroring the selected option's icon in the trigger. */
+    .kp-select__value-icon {
+      margin-inline-end: var(--kp-input-gap);
+    }
+    :host(.kp-select--disabled) .kp-select__value-icon {
       color: var(--kp-color-input-fg-disabled);
     }
 
@@ -367,9 +394,37 @@ export interface KpSelectOption {
       cursor: not-allowed;
     }
 
-    .kp-select__option-label {
+    /* Rich options carry a description line, so they drop the fixed
+       32px height and grow vertically for the two-line stack. */
+    .kp-select__option--rich {
+      height: auto;
+      padding-top: 6px;
+      padding-bottom: 6px;
+    }
+
+    .kp-select__option-icon {
+      color: var(--kp-color-text-muted);
+    }
+    .kp-select__option--selected .kp-select__option-icon {
+      color: var(--kp-color-accent-primary-fg);
+    }
+
+    .kp-select__option-text {
       flex: 1;
       min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .kp-select__option-label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .kp-select__option-description {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--kp-color-text-muted);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -600,6 +655,17 @@ export class KpSelectComponent implements ControlValueAccessor, AfterViewChecked
     return this.multiple
       ? this.multiValue.includes(opt.value)
       : this.singleValue === opt.value;
+  }
+
+  /**
+   * Leading icon for the trigger — the selected single-value option's icon,
+   * when it declares one. Suppressed in multi mode and while a floating label
+   * is active (the floated label anchors at the field's start).
+   */
+  selectedIcon(): string | null {
+    if (this.multiple || this.showFloatingLabel()) return null;
+    if (this.singleValue === null || this.singleValue === undefined) return null;
+    return this.options.find(o => o.value === this.singleValue)?.icon ?? null;
   }
 
   toggle(): void {

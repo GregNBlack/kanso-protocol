@@ -28,17 +28,15 @@ A surface is **`stable`** when all hold:
 | Area | Status | Notes |
 |---|---|---|
 | Color (primitive ramps) | `stable` | DTCG-sourced, frozen value set. |
-| Color (semantic) | `beta` | Names settled. A few component-specific tokens (`--kp-form-helper`, `--kp-button-bg`) still bypass the semantic layer; reconciliation open (see token questions). |
+| Color (semantic) | `stable` | Names + values frozen. `--kp-color-white` surface-vs-text double-duty resolved (split via `color.foreground.on-saturated`); `color.form.*` and `color.button.*` are proper semantic families. No component reads a primitive or `--kp-color-white` directly (lint-enforced). |
 | Spacing / sizing | `stable` | 4 / 8 / 12 / 16 px scale, matches Figma. |
 | Radius | `stable` | 8 / 10 / 12 / 14 / 16 px + `full`. |
-| Typography | `beta` | Onest font + 11 / 12 / 13 / 14 / 16 / 20 px scale. Open: line-height across sizes. |
-| Motion | `beta` | Duration tokens fixed; ease tokens under review. `prefers-reduced-motion` honored. |
-| Elevation | `beta` | Three levels (`raised`, `floating`, `overlay`). Open: dark-mode shadow values. |
+| Typography | `stable` | Onest font; size scale 11 / 12 / 14 / 16 / 20 / 24 / 32 px, each with a matching 4px-grid `font.lineHeight.*`, wired through `text.*`. |
+| Motion | `stable` | Duration tokens (fast/normal/slow + spin/shimmer) + three ease curves (in/out/in-out). `prefers-reduced-motion` honored by every animated component. |
+| Elevation | `stable` | Four levels (`none`/`raised`/`overlay`/`floating`), layered shadows. Dark-mode shadow values ship in `tokens/themes/dark.json` (darker, more opaque ink so elevation reads on dark surfaces). |
 | Dark theme | `stable` | Three-layer architecture (primitive → semantic → theme override) with `color.text.*` / `surface.*` / `border.*` families plus the `*.on-dark.*` invariant group. Lint-enforced: zero direct primitive refs in component/pattern CSS. Both themes covered by visual regression and axe in CI. |
 
-**Open semantic-token questions** (would be breaking, hence the `beta` on the semantic layer):
-- `--kp-color-white` carries both "surface elevation 0" and "high-contrast text on saturated bg"; in dark the surface meaning wins and the text meaning fails. Likely needs a `color.fg.on-color` split.
-- Are `gray-300 / gray-400` stable text colors across both themes, or do we need a `color.text.muted` that swaps independently?
+> **Token questions resolved — all token surfaces are now `stable`.** The `--kp-color-white` surface-vs-text double-duty was split via `color.foreground.on-saturated` (no component reads `--kp-color-white` directly); `color.text.muted` ships with an independent dark override; per-size line-heights, the motion ease curves, and dark-mode elevation shadows are all defined. The token layer no longer carries an open API question.
 
 ## Components
 
@@ -87,9 +85,10 @@ Status for the current `5.x` line (see `packages/ui/package.json` for the exact 
 | `toggle` | `stable` | docs ✓ · a11y ✓ · spec ✓(5) · visual ✓ | `[ariaLabel]` supported. |
 | `tooltip` | `stable` | docs ✓ · a11y ✓ · spec ✓(9) · visual ✓ | `[kpTooltip]` directive; global default delay would be additive. |
 | `tree` | `stable` | docs ✓ · a11y ✓ · spec ✓(25) · visual ✓ | Roving tabindex + expand/collapse + lazy-load: `(nodeExpand)` fires for expandable nodes with no children, `loading` shows a spinner row until populated (5.11.0). |
-| `virtual-list` | `stable` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Fixed-height window mode — API frozen for 5.x. Variable-height / sticky group headers ship as a **separate future package**, so the core stays stable. |
+| `variable-virtual-list` | `stable` | docs ✓ · a11y ✓ · spec ✓(19) · visual ✓ | Variable-height window mode — per-item `[itemHeight]` fn resolved through a cumulative-offset prefix sum + binary search. A uniform height reduces byte-for-byte to the `virtual-list` fixed-height fast path (5.17.0). |
+| `virtual-list` | `stable` | docs ✓ · a11y ✓ · spec ✓(13) · visual ✓ | Fixed-height window mode — API frozen for 5.x. Variable-height now ships as the separate `variable-virtual-list` entry point (above), so this core stays simple. |
 
-**Components: 42 `stable` · 0 `beta` · 0 `experimental`.**
+**Components: 43 `stable` · 0 `beta` · 0 `experimental`.**
 
 ## Patterns
 
@@ -143,8 +142,11 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 |---|---|---|
 | `@kanso-protocol/mcp` | `stable` | Catalog server, **11 stdio tools** (`catalog_overview`, `list_components`, `get_component`, `list_patterns`, `get_pattern`, `list_tokens`, `get_token`, `figma_context`, `figma_for_component`, `figma_for_pattern`, `figma_for_icon`). `figma_for_*` / `get_component` return a `codeConnect` block resolving a Figma node ref → real `@kanso-protocol/ui/<name>` import. |
 | `@kanso-protocol/ui/i18n` | `stable` | `KP_LOCALE` / `KP_STRINGS` (incl. `validation`) + Intl helpers. Validation messages folded into `KP_STRINGS.validation`; timepicker auto-detects 12h/24h (5.4.0). `KP_VALIDATION_MESSAGES` kept as a deprecated alias. |
-| `@kanso-protocol/elements` | `experimental` | Framework-agnostic custom elements (all 73 `kp-*` components) for React / Vue / plain HTML. `0.x` — API stable, packaging (single bundle, embeds Angular runtime) may evolve. Build + runtime smoke gated in CI (`web-components` job). See [`docs/web-components.md`](web-components.md). |
-| `publish-libs.js` | `stable` | Publishes unpublished `dist/packages/**` (`@kanso-protocol/ui` + `/mcp` + `/elements`). |
+| `@kanso-protocol/ui/density` | `stable` | `provideKansoDensity()` + `KP_DENSITY` — one app-level preference (`compact`/`comfortable`/`spacious`) that sets the *default* size for size-aware components; an explicit `[size]` always wins. Table honors it today (5.17.0). |
+| `@kanso-protocol/ui/charts` | `beta` | Dependency-free token bridge — `kansoEChartsTheme()` / `kansoChartColors()` return a plain theme object sourced from Kanso CSS custom properties for your own chart lib (ECharts/Chart.js). No charts component shipped. New in 5.17.0; the theme shape may still evolve. |
+| `@kanso-protocol/elements` | `experimental` | Framework-agnostic custom elements (all 75 `kp-*` components) for React / Vue / plain HTML. All-in-one bundle **plus** tree-shakeable per-component entry points (`@kanso-protocol/elements/<name>`); form-control elements participate in native `<form>` submit/reset via `ElementInternals` (5.17.0 · elements `0.3.0`). `0.x` — API stable, packaging (embeds Angular runtime) may evolve. Build + runtime smoke gated in CI (`web-components` job). See [`docs/web-components.md`](web-components.md). |
+| `@kanso-protocol/react` | `experimental` | Typed React wrappers over the `<kp-*>` custom elements — `<KpButton>`, `<KpSelect>`, … with object-prop + event support on React 18/19. Generated from the component catalog; `0.x` — wrappers are thin over `@kanso-protocol/elements`, API may evolve. |
+| `publish-libs.js` | `stable` | Publishes unpublished `dist/packages/**` (`@kanso-protocol/ui` + `/mcp` + `/elements` + `/react`). |
 | `kanso-lint-tokens` | `stable` | Architectural rule checker (raw colors, physical CSS, raw motion/shadows). |
 | Style Dictionary build | `stable` | Light + dark via custom `css/variables-dark` format. |
 | `check-changelog.js` | `stable` | CI + pre-push hook. |
@@ -154,7 +156,7 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 
 ## Coverage gaps — status
 
-The audit's gaps have been closed; what remains `beta` is held by open **API questions**, not missing coverage:
+The audit's gaps have been closed. The component, pattern, **and token** layers are all `stable` — the only non-`stable` surfaces left are two `beta` docs (`CONTRIBUTING.md`, this file — doc-completeness, not API) and the framework-bridge / adapter packages that are still soaking: the `experimental` `@kanso-protocol/elements` (custom-elements packaging) and `@kanso-protocol/react` (typed wrappers over it), plus the `beta` `@kanso-protocol/ui/charts` token adapter — none of which is a core component API. The former component/token coverage gaps, all now resolved:
 
 - ~~`icon` has no unit spec~~ → **done** (12 tests); promoted to `stable`.
 - ~~Behavioral patterns lacking specs~~ → **done**: every pattern now has a spec (app-shell 14 · filter-bar 13 · header 19 · nav-item 16 · notification-center 20 · page-header 14 · sidebar 27 · stat-card 16 · table-toolbar 17 · user-menu 17). app-shell, nav-item, and table-toolbar promoted to `stable`.
