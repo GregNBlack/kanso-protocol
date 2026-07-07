@@ -3,7 +3,7 @@
   "counts": {
     "components": { "stable": 42, "beta": 0, "experimental": 0 },
     "patterns": { "stable": 20, "beta": 0, "experimental": 0 },
-    "tokens": { "stable": 4, "beta": 4, "experimental": 0 }
+    "tokens": { "stable": 8, "beta": 0, "experimental": 0 }
   },
   "surfaces": [
     { "name": "accordion", "kind": "component", "tier": "stable" },
@@ -71,12 +71,12 @@
     { "name": "user-menu", "kind": "pattern", "tier": "stable" },
 
     { "name": "Color (primitive ramps)", "kind": "token", "tier": "stable" },
-    { "name": "Color (semantic)", "kind": "token", "tier": "beta" },
+    { "name": "Color (semantic)", "kind": "token", "tier": "stable" },
     { "name": "Spacing / sizing", "kind": "token", "tier": "stable" },
     { "name": "Radius", "kind": "token", "tier": "stable" },
-    { "name": "Typography", "kind": "token", "tier": "beta" },
-    { "name": "Motion", "kind": "token", "tier": "beta" },
-    { "name": "Elevation", "kind": "token", "tier": "beta" },
+    { "name": "Typography", "kind": "token", "tier": "stable" },
+    { "name": "Motion", "kind": "token", "tier": "stable" },
+    { "name": "Elevation", "kind": "token", "tier": "stable" },
     { "name": "Dark theme", "kind": "token", "tier": "stable" },
 
     { "name": "README.md", "kind": "doc", "tier": "stable" },

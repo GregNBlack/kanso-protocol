@@ -1,5 +1,35 @@
 {
   "$description": "Dark-theme overrides applied under [data-theme=\"dark\"]. Inverts the primitive color ramps so every var(--kp-color-*) reference cascades automatically. Contains: (1) primitive ramp inversions for every color in tokens/primitive/color.json, (2) explicit semantic overrides for the handful of tokens (alert/badge subtle backgrounds) where simple inversion produces a surface too close to the page background. Static prelude (color-scheme: dark; background-color; color) is added by the dark-css custom format in style-dictionary.config.js.",
+  "elevation": {
+    "$type": "shadow",
+    "$description": "Dark-mode elevation overrides. On dark surfaces the light rgba(9,9,11,~0.05) ink is effectively invisible; dark UIs need darker, more opaque shadows. Same geometry as the light primitives (tokens/primitive/elevation.json) — only the color changes to pure black at ~3x opacity. Emitted under [data-theme=\"dark\"] so var(--kp-elevation-*) consumers get readable elevation in dark.",
+    "none": {
+      "$value": [
+        { "offsetX": "0px", "offsetY": "0px", "blur": "0px", "spread": "0px", "color": "rgba(0,0,0,0)" }
+      ]
+    },
+    "raised": {
+      "$value": [
+        { "offsetX": "0px", "offsetY": "1px", "blur": "2px", "spread": "0px", "color": "rgba(0,0,0,0.24)" },
+        { "offsetX": "0px", "offsetY": "1px", "blur": "3px", "spread": "-1px", "color": "rgba(0,0,0,0.15)" },
+        { "offsetX": "0px", "offsetY": "0px", "blur": "4px", "spread": "-1px", "color": "rgba(0,0,0,0.09)" }
+      ]
+    },
+    "overlay": {
+      "$value": [
+        { "offsetX": "0px", "offsetY": "4px", "blur": "6px", "spread": "-2px", "color": "rgba(0,0,0,0.30)" },
+        { "offsetX": "0px", "offsetY": "2px", "blur": "10px", "spread": "-2px", "color": "rgba(0,0,0,0.18)" },
+        { "offsetX": "0px", "offsetY": "0px", "blur": "16px", "spread": "-4px", "color": "rgba(0,0,0,0.12)" }
+      ]
+    },
+    "floating": {
+      "$value": [
+        { "offsetX": "0px", "offsetY": "8px", "blur": "16px", "spread": "-4px", "color": "rgba(0,0,0,0.36)" },
+        { "offsetX": "0px", "offsetY": "4px", "blur": "24px", "spread": "-4px", "color": "rgba(0,0,0,0.24)" },
+        { "offsetX": "0px", "offsetY": "0px", "blur": "40px", "spread": "-8px", "color": "rgba(0,0,0,0.15)" }
+      ]
+    }
+  },
   "color": {
     "$type": "color",
     "white": {

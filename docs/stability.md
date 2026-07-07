@@ -28,17 +28,15 @@ A surface is **`stable`** when all hold:
 | Area | Status | Notes |
 |---|---|---|
 | Color (primitive ramps) | `stable` | DTCG-sourced, frozen value set. |
-| Color (semantic) | `beta` | Names settled. A few component-specific tokens (`--kp-form-helper`, `--kp-button-bg`) still bypass the semantic layer; reconciliation open (see token questions). |
+| Color (semantic) | `stable` | Names + values frozen. `--kp-color-white` surface-vs-text double-duty resolved (split via `color.foreground.on-saturated`); `color.form.*` and `color.button.*` are proper semantic families. No component reads a primitive or `--kp-color-white` directly (lint-enforced). |
 | Spacing / sizing | `stable` | 4 / 8 / 12 / 16 px scale, matches Figma. |
 | Radius | `stable` | 8 / 10 / 12 / 14 / 16 px + `full`. |
-| Typography | `beta` | Onest font + 11 / 12 / 13 / 14 / 16 / 20 px scale. Open: line-height across sizes. |
-| Motion | `beta` | Duration tokens fixed; ease tokens under review. `prefers-reduced-motion` honored. |
-| Elevation | `beta` | Three levels (`raised`, `floating`, `overlay`). Open: dark-mode shadow values. |
+| Typography | `stable` | Onest font; size scale 11 / 12 / 14 / 16 / 20 / 24 / 32 px, each with a matching 4px-grid `font.lineHeight.*`, wired through `text.*`. |
+| Motion | `stable` | Duration tokens (fast/normal/slow + spin/shimmer) + three ease curves (in/out/in-out). `prefers-reduced-motion` honored by every animated component. |
+| Elevation | `stable` | Four levels (`none`/`raised`/`overlay`/`floating`), layered shadows. Dark-mode shadow values ship in `tokens/themes/dark.json` (darker, more opaque ink so elevation reads on dark surfaces). |
 | Dark theme | `stable` | Three-layer architecture (primitive → semantic → theme override) with `color.text.*` / `surface.*` / `border.*` families plus the `*.on-dark.*` invariant group. Lint-enforced: zero direct primitive refs in component/pattern CSS. Both themes covered by visual regression and axe in CI. |
 
-**Open semantic-token questions** (would be breaking, hence the `beta` on the semantic layer):
-- `--kp-color-white` carries both "surface elevation 0" and "high-contrast text on saturated bg"; in dark the surface meaning wins and the text meaning fails. Likely needs a `color.fg.on-color` split.
-- Are `gray-300 / gray-400` stable text colors across both themes, or do we need a `color.text.muted` that swaps independently?
+> **Token questions resolved — all token surfaces are now `stable`.** The `--kp-color-white` surface-vs-text double-duty was split via `color.foreground.on-saturated` (no component reads `--kp-color-white` directly); `color.text.muted` ships with an independent dark override; per-size line-heights, the motion ease curves, and dark-mode elevation shadows are all defined. The token layer no longer carries an open API question.
 
 ## Components
 
@@ -154,7 +152,7 @@ Patterns compose components. Pure-layout and presentational patterns take the no
 
 ## Coverage gaps — status
 
-The audit's gaps have been closed; what remains `beta` is held by open **API questions**, not missing coverage:
+The audit's gaps have been closed. The component, pattern, **and token** layers are all `stable` — the only non-`stable` surfaces left are two `beta` docs (`CONTRIBUTING.md`, this file — doc-completeness, not API) and the `experimental` `@kanso-protocol/elements` package (custom-elements packaging, not any component API). The former component/token coverage gaps, all now resolved:
 
 - ~~`icon` has no unit spec~~ → **done** (12 tests); promoted to `stable`.
 - ~~Behavioral patterns lacking specs~~ → **done**: every pattern now has a spec (app-shell 14 · filter-bar 13 · header 19 · nav-item 16 · notification-center 20 · page-header 14 · sidebar 27 · stat-card 16 · table-toolbar 17 · user-menu 17). app-shell, nav-item, and table-toolbar promoted to `stable`.
