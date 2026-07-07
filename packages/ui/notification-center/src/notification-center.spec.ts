@@ -158,9 +158,9 @@ describe('KpNotificationCenterComponent', () => {
       expect(host.querySelector('.kp-notif-center__more')).toBeNull();
     });
 
-    it('limits to pageSize and reveals more on "Show more" (emitting loadMore)', () => {
-      const loaded: number[] = [];
-      fixture.componentInstance.loadMore.subscribe((n) => loaded.push(n));
+    it('limits to pageSize and reveals the next page on "Show more" (emitting loadMore)', () => {
+      const loaded: { visible: number; total: number }[] = [];
+      fixture.componentInstance.loadMore.subscribe((e) => loaded.push(e));
       fixture.componentRef.setInput('notifications', five);
       fixture.componentRef.setInput('pageSize', 2);
       fixture.detectChanges();
@@ -168,17 +168,58 @@ describe('KpNotificationCenterComponent', () => {
       expect(host.querySelectorAll('kp-notification-item').length).toBe(2);
       const more = host.querySelector('.kp-notif-center__more') as HTMLButtonElement;
       expect(more).not.toBeNull();
+      // Remaining-count hint on the control.
+      expect(more.textContent?.trim()).toBe('Show 3 more');
+      expect(more.getAttribute('aria-label')).toBe('Show 3 more notifications');
 
       more.click();
       fixture.detectChanges();
       expect(host.querySelectorAll('kp-notification-item').length).toBe(4);
-      expect(loaded).toEqual([4]);
+      expect(loaded).toEqual([{ visible: 4, total: 5 }]);
+    });
+
+    it('hides "Show more" once every item is visible (clamping the last page)', () => {
+      const loaded: { visible: number; total: number }[] = [];
+      fixture.componentInstance.loadMore.subscribe((e) => loaded.push(e));
+      fixture.componentRef.setInput('notifications', five);
+      fixture.componentRef.setInput('pageSize', 2);
+      fixture.detectChanges();
 
       (host.querySelector('.kp-notif-center__more') as HTMLButtonElement).click();
       fixture.detectChanges();
-      // all 5 revealed → button gone
+      (host.querySelector('.kp-notif-center__more') as HTMLButtonElement).click();
+      fixture.detectChanges();
+
+      // all 5 revealed → button gone; visible clamps to total, not 6
       expect(host.querySelectorAll('kp-notification-item').length).toBe(5);
       expect(host.querySelector('.kp-notif-center__more')).toBeNull();
+      expect(loaded).toEqual([
+        { visible: 4, total: 5 },
+        { visible: 5, total: 5 },
+      ]);
+    });
+
+    it('resets the reveal window when the notifications identity changes', () => {
+      fixture.componentRef.setInput('notifications', five);
+      fixture.componentRef.setInput('pageSize', 2);
+      fixture.detectChanges();
+
+      (host.querySelector('.kp-notif-center__more') as HTMLButtonElement).click();
+      fixture.detectChanges();
+      expect(host.querySelectorAll('kp-notification-item').length).toBe(4);
+
+      // Swap in a fresh list (e.g. a filter change) → window collapses to pageSize.
+      const replacement: KpNotification[] = Array.from({ length: 6 }, (_, i) => ({
+        id: `q${i}`,
+        title: `Other ${i}`,
+      }));
+      fixture.componentRef.setInput('notifications', replacement);
+      fixture.detectChanges();
+
+      expect(host.querySelectorAll('kp-notification-item').length).toBe(2);
+      const more = host.querySelector('.kp-notif-center__more') as HTMLButtonElement;
+      expect(more).not.toBeNull();
+      expect(more.textContent?.trim()).toBe('Show 4 more');
     });
   });
 });

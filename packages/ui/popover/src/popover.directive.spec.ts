@@ -10,6 +10,7 @@ import { KpPopoverDirective, KpPopoverTrigger } from './popover.directive';
       #btn
       [kpPopover]="content() ? tpl : null"
       [kpPopoverTrigger]="trigger()"
+      [kpPopoverCloseOnAnchorHidden]="closeOnAnchorHidden()"
       [kpPopoverDisabled]="disabled()">Trigger</button>
     <ng-template #tpl><div class="kp-test-panel">Panel content</div></ng-template>
   `,
@@ -19,9 +20,35 @@ class HostComponent {
   content = signal(true);
   trigger = signal<KpPopoverTrigger>('click');
   disabled = signal(false);
+  closeOnAnchorHidden = signal(true);
 }
 
 const wait = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
+
+/**
+ * jsdom does not implement IntersectionObserver, so tests that exercise the
+ * anchor-visibility auto-close install this fake on the global and drive the
+ * callback manually via `emit()`.
+ */
+class MockIntersectionObserver {
+  static instances: MockIntersectionObserver[] = [];
+  readonly observed: Element[] = [];
+  disconnected = false;
+  constructor(private readonly cb: IntersectionObserverCallback) {
+    MockIntersectionObserver.instances.push(this);
+  }
+  observe(el: Element): void { this.observed.push(el); }
+  unobserve(): void {}
+  disconnect(): void { this.disconnected = true; }
+  takeRecords(): IntersectionObserverEntry[] { return []; }
+  /** Simulate the browser reporting the trigger's intersection state. */
+  emit(isIntersecting: boolean): void {
+    this.cb(
+      [{ isIntersecting } as IntersectionObserverEntry],
+      this as unknown as IntersectionObserver,
+    );
+  }
+}
 
 describe('KpPopoverDirective', () => {
   function setup() {
@@ -131,5 +158,84 @@ describe('KpPopoverDirective', () => {
     expect(rafSpy).toHaveBeenCalledTimes(1);
     window.dispatchEvent(new Event('resize'));
     rafSpy.mockRestore();
+  });
+
+  it('repositions on resize while open (rAF-scheduled)', () => {
+    const { trigger } = setup();
+    trigger.click(); // open
+    expect(panel()).not.toBeNull();
+    const rafSpy = vi.spyOn(window, 'requestAnimationFrame');
+    window.dispatchEvent(new Event('resize'));
+    expect(rafSpy).toHaveBeenCalledTimes(1);
+    rafSpy.mockRestore();
+  });
+
+  it('auto-closes when the anchor leaves the viewport (IntersectionObserver)', () => {
+    const originalIO = globalThis.IntersectionObserver;
+    MockIntersectionObserver.instances.length = 0;
+    globalThis.IntersectionObserver =
+      MockIntersectionObserver as unknown as typeof IntersectionObserver;
+    try {
+      const { trigger } = setup();
+      trigger.click(); // open
+      expect(panel()).not.toBeNull();
+
+      const io = MockIntersectionObserver.instances[0];
+      expect(io).toBeTruthy();
+      expect(io.observed).toContain(trigger); // observing the trigger
+
+      // Still intersecting → panel stays open (initial observe() is a no-op).
+      io.emit(true);
+      expect(panel()).not.toBeNull();
+
+      // Anchor scrolled out of view → graceful auto-close.
+      io.emit(false);
+      expect(panel()).toBeNull();
+      // Observer torn down on close (no leak).
+      expect(io.disconnected).toBe(true);
+    } finally {
+      globalThis.IntersectionObserver = originalIO;
+    }
+  });
+
+  it('does not observe the anchor when kpPopoverCloseOnAnchorHidden is false', () => {
+    const originalIO = globalThis.IntersectionObserver;
+    MockIntersectionObserver.instances.length = 0;
+    globalThis.IntersectionObserver =
+      MockIntersectionObserver as unknown as typeof IntersectionObserver;
+    try {
+      const { fix, trigger } = setup();
+      fix.componentInstance.closeOnAnchorHidden.set(false);
+      fix.detectChanges();
+      trigger.click(); // open
+      expect(panel()).not.toBeNull();
+      expect(MockIntersectionObserver.instances.length).toBe(0);
+    } finally {
+      globalThis.IntersectionObserver = originalIO;
+    }
+  });
+
+  it('cleans up scroll/resize listeners + IntersectionObserver on destroy', () => {
+    const originalIO = globalThis.IntersectionObserver;
+    MockIntersectionObserver.instances.length = 0;
+    globalThis.IntersectionObserver =
+      MockIntersectionObserver as unknown as typeof IntersectionObserver;
+    const removeSpy = vi.spyOn(window, 'removeEventListener');
+    try {
+      const { fix, trigger } = setup();
+      trigger.click(); // open
+      expect(panel()).not.toBeNull();
+      const io = MockIntersectionObserver.instances[0];
+
+      fix.destroy(); // ngOnDestroy → close()
+
+      expect(panel()).toBeNull();
+      expect(io.disconnected).toBe(true);
+      expect(removeSpy).toHaveBeenCalledWith('scroll', expect.any(Function), true);
+      expect(removeSpy).toHaveBeenCalledWith('resize', expect.any(Function));
+    } finally {
+      removeSpy.mockRestore();
+      globalThis.IntersectionObserver = originalIO;
+    }
   });
 });

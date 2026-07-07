@@ -3,7 +3,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
 } from '@angular/core';
 import { KpButtonComponent } from '@kanso-protocol/ui/button';
@@ -93,8 +92,16 @@ export interface KpNotification {
               />
             }
             @if (hasMore) {
-              <button class="kp-notif-center__more" kpButton size="sm" variant="ghost" color="primary" (click)="showMore()">
-                Show more ({{ notifications.length - visibleCount }})
+              <button
+                class="kp-notif-center__more"
+                kpButton
+                size="sm"
+                variant="ghost"
+                color="primary"
+                [attr.aria-label]="'Show ' + remainingCount + ' more notifications'"
+                (click)="showMore()"
+              >
+                Show {{ remainingCount }} more
               </button>
             }
           </div>
@@ -300,15 +307,38 @@ export interface KpNotification {
     }
   `],
 })
-export class KpNotificationCenterComponent implements OnInit {
+export class KpNotificationCenterComponent {
   @Input() state: KpNotificationCenterState = 'with-items';
-  @Input() notifications: KpNotification[] = [];
+
+  private _notifications: KpNotification[] = [];
+  /**
+   * Notifications rendered in the `with-items` state. Replacing the array
+   * identity (e.g. a filter swap) collapses the incremental reveal back to the
+   * first page so a fresh list never starts scrolled open.
+   */
+  @Input()
+  get notifications(): KpNotification[] {
+    return this._notifications;
+  }
+  set notifications(value: KpNotification[]) {
+    this._notifications = value ?? [];
+    this.resetVisible();
+  }
+
+  private _pageSize: number | null = null;
   /**
    * Page size for long lists. When set, only the first `pageSize` items show;
    * a "Show more" button reveals the next page (client-side) and emits
    * `(loadMore)` so server-driven lists can append. Null = show all (default).
    */
-  @Input() pageSize: number | null = null;
+  @Input()
+  get pageSize(): number | null {
+    return this._pageSize;
+  }
+  set pageSize(value: number | null) {
+    this._pageSize = value;
+    this.resetVisible();
+  }
 
   @Input() showFilters = false;
   @Input() activeFilter = 'all';
@@ -325,27 +355,38 @@ export class KpNotificationCenterComponent implements OnInit {
   @Output() itemClick = new EventEmitter<KpNotification>();
   @Output() filterChange = new EventEmitter<string>();
   @Output() viewAll = new EventEmitter<void>();
-  /** Emitted when "Show more" is clicked — the new visible count. */
-  @Output() loadMore = new EventEmitter<number>();
+  /**
+   * Emitted when "Show more" is clicked, after the window grows — carries how
+   * many items are now visible and the total available, so a consumer can
+   * lazy-fetch the next page when `visible` approaches `total`.
+   */
+  @Output() loadMore = new EventEmitter<{ visible: number; total: number }>();
 
   /** How many items are currently revealed (grows by pageSize on "Show more"). */
   visibleCount = Infinity;
 
-  ngOnInit(): void {
-    this.visibleCount = this.pageSize ?? Infinity;
-  }
-
   get visibleNotifications(): KpNotification[] {
-    return this.pageSize == null ? this.notifications : this.notifications.slice(0, this.visibleCount);
+    return this._pageSize == null ? this._notifications : this._notifications.slice(0, this.visibleCount);
   }
 
   get hasMore(): boolean {
-    return this.pageSize != null && this.visibleCount < this.notifications.length;
+    return this._pageSize != null && this.visibleCount < this._notifications.length;
+  }
+
+  /** Items still hidden beyond the current window — drives the "Show N more" hint. */
+  get remainingCount(): number {
+    return Math.max(0, this._notifications.length - this.visibleCount);
   }
 
   showMore(): void {
-    this.visibleCount += this.pageSize ?? 0;
-    this.loadMore.emit(this.visibleCount);
+    const next = this.visibleCount + (this._pageSize ?? 0);
+    this.visibleCount = Math.min(next, this._notifications.length);
+    this.loadMore.emit({ visible: this.visibleCount, total: this._notifications.length });
+  }
+
+  /** Collapse the reveal window to the first page (or all when unpaged). */
+  private resetVisible(): void {
+    this.visibleCount = this._pageSize ?? Infinity;
   }
 
   get hostClasses(): string {

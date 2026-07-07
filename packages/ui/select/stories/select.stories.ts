@@ -21,6 +21,15 @@ const tags: KpSelectOption[] = [
   { value: 'ops', label: 'Operations' },
 ];
 
+// Rich options carry an optional leading icon and a secondary description
+// line. Icon names are Tabler glyphs resolved by the shared Icon component.
+const paymentMethods: KpSelectOption[] = [
+  { value: 'card', label: 'Credit card', icon: 'credit-card', description: 'Visa, Mastercard, Amex' },
+  { value: 'cash', label: 'Cash', icon: 'currency-dollar', description: 'Pay on delivery' },
+  { value: 'invoice', label: 'Invoice', icon: 'file-text', description: 'Net-30 billing for teams' },
+  { value: 'wallet', label: 'Account balance', icon: 'lock', description: 'Currently unavailable', disabled: true },
+];
+
 // Reserves vertical room in Storybook docs canvas so the dropdown isn't clipped
 const ROOM = 'min-height:440px;padding:8px 0';
 
@@ -119,6 +128,24 @@ export const SingleVsMulti: Story = {
         <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
           <kp-select [(ngModel)]="multi" [multiple]="true" placeholder="Pick any" [options]="options"></kp-select>
           <span style="font-size:11px;color: var(--kp-color-gray-600)">Multi · value: [{{ multi.join(', ') || '—' }}]</span>
+        </div>
+      </div>`,
+  }),
+};
+
+export const RichOptions: Story = {
+  name: 'Rich Options',
+  render: () => ({
+    props: { options: paymentMethods, single: 'card', multi: [] },
+    template: `
+      <div style="${ROOM};display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:300px">
+          <kp-select [(ngModel)]="single" placeholder="Choose a payment method" [options]="options"></kp-select>
+          <span style="font-size:11px;color: var(--kp-color-gray-600)">Single — icon + description; selected icon also shows in the trigger</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:300px">
+          <kp-select [(ngModel)]="multi" [multiple]="true" placeholder="Choose methods" [options]="options"></kp-select>
+          <span style="font-size:11px;color: var(--kp-color-gray-600)">Multi — checkbox + icon + description per row</span>
         </div>
       </div>`,
   }),

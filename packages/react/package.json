@@ -1,0 +1,49 @@
+{
+  "name": "@kanso-protocol/react",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "Typed React wrappers over the Kanso Protocol <kp-*> custom elements — ergonomic, type-checked <KpButton>, <KpSelect>, … components with object-prop and event support on React 18 and 19.",
+  "author": "GregNBlack",
+  "type": "module",
+  "module": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    }
+  },
+  "files": [
+    "index.js",
+    "index.js.map",
+    "index.d.ts",
+    "README.md"
+  ],
+  "sideEffects": [
+    "./index.js"
+  ],
+  "peerDependencies": {
+    "react": ">=18",
+    "@kanso-protocol/elements": ">=0.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3"
+  },
+  "keywords": [
+    "design-system",
+    "react",
+    "react-components",
+    "web-components",
+    "custom-elements",
+    "ui-components",
+    "kanso"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GregNBlack/kanso-protocol.git",
+    "directory": "packages/react"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

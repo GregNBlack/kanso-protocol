@@ -12,25 +12,19 @@
  * Loaded as a module script it auto-defines on import; or import
  * `defineKansoElements()` and call it yourself to control timing.
  */
-import { provideZonelessChangeDetection } from '@angular/core';
-import { createApplication } from '@angular/platform-browser';
-import { createCustomElement } from '@angular/elements';
 import { KANSO_ELEMENTS } from './registry.generated';
+import { defineKansoElement } from './runtime';
 
 let defined: Promise<void> | null = null;
 
 /** Define all Kanso custom elements. Idempotent. */
 export function defineKansoElements(): Promise<void> {
   if (defined) return defined;
-  defined = createApplication({
-    providers: [provideZonelessChangeDetection()],
-  }).then((app) => {
-    for (const { tag, component } of KANSO_ELEMENTS) {
-      if (typeof customElements !== 'undefined' && !customElements.get(tag)) {
-        customElements.define(tag, createCustomElement(component, { injector: app.injector }));
-      }
-    }
-  });
+  // Register every element through the shared runtime (one Angular app,
+  // form-associated where applicable) — same one-shot promise as before.
+  defined = Promise.all(
+    KANSO_ELEMENTS.map(({ tag, component }) => defineKansoElement(tag, component)),
+  ).then(() => undefined);
   return defined;
 }
 

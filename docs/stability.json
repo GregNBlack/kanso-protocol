@@ -1,7 +1,7 @@
 {
   "$generatedNote": "Machine-readable mirror of docs/stability.md. Hand-maintained: when you change a surface's tier in stability.md, update the matching row here (and the per-kind counts). scripts/generate-stability.js reads this file to (a) rewrite the marked status block in README.md and (b) in --check mode fail CI if README or the stability.md summary-count lines drift from these numbers. This file is the single source the drift guard trusts.",
   "counts": {
-    "components": { "stable": 42, "beta": 0, "experimental": 0 },
+    "components": { "stable": 43, "beta": 0, "experimental": 0 },
     "patterns": { "stable": 20, "beta": 0, "experimental": 0 },
     "tokens": { "stable": 8, "beta": 0, "experimental": 0 }
   },
@@ -47,6 +47,7 @@
     { "name": "toggle", "kind": "component", "tier": "stable" },
     { "name": "tooltip", "kind": "component", "tier": "stable" },
     { "name": "tree", "kind": "component", "tier": "stable" },
+    { "name": "variable-virtual-list", "kind": "component", "tier": "stable" },
     { "name": "virtual-list", "kind": "component", "tier": "stable" },
 
     { "name": "app-shell", "kind": "pattern", "tier": "stable" },
@@ -94,7 +95,10 @@
 
     { "name": "@kanso-protocol/mcp", "kind": "package", "tier": "stable" },
     { "name": "@kanso-protocol/ui/i18n", "kind": "package", "tier": "stable" },
+    { "name": "@kanso-protocol/ui/density", "kind": "package", "tier": "stable" },
+    { "name": "@kanso-protocol/ui/charts", "kind": "package", "tier": "beta" },
     { "name": "@kanso-protocol/elements", "kind": "package", "tier": "experimental" },
+    { "name": "@kanso-protocol/react", "kind": "package", "tier": "experimental" },
     { "name": "publish-libs.js", "kind": "package", "tier": "stable" },
     { "name": "kanso-lint-tokens", "kind": "package", "tier": "stable" },
     { "name": "Style Dictionary build", "kind": "package", "tier": "stable" },

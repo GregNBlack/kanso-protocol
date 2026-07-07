@@ -18,7 +18,9 @@ Container (host)
 └─ Dropdown (listbox, appears below trigger when open)
    ├─ Option
    │  ├─ Checkbox (multi mode only)
+   │  ├─ Icon (optional — leading Tabler glyph)
    │  ├─ Label
+   │  ├─ Description (optional — muted secondary line)
    │  └─ Checkmark (single mode, selected)
    └─ Empty state ("No options")
 ```
@@ -28,7 +30,7 @@ Container (host)
 - **Clear Button** — same as Input's: 16/20/24 hit area per size, X icon, hover-highlight; hidden when disabled or no value
 - **Chevron** — 16×16 down-chevron (Tabler `chevron-down`), color `select/chevron.rest`; rotates 180° and turns `select/chevron.open` when panel is open
 - **Dropdown** — floating panel below the trigger, same border/radius/shadow as DropdownMenu (12px radius, gray border, soft shadow); max-height 280px with custom scrollbar
-- **Option** — 32px tall, 10px horizontal padding, 14px label; hover bg `gray.50`, selected bg `blue.50` with `blue.700` text; checkbox leading in multi mode, trailing check in single mode
+- **Option** — 32px tall, 10px horizontal padding, 14px label; hover bg `gray.50`, selected bg `blue.50` with `blue.700` text; checkbox leading in multi mode, trailing check in single mode. Options may optionally carry a leading `icon` (rendered via the shared Icon component) and a `description` — a muted secondary line (`text.muted`); rich options with a description drop the fixed 32px height and grow to fit both lines
 - **Floating Label** — available on lg/xl only, behaves identically to Input's (inside when rest, shrinks to top when open or value present)
 
 ## API
@@ -54,8 +56,14 @@ interface KpSelectOption {
   value: string;
   label: string;
   disabled?: boolean;
+  /** Optional leading glyph — a Tabler icon name rendered via the shared Icon component. */
+  icon?: string;
+  /** Optional secondary line rendered under the label in a muted style. */
+  description?: string;
 }
 ```
+
+`icon` and `description` are optional per-option enrichments — omit them and the option renders exactly as a plain label row. `icon` takes any name from the Icon component's Tabler set (e.g. `credit-card`, `file-text`); `description` renders as a muted second line and is folded into the option's accessible name. In single mode, the selected option's `icon` also appears as a leading glyph in the trigger (suppressed while a floating label is active).
 
 ### Outputs
 
@@ -138,3 +146,4 @@ Floating Label is a boolean available on lg and xl only.
 ## Changelog
 
 - `0.1.0` — Initial component with 5 sizes, single and multi selection, floating label on lg/xl, optional clear button, CVA integration
+- Unreleased — Rich options: optional `icon` (leading Tabler glyph via the shared Icon component) and `description` (muted secondary line) on `KpSelectOption`; selected option icon mirrors into the trigger in single mode

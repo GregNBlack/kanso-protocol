@@ -1,0 +1,377 @@
+[
+  {
+    "tag": "kp-accordion",
+    "subpath": "accordion",
+    "fn": "defineKpAccordion"
+  },
+  {
+    "tag": "kp-accordion-item",
+    "subpath": "accordion-item",
+    "fn": "defineKpAccordionItem"
+  },
+  {
+    "tag": "kp-alert",
+    "subpath": "alert",
+    "fn": "defineKpAlert"
+  },
+  {
+    "tag": "kp-app-shell",
+    "subpath": "app-shell",
+    "fn": "defineKpAppShell"
+  },
+  {
+    "tag": "kp-avatar",
+    "subpath": "avatar",
+    "fn": "defineKpAvatar"
+  },
+  {
+    "tag": "kp-avatar-group",
+    "subpath": "avatar-group",
+    "fn": "defineKpAvatarGroup"
+  },
+  {
+    "tag": "kp-badge",
+    "subpath": "badge",
+    "fn": "defineKpBadge"
+  },
+  {
+    "tag": "kp-banner",
+    "subpath": "banner",
+    "fn": "defineKpBanner"
+  },
+  {
+    "tag": "kp-breadcrumb-item",
+    "subpath": "breadcrumb-item",
+    "fn": "defineKpBreadcrumbItem"
+  },
+  {
+    "tag": "kp-breadcrumb-separator",
+    "subpath": "breadcrumb-separator",
+    "fn": "defineKpBreadcrumbSeparator"
+  },
+  {
+    "tag": "kp-breadcrumbs",
+    "subpath": "breadcrumbs",
+    "fn": "defineKpBreadcrumbs"
+  },
+  {
+    "tag": "kp-breadcrumbs-auto",
+    "subpath": "breadcrumbs-auto",
+    "fn": "defineKpBreadcrumbsAuto"
+  },
+  {
+    "tag": "kp-card",
+    "subpath": "card",
+    "fn": "defineKpCard"
+  },
+  {
+    "tag": "kp-checkbox",
+    "subpath": "checkbox",
+    "fn": "defineKpCheckbox"
+  },
+  {
+    "tag": "kp-combobox",
+    "subpath": "combobox",
+    "fn": "defineKpCombobox"
+  },
+  {
+    "tag": "kp-command-palette",
+    "subpath": "command-palette",
+    "fn": "defineKpCommandPalette"
+  },
+  {
+    "tag": "kp-container",
+    "subpath": "container",
+    "fn": "defineKpContainer"
+  },
+  {
+    "tag": "kp-date-picker",
+    "subpath": "date-picker",
+    "fn": "defineKpDatePicker"
+  },
+  {
+    "tag": "kp-dialog",
+    "subpath": "dialog",
+    "fn": "defineKpDialog"
+  },
+  {
+    "tag": "kp-divider",
+    "subpath": "divider",
+    "fn": "defineKpDivider"
+  },
+  {
+    "tag": "kp-drawer",
+    "subpath": "drawer",
+    "fn": "defineKpDrawer"
+  },
+  {
+    "tag": "kp-dropdown-menu",
+    "subpath": "dropdown-menu",
+    "fn": "defineKpDropdownMenu"
+  },
+  {
+    "tag": "kp-empty-state",
+    "subpath": "empty-state",
+    "fn": "defineKpEmptyState"
+  },
+  {
+    "tag": "kp-file-upload",
+    "subpath": "file-upload",
+    "fn": "defineKpFileUpload"
+  },
+  {
+    "tag": "kp-filter-bar",
+    "subpath": "filter-bar",
+    "fn": "defineKpFilterBar"
+  },
+  {
+    "tag": "kp-form-field",
+    "subpath": "form-field",
+    "fn": "defineKpFormField"
+  },
+  {
+    "tag": "kp-form-section",
+    "subpath": "form-section",
+    "fn": "defineKpFormSection"
+  },
+  {
+    "tag": "kp-grid",
+    "subpath": "grid",
+    "fn": "defineKpGrid"
+  },
+  {
+    "tag": "kp-header",
+    "subpath": "header",
+    "fn": "defineKpHeader"
+  },
+  {
+    "tag": "kp-icon",
+    "subpath": "icon",
+    "fn": "defineKpIcon"
+  },
+  {
+    "tag": "kp-icon-button",
+    "subpath": "icon-button",
+    "fn": "defineKpIconButton"
+  },
+  {
+    "tag": "kp-input",
+    "subpath": "input",
+    "fn": "defineKpInput"
+  },
+  {
+    "tag": "kp-markdown-viewer",
+    "subpath": "markdown-viewer",
+    "fn": "defineKpMarkdownViewer"
+  },
+  {
+    "tag": "kp-menu-divider",
+    "subpath": "menu-divider",
+    "fn": "defineKpMenuDivider"
+  },
+  {
+    "tag": "kp-menu-item",
+    "subpath": "menu-item",
+    "fn": "defineKpMenuItem"
+  },
+  {
+    "tag": "kp-menu-section-label",
+    "subpath": "menu-section-label",
+    "fn": "defineKpMenuSectionLabel"
+  },
+  {
+    "tag": "kp-nav-item",
+    "subpath": "nav-item",
+    "fn": "defineKpNavItem"
+  },
+  {
+    "tag": "kp-notification-center",
+    "subpath": "notification-center",
+    "fn": "defineKpNotificationCenter"
+  },
+  {
+    "tag": "kp-notification-item",
+    "subpath": "notification-item",
+    "fn": "defineKpNotificationItem"
+  },
+  {
+    "tag": "kp-number-stepper",
+    "subpath": "number-stepper",
+    "fn": "defineKpNumberStepper"
+  },
+  {
+    "tag": "kp-page-error",
+    "subpath": "page-error",
+    "fn": "defineKpPageError"
+  },
+  {
+    "tag": "kp-page-header",
+    "subpath": "page-header",
+    "fn": "defineKpPageHeader"
+  },
+  {
+    "tag": "kp-pagination",
+    "subpath": "pagination",
+    "fn": "defineKpPagination"
+  },
+  {
+    "tag": "kp-pagination-item",
+    "subpath": "pagination-item",
+    "fn": "defineKpPaginationItem"
+  },
+  {
+    "tag": "kp-popover",
+    "subpath": "popover",
+    "fn": "defineKpPopover"
+  },
+  {
+    "tag": "kp-progress-circular",
+    "subpath": "progress-circular",
+    "fn": "defineKpProgressCircular"
+  },
+  {
+    "tag": "kp-progress-linear",
+    "subpath": "progress-linear",
+    "fn": "defineKpProgressLinear"
+  },
+  {
+    "tag": "kp-progress-segmented",
+    "subpath": "progress-segmented",
+    "fn": "defineKpProgressSegmented"
+  },
+  {
+    "tag": "kp-radio",
+    "subpath": "radio",
+    "fn": "defineKpRadio"
+  },
+  {
+    "tag": "kp-radio-group",
+    "subpath": "radio-group",
+    "fn": "defineKpRadioGroup"
+  },
+  {
+    "tag": "kp-rich-text-editor",
+    "subpath": "rich-text-editor",
+    "fn": "defineKpRichTextEditor"
+  },
+  {
+    "tag": "kp-row",
+    "subpath": "row",
+    "fn": "defineKpRow"
+  },
+  {
+    "tag": "kp-search-bar",
+    "subpath": "search-bar",
+    "fn": "defineKpSearchBar"
+  },
+  {
+    "tag": "kp-segmented-control",
+    "subpath": "segmented-control",
+    "fn": "defineKpSegmentedControl"
+  },
+  {
+    "tag": "kp-select",
+    "subpath": "select",
+    "fn": "defineKpSelect"
+  },
+  {
+    "tag": "kp-settings-panel",
+    "subpath": "settings-panel",
+    "fn": "defineKpSettingsPanel"
+  },
+  {
+    "tag": "kp-settings-row",
+    "subpath": "settings-row",
+    "fn": "defineKpSettingsRow"
+  },
+  {
+    "tag": "kp-sidebar",
+    "subpath": "sidebar",
+    "fn": "defineKpSidebar"
+  },
+  {
+    "tag": "kp-skeleton",
+    "subpath": "skeleton",
+    "fn": "defineKpSkeleton"
+  },
+  {
+    "tag": "kp-slider",
+    "subpath": "slider",
+    "fn": "defineKpSlider"
+  },
+  {
+    "tag": "kp-stack",
+    "subpath": "stack",
+    "fn": "defineKpStack"
+  },
+  {
+    "tag": "kp-stat-card",
+    "subpath": "stat-card",
+    "fn": "defineKpStatCard"
+  },
+  {
+    "tag": "kp-table",
+    "subpath": "table",
+    "fn": "defineKpTable"
+  },
+  {
+    "tag": "kp-table-toolbar",
+    "subpath": "table-toolbar",
+    "fn": "defineKpTableToolbar"
+  },
+  {
+    "tag": "kp-table-virtual",
+    "subpath": "table-virtual",
+    "fn": "defineKpTableVirtual"
+  },
+  {
+    "tag": "kp-tabs",
+    "subpath": "tabs",
+    "fn": "defineKpTabs"
+  },
+  {
+    "tag": "kp-textarea",
+    "subpath": "textarea",
+    "fn": "defineKpTextarea"
+  },
+  {
+    "tag": "kp-theme-toggle",
+    "subpath": "theme-toggle",
+    "fn": "defineKpThemeToggle"
+  },
+  {
+    "tag": "kp-time-picker",
+    "subpath": "time-picker",
+    "fn": "defineKpTimePicker"
+  },
+  {
+    "tag": "kp-toast-host",
+    "subpath": "toast-host",
+    "fn": "defineKpToastHost"
+  },
+  {
+    "tag": "kp-toggle",
+    "subpath": "toggle",
+    "fn": "defineKpToggle"
+  },
+  {
+    "tag": "kp-tree",
+    "subpath": "tree",
+    "fn": "defineKpTree"
+  },
+  {
+    "tag": "kp-user-menu",
+    "subpath": "user-menu",
+    "fn": "defineKpUserMenu"
+  },
+  {
+    "tag": "kp-variable-virtual-list",
+    "subpath": "variable-virtual-list",
+    "fn": "defineKpVariableVirtualList"
+  },
+  {
+    "tag": "kp-virtual-list",
+    "subpath": "virtual-list",
+    "fn": "defineKpVirtualList"
+  }
+]

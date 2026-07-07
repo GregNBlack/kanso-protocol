@@ -1,9 +1,22 @@
 import { TestBed } from '@angular/core/testing';
+import { KP_LOCALE } from '@kanso-protocol/ui/i18n';
 import { KpTimePickerComponent } from './timepicker.component';
 
 describe('KpTimePickerComponent', () => {
   function setup(extra: Record<string, unknown> = {}) {
     TestBed.configureTestingModule({ imports: [KpTimePickerComponent] });
+    const fix = TestBed.createComponent(KpTimePickerComponent);
+    for (const [k, v] of Object.entries(extra)) fix.componentRef.setInput(k, v);
+    fix.detectChanges();
+    return { fix, host: fix.nativeElement as HTMLElement, cmp: fix.componentInstance };
+  }
+
+  // Same as setup(), but pins KP_LOCALE so we can exercise the auto clock format.
+  function setupLocale(locale: string, extra: Record<string, unknown> = {}) {
+    TestBed.configureTestingModule({
+      imports: [KpTimePickerComponent],
+      providers: [{ provide: KP_LOCALE, useValue: locale }],
+    });
     const fix = TestBed.createComponent(KpTimePickerComponent);
     for (const [k, v] of Object.entries(extra)) fix.componentRef.setInput(k, v);
     fix.detectChanges();
@@ -162,5 +175,39 @@ describe('KpTimePickerComponent', () => {
     cmp.toggle();
     fix.detectChanges();
     expect(host.classList.contains('kp-tp--open')).toBe(true);
+  });
+
+  describe('auto clock format from KP_LOCALE', () => {
+    it('format defaults to "auto"', () => {
+      expect(setup().cmp.format).toBe('auto');
+    });
+
+    it('auto → 12h for a 12-hour locale (en-US)', () => {
+      const { cmp } = setupLocale('en-US');
+      expect(cmp.resolvedFormat).toBe('12h');
+      // 12h drives the hour column order (12, 1, 2, …) + the AM/PM column.
+      expect(cmp.hourItems[0]).toBe(12);
+    });
+
+    it('auto → 24h for a 24-hour locale (de-DE)', () => {
+      const { cmp } = setupLocale('de-DE');
+      expect(cmp.resolvedFormat).toBe('24h');
+      expect(cmp.hourItems.length).toBe(24);
+    });
+
+    it('auto 12h renders the locale AM/PM suffix in the trigger', () => {
+      const { fix, host, cmp } = setupLocale('en-US');
+      cmp.writeValue('14:30');
+      fix.detectChanges();
+      expect(trigger(host).textContent?.trim()).toContain('02:30 PM');
+    });
+
+    it('explicit [format]="24h" overrides a 12h locale', () => {
+      expect(setupLocale('en-US', { format: '24h' }).cmp.resolvedFormat).toBe('24h');
+    });
+
+    it('explicit [format]="12h" overrides a 24h locale', () => {
+      expect(setupLocale('de-DE', { format: '12h' }).cmp.resolvedFormat).toBe('12h');
+    });
   });
 });

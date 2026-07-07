@@ -294,6 +294,14 @@ jobs:
         run: npm run build:tokens && npm run build:libs
       - name: Build custom-elements bundle
         run: npm run build:elements
+      - name: Build React wrappers (generate + typecheck + emit .d.ts)
+        # Regenerates the typed forwardRef wrappers from packages/ui, then
+        # tsc-compiles them to ESM + .d.ts under dist/packages/react. Pure
+        # wrappers over the <kp-*> custom elements (react + @kanso-protocol/elements
+        # stay external as peer deps), so there's no bundle-budget entry — this
+        # step gates that the generated wrappers still typecheck against the
+        # current component inputs/outputs.
+        run: npm run build:react
       - name: Bundle-size budget gate (incl. elements bundle)
         # build:libs + build:elements both ran in this job, so this measures
         # the ui fesm2022 entry points AND the framework-agnostic elements

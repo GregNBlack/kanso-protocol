@@ -214,5 +214,84 @@ describe('KpStatCardComponent', () => {
       expect(host.querySelector('.kp-stat__sparkline-svg')).toBeNull();
       expect(host.querySelector('.kp-stat__sparkline-placeholder')).not.toBeNull();
     });
+
+    it('marks the built-in sparkline aria-hidden (decorative)', () => {
+      const { fix, host } = setup();
+      fix.componentRef.setInput('showSparkline', true);
+      fix.componentRef.setInput('sparklineData', [1, 5, 2, 8, 3]);
+      fix.detectChanges();
+      const svg = host.querySelector('.kp-stat__sparkline-svg');
+      expect(svg?.getAttribute('aria-hidden')).toBe('true');
+    });
+
+    describe('sparklineTrend tone', () => {
+      function sparkTone(host: HTMLElement): string | null {
+        return host.querySelector('.kp-stat__sparkline-svg')?.getAttribute('data-tone') ?? null;
+      }
+
+      it('inherits the trend row tone by default (sparklineTrend unset)', () => {
+        const { fix, host } = setup();
+        fix.componentRef.setInput('showSparkline', true);
+        fix.componentRef.setInput('sparklineData', [4, 6, 5, 8]);
+        // trend row: positive + down => bad
+        fix.componentRef.setInput('trendAppearance', 'positive');
+        fix.componentRef.setInput('trendDirection', 'down');
+        fix.detectChanges();
+        expect(sparkTone(host)).toBe('bad');
+      });
+
+      it('honors an explicit sparklineTrend independent of the trend row', () => {
+        const { fix, host } = setup();
+        fix.componentRef.setInput('showSparkline', true);
+        fix.componentRef.setInput('sparklineData', [4, 6, 5, 8]);
+        // trend row would be "bad", but the sparkline is pinned to up => good
+        fix.componentRef.setInput('trendAppearance', 'positive');
+        fix.componentRef.setInput('trendDirection', 'down');
+        fix.componentRef.setInput('sparklineTrend', 'up');
+        fix.detectChanges();
+        expect(sparkTone(host)).toBe('good');
+      });
+
+      it('maps explicit down to a bad tone and neutral to neutral', () => {
+        const { fix, host } = setup();
+        fix.componentRef.setInput('showSparkline', true);
+        fix.componentRef.setInput('sparklineData', [4, 6, 5, 8]);
+
+        fix.componentRef.setInput('sparklineTrend', 'down');
+        fix.detectChanges();
+        expect(sparkTone(host)).toBe('bad');
+
+        fix.componentRef.setInput('sparklineTrend', 'neutral');
+        fix.detectChanges();
+        expect(sparkTone(host)).toBe('neutral');
+      });
+
+      it('auto-derives the tone from the series (rising => good)', () => {
+        const { fix, host } = setup();
+        fix.componentRef.setInput('showSparkline', true);
+        fix.componentRef.setInput('sparklineData', [2, 4, 3, 9]); // last > first
+        fix.componentRef.setInput('sparklineTrend', 'auto');
+        fix.detectChanges();
+        expect(sparkTone(host)).toBe('good');
+      });
+
+      it('auto-derives the tone from the series (falling => bad)', () => {
+        const { fix, host } = setup();
+        fix.componentRef.setInput('showSparkline', true);
+        fix.componentRef.setInput('sparklineData', [9, 4, 6, 2]); // last < first
+        fix.componentRef.setInput('sparklineTrend', 'auto');
+        fix.detectChanges();
+        expect(sparkTone(host)).toBe('bad');
+      });
+
+      it('auto-derives neutral when the series ends where it started', () => {
+        const { fix, host } = setup();
+        fix.componentRef.setInput('showSparkline', true);
+        fix.componentRef.setInput('sparklineData', [5, 8, 3, 5]); // last === first
+        fix.componentRef.setInput('sparklineTrend', 'auto');
+        fix.detectChanges();
+        expect(sparkTone(host)).toBe('neutral');
+      });
+    });
   });
 });

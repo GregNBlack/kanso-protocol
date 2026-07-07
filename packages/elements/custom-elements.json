@@ -4991,13 +4991,6 @@
               "fieldName": "state"
             },
             {
-              "name": "pageSize",
-              "type": {
-                "text": "number"
-              },
-              "fieldName": "pageSize"
-            },
-            {
               "name": "showFilters",
               "type": {
                 "text": "boolean"
@@ -5027,22 +5020,6 @@
                 "text": "'with-items' | 'empty' | 'loading'"
               },
               "default": "'with-items'"
-            },
-            {
-              "kind": "field",
-              "name": "notifications",
-              "type": {
-                "text": "KpNotification[]"
-              },
-              "default": "[]"
-            },
-            {
-              "kind": "field",
-              "name": "pageSize",
-              "type": {
-                "text": "number"
-              },
-              "default": "null"
             },
             {
               "kind": "field",
@@ -5110,7 +5087,7 @@
             {
               "name": "loadMore",
               "type": {
-                "text": "CustomEvent<number>"
+                "text": "CustomEvent<{ visible: number; total: number }>"
               }
             }
           ]
@@ -8596,6 +8573,13 @@
                 "text": "boolean"
               },
               "fieldName": "showSparkline"
+            },
+            {
+              "name": "sparklineTrend",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "sparklineTrend"
             }
           ],
           "members": [
@@ -8694,6 +8678,14 @@
                 "text": "number[] | null"
               },
               "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "sparklineTrend",
+              "type": {
+                "text": "string"
+              },
+              "default": "null"
             }
           ],
           "events": []
@@ -8719,13 +8711,6 @@
           "tagName": "kp-table",
           "name": "KpTableComponent",
           "attributes": [
-            {
-              "name": "size",
-              "type": {
-                "text": "'sm' | 'md' | 'lg'"
-              },
-              "fieldName": "size"
-            },
             {
               "name": "striped",
               "type": {
@@ -8770,14 +8755,6 @@
             }
           ],
           "members": [
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "'sm' | 'md' | 'lg'"
-              },
-              "default": "'md'"
-            },
             {
               "kind": "field",
               "name": "columns",
@@ -10455,6 +10432,122 @@
           "name": "kp-user-menu",
           "declaration": {
             "name": "KpUserMenuComponent"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/ui/variable-virtual-list/src",
+      "declarations": [
+        {
+          "kind": "class",
+          "customElement": true,
+          "tagName": "kp-variable-virtual-list",
+          "name": "KpVariableVirtualListComponent",
+          "attributes": [
+            {
+              "name": "itemHeight",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "itemHeight"
+            },
+            {
+              "name": "estimatedItemHeight",
+              "type": {
+                "text": "number"
+              },
+              "fieldName": "estimatedItemHeight"
+            },
+            {
+              "name": "viewportHeight",
+              "type": {
+                "text": "number"
+              },
+              "fieldName": "viewportHeight"
+            },
+            {
+              "name": "overscan",
+              "type": {
+                "text": "number"
+              },
+              "fieldName": "overscan"
+            },
+            {
+              "name": "trackBy",
+              "type": {
+                "text": "number"
+              },
+              "fieldName": "trackBy"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "items",
+              "type": {
+                "text": "readonly T[]"
+              },
+              "default": "[]"
+            },
+            {
+              "kind": "field",
+              "name": "itemHeight",
+              "type": {
+                "text": "string"
+              },
+              "default": "() => 40"
+            },
+            {
+              "kind": "field",
+              "name": "estimatedItemHeight",
+              "type": {
+                "text": "number"
+              },
+              "default": "40"
+            },
+            {
+              "kind": "field",
+              "name": "viewportHeight",
+              "type": {
+                "text": "number"
+              },
+              "default": "400"
+            },
+            {
+              "kind": "field",
+              "name": "overscan",
+              "type": {
+                "text": "number"
+              },
+              "default": "4"
+            },
+            {
+              "kind": "field",
+              "name": "trackBy",
+              "type": {
+                "text": "number"
+              },
+              "default": "> unknown) | null = null"
+            }
+          ],
+          "events": [
+            {
+              "name": "rangeChange",
+              "type": {
+                "text": "CustomEvent<KpVariableVirtualRange>"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "kp-variable-virtual-list",
+          "declaration": {
+            "name": "KpVariableVirtualListComponent"
           }
         }
       ]

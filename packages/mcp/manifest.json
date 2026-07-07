@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-07T10:54:21.661Z",
-  "version": "4.3.0",
+  "generatedAt": "2026-07-07T12:17:11.091Z",
+  "version": "4.4.0",
   "totals": {
-    "components": 42,
+    "components": 43,
     "patterns": 20,
     "tokens": 918
   },
@@ -3116,12 +3116,6 @@
       ],
       "inputs": [
         {
-          "name": "size",
-          "type": "KpTableSize",
-          "default": "'md'",
-          "description": ""
-        },
-        {
           "name": "columns",
           "type": "KpTableColumn<T>[]",
           "default": "[]",
@@ -3191,11 +3185,7 @@
         }
       ],
       "ariaRole": null,
-      "sizeRamp": [
-        "sm",
-        "md",
-        "lg"
-      ],
+      "sizeRamp": [],
       "keyboardPatterns": [],
       "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-table--docs",
       "sourcePath": "packages/ui/table/src/table.component.ts",
@@ -3920,6 +3910,71 @@
         "docs": "docs/components/tree.md",
         "storybook": "components-tree--docs"
       }
+    },
+    {
+      "name": "variable-virtual-list",
+      "className": "KpVariableVirtualListComponent",
+      "selector": "kp-variable-virtual-list",
+      "subSelectors": [
+        "[kpVariableVirtualRow]"
+      ],
+      "stability": "stable",
+      "layer": "components",
+      "package": "@kanso-protocol/ui",
+      "import": "@kanso-protocol/ui/variable-virtual-list",
+      "description": "Kanso Protocol — VariableVirtualList\n\nWindow-mode virtual scroller for **variable-height rows** — the sibling to\n`<kp-virtual-list>`, which stays deliberately simple for the fixed-height\nfast path. Renders only the rows currently visible in the viewport (plus a\nconfigurable `[overscan]` buffer), sizing each row to the height returned by\n`[itemHeight]`.\n\nHow it works: on every `[items]` (or `[itemHeight]`) change it builds a\ncumulative-offset prefix-sum array (`offsets[i]` = summed height of rows\n0..i-1, `offsets[n]` = total height). Mapping `scrollTop` to the first\nvisible row is then a binary search over that array — O(log n) per scroll,\nnot the O(1) of the fixed variant, but no per-scroll measurement pass and no\nlayout thrash. The spacer takes `offsets[n]` so the scrollbar is honest.\n\nWhen every row is the same height, the offsets are `i * h` and the visible\nwindow / transform math reduces exactly to the fixed-height behaviour — so a\nuniform `[itemHeight]` is byte-for-byte equivalent to `<kp-virtual-list>`.",
+      "examples": [
+        "<kp-variable-virtual-list\n  [items]=\"rows\"\n  [itemHeight]=\"heightFor\"\n  [viewportHeight]=\"480\"\n  [overscan]=\"6\"\n  (rangeChange)=\"onRange($event)\"\n>\n  <ng-template kpVariableVirtualRow let-row let-i=\"index\">\n    <div class=\"row\">{{ row.body }}</div>\n  </ng-template>\n</kp-variable-virtual-list>\n\n// heightFor = (_i, row) => 32 + row.lines * 18;"
+      ],
+      "inputs": [
+        {
+          "name": "items",
+          "type": "readonly T[]",
+          "default": "[]",
+          "description": "The full list. The component never iterates the whole thing on scroll — only the visible window."
+        },
+        {
+          "name": "itemHeight",
+          "type": "KpItemHeightFn<T>",
+          "default": "() => 40",
+          "description": "Per-item pixel height. Receives the absolute row index and item, returns a\nfinite positive height. A non-finite or non-positive return falls back to\n`[estimatedItemHeight]`. Defaults to a uniform 40px — which makes the\ncomponent behave exactly like the fixed-height `<kp-virtual-list>`."
+        },
+        {
+          "name": "estimatedItemHeight",
+          "type": "number",
+          "default": "40",
+          "description": "Fallback height used when `[itemHeight]` returns a non-finite/non-positive value."
+        },
+        {
+          "name": "viewportHeight",
+          "type": "number",
+          "default": "400",
+          "description": "Pixel height of the scroll viewport."
+        },
+        {
+          "name": "overscan",
+          "type": "number",
+          "default": "4",
+          "description": "Extra rows rendered above + below the visible window to soften scroll-flicker."
+        },
+        {
+          "name": "trackBy",
+          "type": "((index: number, item: T) => unknown) | null",
+          "default": "null",
+          "description": "Optional trackBy for the projected rows. Defaults to absolute index — fine for stable lists."
+        }
+      ],
+      "outputs": [
+        {
+          "name": "rangeChange",
+          "payload": "KpVariableVirtualRange"
+        }
+      ],
+      "ariaRole": null,
+      "sizeRamp": [],
+      "keyboardPatterns": [],
+      "docsUrl": "https://gregnblack.github.io/kanso-protocol/?path=/docs/components-variablevirtuallist--docs",
+      "sourcePath": "packages/ui/variable-virtual-list/src/variable-virtual-list.component.ts"
     },
     {
       "name": "virtual-list",
@@ -4692,18 +4747,6 @@
           "description": ""
         },
         {
-          "name": "notifications",
-          "type": "KpNotification[]",
-          "default": "[]",
-          "description": ""
-        },
-        {
-          "name": "pageSize",
-          "type": "number | null",
-          "default": "null",
-          "description": "Page size for long lists. When set, only the first `pageSize` items show;\na \"Show more\" button reveals the next page (client-side) and emits\n`(loadMore)` so server-driven lists can append. Null = show all (default)."
-        },
-        {
           "name": "showFilters",
           "type": "boolean",
           "default": "false",
@@ -4751,7 +4794,7 @@
         },
         {
           "name": "loadMore",
-          "payload": "number"
+          "payload": "{ visible: number; total: number; }"
         }
       ],
       "ariaRole": null,
@@ -5366,9 +5409,10 @@
       "layer": "patterns",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/stat-card",
-      "description": "Kanso Protocol — StatCard\n\nSingle-metric tile with label, big value, optional icon, optional\ntrend (direction + delta + description), optional sparkline placeholder.\nDesigned to live in a dashboard grid.\n\nSlot: `[kpStatCardSparkline]` — drop in your real chart (e.g. recharts);\nthe placeholder shows a styled rectangle when empty.",
+      "description": "Kanso Protocol — StatCard\n\nSingle-metric tile with label, big value, optional icon, optional\ntrend (direction + delta + description), and an optional inline\nsparkline. Designed to live in a dashboard grid.\n\nSparkline: pass a numeric series to `sparklineData` for a built-in,\ndependency-free SVG trend line. Its stroke color follows `sparklineTrend`\n(or, when unset, the trend row's tone) via the accent/success/danger\nsemantic tokens. The sparkline is decorative (`aria-hidden`) — the\nnumeric `value` remains the accessible metric.\n\nSlot: `[kpStatCardSparkline]` — or drop in your own chart (e.g. recharts)\ninstead of the built-in line; the placeholder shows a styled rectangle\nwhen the slot is empty and no `sparklineData` is given.",
       "examples": [
-        "<kp-stat-card label=\"Total revenue\" value=\"$12,482\" trendValue=\"+12.5%\" trendDescription=\"from last month\"/>"
+        "<kp-stat-card label=\"Total revenue\" value=\"$12,482\" trendValue=\"+12.5%\" trendDescription=\"from last month\"/>",
+        "<kp-stat-card label=\"Sessions\" value=\"3.4k\" [showSparkline]=\"true\" [sparklineData]=\"[4,7,5,9,8,12]\" sparklineTrend=\"auto\"/>"
       ],
       "inputs": [
         {
@@ -5442,6 +5486,12 @@
           "type": "number[] | null",
           "default": "null",
           "description": "Built-in sparkline: pass a numeric series (≥2 points) to draw an inline\n trend line. Ignored if you project your own `[kpStatCardSparkline]`."
+        },
+        {
+          "name": "sparklineTrend",
+          "type": "KpStatTrendDirection | 'auto' | null",
+          "default": "null",
+          "description": "Colors the sparkline stroke, decoupled from the trend row:\n- `null` (default) — inherit the trend row's tone, so existing cards are\n  visually unchanged.\n- `'up' | 'down' | 'neutral'` — set the tone explicitly (up = success,\n  down = danger, neutral = accent). Handy when the trend row is hidden.\n- `'auto'` — derive the direction from the series itself (last vs first)."
         }
       ],
       "outputs": [],

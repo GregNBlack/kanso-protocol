@@ -24,9 +24,17 @@ Tone of the trend (green/red/gray) is computed from `trendDirection` × `trendAp
 | `trendAppearance` | `'positive' \| 'negative'` | `'positive'` | Inverts the good/bad mapping |
 | `trendValue` | `string \| null` | `'+12.5%'` | The delta, formatted |
 | `trendDescription` | `string \| null` | `'from last month'` | Trailing description |
-| `showSparkline` | `boolean` | `false` | Render the sparkline slot |
+| `showSparkline` | `boolean` | `false` | Render the sparkline region |
+| `sparklineData` | `number[] \| null` | `null` | Built-in inline SVG trend line — pass a numeric series (≥2 points). No external dep. Ignored if you project your own `[kpStatCardSparkline]` |
+| `sparklineTrend` | `'up' \| 'down' \| 'neutral' \| 'auto' \| null` | `null` | Colors the sparkline stroke. `null` inherits the trend row's tone; `up`/`down`/`neutral` set it explicitly (up = success, down = danger, neutral = accent); `auto` derives the direction from the series (last vs. first point) |
 
-Slot: `[kpStatCardSparkline]` — drop in your real chart (recharts, ngx-charts, etc.). Empty slot renders a styled placeholder rectangle.
+### Sparkline
+
+The built-in sparkline is an inline `<svg>` polyline normalized to a `100 × 32` viewBox — no charting dependency. It is `aria-hidden` (decorative supplementary); the numeric `value` stays the accessible metric. It is fully opt-in: without `sparklineData` (and without projected slot content) the card renders exactly as before.
+
+Stroke color comes from `sparklineTrend` mapped to the semantic tokens `--kp-color-accent-success-fg` (up), `--kp-color-accent-danger-fg` (down), and `--kp-color-accent-primary-fg` (neutral). Leave `sparklineTrend` unset to keep it in step with the trend row, or set it (or `auto`) to color the sparkline on its own — useful when `showTrend` is `false`.
+
+Slot: `[kpStatCardSparkline]` — instead of the built-in line, drop in your real chart (recharts, ngx-charts, etc.). An empty slot with no `sparklineData` renders a styled placeholder rectangle.
 
 ## Tone matrix
 
@@ -57,4 +65,5 @@ Slot: `[kpStatCardSparkline]` — drop in your real chart (recharts, ngx-charts,
 
 ## Changelog
 
-- `0.1.0` — Initial release. 3 sizes × 3 trend directions × 2 appearances, optional icon, optional sparkline slot.
+- `0.2.0` — Add `sparklineTrend` (`up`/`down`/`neutral`/`auto`) to color the built-in sparkline independently of the trend row, deriving direction from the series with `auto`. Backward compatible: unset keeps the trend row's tone.
+- `0.1.0` — Initial release. 3 sizes × 3 trend directions × 2 appearances, optional icon, built-in data-driven sparkline (`sparklineData`) + projectable sparkline slot.

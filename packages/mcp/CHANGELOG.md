@@ -1,5 +1,11 @@
 # @kanso-protocol/mcp
 
+## 4.4.0
+
+### Minor Changes
+
+- Catalog refresh — the manifest now includes the new `variable-virtual-list` component and reflects the rich `<kp-select>` option fields and the Notification Center incremental-pagination outputs.
+
 ## 4.3.0
 
 ### Minor Changes

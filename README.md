@@ -14,7 +14,7 @@
 Design tokens in W3C DTCG format serve as a single source of truth for both Figma and code. Rules are embedded in architecture, not in agreements. Native Angular components ship as [`@kanso-protocol/ui`](https://www.npmjs.com/package/@kanso-protocol/ui); the same components compile to framework-agnostic custom elements as [`@kanso-protocol/elements`](https://www.npmjs.com/package/@kanso-protocol/elements) for React, Vue, or plain HTML.
 
 <!-- stability:start -->
-> **Status: `5.x` stable.** Per the [stability matrix](docs/stability.md), the entire component and pattern catalog is `stable` — every component and pattern has its API frozen for `5.x`, with no breaking change without a major bump. The only non-`stable` surfaces are the `@kanso-protocol/elements` package (`experimental` `0.x` — custom-elements packaging, not any component API). Pin exact versions in production. The `5.0` line consolidated the former 64 per-component packages into a single `@kanso-protocol/ui` package with per-component secondary entry points ([ADR 0002](docs/adrs/0002-single-package-secondary-entry-points.md)) — install once, import per-subpath, tree-shaking preserved. **Upgrading from 4.x?** Follow the [v5 migration guide](docs/MIGRATION-v5.md) (mechanical import-path change; no component API changed). See [`docs/roadmap.md`](docs/roadmap.md) for what's next and the [changelog](CHANGELOG.md) for what landed.
+> **Status: `5.x` stable.** Per the [stability matrix](docs/stability.md), the entire component and pattern catalog is `stable` — every component and pattern has its API frozen for `5.x`, with no breaking change without a major bump. The only non-`stable` surfaces are the `@kanso-protocol/elements` package (`experimental` `0.x` — custom-elements packaging, not any component API) and the `@kanso-protocol/react` package (`experimental` `0.x` — typed React wrappers over the custom elements, not any component API). Pin exact versions in production. The `5.0` line consolidated the former 64 per-component packages into a single `@kanso-protocol/ui` package with per-component secondary entry points ([ADR 0002](docs/adrs/0002-single-package-secondary-entry-points.md)) — install once, import per-subpath, tree-shaking preserved. **Upgrading from 4.x?** Follow the [v5 migration guide](docs/MIGRATION-v5.md) (mechanical import-path change; no component API changed). See [`docs/roadmap.md`](docs/roadmap.md) for what's next and the [changelog](CHANGELOG.md) for what landed.
 <!-- stability:end -->
 
 ---
@@ -31,9 +31,9 @@ Design tokens in W3C DTCG format serve as a single source of truth for both Figm
 - **No exception without a record.** When a component departs from the contract, the deviation lives as an ADR with a reason — not as an undocumented one-off.
 - **Designed to stay small.** Components are added intentionally, when there's a clear need — not because something might be useful.
 - **One package, per-component entry points.** `npm i @kanso-protocol/ui`, then import each component from its own subpath (`@kanso-protocol/ui/button`). Tree-shaking ships only what you reference.
-- **Not just Angular.** The same components ship as framework-agnostic custom elements (`@kanso-protocol/elements`) — use `<kp-*>` from React, Vue, Svelte, or plain HTML. SSR-safe out of the box with `@angular/ssr`.
+- **Not just Angular.** The same components ship as framework-agnostic custom elements (`@kanso-protocol/elements`) — use `<kp-*>` from React, Vue, Svelte, or plain HTML. Import the whole bundle or tree-shake per component (`@kanso-protocol/elements/button`); form controls participate in native `<form>` submit/reset via `ElementInternals`. SSR-safe out of the box with `@angular/ssr`.
 - **AI-native.** Ships with `@kanso-protocol/mcp` — a Model Context Protocol server (12 tools) that exposes the live, typed catalog to Claude Code, Cursor, and VS Code, so the assistant authors Kanso UI from the actual API instead of from training-data guesses. Includes `check_composition`, which flags contract violations a linter can't catch at runtime (mixed sizes in a row, beta-tier usage).
-- **Typed for React/TSX too.** `@kanso-protocol/elements` ships a Custom Elements Manifest (`custom-elements.json`) and `JSX.IntrinsicElements` types, so `<kp-select size="md" />` type-checks in a React/Vue project instead of erroring as an unknown element.
+- **Typed for React/TSX too.** `@kanso-protocol/elements` ships a Custom Elements Manifest (`custom-elements.json`) and `JSX.IntrinsicElements` types, so `<kp-select size="md" />` type-checks in a React/Vue project. For an idiomatic React surface, `@kanso-protocol/react` (`0.x`) adds generated `<KpButton>` / `<KpSelect>` / … forwardRef wrappers with object-prop and event support on React 18/19.
 
 ## Live Preview
 
@@ -135,7 +135,7 @@ The assistant calls `list_components` / `get_component` / `list_tokens` under th
 
 > New here? The [**getting-started guide**](docs/getting-started.md) takes you from install → tokens → first screen → a working form in five steps. It works with [`@angular/ssr`](docs/ssr.md) out of the box.
 >
-> **Not on Angular?** `npm i @kanso-protocol/elements` gives you the same components as framework-agnostic [custom elements](docs/web-components.md) (`<kp-badge>`, `<kp-card>`, …) for React / Vue / plain HTML.
+> **Not on Angular?** `npm i @kanso-protocol/elements` gives you the same components as framework-agnostic [custom elements](docs/web-components.md) (`<kp-badge>`, `<kp-card>`, …) for React / Vue / plain HTML — or `npm i @kanso-protocol/react` for typed `<KpBadge>` / `<KpCard>` wrappers.
 
 One package, per-component entry points. Install once; import only what you use — each entry point is a separate ESM module, so tree-shaking ships only what you reference.
 
@@ -311,7 +311,7 @@ export class MyComponent {
 
 ## Components
 
-42 components, one package. Install once; import each from its own entry point. Tokens live at the package root (`@kanso-protocol/ui` + `@kanso-protocol/ui/styles/*`) and load once for any component to render correctly.
+43 components, one package. Install once; import each from its own entry point. Tokens live at the package root (`@kanso-protocol/ui` + `@kanso-protocol/ui/styles/*`) and load once for any component to render correctly.
 
 ```bash
 npm i @kanso-protocol/ui
@@ -369,6 +369,7 @@ Every component has a formal API contract (props, variants, states, a11y rules) 
 | Toggle | [toggle.md](docs/components/toggle.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-toggle--docs) | `@kanso-protocol/ui/toggle` |
 | Tooltip | [tooltip.md](docs/components/tooltip.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tooltip--docs) | `@kanso-protocol/ui/tooltip` |
 | Tree | [tree.md](docs/components/tree.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-tree--docs) | `@kanso-protocol/ui/tree` |
+| VariableVirtualList | [variable-virtual-list.md](docs/components/variable-virtual-list.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-variablevirtuallist--docs) | `@kanso-protocol/ui/variable-virtual-list` |
 | VirtualList | [virtual-list.md](docs/components/virtual-list.md) | [live ↗](https://gregnblack.github.io/kanso-protocol/?path=/docs/components-virtuallist--docs) | `@kanso-protocol/ui/virtual-list` |
 
 Adding a new component? Start from [`docs/components/_template.md`](docs/components/_template.md).

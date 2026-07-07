@@ -57,8 +57,10 @@ const COLOR_RESET = '\x1b[0m';
 
 // Directories under packages/ui/ that are not consumable surfaces.
 // Mirrors lint-tokens.js / generate-test-coverage.js (src/styles/stories),
-// plus i18n which is a utility entry point, not a component/pattern.
-const SKIP = new Set(['src', 'styles', 'stories', 'i18n']);
+// plus utility entry points that are not a component/pattern: i18n
+// (strings/locale), density (a DI token + provider), charts (a token→chart
+// theme bridge — functions, no component). These ship docs + specs anyway.
+const SKIP = new Set(['src', 'styles', 'stories', 'i18n', 'density', 'charts']);
 
 // The `menu` package publishes the DropdownMenu / MenuItem / MenuDivider
 // family; its contract docs live under those family names, not `menu.md`.

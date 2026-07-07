@@ -10,6 +10,7 @@ const meta: Meta<KpStatCardComponent> = {
     showIcon:        { control: 'boolean', table: { defaultValue: { summary: 'false' } } },
     showTrend:       { control: 'boolean', table: { defaultValue: { summary: 'true' } } },
     showSparkline:   { control: 'boolean', table: { defaultValue: { summary: 'false' } } },
+    sparklineTrend:  { control: 'inline-radio', options: [null, 'up', 'down', 'neutral', 'auto'], table: { defaultValue: { summary: 'null' } } },
     trendDirection:  { control: 'inline-radio', options: ['up','down','neutral'], table: { defaultValue: { summary: 'up' } } },
     trendAppearance: { control: 'inline-radio', options: ['positive','negative'], table: { defaultValue: { summary: 'positive' } } },
   },
@@ -54,6 +55,21 @@ export const WithSparkline: Story = {
         <kp-stat-card label="Revenue" value="$12,482" trendDirection="up" trendAppearance="positive" trendValue="+12.5%" trendDescription="30-day" [showSparkline]="true" [sparklineData]="[4,6,5,8,7,10,9,12,11,14]"/>
         <kp-stat-card label="Latency" value="142ms" trendDirection="down" trendAppearance="negative" trendValue="-8ms" trendDescription="30-day" [showSparkline]="true" [sparklineData]="[18,16,17,14,15,12,13,11,12,9]"/>
         <kp-stat-card label="Sessions" value="3.4k" trendDirection="neutral" trendValue="0.0%" trendDescription="30-day" [showSparkline]="true" [sparklineData]="[9,11,8,10,9,11,10,9,10,9]"/>
+      </div>
+    `,
+  }),
+};
+
+export const SparklineTrendColoring: Story = {
+  name: 'Sparkline trend coloring',
+  render: () => ({
+    template: `
+      <div style="display:grid;grid-template-columns:repeat(3,280px);gap:16px">
+        <!-- No trend row: sparkline colored on its own via sparklineTrend -->
+        <kp-stat-card label="Signups" value="1,204" [showTrend]="false" [showSparkline]="true" sparklineTrend="up"   [sparklineData]="[3,5,4,7,6,9,8,12]"/>
+        <kp-stat-card label="Error rate" value="0.8%" [showTrend]="false" [showSparkline]="true" sparklineTrend="down" [sparklineData]="[12,9,10,7,8,5,6,3]"/>
+        <!-- 'auto' derives up/down/neutral from the series itself -->
+        <kp-stat-card label="Queue depth" value="42" [showTrend]="false" [showSparkline]="true" sparklineTrend="auto" [sparklineData]="[8,10,7,11,9,13,10,15]"/>
       </div>
     `,
   }),

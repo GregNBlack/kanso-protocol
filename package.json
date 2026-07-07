@@ -20,6 +20,8 @@
     "test:elements": "playwright test e2e/elements.spec.ts --config e2e/playwright.config.ts",
     "generate:mcp-manifest": "node scripts/generate-mcp-manifest.js",
     "generate:elements-types": "node scripts/generate-elements-types.js",
+    "generate:react": "node scripts/generate-react-wrappers.js",
+    "build:react": "node packages/react/build.mjs",
     "generate:icons": "node scripts/generate-icon-map.js",
     "build": "npm run build:tokens && npm run generate:icons && npm run build:libs && npm run build:mcp",
     "lint:tokens": "node scripts/lint-tokens.js",

@@ -83,10 +83,15 @@ function buildStatusLine(data) {
         `(${betaTokens.join(', ')} — held by open API questions, not missing coverage)`
     );
   }
+  // Per-package reason for the parenthetical — the generic "custom-elements
+  // packaging" only fits the elements bundle; react is typed wrappers, etc.
+  const PKG_WHY = {
+    '@kanso-protocol/elements': 'custom-elements packaging, not any component API',
+    '@kanso-protocol/react': 'typed React wrappers over the custom elements, not any component API',
+  };
   for (const pkg of experimentalPkgs) {
-    nonStable.push(
-      `the \`${pkg}\` package (\`experimental\` \`0.x\` — custom-elements packaging, not any component API)`
-    );
+    const why = PKG_WHY[pkg] || 'a tooling / bridge surface, not any component API';
+    nonStable.push(`the \`${pkg}\` package (\`experimental\` \`0.x\` — ${why})`);
   }
 
   const catalogStable =

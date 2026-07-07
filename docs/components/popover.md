@@ -107,6 +107,17 @@ When you wire the popover up to a trigger, the usual UX is:
 - Dismiss on outside click, `Escape`, or the built-in close button
 - When the popover contains interactive content, focus moves into the popover on open and returns to the trigger on close (focus-trap behavior is the overlay layer's job, not this component's)
 
+### `[kpPopover]` directive positioning
+
+The shipped `[kpPopover]` directive owns positioning and lifecycle so you don't have to bring your own overlay layer. While a panel is open it is **anchor-aware**:
+
+- **Tracks the trigger** on scroll and resize. A capture-phase `scroll` listener catches nested scroll containers (not just the window) and reruns the shared viewport-flip/clamp math, so the panel stays pinned to its trigger instead of drifting toward a screen edge.
+- **Auto-closes when the anchor leaves the viewport.** An `IntersectionObserver` on the trigger closes the panel once the trigger has scrolled entirely out of view — a stale panel clamped to a screen edge with no visible anchor is worse than a graceful close. Feature-detected (no-op under SSR / engines without `IntersectionObserver`). Opt out with `[kpPopoverCloseOnAnchorHidden]="false"` to keep the panel open while the anchor is off-screen (it still tracks the trigger on scroll/resize).
+
+| Directive input | Type | Default | Description |
+|-----------------|------|---------|-------------|
+| `kpPopoverCloseOnAnchorHidden` | `boolean` | `true` | Auto-close the panel when the trigger scrolls entirely out of the viewport. Set `false` to keep it open while the anchor is off-screen. |
+
 ## Accessibility
 
 - Host has `role="dialog"` — screen readers announce the content as a dialog.
@@ -147,3 +158,4 @@ When you wire the popover up to a trigger, the usual UX is:
 ## Changelog
 
 - `0.1.0` — Initial component. 3 sizes × 13 arrow positions, optional header / footer / dividers, projected body and `[kpPopoverFooter]` slots, close affordance with `close` event. Layered `filter: drop-shadow()` on the host so the shadow follows the combined body+arrow silhouette and resizes automatically with content. Positioning is intentionally left to the caller.
+- _Unreleased_ — `[kpPopover]` directive is now anchor-aware: tracks the trigger on scroll/resize and auto-closes when the anchor scrolls out of view (`IntersectionObserver`), fixing the scroll-detach bug. New `kpPopoverCloseOnAnchorHidden` input (default `true`) opts out of the auto-close.
