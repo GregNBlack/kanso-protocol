@@ -33,6 +33,7 @@
     "check:stale-refs": "node scripts/check-no-stale-refs.js",
     "check:lockfile": "node scripts/check-lockfile-workspaces.js",
     "theme:brand": "node scripts/generate-brand-theme.js",
+    "release:tag": "node scripts/tag-release.js",
     "postinstall": "git config core.hooksPath .husky 2>/dev/null || true",
     "generate:test-coverage": "node scripts/generate-test-coverage.js",
     "prestorybook": "npm run generate:test-coverage",

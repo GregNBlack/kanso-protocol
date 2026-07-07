@@ -88,3 +88,21 @@ jobs:
           GIT_AUTHOR_EMAIL: orekhovgn@gmail.com
           GIT_COMMITTER_NAME: Greg N Black
           GIT_COMMITTER_EMAIL: orekhovgn@gmail.com
+
+      - name: Tag + GitHub Release (keep GitHub in sync with npm)
+        # Maintainer flow is local-bump: `npx changeset version` runs locally,
+        # so changesets/action above finds no pending changesets and only
+        # publishes to npm — it creates NO git tag / GitHub Release (those come
+        # from consuming changeset files). Without this, GitHub Releases lag
+        # npm. This creates v<ui-version> + a Release from the top CHANGELOG
+        # section. Idempotent: no-op when the tag/release already exist, so a
+        # no-version-change push to main is harmless.
+        run: node scripts/tag-release.js
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Tagger identity = the maintainer (tags aren't commits, so this
+          # doesn't touch Contributors, but keep it consistent with above).
+          GIT_AUTHOR_NAME: Greg N Black
+          GIT_AUTHOR_EMAIL: orekhovgn@gmail.com
+          GIT_COMMITTER_NAME: Greg N Black
+          GIT_COMMITTER_EMAIL: orekhovgn@gmail.com
