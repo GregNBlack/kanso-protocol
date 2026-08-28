@@ -184,7 +184,7 @@ function cloneModel(m: Model): Model {
           <input id="te-brand" type="color" class="te__brand-swatch" aria-label="Brand color picker"
                  [value]="brand()" (input)="onBrand($any($event.target).value)"/>
           <kp-input class="te__brand-hex" size="sm" [showClear]="false" ariaLabel="Brand color hex"
-                    [value]="brand()" (input)="onBrand($any($event.target).value)"/>
+                    [value]="brand()" (input)="onBrandText($any($event.target).value)"/>
           <button kpButton variant="default" color="primary" size="sm" (click)="applyBrand()">Recolor brand</button>
           <span class="te__hint">rotates the accent ramp hue — light + dark</span>
           <button kpButton variant="subtle" color="neutral" size="sm" class="te__reset" (click)="reset()">Reset</button>
@@ -417,6 +417,22 @@ export class KpThemeEditorComponent implements OnDestroy {
   onBrand(hex: string): void {
     const norm = normalizeHex(hex);
     if (norm) this.brand.set(norm);
+  }
+
+  /**
+   * Text-field variant of `onBrand`, used only by the live-typed hex input.
+   * `normalizeHex` treats "#" + exactly 3 hex chars as CSS shorthand and
+   * expands each digit (e.g. "256" -> "225566") — while typing a normal
+   * 6-digit hex, the string passes through that exact length partway
+   * through, so the expanded value gets echoed back into `[value]` and
+   * overwrites what the user is still typing (every digit appears doubled).
+   * The color-picker swatch never produces a partial value, so it keeps
+   * using `onBrand` directly.
+   */
+  onBrandText(hex: string): void {
+    const v = hex.trim();
+    if (v.startsWith('#') && v.length === 4) return;
+    this.onBrand(v);
   }
 
   /**
