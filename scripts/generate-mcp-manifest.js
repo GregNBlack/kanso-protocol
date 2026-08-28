@@ -300,7 +300,9 @@ function walkComponents(project, dir, codeConnect, stabilityByName) {
       sizeRamp: extractSizes(primary.cls),
       keyboardPatterns: detectKeyboardPatterns(primary.sourceText),
       docsUrl: storybookUrl(layer, slug),
-      sourcePath: path.relative(ROOT, primary.cls.getSourceFile().getFilePath()),
+      // path.relative uses backslashes on Windows; CI (and every consumer) expects
+      // POSIX-style paths regardless of the OS the manifest was generated on.
+      sourcePath: path.relative(ROOT, primary.cls.getSourceFile().getFilePath()).split(path.sep).join('/'),
     });
   }
   return items;
