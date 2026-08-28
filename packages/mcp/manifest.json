@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-07T12:17:11.091Z",
+  "generatedAt": "2026-08-28T12:35:50.052Z",
   "version": "4.4.0",
   "totals": {
     "components": 43,
@@ -1899,6 +1899,18 @@
           "type": "string | null",
           "default": "null",
           "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string | null",
+          "default": "null",
+          "description": "Native form name. Required for FormData submission inside a `<form>`."
+        },
+        {
+          "name": "autocomplete",
+          "type": "string | null",
+          "default": "null",
+          "description": "Native `autocomplete` hint (e.g. \"email\", \"username\", \"new-password\",\n      \"current-password\"). Without this, browsers and password managers\n      can't identify login/register/reset fields to offer autofill or a\n      save-password prompt."
         }
       ],
       "outputs": [],
