@@ -27,11 +27,11 @@ import { KpIconComponent } from '@kanso-protocol/ui/icon';
         <p class="description">Sign in to your Kanso Protocol account</p>
 
         <kp-form-field label="Email">
-          <kp-input type="email" placeholder="you@example.com"/>
+          <kp-input type="email" name="email" autocomplete="username" placeholder="you@example.com"/>
         </kp-form-field>
 
         <kp-form-field label="Password">
-          <kp-input type="password" placeholder="••••••••"/>
+          <kp-input type="password" name="password" autocomplete="current-password" placeholder="••••••••"/>
         </kp-form-field>
 
         <div class="options">

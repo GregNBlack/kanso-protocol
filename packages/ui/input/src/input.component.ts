@@ -51,6 +51,8 @@ import { KpSize, KpState } from '@kanso-protocol/ui';
         [attr.aria-label]="ariaLabel || label || placeholder || 'Input'"
         [disabled]="isDisabled"
         [value]="value ?? ''"
+        [attr.name]="name"
+        [attr.autocomplete]="autocomplete"
         (focus)="isFocused = true"
         (blur)="isFocused = false; onTouched()"
         (input)="onInputChange($event)"
@@ -321,6 +323,13 @@ export class KpInputComponent implements ControlValueAccessor {
   /** Force a visual state for showcase/documentation purposes */
   @Input() forceState: KpState | null = null;
   @Input() value: string | null = null;
+  /** Native form name. Required for FormData submission inside a `<form>`. */
+  @Input() name: string | null = null;
+  /** Native `autocomplete` hint (e.g. "email", "username", "new-password",
+      "current-password"). Without this, browsers and password managers
+      can't identify login/register/reset fields to offer autofill or a
+      save-password prompt. */
+  @Input() autocomplete: string | null = null;
   isFocused = false;
   /** Set independently by Angular forms via setDisabledState (FormControl.disable()) */
   private cvaDisabled = false;

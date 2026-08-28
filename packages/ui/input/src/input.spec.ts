@@ -100,6 +100,22 @@ describe('KpInputComponent', () => {
     const input = host.querySelector('input') as HTMLInputElement;
     expect(input.getAttribute('aria-label')).toBe('Custom');
   });
+
+  it('propagates name and autocomplete to the native input, for password-manager detection', () => {
+    fixture.componentRef.setInput('name', 'password');
+    fixture.componentRef.setInput('autocomplete', 'current-password');
+    fixture.detectChanges();
+    const input = host.querySelector('input') as HTMLInputElement;
+    expect(input.getAttribute('name')).toBe('password');
+    expect(input.getAttribute('autocomplete')).toBe('current-password');
+  });
+
+  it('omits name and autocomplete attributes when unset', () => {
+    fixture.detectChanges();
+    const input = host.querySelector('input') as HTMLInputElement;
+    expect(input.hasAttribute('name')).toBe(false);
+    expect(input.hasAttribute('autocomplete')).toBe(false);
+  });
 });
 
 describe('KpInputComponent integration with ReactiveForms', () => {
