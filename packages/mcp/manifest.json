@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-28T12:35:50.052Z",
+  "generatedAt": "2026-09-29T20:55:03.719Z",
   "version": "4.4.0",
   "totals": {
     "components": 43,
@@ -597,7 +597,7 @@
       "layer": "components",
       "package": "@kanso-protocol/ui",
       "import": "@kanso-protocol/ui/card",
-      "description": "Kanso Protocol — Card\n\nUniversal container with optional header (title + description +\naction), body, and footer. Each section toggles via boolean inputs;\ndividers can be added between sections for visual grouping.\n\nSet `appearance=\"elevated\"` for a shadowed surface, `\"muted\"` for a\ngray background with dimmed text (secondary / preview content),\n`\"subtle\"` for a gray background with full-strength text and no\nborder (primary content visually separated from the page), or\n`\"outline\"` for a transparent panel with just a border. Setting\n`[clickable]=\"true\"` adds a hover state and emits `(cardClick)` —\nwire it to navigate, expand, or run any action.",
+      "description": "Kanso Protocol — Card\n\nUniversal container with optional header (leading + title + description +\naction), body, and footer. Each section toggles via boolean inputs;\ndividers can be added between sections for visual grouping.\n\nThe header's `title`/`description` string inputs cover the simple case.\nFor a richer header — an avatar, a title with a badge or link, a\nmulti-line description — project `[kpCardHeaderLeading]` (before the text\ngroup; an avatar, icon, or thumbnail), `[kpCardTitle]`, and/or\n`[kpCardDescription]`. Each replaces its plain-text fallback only when\nsomething is actually projected into it (same pattern as\n`kp-page-header`'s `[kpPageHeaderTitle]`) — the string inputs keep working\nuntouched otherwise.\n\nSet `appearance=\"elevated\"` for a shadowed surface, `\"muted\"` for a\ngray background with dimmed text (secondary / preview content),\n`\"subtle\"` for a gray background with full-strength text and no\nborder (primary content visually separated from the page), or\n`\"outline\"` for a transparent panel with just a border. Setting\n`[clickable]=\"true\"` adds a hover state and emits `(cardClick)` —\nwire it to navigate, expand, or run any action.",
       "examples": [],
       "inputs": [
         {
@@ -3152,16 +3152,34 @@
           "description": ""
         },
         {
+          "name": "showHeader",
+          "type": "boolean",
+          "default": "true",
+          "description": ""
+        },
+        {
           "name": "selectable",
           "type": "boolean",
           "default": "false",
           "description": ""
         },
         {
+          "name": "selectOnRowClick",
+          "type": "boolean",
+          "default": "true",
+          "description": "Clicking anywhere on the row toggles its selection. Set to `false` when the row click does something else (open a detail view, etc.) and selection should only happen via the checkbox."
+        },
+        {
           "name": "selected",
           "type": "T[]",
           "default": "[]",
           "description": ""
+        },
+        {
+          "name": "rowKey",
+          "type": "((row: T) => unknown) | null",
+          "default": "null",
+          "description": "Identity used to match rows in `selected` — e.g. `(row) => row.id`.\nWithout it, selection is tracked by object reference (`Array.includes`),\nwhich is lost whenever `data` is recreated (a `computed()`, a fresh\nfetch, etc.) even if the same logical rows are still present."
         },
         {
           "name": "sort",
@@ -4146,6 +4164,12 @@
           "name": "size",
           "type": "KpBannerSize",
           "default": "'md'",
+          "description": ""
+        },
+        {
+          "name": "variant",
+          "type": "KpBannerVariant",
+          "default": "'full'",
           "description": ""
         },
         {
@@ -9719,7 +9743,7 @@
     },
     {
       "name": "--kp-color-tooltip-border",
-      "value": "var(--kp-color-gray-800)",
+      "value": "var(--kp-color-tooltip-bg)",
       "category": "color",
       "subPath": "tooltip-border"
     },
@@ -9881,7 +9905,7 @@
     },
     {
       "name": "--kp-color-tabs-track-border",
-      "value": "var(--kp-color-gray-200)",
+      "value": "var(--kp-color-border-default)",
       "category": "color",
       "subPath": "tabs-track-border"
     },
@@ -10361,7 +10385,7 @@
     },
     {
       "name": "--kp-color-divider-line",
-      "value": "var(--kp-color-gray-200)",
+      "value": "var(--kp-color-border-default)",
       "category": "color",
       "subPath": "divider-line"
     },
@@ -10871,7 +10895,7 @@
     },
     {
       "name": "--kp-color-dialog-divider",
-      "value": "var(--kp-color-gray-100)",
+      "value": "var(--kp-color-border-default)",
       "category": "color",
       "subPath": "dialog-divider"
     },

@@ -73,6 +73,7 @@ export type KpRadioColor = 'primary' | 'danger';
       line-height: 1;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       --kp-radio-border: var(--kp-color-checkbox-border-rest);
+      --kp-radio-bg: var(--kp-color-input-bg-default);
     }
 
     .kp-radio__root {
@@ -126,7 +127,7 @@ export type KpRadioColor = 'primary' | 'danger';
 
     :host(:has(.kp-radio__input:hover:not(:disabled))),
     :host(.kp-radio--hover) {
-      --kp-radio-border: var(--kp-color-input-border-hover);
+      --kp-radio-border: var(--kp-color-checkbox-border-hover);
     }
     :host(.kp-radio--active) { --kp-radio-border: var(--kp-color-text-muted); }
     :host(:has(.kp-radio__input:focus-visible)) .kp-radio__box,

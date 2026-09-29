@@ -160,16 +160,15 @@ export class KpTooltipDirective implements OnDestroy {
     this.ref = createComponent(KpTooltipInternalComponent, {
       environmentInjector: this.envInjector,
     });
-    const inst = this.ref.instance;
-    inst.size = this.kpTooltipSize;
+    this.ref.setInput('size', this.kpTooltipSize);
     if (this.text instanceof TemplateRef) {
-      inst.contentTemplate = this.text;
+      this.ref.setInput('contentTemplate', this.text);
     } else {
-      inst.label = this.text ?? '';
-      inst.shortcut = this.kpTooltipShortcut;
+      this.ref.setInput('label', this.text ?? '');
+      this.ref.setInput('shortcut', this.kpTooltipShortcut);
     }
-    inst.arrowPosition = this.oppositeOf(this.kpTooltipPosition) as KpTooltipArrowPosition;
-    inst.arrowAlign = this.kpTooltipAlign;
+    this.ref.setInput('arrowPosition', this.oppositeOf(this.kpTooltipPosition) as KpTooltipArrowPosition);
+    this.ref.setInput('arrowAlign', this.kpTooltipAlign);
 
     const el = this.ref.location.nativeElement as HTMLElement;
     el.id = this.tooltipId;
@@ -269,9 +268,16 @@ export class KpTooltipDirective implements OnDestroy {
     el.style.top = `${y}px`;
 
     if (this.ref) {
-      this.ref.instance.arrowPosition = this.oppositeOf(side) as KpTooltipArrowPosition;
-      this.ref.instance.arrowOffset = arrowOffset;
-      this.ref.changeDetectorRef.markForCheck();
+      // setInput (not instance assignment + markForCheck) — the internal
+      // component is OnPush, and ref.changeDetectorRef is the host view's
+      // CD ref, not the component view's. markForCheck() only flags the
+      // host view and its ancestors; the component's own view never gets
+      // marked dirty, so a direct instance.x = y assignment here silently
+      // fails to re-render (host bindings like [class] still update since
+      // those live on the host view, but template bindings like the arrow
+      // SVG's [attr.d] don't). setInput marks the component's view itself.
+      this.ref.setInput('arrowPosition', this.oppositeOf(side) as KpTooltipArrowPosition);
+      this.ref.setInput('arrowOffset', arrowOffset);
     }
   }
 

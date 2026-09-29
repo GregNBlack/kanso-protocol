@@ -46,7 +46,13 @@ export type KpDialogFooterLayout = 'start' | 'end' | 'between' | 'stacked';
   selector: 'kp-dialog',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { '[class]': 'hostClasses' },
+  host: {
+    '[class]': 'hostClasses',
+    /* `title` doubles as a global HTML attribute — a static
+       <kp-dialog title="…"> would otherwise leave it on the host element
+       too, triggering the browser's native tooltip over the whole panel. */
+    '[attr.title]': 'null',
+  },
   template: `
     <dialog
       #dlg

@@ -12,9 +12,18 @@ export type KpCardAppearance = 'default' | 'muted' | 'subtle' | 'elevated' | 'ou
 /**
  * Kanso Protocol — Card
  *
- * Universal container with optional header (title + description +
+ * Universal container with optional header (leading + title + description +
  * action), body, and footer. Each section toggles via boolean inputs;
  * dividers can be added between sections for visual grouping.
+ *
+ * The header's `title`/`description` string inputs cover the simple case.
+ * For a richer header — an avatar, a title with a badge or link, a
+ * multi-line description — project `[kpCardHeaderLeading]` (before the text
+ * group; an avatar, icon, or thumbnail), `[kpCardTitle]`, and/or
+ * `[kpCardDescription]`. Each replaces its plain-text fallback only when
+ * something is actually projected into it (same pattern as
+ * `kp-page-header`'s `[kpPageHeaderTitle]`) — the string inputs keep working
+ * untouched otherwise.
  *
  * Set `appearance="elevated"` for a shadowed surface, `"muted"` for a
  * gray background with dimmed text (secondary / preview content),
@@ -30,6 +39,10 @@ export type KpCardAppearance = 'default' | 'muted' | 'subtle' | 'elevated' | 'ou
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class]': 'hostClasses',
+    /* `title` doubles as a global HTML attribute — a static
+       <kp-card title="…"> would otherwise leave it on the host element
+       too, triggering the browser's native tooltip over the whole card. */
+    '[attr.title]': 'null',
     '[attr.role]': 'clickable ? "button" : null',
     '[attr.tabindex]': 'clickable ? 0 : null',
     '(click)': 'handleClick($event)',
@@ -39,11 +52,18 @@ export type KpCardAppearance = 'default' | 'muted' | 'subtle' | 'elevated' | 'ou
   template: `
     @if (showHeader) {
       <div class="kp-card__header">
+        <div class="kp-card__leading">
+          <ng-content select="[kpCardHeaderLeading]"/>
+        </div>
         <div class="kp-card__text-group">
-          <h3 class="kp-card__title">{{ title }}</h3>
-          @if (showDescription) {
-            <p class="kp-card__desc">{{ description }}</p>
-          }
+          <ng-content select="[kpCardTitle]">
+            <h3 class="kp-card__title">{{ title }}</h3>
+          </ng-content>
+          <ng-content select="[kpCardDescription]">
+            @if (showDescription) {
+              <p class="kp-card__desc">{{ description }}</p>
+            }
+          </ng-content>
         </div>
         @if (showHeaderAction) {
           <div class="kp-card__action">
@@ -93,6 +113,9 @@ export type KpCardAppearance = 'default' | 'muted' | 'subtle' | 'elevated' | 'ou
       gap: 12px;
       padding: var(--kp-card-pad);
     }
+    .kp-card__leading { flex: 0 0 auto; }
+    .kp-card__leading:empty { display: none; }
+
     .kp-card__text-group {
       flex: 1 1 auto;
       display: flex;

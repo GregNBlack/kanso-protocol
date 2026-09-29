@@ -645,7 +645,7 @@
   --kp-color-tooltip-bg: var(--kp-color-gray-900); /** Dark tooltip background */
   --kp-color-tooltip-fg: var(--kp-color-white); /** Tooltip label color */
   --kp-color-tooltip-shortcut: var(--kp-color-gray-400); /** Keyboard shortcut text color */
-  --kp-color-tooltip-border: var(--kp-color-gray-800); /** Subtle tooltip border for contrast */
+  --kp-color-tooltip-border: var(--kp-color-tooltip-bg); /** Matches tooltip.bg — the arrow is a same-color SVG fill pinned to the tooltip's edge, so a border of any other color crossed its base and made it look detached from the body. */
   --kp-color-popover-bg: var(--kp-color-white); /** Popover background */
   --kp-color-popover-border: var(--kp-color-gray-200); /** Popover border */
   --kp-color-popover-fg-title: var(--kp-color-gray-900); /** Popover title */
@@ -672,7 +672,7 @@
   --kp-color-tabs-tab-icon-hover: var(--kp-color-gray-700);
   --kp-color-tabs-tab-icon-selected: var(--kp-color-blue-600);
   --kp-color-tabs-tab-icon-disabled: var(--kp-color-gray-300);
-  --kp-color-tabs-track-border: var(--kp-color-gray-200); /** Bottom border under the whole tabs strip */
+  --kp-color-tabs-track-border: var(--kp-color-border-default); /** Bottom border under the whole tabs strip. Aliases border.default (was its own #e4e4e7) so it matches kp-divider and every other border-drawing component instead of drifting independently. */
   --kp-color-avatar-bg-default: var(--kp-color-gray-200);
   --kp-color-avatar-bg-primary: var(--kp-color-blue-100);
   --kp-color-avatar-bg-success: var(--kp-color-green-100);
@@ -752,7 +752,7 @@
   --kp-color-pagination-item-icon-disabled: var(--kp-color-gray-300);
   --kp-color-pagination-ellipsis: var(--kp-color-gray-500); /** Ellipsis (…) color between page ranges */
   --kp-color-pagination-info: var(--kp-color-gray-600); /** 'Showing X of Y' info text + 'Per page' label */
-  --kp-color-divider-line: var(--kp-color-gray-200); /** Divider line color */
+  --kp-color-divider-line: var(--kp-color-border-default); /** Divider line color. Aliases border.default (was its own #e4e4e7) so kp-divider matches every other border-drawing component instead of drifting independently. */
   --kp-color-divider-label: var(--kp-color-gray-500); /** Divider center label color */
   --kp-color-drawer-resize-handle: var(--kp-color-gray-300); /** Drag handle on bottom/top sheets */
   --kp-color-skeleton-bg-base: var(--kp-color-gray-100);
@@ -837,7 +837,7 @@
   --kp-color-dialog-fg-title: var(--kp-color-gray-900); /** Dialog title */
   --kp-color-dialog-fg-desc: var(--kp-color-gray-600); /** Dialog description (under title) + close icon */
   --kp-color-dialog-fg-body: var(--kp-color-gray-700); /** Dialog body copy */
-  --kp-color-dialog-divider: var(--kp-color-gray-100); /** Optional divider between header/body/footer */
+  --kp-color-dialog-divider: var(--kp-color-border-default); /** Optional divider between header/body/footer. Aliases border.default (was its own #f4f4f5, which collided with the panel bg in dark mode) so it tracks any theme's contour brightness automatically. */
   --kp-color-overlay-hover-subtle: rgba(0, 0, 0, 0.04); /** Faintest hover bg — close-button on Alert / Badge / Popover surfaces. */
   --kp-color-overlay-hover-light: rgba(0, 0, 0, 0.06); /** Light hover bg — subtle interactive emphasis on light surfaces. */
   --kp-color-overlay-hover-medium: rgba(0, 0, 0, 0.08); /** Standard hover bg on light surfaces. */

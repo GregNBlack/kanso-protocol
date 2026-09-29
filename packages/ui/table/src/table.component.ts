@@ -74,59 +74,71 @@ export class KpTableHeaderDirective {
   host: { '[class]': 'hostClasses' },
   template: `
     <table class="kp-table__el">
-      <thead class="kp-table__head">
-        <tr class="kp-table__head-row">
-          @if (selectable) {
-            <th class="kp-table__cell kp-table__cell--checkbox" scope="col">
-              <kp-checkbox
-                size="sm"
-                [hasLabel]="false"
-                [checked]="allSelected()"
-                [indeterminate]="someSelected() && !allSelected()"
-                (checkedChange)="toggleAll($event)"
-              />
-            </th>
-          }
-          @for (col of columns; track col.id) {
-            <th
-              class="kp-table__cell kp-table__cell--header"
-              [class]="cellAlignClass(col)"
-              [style.width]="col.width ?? null"
-              [attr.aria-sort]="col.sortable ? (sort?.columnId === col.id ? (sort?.direction === 'asc' ? 'ascending' : 'descending') : 'none') : null"
-              scope="col"
-            >
-              <button
-                type="button"
-                class="kp-table__header-button"
-                [class.kp-table__header-button--sortable]="col.sortable"
-                [class.kp-table__header-button--active]="col.sortable && sort?.columnId === col.id"
-                [disabled]="!col.sortable"
-                [attr.aria-label]="col.label || col.id"
-                (click)="onHeaderClick(col)"
+      @if (showHeader) {
+        <thead class="kp-table__head">
+          <tr class="kp-table__head-row">
+            @if (selectable) {
+              <th class="kp-table__cell kp-table__cell--checkbox" scope="col">
+                <kp-checkbox
+                  size="sm"
+                  [hasLabel]="false"
+                  [checked]="allSelected()"
+                  [indeterminate]="someSelected() && !allSelected()"
+                  (checkedChange)="toggleAll($event)"
+                />
+              </th>
+            }
+            @for (col of columns; track col.id) {
+              <th
+                class="kp-table__cell kp-table__cell--header"
+                [class]="cellAlignClass(col)"
+                [style.width]="col.width ?? null"
+                [attr.aria-sort]="col.sortable ? (sort?.columnId === col.id ? (sort?.direction === 'asc' ? 'ascending' : 'descending') : 'none') : null"
+                scope="col"
               >
-                @if (headerTemplate(col.id); as tpl) {
-                  <ng-container *ngTemplateOutlet="tpl"></ng-container>
-                } @else {
-                  {{ col.label }}
-                }
+                <ng-template #headerContent>
+                  @if (headerTemplate(col.id); as tpl) {
+                    <ng-container *ngTemplateOutlet="tpl"></ng-container>
+                  } @else {
+                    {{ col.label }}
+                  }
+                </ng-template>
                 @if (col.sortable) {
-                  <span class="kp-table__sort-icon" aria-hidden="true">
-                    @if (sort?.columnId === col.id) {
-                      @if (sort!.direction === 'asc') {
-                        <svg viewBox="0 0 12 12" fill="none" width="10" height="10"><path d="M3 7l3-3 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <button
+                    type="button"
+                    class="kp-table__header-button kp-table__header-button--sortable"
+                    [class.kp-table__header-button--active]="sort?.columnId === col.id"
+                    [attr.aria-label]="col.label || col.id"
+                    (click)="onHeaderClick(col)"
+                  >
+                    <ng-container *ngTemplateOutlet="headerContent"></ng-container>
+                    <span class="kp-table__sort-icon" aria-hidden="true">
+                      @if (sort?.columnId === col.id) {
+                        @if (sort!.direction === 'asc') {
+                          <svg viewBox="0 0 12 12" fill="none" width="10" height="10"><path d="M3 7l3-3 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        } @else {
+                          <svg viewBox="0 0 12 12" fill="none" width="10" height="10"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        }
                       } @else {
-                        <svg viewBox="0 0 12 12" fill="none" width="10" height="10"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <svg viewBox="0 0 12 12" fill="none" width="10" height="10"><path d="M4 4.5l2-2 2 2M4 7.5l2 2 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                       }
-                    } @else {
-                      <svg viewBox="0 0 12 12" fill="none" width="10" height="10"><path d="M4 4.5l2-2 2 2M4 7.5l2 2 2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    }
-                  </span>
+                    </span>
+                  </button>
+                } @else {
+                  <!-- Not a <button> (even disabled) — a disabled button
+                       swallows pointer events on any interactive content
+                       projected into a custom header template (e.g. a
+                       select-all checkbox), so non-sortable columns render
+                       plain, unwrapped content instead. -->
+                  <div class="kp-table__header-button">
+                    <ng-container *ngTemplateOutlet="headerContent"></ng-container>
+                  </div>
                 }
-              </button>
-            </th>
-          }
-        </tr>
-      </thead>
+              </th>
+            }
+          </tr>
+        </thead>
+      }
 
       <tbody class="kp-table__body">
         @for (row of data; track trackRow(row, $index); let i = $index) {
@@ -146,7 +158,7 @@ export class KpTableHeaderDirective {
               </td>
             }
             @for (col of columns; track col.id) {
-              <td class="kp-table__cell" [class]="cellAlignClass(col)">
+              <td class="kp-table__cell" [class]="cellAlignClass(col)" [style.width]="col.width ?? null">
                 @if (cellTemplate(col.id); as tpl) {
                   <ng-container *ngTemplateOutlet="tpl; context: { $implicit: row, index: i, column: col }"></ng-container>
                 } @else {
@@ -354,8 +366,18 @@ export class KpTableComponent<T = unknown> {
   @Input() data: T[] = [];
   @Input() striped = false;
   @Input() bordered = false;
+  @Input() showHeader = true;
   @Input() selectable = false;
+  /** Clicking anywhere on the row toggles its selection. Set to `false` when the row click does something else (open a detail view, etc.) and selection should only happen via the checkbox. */
+  @Input() selectOnRowClick = true;
   @Input() selected: T[] = [];
+  /**
+   * Identity used to match rows in `selected` — e.g. `(row) => row.id`.
+   * Without it, selection is tracked by object reference (`Array.includes`),
+   * which is lost whenever `data` is recreated (a `computed()`, a fresh
+   * fetch, etc.) even if the same logical rows are still present.
+   */
+  @Input() rowKey: ((row: T) => unknown) | null = null;
   @Input() sort: KpTableSort | null = null;
   @Input() emptyMessage = 'No data';
   /** Override how rows are tracked in the `@for` loop (default: index). */
@@ -397,13 +419,21 @@ export class KpTableComponent<T = unknown> {
     return this.trackBy ? this.trackBy(row, index) : index;
   }
 
-  isSelected(row: T): boolean { return this.selected.includes(row); }
+  private keyOf(row: T): unknown {
+    return this.rowKey ? this.rowKey(row) : row;
+  }
+
+  isSelected(row: T): boolean {
+    const key = this.keyOf(row);
+    return this.selected.some((r) => this.keyOf(r) === key);
+  }
   allSelected(): boolean { return this.data.length > 0 && this.selected.length === this.data.length; }
   someSelected(): boolean { return this.selected.length > 0; }
 
   toggleRow(row: T): void {
+    const key = this.keyOf(row);
     const next = this.isSelected(row)
-      ? this.selected.filter((r) => r !== row)
+      ? this.selected.filter((r) => this.keyOf(r) !== key)
       : [...this.selected, row];
     this.selected = next;
     this.selectedChange.emit(next);
@@ -417,7 +447,7 @@ export class KpTableComponent<T = unknown> {
 
   onRowClick(row: T, _event: MouseEvent): void {
     this.rowClick.emit(row);
-    if (this.selectable) this.toggleRow(row);
+    if (this.selectable && this.selectOnRowClick) this.toggleRow(row);
   }
 
   onHeaderClick(col: KpTableColumn<T>): void {

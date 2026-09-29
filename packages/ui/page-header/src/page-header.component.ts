@@ -41,6 +41,10 @@ export type KpPageHeaderAlign = 'start' | 'center' | 'end';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class]': 'hostClasses',
+    /* `title` doubles as a global HTML attribute — a static
+       <kp-page-header title="…"> would otherwise leave it on the host
+       element too, triggering the browser's native tooltip over it. */
+    '[attr.title]': 'null',
     /* When the bottom divider is hidden, zero the public --kp-ph-pad-bottom
        hook so consumers using it for downstream layout don't see a phantom
        24px gap below the header. */
