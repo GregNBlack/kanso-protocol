@@ -84,12 +84,15 @@ describe('KpTableComponent', () => {
     expect(sortChange).toHaveBeenLastCalledWith(null);
   });
 
-  it('clicking a non-sortable header is a no-op', () => {
+  it('non-sortable header renders plain content, not a <button> (a disabled button would swallow clicks on any interactive header template)', () => {
     const { host, cmp } = setup();
     const sortChange = vi.fn();
     cmp.sortChange.subscribe(sortChange);
-    const noteBtn = headerCells(host)[2].querySelector('button')!;
-    noteBtn.click();
+    const noteCell = headerCells(host)[2];
+    expect(noteCell.querySelector('button')).toBeNull();
+    const noteContent = noteCell.querySelector('.kp-table__header-button') as HTMLElement;
+    expect(noteContent.tagName).toBe('DIV');
+    noteContent.click();
     expect(sortChange).not.toHaveBeenCalled();
   });
 
@@ -126,6 +129,43 @@ describe('KpTableComponent', () => {
     expect(cmp.isSelected(ROWS[0])).toBe(true);
   });
 
+  it('selectOnRowClick: false still emits rowClick but leaves selection to the checkbox', () => {
+    const { host, cmp } = setup({ selectable: true, selectOnRowClick: false });
+    const click = vi.fn();
+    cmp.rowClick.subscribe(click);
+    (rows(host)[0] as HTMLElement).click();
+    expect(click).toHaveBeenCalledWith(ROWS[0]);
+    expect(cmp.isSelected(ROWS[0])).toBe(false);
+    cmp.toggleRow(ROWS[0]);
+    expect(cmp.isSelected(ROWS[0])).toBe(true);
+  });
+
+  it('rowKey matches selection by identity even when row objects are recreated', () => {
+    const { cmp } = setup({ selectable: true, rowKey: (r: Row) => r.id, selected: [ROWS[0]] });
+    const recreated: Row = { id: 'a', name: 'Alice', age: 30 }; // same id, new object
+    expect(cmp.isSelected(recreated)).toBe(true);
+    cmp.toggleRow(recreated); // should remove by key, not fail to match and add a duplicate
+    expect(cmp.isSelected(recreated)).toBe(false);
+    expect(cmp.someSelected()).toBe(false);
+  });
+
+  it('showHeader: false omits <thead> entirely', () => {
+    const { host } = setup({ showHeader: false });
+    expect(host.querySelector('thead')).toBeNull();
+    expect(host.querySelectorAll('tbody .kp-table__row').length).toBe(3);
+  });
+
+  it('column.width applies to both header and row cells', () => {
+    const cols: KpTableColumn<Row>[] = [
+      { id: 'name', label: 'Name', width: '120px', accessor: (r) => r.name },
+    ];
+    const { host } = setup({ columns: cols });
+    const th = headerCells(host)[0] as HTMLElement;
+    const td = rows(host)[0].querySelector('.kp-table__cell') as HTMLElement;
+    expect(th.style.width).toBe('120px');
+    expect(td.style.width).toBe('120px');
+  });
+
   it('hostClasses include size, striped, bordered, selectable when set', () => {
     const { host } = setup({ size: 'lg', striped: true, bordered: true, selectable: true });
     expect(host.classList.contains('kp-table--lg')).toBe(true);
@@ -156,8 +196,10 @@ describe('KpTableComponent', () => {
   });
 
   it('header button falls back to col.id when label is empty (axe button-name)', () => {
+    // sortable: true — button-name is an axe rule about <button> elements;
+    // a non-sortable column renders a plain <div>, which isn't subject to it.
     const cols: KpTableColumn<Row>[] = [
-      { id: 'actions', label: '', accessor: () => '' },
+      { id: 'actions', label: '', sortable: true, accessor: () => '' },
     ];
     const { fix, host } = setup({ columns: cols });
     fix.detectChanges();
