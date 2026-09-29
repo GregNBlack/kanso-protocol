@@ -737,7 +737,6 @@ $kp-color-alert-neutral-left-accent-accent: $kp-color-gray-600;
 $kp-color-tooltip-bg: $kp-color-gray-900; // Dark tooltip background
 $kp-color-tooltip-fg: $kp-color-white; // Tooltip label color
 $kp-color-tooltip-shortcut: $kp-color-gray-400; // Keyboard shortcut text color
-$kp-color-tooltip-border: $kp-color-gray-800; // Subtle tooltip border for contrast
 $kp-color-popover-bg: $kp-color-white; // Popover background
 $kp-color-popover-border: $kp-color-gray-200; // Popover border
 $kp-color-popover-fg-title: $kp-color-gray-900; // Popover title
@@ -923,6 +922,7 @@ $kp-text-md: $kp-font-weight-regular $kp-font-size-md/$kp-font-line-height-md $k
 $kp-text-lg: $kp-font-weight-medium $kp-font-size-lg/$kp-font-line-height-lg $kp-font-family-sans; // Section label, small heading
 $kp-text-xl: $kp-font-weight-semibold $kp-font-size-xl/$kp-font-line-height-xl $kp-font-family-sans; // Heading
 $kp-text-2xl: $kp-font-weight-semibold $kp-font-size-2xl/$kp-font-line-height-2xl $kp-font-family-sans; // Large heading, hero
+$kp-color-tooltip-border: $kp-color-tooltip-bg; // Matches tooltip.bg — the arrow is a same-color SVG fill pinned to the tooltip's edge, so a border of any other color crossed its base and made it look detached from the body.
 $kp-color-tabs-track-border: $kp-color-border-default; // Bottom border under the whole tabs strip. Aliases border.default (was its own #e4e4e7) so it matches kp-divider and every other border-drawing component instead of drifting independently.
 $kp-color-divider-line: $kp-color-border-default; // Divider line color. Aliases border.default (was its own #e4e4e7) so kp-divider matches every other border-drawing component instead of drifting independently.
 $kp-color-dialog-divider: $kp-color-border-default; // Optional divider between header/body/footer. Aliases border.default (was its own #f4f4f5, which collided with the panel bg in dark mode) so it tracks any theme's contour brightness automatically.

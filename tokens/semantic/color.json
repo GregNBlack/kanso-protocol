@@ -350,7 +350,7 @@
       "bg":       { "$value": "{color.gray.900}", "$type": "color", "$description": "Dark tooltip background" },
       "fg":       { "$value": "{color.white}",    "$type": "color", "$description": "Tooltip label color" },
       "shortcut": { "$value": "{color.gray.400}", "$type": "color", "$description": "Keyboard shortcut text color" },
-      "border":   { "$value": "{color.gray.800}", "$type": "color", "$description": "Subtle tooltip border for contrast" }
+      "border":   { "$value": "{color.tooltip.bg}", "$type": "color", "$description": "Matches tooltip.bg — the arrow is a same-color SVG fill pinned to the tooltip's edge, so a border of any other color crossed its base and made it look detached from the body." }
     },
 
     "popover": {

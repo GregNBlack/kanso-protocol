@@ -645,7 +645,7 @@
   --kp-color-tooltip-bg: var(--kp-color-gray-900); /** Dark tooltip background */
   --kp-color-tooltip-fg: var(--kp-color-white); /** Tooltip label color */
   --kp-color-tooltip-shortcut: var(--kp-color-gray-400); /** Keyboard shortcut text color */
-  --kp-color-tooltip-border: var(--kp-color-gray-800); /** Subtle tooltip border for contrast */
+  --kp-color-tooltip-border: var(--kp-color-tooltip-bg); /** Matches tooltip.bg — the arrow is a same-color SVG fill pinned to the tooltip's edge, so a border of any other color crossed its base and made it look detached from the body. */
   --kp-color-popover-bg: var(--kp-color-white); /** Popover background */
   --kp-color-popover-border: var(--kp-color-gray-200); /** Popover border */
   --kp-color-popover-fg-title: var(--kp-color-gray-900); /** Popover title */
