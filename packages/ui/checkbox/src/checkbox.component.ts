@@ -73,6 +73,7 @@ export type KpCheckboxColor = 'primary' | 'danger';
       line-height: 1;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
       --kp-checkbox-border: var(--kp-color-checkbox-border-rest);
+      --kp-checkbox-bg: var(--kp-color-input-bg-default);
     }
 
     .kp-checkbox__root {
@@ -82,6 +83,16 @@ export type KpCheckboxColor = 'primary' | 'danger';
       gap: 8px;
       cursor: pointer;
       user-select: none;
+    }
+
+    /* With a label, align the box to the label's first line instead of the
+       vertical center of the whole (possibly multi-line) text — :has() lets
+       this stay CSS-only, no JS class needed for the hasLabel branch. */
+    .kp-checkbox__root:has(.kp-checkbox__label) {
+      align-items: flex-start;
+    }
+    .kp-checkbox__root:has(.kp-checkbox__label) .kp-checkbox__box {
+      margin-top: calc((20px - var(--kp-checkbox-size)) / 2);
     }
 
     /* Native input — clipped off-screen but still in the a11y tree and
@@ -219,6 +230,7 @@ export type KpCheckboxColor = 'primary' | 'danger';
 
     .kp-checkbox__label {
       font-size: 14px;
+      line-height: 20px;
       color: var(--kp-color-text-default);
     }
 
