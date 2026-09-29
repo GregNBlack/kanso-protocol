@@ -4,11 +4,13 @@ import {
   EventEmitter,
   Input,
   Output,
+  signal,
 } from '@angular/core';
 import { KpButtonComponent } from '@kanso-protocol/ui/button';
 import { KpIconComponent } from '@kanso-protocol/ui/icon';
 
 export type KpBannerSize = 'sm' | 'md';
+export type KpBannerVariant = 'full' | 'inline';
 export type KpBannerColor =
   | 'primary'
   | 'success'
@@ -63,7 +65,7 @@ export type KpBannerColor =
           color="neutral"
           [iconOnly]="true"
           aria-label="Dismiss"
-          (click)="close.emit()"
+          (click)="dismiss()"
         >
           <svg kpButtonIconLeft viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
         </button>
@@ -92,6 +94,18 @@ export type KpBannerColor =
     :host(.kp-banner--md) {
       --kp-banner-pad: 12px 32px;
       --kp-banner-fs: 14px;
+    }
+
+    :host(.kp-banner--hidden) {
+      display: none;
+    }
+
+    /* Full: edge-to-edge strip under the app Header — border on the bottom
+       edge only (the default rule above). Inline: a self-contained block
+       dropped into page content — rounded corners, border on all sides. */
+    :host(.kp-banner--variant-inline) {
+      border: 1px solid var(--kp-banner-border);
+      border-radius: 12px;
     }
 
     .kp-banner__content {
@@ -173,12 +187,21 @@ export type KpBannerColor =
 export class KpBannerComponent {
   @Input() color: KpBannerColor = 'primary';
   @Input() size: KpBannerSize = 'md';
+  @Input() variant: KpBannerVariant = 'full';
   @Input() title = 'Global notification message';
   @Input() description: string | null = null;
   @Input() showIcon = true;
   @Input() showClose = true;
 
+  /** Emits when the close button is clicked, after the banner hides itself — for persisting the dismissal (e.g. localStorage) or reacting to it upstream. */
   @Output() close = new EventEmitter<void>();
+
+  private readonly dismissed = signal(false);
+
+  dismiss(): void {
+    this.dismissed.set(true);
+    this.close.emit();
+  }
 
   get iconName(): string {
     const map: Record<KpBannerColor, string> = {
@@ -193,6 +216,13 @@ export class KpBannerComponent {
   }
 
   get hostClasses(): string {
-    return `kp-banner kp-banner--${this.color} kp-banner--${this.size}`;
+    const classes = [
+      'kp-banner',
+      `kp-banner--${this.color}`,
+      `kp-banner--${this.size}`,
+      `kp-banner--variant-${this.variant}`,
+    ];
+    if (this.dismissed()) classes.push('kp-banner--hidden');
+    return classes.join(' ');
   }
 }
