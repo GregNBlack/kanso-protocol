@@ -373,6 +373,12 @@
             "$value": "{color.gray.700}",
             "$description": "designer-pass"
           }
+        },
+        "outline": {
+          "border": {
+            "$value": "{color.gray.400}",
+            "$description": "audit-2026-09-29 — gray.300 dark (#3F3F46) cascade was too close to surrounding surfaces. Matches border.default / neutral button outline border."
+          }
         }
       }
     },
@@ -1214,17 +1220,20 @@
         },
         "border": {
           "rest": {
-            "$value": "{color.gray.300}",
-            "$description": "audit-2026-05-05 — neutral outline border = gray-300 dark"
+            "$value": "{color.gray.400}",
+            "$description": "audit-2026-09-29 — raised from gray-300 dark; sat too close to surrounding surfaces to read as an outline button border. Matches border.default."
           },
           "hover": {
-            "$value": "{color.gray.400}"
+            "$value": "{color.gray.500}",
+            "$description": "audit-2026-09-29 — raised from gray-400 to keep one step above the new rest value"
           },
           "active": {
-            "$value": "{color.gray.500}"
+            "$value": "{color.gray.600}",
+            "$description": "audit-2026-09-29 — raised from gray-500 to keep one step above the new hover value (avoids colliding with hover)"
           },
           "focus": {
-            "$value": "{color.gray.300}"
+            "$value": "{color.gray.400}",
+            "$description": "audit-2026-09-29 — matches new rest value"
           },
           "disabled": {
             "$value": "{color.gray.200}"
@@ -1257,6 +1266,12 @@
             "$description": "audit-2026-05-05 r2 — match outline.fg.disabled"
           }
         }
+      }
+    },
+    "border": {
+      "default": {
+        "$value": "{color.gray.400}",
+        "$description": "audit-2026-09-29 — gray.200 dark (#27272A) sat too close to elevated surfaces (card.bg-elevated #1F1F22, dialog/popover panels) to read as a contour. Raised one step so the generic border shows up against any raised surface it's drawn on, not just page bg."
       }
     },
     "card": {
@@ -1353,6 +1368,10 @@
     },
     "checkbox": {
       "border": {
+        "rest": {
+          "$value": "{color.gray.400}",
+          "$description": "audit-2026-09-29 — gray.300 dark cascade was too close to surrounding surfaces to read as the empty checkbox's border. Matches border.default."
+        },
         "hover": {
           "$value": "{color.gray.500}",
           "$description": "audit-2026-05-06 — gray.500 dark, brighter than input.border.hover (#52525B); the small checkbox box needs more contrast on hover"

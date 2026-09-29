@@ -762,7 +762,6 @@ $kp-color-tabs-tab-icon-rest: $kp-color-gray-500;
 $kp-color-tabs-tab-icon-hover: $kp-color-gray-700;
 $kp-color-tabs-tab-icon-selected: $kp-color-blue-600;
 $kp-color-tabs-tab-icon-disabled: $kp-color-gray-300;
-$kp-color-tabs-track-border: $kp-color-gray-200; // Bottom border under the whole tabs strip
 $kp-color-avatar-bg-default: $kp-color-gray-200;
 $kp-color-avatar-bg-primary: $kp-color-blue-100;
 $kp-color-avatar-bg-success: $kp-color-green-100;
@@ -839,7 +838,6 @@ $kp-color-pagination-item-icon-selected: $kp-color-foreground-on-saturated;
 $kp-color-pagination-item-icon-disabled: $kp-color-gray-300;
 $kp-color-pagination-ellipsis: $kp-color-gray-500; // Ellipsis (…) color between page ranges
 $kp-color-pagination-info: $kp-color-gray-600; // 'Showing X of Y' info text + 'Per page' label
-$kp-color-divider-line: $kp-color-gray-200; // Divider line color
 $kp-color-divider-label: $kp-color-gray-500; // Divider center label color
 $kp-color-drawer-resize-handle: $kp-color-gray-300; // Drag handle on bottom/top sheets
 $kp-color-skeleton-bg-base: $kp-color-gray-100;
@@ -918,7 +916,6 @@ $kp-color-dialog-panel-border: $kp-color-gray-200;
 $kp-color-dialog-fg-title: $kp-color-gray-900; // Dialog title
 $kp-color-dialog-fg-desc: $kp-color-gray-600; // Dialog description (under title) + close icon
 $kp-color-dialog-fg-body: $kp-color-gray-700; // Dialog body copy
-$kp-color-dialog-divider: $kp-color-gray-100; // Optional divider between header/body/footer
 $kp-text-2xs: $kp-font-weight-medium $kp-font-size-2xs/$kp-font-line-height-2xs $kp-font-family-sans; // Micro text — badges, captions, legal
 $kp-text-xs: $kp-font-weight-regular $kp-font-size-xs/$kp-font-line-height-xs $kp-font-family-sans; // Small body — helper text, metadata
 $kp-text-sm: $kp-font-weight-regular $kp-font-size-sm/$kp-font-line-height-sm $kp-font-family-sans; // Default UI body
@@ -926,3 +923,6 @@ $kp-text-md: $kp-font-weight-regular $kp-font-size-md/$kp-font-line-height-md $k
 $kp-text-lg: $kp-font-weight-medium $kp-font-size-lg/$kp-font-line-height-lg $kp-font-family-sans; // Section label, small heading
 $kp-text-xl: $kp-font-weight-semibold $kp-font-size-xl/$kp-font-line-height-xl $kp-font-family-sans; // Heading
 $kp-text-2xl: $kp-font-weight-semibold $kp-font-size-2xl/$kp-font-line-height-2xl $kp-font-family-sans; // Large heading, hero
+$kp-color-tabs-track-border: $kp-color-border-default; // Bottom border under the whole tabs strip. Aliases border.default (was its own #e4e4e7) so it matches kp-divider and every other border-drawing component instead of drifting independently.
+$kp-color-divider-line: $kp-color-border-default; // Divider line color. Aliases border.default (was its own #e4e4e7) so kp-divider matches every other border-drawing component instead of drifting independently.
+$kp-color-dialog-divider: $kp-color-border-default; // Optional divider between header/body/footer. Aliases border.default (was its own #f4f4f5, which collided with the panel bg in dark mode) so it tracks any theme's contour brightness automatically.

@@ -105,6 +105,7 @@
   --kp-color-badge-info-outline-fg: #67e8f9;
   --kp-color-badge-neutral-subtle-bg: var(--kp-color-gray-200);
   --kp-color-badge-neutral-subtle-fg: var(--kp-color-gray-700);
+  --kp-color-badge-neutral-outline-border: var(--kp-color-gray-400);
   --kp-color-alert-primary-subtle-bg: var(--kp-color-blue-100);
   --kp-color-alert-primary-subtle-fg-title: var(--kp-color-gray-950);
   --kp-color-alert-primary-subtle-fg-desc: var(--kp-color-blue-900);
@@ -304,10 +305,10 @@
   --kp-color-neutral-outline-fg-rest: var(--kp-color-gray-800);
   --kp-color-neutral-outline-fg-hover: var(--kp-color-gray-950);
   --kp-color-neutral-outline-fg-disabled: var(--kp-color-gray-300);
-  --kp-color-neutral-outline-border-rest: var(--kp-color-gray-300);
-  --kp-color-neutral-outline-border-hover: var(--kp-color-gray-400);
-  --kp-color-neutral-outline-border-active: var(--kp-color-gray-500);
-  --kp-color-neutral-outline-border-focus: var(--kp-color-gray-300);
+  --kp-color-neutral-outline-border-rest: var(--kp-color-gray-400);
+  --kp-color-neutral-outline-border-hover: var(--kp-color-gray-500);
+  --kp-color-neutral-outline-border-active: var(--kp-color-gray-600);
+  --kp-color-neutral-outline-border-focus: var(--kp-color-gray-400);
   --kp-color-neutral-outline-border-disabled: var(--kp-color-gray-200);
   --kp-color-neutral-outline-border-loading: var(--kp-color-gray-300);
   --kp-color-neutral-ghost-bg-hover: var(--kp-color-gray-200);
@@ -315,6 +316,7 @@
   --kp-color-neutral-ghost-fg-rest: var(--kp-color-gray-800);
   --kp-color-neutral-ghost-fg-hover: var(--kp-color-gray-950);
   --kp-color-neutral-ghost-fg-disabled: var(--kp-color-gray-300);
+  --kp-color-border-default: var(--kp-color-gray-400);
   --kp-color-card-fg-desc: var(--kp-color-gray-600);
   --kp-color-card-border: var(--kp-color-gray-300);
   --kp-color-card-bg-elevated: #1f1f22;
@@ -335,6 +337,7 @@
   --kp-color-avatar-ring: var(--kp-color-gray-50);
   --kp-color-avatar-group-count-bg: var(--kp-color-gray-200);
   --kp-color-avatar-group-count-fg: var(--kp-color-gray-950);
+  --kp-color-checkbox-border-rest: var(--kp-color-gray-400);
   --kp-color-checkbox-border-hover: var(--kp-color-gray-500);
   --kp-color-stepper-label-error: #f87171;
   --kp-color-menu-item-fg-selected: var(--kp-color-blue-900);
