@@ -218,8 +218,13 @@ interface DayCell {
       display: flex;
       flex-direction: column;
       position: relative;
-      /* fluid by default — same rationale as kp-input. */
+      /* fluid by default — same rationale as kp-input. min-width: 0 is
+         required alongside width: 100%: a flex/grid item's default
+         min-width is auto (its content's intrinsic width), which silently
+         wins over width: 100% and refused to shrink below that in a
+         grid/flex cell (e.g. a "Date | Time" two-column form row). */
       width: 100%;
+      min-width: 0;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
 

@@ -185,10 +185,18 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
   `,
   styles: [`
     :host {
-      display: inline-flex;
+      box-sizing: border-box;
+      display: flex;
       flex-direction: column;
       position: relative;
-      width: 200px;
+      /* fluid by default, same rationale as kp-input/kp-datepicker — a fixed
+         px width refused to shrink below itself in a grid/flex cell (e.g. a
+         "Date | Time" two-column form row), overflowing narrow containers.
+         min-width: 0 is required alongside width: 100%: a flex/grid item's
+         default min-width is auto (its content's intrinsic width), which
+         silently wins over width: 100% and blocks shrinking otherwise. */
+      width: 100%;
+      min-width: 0;
       font-family: var(--kp-font-family-sans, 'Onest', system-ui, sans-serif);
     }
 
