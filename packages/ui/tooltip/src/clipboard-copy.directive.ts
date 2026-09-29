@@ -112,10 +112,14 @@ export class KpClipboardCopyDirective implements OnDestroy {
     this.hideHint();
 
     this.ref = createComponent(KpTooltipInternalComponent, { environmentInjector: this.envInjector });
-    const inst = this.ref.instance;
-    inst.size = 'sm';
-    inst.label = this.kpClipboardHint;
-    inst.arrowPosition = this.oppositeOf(this.kpClipboardPosition);
+    // setInput (not instance assignment) — see KpTooltipDirective.positionTooltip
+    // for why instance assignment on an OnPush component ref is a latent bug.
+    // This call site only sets inputs once, before the one detectChanges()
+    // below, so it isn't broken today — kept consistent so it stays safe if
+    // this ever grows edge-flip repositioning like the tooltip directive has.
+    this.ref.setInput('size', 'sm');
+    this.ref.setInput('label', this.kpClipboardHint);
+    this.ref.setInput('arrowPosition', this.oppositeOf(this.kpClipboardPosition));
 
     const el = this.ref.location.nativeElement as HTMLElement;
     el.style.position = 'fixed';
