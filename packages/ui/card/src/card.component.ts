@@ -30,6 +30,10 @@ export type KpCardAppearance = 'default' | 'muted' | 'subtle' | 'elevated' | 'ou
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class]': 'hostClasses',
+    /* `title` doubles as a global HTML attribute — a static
+       <kp-card title="…"> would otherwise leave it on the host element
+       too, triggering the browser's native tooltip over the whole card. */
+    '[attr.title]': 'null',
     '[attr.role]': 'clickable ? "button" : null',
     '[attr.tabindex]': 'clickable ? 0 : null',
     '(click)': 'handleClick($event)',

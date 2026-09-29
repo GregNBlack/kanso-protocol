@@ -36,7 +36,14 @@ export type KpBannerColor =
   selector: 'kp-banner',
   imports: [KpButtonComponent, KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { '[class]': 'hostClasses', role: 'status' },
+  host: {
+    '[class]': 'hostClasses',
+    role: 'status',
+    /* `title` doubles as a global HTML attribute — a static
+       <kp-banner title="…"> would otherwise leave it on the host element
+       too, triggering the browser's native tooltip over the whole banner. */
+    '[attr.title]': 'null',
+  },
   template: `
     <div class="kp-banner__content">
       @if (showIcon) {

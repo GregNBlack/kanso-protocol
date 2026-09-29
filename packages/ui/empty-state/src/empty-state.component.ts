@@ -14,7 +14,13 @@ export type KpEmptyStateSize = 'sm' | 'md' | 'lg';
   selector: 'kp-empty-state',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { '[class]': 'hostClasses' },
+  host: {
+    '[class]': 'hostClasses',
+    /* `title` doubles as a global HTML attribute — a static
+       <kp-empty-state title="…"> would otherwise leave it on the host
+       element too, triggering the browser's native tooltip over it. */
+    '[attr.title]': 'null',
+  },
   template: `
     @if (showIllustration) {
       <div class="kp-es__illustration">

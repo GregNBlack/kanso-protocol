@@ -36,7 +36,13 @@ export type KpDrawerVariant = 'flush' | 'floating';
   selector: 'kp-drawer',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { '[class]': 'hostClasses' },
+  host: {
+    '[class]': 'hostClasses',
+    /* `title` doubles as a global HTML attribute — a static
+       <kp-drawer title="…"> would otherwise leave it on the host element
+       too, triggering the browser's native tooltip over the whole panel. */
+    '[attr.title]': 'null',
+  },
   template: `
     @if (rendered) {
       <div #root class="kp-drawer__root" [class]="rootClasses">
