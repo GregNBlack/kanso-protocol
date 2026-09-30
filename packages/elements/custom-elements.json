@@ -890,6 +890,13 @@
               "fieldName": "size"
             },
             {
+              "name": "variant",
+              "type": {
+                "text": "'full' | 'inline'"
+              },
+              "fieldName": "variant"
+            },
+            {
               "name": "title",
               "type": {
                 "text": "string"
@@ -934,6 +941,14 @@
                 "text": "'sm' | 'md'"
               },
               "default": "'md'"
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "'full' | 'inline'"
+              },
+              "default": "'full'"
             },
             {
               "kind": "field",
@@ -4380,6 +4395,20 @@
                 "text": "string"
               },
               "fieldName": "value"
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "name"
+            },
+            {
+              "name": "autocomplete",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "autocomplete"
             }
           ],
           "members": [
@@ -4458,6 +4487,22 @@
             {
               "kind": "field",
               "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "autocomplete",
               "type": {
                 "text": "string"
               },
@@ -8726,11 +8771,32 @@
               "fieldName": "bordered"
             },
             {
+              "name": "showHeader",
+              "type": {
+                "text": "boolean"
+              },
+              "fieldName": "showHeader"
+            },
+            {
               "name": "selectable",
               "type": {
                 "text": "boolean"
               },
               "fieldName": "selectable"
+            },
+            {
+              "name": "selectOnRowClick",
+              "type": {
+                "text": "boolean"
+              },
+              "fieldName": "selectOnRowClick"
+            },
+            {
+              "name": "rowKey",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "rowKey"
             },
             {
               "name": "sort",
@@ -8789,6 +8855,14 @@
             },
             {
               "kind": "field",
+              "name": "showHeader",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "kind": "field",
               "name": "selectable",
               "type": {
                 "text": "boolean"
@@ -8797,11 +8871,27 @@
             },
             {
               "kind": "field",
+              "name": "selectOnRowClick",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "kind": "field",
               "name": "selected",
               "type": {
                 "text": "T[]"
               },
               "default": "[]"
+            },
+            {
+              "kind": "field",
+              "name": "rowKey",
+              "type": {
+                "text": "string"
+              },
+              "default": "> unknown) | null = null"
             },
             {
               "kind": "field",

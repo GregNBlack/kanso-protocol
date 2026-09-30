@@ -89,6 +89,7 @@ declare global {
   interface KpBannerComponentJsx extends KpElementBaseAttributes {
     color?: 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'neutral' | (string & {});
     size?: 'sm' | 'md' | (string & {});
+    variant?: 'full' | 'inline' | (string & {});
     title?: string;
     description?: string;
     showIcon?: boolean | "true" | "false";
@@ -324,6 +325,8 @@ declare global {
     disabled?: boolean | "true" | "false";
     forceState?: 'rest' | 'hover' | 'active' | 'focus' | 'disabled' | 'loading' | 'error' | (string & {}) | null;
     value?: string;
+    name?: string;
+    autocomplete?: string;
   }
   interface KpMarkdownViewerComponentJsx extends KpElementBaseAttributes {
     size?: 'sm' | 'md' | 'lg' | (string & {});
@@ -615,8 +618,11 @@ declare global {
     data?: any;
     striped?: boolean | "true" | "false";
     bordered?: boolean | "true" | "false";
+    showHeader?: boolean | "true" | "false";
     selectable?: boolean | "true" | "false";
+    selectOnRowClick?: boolean | "true" | "false";
     selected?: any;
+    rowKey?: string;
     sort?: string;
     emptyMessage?: string;
     trackBy?: number | string;
