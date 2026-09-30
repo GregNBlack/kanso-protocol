@@ -1,0 +1,46 @@
+/**
+ * Optional thin-scrollbar utility — the same recipe kp-textarea and
+ * kp-time-picker already use for their own scroll containers, extracted so
+ * any consumer can opt a plain scrollable element (a kp-dialog/kp-drawer
+ * body, a table wrapper, the page itself) into the matching look.
+ *
+ * Usage: import after tokens.css (and dark.css if you use it), then add
+ * class="kp-scrollbar-thin" to any element with overflow: auto/scroll.
+ *
+ *   @import '@kanso-protocol/ui/styles/tokens.css';
+ *   @import '@kanso-protocol/ui/styles/scrollbar.css';
+ *
+ *   <div class="kp-scrollbar-thin" style="overflow-y: auto">…</div>
+ *
+ * Deliberately does NOT set `scrollbar-width` / `scrollbar-color` in the
+ * main rule: in Chrome 121+, setting either property disables the
+ * ::-webkit-scrollbar pseudo-elements below and falls back to the plain
+ * system thin scrollbar, silently undoing this whole recipe. Firefox has no
+ * ::-webkit-scrollbar support, so it gets scrollbar-width as a fallback,
+ * gated behind @supports so Chrome never evaluates it.
+ */
+.kp-scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background: transparent;
+}
+.kp-scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.kp-scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--kp-color-border-strong);
+  border-radius: 3px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+.kp-scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: var(--kp-color-text-disabled);
+  background-clip: padding-box;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .kp-scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--kp-color-border-strong) transparent;
+  }
+}

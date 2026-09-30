@@ -317,6 +317,7 @@
   --kp-color-neutral-ghost-fg-hover: var(--kp-color-gray-950);
   --kp-color-neutral-ghost-fg-disabled: var(--kp-color-gray-300);
   --kp-color-border-default: var(--kp-color-gray-400);
+  --kp-color-border-strong: var(--kp-color-gray-500);
   --kp-color-card-fg-desc: var(--kp-color-gray-600);
   --kp-color-card-border: var(--kp-color-gray-300);
   --kp-color-card-bg-elevated: #1f1f22;
