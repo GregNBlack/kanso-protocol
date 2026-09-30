@@ -1,6 +1,6 @@
 {
   "name": "@kanso-protocol/react",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "license": "MIT",
   "description": "Typed React wrappers over the Kanso Protocol <kp-*> custom elements — ergonomic, type-checked <KpButton>, <KpSelect>, … components with object-prop and event support on React 18 and 19.",
   "author": "GregNBlack",
@@ -24,7 +24,7 @@
   ],
   "peerDependencies": {
     "react": ">=18",
-    "@kanso-protocol/elements": ">=0.3.0"
+    "@kanso-protocol/elements": ">=0.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.3"
