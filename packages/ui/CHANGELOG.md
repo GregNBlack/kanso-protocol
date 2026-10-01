@@ -1,5 +1,13 @@
 # @kanso-protocol/ui
 
+## 5.21.0
+
+### Minor Changes
+
+- 5fcff16: Icon set: added `phone`.
+
+  Fixes #71.
+
 ## 5.20.0
 
 ### Minor Changes
