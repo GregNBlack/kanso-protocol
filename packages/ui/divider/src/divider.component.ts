@@ -14,6 +14,7 @@ export type KpDividerLabelPosition = 'center' | 'start' | 'end';
  * Vertical dividers are label-less by design (visually awkward).
  */
 @Component({
+  standalone: true,
   selector: 'kp-divider',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

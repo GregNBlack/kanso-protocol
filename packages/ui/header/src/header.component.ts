@@ -48,6 +48,7 @@ export interface KpHeaderNavItem {
  * />
  */
 @Component({
+  standalone: true,
   selector: 'kp-header',
   imports: [KpAvatarComponent, KpBadgeComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

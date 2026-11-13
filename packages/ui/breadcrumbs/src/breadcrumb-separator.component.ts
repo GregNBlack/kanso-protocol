@@ -16,6 +16,7 @@ export type KpBreadcrumbSeparatorType = 'chevron' | 'slash' | 'dot';
  * slash, and a small accent-colored dot.
  */
 @Component({
+  standalone: true,
   selector: 'kp-breadcrumb-separator',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

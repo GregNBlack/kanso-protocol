@@ -1,6 +1,6 @@
 # Getting started
 
-From zero to a themed, accessible screen in five steps. Assumes an Angular 21+ app (standalone, zoneless-friendly).
+From zero to a themed, accessible screen in five steps. Assumes a standalone Angular 18 or 21 app.
 
 ## 1. Install
 

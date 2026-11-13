@@ -52,6 +52,7 @@ export interface KpSidebarSection {
  * />
  */
 @Component({
+  standalone: true,
   selector: 'kp-sidebar',
   imports: [KpAvatarComponent, KpIconComponent, KpNavItemComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

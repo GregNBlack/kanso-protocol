@@ -33,6 +33,7 @@ export type KpRadioColor = 'primary' | 'danger';
  * </kp-radio-group>
  */
 @Component({
+  standalone: true,
   selector: 'kp-radio',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

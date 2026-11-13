@@ -31,6 +31,7 @@ export type KpFormSectionSize = 'sm' | 'md' | 'lg';
  * </kp-form-section>
  */
 @Component({
+  standalone: true,
   selector: 'kp-form-section',
   imports: [KpDividerComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -27,6 +27,7 @@ import { KpToast, KpToastPosition, KpToastSize } from './toast.types';
  * <kp-toast-host position="top-right" size="md"/>
  */
 @Component({
+  standalone: true,
   selector: 'kp-toast-host',
   imports: [KpIconButtonComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

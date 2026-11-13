@@ -1,8 +1,8 @@
+import { DOCUMENT } from '@angular/common';
 import {
   ApplicationRef,
   ChangeDetectorRef,
   ComponentRef,
-  DOCUMENT,
   Directive,
   ElementRef,
   EnvironmentInjector,

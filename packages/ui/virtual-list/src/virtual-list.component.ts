@@ -73,6 +73,7 @@ export class KpVirtualRowDirective<T = unknown> {
  * </kp-virtual-list>
  */
 @Component({
+  standalone: true,
   selector: 'kp-virtual-list',
   imports: [NgTemplateOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,

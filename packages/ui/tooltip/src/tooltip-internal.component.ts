@@ -31,6 +31,7 @@ export type KpTooltipArrowAlign = 'start' | 'center' | 'end';
  * `KpTooltipDirective` — the only public surface.
  */
 @Component({
+  standalone: true,
   selector: 'kp-tooltip-internal',
   imports: [NgTemplateOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,

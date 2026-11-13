@@ -35,6 +35,7 @@ export type KpRowJustify =
  * </kp-row>
  */
 @Component({
+  standalone: true,
   selector: 'kp-row',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

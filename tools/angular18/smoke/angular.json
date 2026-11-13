@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "projects": {
+    "smoke": {
+      "projectType": "application",
+      "root": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "browser": "app/main.ts",
+            "index": "app/index.html",
+            "tsConfig": "app/tsconfig.json",
+            "outputPath": "dist/smoke",
+            "polyfills": [
+              "zone.js"
+            ],
+            "styles": [
+              "app/styles.css"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "aot": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

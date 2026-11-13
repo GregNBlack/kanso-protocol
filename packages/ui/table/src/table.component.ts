@@ -68,6 +68,7 @@ export class KpTableHeaderDirective {
  * </kp-table>
  */
 @Component({
+  standalone: true,
   selector: 'kp-table',
   imports: [NgTemplateOutlet, KpCheckboxComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

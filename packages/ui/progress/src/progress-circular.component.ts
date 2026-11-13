@@ -27,6 +27,7 @@ const SIZE_CFG: Record<KpProgressCircularSize, { d: number; s: number; valueFont
  * <kp-progress-circular [indeterminate]="true" size="md"/>
  */
 @Component({
+  standalone: true,
   selector: 'kp-progress-circular',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

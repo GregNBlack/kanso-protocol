@@ -39,6 +39,7 @@ export type KpBreadcrumbsSize = KpBreadcrumbItemSize;
  * </kp-breadcrumbs>
  */
 @Component({
+  standalone: true,
   selector: 'kp-breadcrumbs',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

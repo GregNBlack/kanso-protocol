@@ -61,6 +61,7 @@ function parseTime(v: string | null): { h: number; m: number; s: number } | null
  * display switches between 12h and 24h via `format`.
  */
 @Component({
+  standalone: true,
   selector: 'kp-time-picker',
   imports: [KpButtonComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

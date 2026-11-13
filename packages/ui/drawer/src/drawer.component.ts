@@ -33,6 +33,7 @@ export type KpDrawerVariant = 'flush' | 'floating';
  * panel; the panel itself stays fixed-size per `size` × `side`.
  */
 @Component({
+  standalone: true,
   selector: 'kp-drawer',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

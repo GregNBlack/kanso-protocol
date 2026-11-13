@@ -25,6 +25,7 @@ export type KpTabSize = 'sm' | 'md' | 'lg';
  * </button>
  */
 @Component({
+  standalone: true,
   selector: 'button[kpTab]',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

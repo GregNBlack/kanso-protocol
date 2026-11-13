@@ -26,6 +26,7 @@ export type KpToggleColor = 'primary' | 'danger';
  * <form><kp-toggle name="notif" value="1" required>Enable</kp-toggle></form>
  */
 @Component({
+  standalone: true,
   selector: 'kp-toggle',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -37,6 +37,7 @@ export interface KpComboboxOption {
  * <kp-combobox [multiple]="true" [options]="tags" [(ngModel)]="picked"/>
  */
 @Component({
+  standalone: true,
   selector: 'kp-combobox',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

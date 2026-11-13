@@ -34,6 +34,7 @@ export type KpCardAppearance = 'default' | 'muted' | 'subtle' | 'elevated' | 'ou
  * wire it to navigate, expand, or run any action.
  */
 @Component({
+  standalone: true,
   selector: 'kp-card',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

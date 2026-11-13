@@ -29,6 +29,7 @@ export type KpButtonColor = 'primary' | 'danger' | 'neutral';
  * <button kpButton variant="outline" color="danger" [loading]="true">Delete</button>
  */
 @Component({
+  standalone: true,
   selector: 'button[kpButton]',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

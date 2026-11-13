@@ -1,6 +1,6 @@
+import { DOCUMENT } from '@angular/common';
 import {
   ApplicationRef,
-  DOCUMENT,
   Directive,
   ElementRef,
   EmbeddedViewRef,

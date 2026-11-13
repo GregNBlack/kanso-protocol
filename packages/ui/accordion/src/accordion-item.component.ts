@@ -19,6 +19,7 @@ export type KpAccordionItemSize = 'sm' | 'md' | 'lg';
  * `<kp-accordion>` which coordinates single/multi behavior.
  */
 @Component({
+  standalone: true,
   selector: 'kp-accordion-item',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

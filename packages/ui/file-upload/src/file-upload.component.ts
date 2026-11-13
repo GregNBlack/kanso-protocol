@@ -58,6 +58,7 @@ let nextId = 0;
  * />
  */
 @Component({
+  standalone: true,
   selector: 'kp-file-upload',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

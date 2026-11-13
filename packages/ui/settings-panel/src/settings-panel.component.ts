@@ -28,6 +28,7 @@ export type KpSettingsPanelSize = 'sm' | 'md' | 'lg';
  * </kp-settings-panel>
  */
 @Component({
+  standalone: true,
   selector: 'kp-settings-panel',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

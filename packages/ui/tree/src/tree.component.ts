@@ -48,6 +48,7 @@ export interface KpTreeNode {
  * callers can drive or persist it.
  */
 @Component({
+  standalone: true,
   selector: 'kp-tree',
   imports: [NgTemplateOutlet, KpCheckboxComponent, KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

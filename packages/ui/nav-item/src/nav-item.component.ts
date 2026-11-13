@@ -27,6 +27,7 @@ export type KpNavItemState = 'rest' | 'hover' | 'active' | 'disabled';
  * </kp-nav-item>
  */
 @Component({
+  standalone: true,
   selector: 'kp-nav-item',
   imports: [KpTooltipDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,

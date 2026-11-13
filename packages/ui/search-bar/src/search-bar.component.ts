@@ -46,6 +46,7 @@ export interface KpSearchResultGroup {
  * <kp-search-bar variant="command-palette" [groups]="results" (itemClick)="run($event)"/>
  */
 @Component({
+  standalone: true,
   selector: 'kp-search-bar',
   imports: [KpButtonComponent, KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

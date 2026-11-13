@@ -28,6 +28,7 @@ export type KpBreadcrumbItemType = 'link' | 'current' | 'ellipsis';
  * </kp-breadcrumb-item>
  */
 @Component({
+  standalone: true,
   selector: 'kp-breadcrumb-item',
   imports: [NgTemplateOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -36,6 +36,7 @@ export type KpAppShellLayout =
  * </kp-app-shell>
  */
 @Component({
+  standalone: true,
   selector: 'kp-app-shell',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

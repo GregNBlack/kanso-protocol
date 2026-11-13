@@ -66,6 +66,7 @@ interface BreadcrumbEntry {
  * <kp-breadcrumbs-auto size="md" separator="chevron"/>
  */
 @Component({
+  standalone: true,
   selector: 'kp-breadcrumbs-auto',
   imports: [
     KpBreadcrumbsComponent,

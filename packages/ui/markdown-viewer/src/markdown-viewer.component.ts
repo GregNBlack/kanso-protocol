@@ -53,6 +53,7 @@ const defaultParser: KpMarkdownParser = async (md) => {
  * />
  */
 @Component({
+  standalone: true,
   selector: 'kp-markdown-viewer',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

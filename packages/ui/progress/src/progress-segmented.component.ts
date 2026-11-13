@@ -21,6 +21,7 @@ type KpProgressColor = 'primary' | 'success' | 'danger' | 'warning' | 'neutral';
  *   [showStepCounter]="true"/>
  */
 @Component({
+  standalone: true,
   selector: 'kp-progress-segmented',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

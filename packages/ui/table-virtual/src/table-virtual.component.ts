@@ -49,6 +49,7 @@ export class KpTableVirtualCellDirective {
  * </kp-table-virtual>
  */
 @Component({
+  standalone: true,
   selector: 'kp-table-virtual',
   imports: [NgTemplateOutlet, KpVirtualListComponent, KpVirtualRowDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,

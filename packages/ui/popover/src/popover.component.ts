@@ -35,6 +35,7 @@ export type KpPopoverArrowPosition =
  * </kp-popover>
  */
 @Component({
+  standalone: true,
   selector: 'kp-popover',
   imports: [KpIconButtonComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

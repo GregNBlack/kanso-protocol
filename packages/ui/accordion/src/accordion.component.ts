@@ -27,6 +27,7 @@ export type KpAccordionMode = 'single' | 'multi';
  * flat surfaces). Otherwise only the per-item bottom borders show.
  */
 @Component({
+  standalone: true,
   selector: 'kp-accordion',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

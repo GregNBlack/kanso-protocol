@@ -48,7 +48,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           registry-url: https://registry.npmjs.org
 
       - name: Install
@@ -72,6 +72,11 @@ jobs:
         # @kanso-protocol/react alongside ui / elements / mcp. Must run before
         # the publish step below.
         run: npm run build:react
+
+      - name: Build the npm UI artifact with Angular 18.0
+        run: |
+          npm ci --prefix tools/angular18
+          node scripts/build-angular18.js
 
       - name: Create release PR or publish
         uses: changesets/action@v1

@@ -24,6 +24,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
  * </kp-radio-group>
  */
 @Component({
+  standalone: true,
   selector: 'kp-radio-group',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

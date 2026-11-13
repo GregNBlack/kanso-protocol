@@ -21,6 +21,7 @@ export type KpTextareaResize = 'both' | 'vertical' | 'horizontal' | 'none';
  * <kp-textarea size="lg" [maxLength]="500" [showCounter]="true"></kp-textarea>
  */
 @Component({
+  standalone: true,
   selector: 'kp-textarea',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

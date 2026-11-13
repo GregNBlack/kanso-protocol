@@ -34,6 +34,7 @@ export interface KpAvatarGroupItem {
  * <kp-avatar-group size="sm" [items]="members" [max]="4" [total]="members.length"/>
  */
 @Component({
+  standalone: true,
   selector: 'kp-avatar-group',
   imports: [KpAvatarComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

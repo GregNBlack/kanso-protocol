@@ -31,6 +31,7 @@ export type KpBadgeColor =
  * <kp-badge size="xs" color="danger" [count]="true">12</kp-badge>
  */
 @Component({
+  standalone: true,
   selector: 'kp-badge',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

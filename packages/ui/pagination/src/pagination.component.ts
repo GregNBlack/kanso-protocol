@@ -44,6 +44,7 @@ type RangeCell = { kind: 'page'; page: number } | { kind: 'ellipsis'; key: strin
  * />
  */
 @Component({
+  standalone: true,
   selector: 'kp-pagination',
   imports: [KpPaginationItemComponent, KpSelectComponent, FormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,

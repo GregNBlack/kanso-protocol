@@ -36,6 +36,7 @@ export type KpStatTrendAppearance = 'positive' | 'negative';
  * <kp-stat-card label="Sessions" value="3.4k" [showSparkline]="true" [sparklineData]="[4,7,5,9,8,12]" sparklineTrend="auto"/>
  */
 @Component({
+  standalone: true,
   selector: 'kp-stat-card',
   imports: [KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

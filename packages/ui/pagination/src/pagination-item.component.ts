@@ -26,6 +26,7 @@ export type KpPaginationNavDirection = 'prev' | 'next';
  * the common case let the container compute the range and emit events.
  */
 @Component({
+  standalone: true,
   selector: 'kp-pagination-item',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
