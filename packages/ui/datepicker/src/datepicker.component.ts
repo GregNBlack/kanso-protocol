@@ -78,6 +78,7 @@ interface DayCell {
  * Shares Input's size ramp and visual state vocabulary.
  */
 @Component({
+  standalone: true,
   selector: 'kp-date-picker',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

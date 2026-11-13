@@ -22,6 +22,7 @@ import { KpSize, KpState } from '@kanso-protocol/ui';
  * <kp-input size="lg" label="Email" [floatingLabel]="true"></kp-input>
  */
 @Component({
+    standalone: true,
     selector: 'kp-input',
     imports: [],
     changeDetection: ChangeDetectionStrategy.OnPush,

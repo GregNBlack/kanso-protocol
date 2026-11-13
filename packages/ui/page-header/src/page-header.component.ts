@@ -36,6 +36,7 @@ export type KpPageHeaderAlign = 'start' | 'center' | 'end';
  * </kp-page-header>
  */
 @Component({
+  standalone: true,
   selector: 'kp-page-header',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -41,6 +41,7 @@ export interface KpSelectOption {
  * <kp-select [multiple]="true" [options]="tags" [(ngModel)]="picked"/>
  */
 @Component({
+  standalone: true,
   selector: 'kp-select',
   imports: [KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

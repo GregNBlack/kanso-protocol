@@ -317,3 +317,46 @@ jobs:
         run: npm run check:bundle-size
       - name: Smoke — elements upgrade + render
         run: npm run test:elements
+  angular-consumer:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - angular: '18.0.0'
+            cli: '~18.0.0'
+            typescript: '~5.4.5'
+            zone: '~0.14.10'
+          - angular: '18.1.4'
+            cli: '~18.1.0'
+            typescript: '~5.5.4'
+            zone: '~0.14.10'
+          - angular: '21.2.7'
+            cli: '~21.2.0'
+            typescript: '~5.9.0'
+            zone: '~0.15.0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --prefix tools/angular18
+      - run: node scripts/build-angular18.js
+      - name: Install packed UI and build the consumer
+        env:
+          ANGULAR: ${{ matrix.angular }}
+          CLI: ${{ matrix.cli }}
+          TYPESCRIPT: ${{ matrix.typescript }}
+          ZONE: ${{ matrix.zone }}
+        run: |
+          consumer=$(mktemp -d)
+          cp -R tools/angular18/smoke/. "$consumer/"
+          npm pack ./dist/packages/ui --pack-destination "$consumer"
+          cd "$consumer"
+          npm init -y
+          npm install ./kanso-protocol-ui-*.tgz \
+            "@angular/core@$ANGULAR" "@angular/common@$ANGULAR" \
+            "@angular/forms@$ANGULAR" "@angular/router@$ANGULAR" \
+            "@angular/platform-browser@$ANGULAR" "@angular/compiler@$ANGULAR" \
+            "@angular/compiler-cli@$ANGULAR" "@angular/cli@$CLI" \
+            "@angular-devkit/build-angular@$CLI" "typescript@$TYPESCRIPT" "zone.js@$ZONE"
+          npx ng build smoke --configuration production

@@ -19,6 +19,7 @@ export type KpProgressColor = 'primary' | 'success' | 'danger' | 'warning' | 'ne
  * <kp-progress-linear [indeterminate]="true" color="primary"/>
  */
 @Component({
+  standalone: true,
   selector: 'kp-progress-linear',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

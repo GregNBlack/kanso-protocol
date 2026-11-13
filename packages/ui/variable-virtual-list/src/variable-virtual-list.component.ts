@@ -85,6 +85,7 @@ export class KpVariableVirtualRowDirective<T = unknown> {
  * // heightFor = (_i, row) => 32 + row.lines * 18;
  */
 @Component({
+  standalone: true,
   selector: 'kp-variable-virtual-list',
   imports: [NgTemplateOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -34,6 +34,7 @@ import { KpTabComponent, KpTabSize } from './tab.component';
  * </kp-tabs>
  */
 @Component({
+  standalone: true,
   selector: 'kp-tabs',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

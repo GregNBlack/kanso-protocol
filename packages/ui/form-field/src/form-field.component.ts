@@ -52,6 +52,7 @@ export type KpRequiredMode = 'none' | 'optional' | 'required-asterisk';
  *   </kp-form-field>
  */
 @Component({
+  standalone: true,
   selector: 'kp-form-field',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

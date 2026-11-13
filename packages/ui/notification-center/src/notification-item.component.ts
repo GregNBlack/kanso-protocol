@@ -21,6 +21,7 @@ export type KpNotificationAppearance =
   | 'neutral';
 
 @Component({
+  standalone: true,
   selector: 'kp-notification-item',
   imports: [KpAvatarComponent, KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

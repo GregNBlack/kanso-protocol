@@ -39,6 +39,7 @@ export interface KpFilterChip {
  * </kp-filter-bar>
  */
 @Component({
+  standalone: true,
   selector: 'kp-filter-bar',
   imports: [KpButtonComponent, KpBadgeComponent, KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

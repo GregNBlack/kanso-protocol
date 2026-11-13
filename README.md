@@ -133,6 +133,8 @@ The assistant calls `list_components` / `get_component` / `list_tokens` under th
 
 ## Install & Use
 
+`@kanso-protocol/ui` supports Angular 18 and 21. The npm package is compiled with Angular 18.0 in partial-Ivy mode.
+
 > New here? The [**getting-started guide**](docs/getting-started.md) takes you from install → tokens → first screen → a working form in five steps. It works with [`@angular/ssr`](docs/ssr.md) out of the box.
 >
 > **Not on Angular?** `npm i @kanso-protocol/elements` gives you the same components as framework-agnostic [custom elements](docs/web-components.md) (`<kp-badge>`, `<kp-card>`, …) for React / Vue / plain HTML — or `npm i @kanso-protocol/react` for typed `<KpBadge>` / `<KpCard>` wrappers.

@@ -30,6 +30,7 @@ export type KpStackAlign = 'start' | 'center' | 'end' | 'stretch';
  * </kp-stack>
  */
 @Component({
+  standalone: true,
   selector: 'kp-stack',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

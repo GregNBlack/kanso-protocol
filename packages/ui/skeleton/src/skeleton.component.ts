@@ -16,6 +16,7 @@ export type KpSkeletonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
  * optionally override `[width]` to fit the real content width.
  */
 @Component({
+  standalone: true,
   selector: 'kp-skeleton',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

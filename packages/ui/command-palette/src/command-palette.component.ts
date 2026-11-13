@@ -67,6 +67,7 @@ const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(na
  * />
  */
 @Component({
+  standalone: true,
   selector: 'kp-command-palette',
   imports: [KpDialogComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

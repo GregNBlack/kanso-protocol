@@ -55,6 +55,7 @@ const DEFAULTS: Record<KpPageErrorType, { title: string; description: string; ic
  * </kp-page-error>
  */
 @Component({
+  standalone: true,
   selector: 'kp-page-error',
   imports: [KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

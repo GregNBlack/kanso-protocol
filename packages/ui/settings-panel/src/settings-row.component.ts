@@ -21,6 +21,7 @@ export type KpSettingsRowSize = 'sm' | 'md' | 'lg';
  * </kp-settings-row>
  */
 @Component({
+  standalone: true,
   selector: 'kp-settings-row',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

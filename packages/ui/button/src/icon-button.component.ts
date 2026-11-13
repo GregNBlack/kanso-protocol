@@ -41,6 +41,7 @@ export type KpIconButtonSize = 'xs' | 'sm' | 'md';
  *   </kp-icon-button>
  */
 @Component({
+  standalone: true,
   selector: 'kp-icon-button',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

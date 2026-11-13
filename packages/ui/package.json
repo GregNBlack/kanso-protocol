@@ -19,7 +19,21 @@
   ],
   "sideEffects": false,
   "peerDependencies": {
-    "@angular/core": ">=21.0.0",
-    "@angular/common": ">=21.0.0"
+    "@angular/core": "^18.0.0 || ^21.0.0",
+    "@angular/common": "^18.0.0 || ^21.0.0",
+    "@angular/forms": "^18.0.0 || ^21.0.0",
+    "@angular/platform-browser": "^18.0.0 || ^21.0.0",
+    "@angular/router": "^18.0.0 || ^21.0.0",
+    "rxjs": "^7.8.0"
+  },
+  "dependencies": {
+    "marked": "^7.0.5",
+    "@tiptap/core": "^3.22.4",
+    "@tiptap/extension-image": "^3.22.4",
+    "@tiptap/extension-link": "^3.22.4",
+    "@tiptap/extension-placeholder": "^3.22.4",
+    "@tiptap/extension-text-align": "^3.22.4",
+    "@tiptap/extension-underline": "^3.22.4",
+    "@tiptap/starter-kit": "^3.22.4"
   }
 }

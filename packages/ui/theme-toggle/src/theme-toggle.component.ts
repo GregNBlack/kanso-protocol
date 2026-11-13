@@ -45,6 +45,7 @@ let nextRadioGroupId = 0;
  * />
  */
 @Component({
+  standalone: true,
   selector: 'kp-theme-toggle',
   imports: [KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

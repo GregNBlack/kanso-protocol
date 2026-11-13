@@ -43,6 +43,7 @@ export type KpDialogFooterLayout = 'start' | 'end' | 'between' | 'stacked';
  * />
  */
 @Component({
+  standalone: true,
   selector: 'kp-dialog',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

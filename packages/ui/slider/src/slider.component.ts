@@ -29,6 +29,7 @@ export type KpSliderValue = number | readonly [number, number];
  * `number`.
  */
 @Component({
+  standalone: true,
   selector: 'kp-slider',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

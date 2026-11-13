@@ -24,6 +24,7 @@ export type KpMenuItemSize = 'sm' | 'md' | 'lg';
  * </kp-menu-item>
  */
 @Component({
+  standalone: true,
   selector: 'kp-menu-item',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

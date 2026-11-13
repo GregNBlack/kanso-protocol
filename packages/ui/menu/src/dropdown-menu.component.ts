@@ -23,6 +23,7 @@ import { KpButtonComponent } from '@kanso-protocol/ui/button';
  * </kp-dropdown-menu>
  */
 @Component({
+  standalone: true,
   selector: 'kp-dropdown-menu',
   imports: [KpInputComponent, KpButtonComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

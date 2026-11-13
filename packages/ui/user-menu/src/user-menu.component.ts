@@ -42,6 +42,7 @@ export interface KpUserMenuItem {
  * </kp-user-menu>
  */
 @Component({
+  standalone: true,
   selector: 'kp-user-menu',
   imports: [KpAvatarComponent, KpMenuItemComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

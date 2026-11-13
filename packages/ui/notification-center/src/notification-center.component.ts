@@ -43,6 +43,7 @@ export interface KpNotification {
  * />
  */
 @Component({
+  standalone: true,
   selector: 'kp-notification-center',
   imports: [KpButtonComponent, KpNotificationItemComponent, KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

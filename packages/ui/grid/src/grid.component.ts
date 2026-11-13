@@ -20,6 +20,7 @@ export type KpGridGap = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
  * </kp-grid>
  */
 @Component({
+  standalone: true,
   selector: 'kp-grid',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

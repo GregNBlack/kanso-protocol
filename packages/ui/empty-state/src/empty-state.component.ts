@@ -11,6 +11,7 @@ export type KpEmptyStateSize = 'sm' | 'md' | 'lg';
  * `[kpEmptyStateIcon]` and footer buttons via `[kpEmptyStateActions]`.
  */
 @Component({
+  standalone: true,
   selector: 'kp-empty-state',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -34,6 +34,7 @@ export type KpTableToolbarDensity = 'compact' | 'comfortable' | 'spacious';
  * </kp-table-toolbar>
  */
 @Component({
+  standalone: true,
   selector: 'kp-table-toolbar',
   imports: [KpButtonComponent, KpBadgeComponent, KpIconComponent, KpSearchBarComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

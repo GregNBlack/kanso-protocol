@@ -6,6 +6,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
  * Thin horizontal separator between groups of menu items.
  */
 @Component({
+  standalone: true,
   selector: 'kp-menu-divider',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

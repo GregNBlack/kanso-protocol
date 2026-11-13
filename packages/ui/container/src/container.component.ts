@@ -21,6 +21,7 @@ export type KpContainerPadding = 'none' | 'sm' | 'md' | 'lg';
  * </kp-container>
  */
 @Component({
+  standalone: true,
   selector: 'kp-container',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

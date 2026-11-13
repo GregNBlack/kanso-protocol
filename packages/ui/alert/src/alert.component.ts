@@ -36,6 +36,7 @@ export type KpAlertActionPlacement = 'inline' | 'stacked';
  * </kp-alert>
  */
 @Component({
+  standalone: true,
   selector: 'kp-alert',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

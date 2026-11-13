@@ -45,6 +45,7 @@ let nextGroupId = 0;
  * </kp-segmented-control>
  */
 @Component({
+  standalone: true,
   selector: 'kp-segmented-control',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

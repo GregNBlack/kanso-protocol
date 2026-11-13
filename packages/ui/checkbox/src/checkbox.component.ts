@@ -28,6 +28,7 @@ export type KpCheckboxColor = 'primary' | 'danger';
  * <form><kp-checkbox name="agree" value="yes" required>I agree</kp-checkbox></form>
  */
 @Component({
+  standalone: true,
   selector: 'kp-checkbox',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

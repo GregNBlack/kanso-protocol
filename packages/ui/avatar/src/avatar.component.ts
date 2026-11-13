@@ -34,6 +34,7 @@ export type KpAvatarStatus = 'online' | 'offline' | 'busy' | 'away';
  * </kp-avatar>
  */
 @Component({
+  standalone: true,
   selector: 'kp-avatar',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

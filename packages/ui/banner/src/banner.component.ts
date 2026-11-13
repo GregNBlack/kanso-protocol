@@ -35,6 +35,7 @@ export type KpBannerColor =
  * </kp-banner>
  */
 @Component({
+  standalone: true,
   selector: 'kp-banner',
   imports: [KpButtonComponent, KpIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

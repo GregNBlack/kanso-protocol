@@ -46,6 +46,7 @@ function coerceNumberOrNull(v: unknown): number | null {
  * <kp-number-stepper size="lg" [(ngModel)]="weight" suffix="kg"/>
  */
 @Component({
+  standalone: true,
   selector: 'kp-number-stepper',
   imports: [KpButtonComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

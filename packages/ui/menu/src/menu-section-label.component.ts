@@ -6,6 +6,7 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
  * Small uppercase heading used to group items inside a DropdownMenu.
  */
 @Component({
+  standalone: true,
   selector: 'kp-menu-section-label',
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
