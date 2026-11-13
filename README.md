@@ -9,7 +9,7 @@
 [![MCP](https://img.shields.io/badge/MCP-ready-7c3aed)](https://www.npmjs.com/package/@kanso-protocol/mcp)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
-**Open source design system for Angular — and any framework via Web Components — built on architectural consistency.**
+**Open source design system for Angular 18 and 21 — and any framework via Web Components — built on architectural consistency.**
 
 Design tokens in W3C DTCG format serve as a single source of truth for both Figma and code. Rules are embedded in architecture, not in agreements. Native Angular components ship as [`@kanso-protocol/ui`](https://www.npmjs.com/package/@kanso-protocol/ui); the same components compile to framework-agnostic custom elements as [`@kanso-protocol/elements`](https://www.npmjs.com/package/@kanso-protocol/elements) for React, Vue, or plain HTML.
 
@@ -32,7 +32,7 @@ Design tokens in W3C DTCG format serve as a single source of truth for both Figm
 - **Designed to stay small.** Components are added intentionally, when there's a clear need — not because something might be useful.
 - **One package, per-component entry points.** `npm i @kanso-protocol/ui`, then import each component from its own subpath (`@kanso-protocol/ui/button`). Tree-shaking ships only what you reference.
 - **Not just Angular.** The same components ship as framework-agnostic custom elements (`@kanso-protocol/elements`) — use `<kp-*>` from React, Vue, Svelte, or plain HTML. Import the whole bundle or tree-shake per component (`@kanso-protocol/elements/button`); form controls participate in native `<form>` submit/reset via `ElementInternals`. SSR-safe out of the box with `@angular/ssr`.
-- **AI-native.** Ships with `@kanso-protocol/mcp` — a Model Context Protocol server (12 tools) that exposes the live, typed catalog to Claude Code, Cursor, and VS Code, so the assistant authors Kanso UI from the actual API instead of from training-data guesses. Includes `check_composition`, which flags contract violations a linter can't catch at runtime (mixed sizes in a row, beta-tier usage).
+- **AI-native.** Ships with `@kanso-protocol/mcp` — a Model Context Protocol server (12 tools) that exposes the live, typed catalog to Codex, Claude Code, Cursor, and VS Code, so the assistant authors Kanso UI from the actual API instead of from training-data guesses. Includes `check_composition`, which flags contract violations a linter can't catch at runtime (mixed sizes in a row, beta-tier usage).
 - **Typed for React/TSX too.** `@kanso-protocol/elements` ships a Custom Elements Manifest (`custom-elements.json`) and `JSX.IntrinsicElements` types, so `<kp-select size="md" />` type-checks in a React/Vue project. For an idiomatic React surface, `@kanso-protocol/react` (`0.x`) adds generated `<KpButton>` / `<KpSelect>` / … forwardRef wrappers with object-prop and event support on React 18/19.
 
 ## Live Preview
@@ -42,7 +42,7 @@ Design tokens in W3C DTCG format serve as a single source of truth for both Figm
 
 ## AI-native: ship with an MCP server
 
-Kanso Protocol is one of the first design systems to ship a [**Model Context Protocol**](https://modelcontextprotocol.io) server out of the box — [`@kanso-protocol/mcp`](https://www.npmjs.com/package/@kanso-protocol/mcp). Your AI assistant (Claude Code, Cursor, VS Code, any MCP-aware client) can introspect the entire catalog over stdio: every component's inputs / outputs / ARIA role / keyboard pattern, every pattern, every design token. No copy-pasting docs, no guessing prop names, no out-of-date snippets.
+Kanso Protocol is one of the first design systems to ship a [**Model Context Protocol**](https://modelcontextprotocol.io) server out of the box — [`@kanso-protocol/mcp`](https://www.npmjs.com/package/@kanso-protocol/mcp). Your AI assistant (Codex, Claude Code, Cursor, VS Code, or any MCP-aware client) can introspect the entire catalog over stdio: every component's inputs / outputs / ARIA role / keyboard pattern, every pattern, every design token. No copy-pasting docs, no guessing prop names, no out-of-date snippets.
 
 ### Install
 
@@ -68,6 +68,28 @@ claude mcp add kanso -- npx @kanso-protocol/mcp
 ```
 
 Restart Claude Code, then run `/mcp` to confirm `kanso` appears as ✔ connected with 12 tools.
+
+</details>
+
+<details>
+<summary><b>Codex</b></summary>
+
+Add the Kanso MCP server with the Codex CLI:
+
+```bash
+codex mcp add kanso -- npx -y @kanso-protocol/mcp
+codex mcp list
+```
+
+You can also add the server to `~/.codex/config.toml`:
+
+```toml
+[mcp_servers.kanso]
+command = "npx"
+args = ["-y", "@kanso-protocol/mcp"]
+```
+
+Start a new Codex session. In the terminal UI, run `/mcp` to check that `kanso` is active. See the [Codex MCP documentation](https://learn.chatgpt.com/docs/extend/mcp?surface=cli) for more setup options.
 
 </details>
 
@@ -133,7 +155,7 @@ The assistant calls `list_components` / `get_component` / `list_tokens` under th
 
 ## Install & Use
 
-`@kanso-protocol/ui` supports Angular 18 and 21. The npm package is compiled with Angular 18.0 in partial-Ivy mode.
+`@kanso-protocol/ui` supports Angular 18.0.0 and later in the 18.x series, as well as Angular 21.x. Angular 18 support starts with `@kanso-protocol/ui@5.21.0`. The npm package is compiled with Angular 18.0 in partial-Ivy mode.
 
 > New here? The [**getting-started guide**](docs/getting-started.md) takes you from install → tokens → first screen → a working form in five steps. It works with [`@angular/ssr`](docs/ssr.md) out of the box.
 >
@@ -541,7 +563,7 @@ What we ask for: a one-line description, a public link (live URL or GitHub repo)
 
 ## Tech Stack
 
-- **Framework:** Angular 21+
+- **Framework:** Angular 21 for development. The native UI package supports Angular 18.0.0+ (18.x) and Angular 21.x.
 - **Monorepo:** Nx
 - **Tokens:** W3C DTCG + Style Dictionary 4 (emits CSS custom properties as the primary runtime, plus equivalent SCSS variables and TS constants for compile-time consumers)
 - **Docs:** Storybook 8
