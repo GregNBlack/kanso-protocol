@@ -1,5 +1,11 @@
 # @kanso-protocol/ui
 
+## 5.21.0
+
+### Minor Changes
+
+- 8dacd3e: Support native Kanso components in Angular 18 starting at 18.0.0. Compile the published library with Angular 18.0 in partial-Ivy mode and support Angular 21 consumers with the same package.
+
 ## 5.20.0
 
 ### Minor Changes
